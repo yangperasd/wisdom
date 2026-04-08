@@ -1,0 +1,38 @@
+name: Automation Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - 'feature/**'
+      - 'codex/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    env:
+      PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL }}
+      REQUIRE_PREVIEW_SMOKE: ${{ vars.REQUIRE_PREVIEW_SMOKE }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        if: ${{ env.PREVIEW_BASE_URL != '' }}
+        run: npx playwright install chromium
+
+      - name: Run automation tests
+        run: npm run test:ci

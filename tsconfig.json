@@ -1,0 +1,16 @@
+{
+  "extends": "./temp/tsconfig.cocos.json",
+  "include": [
+    "assets/scripts/**/*.ts"
+  ],
+  "exclude": [
+    "library",
+    "local",
+    "node_modules",
+    "profiles",
+    "settings",
+    "temp",
+    "tests",
+    "tools"
+  ]
+}

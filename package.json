@@ -1,0 +1,25 @@
+{
+  "name": "wisdom",
+  "version": "3.8.8",
+  "type": "2d",
+  "creator": {
+    "version": "3.8.8"
+  },
+  "uuid": "4c32a165-f340-49a8-89de-53d60c04a896",
+  "scripts": {
+    "test:typecheck": "node ./tools/run-typecheck.mjs",
+    "test:node": "node ./tools/run-automation-tests.mjs",
+    "test:smoke": "playwright test -c ./playwright.config.mjs ./tests/preview-smoke.spec.mjs",
+    "test:smoke:local": "node ./tools/run-preview-smoke.mjs",
+    "test:ci": "node ./tools/run-ci-tests.mjs",
+    "test:all": "npm run test:node && npm run test:smoke",
+    "build:wechat:config": "node ./tools/generate-wechat-build-config.mjs",
+    "build:wechat": "node ./tools/run-wechat-build.mjs",
+    "optimize:wechat": "node ./tools/optimize-wechat-build-output.mjs",
+    "verify:wechat": "node ./tools/verify-wechat-build-output.mjs",
+    "open:wechat": "node ./tools/open-wechat-devtools.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
