@@ -25,12 +25,17 @@ export class BombBugFuse extends Component {
   @property
   showCountdown = true;
 
+  @property(Node)
+  countdownOverlay: Node | null = null;
+
+  @property(Label)
+  countdownLabel: Label | null = null;
+
   private elapsed = 0;
   private exploded = false;
-  private label: Label | null = null;
 
   protected onLoad(): void {
-    this.label = this.getComponent(Label);
+    this.resolveCountdownReferences();
     this.refreshLabel();
   }
 
@@ -67,12 +72,17 @@ export class BombBugFuse extends Component {
   }
 
   private refreshLabel(): void {
-    if (!this.label || !this.showCountdown) {
+    const label = this.countdownLabel;
+    if (this.countdownOverlay?.isValid) {
+      this.countdownOverlay.active = this.showCountdown;
+    }
+
+    if (!label || !this.showCountdown) {
       return;
     }
 
     const remaining = Math.max(0, this.fuseSeconds - this.elapsed);
-    this.label.string = `Bomb ${remaining.toFixed(1)}`;
+    label.string = remaining.toFixed(1);
   }
 
   private applyExplosionToNode(target: Node, origin: Readonly<Vec3>): void {
@@ -112,6 +122,18 @@ export class BombBugFuse extends Component {
 
     for (const child of root.children) {
       this.visitNode(child, visitor);
+    }
+  }
+
+  private resolveCountdownReferences(): void {
+    if (!this.countdownOverlay?.isValid) {
+      this.countdownOverlay = this.node.getChildByName('CountdownOverlay');
+    }
+
+    if (!this.countdownLabel?.isValid) {
+      this.countdownLabel = this.countdownOverlay?.getComponent(Label)
+        ?? this.countdownOverlay?.getChildByName('CountdownLabel')?.getComponent(Label)
+        ?? null;
     }
   }
 }

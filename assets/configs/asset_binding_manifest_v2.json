@@ -1,0 +1,630 @@
+{
+  "generatedAt": "2026-04-08",
+  "scope": "detailed_entity_binding",
+  "primaryStyle": {
+    "world": "denzi",
+    "ui": "kenney_red_default",
+    "icons": "kenney_game_icons",
+    "audioUi": "kenney_plus_jrpg",
+    "audioSfx": "rpg_sound_pack_runtime_split"
+  },
+  "fonts": {
+    "ui_font_main": {
+      "selectedPath": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "runtimeReady": true,
+      "usedInFirstPass": true
+    },
+    "ui_font_compact": {
+      "selectedPath": "assets/art/ui/fonts/kenney/Kenney Future Narrow.ttf",
+      "runtimeReady": true,
+      "usedInFirstPass": false
+    },
+    "ui_font_world_label": {
+      "selectedPath": "assets/art/ui/fonts/dawnlike/SDS_8x8.ttf",
+      "runtimeReady": false,
+      "fallbackPath": "assets/art/ui/fonts/kenney/Kenney Future Narrow.ttf",
+      "notes": [
+        "Selected for style only.",
+        "Direct runtime wiring is deferred because there is no paired .meta file in assets at the moment."
+      ]
+    }
+  },
+  "uiEntities": {
+    "hud_top_bar": {
+      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+    },
+    "objective_card": {
+      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_gloss.png"
+    },
+    "controls_card": {
+      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png",
+      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_depth_flat.png"
+    },
+    "touch_attack_button": {
+      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/cross.png"
+    },
+    "touch_summon_button": {
+      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/plus.png"
+    },
+    "touch_respawn_button": {
+      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/home.png"
+    },
+    "touch_echo_button": {
+      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+    },
+    "pause_button": {
+      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/pause.png"
+    },
+    "system_pause_icon": {
+      "selectedPath": "assets/art/ui/icons/kenney_game_icons/pause.png"
+    },
+    "system_confirm_icon": {
+      "selectedPath": "assets/art/ui/icons/kenney_game_icons/checkmark.png"
+    }
+  },
+  "worldEntities": {
+    "player": {
+      "selectedPath": "assets/art/characters/player/denzi/paperdoll/doll_male.png",
+      "fallbackPath": "assets/art/characters/player/denzi/paperdoll/doll_female.png",
+      "rule": "one player build shared across all scenes"
+    },
+    "common_enemy": {
+      "selectedPath": "assets/art/characters/enemies/denzi/monsters/deepdwarf/deepdwarf_a.png",
+      "rule": "do not switch enemy family by scene"
+    },
+    "boss_core": {
+      "selectedPath": "assets/art/characters/enemies/denzi/monsters/seraph/seraph.png",
+      "fallbackPaths": [
+        "assets/art/characters/enemies/denzi/monsters/seraph/seraph_doll.png",
+        "assets/art/characters/enemies/denzi/monsters/seraph/seraph_item_sword.png"
+      ],
+      "rule": "lock one boss family before art polish"
+    },
+    "checkpoint": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+      "rule": "same checkpoint prop language across scenes",
+      "status": "first_pass_wired"
+    },
+    "portal": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+      "status": "first_pass_wired",
+      "rule": "requires dedicated portal art later"
+    },
+    "barrier_closed": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+      "status": "first_pass_wired"
+    },
+    "barrier_open": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png",
+      "status": "first_pass_wired"
+    },
+    "outdoor_ground_green": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_a.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_ground_flowers": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_a.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_path_cobble": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_a.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_ground_ruins": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_wall_standard": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_b.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_wall_broken": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_b.png",
+      "status": "phase_3_selected"
+    },
+    "outdoor_wall_cracked": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
+      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_b.png",
+      "status": "phase_3_selected"
+    },
+    "breakable_target": {
+      "selectedPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_pressureplate.png",
+      "fallbackPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_unidentified.png"
+    },
+    "pickup_relic": {
+      "selectedPath": "assets/art/items/denzi/items/helmet/helmet_enchanted.png",
+      "fallbackPath": "assets/art/items/denzi/items/shield/shield_deep_a.png",
+      "status": "ready_not_scene_bound"
+    },
+    "environment_dungeon_floor_family": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/floor/compound/standard"
+    },
+    "environment_dungeon_wall_family": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/standard"
+    },
+    "environment_dungeon_prop_family": {
+      "selectedPath": "assets/art/environment/dungeon/denzi/features"
+    }
+  },
+  "audioRoles": {
+    "ui_click_primary": {
+      "selectedPath": "assets/audio/ui/kenney/click-a.ogg",
+      "fallbackPath": "assets/audio/ui/kenney/click-b.ogg"
+    },
+    "ui_confirm_primary": {
+      "selectedPath": "assets/audio/ui/jrpg/Confirm.wav",
+      "fallbackPath": "assets/audio/ui/menu_alt/MESSAGE-B_Accept.wav"
+    },
+    "ui_open_menu": {
+      "selectedPath": "assets/audio/ui/jrpg/Open.wav",
+      "fallbackPath": "assets/audio/ui/menu_alt/MENU A_Select.wav"
+    },
+    "ui_error": {
+      "selectedPath": "assets/audio/ui/jrpg/Error.wav",
+      "fallbackPath": "assets/audio/ui/menu_alt/ALERT_Error.wav"
+    },
+    "combat_player_swing": {
+      "selectedPath": "assets/audio/sfx/combat/rpg/swing.wav",
+      "fallbackPaths": [
+        "assets/audio/sfx/combat/rpg/swing2.wav",
+        "assets/audio/sfx/combat/rpg/swing3.wav"
+      ]
+    },
+    "enemy_bite_small": {
+      "selectedPath": "assets/audio/sfx/enemies/rpg/beetle/bite-small.wav",
+      "fallbackPath": "assets/audio/sfx/enemies/rpg/beetle/bite-small2.wav"
+    },
+    "enemy_giant_voice": {
+      "selectedPath": "assets/audio/sfx/enemies/rpg/giant/giant1.wav",
+      "fallbackPaths": [
+        "assets/audio/sfx/enemies/rpg/giant/giant2.wav",
+        "assets/audio/sfx/enemies/rpg/giant/giant3.wav"
+      ]
+    },
+    "item_coin_pickup": {
+      "selectedPath": "assets/audio/sfx/items/rpg/coin.wav",
+      "fallbackPath": "assets/audio/sfx/items/rpg/coin2.wav"
+    },
+    "world_door_open": {
+      "selectedPath": "assets/audio/sfx/world/rpg/door.wav"
+    },
+    "battle_bgm": {
+      "selectedPath": null,
+      "status": "missing_runtime_copy",
+      "notes": [
+        "Runtime battle BGM path is still unresolved.",
+        "Do not wire BossArena BGM until the music file is restored into assets/audio/music."
+      ]
+    }
+  },
+  "sceneBindings": {
+    "DungeonHub": {
+      "status": "phase_1_complete_phase_2_core_props_wired",
+      "uiFontApplied": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hudSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "buttonSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "audioWired": [
+        "assets/audio/ui/kenney/click-a.ogg",
+        "assets/audio/ui/jrpg/Confirm.wav",
+        "assets/audio/ui/jrpg/Open.wav",
+        "assets/audio/ui/jrpg/Error.wav",
+        "assets/audio/sfx/combat/rpg/swing.wav",
+        "assets/audio/sfx/world/rpg/door.wav"
+      ],
+      "uiTargets": [
+        "hud_top_bar",
+        "objective_card",
+        "controls_card",
+        "pause_button",
+        "touch_attack_button",
+        "touch_summon_button",
+        "touch_respawn_button",
+        "touch_echo_button"
+      ],
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "barrier_closed",
+        "barrier_open",
+        "environment_dungeon_floor_family",
+        "environment_dungeon_wall_family"
+      ],
+      "audioTargets": [
+        "ui_click_primary",
+        "ui_open_menu",
+        "ui_confirm_primary",
+        "ui_error",
+        "world_door_open"
+      ],
+      "notes": [
+        "Scene now uses one consistent first-pass dungeon prop language for checkpoint, portal, and gate state visuals.",
+        "Portal was intentionally separated from checkpoint so traversal and save-point semantics no longer share the same prop silhouette.",
+        "Pickup and relic art is selected in the manifest, but DungeonHub still has no dedicated pickup runtime node to bind yet.",
+        "Echo selection buttons intentionally keep RectVisual-driven state colors under the icon overlay so selected and locked state logic keeps working."
+      ],
+      "iconSpriteFramesApplied": [
+        "assets/art/ui/icons/kenney_game_icons/cross.png",
+        "assets/art/ui/icons/kenney_game_icons/plus.png",
+        "assets/art/ui/icons/kenney_game_icons/home.png",
+        "assets/art/ui/icons/kenney_game_icons/pause.png",
+        "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+      ]
+    },
+    "BossArena": {
+      "status": "ui_feedback_propagated_bgm_pending",
+      "uiFontApplied": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hudSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "buttonSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "iconSpriteFramesApplied": [
+        "assets/art/ui/icons/kenney_game_icons/cross.png",
+        "assets/art/ui/icons/kenney_game_icons/plus.png",
+        "assets/art/ui/icons/kenney_game_icons/home.png",
+        "assets/art/ui/icons/kenney_game_icons/pause.png",
+        "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      ],
+      "audioWired": [
+        "assets/audio/ui/kenney/click-a.ogg",
+        "assets/audio/ui/jrpg/Confirm.wav",
+        "assets/audio/ui/jrpg/Open.wav",
+        "assets/audio/ui/jrpg/Error.wav",
+        "assets/audio/sfx/combat/rpg/swing.wav",
+        "assets/audio/sfx/world/rpg/door.wav"
+      ],
+      "notes": [
+        "Shared GameHud, TouchCommandButton, and ScenePortal runtime styling rules were propagated from DungeonHub to keep scene interaction language consistent.",
+        "This pass standardizes labels, HUD card skins, touch-button feedback, pause feedback, and portal entry sound without introducing scene-specific art forks.",
+        "BossArena still carries a runtime battle-music gap; only UI feedback and portal feedback are considered resolved in this pass."
+      ],
+      "worldTargets": [
+        "boss_core",
+        "checkpoint",
+        "portal"
+      ],
+      "audioTargets": [
+        "ui_click_primary",
+        "ui_open_menu",
+        "ui_confirm_primary",
+        "ui_error",
+        "world_door_open",
+        "battle_bgm"
+      ]
+    },
+    "StartCamp": {
+      "status": "phase_3_outdoor_bound",
+      "uiFontApplied": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hudSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "buttonSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "iconSpriteFramesApplied": [
+        "assets/art/ui/icons/kenney_game_icons/cross.png",
+        "assets/art/ui/icons/kenney_game_icons/plus.png",
+        "assets/art/ui/icons/kenney_game_icons/home.png",
+        "assets/art/ui/icons/kenney_game_icons/pause.png",
+        "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      ],
+      "audioWired": [
+        "assets/audio/ui/kenney/click-a.ogg",
+        "assets/audio/ui/jrpg/Confirm.wav",
+        "assets/audio/ui/jrpg/Open.wav",
+        "assets/audio/ui/jrpg/Error.wav",
+        "assets/audio/sfx/combat/rpg/swing.wav",
+        "assets/audio/sfx/world/rpg/door.wav"
+      ],
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_standard",
+        "barrier_closed",
+        "barrier_open"
+      ],
+      "notes": [
+        "Shared GameHud, TouchCommandButton, and ScenePortal runtime styling rules were propagated from DungeonHub to keep scene interaction language consistent.",
+        "This pass standardizes labels, HUD card skins, touch-button feedback, pause feedback, and portal entry sound without introducing scene-specific art forks.",
+        "Camp backdrop, training lane, plate zone, gate zone, and top strip now bind a consistent outdoor dressing set instead of raw placeholder panels.",
+        "Camp gate states now share the same wall-language as other open and closed traversal blockers."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
+        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+      ]
+    },
+    "FieldWest": {
+      "status": "phase_3_outdoor_bound",
+      "uiFontApplied": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hudSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "buttonSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "iconSpriteFramesApplied": [
+        "assets/art/ui/icons/kenney_game_icons/cross.png",
+        "assets/art/ui/icons/kenney_game_icons/plus.png",
+        "assets/art/ui/icons/kenney_game_icons/home.png",
+        "assets/art/ui/icons/kenney_game_icons/pause.png",
+        "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      ],
+      "audioWired": [
+        "assets/audio/ui/kenney/click-a.ogg",
+        "assets/audio/ui/jrpg/Confirm.wav",
+        "assets/audio/ui/jrpg/Open.wav",
+        "assets/audio/ui/jrpg/Error.wav",
+        "assets/audio/sfx/combat/rpg/swing.wav",
+        "assets/audio/sfx/world/rpg/door.wav"
+      ],
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked"
+      ],
+      "notes": [
+        "FieldWest now shares the same HUD, touch feedback, and portal language as the other mainline scenes.",
+        "Field backdrop, travel lane, trap lane, landing lane, and top strip now bind the outdoor dressing set instead of raw placeholder panels.",
+        "The west-side projectile trap now uses the same cracked-wall material language as the surrounding ruined path."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
+        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png"
+      ]
+    },
+    "FieldRuins": {
+      "status": "phase_3_outdoor_bound",
+      "uiFontApplied": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hudSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "buttonSpriteFramesApplied": [
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+        "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      ],
+      "iconSpriteFramesApplied": [
+        "assets/art/ui/icons/kenney_game_icons/cross.png",
+        "assets/art/ui/icons/kenney_game_icons/plus.png",
+        "assets/art/ui/icons/kenney_game_icons/home.png",
+        "assets/art/ui/icons/kenney_game_icons/pause.png",
+        "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      ],
+      "audioWired": [
+        "assets/audio/ui/kenney/click-a.ogg",
+        "assets/audio/ui/jrpg/Confirm.wav",
+        "assets/audio/ui/jrpg/Open.wav",
+        "assets/audio/ui/jrpg/Error.wav",
+        "assets/audio/sfx/combat/rpg/swing.wav",
+        "assets/audio/sfx/world/rpg/door.wav"
+      ],
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_ruins",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken"
+      ],
+      "notes": [
+        "Shared GameHud, TouchCommandButton, and ScenePortal runtime styling rules were propagated from DungeonHub to keep scene interaction language consistent.",
+        "This pass standardizes labels, HUD card skins, touch-button feedback, pause feedback, and portal entry sound without introducing scene-specific art forks.",
+        "Ruins backdrop, main lane, pickup pocket, cracked wall zone, and dungeon approach now bind one coherent exterior ruins subset.",
+        "The cracked wall and opened wall now use explicit closed and broken wall presentation instead of staying as label-first placeholders."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+      ]
+    },
+    "DungeonRoomA": {
+      "status": "phase_3_dungeon_bound",
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_green",
+        "outdoor_path_cobble",
+        "barrier_closed",
+        "barrier_open"
+      ],
+      "notes": [
+        "RoomA now shares the same dungeon checkpoint, portal, and gate language as the hub.",
+        "Backdrop and challenge lane now bind the same dungeon floor subset instead of staying as raw placeholder panels.",
+        "Closed and open gate states now use the shared barrier presentation path so later sprite swaps do not need room-specific code."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+      ]
+    },
+    "DungeonRoomB": {
+      "status": "phase_3_dungeon_bound",
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_ground_ruins",
+        "outdoor_wall_cracked"
+      ],
+      "notes": [
+        "RoomB now uses the same dungeon floor family as the hub and mainline scenes instead of relying on raw placeholder blocks.",
+        "The trap lane and gap hazard now read as one hazardous strip, while the landing pad uses a contrasting floor treatment.",
+        "The projectile trap now shares the same cracked dungeon wall presentation as other damaged interaction points."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
+        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
+        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png"
+      ]
+    },
+    "DungeonRoomC": {
+      "status": "phase_3_dungeon_bound",
+      "worldTargets": [
+        "checkpoint",
+        "portal",
+        "outdoor_ground_ruins",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken"
+      ],
+      "notes": [
+        "RoomC now reuses the same ruined dungeon floor and wall language as the exterior breach leading into the dungeon.",
+        "The bomb placement pocket is now visually separated from the rest of the room, making the required BombBug interaction easier to read.",
+        "Closed and opened wall states now bind explicit cracked and broken wall art instead of staying label-first."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
+        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+      ]
+    },
+    "MechanicsLab": {
+      "status": "phase_3_mechanics_bound",
+      "worldTargets": [
+        "checkpoint",
+        "outdoor_ground_ruins",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken",
+        "barrier_closed",
+        "barrier_open",
+        "breakable_target",
+        "player",
+        "common_enemy"
+      ],
+      "notes": [
+        "MechanicsLab now uses one dedicated graybox-to-art bridge instead of mixing raw colored panels with ad hoc labels.",
+        "Backdrop, strip, plate lane, trap lane, bomb lane, gates, trap face, and breakable wall states now bind one coherent puzzle-lab material set.",
+        "Player and enemy visuals now use the same texture-backed character binding path as the mainline scenes, reducing later asset hookup drift."
+      ],
+      "worldSpriteFramesApplied": [
+        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png",
+        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
+        "assets/art/characters/player/denzi/paperdoll/doll_male.png",
+        "assets/art/characters/enemies/denzi/monsters/deepdwarf/deepdwarf_a.png"
+      ]
+    }
+  },
+  "uiRuntimeFeedbackPass": {
+    "appliedScenes": [
+      "DungeonHub",
+      "StartCamp",
+      "FieldWest",
+      "FieldRuins",
+      "BossArena",
+      "MechanicsLab"
+    ],
+    "sharedFontPath": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+    "hudSpriteFrames": [
+      "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
+      "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
+      "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+    ],
+    "iconSpriteFrames": {
+      "attack": "assets/art/ui/icons/kenney_game_icons/cross.png",
+      "summon": "assets/art/ui/icons/kenney_game_icons/plus.png",
+      "respawn": "assets/art/ui/icons/kenney_game_icons/home.png",
+      "pause": "assets/art/ui/icons/kenney_game_icons/pause.png",
+      "echoVariantShared": "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+    },
+    "buttonFrameRules": {
+      "attack": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "place_echo": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "respawn": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
+      "pause_toggle": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
+      "pause_menu_actions": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+    },
+    "audioRules": {
+      "tap": "assets/audio/ui/kenney/click-a.ogg",
+      "confirm": "assets/audio/ui/jrpg/Confirm.wav",
+      "error": "assets/audio/ui/jrpg/Error.wav",
+      "menu_open": "assets/audio/ui/jrpg/Open.wav",
+      "player_attack": "assets/audio/sfx/combat/rpg/swing.wav",
+      "portal_enter": "assets/audio/sfx/world/rpg/door.wav"
+    },
+    "knownIssues": [
+      "BossArena still has no resolved runtime battle BGM file under assets/audio/music, so only UI and portal feedback were propagated there.",
+      "DungeonHub pickup/relic art is selected, but no dedicated pickup node exists in the scene yet."
+    ]
+  }
+}

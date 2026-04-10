@@ -1,6 +1,8 @@
-import { _decorator, Component, instantiate, Node, Prefab, Vec3 } from 'cc';
+import { _decorator, AudioClip, Component, instantiate, Node, Prefab, SpriteFrame, Vec3 } from 'cc';
+import { playTransientClipAtNode } from '../audio/TransientAudio';
 import { GameManager } from '../core/GameManager';
 import { GAME_EVENT_RESPAWN_REQUESTED } from '../core/GameTypes';
+import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from '../visual/SpriteVisualSkin';
 import { SimpleProjectile } from './SimpleProjectile';
 
 const { ccclass, property } = _decorator;
@@ -25,8 +27,25 @@ export class ProjectileTrap extends Component {
   @property
   autoStart = true;
 
+  @property(SpriteFrame)
+  visualSpriteFrame: SpriteFrame | null = null;
+
+  @property(AudioClip)
+  fireClip: AudioClip | null = null;
+
+  @property
+  fireClipVolume = 1;
+
+  @property
+  hideLabelWhenSkinned = true;
+
   private timer = 0;
   private spawnedProjectiles: Node[] = [];
+
+  protected onLoad(): void {
+    applySpriteFrameToPlaceholderVisual(this.node, this.visualSpriteFrame);
+    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !this.visualSpriteFrame);
+  }
 
   protected onEnable(): void {
     GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetTrap, this);
@@ -66,6 +85,7 @@ export class ProjectileTrap extends Component {
 
     const projectileComponent = projectile.getComponent(SimpleProjectile);
     projectileComponent?.launch(new Vec3(this.directionX, this.directionY, 0));
+    playTransientClipAtNode(this.node, this.fireClip, this.fireClipVolume, 'TrapFire');
     this.spawnedProjectiles.push(projectile);
   }
 

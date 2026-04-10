@@ -1,5 +1,6 @@
 import { _decorator, Collider2D, Component, Contact2DType, Enum, IPhysics2DContact } from 'cc';
 import { EchoId } from '../core/GameTypes';
+import { CollectiblePresentation } from '../visual/CollectiblePresentation';
 import { EchoManager } from './EchoManager';
 
 const { ccclass, property } = _decorator;
@@ -22,10 +23,13 @@ export class EchoUnlockPickup extends Component {
   destroyOnPickup = true;
 
   private collider: Collider2D | null = null;
+  private presentation: CollectiblePresentation | null = null;
 
   protected onLoad(): void {
     this.collider = this.getComponent(Collider2D);
     this.collider?.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    this.presentation = this.getComponent(CollectiblePresentation);
+    this.presentation?.applyPresentation();
   }
 
   protected onDestroy(): void {
@@ -41,6 +45,8 @@ export class EchoUnlockPickup extends Component {
     if (this.selectAfterUnlock) {
       this.echoManager.selectEcho(this.echoId);
     }
+
+    this.presentation?.playPickupFeedback();
 
     if (this.destroyOnPickup) {
       this.node.destroy();

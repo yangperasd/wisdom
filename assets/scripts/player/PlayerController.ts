@@ -1,5 +1,5 @@
 import { _decorator, Component, EventTarget, Node, Vec3 } from 'cc';
-import { HEALTH_EVENT_DEPLETED, HealthComponent } from '../combat/HealthComponent';
+import { HEALTH_EVENT_DAMAGED, HEALTH_EVENT_DEPLETED, HealthComponent } from '../combat/HealthComponent';
 import { EchoManager } from '../echo/EchoManager';
 import { GameManager } from '../core/GameManager';
 
@@ -7,6 +7,8 @@ const { ccclass, property } = _decorator;
 
 export const PLAYER_EVENT_ATTACK_STARTED = 'player-attack-started';
 export const PLAYER_EVENT_ATTACK_ENDED = 'player-attack-ended';
+export const PLAYER_EVENT_HURT = 'player-hurt';
+export const PLAYER_EVENT_RESPAWNED = 'player-respawned';
 
 @ccclass('PlayerController')
 export class PlayerController extends Component {
@@ -37,11 +39,13 @@ export class PlayerController extends Component {
   private forcedMoveTimer = 0;
 
   protected onLoad(): void {
+    this.health?.events.on(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
     this.health?.events.on(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
     this.syncAttackAnchor();
   }
 
   protected onDestroy(): void {
+    this.health?.events.off(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
     this.health?.events.off(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
   }
 
@@ -166,10 +170,15 @@ export class PlayerController extends Component {
     this.forcedMoveTimer = 0;
     this.forcedMoveVelocity.set(0, 0, 0);
     this.health?.resetFull();
+    this.events.emit(PLAYER_EVENT_RESPAWNED, worldPosition.clone());
   }
 
   public getFacingDirection(): Vec3 {
     return this.facingDirection.clone();
+  }
+
+  public getMoveInput(): Vec3 {
+    return this.moveInput.clone();
   }
 
   public isAttacking(): boolean {
@@ -178,6 +187,14 @@ export class PlayerController extends Component {
 
   public isForcedMoving(): boolean {
     return this.forcedMoveTimer > 0;
+  }
+
+  public isMoving(): boolean {
+    return this.isForcedMoving() || this.moveInput.lengthSqr() > 0;
+  }
+
+  private onHealthDamaged(amount = 1): void {
+    this.events.emit(PLAYER_EVENT_HURT, amount, this.health?.getCurrentHealth() ?? 0);
   }
 
   private onHealthDepleted(): void {

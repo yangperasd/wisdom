@@ -1,4 +1,5 @@
 import { _decorator, Collider2D, Component, Contact2DType, IPhysics2DContact, Node } from 'cc';
+import { CollectiblePresentation } from '../visual/CollectiblePresentation';
 import { GameManager } from './GameManager';
 
 const { ccclass, property } = _decorator;
@@ -21,10 +22,13 @@ export class ProgressFlagPickup extends Component {
   destroyOnCollected = true;
 
   private collider: Collider2D | null = null;
+  private presentation: CollectiblePresentation | null = null;
 
   protected onLoad(): void {
     this.collider = this.getComponent(Collider2D);
     this.collider?.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    this.presentation = this.getComponent(CollectiblePresentation);
+    this.presentation?.applyPresentation();
     this.applyCollectedState(GameManager.instance?.hasProgressFlag(this.flagId) ?? false);
   }
 
@@ -42,6 +46,9 @@ export class ProgressFlagPickup extends Component {
     }
 
     const didUnlock = GameManager.instance?.setProgressFlag(this.flagId) ?? false;
+    if (didUnlock) {
+      this.presentation?.playPickupFeedback();
+    }
     this.applyCollectedState(true);
 
     if (didUnlock && this.destroyOnCollected) {

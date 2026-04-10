@@ -1,6 +1,7 @@
-import { _decorator, CCString, Component, Node } from 'cc';
+import { _decorator, CCString, Component, Node, SpriteFrame } from 'cc';
 import { GameManager } from './GameManager';
 import { GAME_EVENT_FLAGS_CHANGED } from './GameTypes';
+import { applySpriteFrameToPlaceholderVisual } from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
 
@@ -8,6 +9,18 @@ const { ccclass, property } = _decorator;
 export class FlagGateController extends Component {
   @property([CCString])
   requiredFlags: string[] = [];
+
+  @property(Node)
+  closedVisualNode: Node | null = null;
+
+  @property(Node)
+  openVisualNode: Node | null = null;
+
+  @property(SpriteFrame)
+  closedSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  openSpriteFrame: SpriteFrame | null = null;
 
   @property([Node])
   activateWhenReady: Node[] = [];
@@ -19,6 +32,7 @@ export class FlagGateController extends Component {
   activeWhenIncomplete = true;
 
   protected onLoad(): void {
+    this.applyVisualSkins();
     this.applyState();
   }
 
@@ -36,6 +50,7 @@ export class FlagGateController extends Component {
   }
 
   public applyState(): void {
+    this.applyVisualSkins();
     const isReady = this.requiredFlags.every((flag) => GameManager.instance?.hasProgressFlag(flag));
 
     for (const node of this.activateWhenReady) {
@@ -54,5 +69,10 @@ export class FlagGateController extends Component {
   private bindGameManager(): void {
     GameManager.instance?.events.off(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
     GameManager.instance?.events.on(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+  }
+
+  private applyVisualSkins(): void {
+    applySpriteFrameToPlaceholderVisual(this.closedVisualNode, this.closedSpriteFrame);
+    applySpriteFrameToPlaceholderVisual(this.openVisualNode, this.openSpriteFrame);
   }
 }

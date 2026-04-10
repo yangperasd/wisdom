@@ -142,11 +142,15 @@ export class BossShieldPhaseController extends Component {
     }
   }
 
-  private isBossAlive(): boolean {
+  public isBossAlive(): boolean {
     return (this.bossHealth?.getCurrentHealth() ?? 0) > 0;
   }
 
-  private isDamageWindowOpen(): boolean {
+  public isDamageWindowOpen(): boolean {
     return this.isBossAlive() && (this.shieldTarget?.isCurrentlyBroken() ?? false) && this.vulnerableTimer > 0;
+  }
+
+  public isDangerState(): boolean {
+    return this.isBossAlive() && !this.isDamageWindowOpen();
   }
 }

@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, Label, Node, UITransform, Vec3, sys, view } from 'cc';
+import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame, UITransform, Vec3, sys, view } from 'cc';
 import { HEALTH_EVENT_CHANGED, HealthComponent } from '../combat/HealthComponent';
 import { GAME_EVENT_CHECKPOINT_CHANGED, EchoId } from '../core/GameTypes';
 import { GameManager } from '../core/GameManager';
@@ -109,6 +109,36 @@ export class GameHud extends Component {
   @property(Node)
   pauseButton: Node | null = null;
 
+  @property(SpriteFrame)
+  hudTopBarSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  hudObjectiveCardSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  hudControlsCardSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  attackIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  summonIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  respawnIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  pauseIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  echoBoxIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  echoFlowerIconSpriteFrame: SpriteFrame | null = null;
+
+  @property(SpriteFrame)
+  echoBombIconSpriteFrame: SpriteFrame | null = null;
+
   @property
   sceneTitle = 'Scene';
 
@@ -138,6 +168,7 @@ export class GameHud extends Component {
   private echoButtonsDirty = true;
 
   protected onEnable(): void {
+    this.applySpriteSkin();
     this.applyResponsiveLayout();
     this.bindHudEvents();
     this.markAllDirty();
@@ -154,6 +185,7 @@ export class GameHud extends Component {
   }
 
   protected start(): void {
+    this.applySpriteSkin();
     this.applyResponsiveLayout();
     this.refreshText();
     this.refreshEchoButtons();
@@ -240,6 +272,19 @@ export class GameHud extends Component {
     this.setScale(this.echoFlowerButton, controlScale);
     this.setScale(this.echoBombButton, controlScale);
     this.setScale(this.pauseButton, controlScale);
+  }
+
+  private applySpriteSkin(): void {
+    this.applyNodeSpriteSkin(this.hudTopBar, this.hudTopBarSpriteFrame);
+    this.applyNodeSpriteSkin(this.hudObjectiveCard, this.hudObjectiveCardSpriteFrame);
+    this.applyNodeSpriteSkin(this.hudControlsCard, this.hudControlsCardSpriteFrame);
+    this.applyButtonIconSkin(this.attackButton, this.attackIconSpriteFrame, true);
+    this.applyButtonIconSkin(this.summonButton, this.summonIconSpriteFrame, true);
+    this.applyButtonIconSkin(this.resetButton, this.respawnIconSpriteFrame, true);
+    this.applyButtonIconSkin(this.pauseButton, this.pauseIconSpriteFrame, true);
+    this.applyButtonIconSkin(this.echoBoxButton, this.echoBoxIconSpriteFrame, false);
+    this.applyButtonIconSkin(this.echoFlowerButton, this.echoFlowerIconSpriteFrame, false);
+    this.applyButtonIconSkin(this.echoBombButton, this.echoBombIconSpriteFrame, false);
   }
 
   private refreshText(): void {
@@ -399,6 +444,55 @@ export class GameHud extends Component {
     }
 
     node.setScale(scale, scale, 1);
+  }
+
+  private applyNodeSpriteSkin(node: Node | null, spriteFrame: SpriteFrame | null): void {
+    if (!node || !spriteFrame) {
+      return;
+    }
+
+    const sprite = node.getComponent(Sprite) ?? node.addComponent(Sprite);
+    sprite.spriteFrame = spriteFrame;
+    sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+
+    const rectVisual = node.getComponent(RectVisual);
+    if (rectVisual) {
+      rectVisual.drawFill = false;
+      rectVisual.drawStroke = false;
+      rectVisual.requestRedraw();
+    }
+  }
+
+  private applyButtonIconSkin(button: Node | null, spriteFrame: SpriteFrame | null, hideLabel: boolean): void {
+    if (!button || !spriteFrame) {
+      return;
+    }
+
+    const iconNodeName = `${button.name}-Icon`;
+    let iconNode = button.getChildByName(iconNodeName);
+    if (!iconNode) {
+      iconNode = new Node(iconNodeName);
+      iconNode.layer = button.layer;
+      iconNode.setParent(button);
+    }
+
+    const iconTransform = iconNode.getComponent(UITransform) ?? iconNode.addComponent(UITransform);
+    iconTransform.setContentSize(24, 24);
+    iconNode.setPosition(0, hideLabel ? 0 : 8, 0);
+
+    const sprite = iconNode.getComponent(Sprite) ?? iconNode.addComponent(Sprite);
+    sprite.spriteFrame = spriteFrame;
+    sprite.sizeMode = Sprite.SizeMode.CUSTOM;
+
+    const labelNode = button.getChildByName(`${button.name}-Label`) ?? button.getChildByName('Label');
+    if (!labelNode) {
+      return;
+    }
+
+    labelNode.active = !hideLabel;
+    if (!hideLabel) {
+      labelNode.setPosition(0, -14, 0);
+    }
   }
 
   private bindHudEvents(): void {

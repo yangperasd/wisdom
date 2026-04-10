@@ -1,16 +1,21 @@
-import { _decorator, Component, Enum, Node, Vec3 } from 'cc';
+import { _decorator, Component, Enum, EventTarget, Node, Vec3 } from 'cc';
 import { GameManager } from '../core/GameManager';
 
 const { ccclass, property } = _decorator;
 
-enum EnemyState {
+export enum EnemyState {
   Idle,
   Patrol,
   Chase,
 }
 
+export const ENEMY_EVENT_STATE_CHANGED = 'enemy-state-changed';
+export const ENEMY_EVENT_FACING_CHANGED = 'enemy-facing-changed';
+
 @ccclass('EnemyAI')
 export class EnemyAI extends Component {
+  public readonly events = new EventTarget();
+
   @property({ type: Enum(EnemyState) })
   initialState: EnemyState = EnemyState.Patrol;
 
@@ -28,6 +33,7 @@ export class EnemyAI extends Component {
 
   private state = EnemyState.Patrol;
   private patrolIndex = 0;
+  private facingDirection = new Vec3(1, 0, 0);
 
   protected onLoad(): void {
     this.state = this.initialState;
@@ -40,7 +46,7 @@ export class EnemyAI extends Component {
 
     if (this.target) {
       const distanceToTarget = Vec3.distance(this.node.worldPosition, this.target.worldPosition);
-      this.state = distanceToTarget <= this.chaseDistance ? EnemyState.Chase : this.initialState;
+      this.setState(distanceToTarget <= this.chaseDistance ? EnemyState.Chase : this.initialState);
     }
 
     switch (this.state) {
@@ -84,9 +90,41 @@ export class EnemyAI extends Component {
     }
 
     direction.normalize();
+    this.updateFacingDirection(direction);
     const next = this.node.position.clone();
     next.x += direction.x * this.moveSpeed * dt;
     next.y += direction.y * this.moveSpeed * dt;
     this.node.setPosition(next);
+  }
+
+  public getState(): EnemyState {
+    return this.state;
+  }
+
+  public getFacingDirection(): Vec3 {
+    return this.facingDirection.clone();
+  }
+
+  private setState(nextState: EnemyState): void {
+    if (this.state === nextState) {
+      return;
+    }
+
+    this.state = nextState;
+    this.events.emit(ENEMY_EVENT_STATE_CHANGED, nextState);
+  }
+
+  private updateFacingDirection(direction: Readonly<Vec3>): void {
+    if (direction.x === 0 && direction.y === 0) {
+      return;
+    }
+
+    const changed =
+      Math.abs(this.facingDirection.x - direction.x) > 0.001 ||
+      Math.abs(this.facingDirection.y - direction.y) > 0.001;
+    this.facingDirection.set(direction.x, direction.y, 0);
+    if (changed) {
+      this.events.emit(ENEMY_EVENT_FACING_CHANGED, this.facingDirection.clone());
+    }
   }
 }

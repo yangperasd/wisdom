@@ -1,6 +1,7 @@
-import { _decorator, Collider2D, Component, Contact2DType, director, IPhysics2DContact, Vec3 } from 'cc';
+import { _decorator, AudioClip, AudioSource, Collider2D, Component, Contact2DType, director, IPhysics2DContact, SpriteFrame, Vec3 } from 'cc';
 import { GameManager } from './GameManager';
 import { SceneLoader } from './SceneLoader';
+import { applySpriteFrameToPlaceholderVisual } from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
 
@@ -30,12 +31,30 @@ export class ScenePortal extends Component {
   @property
   playerNameIncludes = 'Player';
 
+  @property(AudioClip)
+  enterClip: AudioClip | null = null;
+
+  @property
+  enterClipVolume = 1;
+
+  @property(SpriteFrame)
+  visualSpriteFrame: SpriteFrame | null = null;
+
   private collider: Collider2D | null = null;
   private isTransitioning = false;
+  private audioSource: AudioSource | null = null;
 
   protected onLoad(): void {
     this.collider = this.getComponent(Collider2D);
     this.collider?.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    const audioSource = this.getComponent(AudioSource) ?? this.addComponent(AudioSource);
+    if (!audioSource) {
+      return;
+    }
+    this.audioSource = audioSource;
+    audioSource.playOnAwake = false;
+    audioSource.loop = false;
+    applySpriteFrameToPlaceholderVisual(this.node, this.visualSpriteFrame);
   }
 
   protected start(): void {
@@ -66,6 +85,11 @@ export class ScenePortal extends Component {
     }
 
     this.isTransitioning = true;
+
+    const audioSource = this.audioSource;
+    if (this.enterClip && audioSource) {
+      audioSource.playOneShot(this.enterClip, this.enterClipVolume);
+    }
 
     GameManager.instance?.setCheckpoint(
       this.targetScene,

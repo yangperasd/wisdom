@@ -4,6 +4,7 @@ import { GameManager } from '../core/GameManager';
 const { ccclass, property } = _decorator;
 
 export const HEALTH_EVENT_CHANGED = 'health-changed';
+export const HEALTH_EVENT_DAMAGED = 'health-damaged';
 export const HEALTH_EVENT_DEPLETED = 'health-depleted';
 
 @ccclass('HealthComponent')
@@ -59,6 +60,7 @@ export class HealthComponent extends Component {
 
     this.currentHealth = Math.max(0, this.currentHealth - amount);
     this.invulnerableTimer = this.invulnerableSeconds;
+    this.events.emit(HEALTH_EVENT_DAMAGED, amount, this.currentHealth, this.maxHealth);
     this.events.emit(HEALTH_EVENT_CHANGED, this.currentHealth, this.maxHealth);
 
     if (this.currentHealth === 0) {

@@ -1,0 +1,341 @@
+{
+  "generatedAt": "2026-04-08",
+  "project": "wisdom",
+  "styleDecision": {
+    "worldPrimary": "denzi",
+    "uiPrimary": "kenney_red_default",
+    "iconPrimary": "kenney_game_icons",
+    "uiFontPrimary": "kenney_future",
+    "uiFontSecondary": "sds_8x8",
+    "notes": [
+      "Use Denzi for world-facing art categories by default.",
+      "Use Kenney Red Default for HUD-facing widgets by default.",
+      "Do not mix DawnLike world sheets into active scene production unless a specific asset gap is approved."
+    ]
+  },
+  "namingRules": {
+    "case": "lowercase_ascii",
+    "separator": "underscore",
+    "stableKeyPolicy": "semantic_role_not_vendor_filename",
+    "variantSuffixExamples": [
+      "v01",
+      "loop",
+      "primary",
+      "secondary",
+      "selected",
+      "locked"
+    ]
+  },
+  "runtimeRoots": {
+    "world": [
+      "assets/art/environment/dungeon/denzi",
+      "assets/art/characters/player/denzi",
+      "assets/art/characters/enemies/denzi",
+      "assets/art/items/denzi",
+      "assets/maps/prototypes/sbs_topdown_dungeon_0"
+    ],
+    "ui": [
+      "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "assets/art/ui/icons/kenney_game_icons",
+      "assets/art/ui/fonts/kenney",
+      "assets/art/ui/fonts/dawnlike"
+    ],
+    "audio": [
+      "assets/audio/ui/kenney",
+      "assets/audio/ui/jrpg",
+      "assets/audio/ui/menu_alt",
+      "assets/audio/sfx/combat/rpg",
+      "assets/audio/sfx/interface/rpg",
+      "assets/audio/sfx/items/rpg",
+      "assets/audio/sfx/world/rpg",
+      "assets/audio/sfx/enemies/rpg",
+      "assets/audio/music/battle/battle_theme_i"
+    ]
+  },
+  "reserveRoots": [
+    "temp/asset_keep/reserve_runtime/archive/assets_art_prep",
+    "temp/asset_keep/reserve_runtime/archive/assets_audio_prep",
+    "temp/asset_keep/reserve_runtime/assets/art/environment/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/characters/player/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/characters/enemies/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/items/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/effects/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/ui/skins/dawnlike",
+    "temp/asset_keep/reserve_runtime/assets/art/ui/skins/denzi",
+    "temp/asset_keep/reserve_runtime/assets/art/ui/hud/kenney/PNG/Extra"
+  ],
+  "ui": {
+    "fontRoles": {
+      "hud_main": "assets/art/ui/fonts/kenney/Kenney Future.ttf",
+      "hud_compact": "assets/art/ui/fonts/kenney/Kenney Future Narrow.ttf",
+      "world_label": "assets/art/ui/fonts/dawnlike/SDS_8x8.ttf",
+      "world_caption_small": "assets/art/ui/fonts/dawnlike/SDS_6x6.ttf"
+    },
+    "widgetFamilies": {
+      "hud_cards": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "touch_buttons": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "pause_buttons": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "system_icons": "assets/art/ui/icons/kenney_game_icons"
+    },
+    "scenePolicy": {
+      "reuseAcrossAllScenes": true,
+      "allowAlternateSkinInRuntime": false
+    }
+  },
+  "audio": {
+    "primaryFamilies": {
+      "ui_click": "assets/audio/ui/kenney",
+      "ui_confirm_open_close": "assets/audio/ui/jrpg",
+      "ui_alt_menu": "assets/audio/ui/menu_alt",
+      "combat": "assets/audio/sfx/combat/rpg",
+      "enemy": "assets/audio/sfx/enemies/rpg",
+      "items": "assets/audio/sfx/items/rpg",
+      "world": "assets/audio/sfx/world/rpg"
+    },
+    "knownIssues": [
+      "battle_bgm_runtime_copy_missing_visible_file"
+    ]
+  },
+  "scenes": {
+    "StartCamp": {
+      "environmentRole": "camp_field",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "FieldWest": {
+      "environmentRole": "field_ruins",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "common_enemy",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "FieldRuins": {
+      "environmentRole": "field_ruins",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "common_enemy",
+        "echo_unlock_pickup",
+        "hint_marker",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "DungeonHub": {
+      "environmentRole": "dungeon_hub",
+      "environmentStatus": "selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "flag_gate",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "DungeonRoomA": {
+      "environmentRole": "dungeon_room",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "common_enemy",
+        "breakable_target",
+        "room_reset",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "DungeonRoomB": {
+      "environmentRole": "dungeon_trap_room",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "projectile_trap",
+        "projectile_arrow",
+        "common_enemy",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "DungeonRoomC": {
+      "environmentRole": "dungeon_puzzle_room",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "barrier_closed",
+        "barrier_open",
+        "common_enemy",
+        "pickup_relic",
+        "hud",
+        "pause_menu"
+      ]
+    },
+    "BossArena": {
+      "environmentRole": "boss_arena",
+      "environmentStatus": "selected_with_gap",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "boss_core",
+        "boss_shield_closed",
+        "boss_shield_open",
+        "boss_banner",
+        "hud",
+        "pause_menu",
+        "battle_bgm"
+      ]
+    },
+    "MechanicsLab": {
+      "environmentRole": "mechanical_lab",
+      "environmentStatus": "phase_3_selected",
+      "uiProfile": "global_hud_mobile",
+      "entities": [
+        "player",
+        "checkpoint",
+        "portal",
+        "projectile_trap",
+        "projectile_arrow",
+        "hud",
+        "pause_menu"
+      ]
+    }
+  },
+  "entities": {
+    "player": {
+      "status": "selected",
+      "family": "denzi",
+      "path": "assets/art/characters/player/denzi/paperdoll",
+      "rule": "one player build shared across every scene"
+    },
+    "common_enemy": {
+      "status": "selected",
+      "family": "denzi",
+      "path": "assets/art/characters/enemies/denzi/monsters",
+      "rule": "pick one enemy family and keep it stable by enemy class"
+    },
+    "boss_core": {
+      "status": "candidate_locked_family_needed",
+      "family": "denzi",
+      "path": "assets/art/characters/enemies/denzi/monsters",
+      "rule": "lock one boss sheet before scene dressing"
+    },
+    "boss_shield_closed": {
+      "status": "temporary_placeholder",
+      "family": "ui_hud_kenney_red_default_or_custom_fx",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "must not vary by boss scene"
+    },
+    "boss_shield_open": {
+      "status": "temporary_placeholder",
+      "family": "ui_hud_kenney_red_default_or_custom_fx",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "must pair with boss_shield_closed as one visual system"
+    },
+    "echo_box": {
+      "status": "asset_gap",
+      "family": "denzi_or_custom_prop",
+      "path": "assets/prefabs/EchoBox.prefab",
+      "rule": "lock one prop look and reuse in all scenes"
+    },
+    "echo_spring_flower": {
+      "status": "asset_gap",
+      "family": "denzi_or_custom_prop",
+      "path": "assets/prefabs/EchoSpringFlower.prefab",
+      "rule": "do not mix Denzi and DawnLike variants across scenes"
+    },
+    "echo_bomb_bug": {
+      "status": "asset_gap",
+      "family": "denzi_or_custom_prop",
+      "path": "assets/prefabs/EchoBombBug.prefab",
+      "rule": "do not mix variants by scene"
+    },
+    "projectile_arrow": {
+      "status": "temporary_placeholder",
+      "family": "current_prefab_or_denormalized_prop",
+      "path": "assets/prefabs/ArrowProjectile.prefab",
+      "rule": "one projectile look for all trap uses"
+    },
+    "checkpoint": {
+      "status": "selected",
+      "family": "kenney_red_default_plus_world_label_font",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "same marker treatment in every scene"
+    },
+    "portal": {
+      "status": "selected",
+      "family": "kenney_red_default_plus_world_label_font",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "same portal frame language across scenes"
+    },
+    "breakable_target": {
+      "status": "selected",
+      "family": "denzi",
+      "path": "assets/art/environment/dungeon/denzi/features",
+      "rule": "one breakable prop family"
+    },
+    "barrier_closed": {
+      "status": "selected",
+      "family": "denzi",
+      "path": "assets/art/environment/dungeon/denzi/wall",
+      "rule": "pair with barrier_open using one theme family"
+    },
+    "barrier_open": {
+      "status": "selected",
+      "family": "denzi",
+      "path": "assets/art/environment/dungeon/denzi/wall",
+      "rule": "pair with barrier_closed using one theme family"
+    },
+    "hud": {
+      "status": "selected",
+      "family": "kenney_red_default",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "shared across all scenes"
+    },
+    "pause_menu": {
+      "status": "selected",
+      "family": "kenney_red_default",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default",
+      "rule": "shared across all scenes"
+    },
+    "hint_marker": {
+      "status": "selected",
+      "family": "world_label_font",
+      "path": "assets/art/ui/fonts/dawnlike/SDS_8x8.ttf",
+      "rule": "same hint typography across scenes"
+    },
+    "battle_bgm": {
+      "status": "blocked_missing_runtime_copy",
+      "family": "battle_theme_i",
+      "path": "assets/audio/music/battle/battle_theme_i",
+      "rule": "do not wire until runtime file placement is fixed"
+    }
+  }
+}
