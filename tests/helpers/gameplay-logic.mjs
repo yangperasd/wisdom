@@ -305,3 +305,86 @@ export function computeMobileHudLayoutFrame(options = {}) {
     },
   };
 }
+
+export function computePlayerVisualState(options = {}) {
+  const {
+    hurt = false,
+    attacking = false,
+    forcedMoving = false,
+    moving = false,
+  } = options;
+
+  if (hurt) {
+    return 'hurt';
+  }
+
+  if (attacking) {
+    return 'attack';
+  }
+
+  if (forcedMoving) {
+    return 'launch';
+  }
+
+  if (moving) {
+    return 'move';
+  }
+
+  return 'idle';
+}
+
+export function computeEnemyVisualState(options = {}) {
+  const {
+    defeated = false,
+    hurt = false,
+    aiState = 'idle',
+  } = options;
+
+  if (defeated) {
+    return 'defeated';
+  }
+
+  if (hurt) {
+    return 'hurt';
+  }
+
+  if (aiState === 'chase') {
+    return 'chase';
+  }
+
+  if (aiState === 'patrol') {
+    return 'patrol';
+  }
+
+  return 'idle';
+}
+
+export function computeBossVisualState(options = {}) {
+  const {
+    defeated = false,
+    hurt = false,
+    vulnerable = false,
+  } = options;
+
+  if (defeated) {
+    return 'defeated';
+  }
+
+  if (hurt) {
+    return 'hurt';
+  }
+
+  if (vulnerable) {
+    return 'vulnerable';
+  }
+
+  return 'danger';
+}
+
+export function computeProjectileRotationDegrees(directionX, directionY) {
+  if (!directionX && !directionY) {
+    return 0;
+  }
+
+  return Math.atan2(directionY, directionX) * 180 / Math.PI;
+}

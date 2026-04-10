@@ -68,6 +68,28 @@ export function assertNodeHasComponent(items, nodeRecord, typeId, label) {
   );
 }
 
+export function getComponentRecordForNode(items, nodeRecord, typeId, label) {
+  const record = getComponentRecordsForNode(items, nodeRecord).find((component) => component.__type__ === typeId) ?? null;
+  assert.ok(
+    record,
+    `Expected node "${label ?? nodeRecord._name}" to include component type "${typeId}".`,
+  );
+  return record;
+}
+
+export function assertComponentNodeReference(items, componentRecord, propertyName, targetNodeRecord, label) {
+  const reference = componentRecord?.[propertyName];
+  assert.ok(
+    reference && typeof reference.__id__ === 'number',
+    `Expected component "${label}" to contain a node reference in "${propertyName}".`,
+  );
+  assert.equal(
+    items[reference.__id__],
+    targetNodeRecord,
+    `Expected component "${label}" property "${propertyName}" to reference node "${targetNodeRecord?._name}".`,
+  );
+}
+
 export function assertNodeActiveState(nodeRecord, expected) {
   assert.equal(
     nodeRecord._active,

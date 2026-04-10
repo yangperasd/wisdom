@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { loadAssetBindingCatalog, resolveAssetBinding, resolveImageAssetReference } from './asset-binding-manifest-utils.mjs';
 
 const PROJECT_ROOT = process.cwd();
 const ASSETS_ROOT = path.join(PROJECT_ROOT, 'assets');
@@ -221,6 +222,7 @@ async function getPrefabIds() {
 }
 
 async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
+  const bindingCatalog = options.bindingCatalog ?? await loadAssetBindingCatalog(PROJECT_ROOT);
   const scenePath = path.join(SCENES_ROOT, `${sceneName}.scene`);
   const sceneMeta = await ensureMeta(scenePath, 'scene');
   const template = clone(await readJson(COCOS_TEMPLATE_SCENE));
@@ -251,6 +253,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
   const types = Object.fromEntries(
     Array.from(scriptIds.entries()).map(([relativePath, value]) => [relativePath, value.shortId]),
   );
+  const imageBindingPropsCache = new Map();
 
   const addNode = (name, parentId, position = vec3(), active = true, layer = UI_LAYER) => {
     const nodeId = add(createNode(name, parentId, position, active, layer));
@@ -262,6 +265,76 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     const componentId = add(createSceneComponent(nodeId, type, props));
     items[nodeId]._components.push(ref(componentId));
     return componentId;
+  };
+
+  const addAssetBindingTag = (nodeId, bindingKey) => {
+    const binding = resolveAssetBinding(bindingCatalog, bindingKey);
+    if (!binding) {
+      return null;
+    }
+
+    return addComponent(nodeId, types['assets/scripts/core/AssetBindingTag.ts'], {
+      bindingKey: binding.bindingKey,
+      selectedPath: binding.selectedPath,
+      fallbackPath: binding.fallbackPath,
+      sourceManifest: binding.sourceManifest,
+      bindingStatus: binding.bindingStatus,
+    });
+  };
+
+  const getImageBindingProps = (bindingKey) => {
+    if (!bindingKey) {
+      return null;
+    }
+
+    if (imageBindingPropsCache.has(bindingKey)) {
+      return imageBindingPropsCache.get(bindingKey);
+    }
+
+    const binding = resolveAssetBinding(bindingCatalog, bindingKey);
+    const initialValue = {
+      binding,
+      spriteFrame: null,
+      texture: null,
+    };
+
+    if (!binding?.selectedPath) {
+      imageBindingPropsCache.set(bindingKey, initialValue);
+      return initialValue;
+    }
+
+    const imageAssetReference = resolveImageAssetReference(PROJECT_ROOT, binding.selectedPath);
+    if (!imageAssetReference) {
+      imageBindingPropsCache.set(bindingKey, initialValue);
+      return initialValue;
+    }
+
+    const resolvedValue = {
+      binding,
+      spriteFrame: imageAssetReference.propertyName === 'spriteFrame' ? imageAssetReference.assetRef : null,
+      texture: imageAssetReference.propertyName === 'texture' ? imageAssetReference.assetRef : null,
+    };
+    imageBindingPropsCache.set(bindingKey, resolvedValue);
+    return resolvedValue;
+  };
+
+  const addSceneDressingSkin = (nodeId, bindingKey, options = {}) => {
+    const imageBinding = getImageBindingProps(bindingKey);
+    if (!imageBinding) {
+      return null;
+    }
+
+    if (options.addBindingTag !== false) {
+      addAssetBindingTag(nodeId, bindingKey);
+    }
+
+    return addComponent(nodeId, types['assets/scripts/visual/SceneDressingSkin.ts'], {
+      visualRoot: options.visualRootId ? ref(options.visualRootId) : null,
+      spriteFrame: imageBinding.spriteFrame,
+      texture: imageBinding.texture,
+      hideLabelWhenSkinned: options.hideLabelWhenSkinned ?? false,
+      tiled: options.tiled ?? true,
+    });
   };
 
   const addSafeAreaRoot = (nodeId, width = 960, height = 640) => {
@@ -525,6 +598,25 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     health: ref(playerHealthId),
     echoManager: ref(echoManagerId),
   });
+  const playerImageBinding = getImageBindingProps('player');
+  addComponent(playerNode.nodeId, types['assets/scripts/player/PlayerVisualController.ts'], {
+    player: ref(playerControllerId),
+    health: ref(playerHealthId),
+    visualRoot: ref(playerNode.visualNodeId),
+    idleSpriteFrame: null,
+    idleTexture: playerImageBinding?.texture ?? null,
+    moveSpriteFrame: null,
+    moveTexture: playerImageBinding?.texture ?? null,
+    attackSpriteFrame: null,
+    attackTexture: playerImageBinding?.texture ?? null,
+    launchSpriteFrame: null,
+    launchTexture: playerImageBinding?.texture ?? null,
+    hurtSpriteFrame: null,
+    hurtTexture: playerImageBinding?.texture ?? null,
+    hurtFlashSeconds: 0.18,
+    hideLabelWhenSkinned: true,
+    mirrorFacing: true,
+  });
   addComponent(attackAnchorId, types['assets/scripts/player/AttackHitbox.ts'], {
     player: ref(playerControllerId),
     damage: 1,
@@ -625,6 +717,16 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     storageKey: 'wisdom-mvp-save',
   });
   const sceneLoaderId = addComponent(persistentRootId, types['assets/scripts/core/SceneLoader.ts'], {});
+  addComponent(persistentRootId, types['assets/scripts/audio/SceneMusicController.ts'], {
+    sceneLoader: ref(sceneLoaderId),
+    musicCueId: options.musicCueId ?? sceneName.toLowerCase(),
+    bgmClip: null,
+    volume: options.musicVolume ?? 0.72,
+    loop: true,
+    playOnStart: true,
+    stopOnSceneSwitch: true,
+    pauseWithGameFlow: true,
+  });
   addComponent(persistentRootId, types['assets/scripts/core/PhysicsBootstrap.ts'], {
     enableDebugDraw: false,
   });
@@ -694,6 +796,9 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     types,
     addNode,
     addComponent,
+    addAssetBindingTag,
+    getImageBindingProps,
+    addSceneDressingSkin,
     addPanelNode,
     addLabel,
     addLabeledNode,
@@ -733,7 +838,8 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
 }
 
 function addEnemy(builder, config) {
-  const { addNode, addComponent, addLabeledNode, addDynamicBody, resetNodes, refs, types } = builder;
+  const { addNode, addComponent, addLabeledNode, addDynamicBody, getImageBindingProps, resetNodes, refs, types } = builder;
+  const commonEnemyBinding = getImageBindingProps('common_enemy');
   const patrolPointAId = addNode(`${config.name}-PatrolA`, builder.roots.worldRootId, config.patrolA);
   const patrolPointBId = addNode(`${config.name}-PatrolB`, builder.roots.worldRootId, config.patrolB);
   const enemyNode = addLabeledNode(
@@ -752,18 +858,36 @@ function addEnemy(builder, config) {
     true,
   );
   addDynamicBody(enemyNode.nodeId, 88, 36);
-  addComponent(enemyNode.nodeId, types['assets/scripts/combat/HealthComponent.ts'], {
+  const enemyHealthId = addComponent(enemyNode.nodeId, types['assets/scripts/combat/HealthComponent.ts'], {
     maxHealth: config.maxHealth ?? 2,
     invulnerableSeconds: 0.2,
     destroyNodeOnDepleted: false,
     deactivateNodeOnDepleted: true,
   });
-  addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
+  const enemyAiId = addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
     initialState: 1,
     moveSpeed: config.moveSpeed ?? 80,
     chaseDistance: config.chaseDistance ?? 120,
     target: ref(refs.playerNode.nodeId),
     patrolPoints: [ref(patrolPointAId), ref(patrolPointBId)],
+  });
+  addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyVisualController.ts'], {
+    enemyAI: ref(enemyAiId),
+    health: ref(enemyHealthId),
+    visualRoot: ref(enemyNode.visualNodeId),
+    idleSpriteFrame: null,
+    idleTexture: commonEnemyBinding?.texture ?? null,
+    patrolSpriteFrame: null,
+    patrolTexture: commonEnemyBinding?.texture ?? null,
+    chaseSpriteFrame: null,
+    chaseTexture: commonEnemyBinding?.texture ?? null,
+    hurtSpriteFrame: null,
+    hurtTexture: commonEnemyBinding?.texture ?? null,
+    defeatedSpriteFrame: null,
+    defeatedTexture: commonEnemyBinding?.texture ?? null,
+    hurtFlashSeconds: 0.18,
+    hideLabelWhenSkinned: true,
+    mirrorFacing: true,
   });
   addComponent(enemyNode.nodeId, types['assets/scripts/combat/DamageOnContact.ts'], {
     damage: 1,
@@ -775,7 +899,8 @@ function addEnemy(builder, config) {
 }
 
 function addCheckpoint(builder, config) {
-  const { addComponent, addLabeledNode, addSensorBox, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, resetNodes, types } = builder;
+  const checkpointImageBinding = getImageBindingProps('checkpoint');
   const checkpointNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -795,13 +920,16 @@ function addCheckpoint(builder, config) {
   addComponent(checkpointNode.nodeId, types['assets/scripts/core/CheckpointMarker.ts'], {
     markerId: config.markerId,
     playerNameIncludes: 'Player',
+    visualSpriteFrame: checkpointImageBinding?.spriteFrame ?? null,
   });
+  addAssetBindingTag(checkpointNode.nodeId, 'checkpoint');
   resetNodes.push(checkpointNode.nodeId);
   return checkpointNode;
 }
 
 function addScenePortal(builder, config) {
-  const { addComponent, addLabeledNode, addSensorBox, refs, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, refs, resetNodes, types } = builder;
+  const portalImageBinding = getImageBindingProps('portal');
   const portalNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -827,13 +955,15 @@ function addScenePortal(builder, config) {
     targetPositionZ: config.targetPosition.z ?? 0,
     preloadTarget: true,
     playerNameIncludes: 'Player',
+    visualSpriteFrame: portalImageBinding?.spriteFrame ?? null,
   });
+  addAssetBindingTag(portalNode.nodeId, 'portal');
   resetNodes.push(portalNode.nodeId);
   return portalNode;
 }
 
 function addEchoPickup(builder, config) {
-  const { addComponent, addLabeledNode, addSensorBox, refs, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, refs, resetNodes, types } = builder;
   const pickupNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -850,6 +980,12 @@ function addEchoPickup(builder, config) {
     true,
   );
   addSensorBox(pickupNode.nodeId, (config.width ?? 176) - 20, 36);
+  addComponent(pickupNode.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualSpriteFrame: null,
+    pickupClip: null,
+    pickupClipVolume: 1,
+    hideLabelWhenSkinned: true,
+  });
   addComponent(pickupNode.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(refs.echoManagerId),
     echoId: config.echoId,
@@ -857,12 +993,15 @@ function addEchoPickup(builder, config) {
     selectAfterUnlock: true,
     destroyOnPickup: true,
   });
+  if (config.bindingKey) {
+    addAssetBindingTag(pickupNode.nodeId, config.bindingKey);
+  }
   resetNodes.push(pickupNode.nodeId);
   return pickupNode;
 }
 
 function addProgressFlagPickup(builder, config) {
-  const { addComponent, addLabeledNode, addSensorBox, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, resetNodes, types } = builder;
   const pickupNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -879,6 +1018,12 @@ function addProgressFlagPickup(builder, config) {
     true,
   );
   addSensorBox(pickupNode.nodeId, (config.width ?? 184) - 20, 36);
+  addComponent(pickupNode.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualSpriteFrame: null,
+    pickupClip: null,
+    pickupClipVolume: 1,
+    hideLabelWhenSkinned: true,
+  });
   addComponent(pickupNode.nodeId, types['assets/scripts/core/ProgressFlagPickup.ts'], {
     flagId: config.flagId,
     playerNameIncludes: 'Player',
@@ -886,6 +1031,7 @@ function addProgressFlagPickup(builder, config) {
     deactivateOnCollected: (config.deactivateOnCollected ?? []).map((nodeId) => ref(nodeId)),
     destroyOnCollected: config.destroyOnCollected ?? true,
   });
+  addAssetBindingTag(pickupNode.nodeId, config.bindingKey ?? 'pickup_relic');
   resetNodes.push(pickupNode.nodeId);
   return pickupNode;
 }
@@ -907,6 +1053,7 @@ function addFlagGateController(builder, config) {
 
 async function generateStartCamp(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('StartCamp', scriptIds, prefabIds, {
+    musicCueId: 'camp',
     sceneTitle: '营地入口',
     objectiveText: '召唤箱子压住机关，打开西侧栅门',
     playerStart: vec3(-480, -20, 0),
@@ -914,13 +1061,18 @@ async function generateStartCamp(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(0, 4, 0), 1560, 560, color(34, 58, 54, 255), color(118, 173, 163, 52), true, 26);
-  addPanelNode(roots.worldRootId, 'CampLeftLane', vec3(-420, -12, 0), 310, 250, color(45, 71, 60, 210), color(142, 201, 176, 46), true, 20);
-  addPanelNode(roots.worldRootId, 'CampPlateZone', vec3(80, -82, 0), 420, 160, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
-  addPanelNode(roots.worldRootId, 'CampGateZone', vec3(374, -20, 0), 262, 186, color(61, 48, 55, 196), color(201, 161, 180, 44), true, 20);
-  addPanelNode(roots.worldRootId, 'CampTopLane', vec3(-10, 186, 0), 930, 98, color(26, 50, 42, 180), color(140, 186, 167, 42), true, 18);
+  const campBackdrop = addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(0, 4, 0), 1560, 560, color(34, 58, 54, 255), color(118, 173, 163, 52), true, 26);
+  const campLeftLane = addPanelNode(roots.worldRootId, 'CampLeftLane', vec3(-420, -12, 0), 310, 250, color(45, 71, 60, 210), color(142, 201, 176, 46), true, 20);
+  const campPlateZone = addPanelNode(roots.worldRootId, 'CampPlateZone', vec3(80, -82, 0), 420, 160, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
+  const campGateZone = addPanelNode(roots.worldRootId, 'CampGateZone', vec3(374, -20, 0), 262, 186, color(61, 48, 55, 196), color(201, 161, 180, 44), true, 20);
+  const campTopLane = addPanelNode(roots.worldRootId, 'CampTopLane', vec3(-10, 186, 0), 930, 98, color(26, 50, 42, 180), color(140, 186, 167, 42), true, 18);
+  addSceneDressingSkin(campBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
+  addSceneDressingSkin(campLeftLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
+  addSceneDressingSkin(campPlateZone.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(campGateZone.nodeId, 'outdoor_wall_standard', { tiled: true });
+  addSceneDressingSkin(campTopLane.nodeId, 'outdoor_ground_green', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-Camp',
@@ -997,6 +1149,8 @@ async function generateStartCamp(scriptIds, prefabIds) {
     16,
     true,
   );
+  addSceneDressingSkin(campGateClosed.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(campGateOpen.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const portalFieldWest = addScenePortal(builder, {
     name: 'Portal-FieldWest',
     label: '进入林间小径',
@@ -1043,6 +1197,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
 
 async function generateFieldWest(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('FieldWest', scriptIds, prefabIds, {
+    musicCueId: 'field-west',
     sceneTitle: '林间小径',
     objectiveText: '拾取弹花，穿过陷阱前往遗迹试炼场',
     playerStart: vec3(-500, -20, 0),
@@ -1050,13 +1205,18 @@ async function generateFieldWest(scriptIds, prefabIds) {
     cameraOffsetX: -110,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addNode, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(110, 0, 0), 1840, 560, color(24, 40, 46, 255), color(104, 137, 150, 50), true, 26);
-  addPanelNode(roots.worldRootId, 'FieldLane', vec3(-260, -10, 0), 860, 250, color(45, 68, 52, 220), color(144, 193, 162, 42), true, 22);
-  addPanelNode(roots.worldRootId, 'TrapLane', vec3(278, 4, 0), 360, 210, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
-  addPanelNode(roots.worldRootId, 'LandingLane', vec3(598, 102, 0), 280, 118, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
-  addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(0, 184, 0), 1460, 102, color(29, 55, 43, 184), color(139, 188, 163, 42), true, 20);
+  const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(110, 0, 0), 1840, 560, color(24, 40, 46, 255), color(104, 137, 150, 50), true, 26);
+  const fieldLane = addPanelNode(roots.worldRootId, 'FieldLane', vec3(-260, -10, 0), 860, 250, color(45, 68, 52, 220), color(144, 193, 162, 42), true, 22);
+  const trapLane = addPanelNode(roots.worldRootId, 'TrapLane', vec3(278, 4, 0), 360, 210, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
+  const landingLane = addPanelNode(roots.worldRootId, 'LandingLane', vec3(598, 102, 0), 280, 118, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
+  const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(0, 184, 0), 1460, 102, color(29, 55, 43, 184), color(139, 188, 163, 42), true, 20);
+  addSceneDressingSkin(fieldBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
+  addSceneDressingSkin(fieldLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
+  addSceneDressingSkin(trapLane.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(landingLane.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(fieldTopStrip.nodeId, 'outdoor_ground_green', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-FieldWest',
@@ -1100,6 +1260,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
     position: vec3(-176, 184, 0),
     width: 170,
     echoId: 1,
+    bindingKey: 'echo_spring_flower',
     fillColor: color(66, 128, 80, 255),
     strokeColor: color(203, 255, 215, 100),
   });
@@ -1139,7 +1300,12 @@ async function generateFieldWest(scriptIds, prefabIds) {
     directionX: 1,
     directionY: 0,
     autoStart: true,
+    visualSpriteFrame: null,
+    fireClip: null,
+    fireClipVolume: 1,
+    hideLabelWhenSkinned: true,
   });
+  addSceneDressingSkin(trapNode.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
 
   const ruinsPortal = addScenePortal(builder, {
     name: 'Portal-FieldRuins',
@@ -1161,6 +1327,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
 
 async function generateFieldRuins(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('FieldRuins', scriptIds, prefabIds, {
+    musicCueId: 'field-ruins',
     sceneTitle: 'Ruins Approach',
     objectiveText: 'Unlock BombBug, blast the wall, and enter the trial gate.',
     playerStart: vec3(-520, -20, 0),
@@ -1168,13 +1335,18 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(28, 34, 44, 255), color(112, 132, 162, 48), true, 26);
-  addPanelNode(roots.worldRootId, 'RuinsLane', vec3(-220, -10, 0), 900, 260, color(52, 61, 68, 214), color(161, 183, 197, 42), true, 22);
-  addPanelNode(roots.worldRootId, 'RuinsPickupZone', vec3(20, 170, 0), 420, 120, color(58, 79, 68, 188), color(171, 214, 190, 48), true, 20);
-  addPanelNode(roots.worldRootId, 'CrackedWallZone', vec3(404, -14, 0), 320, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
-  addPanelNode(roots.worldRootId, 'DungeonApproachZone', vec3(724, 88, 0), 310, 118, color(59, 86, 112, 194), color(197, 222, 246, 58), true, 20);
+  const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(28, 34, 44, 255), color(112, 132, 162, 48), true, 26);
+  const ruinsLane = addPanelNode(roots.worldRootId, 'RuinsLane', vec3(-220, -10, 0), 900, 260, color(52, 61, 68, 214), color(161, 183, 197, 42), true, 22);
+  const ruinsPickupZone = addPanelNode(roots.worldRootId, 'RuinsPickupZone', vec3(20, 170, 0), 420, 120, color(58, 79, 68, 188), color(171, 214, 190, 48), true, 20);
+  const crackedWallZone = addPanelNode(roots.worldRootId, 'CrackedWallZone', vec3(404, -14, 0), 320, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
+  const dungeonApproachZone = addPanelNode(roots.worldRootId, 'DungeonApproachZone', vec3(724, 88, 0), 310, 118, color(59, 86, 112, 194), color(197, 222, 246, 58), true, 20);
+  addSceneDressingSkin(ruinsBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(ruinsLane.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(ruinsPickupZone.nodeId, 'outdoor_ground_flowers', { tiled: true });
+  addSceneDressingSkin(crackedWallZone.nodeId, 'outdoor_wall_cracked', { tiled: true });
+  addSceneDressingSkin(dungeonApproachZone.nodeId, 'outdoor_wall_broken', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-FieldRuins',
@@ -1212,6 +1384,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     position: vec3(4, 170, 0),
     width: 180,
     echoId: 2,
+    bindingKey: 'echo_bomb_bug',
     fillColor: color(135, 68, 62, 255),
     strokeColor: color(255, 209, 200, 102),
     tint: color(255, 241, 236, 255),
@@ -1251,6 +1424,8 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     16,
     true,
   );
+  addSceneDressingSkin(ruinsWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(ruinsWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const dungeonPortal = addScenePortal(builder, {
     name: 'Portal-DungeonHub',
     label: 'ENTER DUNGEON',
@@ -1268,7 +1443,18 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     startsBroken: false,
     activateOnBroken: [ref(ruinsWallOpen.nodeId), ref(dungeonPortal.nodeId)],
     deactivateOnBroken: [ref(ruinsWallClosed.nodeId)],
+    intactVisualNode: ref(ruinsWallClosed.nodeId),
+    brokenVisualNode: ref(ruinsWallOpen.nodeId),
+    intactSpriteFrame: null,
+    brokenSpriteFrame: null,
+    breakClip: null,
+    breakClipVolume: 1,
+    resetClip: null,
+    resetClipVolume: 1,
+    hideLabelsWhenSkinned: true,
   });
+  builder.addAssetBindingTag(ruinsWallClosed.nodeId, 'breakable_target');
+  builder.addAssetBindingTag(ruinsWallOpen.nodeId, 'barrier_open');
 
   resetNodes.push(ruinsWallClosed.nodeId, ruinsWallOpen.nodeId, dungeonPortal.nodeId);
   await builder.finalize();
@@ -1276,6 +1462,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
 
 async function generateDungeonHub(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonHub', scriptIds, prefabIds, {
+    musicCueId: 'dungeon-hub',
     sceneTitle: 'Trial Hub',
     objectiveText: 'Clear the three chambers to unlock the boss gate.',
     playerStart: vec3(-500, -20, 0),
@@ -1504,6 +1691,7 @@ async function generateDungeonHub(scriptIds, prefabIds) {
 
 async function generateDungeonRoomA(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomA', scriptIds, prefabIds, {
+    musicCueId: 'dungeon-room',
     sceneTitle: 'Room A - Box',
     objectiveText: 'Summon a box to hold the plate and claim the relic.',
     playerStart: vec3(-500, -20, 0),
@@ -1511,10 +1699,12 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'RoomABackdrop', vec3(0, 0, 0), 1500, 520, color(34, 48, 56, 255), color(130, 157, 174, 42), true, 24);
-  addPanelNode(roots.worldRootId, 'RoomAChallengeZone', vec3(120, -18, 0), 500, 180, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
+  const roomABackdrop = addPanelNode(roots.worldRootId, 'RoomABackdrop', vec3(0, 0, 0), 1500, 520, color(34, 48, 56, 255), color(130, 157, 174, 42), true, 24);
+  const roomAChallengeZone = addPanelNode(roots.worldRootId, 'RoomAChallengeZone', vec3(120, -18, 0), 500, 180, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
+  addSceneDressingSkin(roomABackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
+  addSceneDressingSkin(roomAChallengeZone.nodeId, 'outdoor_path_cobble', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-DungeonRoomA',
@@ -1566,6 +1756,8 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
 
   const roomAGateClosed = addLabeledNode(roots.worldRootId, 'RoomA-GateClosed', 'GATE', vec3(266, -18, 0), 156, 52, 18, color(255, 241, 239, 255), true, color(124, 53, 52, 255), color(255, 202, 196, 120), 16, true);
   const roomAGateOpen = addLabeledNode(roots.worldRootId, 'RoomA-GateOpen', 'OPEN', vec3(266, -18, 0), 156, 52, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
+  addSceneDressingSkin(roomAGateClosed.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(roomAGateOpen.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomAGateBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomA-GateBarrier',
@@ -1618,6 +1810,7 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
 
 async function generateDungeonRoomB(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomB', scriptIds, prefabIds, {
+    musicCueId: 'dungeon-room',
     sceneTitle: 'Room B - Flower',
     objectiveText: 'Use SpringFlower to cross the trap lane and claim the relic.',
     playerStart: vec3(-500, -20, 0),
@@ -1625,11 +1818,14 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addNode, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'RoomBBackdrop', vec3(80, 0, 0), 1720, 520, color(30, 48, 40, 255), color(132, 178, 156, 42), true, 24);
-  addPanelNode(roots.worldRootId, 'RoomBTrapLane', vec3(180, -10, 0), 420, 240, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
-  addPanelNode(roots.worldRootId, 'RoomBLandingZone', vec3(536, 84, 0), 250, 110, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
+  const roomBBackdrop = addPanelNode(roots.worldRootId, 'RoomBBackdrop', vec3(80, 0, 0), 1720, 520, color(30, 48, 40, 255), color(132, 178, 156, 42), true, 24);
+  const roomBTrapLane = addPanelNode(roots.worldRootId, 'RoomBTrapLane', vec3(180, -10, 0), 420, 240, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
+  const roomBLandingZone = addPanelNode(roots.worldRootId, 'RoomBLandingZone', vec3(536, 84, 0), 250, 110, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
+  addSceneDressingSkin(roomBBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
+  addSceneDressingSkin(roomBTrapLane.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(roomBLandingZone.nodeId, 'outdoor_ground_flowers', { tiled: true });
   const roomBTopBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomB-TopBarrier',
@@ -1687,6 +1883,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
   });
 
   const roomBTrap = addLabeledNode(roots.worldRootId, 'RoomB-Trap', 'TRAP', vec3(220, -6, 0), 96, 42, 18, color(58, 27, 10, 255), true, color(223, 128, 69, 255), color(255, 217, 184, 120), 14, true);
+  addSceneDressingSkin(roomBTrap.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomBTrapSpawn = addNode('RoomB-Trap-Spawn', roomBTrap.nodeId, vec3(56, 0, 0));
   addComponent(roomBTrapSpawn, 'cc.UITransform', {
     _priority: 0,
@@ -1703,6 +1900,10 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     directionX: 1,
     directionY: 0,
     autoStart: true,
+    visualSpriteFrame: null,
+    fireClip: null,
+    fireClipVolume: 1,
+    hideLabelWhenSkinned: true,
   });
   const roomBGapHazard = addLabeledNode(
     roots.worldRootId,
@@ -1719,6 +1920,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     18,
     true,
   );
+  addSceneDressingSkin(roomBGapHazard.nodeId, 'outdoor_ground_ruins', { tiled: true, hideLabelWhenSkinned: true, addBindingTag: false });
   addSensorBox(roomBGapHazard.nodeId, 252, 242);
   addComponent(roomBGapHazard.nodeId, types['assets/scripts/puzzle/PlayerRespawnZone.ts'], {
     playerNameIncludes: 'Player',
@@ -1759,6 +1961,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
 
 async function generateDungeonRoomC(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomC', scriptIds, prefabIds, {
+    musicCueId: 'dungeon-room',
     sceneTitle: 'Room C - Bomb',
     objectiveText: 'Place BombBug by the cracked wall to reveal the relic.',
     playerStart: vec3(-500, -20, 0),
@@ -1766,10 +1969,12 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'RoomCBackdrop', vec3(60, 0, 0), 1680, 520, color(36, 36, 44, 255), color(158, 148, 172, 42), true, 24);
-  addPanelNode(roots.worldRootId, 'RoomCBombZone', vec3(230, -10, 0), 360, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
+  const roomCBackdrop = addPanelNode(roots.worldRootId, 'RoomCBackdrop', vec3(60, 0, 0), 1680, 520, color(36, 36, 44, 255), color(158, 148, 172, 42), true, 24);
+  const roomCBombZone = addPanelNode(roots.worldRootId, 'RoomCBombZone', vec3(230, -10, 0), 360, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
+  addSceneDressingSkin(roomCBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(roomCBombZone.nodeId, 'outdoor_path_cobble', { tiled: true });
   const roomCTopBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomC-TopBarrier',
@@ -1828,6 +2033,8 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
 
   const roomCWallClosed = addLabeledNode(roots.worldRootId, 'RoomC-WallClosed', 'CRACKED WALL', vec3(250, -10, 0), 196, 56, 18, color(255, 241, 239, 255), true, color(137, 78, 67, 255), color(255, 211, 201, 120), 16, true);
   const roomCWallOpen = addLabeledNode(roots.worldRootId, 'RoomC-WallOpen', 'WALL OPEN', vec3(250, -10, 0), 196, 56, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
+  addSceneDressingSkin(roomCWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(roomCWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomCWallBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomC-WallBarrier',
@@ -1860,6 +2067,15 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     startsBroken: false,
     activateOnBroken: [ref(roomCWallOpen.nodeId), ref(roomCClearRelic.nodeId)],
     deactivateOnBroken: [ref(roomCWallClosed.nodeId), ref(roomCWallBarrier.nodeId)],
+    intactVisualNode: ref(roomCWallClosed.nodeId),
+    brokenVisualNode: ref(roomCWallOpen.nodeId),
+    intactSpriteFrame: null,
+    brokenSpriteFrame: null,
+    breakClip: null,
+    breakClipVolume: 1,
+    resetClip: null,
+    resetClipVolume: 1,
+    hideLabelsWhenSkinned: true,
   });
 
   addLabeledNode(roots.worldRootId, 'RoomCHint', 'BombBug is the only echo that can break this wall.', vec3(144, 92, 0), 340, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
@@ -1887,6 +2103,7 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
 
 async function generateBossArena(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('BossArena', scriptIds, prefabIds, {
+    musicCueId: 'boss-arena',
     sceneTitle: 'Boss Arena',
     objectiveText: 'Defeat the trial core and claim the route forward.',
     playerStart: vec3(-520, -20, 0),
@@ -1894,10 +2111,12 @@ async function generateBossArena(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addDynamicBody, addComponent, addNode, resetNodes, roots, types } = builder;
+  const { addAssetBindingTag, addPanelNode, addLabeledNode, addDynamicBody, addComponent, addNode, addSceneDressingSkin, getImageBindingProps, items, resetNodes, roots, types } = builder;
 
-  addPanelNode(roots.worldRootId, 'BossBackdrop', vec3(100, 0, 0), 1800, 540, color(40, 30, 38, 255), color(170, 132, 156, 42), true, 26);
-  addPanelNode(roots.worldRootId, 'BossLane', vec3(140, -10, 0), 860, 260, color(70, 46, 56, 196), color(218, 177, 190, 46), true, 24);
+  const bossBackdrop = addPanelNode(roots.worldRootId, 'BossBackdrop', vec3(100, 0, 0), 1800, 540, color(40, 30, 38, 255), color(170, 132, 156, 42), true, 26);
+  const bossLane = addPanelNode(roots.worldRootId, 'BossLane', vec3(140, -10, 0), 860, 260, color(70, 46, 56, 196), color(218, 177, 190, 46), true, 24);
+  addSceneDressingSkin(bossBackdrop.nodeId, 'outdoor_wall_standard', { tiled: true });
+  addSceneDressingSkin(bossLane.nodeId, 'outdoor_wall_cracked', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-BossArena',
@@ -1922,6 +2141,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     true,
   );
   addDynamicBody(bossCore.nodeId, 150, 60);
+  addAssetBindingTag(bossCore.nodeId, 'boss_core');
   const bossHealth = addComponent(bossCore.nodeId, types['assets/scripts/combat/HealthComponent.ts'], {
     maxHealth: 8,
     invulnerableSeconds: 0.12,
@@ -1963,7 +2183,20 @@ async function generateBossArena(scriptIds, prefabIds) {
     startsBroken: false,
     activateOnBroken: [ref(bossShieldOpen.nodeId)],
     deactivateOnBroken: [ref(bossShieldClosed.nodeId)],
+    intactVisualNode: ref(bossShieldClosed.nodeId),
+    brokenVisualNode: ref(bossShieldOpen.nodeId),
+    intactSpriteFrame: null,
+    brokenSpriteFrame: null,
+    breakClip: null,
+    breakClipVolume: 1,
+    resetClip: null,
+    resetClipVolume: 1,
+    hideLabelsWhenSkinned: true,
   });
+  addAssetBindingTag(bossShieldClosed.nodeId, 'boss_shield_closed');
+  addAssetBindingTag(bossShieldOpen.nodeId, 'boss_shield_open');
+  addSceneDressingSkin(bossShieldClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(bossShieldOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const bossPatrolA = addNode('BossEnemy-PatrolA', roots.worldRootId, vec3(120, -10, 0));
   const bossPatrolB = addNode('BossEnemy-PatrolB', roots.worldRootId, vec3(340, -10, 0));
   const bossAi = addComponent(bossCore.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
@@ -1972,6 +2205,23 @@ async function generateBossArena(scriptIds, prefabIds) {
     chaseDistance: 190,
     target: ref(builder.refs.playerNode.nodeId),
     patrolPoints: [ref(bossPatrolA), ref(bossPatrolB)],
+  });
+  const bossVisualId = addComponent(bossCore.nodeId, types['assets/scripts/boss/BossVisualController.ts'], {
+    health: ref(bossHealth),
+    bossAI: ref(bossAi),
+    shieldController: null,
+    visualRoot: ref(bossCore.visualNodeId),
+    dangerSpriteFrame: null,
+    dangerTexture: getImageBindingProps('boss_core')?.texture ?? null,
+    vulnerableSpriteFrame: null,
+    vulnerableTexture: getImageBindingProps('boss_core')?.texture ?? null,
+    hurtSpriteFrame: null,
+    hurtTexture: getImageBindingProps('boss_core')?.texture ?? null,
+    defeatedSpriteFrame: null,
+    defeatedTexture: getImageBindingProps('boss_core')?.texture ?? null,
+    hurtFlashSeconds: 0.22,
+    hideLabelWhenSkinned: true,
+    mirrorFacing: true,
   });
   const bossContactDamage = addComponent(bossCore.nodeId, types['assets/scripts/combat/DamageOnContact.ts'], {
     damage: 1,
@@ -2003,7 +2253,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     deactivateOnCleared: [ref(bossStatus.nodeId), ref(bossWindowBanner.nodeId), ref(bossShieldClosed.nodeId), ref(bossShieldOpen.nodeId)],
   });
   const bossShieldController = addNode('BossShieldControllerNode', roots.worldRootId, vec3());
-  addComponent(bossShieldController, types['assets/scripts/boss/BossShieldPhaseController.ts'], {
+  const bossShieldControllerComponent = addComponent(bossShieldController, types['assets/scripts/boss/BossShieldPhaseController.ts'], {
     shieldTarget: ref(bossShieldClosed.nodeId),
     bossHealth: ref(bossHealth),
     bossAI: ref(bossAi),
@@ -2016,6 +2266,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     activateWhenDanger: [ref(bossStatus.nodeId)],
     activateWhenVulnerable: [ref(bossWindowBanner.nodeId)],
   });
+  items[bossVisualId].shieldController = ref(bossShieldControllerComponent);
 
   addLabeledNode(roots.worldRootId, 'BossHint', 'Break the shield with BombBug, then use the short attack window before it reforms.', vec3(172, 184, 0), 520, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
 

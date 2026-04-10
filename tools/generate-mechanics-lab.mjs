@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import { loadAssetBindingCatalog, resolveAssetBinding, resolveImageAssetReference } from './asset-binding-manifest-utils.mjs';
 
 const PROJECT_ROOT = process.cwd();
 const ASSETS_ROOT = path.join(PROJECT_ROOT, 'assets');
@@ -440,11 +441,13 @@ async function buildPrefab(fileName, rootName, buildFn) {
 }
 
 async function generatePrefabs(scriptIds) {
+  const bindingCatalog = await loadAssetBindingCatalog(PROJECT_ROOT);
   const simpleProjectileType = scriptIds.get('assets/scripts/puzzle/SimpleProjectile.ts').shortId;
   const damageOnContactType = scriptIds.get('assets/scripts/combat/DamageOnContact.ts').shortId;
   const springFlowerBounceType = scriptIds.get('assets/scripts/echo/SpringFlowerBounce.ts').shortId;
   const bombBugFuseType = scriptIds.get('assets/scripts/echo/BombBugFuse.ts').shortId;
   const rectVisualType = scriptIds.get('assets/scripts/visual/RectVisual.ts').shortId;
+  const assetBindingTagType = scriptIds.get('assets/scripts/core/AssetBindingTag.ts').shortId;
 
   const addPrefabVisual = (api, parentId, name, width, height, fillColorValue, strokeColorValue, cornerRadius = 10) => {
     const visualNodeId = api.addNode(parentId, name, vec3());
@@ -458,6 +461,12 @@ async function generatePrefabs(scriptIds) {
       rectVisualType,
       rectVisualProps(fillColorValue, strokeColorValue, cornerRadius, 2),
     );
+    const artNodeId = api.addNode(visualNodeId, `${name}-Art`, vec3());
+    api.addComponentToNode(artNodeId, 'cc.UITransform', {
+      _priority: 0,
+      _contentSize: size(width, height),
+      _anchorPoint: vec2(0.5, 0.5),
+    });
     return visualNodeId;
   };
 
@@ -468,7 +477,7 @@ async function generatePrefabs(scriptIds) {
       _contentSize: size(width, height),
       _anchorPoint: vec2(0.5, 0.5),
     });
-    return api.addComponentToNode(labelNodeId, 'cc.Label', {
+    const labelId = api.addComponentToNode(labelNodeId, 'cc.Label', {
       _srcBlendFactor: 2,
       _dstBlendFactor: 4,
       _color: tint,
@@ -490,9 +499,10 @@ async function generatePrefabs(scriptIds) {
       _isUnderline: false,
       _cacheMode: 0,
     });
+    return { nodeId: labelNodeId, labelId };
   };
 
-  const echoBoxMeta = await buildPrefab('EchoBox.prefab', 'Echo-box', ({ rootId, addComponent, addComponentToNode, addNode }) => {
+  const echoBoxMeta = await buildPrefab('EchoBox.prefab', 'EchoBox', ({ rootId, addComponent, addComponentToNode, addNode }) => {
     addComponent('cc.UITransform', {
       _priority: 0,
       _contentSize: size(84, 44),
@@ -524,10 +534,10 @@ async function generatePrefabs(scriptIds) {
       _size: size(84, 44),
     });
     addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 84, 44, color(214, 176, 96, 255), color(255, 236, 186, 180), 12);
-    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'Label', 'BOX', 84, 44, 20, color(32, 24, 16, 255), true);
+    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'DebugLabel', 'BOX', 84, 44, 20, color(32, 24, 16, 255), true);
   });
 
-  const springFlowerMeta = await buildPrefab('EchoSpringFlower.prefab', 'Echo-spring-flower', ({ rootId, addComponent, addComponentToNode, addNode }) => {
+  const springFlowerMeta = await buildPrefab('EchoSpringFlower.prefab', 'EchoSpringFlower', ({ rootId, addComponent, addComponentToNode, addNode }) => {
     addComponent('cc.UITransform', {
       _priority: 0,
       _contentSize: size(124, 48),
@@ -567,10 +577,10 @@ async function generatePrefabs(scriptIds) {
       playerNameIncludes: 'Player',
     });
     addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 124, 48, color(67, 146, 88, 255), color(213, 255, 209, 180), 16);
-    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'Label', 'FLOWER', 124, 48, 18, color(238, 255, 236, 255), true);
+    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'DebugLabel', 'FLOWER', 124, 48, 18, color(238, 255, 236, 255), true);
   });
 
-  const bombBugMeta = await buildPrefab('EchoBombBug.prefab', 'Echo-bomb-bug', ({ rootId, addComponent, addComponentToNode, addNode }) => {
+  const bombBugMeta = await buildPrefab('EchoBombBug.prefab', 'EchoBombBug', ({ rootId, addComponent, addComponentToNode, addNode }) => {
     addComponent('cc.UITransform', {
       _priority: 0,
       _contentSize: size(114, 48),
@@ -601,6 +611,7 @@ async function generatePrefabs(scriptIds) {
       _offset: vec2(),
       _size: size(114, 48),
     });
+    const countdownOverlay = addPrefabLabel({ addNode, addComponentToNode }, rootId, 'CountdownOverlay', '1.3', 114, 48, 18, color(255, 243, 238, 255), true);
     addComponent(bombBugFuseType, {
       fuseSeconds: 1.35,
       explosionRadius: 120,
@@ -608,9 +619,10 @@ async function generatePrefabs(scriptIds) {
       damagePlayer: true,
       damageEnemies: true,
       showCountdown: true,
+      countdownOverlay: ref(countdownOverlay.nodeId),
+      countdownLabel: ref(countdownOverlay.labelId),
     });
     addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 114, 48, color(156, 68, 66, 255), color(255, 209, 200, 180), 16);
-    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'Label', 'BOMB', 114, 48, 18, color(255, 243, 238, 255), true);
   });
 
   const arrowProjectileMeta = await buildPrefab('ArrowProjectile.prefab', 'ArrowProjectile', ({ rootId, addComponent, addComponentToNode, addNode }) => {
@@ -644,20 +656,36 @@ async function generatePrefabs(scriptIds) {
       _offset: vec2(),
       _radius: 12,
     });
+    const arrowVisualId = addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 52, 18, color(208, 168, 74, 255), color(255, 238, 188, 180), 8);
     addComponent(simpleProjectileType, {
       speed: 260,
       maxLifetime: 2,
       destroyOnAnyContact: true,
       ignoreNodeNameIncludes: 'Trap',
       destroyOnNodeNameIncludes: 'Player',
+      visualRoot: ref(arrowVisualId),
+      visualSpriteFrame: null,
+      impactClip: null,
+      impactClipVolume: 1,
+      hideLabelWhenSkinned: true,
+      rotateToDirection: true,
     });
     addComponent(damageOnContactType, {
       damage: 1,
       targetNameIncludes: 'Player',
       destroyAfterHit: false,
     });
-    addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 52, 18, color(208, 168, 74, 255), color(255, 238, 188, 180), 8);
-    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'Label', '>>', 52, 22, 20, color(40, 28, 8, 255), true);
+    const projectileBinding = resolveAssetBinding(bindingCatalog, 'projectile_arrow');
+    if (projectileBinding) {
+      addComponent(assetBindingTagType, {
+        bindingKey: projectileBinding.bindingKey,
+        selectedPath: projectileBinding.selectedPath,
+        fallbackPath: projectileBinding.fallbackPath,
+        sourceManifest: projectileBinding.sourceManifest,
+        bindingStatus: projectileBinding.bindingStatus,
+      });
+    }
+    addPrefabLabel({ addNode, addComponentToNode }, rootId, 'DebugLabel', '>>', 52, 22, 20, color(40, 28, 8, 255), true);
   });
 
   return {
@@ -669,6 +697,7 @@ async function generatePrefabs(scriptIds) {
 }
 
 async function generateScene(scriptIds, prefabIds) {
+  const bindingCatalog = await loadAssetBindingCatalog(PROJECT_ROOT);
   const scenePath = path.join(SCENES_ROOT, 'MechanicsLab.scene');
   const sceneMeta = await ensureMeta(scenePath, 'scene');
   const template = clone(await readJson(COCOS_TEMPLATE_SCENE));
@@ -707,6 +736,78 @@ async function generateScene(scriptIds, prefabIds) {
     const componentId = add(createSceneComponent(nodeId, type, props));
     items[nodeId]._components.push(ref(componentId));
     return componentId;
+  };
+
+  const addAssetBindingTag = (nodeId, bindingKey) => {
+    const binding = resolveAssetBinding(bindingCatalog, bindingKey);
+    if (!binding) {
+      return null;
+    }
+
+    return addComponent(nodeId, types['assets/scripts/core/AssetBindingTag.ts'], {
+      bindingKey: binding.bindingKey,
+      selectedPath: binding.selectedPath,
+      fallbackPath: binding.fallbackPath,
+      sourceManifest: binding.sourceManifest,
+      bindingStatus: binding.bindingStatus,
+    });
+  };
+
+  const imageBindingPropsCache = new Map();
+
+  const getImageBindingProps = (bindingKey) => {
+    if (!bindingKey) {
+      return null;
+    }
+
+    if (imageBindingPropsCache.has(bindingKey)) {
+      return imageBindingPropsCache.get(bindingKey);
+    }
+
+    const binding = resolveAssetBinding(bindingCatalog, bindingKey);
+    const initialValue = {
+      binding,
+      spriteFrame: null,
+      texture: null,
+    };
+
+    if (!binding?.selectedPath) {
+      imageBindingPropsCache.set(bindingKey, initialValue);
+      return initialValue;
+    }
+
+    const imageAssetReference = resolveImageAssetReference(PROJECT_ROOT, binding.selectedPath);
+    if (!imageAssetReference) {
+      imageBindingPropsCache.set(bindingKey, initialValue);
+      return initialValue;
+    }
+
+    const resolvedValue = {
+      binding,
+      spriteFrame: imageAssetReference.propertyName === 'spriteFrame' ? imageAssetReference.assetRef : null,
+      texture: imageAssetReference.propertyName === 'texture' ? imageAssetReference.assetRef : null,
+    };
+    imageBindingPropsCache.set(bindingKey, resolvedValue);
+    return resolvedValue;
+  };
+
+  const addSceneDressingSkin = (nodeId, bindingKey, options = {}) => {
+    const imageBinding = getImageBindingProps(bindingKey);
+    if (!imageBinding) {
+      return null;
+    }
+
+    if (options.addBindingTag !== false) {
+      addAssetBindingTag(nodeId, bindingKey);
+    }
+
+    return addComponent(nodeId, types['assets/scripts/visual/SceneDressingSkin.ts'], {
+      visualRoot: options.visualRootId ? ref(options.visualRootId) : null,
+      spriteFrame: imageBinding.spriteFrame,
+      texture: imageBinding.texture,
+      hideLabelWhenSkinned: options.hideLabelWhenSkinned ?? false,
+      tiled: options.tiled ?? true,
+    });
   };
 
   const addSafeAreaRoot = (nodeId, width = 960, height = 640) => {
@@ -819,12 +920,18 @@ async function generateScene(scriptIds, prefabIds) {
     18,
   );
 
-  addPanelNode(worldRootId, 'WorldBackdrop', vec3(120, 6, 0), 1680, 560, color(20, 35, 41, 255), color(86, 118, 118, 70), true, 28);
-  addPanelNode(worldRootId, 'PickupStrip', vec3(100, 194, 0), 1660, 104, color(39, 71, 56, 196), color(145, 196, 168, 60), true, 24);
-  addPanelNode(worldRootId, 'PlateZone', vec3(-120, -142, 0), 360, 120, color(92, 75, 44, 196), color(219, 196, 143, 60), true, 20);
-  addPanelNode(worldRootId, 'TrapZone', vec3(250, 0, 0), 290, 236, color(108, 58, 44, 180), color(241, 179, 129, 56), true, 22);
-  addPanelNode(worldRootId, 'BombZone', vec3(760, -10, 0), 336, 226, color(88, 48, 56, 196), color(255, 186, 172, 60), true, 22);
-  addPanelNode(worldRootId, 'LandingZone', vec3(430, 130, 0), 200, 86, color(48, 79, 98, 160), color(176, 221, 255, 64), true, 18);
+  const worldBackdrop = addPanelNode(worldRootId, 'WorldBackdrop', vec3(120, 6, 0), 1680, 560, color(20, 35, 41, 255), color(86, 118, 118, 70), true, 28);
+  const pickupStrip = addPanelNode(worldRootId, 'PickupStrip', vec3(100, 194, 0), 1660, 104, color(39, 71, 56, 196), color(145, 196, 168, 60), true, 24);
+  const plateZone = addPanelNode(worldRootId, 'PlateZone', vec3(-120, -142, 0), 360, 120, color(92, 75, 44, 196), color(219, 196, 143, 60), true, 20);
+  const trapZone = addPanelNode(worldRootId, 'TrapZone', vec3(250, 0, 0), 290, 236, color(108, 58, 44, 180), color(241, 179, 129, 56), true, 22);
+  const bombZone = addPanelNode(worldRootId, 'BombZone', vec3(760, -10, 0), 336, 226, color(88, 48, 56, 196), color(255, 186, 172, 60), true, 22);
+  const landingZone = addPanelNode(worldRootId, 'LandingZone', vec3(430, 130, 0), 200, 86, color(48, 79, 98, 160), color(176, 221, 255, 64), true, 18);
+  addSceneDressingSkin(worldBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(pickupStrip.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(plateZone.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSceneDressingSkin(trapZone.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(bombZone.nodeId, 'outdoor_ground_ruins', { tiled: true });
+  addSceneDressingSkin(landingZone.nodeId, 'outdoor_path_cobble', { tiled: true });
 
   const playerNode = addLabeledNode(
     worldRootId,
@@ -931,6 +1038,25 @@ async function generateScene(scriptIds, prefabIds) {
     health: ref(playerHealthId),
     echoManager: ref(echoManagerId),
   });
+  const playerImageBinding = getImageBindingProps('player');
+  addComponent(playerNode.nodeId, types['assets/scripts/player/PlayerVisualController.ts'], {
+    player: ref(playerControllerId),
+    health: ref(playerHealthId),
+    visualRoot: ref(playerNode.visualNodeId),
+    idleSpriteFrame: null,
+    idleTexture: playerImageBinding?.texture ?? null,
+    moveSpriteFrame: null,
+    moveTexture: playerImageBinding?.texture ?? null,
+    attackSpriteFrame: null,
+    attackTexture: playerImageBinding?.texture ?? null,
+    launchSpriteFrame: null,
+    launchTexture: playerImageBinding?.texture ?? null,
+    hurtSpriteFrame: null,
+    hurtTexture: playerImageBinding?.texture ?? null,
+    hurtFlashSeconds: 0.18,
+    hideLabelWhenSkinned: true,
+    mirrorFacing: true,
+  });
   addComponent(attackAnchorId, types['assets/scripts/player/AttackHitbox.ts'], {
     player: ref(playerControllerId),
     damage: 1,
@@ -976,7 +1102,9 @@ async function generateScene(scriptIds, prefabIds) {
   addComponent(checkpointNode.nodeId, types['assets/scripts/core/CheckpointMarker.ts'], {
     markerId: 'checkpoint-01',
     playerNameIncludes: 'Player',
+    visualSpriteFrame: getImageBindingProps('checkpoint')?.spriteFrame ?? null,
   });
+  addAssetBindingTag(checkpointNode.nodeId, 'checkpoint');
 
   const plateNode = addLabeledNode(
     worldRootId,
@@ -1052,6 +1180,8 @@ async function generateScene(scriptIds, prefabIds) {
     deactivateOnPressed: [ref(gateClosedNode.nodeId)],
     startsPressed: false,
   });
+  addSceneDressingSkin(gateClosedNode.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(gateOpenNode.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
 
   addLabeledNode(
     worldRootId,
@@ -1096,6 +1226,7 @@ async function generateScene(scriptIds, prefabIds) {
     color(255, 217, 184, 120),
     14,
   );
+  addSceneDressingSkin(trapNode.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const trapSpawnId = addNode('TrapSpawn', trapNode.nodeId, vec3(56, 0, 0));
   addComponent(trapSpawnId, 'cc.UITransform', {
     _priority: 0,
@@ -1112,6 +1243,10 @@ async function generateScene(scriptIds, prefabIds) {
     directionX: 1,
     directionY: 0,
     autoStart: true,
+    visualSpriteFrame: null,
+    fireClip: null,
+    fireClipVolume: 1,
+    hideLabelWhenSkinned: true,
   });
 
   const patrolPointAId = addNode('PatrolPointA', worldRootId, vec3(520, 70, 0));
@@ -1161,12 +1296,31 @@ async function generateScene(scriptIds, prefabIds) {
     destroyNodeOnDepleted: false,
     deactivateNodeOnDepleted: true,
   });
-  addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
+  const enemyAiId = addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
     initialState: 1,
     moveSpeed: 80,
     chaseDistance: 120,
     target: ref(playerNode.nodeId),
     patrolPoints: [ref(patrolPointAId), ref(patrolPointBId)],
+  });
+  const enemyImageBinding = getImageBindingProps('common_enemy');
+  addComponent(enemyNode.nodeId, types['assets/scripts/enemy/EnemyVisualController.ts'], {
+    enemyAI: ref(enemyAiId),
+    health: ref(enemyHealthId),
+    visualRoot: ref(enemyNode.visualNodeId),
+    idleSpriteFrame: null,
+    idleTexture: enemyImageBinding?.texture ?? null,
+    patrolSpriteFrame: null,
+    patrolTexture: enemyImageBinding?.texture ?? null,
+    chaseSpriteFrame: null,
+    chaseTexture: enemyImageBinding?.texture ?? null,
+    hurtSpriteFrame: null,
+    hurtTexture: enemyImageBinding?.texture ?? null,
+    defeatedSpriteFrame: null,
+    defeatedTexture: enemyImageBinding?.texture ?? null,
+    hurtFlashSeconds: 0.18,
+    hideLabelWhenSkinned: true,
+    mirrorFacing: true,
   });
   addComponent(enemyNode.nodeId, types['assets/scripts/combat/DamageOnContact.ts'], {
     damage: 1,
@@ -1199,6 +1353,12 @@ async function generateScene(scriptIds, prefabIds) {
     _offset: vec2(),
     _size: size(150, 36),
   });
+  addComponent(flowerPickup.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualSpriteFrame: null,
+    pickupClip: null,
+    pickupClipVolume: 1,
+    hideLabelWhenSkinned: true,
+  });
   addComponent(flowerPickup.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(echoManagerId),
     echoId: 1,
@@ -1206,6 +1366,7 @@ async function generateScene(scriptIds, prefabIds) {
     selectAfterUnlock: true,
     destroyOnPickup: true,
   });
+  addAssetBindingTag(flowerPickup.nodeId, 'echo_spring_flower');
 
   const bombPickup = addLabeledNode(
     worldRootId,
@@ -1232,6 +1393,12 @@ async function generateScene(scriptIds, prefabIds) {
     _offset: vec2(),
     _size: size(144, 36),
   });
+  addComponent(bombPickup.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualSpriteFrame: null,
+    pickupClip: null,
+    pickupClipVolume: 1,
+    hideLabelWhenSkinned: true,
+  });
   addComponent(bombPickup.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(echoManagerId),
     echoId: 2,
@@ -1239,6 +1406,7 @@ async function generateScene(scriptIds, prefabIds) {
     selectAfterUnlock: true,
     destroyOnPickup: true,
   });
+  addAssetBindingTag(bombPickup.nodeId, 'echo_bomb_bug');
 
   const bombGateRootId = addNode('BombGateRoot', worldRootId, vec3(760, -10, 0));
   addComponent(bombGateRootId, 'cc.UITransform', {
@@ -1292,7 +1460,19 @@ async function generateScene(scriptIds, prefabIds) {
     startsBroken: false,
     activateOnBroken: [ref(bombWallOpen.nodeId), ref(bombReward.nodeId)],
     deactivateOnBroken: [ref(bombWallClosed.nodeId)],
+    intactVisualNode: ref(bombWallClosed.nodeId),
+    brokenVisualNode: ref(bombWallOpen.nodeId),
+    intactSpriteFrame: null,
+    brokenSpriteFrame: null,
+    breakClip: null,
+    breakClipVolume: 1,
+    resetClip: null,
+    resetClipVolume: 1,
+    hideLabelsWhenSkinned: true,
   });
+  addAssetBindingTag(bombGateRootId, 'breakable_target');
+  addSceneDressingSkin(bombWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(bombWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
 
   const joystickNodeId = addNode('Joystick', touchHudRootId, vec3(-346, -222, 0));
   addComponent(joystickNodeId, 'cc.UITransform', {
@@ -1447,6 +1627,17 @@ async function generateScene(scriptIds, prefabIds) {
   });
   const saveSystemId = addComponent(persistentRootId, types['assets/scripts/core/SaveSystem.ts'], {
     storageKey: 'wisdom-mvp-save',
+  });
+  const sceneLoaderId = addComponent(persistentRootId, types['assets/scripts/core/SceneLoader.ts'], {});
+  addComponent(persistentRootId, types['assets/scripts/audio/SceneMusicController.ts'], {
+    sceneLoader: ref(sceneLoaderId),
+    musicCueId: 'mechanics-lab',
+    bgmClip: null,
+    volume: 0.72,
+    loop: true,
+    playOnStart: true,
+    stopOnSceneSwitch: true,
+    pauseWithGameFlow: true,
   });
   addComponent(persistentRootId, types['assets/scripts/core/PhysicsBootstrap.ts'], {
     enableDebugDraw: false,

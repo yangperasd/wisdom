@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  assertComponentNodeReference,
   assertNodeActiveState,
   assertNodeExists,
   assertNodeHasComponent,
+  getComponentRecordForNode,
   getScriptTypeId,
   readAssetJson,
 } from './helpers/cocos-asset-test-utils.mjs';
@@ -98,6 +100,14 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   const gameHudType = await getScriptTypeId('assets/scripts/ui/GameHud.ts');
   const flagGateType = await getScriptTypeId('assets/scripts/core/FlagGateController.ts');
   const pauseMenuType = await getScriptTypeId('assets/scripts/ui/PauseMenuController.ts');
+  const collectiblePresentationType = await getScriptTypeId('assets/scripts/visual/CollectiblePresentation.ts');
+  const breakableTargetType = await getScriptTypeId('assets/scripts/puzzle/BreakableTarget.ts');
+  const sceneMusicType = await getScriptTypeId('assets/scripts/audio/SceneMusicController.ts');
+  const playerVisualType = await getScriptTypeId('assets/scripts/player/PlayerVisualController.ts');
+  const enemyVisualType = await getScriptTypeId('assets/scripts/enemy/EnemyVisualController.ts');
+  const checkpointMarkerType = await getScriptTypeId('assets/scripts/core/CheckpointMarker.ts');
+  const sceneDressingSkinType = await getScriptTypeId('assets/scripts/visual/SceneDressingSkin.ts');
+  const assetBindingTagType = await getScriptTypeId('assets/scripts/core/AssetBindingTag.ts');
 
   const startCanvas = assertNodeExists(startCampItems, 'Canvas');
   const startPersistentRoot = assertNodeExists(startCampItems, 'PersistentRoot');
@@ -115,6 +125,9 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   const ruinsHudRoot = assertNodeExists(fieldRuinsItems, 'HudRoot');
 
   assertNodeHasComponent(startCampItems, startPersistentRoot, sceneLoaderType, 'StartCamp PersistentRoot');
+  assertNodeHasComponent(startCampItems, startPersistentRoot, sceneMusicType, 'StartCamp PersistentRoot');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'Player'), playerVisualType, 'StartCamp Player');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampEnemy'), enemyVisualType, 'CampEnemy');
   assertNodeHasComponent(startCampItems, startPortal, scenePortalType, 'Portal-FieldWest');
   assertNodeHasComponent(startCampItems, startHudRoot, 'cc.UITransform', 'StartCamp HudRoot');
   assertNodeHasComponent(startCampItems, startHudRoot, 'cc.Widget', 'StartCamp HudRoot');
@@ -128,11 +141,71 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     'StartCamp TouchHudRoot',
   );
   assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampVictoryController'), flagGateType, 'CampVictoryController');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampBackdrop'), sceneDressingSkinType, 'CampBackdrop');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampLeftLane'), sceneDressingSkinType, 'CampLeftLane');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampPlateZone'), sceneDressingSkinType, 'CampPlateZone');
+  const checkpointCamp = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'Checkpoint-Camp'),
+    checkpointMarkerType,
+    'Checkpoint-Camp',
+  );
+  const startPlayerVisual = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'Player'),
+    playerVisualType,
+    'StartCamp PlayerVisualController',
+  );
+  const startEnemyVisual = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'CampEnemy'),
+    enemyVisualType,
+    'CampEnemy VisualController',
+  );
+  assert.ok(checkpointCamp.visualSpriteFrame?.__uuid__, 'Checkpoint-Camp should bind a checkpoint sprite frame.');
+  assert.ok(startPlayerVisual.idleTexture?.__uuid__, 'StartCamp player should bind a texture-backed visual.');
+  assert.ok(startEnemyVisual.idleTexture?.__uuid__, 'CampEnemy should bind a texture-backed visual.');
+  const startPortalRecord = getComponentRecordForNode(startCampItems, startPortal, scenePortalType, 'Portal-FieldWest');
+  assert.ok(startPortalRecord.visualSpriteFrame?.__uuid__, 'Portal-FieldWest should bind a portal sprite frame.');
+  const campBackdropBinding = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'CampBackdrop'),
+    assetBindingTagType,
+    'CampBackdrop AssetBindingTag',
+  );
+  assert.equal(campBackdropBinding.bindingKey, 'outdoor_ground_green');
 
   assertNodeHasComponent(fieldWestItems, fieldPersistentRoot, sceneLoaderType, 'FieldWest PersistentRoot');
+  assertNodeHasComponent(fieldWestItems, fieldPersistentRoot, sceneMusicType, 'FieldWest PersistentRoot');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'Player'), playerVisualType, 'FieldWest Player');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldEnemy'), enemyVisualType, 'FieldEnemy');
   assertNodeHasComponent(fieldWestItems, fieldPortal, scenePortalType, 'Portal-FieldRuins');
   assertNodeHasComponent(fieldWestItems, fieldHudRoot, 'cc.SafeArea', 'FieldWest HudRoot');
   assertNodeHasComponent(fieldWestItems, fieldHudRoot, gameHudType, 'FieldWest HudRoot');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldBackdrop'), sceneDressingSkinType, 'FieldBackdrop');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldLane'), sceneDressingSkinType, 'FieldLane');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'TrapLane'), sceneDressingSkinType, 'TrapLane');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'Trap-West'), sceneDressingSkinType, 'Trap-West');
+  assertNodeHasComponent(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'EchoPickup-Flower-West'),
+    collectiblePresentationType,
+    'EchoPickup-Flower-West',
+  );
+  const fieldBackdropBinding = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'FieldBackdrop'),
+    assetBindingTagType,
+    'FieldBackdrop AssetBindingTag',
+  );
+  const fieldEnemyVisual = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'FieldEnemy'),
+    enemyVisualType,
+    'FieldEnemy VisualController',
+  );
+  assert.equal(fieldBackdropBinding.bindingKey, 'outdoor_ground_green');
+  assert.ok(fieldEnemyVisual.idleTexture?.__uuid__, 'FieldEnemy should bind a texture-backed visual.');
   assertNodeHasComponent(
     fieldWestItems,
     assertNodeExists(fieldWestItems, 'TouchHudRoot'),
@@ -141,9 +214,47 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   );
 
   assertNodeHasComponent(fieldRuinsItems, ruinsPersistentRoot, sceneLoaderType, 'FieldRuins PersistentRoot');
+  assertNodeHasComponent(fieldRuinsItems, ruinsPersistentRoot, sceneMusicType, 'FieldRuins PersistentRoot');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'Player'), playerVisualType, 'FieldRuins Player');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsEnemy'), enemyVisualType, 'RuinsEnemy');
   assertNodeHasComponent(fieldRuinsItems, ruinsPortal, scenePortalType, 'Portal-DungeonPreview');
   assertNodeHasComponent(fieldRuinsItems, ruinsHudRoot, 'cc.SafeArea', 'FieldRuins HudRoot');
   assertNodeHasComponent(fieldRuinsItems, ruinsHudRoot, gameHudType, 'FieldRuins HudRoot');
+  const ruinsWallClosed = assertNodeExists(fieldRuinsItems, 'RuinsWall-Closed');
+  const ruinsWallOpen = assertNodeExists(fieldRuinsItems, 'RuinsWall-Open');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsBackdrop'), sceneDressingSkinType, 'RuinsBackdrop');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsLane'), sceneDressingSkinType, 'RuinsLane');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'CrackedWallZone'), sceneDressingSkinType, 'CrackedWallZone');
+  assertNodeHasComponent(fieldRuinsItems, ruinsWallClosed, sceneDressingSkinType, 'RuinsWall-Closed');
+  assertNodeHasComponent(
+    fieldRuinsItems,
+    assertNodeExists(fieldRuinsItems, 'EchoPickup-Bomb-Ruins'),
+    collectiblePresentationType,
+    'EchoPickup-Bomb-Ruins',
+  );
+  const ruinsBackdropBinding = getComponentRecordForNode(
+    fieldRuinsItems,
+    assertNodeExists(fieldRuinsItems, 'RuinsBackdrop'),
+    assetBindingTagType,
+    'RuinsBackdrop AssetBindingTag',
+  );
+  const ruinsEnemyVisual = getComponentRecordForNode(
+    fieldRuinsItems,
+    assertNodeExists(fieldRuinsItems, 'RuinsEnemy'),
+    enemyVisualType,
+    'RuinsEnemy VisualController',
+  );
+  assert.equal(ruinsBackdropBinding.bindingKey, 'outdoor_ground_ruins');
+  assert.ok(ruinsEnemyVisual.idleTexture?.__uuid__, 'RuinsEnemy should bind a texture-backed visual.');
+  const ruinsBreakable = getComponentRecordForNode(fieldRuinsItems, ruinsWallClosed, breakableTargetType, 'RuinsWall-Closed');
+  assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'intactVisualNode', ruinsWallClosed, 'RuinsWall-Closed BreakableTarget');
+  assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'brokenVisualNode', ruinsWallOpen, 'RuinsWall-Closed BreakableTarget');
+  const campMusic = getComponentRecordForNode(startCampItems, startPersistentRoot, sceneMusicType, 'StartCamp SceneMusicController');
+  const fieldMusic = getComponentRecordForNode(fieldWestItems, fieldPersistentRoot, sceneMusicType, 'FieldWest SceneMusicController');
+  const ruinsMusic = getComponentRecordForNode(fieldRuinsItems, ruinsPersistentRoot, sceneMusicType, 'FieldRuins SceneMusicController');
+  assert.equal(campMusic.musicCueId, 'camp');
+  assert.equal(fieldMusic.musicCueId, 'field-west');
+  assert.equal(ruinsMusic.musicCueId, 'field-ruins');
   assertNodeHasComponent(
     fieldRuinsItems,
     assertNodeExists(fieldRuinsItems, 'TouchHudRoot'),

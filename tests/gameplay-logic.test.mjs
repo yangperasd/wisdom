@@ -1,13 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  computeBossVisualState,
   computeBossPhaseState,
   computeCameraRigPosition,
   computeEchoHudButtonState,
+  computeEnemyVisualState,
   computeMobileHudLayoutFrame,
   computeJoystickState,
   computeLaunchPlan,
   computePauseUiState,
+  computePlayerVisualState,
+  computeProjectileRotationDegrees,
   cycleEcho,
   formatHudCheckpoint,
   normalizeAxis,
@@ -214,4 +218,35 @@ test('computeMobileHudLayoutFrame keeps controls inside safe bounds', () => {
   assert.equal(ultraTight.showRespawnButton, false);
   assert.equal(ultraTight.controlScale, 0.88);
   assert.ok(ultraTight.touch.reset.y < ultraTight.touch.attack.y);
+});
+
+test('computePlayerVisualState keeps hurt and attack above movement states', () => {
+  assert.equal(computePlayerVisualState({}), 'idle');
+  assert.equal(computePlayerVisualState({ moving: true }), 'move');
+  assert.equal(computePlayerVisualState({ forcedMoving: true, moving: true }), 'launch');
+  assert.equal(computePlayerVisualState({ attacking: true, forcedMoving: true, moving: true }), 'attack');
+  assert.equal(computePlayerVisualState({ hurt: true, attacking: true, forcedMoving: true, moving: true }), 'hurt');
+});
+
+test('computeEnemyVisualState keeps defeat and hurt above AI state visuals', () => {
+  assert.equal(computeEnemyVisualState({ aiState: 'idle' }), 'idle');
+  assert.equal(computeEnemyVisualState({ aiState: 'patrol' }), 'patrol');
+  assert.equal(computeEnemyVisualState({ aiState: 'chase' }), 'chase');
+  assert.equal(computeEnemyVisualState({ hurt: true, aiState: 'chase' }), 'hurt');
+  assert.equal(computeEnemyVisualState({ defeated: true, hurt: true, aiState: 'chase' }), 'defeated');
+});
+
+test('computeBossVisualState keeps defeat and hurt above vulnerability', () => {
+  assert.equal(computeBossVisualState({}), 'danger');
+  assert.equal(computeBossVisualState({ vulnerable: true }), 'vulnerable');
+  assert.equal(computeBossVisualState({ hurt: true, vulnerable: true }), 'hurt');
+  assert.equal(computeBossVisualState({ defeated: true, hurt: true, vulnerable: true }), 'defeated');
+});
+
+test('computeProjectileRotationDegrees matches projectile flight direction', () => {
+  assert.equal(computeProjectileRotationDegrees(1, 0), 0);
+  assert.equal(computeProjectileRotationDegrees(0, 1), 90);
+  assert.equal(computeProjectileRotationDegrees(-1, 0), 180);
+  assert.equal(computeProjectileRotationDegrees(0, -1), -90);
+  assert.equal(computeProjectileRotationDegrees(0, 0), 0);
 });

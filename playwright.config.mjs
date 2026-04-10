@@ -1,13 +1,6 @@
 import { defineConfig } from '@playwright/test';
-import { existsSync } from 'node:fs';
 
-const browserPathCandidates = [
-  'C:/Program Files/Google/Chrome/Application/chrome.exe',
-  'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
-  'C:/Program Files/Microsoft/Edge/Application/msedge.exe',
-];
-
-const executablePath = browserPathCandidates.find((candidate) => existsSync(candidate));
+const executablePath = process.env.PLAYWRIGHT_BROWSER_EXECUTABLE || undefined;
 
 export default defineConfig({
   testDir: './tests',
@@ -22,21 +15,13 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
-    launchOptions: executablePath
-      ? {
-          executablePath,
-          args: [
-            '--disable-background-timer-throttling',
-            '--disable-backgrounding-occluded-windows',
-            '--disable-renderer-backgrounding',
-          ],
-        }
-      : {
-          args: [
-            '--disable-background-timer-throttling',
-            '--disable-backgrounding-occluded-windows',
-            '--disable-renderer-backgrounding',
-          ],
-        },
+    launchOptions: {
+      ...(executablePath ? { executablePath } : {}),
+      args: [
+        '--disable-background-timer-throttling',
+        '--disable-backgrounding-occluded-windows',
+        '--disable-renderer-backgrounding',
+      ],
+    },
   },
 });
