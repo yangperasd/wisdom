@@ -70,7 +70,10 @@ export class BossShieldPhaseController extends Component {
       return;
     }
 
-    if ((this.shieldTarget?.isCurrentlyBroken() ?? false) && this.isBossAlive()) {
+    const shieldBroken = typeof this.shieldTarget?.isCurrentlyBroken === 'function'
+      ? this.shieldTarget.isCurrentlyBroken()
+      : (this.shieldTarget as unknown as { isBroken?: boolean })?.isBroken ?? false;
+    if (shieldBroken && this.isBossAlive()) {
       this.shieldTarget?.resetState();
       return;
     }
@@ -147,7 +150,17 @@ export class BossShieldPhaseController extends Component {
   }
 
   public isDamageWindowOpen(): boolean {
-    return this.isBossAlive() && (this.shieldTarget?.isCurrentlyBroken() ?? false) && this.vulnerableTimer > 0;
+    if (!this.isBossAlive() || this.vulnerableTimer <= 0) {
+      return false;
+    }
+
+    // Guard: shieldTarget may resolve to a Node instead of BreakableTarget
+    // at runtime if the serialized reference type is mismatched.
+    if (typeof this.shieldTarget?.isCurrentlyBroken === 'function') {
+      return this.shieldTarget.isCurrentlyBroken();
+    }
+
+    return (this.shieldTarget as unknown as { isBroken?: boolean })?.isBroken ?? false;
   }
 
   public isDangerState(): boolean {

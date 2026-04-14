@@ -10,6 +10,17 @@ const testFiles = [
   path.join(projectRoot, 'tests', 'save-logic.test.mjs'),
   path.join(projectRoot, 'tests', 'vertical-slice-flow.test.mjs'),
   path.join(projectRoot, 'tests', 'wechat-build-config.test.mjs'),
+  path.join(projectRoot, 'tests', 'health-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'player-state-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'boss-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'echo-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'puzzle-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'checkpoint-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'input-logic.test.mjs'),
+  path.join(projectRoot, 'tests', 'save-corruption.test.mjs'),
+  path.join(projectRoot, 'tests', 'wechat-build-output.test.mjs'),
+  path.join(projectRoot, 'tests', 'wechat-runtime-settings.test.mjs'),
+  path.join(projectRoot, 'tests', 'wechat-devtools-launch.test.mjs'),
 ];
 
 try {
