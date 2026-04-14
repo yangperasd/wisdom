@@ -8,6 +8,13 @@ export default defineConfig({
   fullyParallel: false,
   workers: 1,
   reporter: 'list',
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.02,
+      threshold: 0.3,
+    },
+  },
+  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
   use: {
     baseURL: process.env.PREVIEW_BASE_URL ?? 'http://127.0.0.1:7456/',
     browserName: 'chromium',

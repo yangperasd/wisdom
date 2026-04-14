@@ -7,12 +7,20 @@
   },
   "uuid": "4c32a165-f340-49a8-89de-53d60c04a896",
   "scripts": {
+    "claude:webapp": "powershell -ExecutionPolicy Bypass -File ./tools/launch-claude-edge-app.ps1",
+    "claude:webapp:install": "powershell -ExecutionPolicy Bypass -File ./tools/launch-claude-edge-app.ps1 -InstallShortcut",
+    "repair:claude-login": "powershell -ExecutionPolicy Bypass -File ./tools/repair-claude-desktop-login.ps1 -DeepReset",
     "test:typecheck": "node ./tools/run-typecheck.mjs",
     "test:node": "node ./tools/run-automation-tests.mjs",
     "test:smoke": "playwright test -c ./playwright.config.mjs ./tests/preview-smoke.spec.mjs",
     "test:smoke:local": "node ./tools/run-preview-smoke.mjs",
+    "test:integration": "playwright test -c ./playwright.config.mjs --grep-invert @visual",
+    "test:visual": "playwright test -c ./playwright.config.mjs --grep @visual",
+    "test:visual:update": "playwright test -c ./playwright.config.mjs --grep @visual --update-snapshots",
+    "test:cocos": "playwright test -c ./playwright.config.mjs ./tests/cocos-*.spec.mjs",
+    "test:responsive": "playwright test -c ./playwright.config.mjs ./tests/responsive-*.spec.mjs",
     "test:ci": "node ./tools/run-ci-tests.mjs",
-    "test:all": "npm run test:node && npm run test:smoke",
+    "test:all": "npm run test:node && npm run test:integration",
     "build:wechat:config": "node ./tools/generate-wechat-build-config.mjs",
     "build:wechat": "node ./tools/run-wechat-build.mjs",
     "optimize:wechat": "node ./tools/optimize-wechat-build-output.mjs",
@@ -20,6 +28,7 @@
     "open:wechat": "node ./tools/open-wechat-devtools.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "miniprogram-automator": "^0.12.1"
   }
 }
