@@ -2,18 +2,15 @@ import { test, expect } from '@playwright/test';
 import {
   ensurePreviewServer, openPreviewScene, stepFrames, resetMechanicsLab,
   movePlayerNearTarget, pressTouchButton, triggerPlateContact, unlockEcho,
-  prepareCleanScreenshot,
+  prepareCleanScreenshot, getCleanScreenshotOptions,
 } from './helpers/playwright-cocos-helpers.mjs';
-
-const TOOLBAR_HEIGHT = 37;
 
 test.describe('@visual gate states', () => {
   test.beforeAll(async ({ baseURL }) => { await ensurePreviewServer(baseURL); });
 
   async function cleanShot(page) {
     await prepareCleanScreenshot(page);
-    const vp = page.viewportSize();
-    return { clip: { x: 0, y: TOOLBAR_HEIGHT, width: vp.width, height: vp.height - TOOLBAR_HEIGHT } };
+    return getCleanScreenshotOptions(page);
   }
 
   test('gate closed initial state', async ({ page }) => {

@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ensurePreviewServer, openPreviewScene, stepFrames, prepareCleanScreenshot } from './helpers/playwright-cocos-helpers.mjs';
-
-const TOOLBAR_HEIGHT = 37;
+import { ensurePreviewServer, openPreviewScene, stepFrames, prepareCleanScreenshot, getCleanScreenshotOptions } from './helpers/playwright-cocos-helpers.mjs';
 
 test.describe('@visual HUD responsive layout', () => {
   test.beforeAll(async ({ baseURL }) => { await ensurePreviewServer(baseURL); });
@@ -22,7 +20,7 @@ test.describe('@visual HUD responsive layout', () => {
         await stepFrames(page, 10);
         await prepareCleanScreenshot(page);
         await expect(page).toHaveScreenshot(`${scene}-hud-${label}.png`, {
-          clip: { x: 0, y: TOOLBAR_HEIGHT, width, height: height - TOOLBAR_HEIGHT },
+          ...(await getCleanScreenshotOptions(page)),
         });
       });
     }

@@ -1,0 +1,165 @@
+{
+  "file": "weapon/bow_longbow_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\bow_longbow_v00.png",
+  "category": "weapon",
+  "candidateName": "bow_longbow_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_too_angular_for_friendly_hyrule_mood",
+          "palette_lacks_warmth_accents_yellow_pink",
+          "toy_diorama_charm_absent_reads_as_functional_weapon"
+        ],
+        "reasoning": "Emotional (60%): The orange/green palette is warm and somewhat Zelda-adjacent, but the bow silhouette is sharply diagonal and angular — not the round, friendly toy-diorama shape the brief demands. No yellows or pinks to reinforce the bright/charming Hyrule mood; the design reads more 'real weapon' than 'Zelda prop'. Score ~6/10 emotional. Technical (40%): Pixel execution is solid — 1px hard outlines visible across all zoom panels, hard 2-3 tone shading on the limbs (dark green core, mid orange, bright highlight), no anti-aliasing artifacts detected, pixel-grid-snapped geometry. Comparable discipline to Denzi reference sheet. Score ~7/10 technical. Weighted: 6×0.6 + 7×0.4 = 6.4 → 6. Needs rounder limb curves and warmer accent colors (yellow grip wrap, pink/gold string nock) to pass emotional axis.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "1x silhouette reads as thin diagonal slash not a bow",
+          "no charm or personality — fails sticker test",
+          "white highlight pixels dissolve into light background",
+          "no round/soft shapes — fully edgy/linear construction",
+          "zero distinctive EoW-style friendly character"
+        ],
+        "reasoning": "At 1x the longbow is a barely-visible white diagonal sliver with zero recognizability as a weapon — it could be a scratch or noise artifact. The 4x panels reveal clean enough pixel construction with orange outline, green body, white highlight streak, but the silhouette is fundamentally a thin diagonal line: sharp, aggressive, and charmless. There are no round or soft shapes, no personality markers, no cute details that would pass the sticker test. On the light background the white highlight pixels vanish, further hurting contrast. The color palette (orange/green/white) is pleasant but wasted on a shape that conveys no warmth. This design is clear-but-charmless at 4x and completely unreadable at 1x — a double failure against the Cute & Charm + Silhouette Clarity criteria.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "limited_palette_range",
+          "shadow_color_unverified"
+        ],
+        "reasoning": "The longbow asset uses saturated forest green (body) and warm orange (outline/accents) — a classic complementary pair that reads warm and natural. Both hues appear in the Echoes reference palette. Mood is bright and warm, not grim or cold. No muddy desaturation, no neon, no corporate grey. White highlight is minimal and functional. However: only two primary hues are employed; the asset would benefit from a third voice — a parchment gold highlight or deep teal/plum shadow — to fully exploit Echoes palette richness. The darker recesses of the bow in panels 2-3 sit against near-black presentation backgrounds, making shadow color quality hard to confirm; they appear to be dark green rather than pure black, which is acceptable. Overall harmony is solid but palette depth is narrow for a featured equipment sprite.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "placed on dark dungeon floor reduces contrast slightly",
+          "diagonal orientation at small scale may be missed without red arrow aid",
+          "no outline/drop-shadow to separate from busy tile texture"
+        ],
+        "reasoning": "The longbow composited as a bright white/cream diagonal shape with green and yellow accents against the dark red dungeon floor tile area. Locatability: the white coloring contrasts adequately with the dark background and the elongated diagonal silhouette is distinctive, spotting time roughly 0.5-1s. Distinguishment: clearly not a floor tile or enemy sprite, shape reads as a weapon pickup. Dark-area visibility: asset sits on the darkest region of the scene; white base color saves it but fine detail is somewhat lost in the tile noise. Native-vs-pasted: pixel style is consistent with the scene's aesthetic, scale feels plausible for a longbow. Echoes-cleanliness: bright, uncluttered design fits the Echoes palette. No tonal clash. Main concern is lack of a subtle outline or shadow that would lift it fully off the textured floor; a player without the red arrow hint might take 1-2 extra seconds to spot it on first scan.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon_crawler",
+          "weapon_sprite_in_dark_environment"
+        ],
+        "reasoning": "The bow_longbow_v00 sprite itself uses relatively on-tone colors — white/ivory bowstring, green-gold bow body — which are clean, bright, and fairy-tale appropriate. The shape is slender and elegant rather than aggressive or grimdark. However, the surrounding scene context is already heavily dark dungeon-crawler in aesthetic (near-black tiled floors, dark brown/red textured areas, gray stone blocks), which creates tonal tension against the target cute/sunny/fairy-tale brief. The bow sprite does not itself introduce horror, edgy, or aggressive elements, and is actually one of the brighter elements in the composition. The sprite preserves acceptable tone in isolation but does not meaningfully lift the scene toward the warm-green/parchment/toy-diorama target. No out-of-tone flags on the sprite itself; marginal due to contextual mismatch.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "scale_too_large_for_weapon_category",
+          "breaks_toy_diorama_feel"
+        ],
+        "reasoning": "The longbow sprite composited into the scene spans roughly 120-130px diagonally. With a 32x32 player reference, weapon items must be 50-75% of player size (~16-24px). The bow is approximately 4x that budget — clearly larger than the player would be. This violates the 'item NEVER larger than player' rule and gives the scene a zoomed-in / prop-showcase feel rather than toy diorama. Perspective angle (diagonal tilt) is acceptable for a top-down 2D context, but the sheer size overwhelms the scene elements and dwarfs the tile grid. The bow needs to be scaled down significantly (target ~20-24px longest dimension) to pass.",
+        "confidence": 0.92
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "gradient_shading",
+          "aa_edges",
+          "color_bleed",
+          "inconsistent_outlines"
+        ],
+        "reasoning": "Large sprite (lower-right) shows multiple clear AI tells. (1) GRADIENT SHADING: orange->white->green transitions on the bow body use intermediate blended tones rather than a strict 2-3 hard-tone pixel-art palette — typical AI diffusion smoothing artifact. (2) AA EDGES: bow boundary pixels show partial-alpha blending, especially on the upper-right limb tip and the string endpoints; clean pixel art should have hard 1px edges. (3) COLOR BLEED: orange fringe pixels bleed into the white highlight core and the green inner zone without a clean palette separation, consistent with neural upscaling/generation. (4) INCONSISTENT OUTLINES: outline thickness alternates between 1px and 2px along the bow limbs with no consistent intentional taper logic. Small sprite (upper-left) is cleaner but shares the same AA-edge issue on its curves. The combination of gradient shading + AA + color bleed across both sprites is characteristic of AI-generated pixel art rather than hand-authored work.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "palette_divergence: candidate uses vivid saturated green + near-white highlights; peers are muted gray/brown/gold with no vivid hues",
+          "highlight_intensity: candidate has near-white specular bloom on bow limbs; peers show subtle 1-step highlight at most",
+          "color_temperature: candidate leans strongly cool-saturated (neon green); peers are neutral-to-warm muted tones",
+          "rendering_style: candidate reads as high-contrast painterly with chromatic edge; peers are flat pixel-art with restrained shading",
+          "outline_color: candidate outline blends into green body in mid-sections, reducing legibility vs peers clear dark border",
+          "charm_level: sharp high-contrast bow lacks the rounded, cohesive 'cute' quality present in helmet and weapon peers"
+        ],
+        "reasoning": "Peer set (helmets, daggers, spear) shares a tight muted palette — desaturated grays, warm golds, dark near-blacks — rendered in classic flat pixel-art with one highlight step and a uniform dark outline. The longbow candidate breaks on two primary axes: (1) PALETTE — vivid lime-green body with near-white specular highlights is the most saturated sprite in the sheet by a large margin, zero overlap with peer browns/grays; (2) HIGHLIGHT INTENSITY — the white glow on the bow limb tips reads as a rendering-style mismatch (peers never go to pure white). Secondary issues: outline continuity weakens on the green-heavy sections, and the overall 'charm' register is off — the bow feels like a different art pass. Item-type difference (bow vs helmets) is not penalised, but the colour and rendering divergence are fundamental.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "generic_fantasy_overlap",
+          "insufficient_whimsy_differentiation"
+        ],
+        "reasoning": "The candidate longbow (right, 4x) presents a clean pixel-art bow in warm organic greens with leaf/vine tip accents and a light bowstring. Positive: warm natural palette, not desaturated, not metallic/cold, not grimdark or edgy. However, the silhouette and construction read as 'competent standard fantasy bow' rather than distinctly Nintendo fairy-tale or toylike Hyrule whimsy. The design could plausibly belong to a generic RPG, a dungeon-crawler, or a Zelda-style game — it lacks the strong toylike exaggeration or cartoonish charm that anchors it firmly in the cute/wholesome register. Peer reference helmets on the left lean slightly dungeon-crawler (horned metal helm, knight plume) which contextually pulls the set toward a grittier fantasy register, but the bow itself avoids that trap. No occult, fan-service, uncanny, or grimdark signals detected. A minor push toward rounder/softer proportions or a more distinctly whimsical detail (sparkle, leaf curl, carved motif) would lift this to a confident pass.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 1,
+      "fails": 2,
+      "avgScore": 5,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.93,
+    "aestheticAvg": 5.33,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 4,
+    "warningCount": 5,
+    "failCount": 4,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.104Z"
+}

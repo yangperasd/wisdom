@@ -1,0 +1,226 @@
+[
+  {
+    "r": 78,
+    "g": 168,
+    "b": 78,
+    "hex": "#4ea84e",
+    "source": "echoes-curated",
+    "role": "grass-mid"
+  },
+  {
+    "r": 109,
+    "g": 192,
+    "b": 109,
+    "hex": "#6dc06d",
+    "source": "echoes-curated",
+    "role": "grass-light"
+  },
+  {
+    "r": 47,
+    "g": 109,
+    "b": 47,
+    "hex": "#2f6d2f",
+    "source": "echoes-curated",
+    "role": "grass-dark"
+  },
+  {
+    "r": 95,
+    "g": 179,
+    "b": 230,
+    "hex": "#5fb3e6",
+    "source": "echoes-curated",
+    "role": "sky-mid"
+  },
+  {
+    "r": 136,
+    "g": 204,
+    "b": 232,
+    "hex": "#88cce8",
+    "source": "echoes-curated",
+    "role": "sky-light"
+  },
+  {
+    "r": 44,
+    "g": 126,
+    "b": 181,
+    "hex": "#2c7eb5",
+    "source": "echoes-curated",
+    "role": "sky-dark"
+  },
+  {
+    "r": 255,
+    "g": 216,
+    "b": 102,
+    "hex": "#ffd866",
+    "source": "echoes-curated",
+    "role": "gold-light"
+  },
+  {
+    "r": 255,
+    "g": 170,
+    "b": 68,
+    "hex": "#ffaa44",
+    "source": "echoes-curated",
+    "role": "gold-mid"
+  },
+  {
+    "r": 204,
+    "g": 119,
+    "b": 51,
+    "hex": "#cc7733",
+    "source": "echoes-curated",
+    "role": "gold-dark"
+  },
+  {
+    "r": 255,
+    "g": 176,
+    "b": 196,
+    "hex": "#ffb0c4",
+    "source": "echoes-curated",
+    "role": "pink-light"
+  },
+  {
+    "r": 244,
+    "g": 138,
+    "b": 166,
+    "hex": "#f48aa6",
+    "source": "echoes-curated",
+    "role": "pink-mid"
+  },
+  {
+    "r": 196,
+    "g": 85,
+    "b": 122,
+    "hex": "#c4557a",
+    "source": "echoes-curated",
+    "role": "pink-dark"
+  },
+  {
+    "r": 255,
+    "g": 250,
+    "b": 230,
+    "hex": "#fffae6",
+    "source": "echoes-curated",
+    "role": "cream-light"
+  },
+  {
+    "r": 212,
+    "g": 200,
+    "b": 176,
+    "hex": "#d4c8b0",
+    "source": "echoes-curated",
+    "role": "cream-mid"
+  },
+  {
+    "r": 154,
+    "g": 136,
+    "b": 111,
+    "hex": "#9a886f",
+    "source": "echoes-curated",
+    "role": "cream-dark"
+  },
+  {
+    "r": 58,
+    "g": 46,
+    "b": 37,
+    "hex": "#3a2e25",
+    "source": "echoes-curated",
+    "role": "outline-warm"
+  },
+  {
+    "r": 31,
+    "g": 26,
+    "b": 20,
+    "hex": "#1f1a14",
+    "source": "echoes-curated",
+    "role": "outline-deep"
+  },
+  {
+    "r": 255,
+    "g": 255,
+    "b": 255,
+    "hex": "#ffffff",
+    "source": "echoes-curated",
+    "role": "highlight"
+  },
+  {
+    "r": 79,
+    "g": 80,
+    "b": 72,
+    "hex": "#4f5048",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 154,
+    "g": 159,
+    "b": 154,
+    "hex": "#9a9f9a",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 119,
+    "g": 121,
+    "b": 118,
+    "hex": "#777976",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 214,
+    "g": 214,
+    "b": 209,
+    "hex": "#d6d6d1",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 2,
+    "g": 53,
+    "b": 42,
+    "hex": "#02352a",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 211,
+    "g": 170,
+    "b": 65,
+    "hex": "#d3aa41",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 142,
+    "g": 30,
+    "b": 0,
+    "hex": "#8e1e00",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 0,
+    "g": 122,
+    "b": 101,
+    "hex": "#007a65",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 0,
+    "g": 184,
+    "b": 193,
+    "hex": "#00b8c1",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  },
+  {
+    "r": 200,
+    "g": 0,
+    "b": 177,
+    "hex": "#c800b1",
+    "source": "denzi-extracted",
+    "role": "shadow-or-transition"
+  }
+]

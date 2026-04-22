@@ -23,22 +23,22 @@ export class BossEncounterController extends Component {
   deactivateOnCleared: Node[] = [];
 
   protected onLoad(): void {
-    this.bossHealth?.events.on(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
+    this.bossHealth?.events?.on(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
     this.applyState(GameManager.instance?.hasProgressFlag(this.clearFlagId) ?? false);
   }
 
   protected onEnable(): void {
-    GameManager.instance?.events.on(GAME_EVENT_FLAGS_CHANGED, this.refreshFromFlags, this);
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.refreshFromFlags, this);
+    GameManager.instance?.events?.on(GAME_EVENT_FLAGS_CHANGED, this.refreshFromFlags, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.refreshFromFlags, this);
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_FLAGS_CHANGED, this.refreshFromFlags, this);
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.refreshFromFlags, this);
+    GameManager.instance?.events?.off(GAME_EVENT_FLAGS_CHANGED, this.refreshFromFlags, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.refreshFromFlags, this);
   }
 
   protected onDestroy(): void {
-    this.bossHealth?.events.off(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
+    this.bossHealth?.events?.off(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
   }
 
   private onBossDepleted(): void {

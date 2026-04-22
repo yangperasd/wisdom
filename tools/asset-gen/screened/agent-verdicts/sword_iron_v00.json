@@ -1,0 +1,155 @@
+{
+  "file": "weapon/sword_iron_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\sword_iron_v00.png",
+  "category": "weapon",
+  "candidateName": "sword_iron_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "guard_detail_reads_small_at_native_size"
+        ],
+        "reasoning": "EMOTIONAL (60%): Bright saturated cyan/teal blade with warm orange-gold crossguard nails the Hyrule palette — saturated blues and warm accent yellows squarely in the friendly Zelda color vocabulary. The overall read is heroic-toy, not grim; silhouette is clean and approachable for a sword prop. Charming, not threatening. Score ~8/10. TECHNICAL (40%): 1px hard outlines visible cleanly at all zoom levels, no anti-aliasing bleed. Blade uses 2-3 hard tones (highlight strip, mid cyan, dark edge) — proper hard shading. Pixels are grid-snapped; the diagonal staircase is clean. Compares well to Denzi peer reference for clean silhouette and outline discipline, even though Denzi palette is more muted. Minor issue: the crossguard detail at native/1x is quite small and slightly hard to parse, but readable at 2x. Combined weighted: 0.6*8 + 0.4*8 = 8.0."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette too thin and elongated at 1x — nearly unreadable as a sword without context",
+          "no roundness or softness in shape — blade is sharp/edgy which conflicts with Echoes of Wisdom toy-charm aesthetic",
+          "guard/crossguard is tiny and blends into the blade at 1x",
+          "orange accent pixels on hilt are charming but insufficient to rescue overall coldness",
+          "contrast is acceptable on dark bg but the thin diagonal silhouette reads as a line/stick not a sword at 1x"
+        ],
+        "reasoning": "The pixel art sword has decent contrast on both dark and light backgrounds at 4x, and the cyan/teal blade color with orange hilt accents shows some personality. However it fails the sticker test at 1x — the silhouette is too thin and diagonal to be instantly readable as a sword; it reads as a line or scratch. The shape is angular and aggressive rather than round/soft/toylike as required by the Echoes of Wisdom charm reference. There is no chunky friendliness: the blade tapers to a sharp point, the guard is minimal, and the overall impression is more generic RPG weapon than cute memorable icon. Clear-but-charmless at 4x, mushy-and-unreadable at 1x — lands in marginal territory.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Blade is a highly saturated cyan/sky-blue — direct match to 'sky blues' target. Guard accents are warm amber/orange — matches 'sunset oranges' and creates a classic warm-cool complementary harmony. Handle uses warm tan consistent with parchment-golds. Shadow pixels on the blade read as deep teal rather than neutral black/grey, satisfying the colored-darks requirement. Both hues (cyan, orange) are present in the Echoes reference palette. Mood is bright and cheerful, not grim or cold. No muddy desaturated color, no neon oversaturation, no corporate cold tones. Panel backgrounds are dark charcoal but these are display/preview artifacts, not part of the sprite itself. Overall palette compatibility and internal harmony are strong.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "asset_placed_on_noisy_tile_texture",
+          "diagonal_orientation_slightly_reduces_instant_silhouette_read"
+        ],
+        "reasoning": "The sword_iron_v00 is clearly spottable: bright cyan-blue blade with warm gold handle creates strong contrast against the dark reddish-brown dungeon tile background. Locatability is good — the asset pops within 0.5s due to the saturated teal color. Silhouette reads as a sword at a 45-degree dropped-item angle, which is natural but slightly reduces the fastest archetype recognition versus a fully upright orientation. The pixel art style matches the Echoes aesthetic cleanly; no tonal clash with UI or other entities. Dark-area visibility is acceptable — the bright blade holds up on the darker tile zones. Minor issue: the underlying tile texture has moderate visual noise (red-flecked dark tiles) that introduces slight clutter around the sprite edges, but the sword does not disappear into it. Not confused with the creature/echo entity visible in the nearby box. Overall integration is solid but just short of clean pass due to the noisy tile placement and angled silhouette.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_generic_rpg_sword",
+          "low_whimsy_factor"
+        ],
+        "reasoning": "The sword_iron_v00 sprite is a small pixel-art sword with a bright cyan/teal blade and simple hilt. It is not out-of-tone (no grimdark, no horror, no aggressive styling), and the bright cyan coloring gives it a mildly magical quality that fits the fairy-tale palette. However, it reads as a generic starter-RPG weapon rather than something distinctly cute, whimsical, or fairy-tale — it lacks the round softness, sparkle detail, or warm-palette saturation that would make it strongly on-tone. The base scene itself is quite dark (dungeon-crawler dark teal grid), which the sword does not worsen, but the sprite alone does not elevate the mood toward the target aesthetic either. Marginal: acceptable for use but could benefit from softer shape language or a warmer highlight color.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "weapon_at_upper_size_boundary"
+        ],
+        "reasoning": "The sword_iron_v00 is rendered diagonally in the scene, which is appropriate for a top-down weapon item. Its diagonal span covers roughly 1.5–2 grid tiles; projected onto axes it is approximately equal to or slightly smaller than one tile (≈player size). The 50–75% rule targets 16–24px for a 32px player, making this borderline oversized — it reads closer to 80–95% of player rather than clearly sub-player. No egregious proportion error: the sword does not overwhelm the scene and stays well below summon/creature scale. Pixel-art style and perspective are internally consistent with the top-down diorama aesthetic. The diagonal orientation correctly implies ground-placement. Minor size creep is the only flag; no wallpaper feel, no perspective mismatch.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "formulaic_highlight_pattern",
+          "guard_asymmetry",
+          "outline_corner_inconsistency"
+        ],
+        "reasoning": "Pixel art format inherently suppresses most AI tells, but adversarial inspection reveals: (1) The blade checkerboard highlight pattern is algorithmically regular — each teal/light-teal alternation is perfectly spaced in a way that suggests generation rather than hand-placement; (2) Crossguard asymmetry — at 8x zoom the left arm of the guard is 1-2px shorter/different than the right, inconsistent with deliberate pixel art craft; (3) Outline corner pixels show minor weight inconsistency (some corners have 1px diagonal, others have 2px L-turns) indicating non-uniform outline generation; (4) No AA edges detected — clean step edges throughout, positive sign; (5) No sub-pixel features detected — pixel boundaries are hard; (6) Solid areas (background, blade body) are free of noise pixels; (7) No color bleed between regions; (8) Semantic coherence is adequate — blade, guard, grip, and pommel are all present and recognizable. The sprite is functional pixel art but the overly regular highlight pattern and minor guard asymmetry are mild AI generation signatures. Not enough to fail outright, but not a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_overlap_minimal",
+          "highlight_intensity_too_high",
+          "iron_reads_as_magic_not_metal"
+        ],
+        "reasoning": "Peer set (helmets, axes, arrows, spears) operates in a neutral-to-warm palette: grays, silvers, browns, golds. Candidate sword_iron_v00 presents a saturated cool blue/cyan blade with a bright highlight streak — zero overlap with the peer warm-neutral palette. (1) Outline weight: acceptable 1-2px dark outline, consistent with peers. (2) Outline color: dark near-black, consistent. (3) Shadow direction: indeterminate at this resolution; no clear conflict. (4) Shadow count: single shadow layer apparent, consistent with peers. (5) Highlight intensity: candidate highlight is vivid and saturated vs. peers' subdued sheen — notable break. (6) Color temperature: FAIL — peers are neutral/warm, candidate is distinctly cool. Largest single defect. (7) Detail density: roughly comparable pixel density, acceptable. (8) Proportion: at matching scale sword reads as appropriately sized item; no penalty for item-type size difference. (9) Rendering style: pixel art consistent with Denzi family conventions. (10) Palette overlap: FAIL — candidate blue/cyan appears nowhere in peer palette; minimal overlap. (11) Charm level: candidate retains cute pixel-art appeal, consistent with peer charm register. Summary: two hard failures (color temperature, palette overlap) plus one soft failure (highlight intensity). Iron sword should read gray-silver not bright blue; candidate currently reads as crystal or magic sword, breaking material authenticity within the family.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "cold_blue_palette_on_sword",
+          "peer_helmets_lean_dungeon_crawler",
+          "muted_overall_warmth",
+          "generic_rpg_sword_silhouette"
+        ],
+        "reasoning": "The candidate sword (right, 4x) renders in a cool blue-cyan palette that conflicts with the target 'warm/sunny Hyrule / toy-diorama' aesthetic. An iron sword reads expected, but the icy blue tint pushes toward generic dungeon-crawler or CRPG rather than whimsical Nintendo family-friendly warmth. The peer reference row (left) includes Viking-horned helmets with dark metallic grey tones — these lean slightly toward desaturated dungeon-crawler, providing a cooler contextual frame that further shifts the composite away from the bright/charming fairy-tale target. The pixel art scale and simplicity are consistent with a wholesome retro style, preventing a hard fail, but neither the sword's hue nor the helmet references evoke the sun-drenched, toy-diorama warmth of the target tone. No grimdark, occult, or fan-service elements detected — the drift is toward generic-RPG cold rather than any hard-fail category.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.28,
+    "aestheticAvg": 7,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.144Z"
+}

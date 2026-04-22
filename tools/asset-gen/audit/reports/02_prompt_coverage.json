@@ -1,0 +1,1067 @@
+{
+  "prompts": [
+    {
+      "id": "sword_iron",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "sword_fire",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6,
+      "overall_passed": false
+    },
+    {
+      "id": "sword_ice",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 5,
+      "r0_failed": 3,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "axe_battle",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "staff_magic",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 3,
+      "r0_failed": 5,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "bow_longbow",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6,
+      "overall_passed": false
+    },
+    {
+      "id": "dagger_quick",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 5,
+      "r0_failed": 3,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "mace_holy",
+      "category": "weapon",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "potion_health",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 2,
+      "r0_failed": 6,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "potion_mana",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 5,
+      "r0_failed": 3,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "potion_energy",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "potion_speed",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 3,
+      "r0_failed": 5,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "scroll_fire",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 5,
+      "r0_failed": 3,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "scroll_teleport",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 5.33,
+      "overall_passed": false
+    },
+    {
+      "id": "key_iron",
+      "category": "key",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 8,
+      "r0_failed": 0,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 5.33,
+      "overall_passed": false
+    },
+    {
+      "id": "key_gold",
+      "category": "key",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "key_boss",
+      "category": "key",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6,
+      "overall_passed": false
+    },
+    {
+      "id": "gem_ruby",
+      "category": "treasure",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 8,
+      "r0_failed": 0,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 4.67,
+      "overall_passed": false
+    },
+    {
+      "id": "gem_sapphire",
+      "category": "treasure",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "gem_emerald",
+      "category": "treasure",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 8,
+      "r0_failed": 0,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6,
+      "overall_passed": false
+    },
+    {
+      "id": "coin_gold",
+      "category": "treasure",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "ring_magic",
+      "category": "accessory",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "amulet_protection",
+      "category": "accessory",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "armor_leather",
+      "category": "armor",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "armor_chain",
+      "category": "armor",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "boots_speed",
+      "category": "armor",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "food_apple",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "food_bread",
+      "category": "consumable",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 3,
+      "r0_failed": 5,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "torch",
+      "category": "tool",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 8,
+      "r0_failed": 0,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "rope",
+      "category": "tool",
+      "source": "items.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 5.67,
+      "overall_passed": false
+    },
+    {
+      "id": "echo_box_idle",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 1,
+      "r0_failed": 7,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "echo_box_active",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "echo_flower_idle",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 2,
+      "r0_failed": 6,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "echo_flower_active",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 2,
+      "r0_failed": 6,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "echo_bombbug_idle",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 3,
+      "r0_failed": 5,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "echo_bombbug_active",
+      "category": "summon",
+      "source": "echoes.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 3,
+      "r0_failed": 5,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_explosion_1",
+      "category": "explosion",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_explosion_2",
+      "category": "explosion",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_explosion_3",
+      "category": "explosion",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_explosion_4",
+      "category": "explosion",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_heal_1",
+      "category": "heal",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 2,
+      "r0_failed": 6,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_heal_2",
+      "category": "heal",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_heal_3",
+      "category": "heal",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 5,
+      "r0_failed": 3,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_hit_spark",
+      "category": "impact",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 1,
+      "r0_failed": 7,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.67,
+      "overall_passed": true
+    },
+    {
+      "id": "vfx_portal_glow",
+      "category": "portal",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 0,
+      "r0_failed": 8,
+      "auto_selected": false,
+      "has_verdict_bundle": false,
+      "verdict_counts": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": null,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_dust_poof",
+      "category": "particle",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 4,
+      "r0_failed": 4,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.33,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_arrow_trail",
+      "category": "trail",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 0,
+      "r0_failed": 8,
+      "auto_selected": false,
+      "has_verdict_bundle": false,
+      "verdict_counts": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": null,
+      "overall_passed": false
+    },
+    {
+      "id": "vfx_echo_summon",
+      "category": "magic",
+      "source": "effects.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 0,
+      "r0_failed": 8,
+      "auto_selected": false,
+      "has_verdict_bundle": false,
+      "verdict_counts": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": null,
+      "overall_passed": false
+    },
+    {
+      "id": "btn_action_normal",
+      "category": "button",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 0,
+      "r0_failed": 8,
+      "auto_selected": false,
+      "has_verdict_bundle": false,
+      "verdict_counts": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": null,
+      "overall_passed": false
+    },
+    {
+      "id": "btn_action_pressed",
+      "category": "button",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "panel_inventory",
+      "category": "panel",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 1,
+      "r0_failed": 7,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7.33,
+      "overall_passed": false
+    },
+    {
+      "id": "panel_dialog",
+      "category": "panel",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 1,
+      "r0_failed": 7,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "bar_health_frame",
+      "category": "bar",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 2,
+      "r0_failed": 6,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 3.67,
+      "overall_passed": false
+    },
+    {
+      "id": "bar_health_fill",
+      "category": "bar",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 0,
+      "r0_failed": 8,
+      "auto_selected": false,
+      "has_verdict_bundle": false,
+      "verdict_counts": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": null,
+      "overall_passed": false
+    },
+    {
+      "id": "icon_echo_box",
+      "category": "icon",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "icon_echo_flower",
+      "category": "icon",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 7,
+      "overall_passed": false
+    },
+    {
+      "id": "icon_echo_bomb",
+      "category": "icon",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 6,
+      "r0_failed": 2,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    },
+    {
+      "id": "icon_arrow",
+      "category": "icon",
+      "source": "ui.jsonl",
+      "generated_count": 8,
+      "r0_total": 8,
+      "r0_passed": 7,
+      "r0_failed": 1,
+      "auto_selected": true,
+      "has_verdict_bundle": true,
+      "verdict_counts": {
+        "r1": 3,
+        "r2": 0,
+        "r3": 0
+      },
+      "final_score": 6.67,
+      "overall_passed": false
+    }
+  ],
+  "total_prompts": 58,
+  "_summary": {
+    "total_prompts": 58,
+    "prompts_with_generations": 58,
+    "prompts_with_r0_passes": 53,
+    "prompts_auto_selected": 53,
+    "prompts_verdicted": 53,
+    "prompts_fully_9agent_screened": 0,
+    "prompts_only_r1_screened": 53,
+    "prompts_no_round0_pass": [
+      "vfx_portal_glow",
+      "vfx_arrow_trail",
+      "vfx_echo_summon",
+      "btn_action_normal",
+      "bar_health_fill"
+    ],
+    "prompts_not_generated_at_all": [],
+    "prompts_overall_passed": 9
+  }
+}

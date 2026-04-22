@@ -1,0 +1,150 @@
+{
+  "file": "icon/icon_echo_bomb_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_echo_bomb_v00.png",
+  "category": "icon",
+  "candidateName": "icon_echo_bomb_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): The bomb reads as bright, warm, and charming — saturated teal-blue round body, pink bunny-ear fuse, orange clock-face detail, warm brown base. Round silhouette gives toy-diorama quality. Palette is vibrant and Hyrule-appropriate; zero grimness. Score ~8.5/10 on emotional axis. Technical (40%): Hard 1px outlines are consistent and visible at all zoom levels. Blue body exhibits a clear 3-tone hard shading (highlight, mid, shadow) with no anti-aliasing blur. Pixels are grid-snapped; hand-pixeled craft is evident. Readability holds at small size. Compared to Denzi tech-items reference, the pixel discipline and shading structure are comparable, though the palette is intentionally much brighter to match the Zelda: Echoes of Wisdom mood. Minor note: the pink ears are thin and slightly hard to read at 1x, but do not significantly detract. Score ~7.5/10 on technical axis. Weighted: 0.6*8.5 + 0.4*7.5 = 5.1+3.0 = 8.1 → rounded to 8. Pass.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "1x silhouette reads as a small blue blob — rabbit ears merge with body at tiny size",
+          "orange clock face detail lost at 1x; only color blob survives",
+          "dark bg (panel 3) reduces ear contrast — pink ears barely visible against near-black",
+          "overall shape is round/squat which aids charm but the pixel clusters produce a slightly mushy read at scale"
+        ],
+        "reasoning": "At 4x on both light and dark backgrounds the icon has genuine charm: round blue bomb body, cute pink rabbit ears, friendly orange clock face, small expressive details. The Echoes-of-Wisdom toy aesthetic is clearly present and the silhouette is distinctive enough at 4x. However at 1x (panel 1) the icon shrinks to an indistinct blue-teal cluster — the rabbit ears and clock face disappear entirely, leaving only a vague colored blob with no readable personality. On the dark background the pink ears lose contrast and blend. Sticker test at 1x fails; sticker test at 4x passes. Charm is present but silhouette clarity at actual play size is insufficient for a confident pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The bomb icon uses a saturated sky-blue body, candy-pink rabbit ears, and a warm sunset-orange clock face — all three are direct hits on the Echoes-tuned reference palette. Outlines/shadows read as deep warm navy/brown rather than pure black, satisfying the colored-darks requirement. Warm pink and orange elements counterbalance the cool blue, keeping the overall mood bright and cheerful rather than cold or corporate. Mid-values are warm and saturated throughout. No muddy, neon, or desaturated colours detected. Minor note: blue-body dominance leans slightly cool, but the saturation level and the pink/orange accents keep it well within the BRIGHT-WARM target band.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.67,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "small_sprite_size_on_busy_tile",
+          "bomb_silhouette_partially_lost_at_scale",
+          "dark_area_contrast_adequate_but_not_strong"
+        ],
+        "reasoning": "The icon_echo_bomb_v00 sprite sits on the dark red-speckled tile floor. Its bright cyan/blue body and pink-white top create meaningful color contrast against the dark background, making it spottable in roughly 0.5s aided by the bold hue pop. The pixel-art style is consistent with the game's overall aesthetic and does not look pasted-in. However, the sprite is quite small (~32px) on a visually noisy tile pattern, which partially obscures the bomb silhouette detail — the round body and fuse become blobby. It does not significantly resemble the EchoBox or player character. The bright Echoes color palette is maintained. No severe hue clash or outline disappearance, but readability margin is thin at this scale on this tile type, warranting marginal rather than pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_background_dark_dungeon_crawler_contrast"
+        ],
+        "reasoning": "The icon_echo_bomb_v00 sprite itself is cute and whimsical — a bright cyan/blue round form with a pink fairy/floral element on top, round silhouette, saturated friendly colors. It reads as in-tone for cute fairy-tale: no grimdark, no aggression, no realism. However, the composite scene context is notably dark (dark teal grid tiles, deep crimson dungeon floor area, stone walls) which is borderline dungeon-crawler in feel, and the sprite's cheerful brightness creates a mood contrast rather than reinforcing a sunny toy-diorama environment. The sprite design itself earns an 8, but contextual placement in this dark scene pulls the overall read down to 7/marginal. The 'bomb' concept is softened by the cute fairy execution and should not be flagged on its own.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "icon_placement_ambiguous_in_composite",
+          "joystick_ui_element_appears_oversized_relative_to_hud_constraint"
+        ],
+        "reasoning": "Scene shows a top-down 2D game with player character (~40px in frame, consistent with 32x32 world units) and appropriate tile grid. The icon_echo_bomb_v00 as an 'icon' category asset should be ≤24x24 per HUD rules. The composited scene places a large blue circular element in the bottom-left joystick area (~80-90px apparent size), which if representing the icon exceeds the HUD icon size constraint significantly. However this element may be the joystick control overlay rather than the icon itself, making the exact icon placement ambiguous. The overall toy diorama feel is intact — player is correctly proportioned, tile floor reads as a contained playspace rather than wallpaper, and world-space entities (EchoBox on left, pressure plate) are scaled appropriately. No perspective mismatch detected. The marginal score reflects inability to confirm the icon is rendered at ≤24x24, with the oversized circular UI element raising a concern that needs designer verification.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "outline_inconsistency",
+          "asymmetry_minor",
+          "complexity_suspect"
+        ],
+        "reasoning": "8x zoom shows mostly clean square pixels with hard color transitions — no gradients, no AA blur, no noise in solid fields. Palette is appropriately limited (~6 colors). However, the outline has subtle thickness inconsistencies: bottom-left arc runs 2px wide while some top edges are 1px, suggesting auto-generation rather than deliberate hand-placement. The orange ring/belt decoration has slight left-right asymmetry (right side arc is 1px shorter). No color bleed, no sub-pixel features, no melting details. Semantic read is coherent — round bomb body with fuse-nub ears and a target ring — no hallucinated limbs or semantic drift. Overall pixel fidelity is high but the outline irregularity and minor asymmetry are classic pixel-AI tells that prevent a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_overlap_near_zero",
+          "color_temperature_mismatch",
+          "rendering_style_divergence",
+          "highlight_intensity_mismatched",
+          "charm_level_disconnect"
+        ],
+        "reasoning": "Peer reference sheet shows 12 Denzi helmet sprites rendered in a consistent cool-metallic pixel art style: near-black outlines ~1px, muted grays/silver/gold/teal palette, subtle diffuse highlights from upper-left light source, single drop shadow, moderate detail density, serious/combat aesthetic. Candidate icon_echo_bomb_v00 breaks on at least 5 of 11 dims. (1) Outline weight: roughly consistent, borderline OK. (2) Outline color: dark outline present, OK. (3) Shadow direction: candidate sphere shows ambiguous rim-light treatment inconsistent with peers' directional shading — CONCERN. (4) Shadow count: single shadow OK. (5) Highlight intensity: candidate's blue sphere has a vivid specular glint and saturated face-glow far more intense than peers' subtle metallic sheen — FAIL. (6) Color temperature: peers are cool neutral metallics; candidate is a bright cerulean blue body with hot-pink and orange accent elements — very warm/saturated — FAIL. (7) Detail density: comparable, OK. (8) Proportion: different item type, not penalized. (9) Rendering style: peers read as pixel-art realism (battle-worn helmets); candidate reads as chibi/cute cartoon bomb with expressive decoration — FAIL. (10) Palette overlap: near zero — peers share no blues, pinks, or oranges; metallic grays absent from candidate — FAIL. (11) Charm level: candidate is conspicuously 'cute Echo' while every peer projects a serious armament aesthetic; charm register is misaligned — FAIL. Five hard failures across key dims. Style family coherence is broken.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (right, 4x): a round blue bomb body with a prominent pink bow/ribbon on top, warm orange circular detail, and sparkle/star accents — pixel-art rendered on parchment bg. The pink ribbon is the decisive charm anchor; it immediately reads as whimsical and toy-like rather than threatening. Colour palette is bright, warm, and saturated (sky-blue + coral-orange + magenta), consistent with sunny Hyrule / Nintendo-family aesthetic. No desaturation, no grim silhouette shaping, no realistic metallic shading. The bomb motif could in principle read edgy, but the bow completely disarms that — it maps directly onto the 'toy-diorama' register. Peer refs (left) are dark grey helmet icons that skew generic dungeon-crawler; candidate clearly outperforms peers on target tone. Minor: sparkle density is modest, could push further into 'whimsical magic' territory, but does not constitute a fail. Solidly on-tone.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.03,
+    "aestheticAvg": 7.67,
+    "uiContextAvg": 7,
+    "adversarialMin": 3,
+    "warningCount": 5,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.121Z"
+}

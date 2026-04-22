@@ -1,0 +1,7 @@
+UI AGENT C — Scale & Proportion for Echoes-style top-down 2D game (toy diorama). Scale: player 32x32; items 50-75% of player NEVER larger; summons 50-80%; HUD icons ≤24x24. Errors: item bigger than player; creature wrong size for category; effects overwhelm scene; inconsistent perspective; zoomed-in/zoomed-out look.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\composite-scene.png (scene with "amulet_protection_v00" of category "accessory" composited)
+Evaluate size appropriateness for category, proportion vs other entities, perspective match, "toy diorama" vs "wallpaper" feel.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

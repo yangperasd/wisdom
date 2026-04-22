@@ -68,8 +68,8 @@ export class BossVisualController extends Component {
   private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
-    this.resolveHealth()?.events.on(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
-    this.resolveHealth()?.events.on(HEALTH_EVENT_DEPLETED, this.onDepleted, this);
+    this.resolveHealth()?.events?.on(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
+    this.resolveHealth()?.events?.on(HEALTH_EVENT_DEPLETED, this.onDepleted, this);
     this.applyVisualState(true);
   }
 
@@ -82,8 +82,8 @@ export class BossVisualController extends Component {
   }
 
   protected onDestroy(): void {
-    this.resolveHealth()?.events.off(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
-    this.resolveHealth()?.events.off(HEALTH_EVENT_DEPLETED, this.onDepleted, this);
+    this.resolveHealth()?.events?.off(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
+    this.resolveHealth()?.events?.off(HEALTH_EVENT_DEPLETED, this.onDepleted, this);
     destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 

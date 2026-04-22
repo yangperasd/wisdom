@@ -1,0 +1,153 @@
+{
+  "file": "tile/outdoor_ground_ruins_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_ruins_v00.png",
+  "category": "tile",
+  "candidateName": "outdoor_ground_ruins_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "tiling_repetition_visible",
+          "stone_patches_flat_no_2tone_shading"
+        ],
+        "reasoning": "Emotional (60%): Strong Zelda outdoor ruins feel — warm golden-tan stone patches on vivid organic green reads immediately as overgrown ruins. Palette is bright, warm, and Hyrule-appropriate; no muddy or realistic-photo tones. Organic shape variation in the patches is hand-pixeled and toy-diorama in spirit. Score ~8/10 emotional. Technical (40%): Pixel placement is deliberate, no gradient bleed, no AA, hard edges throughout. Seamless edge continuity is clean. However, the 2x2 tiled view reveals noticeable repetition — the golden-tan patches cluster in recognizable positions across tile repeats, breaking the illusion of organic variation. Additionally, the stone/ruin patches read as a single flat tone with no 2-tone hard shading to give macro-feature depth. Score ~6/10 technical. Weighted: 0.6*8 + 0.4*6 = 7.2 → 7. Marginal: passes emotional bar but tiling repetition and flat stone shading need revision before production use.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "golden_stone_cluster_polka_dot_risk",
+          "mild_density_imbalance"
+        ],
+        "reasoning": "Geometry check: (1) Column 0 vs column 31 — both show green-dominant pixels with scattered tan fragments; no hard seam line visible at the tile boundary in the 4x repeated panels. (2) Row 0 vs row 31 — top and bottom edges are similarly green-dominant; continuity is acceptable with no obvious horizontal stripe artifact. (3) 3x3 mental tile test — the larger golden/tan stone blob clusters (~8-10px wide aggregates) repeat at consistent offsets and do draw mild attention as a semi-regular polka-dot rhythm, though the green fill dilutes this effect. Overall: edge continuity passes the seam test; no single dominant bright hotspot, but the tan stone patches are large enough and irregular enough in distribution that they create a slightly uneven density — upper-center area of the tile has noticeably denser golden coverage compared to lower-left which is more uniformly green. This density imbalance will be visible on a large tiled ground. The texture serves its 'outdoor ruins ground' role adequately and will not strongly compete with foreground sprites due to the muted earthy palette, but the stone cluster repetition and density variance prevent a clean pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Dominant hue is a saturated, vibrant warm green across multiple tones (bright grass, mid, dark forest) — exactly Hyrule outdoor ground. Secondary tone is warm golden/sandy tan representing ruins stone patches; this warm amber sits squarely on the reference palette's warm-undertone band. Shadow areas use deep forest green, not pure black or cold grey — hue-shifted correctly. Overall mood reads BRIGHT and WARM. Internal tone count ~8 (3 greens + 2-3 golds + dark base + edge darks) — within the 6-12 normal range for tiles. No muddy desaturation, no cold grey, no neon artificiality. Pink/flower accents absent, but this is a ruins ground tile so their omission is appropriate. Palette compatibility is high: both the greens and the warm golds match swatches in the reference sheet. Confidence: 0.88",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "energy_too_high",
+          "style_mismatch",
+          "sprite_readability_compromised",
+          "color_palette_clash"
+        ],
+        "reasoning": "The candidate tile shows bright greens, yellows, and tan vegetation-over-stone texture — high visual energy that strongly contrasts with the Echoes scene's established dark, desaturated teal-grey ground palette. Comparing composite vs original: the original ground is near-black with subtle grid texture (very low energy, excellent background). The candidate tile has multiple bright hues (lush green foliage, golden-yellow patches, warm tan stone) that would dominate the visual field and pull attention away from foreground sprites. The sprite on the existing dark tile (the creature in the brown frame, the pressure plate) reads clearly against the dark background; placing the same sprites over this bright/busy tile would lose significant contrast. Additionally, the tile's texture contains irregular bright clusters that could be mistaken for items or pickups (confusing affordance). The overall palette reads as 'naturalistic outdoor RPG' rather than 'dark dungeon/ruins' — it does not feel native to the Echoes scene's moody aesthetic. Seam evaluation is limited from the composite view, but tile boundary edges are visually distinct from the surrounding ground, suggesting seam visibility risk.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dark_scene_contrast"
+        ],
+        "reasoning": "The tile itself reads clearly as warm sunny outdoor ground — bright greens, warm yellows, mixed grass patches with pixel-art hand-crafted charm consistent with Hyrule field/ruins aesthetic. No grimdark, no cold grey, no sci-fi or photo-realistic elements. However, placed in the composite scene it sits against a very dark teal grid background and dark stone floor zones, creating a mood contrast where the tile's warmth feels isolated rather than scene-reinforcing. The tile's own hue and saturation pass the fairy-tale outdoor bar, but the surrounding scene context remains predominantly dark, so the tile alone doesn't shift overall mood to bright/sunny. Tile candidate is sound; scene surround needs warmer ambient treatment to fully land the outdoor fairy-tale read.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "feature_scale_borderline_large",
+          "energy_level_may_compete_with_sprites"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count at 1x: the tile (visible as center preview in composite) shows approximately 4-6 distinct regions — green grass patches, yellow-tan earth, brown dirt patches, and possibly small stone chips. Count is within the 3-8 acceptable range. (2) Scale of largest feature: color/texture patches span roughly 10-14 pixels in the 32x32 tile, which is at the upper end of the 4-8px target; not catastrophic but borderline large. (3) vs 32x32 player sprite: the tile is fairly chromatic (green, yellow, brown all at moderate saturation), giving it energy comparable to a sprite — it does not clearly sit 'quieter' beneath objects. Overall the tile avoids total flatness and avoids noise-mush chaos, but the patch features are slightly oversized and the color contrast is energetic enough to compete with sprites placed on top. Marginal pass; would benefit from desaturating or reducing patch contrast.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "gradient_bleed_stone_patches",
+          "blurry_painted_tan_areas",
+          "seam_mismatch_left_right_edge",
+          "soft_edge_transitions_not_hard_stepped"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 (leftmost) is predominantly dark green; column 31 (rightmost) shows green with intermittent lighter/tan pixels — they do NOT match pixel-for-pixel in hue and tone. (b) Row 0 shows a green-tan alternating pattern; row 31 shows a different green-heavy distribution — they do NOT match. (c) When mentally tiled 3x3, the column and row discontinuities at tile boundaries would produce visible seams — TILE FAILS geometry check. TELL ANALYSIS: Tell 3 (gradient bleed) is the most prominent defect — the large tan/stone patch in the upper-right quadrant of the 8x zoom has unmistakably soft gradient edges with no clear 2-4 tone hard steps; pixel values smear from tan to green rather than snapping cleanly. Tell 4 (blurry painted digital look) is clearly present in all tan/stone patches — they have the characteristic neural-network smear texture rather than hand-placed pixel clusters. Tell 5 (melting/morphing edges) is visible where the tan blobs meet the green ground — edges dissolve instead of presenting hard pixel boundaries. Tell 1 (sub-pixel noise/speckle) is mild but present in the green areas as irregular single-pixel tone variations that look like JPEG-style dither rather than intentional pixel art noise. Tells 2, 6, 7, 8 (seam artifacts confirmed by geometry check). The green regions are more pixel-art-appropriate, but the tan/stone regions dominate the AI-artifact signature. Multiple critical defects coincide; geometry check alone is a hard fail.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "palette_mismatch_extreme",
+          "density_deficit",
+          "warmth_bias_inversion",
+          "charm_detail_gap",
+          "chunky_blockiness_vs_peer_fineness"
+        ],
+        "reasoning": "Peer reference is a dense, cool-toned dungeon/stone tileset: greys, blacks, teal accents, very high feature density per tile (mechanisms, statues, debris, doors), hard-stepped shading with fine pixel articulation. Candidate is a warm green outdoor tile with scattered white rubble and golden-yellow flora — a completely inverted warmth/saturation axis. (1) Palette overlap: near-zero; peers are cool grey/teal, candidate is warm green/gold — surface type difference (grass vs stone) is acknowledged but the hue departure is so extreme it reads as a different game entirely. (2) Pixel density: candidate's feature count is ~30-40% of peers; large uniform color blocks dominate, very few distinct pixel-level details. (3) Shading technique: both use hard-stepped — only dimension that passes. (4) Warmth/saturation: peers are desaturated cool, candidate is highly saturated warm — direct inversion, not just a surface-type variation. (5) Hand-pixeled charm: peers show deliberate micro-detailing (cracked stone edges, individual tile joints, object silhouettes); candidate is coarse chunky blobs lacking that crafted quality. (6) Photo-realism contamination: none in either — both clean pixel art. (7) Overall feel: candidate reads as a different, simpler-art-budget game; placing it beside the peer dungeon tiles would cause an immediate visual break. Score 4 (fail).",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (RIGHT, 4x) displays lush bright greens, warm golden-tan sandy patches, and light warm-grey stone fragments consistent with Hyrule-outdoor-bright target tone. No grimdark elements detected: palette is fully saturated and warm, stones read as sunlit rubble not dungeon masonry, no cold concrete greys, no blood/skull markings, no sci-fi or occult motifs. Hand-pixeled treatment is evident. The peer reference (LEFT) by contrast shows classic dungeon-crawler stone with blood pools and teal portal tiles — candidate avoids all those failure modes. Minor observation: stone chunk highlights lean slightly neutral-grey rather than warm-tan, but not enough to constitute tonal drift. Overall firmly in fairy-tale outdoor adventure territory.",
+        "confidence": 0.85
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 0,
+      "fails": 2,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.63,
+    "aestheticAvg": 7,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 4,
+    "warningCount": 4,
+    "failCount": 3,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.128Z"
+}

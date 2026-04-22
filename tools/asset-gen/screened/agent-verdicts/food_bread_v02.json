@@ -1,0 +1,154 @@
+{
+  "file": "consumable/food_bread_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\food_bread_v02.png",
+  "category": "consumable",
+  "candidateName": "food_bread_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "shading_tone_contrast_weak",
+          "white_base_element_flat",
+          "limited_silhouette_read_at_1x"
+        ],
+        "reasoning": "EMOTIONAL (60%): Warm golden-amber tones are on-brand for Hyrule food items — bright, appetizing, friendly. The rounded bun silhouette reads as charming and toy-like. Color temperature and saturation match the bright/warm Zelda: EoW mood well. Score ~7/10. TECHNICAL (40%): 1px outlines are present and mostly clean. Pixel-grid alignment appears correct. However, the shading uses only 2 distinguishable tones on the bun body and the contrast between them is low — shadow barely reads against the midtone at 1x. The white/cream base element (napkin or plate) is a single flat tone with no internal shading, making it feel unfinished relative to Denzi reference standards which show confident shadow+highlight+outline triads even on simple shapes. Steam/highlight accent on top is competent. Overall technical execution is serviceable but not crisp. Score ~5/10. Weighted: 0.6*7 + 0.4*5 = 6.2 → 6. Marginal — passes emotional but needs shading pass on base element and stronger tone separation on bun body before promotion.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x_nearly_unreadable",
+          "light_bg_base_blending",
+          "limited_personality"
+        ],
+        "reasoning": "At 4x the bread reads clearly as a domed bun with warm golden-orange tones and a lighter base; the rounded silhouette is soft and toy-friendly, consistent with Echoes of Wisdom charm language. Dark-bg contrast is solid — the warm hues pop well. However at 1x the sprite collapses to an indistinct warm blob with no recognizable bread silhouette. On the light background the pale base/plate area loses its lower edge, weakening ground-read. Charm is present via color warmth and round dome form, but there are no expressive personality markers (no shine spot, no face hint, no distinctive feature) that would give it sticker-test memorability. Falls in the charming-but-mushy camp at small size; passes the clear silhouette bar only at 4x on dark.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Bread sprite uses warm golden-amber as the dominant hue with cream highlights and deep warm-brown outlines — a tight analogous warm palette that reads bright and appetizing. Fits squarely in the 'sunset oranges / parchment golds' target range. Colored darks are warm brown (not pure black/grey), satisfying the shadow quality requirement. No muddy desaturated tones, no neon spikes, no cold corporate hues. Limited palette breadth (no greens or blues) is contextually correct for a food item and does not harm harmony. Outline darkness is on the border of near-black but the warm brown cast keeps it compliant. Overall: bright, warm, harmonious, palette-compatible.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "small_sprite_size_relative_to_scene",
+          "proximity_to_sticky_ball_label_may_cause_momentary_confusion"
+        ],
+        "reasoning": "The bread sprite uses a warm golden-orange color that contrasts well against the dark teal grid floor, making it spottable in roughly 0.5s. The silhouette is recognizable as a food/bread item and does not blend with background tiles or other scene elements. The pixel-art style is consistent with the game's aesthetic and the asset reads as native rather than pasted. However, the sprite is on the smaller side relative to the tile grid, reducing immediate pop. The nearby 黏黏球 (sticky ball) label sits close to the bread position and could momentarily redirect attention, though the red arrow clearly disambiguates. No tonal clash with background; outline remains visible. Overall the asset is functional and mostly clean for an Echoes-style game, but falls just short of a confident pass due to scale and label proximity.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon"
+        ],
+        "reasoning": "The food_bread_v02 sprite itself is a small, warm golden-brown rounded bread shape with saturated amber tones — inherently cute, cozy, and fairy-tale-food appropriate. It introduces no grimdark, horror, or aggressive elements. However, the scene it inhabits skews dark dungeon-crawler: dark teal tile floors, deep red-veined shadow zones, stone walls, and a grim overall palette. The sprite itself reads as IN-TONE (warm, round, whimsical food item), but the contrast between the cheerful golden bread and the surrounding dungeon aesthetic creates mild mood tension. The sprite does not shift mood problematically on its own; the environment is the pre-existing risk. Sprite-level verdict is a soft pass, scene-level is marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "item_bigger_than_player"
+        ],
+        "reasoning": "The bread sprite in the composite scene spans approximately 1.3 grid tiles (~42px) in the screenshot. With a 32x32 player baseline, consumable items must be 50-75% of player size (16-24px). The bread renders at roughly 130% of expected player size, clearly violating the 'NEVER larger than player' rule. Perspective is consistent with top-down view and pixel art style is acceptable, but the scale overshoot disqualifies it. Needs to be reduced to ~20-24px rendered width.",
+        "confidence": 0.85
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading",
+          "asymmetry",
+          "outline_inconsistency"
+        ],
+        "reasoning": "8x zoom inspection: The bread sprite shows 4-5 distinct shading tones on the top dome rather than the clean 2-3 hard tones expected in pixel art — the bright gold highlight blends through intermediate orange into dark brown in a gradient-like progression. The red spots (raisins/seeds) are asymmetrically placed and vary slightly in size, suggesting generation rather than deliberate artist placement. Outline is mostly 1px but shows minor thickness inconsistency at the lower base edge where 1px and missing-outline pixels alternate. The base/crust region has a few stray lighter pixels that read as noise rather than intentional dithering. No color bleed, no semantic failure (reads clearly as a round bread loaf), no pattern tiling artifacts, no melting details. Sub-pixel AA not present — edges are hard pixel boundaries as expected. Overall: passable pixel art quality but multiple subtle AI generation tells prevent a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "size_proportion_undersized",
+          "color_temperature_warm_vs_cool_peers",
+          "detail_density_low",
+          "palette_overlap_near_zero",
+          "charm_level_below_peer_baseline"
+        ],
+        "reasoning": "Peer set (Denzi helmets): medium-thick black outlines ~1-2px, cool/neutral metallic palette (grays, silvers, with spot color accents), moderate-high detail density filling their grid cells, single internal shading pass with top-left highlight, no drop shadow, serious RPG-equipment charm register. Candidate (bread): (1) OUTLINE WEIGHT — hard to assess at this scale but appears thinner relative to sprite body than peers; (2) OUTLINE COLOR — dark/black, matches; (3) SHADOW DIRECTION — internal bottom shading, consistent with peers; (4) SHADOW COUNT — single pass, matches; (5) HIGHLIGHT INTENSITY — minimal highlight on top, weaker than the strong metallic sheen on helmets; (6) COLOR TEMPERATURE — warm orange/amber, stark contrast to the cool metallic peer palette — even granting item-type latitude, the warmth register is aggressive; (7) DETAIL DENSITY — very low, 2-3 color stops vs. 6-8 on peers; bread reads as underdeveloped; (8) PROPORTION — candidate visually occupies significantly less area than peers do in equivalent display cells, suggesting either a scale mismatch or the sprite was generated smaller than the Denzi grid norm; (9) RENDERING STYLE — pixel art fundamentals present, matches; (10) PALETTE OVERLAP — near-zero overlap with shown peer palette, though category-appropriate; (11) CHARM LEVEL — helmets are serious/functional; bread is simple but lacks the playful detailing that would lift it to match Denzi food-item charm expectations. Core concern: size/proportion and detail density suggest the sprite may not be production-ready at Denzi pack quality; rendering approach is correct but execution is sparse.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "insufficient_whimsy_expression",
+          "toy_diorama_quality_unconfirmed_at_scale"
+        ],
+        "reasoning": "Candidate bread sprite (right, 4x) shows warm golden-brown tones with a soft sparkle/glow highlight — no grimdark, edgy, desaturated-dungeon, or cold-corporate signals present. Peer references (left) are combat helmets in realistic medieval style, creating a tonal contrast that highlights the bread's comparatively friendlier palette. The bread reads as a wholesome RPG food pickup and does not violate tone outright, but the pixel density and scale make it difficult to confirm strong toy-diorama or Hyrulean fairy-tale whimsy (e.g. exaggerated roundness, bouncy proportions, sparkle density). No fan-service, occult, or Western-AAA drift detected. Marginal because warmth is present but the sprite does not strongly signal the target Nintendo-family charm — it could pass as generic mobile RPG food without the whimsy premium expected for Echoes-of-Wisdom aesthetic.",
+        "confidence": 0.75
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.93,
+    "aestheticAvg": 6.67,
+    "uiContextAvg": 6,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.116Z"
+}

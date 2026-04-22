@@ -1,0 +1,8 @@
+AESTHETIC AGENT C — Color Harmony for Echoes-tuned palette. Target: BRIGHT harmonious — saturated greens/sky blues/sunset oranges/candy pinks/parchment golds. Warm mid-values dominate. Shadows are colored darks (deep teal/plum/warm brown), NEVER pure black/grey. Avoid muddy desaturated, neon, cold corporate, goth near-black.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\armor_chain_v00\zoom.png
+Read: E:\cv5\wisdom\tools\asset-gen\reference-sheets\palette-extract.png (Echoes-tuned palette swatch)
+Evaluate internal harmony, mood (BRIGHT/WARM vs grim/cold), saturation, palette compatibility, shadow color quality.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

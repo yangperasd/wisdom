@@ -1,0 +1,8 @@
+UI AGENT A — In-Context Readability for Echoes-style game. Well-integrated: spottable in 0.5s; distinct from bg tiles; clear silhouette; bright/uncluttered Echoes feel. Poorly integrated: same hue as bg; outline disappears; visual noise; tonal clash.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\armor_chain_v00\composite-scene.png (scene WITH "armor_chain_v00" composited; red arrow marks position)
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\armor_chain_v00\original-scene.png (same scene WITHOUT, comparison)
+Evaluate locatability, distinguishment, dark-area visibility, native-vs-pasted, confusion with other entities, Echoes-cleanliness.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

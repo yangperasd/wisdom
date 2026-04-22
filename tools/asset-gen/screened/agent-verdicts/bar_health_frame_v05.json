@@ -1,0 +1,167 @@
+{
+  "file": "bar/bar_health_frame_v05.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\bar\\bar_health_frame_v05.png",
+  "category": "bar",
+  "candidateName": "bar_health_frame_v05",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "white_interior_feels_clinical_and_flat",
+          "corner_accent_dots_scattered_not_cohesive_motif",
+          "silhouette_lacks_friendly_roundness_for_toy-diorama_feel",
+          "emotional_warmth_present_but_not_strong_enough"
+        ],
+        "reasoning": "Emotional (60%): The warm gold/amber frame palette reads correctly for Zelda HUD — not grim, not scary. Small colored accents (blue/red) at corners add charm. However the large white interior fill zone is stark and clinical, undermining the warm bright-Hyrule mood. The overall silhouette is mostly a flat rectangle; the decorative corner elements add some character but are visually scattered (random dot placement) rather than intentional friendly motifs. Emotional score ~6. Technical (40%): Hard 1px outlines are present and consistent across all zoom/bg variants. The gold gradient uses 2-3 hard-shading tones correctly with no anti-aliasing bleed. Pixel-grid is respected throughout. The hand-pixeled corner ornaments show deliberate craft. Technical score ~7. Composite ~6.4 → 6. Marginal: passes technical baseline but needs warmer/rounder emotional language — richer interior treatment, more cohesive corner iconography, and stronger saturated color accents to feel like a true Echoes of Wisdom HUD piece.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_mushy",
+          "white_interior_bleeds_into_light_bg",
+          "charm_reads_adventure_not_cute_toy",
+          "corner_detail_lost_at_1x"
+        ],
+        "reasoning": "At 1x the frame collapses into an unreadable thin smear — silhouette fails the sticker test entirely. At 4x the golden rope/woven border has genuine personality and reads clearly on dark bg, but the white interior nearly disappears against the cream light bg, breaking contrast on one of two required backgrounds. The aesthetic is more 'Zelda treasure chest' than 'round soft friendly toy' — adventurous rather than cute. Corner accent details (red tips, blue jewel dots) add micro-charm but are invisible at 1x. Passes neither the clarity bar (1x failure) nor the full charm bar (wrong warmth register). Borderline marginal leaning toward fail on the cute/charm axis.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "outline_pixels_appear_near_black_not_colored_dark",
+          "limited_hue_range_single_dominant_warm_gold"
+        ],
+        "reasoning": "Frame is dominated by warm parchment gold with sunset-orange corner accents and small teal highlight pixels — all well-aligned with the Echoes palette target. The BRIGHT/WARM mood is achieved: golden warmth reads as inviting and game-friendly, orange accents hit the sunset-orange range, and the teal dot pixels provide a complementary cool accent consistent with the reference swatches. Main deduction: the dark outline/shadow pixels appear very close to near-black rather than deep teal, plum, or warm brown colored darks as required by the palette spec. On the parchment-background panel the outline reads as a neutral-to-cool dark rather than a warm or colored shadow. The narrow hue range (essentially gold + orange + one teal note) is functional but adds little visual richness. Overall the asset is warm and on-palette; the outline shadow color keeps it from a clean pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "white_fill_overexposed",
+          "pasted_compositing_feel",
+          "world_space_placement_ambiguous"
+        ],
+        "reasoning": "The health bar frame is locatable within 0.5s — the bright white interior and golden/yellow ornate border create strong contrast against the dark red dungeon tile background. The wide horizontal silhouette reads clearly as a UI bar rather than a game entity. However, the white fill region is blown-out bright relative to the scene's darker palette, giving it a pasted-on appearance rather than native integration. The golden frame art style is broadly consistent with the game's colorful UI (matching the orange/blue button palette), but the frame detail density feels slightly finer than the surrounding pixel art. Placement in world space rather than a fixed HUD zone may cause momentary confusion about whether it's a game object. No significant confusion with enemies or interactive objects. Echoes-cleanliness is acceptable but not excellent due to the stark luminance gap.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon"
+        ],
+        "reasoning": "The bar_health_frame_v05 sprite itself carries warm golden-yellow pixelated borders, a bright white interior fill, and small gem/sparkle accents at each end — all consistent with the warm/bright/whimsical fairy-tale target palette. No grimdark, aggressive, or cold-corporate elements are present in the sprite. However, the sprite is being placed into a scene dominated by dark teal grid floors, dark red-speckled dungeon tiles, and a generally gloomy dungeon-crawler atmosphere. The frame does not worsen the scene's darkness, and as a UI overlay element it reads as the warmest/cutest element present. The sprite itself passes the in-tone check; the marginal score reflects that in composite context the contrast between the bright warm frame and the cold dark background creates a mild tonal dissonance — the frame feels slightly out of place rather than harmoniously reinforcing a sunny fairy-tale world.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "bar_oversized_relative_to_player",
+          "bar_width_dominates_scene",
+          "perspective_mismatch_bar_too_flat_and_wide",
+          "toy_diorama_feel_lost_bar_acts_as_wallpaper_element"
+        ],
+        "reasoning": "The health bar (bar_health_frame_v05) appears as a wide horizontal strip roughly 220px wide x 25px tall in the composited scene. The player entity in the lower-left area is approximately 32x32px. As a HUD bar element, its on-screen footprint is acceptable in isolation, but here it is composited directly into the game world space near the player and scene entities, where it spans nearly a third of the scene width. This makes it feel like a floating UI overlay rather than a diegetic or well-proportioned world element. The bar is wider than the player character, violating the scale hierarchy. Its flat, elongated silhouette clashes with the top-down tile perspective — it reads as a 2D UI widget dropped into 3D-perspective tile space rather than a toy-diorama prop. The golden frame detail is visible but the extreme horizontal stretch overwhelms nearby 32x32 entities and disrupts the scene's compact diorama feel, pushing it toward 'wallpaper' territory.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "inconsistent_outline_thickness",
+          "gradient_shading_in_frame_body",
+          "isolated_noise_pixels_color_bleed",
+          "asymmetry_left_right_ends",
+          "sub_pixel_edge_blending"
+        ],
+        "reasoning": "At 8x zoom, the health bar frame shows several AI generation tells. (1) Outline inconsistency: the black border varies between 1px and 2px thickness along the frame edge, with a few spots where the outline appears absent or blended into the background. (2) Gradient shading: the gold/orange frame body uses soft gradient transitions rather than the clean 2-3 hard tone steps expected from intentional pixel art. (3) Color bleed / noise pixels: isolated teal/blue-green pixels appear near the bottom-center of the frame in a pattern that does not correspond to any discernible decorative gem placement — they read as orphaned color bleed rather than intentional ornamentation. (4) Asymmetry: the left and right terminal decorations of the frame are not mirror-symmetric; the right end appears slightly wider and the diagonal hatching inside shifts phase. (5) Sub-pixel edge blending: several edge pixels carry intermediate gray values consistent with upscale anti-aliasing rather than clean pixel placement. Mitigating factors: the overall silhouette is coherent, the diamond cross-hatch fill pattern is recognisable as a design motif, and the palette is limited. However the combination of inconsistent outlines, soft gradients, color bleed, and asymmetry tips the image into marginal territory rather than a clean pass.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "outline_color_mismatch: peers use dark gray/black outlines; candidate uses warm gold/yellow as primary border — fundamentally different outline idiom",
+          "color_temperature_breach: peer sheet dominated by cool stone grays and teal; candidate is warm gold + white + blue accent — palette temperature clash",
+          "palette_overlap_low: gold/yellow is entirely absent from peer tileset; only shared hue is a faint cyan echo; overlap score ~15%",
+          "highlight_intensity_excessive: candidate interior is near-white, far brighter than any peer tile; peers stay in muted mid-tone range",
+          "rendering_style_divergence: candidate reads as a smooth UI chrome element with gradient-like gold graduation; peers are flat gritty pixel tiles with no gradient",
+          "charm_level_mismatch: peers are grim dungeon tiles (zero cuteness); candidate is ornate decorative frame — still not 'cute Echo' but in the opposite direction (regal/formal vs gritty/raw), adding tonal discord",
+          "shadow_direction_absent: peers show subtle top-left pixel shadows; candidate frame has no directional shadow cue at all"
+        ],
+        "reasoning": "Evaluated across all 11 dims. Outline weight is comparable (both fine-pixel scale) and detail density is similarly moderate, giving 2 partial passes. However 6 of 11 dims show clear breaks: the gold warm palette is wholly foreign to the cool stone/teal/red peer family; the near-white interior blows past the muted peer highlight ceiling; the smooth ornate chrome rendering sits in a different visual register from flat dungeon tiles; palette overlap is negligible (~15%); charm level lands in an incompatible tonal space (regal vs grim). The candidate looks like it was pulled from a different game's UI kit rather than the same Denzi sprite sheet. Score 4 — fail.",
+        "confidence": 0.75
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "bar_fill_interior_leans_cool_teal_not_warm",
+          "frame_ornament_weight_slightly_stiff_vs_whimsical_toy_diorama_target"
+        ],
+        "reasoning": "Candidate health bar frame (right, 4x) shows warm golden-amber ornamental borders with scroll-end decorations reminiscent of Zelda/Nintendo UI — broadly on-tone for bright Hyrule fairy-tale aesthetic. Frame body color and decorative silhouette pass the warmth test. However, the interior fill area reads as a cold teal/cyan rather than a warmer honey, cream, or soft rose that would fully nail the 'sunny wholesome toy-diorama' target. The ornament linework is also slightly mechanical/rigid compared to the hand-crafted softness of a Zelda: Link's Awakening or Echoes-era frame. Peer reference tiles (left) are clearly desaturated dungeon-crawler style and represent the out-of-tone baseline — the candidate does not drift that far, but the cool fill hue introduces mild tonal tension. No grimdark, edgy, or occult signals detected. Marginal: frame chrome passes, fill palette needs warming to fully clear.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.28,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 4,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.102Z"
+}

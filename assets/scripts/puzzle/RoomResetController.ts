@@ -36,7 +36,7 @@ export class RoomResetController extends Component {
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
   }
 
   public resetRoom(): void {
@@ -72,7 +72,7 @@ export class RoomResetController extends Component {
   }
 
   private bindGameManager(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetRoom, this);
   }
 }

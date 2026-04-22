@@ -1,0 +1,166 @@
+{
+  "file": "tile/outdoor_path_cobble_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_path_cobble_v00.png",
+  "category": "tile",
+  "candidateName": "outdoor_path_cobble_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "missing_green_vegetation_accents",
+          "cobble_shapes_ambiguous_not_clearly_defined",
+          "palette_too_muted_for_hyrule_outdoor_brightness",
+          "pink_salmon_accents_tonally_mismatched_for_stone_path",
+          "lacks_toy_diorama_depth_from_structured_stone_forms"
+        ],
+        "reasoning": "Warm sandy-tan base reads correctly as a path surface and the pixel work is hard-edged with no AA or gradient bleed — seamless tiling is clean. However, the emotional target of bright/warm Hyrule outdoor is not met: there are no greens (which are essential for outdoor Hyrule ground texture), the overall value key is muted/dry rather than bright and saturated, and the scattered pink/salmon accent pixels feel tonally odd for cobblestone. Technically, the cobble forms are only suggested by scattered dark marks rather than legible stone silhouettes — the shapes dissolve into noise at small zoom. 2-tone shading is present but the macro structure is weak. Emotional 5/10, Technical 6/10 → combined 5.4.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dark L-shaped cobble in upper quadrant (~col 5-12, row 6-14) repeats as a faint polka-dot anchor when tiled 3x3",
+          "small salmon/pink cluster near upper-left slightly eye-catching across tile repetitions"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Column 0 vs col 31 — background tan is consistent across both edges; no hard seam break visible in the side-by-side tiled render. (2) Row 0 vs row 31 — top and bottom edges continue smoothly; no obvious color band discontinuity. (3) 3x3 mental tiling: the dark charcoal L/bracket-shaped cobble element in the upper portion is the most distinct feature and would repeat at regular intervals, though it is small enough that it does not dominate. The accent color dots (pink, orange, teal, yellow) are scattered well and do not cluster into a single hot-spot. Visual density is balanced — no large empty swaths. Background khaki/tan is muted and would not fight foreground sprites. Overall this reads convincingly as a cobblestone path tile, but the recurring L-feature prevents a clean pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "base_saturation_too_muted",
+          "shadow_lines_near_neutral_dark",
+          "overall_reads_realistic_not_hyrule_vibrant"
+        ],
+        "reasoning": "Dominant base is a warm sandy-khaki tan — warm undertone is correct for outdoor palette and sits on the warm side of the reference swatch. Pink/salmon and cream accent pixels are palette-consistent (candy-pink family present). However, the base hue saturation is subdued: it reads as realistic cobblestone rather than bright Hyrule-style outdoor ground. The grout/shadow lines between cobbles are dark charcoal — they carry a faint warm undertone but trend toward neutral grey rather than the required hue-shifted shadow (warm brown, deep teal, or plum). The accent scatter (pinks, light yellows) rescues the mood from feeling cold or grim, but overall vibrancy sits below the 'bright saturated' target. Palette compatibility is good; saturation execution is the primary shortfall.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "color_palette_mismatch",
+          "energy_too_high",
+          "scene_native_fail"
+        ],
+        "reasoning": "The cobble tile is warm beige/tan with pink-reddish speckles — a bright, high-energy texture that clashes severely with the Echoes scene's dark teal grid background, charcoal-red floor sections, and dark gray stone tiles. Comparing composite to original: the tile patch stands out as a jarring foreign element rather than native ground. Energy level is far too high for a background tile; it draws the eye away from foreground sprites rather than receding. While sprites placed directly on it might still be marginally readable due to some contrast, the tile does not read as native to this game's aesthetic at all — it looks like a bright outdoor cobble from a different game pasted into a dark dungeon scene. No visible tiling seams within the tile itself, but the boundary where it meets surrounding tiles is sharp and visually harsh due to the luminance gap.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "tile_warm_but_undersaturated",
+          "missing_fairy_tale_vibrancy",
+          "scene_context_is_dark_dungeon_interior"
+        ],
+        "reasoning": "The outdoor_path_cobble_v00 tile (visible as preview square in composite) shows warm sandy-beige cobblestone with tan/pinkish tones — correctly warm, not cold/grey, not grimdark. It reads as an outdoor path and avoids all OUT-OF-TONE categories (no horror, no sci-fi, no cold dungeon). However, it falls short of the bright fairy-tale Hyrule standard: the palette is muted/neutral rather than warm-saturated, lacking the sunny vibrancy and hand-pixeled charm that would strongly signal 'Hyrule field path'. The surrounding scene context is predominantly dark teal/dungeon-dark, making the tile's brightness contrast jarring rather than cohesive. The tile is directionally correct but needs more color saturation and warmth to fully deliver the target mood.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "pink_accent_scatter_adds_noise",
+          "macro_feature_count_at_high_end",
+          "contrast_slightly_loud_vs_surroundings"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count: ~10-12 distinct cobble stone shapes visible per 32x32 tile — at the upper boundary of the 3-8 target range, verging on busy. (2) Largest feature scale: individual cobble stones estimated ~4-6px each in native tile space, which is appropriate. (3) vs 32x32 player sprite: the tile reads quieter than a character sprite in isolation, but the scattered pink/reddish accent dots raise visual energy and introduce a second layer of noise that competes slightly. The beige-tan cobble palette is reasonable for a path tile and the stones are individually readable, but the pink scatter elements feel like a separate texture layer that adds confusion. When tiled, the pink accents would repeat in a pattern that may distract from sprites sitting on top. Density is marginally acceptable but not clean enough for confident pass.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "sub-pixel speckle noise — scattered single-pixel pink/yellow/blue dots read as AI random-noise fill rather than intentional dithering",
+          "cobble edge irregularity — dark gray cobble outlines show slight melting/blob quality at pixel level rather than crisp hand-placed edges",
+          "color bleed micro-pixels — accent color pixels appear in isolation between cobbles with no structural logic, suggesting AI hallucinated detail",
+          "seam unverifiable — only a single tile view provided; column-0/column-31 and row-0/row-31 cannot be pixel-for-pixel confirmed from this composite render, which itself is a yellow flag"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 vs column 31 — at 8x zoom the leftmost edge shows a mid-tan run with one dark pixel near top; rightmost edge shows a different arrangement of cobble fragments. Hue continuity is plausible but not pixel-for-pixel identical — tentative FAIL on horizontal wrap. (b) Row 0 vs row 31 — top edge has sparse dark pixel cluster; bottom edge appears lighter tan dominant. Not an obvious pixel-for-pixel match — tentative FAIL on vertical wrap. (c) Mental 3x3 tiling: the irregular scattered accent dots (pink, yellow, cream) would almost certainly create a rhythmically repeated speckle grid that snaps into a visible 32-px repeat — medium-high seam risk. TELL ASSESSMENT: Tell 1 (sub-pixel speckle) — PRESENT. Isolated single-pixel accent dots scattered across field with no dithering pattern logic. Tell 2 (anti-aliased boundary edges) — MARGINAL. Some cobble silhouette pixels show one-pixel grey fringe suggesting sub-pixel blending. Tell 3 (gradient bleed) — LOW. Palette appears limited (~5 tones), no obvious gradient. Tell 4 (blurry painted look) — LOW. Pixel grid is legible at 8x. Tell 5 (melting edges) — PRESENT. Several cobble dark shapes have irregular blobby outlines rather than clean rectilinear or intentionally jagged pixel edges. Tell 6 (color bleed) — MARGINAL. Accent pixels appear adjacent to cobble boundaries with no containment. Tell 7 (unreadable noise patches) — LOW-MEDIUM. Central-left region of 8x panel has a cluster of mixed small marks that reads as noise. Tell 8 (seam artifacts) — UNCONFIRMED but geometry check flags probable mismatch. Overall: two confirmed tells plus geometry uncertainty warrants marginal with a lean toward fail on seam risk.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_disjoint_pink_contamination",
+          "warmth_saturation_mismatch",
+          "hand_pixeled_charm_deficit",
+          "different_game_feel"
+        ],
+        "reasoning": "Peer set shows a dark dungeon tileset: near-black foundations, cool gray stone, muted teal/cyan accents, deep crimson fire — heavily atmospheric and desaturated overall. Candidate is a pale beige/tan cobblestone with scattered salmon-pink highlight pixels and light gray blobs. (1) Palette overlap: essentially zero — the warm tan base and pink specks appear nowhere in the peer chromatic range; peers contain no warm sandy tones whatsoever. (2) Pixel density: candidate's cobble blobs are large, low-detail shapes; peers pack considerably more features per tile. (3) Shading technique: both use hard-stepped flat fills, the one consistent point. (4) Warmth/saturation bias: candidate reads warm and light; peers are cold and dark — extreme divergence. (5) Hand-pixeled charm: the random scatter of pink rectangles on the candidate looks algorithmically seeded, not intentionally placed; peers show deliberate hand-crafted pixel decisions. (6) Photo-realism contamination: neither tile has this problem. (7) Overall 'Echoes' feel: the candidate could drop into any generic RPG Maker outdoor pack without notice — it carries no visual DNA linking it to the dark, dense, atmospheric peer family. The pink highlight color is the most damning single artifact: it has no precedent in the peer set and reads as a foreign palette intrusion.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "base_hue_muted_sandy_not_bright_warm",
+          "lacks_vivid_hyrule_outdoor_vibrancy",
+          "no_sunny_greens_to_anchor_outdoor_read",
+          "pink_speckles_charming_but_ambiguous_register"
+        ],
+        "reasoning": "Candidate (RIGHT) is a warm tan/khaki cobblestone with scattered pink and yellow accent pixels on a parchment bg. Hue family is correct — warm, earthy, not cold or grimdark — and the hand-pixeled scatter reads friendly rather than horror or sci-fi. However the base value sits in a muted sandy-greige zone rather than the bright, saturated warm-stone palette of Hyrule outdoor tiles. Peer reference (LEFT) is clearly grimdark dungeon grey with blood-red and teal accents — a strong contrast that makes the candidate look warmer by comparison, but the candidate still falls short of the vivid sunny warmth required. The pink specks are fairy-tale-adjacent and save it from a fail, but the overall impression is closer to a generic earthen desert path than a bright Zelda outdoor cobblestone. Not cold, not occult, not realistic mud — just under-saturated and under-bright for the target mood.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 4.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.75,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5,
+    "adversarialMin": 3,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.129Z"
+}

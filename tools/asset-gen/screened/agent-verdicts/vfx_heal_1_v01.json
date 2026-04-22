@@ -1,0 +1,152 @@
+{
+  "file": "heal/vfx_heal_1_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\heal\\vfx_heal_1_v01.png",
+  "category": "heal",
+  "candidateName": "vfx_heal_1_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): Heart shape with saturated pink/magenta petals, sky-blue center, and green accent ring nails the bright/warm/charming Hyrule mood. Color palette is exactly the toy-diorama register — nothing grim, round friendly silhouette, cheerful and legible as a heal VFX. Score 9/10. Technical (40%): 1px hard outlines clearly visible on all four zoom/background variants with no anti-aliasing artifacts. Hard shading uses 3 tones per region (light pink / mid pink / dark pink; light green / mid green; light blue / mid blue). All pixels snap cleanly to grid. Consistent with Denzi peer reference which shows similarly tight 1px outline + 2-3 tone palette discipline. Score 8/10. Weighted composite: 0.6×9 + 0.4×8 = 8.6 → 9. No failing issues on either axis.",
+        "confidence": 0.92
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_contrast_soft",
+          "1x_detail_loss_expected_but_colors_muted_on_grey"
+        ],
+        "reasoning": "Pixel-art heart with layered pink→green→blue rings is immediately charming and hits the toy/sticker test squarely. Silhouette is universally readable even at 1x — the heart shape registers instantly despite small size. On dark bg the pink outer ring pops with strong contrast and the gem-like layered palette gives it real personality. On light/cream bg the outer pink softens noticeably and the edge contrast drops; still legible but not as punchy. At 1x on the grey panel, detail is lost (green and blue interior collapse) — acceptable for a VFX asset at native resolution but the remaining pink mass reads slightly muted against mid-grey. No aggressive or edgy shapes; all curves and round pixels, fully aligned with Echoes of Wisdom soft-toy aesthetic. Misses 8 (pass) primarily because light-bg contrast needs a touch more punch on the outer silhouette pixels to hold up across all surface types.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Heart sprite uses candy pink outer ring, sky blue center fill, and vibrant green accent pixels — a harmonious spring/candy triad that maps directly onto the Echoes-tuned palette swatches (warm rose, sky blue, saturated green rows all present in reference sheet). Saturation is high and even across all three hues, giving a bright cheerful WARM mood appropriate for heal VFX. No muddy desaturation, no neon outliers, no cold corporate tones. Near-white highlight pixels are minimal and serve as sparkle accents rather than dominant tone. The sprite contains no pure black or neutral grey — shadow-region pixels are absent at this icon scale. Confidence deduction of 1 point: the near-white highlights could have been warmed slightly toward parchment gold for maximum palette alignment, but this is cosmetic and does not break harmony.",
+        "confidence": 0.93
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 8.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "slight_pasted_look_on_dark_tile_border"
+        ],
+        "reasoning": "The heal VFX (pink/cyan heart shape) is immediately spottable against the dark teal dungeon tile background — high contrast pink outline and cyan fill pop clearly within 0.5s. The silhouette is a recognizable heart which reads as a heal pickup or buff, distinct from all other entities (enemy blob, pressure plate, UI buttons). The pixelated pink outer glow and light-blue inner fill contrast well against both the dark red-fleck dungeon tiles and the grey stone tiles to the right. No confusion with background tiles or other game entities. The style is pixel-art consistent with the Echoes aesthetic — bright, clean, uncluttered. Minor issue: the sprite sits slightly flatly on the tile boundary, giving a faint composited feel rather than being fully embedded in the world plane, but this is minor and does not impair readability. Dark-area visibility is good — the bright pink outline ensures it remains visible even on the darkest tile regions.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_background_is_dark_dungeon_crawler",
+          "heal_sprite_is_bright_and_cute_but_context_is_gloomy"
+        ],
+        "reasoning": "The vfx_heal_1_v01 sprite itself is a pixelated heart shape in pink/white with a soft cyan interior — clearly cute, rounded, and fairy-tale appropriate. The palette (pastel pink, light blue, white sparkle) aligns well with the target warm/bright/whimsical tone. However, the surrounding scene context is dark dungeon-crawler in character: near-black teal tile background with red-dot textures, dark brick walls, and a murky enemy sprite. The heal VFX sprite is intrinsically on-tone (cute heart, bright saturated pastels), but it is being placed into a scene that skews dungeon-dark. The sprite itself does not introduce grimdark or horror elements — it is the scene environment that is the mismatch. Since the evaluation criterion is whether the new sprite preserves the cute/sunny/fairy-tale tone, the sprite passes on its own merits but the composite raises a marginal flag due to the dark environmental context amplifying a potential mood drift risk.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "vfx_larger_than_player",
+          "vfx_dominates_scene",
+          "scale_inconsistent_with_32x32_player_reference"
+        ],
+        "reasoning": "The heal VFX (heart shape) occupies roughly 90-100px wide in scene, significantly exceeding the 32x32 player tile baseline. As a heal effect it should appear at or slightly above player scale (~32-48px), not at ~3x player width. The large heart dominates the center of the scene and creates a 'wallpaper' focal point rather than a subtle on-character effect. The pixelated heart style is consistent with the game's aesthetic, but the proportional size is wrong — a heal VFX should be 50-100% of player size max, not 200-300%. Perspective matches the top-down flat style of the scene. The creature/mob sprite in the dark area (top-left box) appears correctly sized. The issue is purely the heal effect being oversized for its category.",
+        "confidence": 0.85
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry",
+          "color_bleed",
+          "inconsistent_outline"
+        ],
+        "reasoning": "8x zoom reveals three notable artifacts. (1) Asymmetry: the two top lobes of the heart have visibly different pixel staircase profiles — left lobe is smoother than right, a classic AI bilateral-symmetry failure. (2) Color bleed: green pixels contaminate the pink/white border ring in a scattered, non-pattern way; at this zoom level clean pixel art should have sharp color borders unless dithering is intentional, but the green distribution does not follow a consistent dither pattern. (3) Inconsistent outline: border thickness alternates between 1px and 2px segments in a non-deliberate fashion, especially on the lower-left curve. Positive notes: no sub-pixel interpolation ghosts, no AA halos against the dark background, the blue interior reads as intentional flat fill, and the checkered pink/white motif is a recognizable pixel-art decorative choice. Net assessment: the asymmetry and color bleed are clear AI tells; outline inconsistency is minor. Does not meet a clean pass but is recognizable as a heal VFX heart.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "outline_weight_mismatch: candidate has thick 2-3px soft pink border; peers use crisp 1px black outlines",
+          "outline_color_mismatch: no black outline on candidate; all Denzi peers use black outline as defining trait",
+          "shadow_absent: candidate has zero drop shadow; peers show consistent bottom-right or bottom shadow",
+          "rendering_style_divergence: candidate reads as soft-glow gradient VFX; peers are hard-edge pixel art — pixel language is fundamentally different even accounting for item-type difference",
+          "palette_overlap_minimal: candidate is pink+light-blue/cyan; peer palette is dominated by greens/browns/reds/purples — virtually no shared hues",
+          "detail_density_low: candidate is a simple filled shape with dithered edge; peers pack high detail into equivalent sprite footprints",
+          "proportion_oversized: candidate occupies roughly 4x the visual footprint of any individual peer sprite at matched scale",
+          "color_temperature_cool: candidate is distinctly cool-toned; peer set skews warm to neutral",
+          "charm_level_mismatch: heart shape reads cute but in a Western greeting-card idiom, not the compact creature-cuteness of Denzi Echo sprites"
+        ],
+        "reasoning": "Across 9 of 11 dimensions the candidate breaks consistency. The single most damning failure is rendering style: Denzi-family sprites are defined by 1px black outlines and hard pixel edges; the candidate has no black outline and uses soft dithered gradients that read as a modern 'glow' effect, not Denzi pixel art. Outline color and weight follow from the same root cause. Palette overlap is near-zero — pink and light blue do not appear in the peer reference sheet in any significant way. The scale is also wrong: the candidate heart is dramatically larger than peers even 'at matching scale.' Highlight intensity and shadow absence compound the softness. The only dimension that partially passes is charm level (a heart is cute), but even charm reads in a different visual language. Granting full credit that this is a VFX type and not a character sprite does not excuse the absence of the game's defining black-outline pixel art grammar.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (right) is a large pixel-art heart rendered at 4x on the parchment background. Outer shell is warm pink/magenta, middle ring is fresh green, center fill is soft sky-blue — together the three-layer palette reads as 'nature magic heart', firmly in the whimsical fairy-tale register. Heart motif is canonical Nintendo-healing iconography (Zelda life containers). Pixel fidelity and chunky anti-alias-free edges match the peer sprite-sheet on the left, which is clearly Zelda: Echoes-of-Wisdom style. No grimdark shadows, no desaturated dungeon palette, no aggressive outlines, no occult symbolism, no hyper-realistic shading, no cold corporate gradients. The green ring is the only element that could marginally drift toward 'generic RPG herb potion' but in context it reinforces a spring/floral reading (EchoSpringFlower adjacency) rather than anything cold or edgy. Overall tone is warm, cute, and wholesome — squarely on-target.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.03,
+    "aestheticAvg": 8.33,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 3,
+    "warningCount": 3,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.156Z"
+}

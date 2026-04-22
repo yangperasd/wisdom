@@ -1,0 +1,146 @@
+{
+  "file": "summon/echo_flower_idle_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_flower_idle_v02.png",
+  "category": "summon",
+  "candidateName": "echo_flower_idle_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "wings_shading_minimal_tones"
+        ],
+        "reasoning": "Emotional axis (60%): Strong pass. The sprite radiates warm Hyrule charm — saturated pinks, leafy greens, sky-blue wing accents. Round friendly silhouette reads as a benevolent summon/fairy companion, never threatening. Flower crown + pink dress perfectly evoke toy-diorama Zelda mood. Score ~8.5/10 emotional. Technical axis (40%): Solid pass. 1px hard outlines visible and consistent at all zoom levels, no anti-aliasing bleed. Hard shading uses 2-3 tones on dress and face; pixel grid appears snapped throughout. Hand-pixeled texture feels deliberate. Minor issue: wings use only 2 tones (white + blue outline) with minimal interior shading — slightly flat compared to Denzi peer reference wing treatments, but not a failure. Score ~7.5/10 technical. Weighted: 0.6×8.5 + 0.4×7.5 = 5.1 + 3.0 = 8.1 → 8. Verdict: pass.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "1x silhouette slightly soft due to pixel density — flower crown merges with hair at small size",
+          "wing edges use light blue outline that loses contrast on light bg"
+        ],
+        "reasoning": "At 4x the sprite reads as a charming fairy/flower girl with clear personality: round face, pink dress, petal crown, delicate wings — hits the 'friendly toy charm' target well. Silhouette is broadly readable even at 1x (head+wings+dress triangle is distinct), though the crown and wing tips blend slightly into a fuzzy halo at 1x on the dark panel. On dark bg the blue wing outlines and pink dress pop nicely; on the light bg the wing outline softens but the pink dress and green crown still anchor the read. Face has visible expression implied by pixel shading. No aggressive shapes — everything is round and soft. Passes sticker test: you could recognize it as a 'flower fairy' from the silhouette alone. Minor margin on 1x clarity and light-bg wing contrast keeps it from a 9, but charm and personality are strong enough to clear the pass threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Sprite exhibits strong Echoes-tuned palette alignment. Dominant candy pink dress and saturated leaf-green crown hit the warm mid-value requirement squarely. Sky-blue/cyan wings provide the sky-blue accent called for in the target. Shadows on the dress use deeper rose/magenta tones (not grey or black), leaf shadows use darker saturated green, and wing shadows stay in deep blue — all colored darks as required. Highlight whites lean warm-cream. Mood reads as bright spring-fairy, cheerful and warm — no grim, cold, or corporate notes. Cross-referencing the palette-extract sheet: pinks map to the salmon/coral and hot-pink swatches; greens map to medium-green and yellow-green rows; blues match sky-blue and light-blue columns; cream/white is represented. The cool-blue wings introduce a mild cool pull, but it is well-balanced by the dominant warm pink and green masses and does not shift the overall mood. Internal harmony between the three hue groups (pink, green, blue) follows a classic triadic arrangement that reads as lively rather than discordant. No muddy desaturation, no near-black goth shadows, no neon excess detected.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 3,
+      "marginals": 0,
+      "fails": 0,
+      "avgScore": 8,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The echo_flower_idle_v02 sprite (fairy figure with pink dress, white wings, green hair) is highly locatable within 0.5s. Its warm pink/white palette creates strong contrast against the cool dark-teal grid background tiles. The distinctive fairy silhouette with spread wings reads cleanly and is not confused with any environmental element (dark-red slime pit, gray stone floor, UI buttons). The sprite remains visible near the darker red-tiled area due to its bright white wings. The pixel-art style is consistent with the game's overall aesthetic, giving a native rather than pasted feel. Colors (pink, green, white) fit the bright/uncluttered Echoes palette without introducing visual noise. Minor note: the sprite sits near a tile boundary which could slightly complicate silhouette reading, but in practice the color contrast is sufficient to overcome this.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The echo_flower_idle_v02 sprite is a cute pixel-art fairy figure with a pink dress, green flower crown, and small delicate wings — clearly IN-TONE for the cute/fairy-tale/whimsical target. Colors are bright and saturated (warm pink, leafy green). Proportions are round and charming. No grimdark, edgy, or horror elements present in the sprite itself. The scene background is admittedly dark/dungeon-crawler in palette (dark teal tiles, brownish-red hazard areas), which creates contrast, but the sprite successfully reads as a bright magical presence against that backdrop rather than being absorbed into the darker tone. The sprite preserves the sunny fairy-tale mood and does not shift it problematically.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "summon_at_player_scale",
+          "slightly_large_for_category"
+        ],
+        "reasoning": "The echo_flower_idle_v02 (summon category) renders at approximately 70-90px tall in the scene view. Comparing to the floor tile grid (tiles appear ~40-48px rendered, implying ~2x world scale), the character occupies roughly 1.5-2 tiles height, placing it at or near full player scale (32px world units). Summons should be 50-80% of player = 16-26px world units. The fairy sprite is visually prominent — closer to player-sized than summon-sized. Perspective is acceptable for the art style (frontal pixel art in a top-down scene is common). No overlap or effect clutter issues. Toy diorama feel is borderline: the character reads as a main actor rather than a supporting summon. Not a hard fail since the excess is modest and could reflect intended visual hierarchy, but size reduction of ~25-30% is recommended to firmly land in the 50-80% summon range.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "pass"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "wing_gradient_shading",
+          "wing_asymmetry",
+          "color_bleed_hair_crown",
+          "checkerboard_dress_ambiguity",
+          "inconsistent_outline_wing_tips"
+        ],
+        "reasoning": "Wings show gradient/AA blending with intermediate blue tones fading into the dark background rather than hard 2-3 tone pixel steps — a clear AI generation tell. Left and right wings are visibly asymmetric in shape and pixel coverage, with the right wing notably smaller/less detailed. The hair/flower-crown area exhibits color bleed where green and pink hues bleed into each other without clean pixel boundaries. The dress checkerboard pink pattern is ambiguous — could be intentional 2-color dithering (legitimate pixel art technique) but the regularity and density suggest AI noise presenting as pattern. Outline pixels at wing tips are missing or 0.5px-equivalent (sub-pixel bleed) rather than consistent 1px hard outlines. No sub-pixel feature bleed in body/face area and the overall semantic read of 'flower fairy sprite' is coherent, preventing a full fail verdict. Core body pixels are acceptably clean; the damage is concentrated in wings and hair.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "rendering_style_divergence: candidate uses soft gradient-like shading on the skirt/dress with multiple tonal bands, while Denzi peers use harder, flatter cel-shading with fewer mid-tones",
+          "highlight_intensity: candidate shows prominent specular-style highlights on the dress and hair that are brighter and more frequent than observed in peer sprites",
+          "outline_inconsistency: candidate outline appears thinner and less uniformly dark on the wings and hair periphery compared to the consistent 1px black outline discipline in peers",
+          "shadow_count: candidate has layered dress shading suggesting 3+ shadow steps; most peers show 1-2 shadow steps at comparable complexity",
+          "color_temperature_mismatch: candidate is strongly warm-pink dominant with cool blue wings creating a split-temperature palette; peer family skews toward cooler or earth-neutral temperatures with more unified temperature per sprite"
+        ],
+        "reasoning": "The candidate is a pixel-art fairy girl rendered at roughly 48x64 effective pixels. Charm level is strong — cute chibi proportions, flower accessory, soft pastel palette all fit the Echo aesthetic well (no penalty there). Proportion is consistent with chibi peers. Palette overlap exists with some colorful peers. However, the rendering style is the primary failure vector: the pink dress uses a soft multi-band gradient shading approach that feels closer to modern 'indie RPG' pixel art than classic Denzi, which favors harder color breaks and limited tonal ramps. Wing rendering is particularly divergent — the light-blue semi-transparent wingtips have almost no dark outline and use a dithered fade, a technique absent from the peer reference sheet. Highlight intensity on the dress center is notably punchy (near-white), overshooting the subtle highlight convention of peers. These are style-layer issues, not fatal, but they collectively push the candidate outside comfortable family range.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate sprite (right, 4x) depicts a small fairy figure with green hair, soft blue wings, and a warm pink dress cradling a glowing pink crystal orb. Palette is bright, saturated, and warm — pinks, greens, sky-blues — directly matching the 'bright/warm/sunny Hyrule' and 'cute fairy-tale' brief. Proportions are chibi-round with no edgy anatomical exaggeration, no dark desaturation, no occult iconography, and no corporate flatness. The glowing orb reads as whimsical magic rather than anything sinister. Peer reference grid (left) shows comparable Nintendo-lineage sprites — the candidate sits comfortably within that visual family. No grimdark, fan-service, realistic, or uncanny signals detected. Minor note: wing shape is a fairly standard fairy silhouette with little distinctive personality, but this is a design-originality concern, not a tone-mismatch issue. Overall tone alignment is solid.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.87,
+    "aestheticAvg": 8,
+    "uiContextAvg": 7.33,
+    "adversarialMin": 5,
+    "warningCount": 3,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": true
+  },
+  "timestamp": "2026-04-20T03:15:03.115Z"
+}

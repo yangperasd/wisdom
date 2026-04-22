@@ -3,7 +3,7 @@ import path from 'node:path';
 import {
   optimizeWechatRuntimeSettings,
   projectRoot,
-  resolveConfiguredWechatBuildOutputDir,
+  resolveLastWechatBuildOutputDir,
 } from './wechat-build-utils.mjs';
 
 async function readJson(filePath) {
@@ -27,7 +27,7 @@ async function resolveRuntimeSettingsPath(outputDir) {
   return path.join(srcDir, settingsFile);
 }
 
-const outputDir = await resolveConfiguredWechatBuildOutputDir(projectRoot);
+const outputDir = await resolveLastWechatBuildOutputDir(projectRoot);
 const settingsPath = await resolveRuntimeSettingsPath(outputDir);
 const runtimeSettings = await readJson(settingsPath);
 const optimizedSettings = optimizeWechatRuntimeSettings(runtimeSettings, {

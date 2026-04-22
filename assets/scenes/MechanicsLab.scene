@@ -823,7 +823,7 @@
         "__id__": 30
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 26
@@ -962,20 +962,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 21,
-      "g": 32,
-      "b": 39,
-      "a": 220
+      "r": 16,
+      "g": 24,
+      "b": 34,
+      "a": 225
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 129,
-      "g": 182,
-      "b": 161,
-      "a": 120
+      "r": 80,
+      "g": 120,
+      "b": 150,
+      "a": 50
     },
-    "strokeWidth": 2,
-    "cornerRadius": 18,
+    "strokeWidth": 1,
+    "cornerRadius": 8,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1183,10 +1183,16 @@
       "a": 70
     },
     "strokeWidth": 2,
-    "cornerRadius": 28,
+    "cornerRadius": 20,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.4,
+    "hatchStrength": 0.4,
+    "hatchSpacing": 28,
+    "stippleStrength": 0.35,
+    "stippleSpacing": 20,
+    "innerShadow": 0.25
   },
   {
     "__type__": "cc.Node",
@@ -1286,10 +1292,15 @@
       "a": 60
     },
     "strokeWidth": 2,
-    "cornerRadius": 24,
+    "cornerRadius": 14,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.38,
+    "hatchStrength": 0.3,
+    "hatchSpacing": 24,
+    "stippleStrength": 0.25,
+    "stippleSpacing": 22
   },
   {
     "__type__": "cc.Node",
@@ -1389,10 +1400,16 @@
       "a": 60
     },
     "strokeWidth": 2,
-    "cornerRadius": 20,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.42,
+    "hatchStrength": 0.35,
+    "hatchSpacing": 22,
+    "stippleStrength": 0.3,
+    "stippleSpacing": 18,
+    "innerShadow": 0.2
   },
   {
     "__type__": "cc.Node",
@@ -1492,10 +1509,16 @@
       "a": 56
     },
     "strokeWidth": 2,
-    "cornerRadius": 22,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.42,
+    "hatchStrength": 0.35,
+    "hatchSpacing": 22,
+    "stippleStrength": 0.3,
+    "stippleSpacing": 18,
+    "innerShadow": 0.2
   },
   {
     "__type__": "cc.Node",
@@ -1595,10 +1618,16 @@
       "a": 60
     },
     "strokeWidth": 2,
-    "cornerRadius": 22,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.42,
+    "hatchStrength": 0.35,
+    "hatchSpacing": 22,
+    "stippleStrength": 0.3,
+    "stippleSpacing": 18,
+    "innerShadow": 0.2
   },
   {
     "__type__": "cc.Node",
@@ -1698,10 +1727,16 @@
       "a": 64
     },
     "strokeWidth": 2,
-    "cornerRadius": 18,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.42,
+    "hatchStrength": 0.35,
+    "hatchSpacing": 22,
+    "stippleStrength": 0.3,
+    "stippleSpacing": 18,
+    "innerShadow": 0.2
   },
   {
     "__type__": "3d2a6zMsZNMmK4uaNDa0rs2",
@@ -1713,10 +1748,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "outdoor_ground_ruins",
-    "selectedPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+    "selectedPath": "assets/art/generated/tile/outdoor_ground_ruins.png",
     "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "phase_3_selected",
+    "bindingStatus": "phase_4_ai_rewired",
     "_id": ""
   },
   {
@@ -1731,7 +1766,7 @@
     "visualRoot": null,
     "spriteFrame": null,
     "texture": {
-      "__uuid__": "a69b8b82-f3de-4536-80e2-f3336764c986@6c48a",
+      "__uuid__": "2248350b-583b-478d-8a6b-f9e462419658@6c48a",
       "__expectedType__": "cc.Texture2D"
     },
     "hideLabelWhenSkinned": false,
@@ -1818,10 +1853,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "outdoor_ground_ruins",
-    "selectedPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+    "selectedPath": "assets/art/generated/tile/outdoor_ground_ruins.png",
     "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "phase_3_selected",
+    "bindingStatus": "phase_4_ai_rewired",
     "_id": ""
   },
   {
@@ -1836,7 +1871,7 @@
     "visualRoot": null,
     "spriteFrame": null,
     "texture": {
-      "__uuid__": "a69b8b82-f3de-4536-80e2-f3336764c986@6c48a",
+      "__uuid__": "2248350b-583b-478d-8a6b-f9e462419658@6c48a",
       "__expectedType__": "cc.Texture2D"
     },
     "hideLabelWhenSkinned": false,
@@ -1853,10 +1888,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "outdoor_ground_ruins",
-    "selectedPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
+    "selectedPath": "assets/art/generated/tile/outdoor_ground_ruins.png",
     "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "phase_3_selected",
+    "bindingStatus": "phase_4_ai_rewired",
     "_id": ""
   },
   {
@@ -1871,7 +1906,7 @@
     "visualRoot": null,
     "spriteFrame": null,
     "texture": {
-      "__uuid__": "a69b8b82-f3de-4536-80e2-f3336764c986@6c48a",
+      "__uuid__": "2248350b-583b-478d-8a6b-f9e462419658@6c48a",
       "__expectedType__": "cc.Texture2D"
     },
     "hideLabelWhenSkinned": false,
@@ -2082,23 +2117,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 123,
-      "g": 175,
-      "b": 219,
+      "r": 90,
+      "g": 155,
+      "b": 210,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 232,
-      "g": 248,
+      "r": 200,
+      "g": 235,
       "b": 255,
-      "a": 160
+      "a": 170
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 120,
+      "g": 180,
+      "b": 240,
+      "a": 60
+    }
   },
   {
     "__type__": "cc.Node",
@@ -2741,23 +2786,40 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 244,
-      "g": 209,
-      "b": 114,
+      "r": 232,
+      "g": 186,
+      "b": 72,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 245,
-      "b": 198,
-      "a": 150
+      "g": 235,
+      "b": 170,
+      "a": 160
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.55,
+    "innerShadow": 0.4,
+    "outerGlow": 0.5,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 240,
+      "g": 200,
+      "b": 100,
+      "a": 80
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 180,
+      "g": 130,
+      "b": 30,
+      "a": 180
+    }
   },
   {
     "__type__": "cc.Node",
@@ -2904,7 +2966,7 @@
     "markerId": "checkpoint-01",
     "playerNameIncludes": "Player",
     "visualSpriteFrame": {
-      "__uuid__": "413b43cb-75e7-45c8-bbf4-58e3e4fdf8c8@f9941",
+      "__uuid__": "3a1cbb19-debf-4581-8ce6-3db40f36fe2c@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_id": ""
@@ -2919,10 +2981,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "checkpoint",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-    "fallbackPath": "",
+    "selectedPath": "assets/art/generated/marker/checkpoint.png",
+    "fallbackPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "phase_4_ai_rewired",
     "_id": ""
   },
   {
@@ -3085,23 +3147,32 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 121,
-      "g": 193,
-      "b": 111,
+      "r": 95,
+      "g": 180,
+      "b": 85,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 223,
-      "g": 255,
-      "b": 210,
-      "a": 120
+      "r": 190,
+      "g": 250,
+      "b": 180,
+      "a": 130
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.4,
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 55,
+      "g": 130,
+      "b": 50,
+      "a": 170
+    }
   },
   {
     "__type__": "cc.Node",
@@ -3417,23 +3488,32 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 124,
-      "g": 53,
-      "b": 52,
+      "r": 178,
+      "g": 52,
+      "b": 48,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 202,
-      "b": 196,
-      "a": 120
+      "r": 240,
+      "g": 160,
+      "b": 150,
+      "a": 130
     },
-    "strokeWidth": 2,
-    "cornerRadius": 14,
+    "strokeWidth": 3,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.5,
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 120,
+      "g": 25,
+      "b": 20,
+      "a": 200
+    }
   },
   {
     "__type__": "cc.Node",
@@ -3694,23 +3774,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 112,
-      "g": 193,
-      "b": 134,
+      "r": 72,
+      "g": 170,
+      "b": 95,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 224,
-      "g": 255,
-      "b": 225,
-      "a": 120
+      "r": 170,
+      "g": 240,
+      "b": 185,
+      "a": 130
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 100,
+      "g": 210,
+      "b": 130,
+      "a": 60
+    }
   },
   {
     "__type__": "cc.Node",
@@ -4029,23 +4119,31 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 58,
-      "g": 115,
-      "b": 74,
-      "a": 180
+      "r": 30,
+      "g": 52,
+      "b": 68,
+      "a": 190
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 255,
-      "b": 214,
-      "a": 70
+      "r": 100,
+      "g": 160,
+      "b": 195,
+      "a": 65
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.42,
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 74,
+      "g": 144,
+      "b": 217,
+      "a": 140
+    }
   },
   {
     "__type__": "cc.Node",
@@ -4303,23 +4401,25 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 73,
-      "g": 108,
-      "b": 139,
-      "a": 180
+      "r": 58,
+      "g": 95,
+      "b": 135,
+      "a": 185
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 205,
-      "g": 232,
-      "b": 255,
-      "a": 70
+      "r": 140,
+      "g": 190,
+      "b": 230,
+      "a": 90
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.4,
+    "innerShadow": 0.25
   },
   {
     "__type__": "cc.Node",
@@ -4586,23 +4686,25 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 223,
-      "g": 128,
-      "b": 69,
+      "r": 210,
+      "g": 120,
+      "b": 55,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 217,
-      "b": 184,
+      "r": 250,
+      "g": 200,
+      "b": 140,
       "a": 120
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.4
   },
   {
     "__type__": "cc.Node",
@@ -5066,23 +5168,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 145,
-      "g": 63,
-      "b": 73,
+      "r": 185,
+      "g": 55,
+      "b": 62,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 206,
-      "b": 211,
-      "a": 120
+      "r": 245,
+      "g": 170,
+      "b": 175,
+      "a": 130
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.45,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 220,
+      "g": 80,
+      "b": 80,
+      "a": 50
+    }
   },
   {
     "__type__": "cc.Node",
@@ -5509,23 +5621,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 66,
-      "g": 128,
-      "b": 80,
+      "r": 155,
+      "g": 62,
+      "b": 55,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 203,
-      "g": 255,
-      "b": 215,
-      "a": 100
+      "r": 235,
+      "g": 155,
+      "b": 145,
+      "a": 120
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.4,
+    "outerGlow": 0.4,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 200,
+      "g": 100,
+      "b": 80,
+      "a": 70
+    }
   },
   {
     "__type__": "cc.Node",
@@ -5704,8 +5826,8 @@
     "__prefab": null,
     "bindingKey": "echo_spring_flower",
     "selectedPath": "assets/prefabs/EchoSpringFlower.prefab",
-    "fallbackPath": "",
-    "sourceManifest": "asset_selection_manifest.entities",
+    "fallbackPath": "assets/prefabs/EchoSpringFlower.prefab",
+    "sourceManifest": "asset_binding_manifest_v2.worldEntities",
     "bindingStatus": "asset_gap",
     "_id": ""
   },
@@ -5872,23 +5994,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 125,
+      "r": 155,
       "g": 62,
-      "b": 64,
+      "b": 55,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 208,
-      "b": 198,
-      "a": 100
+      "r": 235,
+      "g": 155,
+      "b": 145,
+      "a": 120
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.4,
+    "outerGlow": 0.4,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 200,
+      "g": 100,
+      "b": 80,
+      "a": 70
+    }
   },
   {
     "__type__": "cc.Node",
@@ -6067,8 +6199,8 @@
     "__prefab": null,
     "bindingKey": "echo_bomb_bug",
     "selectedPath": "assets/prefabs/EchoBombBug.prefab",
-    "fallbackPath": "",
-    "sourceManifest": "asset_selection_manifest.entities",
+    "fallbackPath": "assets/prefabs/EchoBombBug.prefab",
+    "sourceManifest": "asset_binding_manifest_v2.worldEntities",
     "bindingStatus": "asset_gap",
     "_id": ""
   },
@@ -6307,23 +6439,32 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 128,
-      "g": 70,
-      "b": 71,
+      "r": 168,
+      "g": 62,
+      "b": 54,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 206,
-      "b": 196,
-      "a": 100
+      "r": 235,
+      "g": 155,
+      "b": 145,
+      "a": 125
     },
-    "strokeWidth": 2,
-    "cornerRadius": 16,
+    "strokeWidth": 3,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.5,
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 110,
+      "g": 30,
+      "b": 25,
+      "a": 200
+    }
   },
   {
     "__type__": "cc.Node",
@@ -6584,23 +6725,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 114,
-      "g": 197,
-      "b": 138,
+      "r": 72,
+      "g": 170,
+      "b": 95,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 219,
-      "g": 255,
-      "b": 226,
-      "a": 100
+      "r": 170,
+      "g": 240,
+      "b": 185,
+      "a": 130
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 100,
+      "g": 210,
+      "b": 130,
+      "a": 60
+    }
   },
   {
     "__type__": "cc.Node",
@@ -6858,23 +7009,33 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 210,
-      "b": 121,
+      "r": 228,
+      "g": 190,
+      "b": 82,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 244,
-      "b": 196,
-      "a": 100
+      "g": 235,
+      "b": 160,
+      "a": 140
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 10,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.55,
+    "innerShadow": 0.4,
+    "outerGlow": 0.5,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 240,
+      "g": 200,
+      "b": 100,
+      "a": 80
+    }
   },
   {
     "__type__": "cc.Node",
@@ -7029,10 +7190,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "breakable_target",
-    "selectedPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_pressureplate.png",
+    "selectedPath": "assets/art/generated/enemy/breakable_target.png",
     "fallbackPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_unidentified.png",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "",
+    "bindingStatus": "phase_4_ai_rewired",
     "_id": ""
   },
   {
@@ -7100,8 +7261,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -346,
-      "y": -222,
+      "x": -300,
+      "y": -180,
       "z": 0
     },
     "_lrot": {
@@ -7227,23 +7388,25 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 18,
-      "g": 28,
-      "b": 34,
-      "a": 176
+      "r": 14,
+      "g": 22,
+      "b": 30,
+      "a": 180
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 178,
-      "g": 214,
-      "b": 220,
-      "a": 96
+      "r": 120,
+      "g": 180,
+      "b": 200,
+      "a": 100
     },
     "strokeWidth": 3,
     "cornerRadius": 74,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.3,
+    "doubleBorder": 0.4
   },
   {
     "__type__": "cc.Node",
@@ -7324,23 +7487,25 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 111,
-      "g": 183,
-      "b": 194,
+      "r": 90,
+      "g": 175,
+      "b": 195,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 235,
-      "g": 255,
+      "r": 200,
+      "g": 245,
       "b": 255,
-      "a": 120
+      "a": 140
     },
     "strokeWidth": 2,
     "cornerRadius": 31,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.55,
+    "innerShadow": 0.4
   },
   {
     "__type__": "18189/sJZJFt5QN2ogNXLkA",
@@ -7388,8 +7553,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 350,
-      "y": -196,
+      "x": 310,
+      "y": -156,
       "z": 0
     },
     "_lrot": {
@@ -7515,23 +7680,41 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 236,
-      "g": 159,
-      "b": 89,
-      "a": 245
+      "r": 228,
+      "g": 140,
+      "b": 48,
+      "a": 250
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 236,
-      "b": 212,
-      "a": 100
+      "g": 220,
+      "b": 160,
+      "a": 120
     },
-    "strokeWidth": 2,
-    "cornerRadius": 22,
+    "strokeWidth": 3,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.55,
+    "innerShadow": 0.5,
+    "outerGlow": 0.6,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 180,
+      "b": 80,
+      "a": 90
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 180,
+      "g": 100,
+      "b": 20,
+      "a": 180
+    },
+    "doubleBorder": 0.6
   },
   {
     "__type__": "cc.Node",
@@ -7652,7 +7835,11 @@
     },
     "command": 0,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "4db6e8e8-ea1b-47f5-8bab-dd5d0be7676f@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -7681,8 +7868,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 224,
-      "y": -248,
+      "x": 184,
+      "y": -208,
       "z": 0
     },
     "_lrot": {
@@ -7808,23 +7995,41 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 131,
-      "g": 207,
-      "b": 145,
-      "a": 245
+      "r": 58,
+      "g": 118,
+      "b": 195,
+      "a": 250
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 226,
-      "g": 255,
-      "b": 225,
-      "a": 100
+      "r": 150,
+      "g": 200,
+      "b": 245,
+      "a": 120
     },
-    "strokeWidth": 2,
-    "cornerRadius": 20,
+    "strokeWidth": 3,
+    "cornerRadius": 16,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.55,
+    "innerShadow": 0.5,
+    "outerGlow": 0.6,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 100,
+      "g": 160,
+      "b": 240,
+      "a": 90
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 30,
+      "g": 75,
+      "b": 140,
+      "a": 180
+    },
+    "doubleBorder": 0.6
   },
   {
     "__type__": "cc.Node",
@@ -7945,7 +8150,11 @@
     },
     "command": 1,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "a8a57ba2-27c6-4012-9f50-3cede9263f62@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -7974,8 +8183,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 390,
-      "y": -286,
+      "x": 350,
+      "y": -246,
       "z": 0
     },
     "_lrot": {
@@ -8101,23 +8310,32 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 111,
-      "g": 69,
-      "b": 74,
-      "a": 225
+      "r": 128,
+      "g": 56,
+      "b": 62,
+      "a": 235
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 219,
-      "b": 208,
+      "r": 220,
+      "g": 170,
+      "b": 165,
       "a": 100
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.4,
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 90,
+      "g": 30,
+      "b": 35,
+      "a": 160
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8238,7 +8456,11 @@
     },
     "command": 2,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "d26065c6-5652-4b0e-9e30-36410face126@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8267,8 +8489,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 182,
-      "y": -154,
+      "x": 142,
+      "y": -114,
       "z": 0
     },
     "_lrot": {
@@ -8394,23 +8616,40 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 176,
-      "b": 96,
+      "r": 198,
+      "g": 158,
+      "b": 68,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 236,
-      "b": 186,
-      "a": 100
+      "g": 230,
+      "b": 160,
+      "a": 110
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 230,
+      "g": 190,
+      "b": 90,
+      "a": 60
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 160,
+      "g": 120,
+      "b": 40,
+      "a": 150
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8531,7 +8770,11 @@
     },
     "command": 3,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "394a9d96-da78-465c-9ead-08b85a0ed0b2@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8560,8 +8803,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 282,
-      "y": -154,
+      "x": 242,
+      "y": -114,
       "z": 0
     },
     "_lrot": {
@@ -8687,23 +8930,40 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 67,
-      "g": 146,
-      "b": 88,
+      "r": 68,
+      "g": 148,
+      "b": 78,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 213,
-      "g": 255,
-      "b": 209,
-      "a": 100
+      "r": 170,
+      "g": 240,
+      "b": 180,
+      "a": 110
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 100,
+      "g": 200,
+      "b": 120,
+      "a": 60
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 40,
+      "g": 100,
+      "b": 50,
+      "a": 150
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8824,7 +9084,11 @@
     },
     "command": 4,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "394a9d96-da78-465c-9ead-08b85a0ed0b2@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "cc.Node",
@@ -8853,8 +9117,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 388,
-      "y": -154,
+      "x": 348,
+      "y": -114,
       "z": 0
     },
     "_lrot": {
@@ -8980,23 +9244,40 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 156,
-      "g": 68,
-      "b": 66,
+      "r": 168,
+      "g": 58,
+      "b": 56,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 209,
-      "b": 200,
-      "a": 100
+      "r": 240,
+      "g": 170,
+      "b": 160,
+      "a": 110
     },
     "strokeWidth": 2,
-    "cornerRadius": 14,
+    "cornerRadius": 12,
     "drawFill": true,
     "drawStroke": true,
-    "_id": ""
+    "_id": "",
+    "gradientStrength": 0.5,
+    "innerShadow": 0.35,
+    "outerGlow": 0.3,
+    "outerGlowColor": {
+      "__type__": "cc.Color",
+      "r": 200,
+      "g": 90,
+      "b": 80,
+      "a": 60
+    },
+    "bottomAccent": {
+      "__type__": "cc.Color",
+      "r": 120,
+      "g": 30,
+      "b": 30,
+      "a": 150
+    }
   },
   {
     "__type__": "cc.Node",
@@ -9117,7 +9398,11 @@
     },
     "command": 5,
     "pressedScale": 0.92,
-    "_id": ""
+    "_id": "",
+    "buttonTexture": {
+      "__uuid__": "394a9d96-da78-465c-9ead-08b85a0ed0b2@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    }
   },
   {
     "__type__": "ed4ecXkZ4VIfLAWHmOJvJgd",

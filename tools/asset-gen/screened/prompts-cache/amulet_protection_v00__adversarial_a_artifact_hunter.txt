@@ -1,0 +1,8 @@
+ADVERSARIAL AGENT A — AI Artifact Hunter. DESTROY candidates by hunting AI generation tells. Be ruthless.
+10 AI tells: sub-pixel features; AA edges; noise pixels in solid areas; inconsistent outlines (1px/2px/missing); gradient shading instead of 2-3 hard tones; pattern artifacts; melting details; asymmetry; color bleed; semantic failures. Any clear artifact = fail.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\zoom8x.png (4x AND 8x extreme zoom for sub-pixel inspection)
+Inspect for all 10. Include "confidence" 0.0-1.0.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

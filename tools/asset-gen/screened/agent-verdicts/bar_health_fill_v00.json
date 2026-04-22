@@ -1,0 +1,165 @@
+{
+  "file": "bar/bar_health_fill_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\bar\\bar_health_fill_v00.png",
+  "category": "bar",
+  "candidateName": "bar_health_fill_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "saturation_low",
+          "charm_lacking"
+        ],
+        "reasoning": "Emotional (60%): The warm pink fill with a centered highlight stripe reads as a friendly, non-threatening health bar appropriate for a Zelda HUD. The tone is correct — not grim, not scary — and the rounded silhouette of the bar cap (visible in zoomed panels) contributes to a soft, toy-diorama quality. However, the pink is noticeably muted/desaturated compared to the vivid, punchy palette expected from 'bright/warm/charming Hyrule mood'. A true Zelda health fill should pop with saturated warmth (deeper coral or bright candy-red-pink range). The highlight stripe is a positive detail but the overall read lacks the buoyancy and charm of the reference aesthetic. Emotional score ~5.5/10. Technical (40%): Hard 1px outline is visible and clean; no anti-aliasing detected. Shading uses 2-3 tones (light highlight strip, mid pink body, implied dark edge from outline). Pixel grid appears snapped with no sub-pixel blurring visible in the zoomed panels. Execution is competent and meets technical requirements adequately. Technical score ~7/10. Combined weighted score: 0.6*5.5 + 0.4*7 = 3.3+2.8 = 6.1, rounded to 6. Verdict: marginal — passes technical bar but needs saturation/vibrancy boost to meet emotional fidelity.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "no_charm_or_personality",
+          "silhouette_too_thin_and_weak",
+          "mushy_at_1x",
+          "no_rounded_toy_softness",
+          "inner_detail_illegible_at_1x",
+          "flat_pink_rectangle_zero_character"
+        ],
+        "reasoning": "At 1x the bar is a thin pinkish smear with near-zero readability — just a faint horizontal line against grey. At 4x the shape is a flat, plain rectangle with a thin white inner highlight stripe and a pixel-border outline. It reads as a functional UI bar but carries absolutely no charm: no rounded pill softness, no bubbly toy weight, no visual personality — it is a bare pink rectangle. The silhouette is a pure rectangle, which is the least interesting possible shape; it passes basic contrast on dark bg but washes out almost entirely on the light bg (4x LIGHT panel shows very low contrast between the pale pink fill and the off-white background). The inner dashed/dotted highlight adds faint texture but at 1x is invisible and at 4x only adds noise rather than charm. Fails the sticker test (no one would want this as a sticker — no identity, no cuteness, no softness). Charming-but-mushy and clear-but-charmless both fail; this is clear-but-charmless AND mushy at 1x.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "pink_underrepresented_in_reference_palette",
+          "white_highlight_too_neutral_should_be_warm_tinted",
+          "asset_reads_best_only_on_parchment_bg_context"
+        ],
+        "reasoning": "The fill is a candy-pink/salmon — warm, saturated, bright, squarely in the 'candy pinks' target zone. A white center-stripe highlight gives luminance and pop. Border/edge uses a deeper rose (not pure black), which is directionally correct for colored shadows. However: (1) the extracted reference palette is heavily green/teal/orange/amber with no strong pink anchor, so compatibility is inferred from the aesthetic spec rather than palette match; (2) the highlight stripe reads as near-pure white — a parchment or peach tint would integrate better with the warm palette; (3) across the four context panels the asset harmonizes well only on the rightmost parchment background, looking slightly cold against the dark-grey and black panels. Overall bright and warm in character, meets candy-pink intent, but palette anchoring and highlight warmth keep it at marginal rather than a confident pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "smooth_gradient_vs_pixelart_mismatch",
+          "no_visible_border_outline",
+          "floating_midscreen_placement_ambiguous_as_ui_vs_world"
+        ],
+        "reasoning": "The pink/salmon health bar fill is clearly locatable against the dark teal and dark-red dungeon tile backgrounds — the bright warm hue pops immediately within 0.5s. Silhouette is unambiguous: a wide horizontal rectangle with a white highlight stripe. No confusion with other scene entities (slime is purple, tiles are teal/grey/crimson, buttons are blue/orange). Dark-area visibility is acceptable; the bar sits over a mid-tone tile transition and retains contrast. Main concerns: (1) the smooth gradient fill style reads as slightly 'pasted on' against the pixel-art dungeon tileset, creating a minor native-vs-pasted tension; (2) no visible border/outline means the bar could lose definition if ever placed over a lighter background; (3) mid-screen floating placement makes it momentarily ambiguous whether it is a world object or HUD element. Echoes cleanliness is otherwise fine — uncluttered, bright, single warm hue. Scores at top of marginal range; a subtle dark outline or pixel-art texture treatment would push it to pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon_contrast"
+        ],
+        "reasoning": "The bar_health_fill_v00 sprite itself is a bright warm pink with a glossy highlight/shine strip — color and finish are solidly in-tone for cute fairy-tale (pinks, soft glow, candy-bar feel). No grimdark, no edgy palette, no cold corporate styling. The sprite passes the in-tone checklist on its own. Minor drag: the surrounding scene is a dark teal dungeon environment with red-spotted tiles, which creates some aesthetic tension; the health bar fill reads slightly 'glued on' rather than organically sunny-magical within that context. The sprite itself is not the source of out-of-tone mood, but it does not fully elevate the scene either. Score reflects the sprite is correct but the composite impression is only marginally fairy-tale-bright.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "bar_width_slightly_oversized_relative_to_player",
+          "bar_is_world_space_not_hud_space_which_is_unusual_for_health_bars"
+        ],
+        "reasoning": "The bar_health_fill_v00 asset appears as a horizontal pink/white gradient bar composited in world space near the player character (visible in the brown tile area). The bar is approximately 220px wide and ~18px tall at this scene resolution. The player sprite appears to be roughly 50-60px wide, so the bar is about 3-4x the player width — notably wide for a health fill bar. For a HUD bar this would be fine, but placed in world space it reads oversized relative to the 32x32 player spec. The bar has a clean, flat pixel-art style consistent with the game's toy diorama aesthetic and does not overwhelm the scene visually. Perspective is top-down consistent. The pink fill with white highlight is visually readable. The main concern is that a health bar this wide in world space could feel disproportionate, though as a UI overlay element the scale is more forgivable. No severe perspective or style mismatch.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "aa_edges",
+          "noise_in_solid_areas",
+          "inconsistent_outline",
+          "gradient_shading",
+          "pattern_artifacts"
+        ],
+        "reasoning": "8x zoom reveals multiple AI tells. (1) AA/soft edges: the border pixels feather into semi-transparent states rather than crisp 1px hard stops expected in pixel-art assets. (2) Noise in solid areas: the salmon-pink fill is not flat; scattered darker and lighter pixels appear throughout what should be a uniform tone. (3) Inconsistent outline: the bounding rectangle outline varies between ~1px and ~2px width at different corners, suggesting hallucinated rather than intentional stroke. (4) Gradient shading: a faint horizontal highlight band runs through the center-upper portion of the bar—three distinct tones where a hand-authored 2-tone asset would use hard dithering. (5) Pattern artifacts: diagonal stripe-like compression smearing is visible at 8x in the fill region, typical of diffusion model texture hallucination. No semantic failure (shape reads correctly as a health bar fill), but the geometric and tonal defects are too numerous and clear to pass.",
+        "confidence": 0.76
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_no_overlap",
+          "detail_density_gap",
+          "rendering_style_mismatch",
+          "charm_level_mismatch",
+          "outline_color_mismatch"
+        ],
+        "reasoning": "Peer sheet is a dark dungeon tileset: cool-neutral palette dominated by slate gray, teal, charcoal, muted earth tones, and deep red accents. Candidate bar_health_fill_v00 is bubblegum pink — warm hue with zero palette overlap against peers. (1) Outline weight: peers show medium-weight dark pixel outlines; candidate has a thin-to-absent outline — minor gap. (2) Outline color: peers use near-black outlines; candidate outline is dark-pink/magenta — inconsistent. (3) Shadow direction: peers suggest varied top-left lighting baked into tiles; candidate has a single top-highlight stripe — neutral, not a direct conflict. (4) Shadow count: peers stack 2-3 shadow passes for depth; candidate is single-layer highlight-only — undershoots peer complexity. (5) Highlight intensity: candidate highlight stripe is prominent and clean, peers have subtler, noisier highlights — overpolished relative to peers. (6) Color temperature: CRITICAL FAIL — peers are firmly cool/neutral; candidate is warm pink, the single largest departure. (7) Detail density: peers are texture-heavy pixel art; candidate is nearly flat solid fill — dramatic density gap. (8) Proportion: UI bar vs tile/object is a category difference, not penalized. (9) Rendering style: peers use multi-layer textured pixel-art shading; candidate uses simple flat+stripe UI rendering — inconsistent style language even for a UI element. (10) Palette overlap: near-zero; no pink anywhere in peer sheet. (11) Charm level: peers are gritty dark-dungeon, not cute; candidate reads as soft/kawaii due to pink warmth — wrong emotional register for this asset family. Aggregate: 6 of 11 dims fail or near-fail; color and palette are the decisive breaks.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "whimsy_deficit",
+          "flat_texture_lacks_fairy_tale_sparkle"
+        ],
+        "reasoning": "Candidate health bar (right, 4x) uses a soft warm rose-pink on parchment — clearly not grimdark, cold, or edgy. Passes the basic warmth and friendliness bar. However, the bar is extremely plain: a flat gradient rectangle with no decorative embellishment, no magical shimmer, no rounded 'toy' quality, no hand-crafted charm. The target aesthetic (Hyrule-bright, fairy-tale whimsy, toy-diorama warmth) expects tactile detail or at least a hint of sparkle. The peer reference tiles on the left are desaturated dungeon-crawler grey — the candidate is clearly warmer and friendlier by contrast, but that contrast alone does not lift it to 'wholesome Nintendo-family-friendly' with conviction. Net: warm enough to avoid fail, but too bare-bones to confidently pass as distinctively fairy-tale.",
+        "confidence": 0.75
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 1,
+      "fails": 2,
+      "avgScore": 4.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.33,
+    "aestheticAvg": 5.67,
+    "uiContextAvg": 7,
+    "adversarialMin": 3,
+    "warningCount": 6,
+    "failCount": 3,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.101Z"
+}

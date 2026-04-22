@@ -1,0 +1,8 @@
+UI AGENT B — Mood Coherence for Echoes-style game. TARGET: cute fairy-tale adventure; warm greens/blues/yellows/pinks/parchment; bright sunny magical; toy diorama. IN-TONE: cute round, bright saturated, whimsical sparkle. OUT-OF-TONE (FLAG): grimdark/horror, edgy/aggressive, realistic, cold-corporate, goth/metal, dungeon-crawler, anime fan-service, generic mobile cartoon.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\composite-scene.png (scene WITH "amulet_protection_v00")
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\original-scene.png (scene WITHOUT, tone reference)
+Evaluate whether new sprite preserves cute/sunny/fairy-tale tone or shifts mood problematically.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

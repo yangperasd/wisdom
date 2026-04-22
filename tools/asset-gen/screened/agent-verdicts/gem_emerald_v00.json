@@ -1,0 +1,157 @@
+{
+  "file": "treasure/gem_emerald_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_emerald_v00.png",
+  "category": "treasure",
+  "candidateName": "gem_emerald_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "palette_muted_for_hyrule_brightness",
+          "emotional_warmth_weak",
+          "beige_shadow_base_undermines_toy_diorama_feel"
+        ],
+        "reasoning": "Emotional (60%): The emerald reads as a gem with correct hue (green) and a rounded, oval shield silhouette that is friendly in shape. However, the color palette skews dark and cool — the greens are mid-to-dark rather than the saturated, bright, warm tones expected from Hyrule treasure. The beige/sand drop-shadow base grounds it physically but does not reinforce the toy-diorama charm; it reads more like a grounded RPG item than a bright, cheerful Zelda collectible. Missing the pink/yellow warmth or the high-saturation pop that makes Hyrule items feel joyful. Emotional score ~6. Technical (40%): 1px hard outlines are present and clean. Facet cuts are pixel-grid-snapped with deliberate hand-placed pixels. Shading uses 3 tones (dark outline, mid green body, lighter highlight) — correct hard shading, no anti-aliasing detected. Pixel discipline is solid and comparable to Denzi reference quality for tight sprites. Technical score ~7. Weighted total: 0.6*6 + 0.4*7 = 6.4 → 6. Verdict: marginal. Needs brighter, more saturated greens and warmer highlight tones to pass emotional axis."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "base_blends_on_light_bg",
+          "charm_present_but_not_distinctive"
+        ],
+        "reasoning": "Silhouette reads clearly as a rounded gem/crystal at 1x — the oval capsule shape is immediately legible. On dark backgrounds, the rich green body contrasts well with strong visibility. On the light/cream background the green body still reads, but the tan-beige base/shadow merges with the background, softening the bottom edge. Pixel edges at 4x are clean with readable highlight pixels giving a subtle sparkle. Charm is present — the soft rounded shape and jewel-green palette are friendly and toy-like — but personality is muted; it is a pleasant gem without a standout feature that would make it memorable or sticker-worthy. Scores above the fail threshold on silhouette clarity and dark-bg contrast, held back from pass by the light-bg base contrast weakness and modest charm ceiling.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The emerald gem uses a well-harmonized range of saturated greens: deep forest green for body darks, rich mid emerald for main faces, and bright lime/mint for highlights. These greens align directly with the teal-green band in the Echoes palette swatch. The cast shadow/base beneath the gem is a warm sandy parchment tone — a colored warm dark, not grey or pure black. No cold corporate blues, muddy desaturated mid-tones, or goth near-blacks appear in the asset itself (the dark panel backgrounds in the zoom sheet are presentation context only, not part of the asset). The rightmost panel on cream background confirms the gem reads as BRIGHT and WARM — lively, jewel-like, palette-compatible. Minor note: the deepest shadow pixels inside the gem body approach very dark green, which is acceptable for a gem interior and still reads as a colored dark rather than neutral black. Overall harmony is high; mood is cheerful and saturated; palette compatibility with Echoes is strong.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "small_render_size",
+          "pixelated_silhouette",
+          "slight_color_bleed_on_dark_bg"
+        ],
+        "reasoning": "The gem_emerald_v00 is visible against the dark background and the green/teal hues contrast reasonably with the navy-grey scene tiles. The red arrow marks it clearly in the composite. However the asset renders at roughly 48x48px, making the silhouette appear pixelated and detail-poor; at a glance it could be confused with a small character sprite or environmental decoration rather than a collectible gem. The green tones are distinct from the gold UI elements and blue joystick, so hue confusion is low. Dark-area visibility is adequate — the bright green facets catch attention on the near-black background. The pasted composite looks slightly aliased at the edges compared to the native UI elements, suggesting the asset resolution or blending mode is mismatched. Overall it clears the minimum readability bar but falls short of the clean, polished Echoes aesthetic that warrants a pass.",
+        "confidence": 0.8
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "pixel_art_style_has_mild_dungeon_rpg_associations",
+          "dark_scene_context_limits_fairy_tale_warmth_readability"
+        ],
+        "reasoning": "The gem_emerald_v00 sprite is a small pixel-art emerald gem with vivid green coloring and faceted highlights. The sprite itself aligns reasonably with the target fairy-tale palette (bright greens, magical gemstone archetype) and introduces no grimdark, horror, or aggressive elements. However, the pixel-art rendering style leans toward classic retro RPG/dungeon-crawler aesthetics rather than the target 'cute toy diorama / warm sunny fairy-tale' register. The surrounding scene is heavily dark (near-black backgrounds, gold baroque dungeon UI), which amplifies the dungeon-crawler association of the gem rather than letting its magical-whimsy quality read clearly. The sprite does not degrade tone but does not confidently reinforce the cute/sunny/fairy-tale mood either — it reads as neutral-to-slightly-dungeon in context. No out-of-tone flags triggered (no horror, no edgy aggression, no fan-service, no cold corporate). Marginal: acceptable if scene tone is addressed holistically, but the sprite style could be warmer/rounder to better match target.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "gem appears slightly large relative to expected treasure item size (appears ~40-45px, close to player 32x32 but slightly over)",
+          "pixel art style of gem is inconsistent with the UI context it is composited into — appears isolated without grounding in a scene environment",
+          "no clear player reference sprite visible in same frame for direct proportion comparison"
+        ],
+        "reasoning": "The gem_emerald_v00 sprite is a pixel-art style green gem roughly 40-45px in the composite scene. For a 'treasure' category item, the rule is 50-75% of player (32x32), meaning target range is ~16-24px. The gem reads closer to player size or slightly above, pushing it toward the upper boundary or slightly over. The sprite itself has good pixel art quality and readable silhouette. However, without a direct player character in the same frame, exact ratio is estimated. The asset does not overwhelm the scene — it sits as a focal point naturally. Perspective is top-down consistent with the game style. The 'toy diorama' feel is acceptable but the gem size skews slightly large for a pickup item. No effects overwhelm. Score 7: marginal — size is borderline, style is coherent, but sizing should be reduced ~15-20% to firmly land in treasure item range.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry_internal_facet_pattern",
+          "excess_color_variation_green_palette",
+          "minor_color_bleed_at_outline_boundary"
+        ],
+        "reasoning": "Inspected at 4x and 8x zoom. The pixel art gem is generally clean with hard pixel edges appropriate for the style. No sub-pixel features or AA bleed on the outer silhouette. The beige/cream outline is consistent 1px width throughout. However: (1) The internal facet highlight pattern shows left-right asymmetry — the dark oval center motif and surrounding bright facet pixels are not mirror-symmetric as a hand-crafted gem would be. (2) The green palette uses more distinct values than a strict manual pixel artist would choose — subtle gradient-like progression in the facet tones rather than a tight 3-tone hard palette. (3) At the boundary between the green facets and the beige base, 1-2 pixels show color bleed suggesting imprecise edge generation. Background is clean and solid, no noise pixels detected. Overall shape reads correctly as an emerald gem. Issues are minor enough to be borderline pass but the asymmetry and palette looseness are characteristic AI tells.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "highlight_intensity_too_high",
+          "detail_density_below_peers",
+          "rendering_style_flatter_than_peers",
+          "charm_level_mismatch_gem_cute_vs_peers_serious",
+          "palette_saturation_outlier"
+        ],
+        "reasoning": "Peer sheet: ~12 Denzi-style helmet/armor sprites in muted silver-gray palette, rich multi-tone metallic shading, moderate-high detail density, consistent 1px dark outlines, subtle highlights, cool-temperature palette with selective warm accents (red plume, gold trim), serious warrior charm register. Candidate (gem_emerald_v00): (1) Outline weight — 1px dark outline present, consistent. (2) Outline color — near-black, consistent. (3) Shadow direction — top-left light implied, broadly consistent with peers. (4) Shadow count — single shading pass, consistent. (5) Highlight intensity — FAIL: bright white sparkle highlight is markedly more intense than the restrained metallic sheen on peers; feels overlit relative to the group. (6) Color temperature — green/teal vs cool-gray-metallic; expected for a gem item type, not penalized heavily, but saturation level is an outlier even accounting for type difference. (7) Detail density — FAIL: gem sprite is visibly simpler and flatter; fewer distinct shading tones; peers show rich sub-pixel metallic gradients the gem lacks. (8) Proportion — acceptable for a small collectible vs wearable equipment; not penalized. (9) Rendering style — MARGINAL: chunky block-pixel construction vs the smoother multi-tone pixel painting on peer helmets; feels one generation simpler. (10) Palette overlap — minimal overlap (greens vs grays), but item-type difference acknowledged per rubric. (11) Charm level — FAIL: gem reads as cute/sparkly treasure aesthetic, peers read as serious combat-gear aesthetic; register mismatch would be conspicuous in an item grid. Overall: passes on outline and basic construction, fails on highlight intensity, detail density, and charm-register consistency. Marginal, not outright fail, because the core pixel-art language is shared.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "peer_references_tonally_dark",
+          "gem_lacks_fairy_tale_warmth",
+          "generic_pixel_gem_insufficient_whimsy"
+        ],
+        "reasoning": "Candidate emerald gem (right) is a small bright-green pixel-art crystal with light glints — no grimdark, no edge, no corporate coldness. Green brightness and sparkle are directionally correct for Hyrule-style magic loot. However: (1) The peer reference sheet (left) is dominated by dark-grey metallic combat helmets — Viking horns, full-face visors, black plate — which read strongly as 'desaturated dungeon-crawler / Western RPG' rather than warm fairy-tale or Nintendo-family-friendly. If these are the in-game asset peers, the surrounding aesthetic drifts toward OUT-OF-TONE. (2) The gem itself is technically inoffensive but tonally generic — a flat emerald-green crystal without the rounded, toylike, or glowing-warmth quality that would anchor it firmly in the target register. Missing: soft bloom, candy-colour saturation shift, or a playful silhouette that signals 'treasure in a whimsical world' rather than 'loot drop in a combat RPG'. Verdict: marginal — gem passes by itself but the peer context raises a flag.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.4,
+    "aestheticAvg": 7,
+    "uiContextAvg": 7,
+    "adversarialMin": 5,
+    "warningCount": 8,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.117Z"
+}

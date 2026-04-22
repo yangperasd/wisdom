@@ -153,9 +153,9 @@
     "_far": 2000,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 247,
+      "g": 242,
+      "b": 221,
       "a": 255
     },
     "_depth": 1,
@@ -446,7 +446,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "870ce9353d1f40eb9d35c5"
+    "_id": "a1172df041cb453b96e555"
   },
   {
     "__type__": "cc.Node",
@@ -571,7 +571,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "0dbc0cdced644451ac766e"
+    "_id": "a9cee80d085741ca906d45"
   },
   {
     "__type__": "cc.Node",
@@ -657,7 +657,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1c6cad24b5e8479c96fd7f"
+    "_id": "f15c2925f17248cd8e2002"
   },
   {
     "__type__": "cc.Node",
@@ -731,7 +731,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "88d13534dae34566a558c3"
+    "_id": "3c20a6ef8da54fa4a34c20"
   },
   {
     "__type__": "cc.UITransform",
@@ -925,7 +925,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5c598c89f9fc4f6ebc381a"
+    "_id": "325d42db053d4dc4bcfe4d"
   },
   {
     "__type__": "cc.UITransform",
@@ -993,7 +993,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2762d4db9cec42958f2f93"
+    "_id": "962aa086829747a38451d2"
   },
   {
     "__type__": "cc.UITransform",
@@ -1090,7 +1090,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "a8f4133ef32844c3bb2312"
+    "_id": "bdd6058d88f549b3a773fc"
   },
   {
     "__type__": "cc.UITransform",
@@ -1134,7 +1134,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PLAYER",
+    "_string": "小勇者",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -1271,7 +1271,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1f47c47b44bf4db8bd5501"
+    "_id": "68e061907716483083cb19"
   },
   {
     "__type__": "cc.UITransform",
@@ -1391,7 +1391,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "12390a14f3e648559ebfa3"
+    "_id": "99f994410f9b4aca992834"
   },
   {
     "__type__": "05c94DBx9BF/rI3SBLi8DRz",
@@ -1571,7 +1571,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "09edd32ae06549678b514a"
+    "_id": "258e64df338d4712bd6512"
   },
   {
     "__type__": "cc.UITransform",
@@ -1606,20 +1606,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 15,
-      "g": 24,
-      "b": 32,
-      "a": 225
+      "r": 255,
+      "g": 244,
+      "b": 210,
+      "a": 232
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 114,
-      "g": 164,
-      "b": 179,
-      "a": 70
+      "r": 255,
+      "g": 219,
+      "b": 142,
+      "a": 96
     },
     "strokeWidth": 2,
-    "cornerRadius": 20,
+    "cornerRadius": 22,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1668,7 +1668,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "63672da392c84531bc6de2"
+    "_id": "3df6aa51fbe1451bb4978e"
   },
   {
     "__type__": "cc.UITransform",
@@ -1703,20 +1703,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 25,
-      "g": 43,
-      "b": 38,
-      "a": 212
+      "r": 255,
+      "g": 251,
+      "b": 229,
+      "a": 226
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 115,
-      "g": 172,
-      "b": 146,
-      "a": 58
+      "r": 255,
+      "g": 230,
+      "b": 158,
+      "a": 88
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 18,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1765,7 +1765,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "66d2c272dd144d47b82835"
+    "_id": "1b7e6a581fe5459a82e678"
   },
   {
     "__type__": "cc.UITransform",
@@ -1800,20 +1800,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 19,
-      "g": 26,
-      "b": 34,
-      "a": 188
+      "r": 231,
+      "g": 248,
+      "b": 218,
+      "a": 210
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 113,
-      "g": 144,
-      "b": 169,
-      "a": 42
+      "r": 190,
+      "g": 229,
+      "b": 166,
+      "a": 82
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 18,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1862,7 +1862,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5a724a69b73a49e1857ca5"
+    "_id": "a01831fe339c4563b31e57"
   },
   {
     "__type__": "cc.UITransform",
@@ -1899,14 +1899,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 246,
-      "b": 240,
+      "r": 75,
+      "g": 52,
+      "b": 27,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Trial Hub",
+    "_string": "试炼大厅",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
     "_actualFontSize": 24,
@@ -1967,7 +1967,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f7210356351346c089b725"
+    "_id": "561448ee499849fea57acd"
   },
   {
     "__type__": "cc.UITransform",
@@ -2004,14 +2004,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 226,
-      "g": 244,
-      "b": 224,
+      "r": 72,
+      "g": 80,
+      "b": 44,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Clear the three chambers to unlock the boss gate.",
+    "_string": "完成三个小房间，打开首领门",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -2072,7 +2072,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "de01872dd1e94fa99752cd"
+    "_id": "6923f9eca6c64d06a9bded"
   },
   {
     "__type__": "cc.UITransform",
@@ -2109,9 +2109,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 232,
-      "b": 221,
+      "r": 132,
+      "g": 61,
+      "b": 52,
       "a": 255
     },
     "_sharedMaterial": null,
@@ -2177,7 +2177,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b86304ea14764bea987f46"
+    "_id": "7e3235a31fba423db3cebf"
   },
   {
     "__type__": "cc.UITransform",
@@ -2214,14 +2214,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 228,
-      "g": 242,
-      "b": 255,
+      "r": 48,
+      "g": 96,
+      "b": 106,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "当前回响 箱子",
+    "_string": "回响 箱子",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -2282,7 +2282,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "6b809278a9fb4049b07798"
+    "_id": "a13bdb023d484225af5c79"
   },
   {
     "__type__": "cc.UITransform",
@@ -2319,14 +2319,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 220,
-      "g": 223,
-      "b": 226,
+      "r": 93,
+      "g": 79,
+      "b": 58,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "检查点 未激活",
+    "_string": "营火 未激活",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -2387,7 +2387,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "e59c9342285b446fb6ee03"
+    "_id": "2faa2b1ccacf4da2bd3956"
   },
   {
     "__type__": "cc.UITransform",
@@ -2424,9 +2424,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 220,
-      "b": 234,
+      "r": 61,
+      "g": 88,
+      "b": 64,
       "a": 255
     },
     "_sharedMaterial": null,
@@ -2499,7 +2499,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "cf51737464484fc397a5fc"
+    "_id": "a2a85faca7c64d11920230"
   },
   {
     "__type__": "cc.UITransform",
@@ -2567,7 +2567,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "6a96b83aea1d44859c2d1a"
+    "_id": "b8e200e75673465d989f51"
   },
   {
     "__type__": "cc.UITransform",
@@ -2602,17 +2602,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 18,
-      "g": 28,
-      "b": 34,
-      "a": 176
+      "r": 234,
+      "g": 248,
+      "b": 222,
+      "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 178,
-      "g": 214,
-      "b": 220,
-      "a": 96
+      "r": 185,
+      "g": 226,
+      "b": 170,
+      "a": 116
     },
     "strokeWidth": 3,
     "cornerRadius": 74,
@@ -2664,7 +2664,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2e2b20e1610a410a984da8"
+    "_id": "6f07f715e43844959ada09"
   },
   {
     "__type__": "cc.UITransform",
@@ -2699,17 +2699,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 111,
-      "g": 183,
-      "b": 194,
+      "r": 95,
+      "g": 184,
+      "b": 158,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 235,
       "g": 255,
-      "b": 255,
-      "a": 120
+      "b": 235,
+      "a": 136
     },
     "strokeWidth": 2,
     "cornerRadius": 31,
@@ -2787,7 +2787,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "014007f8b6294f23a0d1a8"
+    "_id": "419b6311c2014c09b6aa3d"
   },
   {
     "__type__": "cc.UITransform",
@@ -2855,7 +2855,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2e1dff2adef2452088e953"
+    "_id": "748c631a5cba4ec3ad375b"
   },
   {
     "__type__": "cc.UITransform",
@@ -2952,7 +2952,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "18145eb22d174b8e9d19c8"
+    "_id": "1396bdd378e445deb42c1a"
   },
   {
     "__type__": "cc.UITransform",
@@ -2996,7 +2996,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ATTACK",
+    "_string": "攻击",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3080,7 +3080,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8b04c214cc5a4a49b3d157"
+    "_id": "97af41a5fe6d47c5a84fcc"
   },
   {
     "__type__": "cc.UITransform",
@@ -3148,7 +3148,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "e296232f2bbe4f4284ae0f"
+    "_id": "3228bc5651fd4189bc3b48"
   },
   {
     "__type__": "cc.UITransform",
@@ -3245,7 +3245,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2b695f9183814e00ae5b26"
+    "_id": "4c6dfa36cb5b495eb04839"
   },
   {
     "__type__": "cc.UITransform",
@@ -3289,7 +3289,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "SUMMON",
+    "_string": "召唤",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3373,7 +3373,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "917d29c6cf85419385b5f6"
+    "_id": "2df98ac6ce634390914dc5"
   },
   {
     "__type__": "cc.UITransform",
@@ -3441,7 +3441,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "49bdb1f608b7412085c87a"
+    "_id": "0c1ce24508a446cc9f623d"
   },
   {
     "__type__": "cc.UITransform",
@@ -3538,7 +3538,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "48ba6df9bb2c42e4a73747"
+    "_id": "17b78a1cf49548a7931866"
   },
   {
     "__type__": "cc.UITransform",
@@ -3582,7 +3582,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RESET",
+    "_string": "复活",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -3666,7 +3666,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "827cf79edfdd47418312c6"
+    "_id": "5c11294c25d542cfbada49"
   },
   {
     "__type__": "cc.UITransform",
@@ -3734,7 +3734,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9e155d44074245538a0bfe"
+    "_id": "80ce2cee5e9e4c9d9ff3aa"
   },
   {
     "__type__": "cc.UITransform",
@@ -3831,7 +3831,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "86e348bfed1646cf8b52ea"
+    "_id": "3e833e88058d4031b2ff3a"
   },
   {
     "__type__": "cc.UITransform",
@@ -3875,7 +3875,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOX",
+    "_string": "箱子",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -3959,7 +3959,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3a42eb15368b4991b29089"
+    "_id": "0285bce5476d4644949448"
   },
   {
     "__type__": "cc.UITransform",
@@ -4027,7 +4027,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "02a47c12a9c34c6c97792f"
+    "_id": "f5e43c5e2da34c9093d15d"
   },
   {
     "__type__": "cc.UITransform",
@@ -4124,7 +4124,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b4f66ed23d4541e49dc99f"
+    "_id": "49e6a67eea3f402b8a199a"
   },
   {
     "__type__": "cc.UITransform",
@@ -4168,7 +4168,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "FLOWER",
+    "_string": "弹花",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4252,7 +4252,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "c0192745a0ae4b0eb377dd"
+    "_id": "5d17acd5044040b5b32197"
   },
   {
     "__type__": "cc.UITransform",
@@ -4320,7 +4320,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d3b911d1173a4c2192b8a2"
+    "_id": "389be63002e145d0bfb050"
   },
   {
     "__type__": "cc.UITransform",
@@ -4417,7 +4417,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "eefe5a2868ac4f348a3a4b"
+    "_id": "4f2f82b86c5942ca90d1ee"
   },
   {
     "__type__": "cc.UITransform",
@@ -4461,7 +4461,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOMB",
+    "_string": "炸虫",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4545,7 +4545,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b0cd9029f5e045c9be8126"
+    "_id": "3dabd0e344ec48ad99a8a7"
   },
   {
     "__type__": "cc.UITransform",
@@ -4613,7 +4613,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3165a44ca4a0429a946cf8"
+    "_id": "deb8393570e54159989e09"
   },
   {
     "__type__": "cc.UITransform",
@@ -4710,7 +4710,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "832e72c91c7549d9ae3d29"
+    "_id": "9bad2ecbc16c40b29603d2"
   },
   {
     "__type__": "cc.UITransform",
@@ -4754,7 +4754,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PAUSE",
+    "_string": "暂停",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4847,7 +4847,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bbad541f71704643a01249"
+    "_id": "36c82ea8a8c746d1970dfb"
   },
   {
     "__type__": "cc.UITransform",
@@ -4882,20 +4882,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 14,
-      "g": 21,
-      "b": 29,
-      "a": 236
+      "r": 255,
+      "g": 246,
+      "b": 222,
+      "a": 242
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 170,
-      "g": 199,
-      "b": 219,
-      "a": 84
+      "r": 255,
+      "g": 218,
+      "b": 148,
+      "a": 112
     },
     "strokeWidth": 2,
-    "cornerRadius": 24,
+    "cornerRadius": 26,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -4944,7 +4944,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2c0199e0d60c440bab91fa"
+    "_id": "db3a6808fdde4e6583fcae"
   },
   {
     "__type__": "cc.UITransform",
@@ -4981,14 +4981,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 246,
-      "b": 240,
+      "r": 75,
+      "g": 52,
+      "b": 27,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Paused",
+    "_string": "暂停",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 26,
@@ -5049,7 +5049,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "0386ae0bedee46609fb934"
+    "_id": "5c395953d9634366bcead2"
   },
   {
     "__type__": "cc.UITransform",
@@ -5086,14 +5086,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 212,
-      "g": 224,
-      "b": 234,
+      "r": 83,
+      "g": 78,
+      "b": 61,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Continue, restart from the checkpoint, or return to camp.",
+    "_string": "继续游玩、回到营火，或返回营地。",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5161,7 +5161,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "7fc8274fc800401faac749"
+    "_id": "99e676aecc2044279beaac"
   },
   {
     "__type__": "cc.UITransform",
@@ -5229,7 +5229,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "39b202e8e97d4ab59b9a10"
+    "_id": "26d2f869d98a47aa84d24a"
   },
   {
     "__type__": "cc.UITransform",
@@ -5326,7 +5326,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9155a3f954454a318dc1f6"
+    "_id": "b6f0de452a68413293fd0e"
   },
   {
     "__type__": "cc.UITransform",
@@ -5370,7 +5370,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "CONTINUE",
+    "_string": "继续",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5454,7 +5454,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2d696eb6956342a2a3839d"
+    "_id": "ddbe34cc068d434ca5da3c"
   },
   {
     "__type__": "cc.UITransform",
@@ -5522,7 +5522,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "42e3d10b455b481e94735f"
+    "_id": "e4a2d2039c33419d84f2c1"
   },
   {
     "__type__": "cc.UITransform",
@@ -5619,7 +5619,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2ae2f875480e45f2bf7dc7"
+    "_id": "46f286a6b50341b5a39c40"
   },
   {
     "__type__": "cc.UITransform",
@@ -5663,7 +5663,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RESTART",
+    "_string": "回营火",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5747,7 +5747,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "86a101b5134d496ca219db"
+    "_id": "2950fd4dca3643ea8a1226"
   },
   {
     "__type__": "cc.UITransform",
@@ -5815,7 +5815,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "7c4aa378ff064552a1d426"
+    "_id": "b0f5729438394154a09cb2"
   },
   {
     "__type__": "cc.UITransform",
@@ -5912,7 +5912,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ef73df0973f14da3a65b0d"
+    "_id": "68553231aaf040e5b5bc09"
   },
   {
     "__type__": "cc.UITransform",
@@ -5956,7 +5956,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RETURN CAMP",
+    "_string": "回营地",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -6182,8 +6182,8 @@
     "pauseButton": {
       "__id__": 136
     },
-    "sceneTitle": "Trial Hub",
-    "objectiveText": "Clear the three chambers to unlock the boss gate.",
+    "sceneTitle": "试炼大厅",
+    "objectiveText": "完成三个小房间，打开首领门",
     "desktopHintText": "WASD 移动  J 攻击  K 召唤  Q/E 切换",
     "mobileHintText": "左侧摇杆移动，右侧按钮攻击与召唤",
     "_id": ""
@@ -6272,7 +6272,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "984b8bcc97984fbcb2d75b"
+    "_id": "98c031eb5b2b4a088e77e8"
   },
   {
     "__type__": "cc.UITransform",
@@ -6307,20 +6307,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 24,
-      "g": 30,
-      "b": 40,
+      "r": 235,
+      "g": 232,
+      "b": 243,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 109,
-      "g": 132,
-      "b": 160,
-      "a": 48
+      "r": 246,
+      "g": 241,
+      "b": 228,
+      "a": 56
     },
     "strokeWidth": 2,
-    "cornerRadius": 26,
+    "cornerRadius": 28,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6369,7 +6369,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "46a477f8f4bb4677b905cf"
+    "_id": "7c1d0b65f87546e29fdc79"
   },
   {
     "__type__": "cc.UITransform",
@@ -6404,20 +6404,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 44,
-      "g": 60,
-      "b": 70,
+      "r": 225,
+      "g": 239,
+      "b": 216,
       "a": 214
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 154,
-      "g": 179,
-      "b": 196,
-      "a": 42
+      "r": 248,
+      "g": 244,
+      "b": 226,
+      "a": 46
     },
     "strokeWidth": 2,
-    "cornerRadius": 22,
+    "cornerRadius": 24,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6466,7 +6466,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4b7962a3e54e4a3abdc939"
+    "_id": "b41fdf8114174934b5b8d2"
   },
   {
     "__type__": "cc.UITransform",
@@ -6501,20 +6501,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 34,
-      "g": 48,
-      "b": 61,
+      "r": 239,
+      "g": 236,
+      "b": 246,
       "a": 182
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 147,
-      "g": 174,
-      "b": 194,
-      "a": 46
+      "r": 247,
+      "g": 242,
+      "b": 232,
+      "a": 50
     },
     "strokeWidth": 2,
-    "cornerRadius": 20,
+    "cornerRadius": 22,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6563,7 +6563,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d2b3bc4dba5d41aba01456"
+    "_id": "5be4981422374641827556"
   },
   {
     "__type__": "cc.UITransform",
@@ -6598,20 +6598,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 82,
-      "g": 56,
-      "b": 62,
+      "r": 247,
+      "g": 225,
+      "b": 198,
       "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 217,
-      "g": 177,
-      "b": 185,
-      "a": 52
+      "r": 251,
+      "g": 236,
+      "b": 216,
+      "a": 56
     },
     "strokeWidth": 2,
-    "cornerRadius": 24,
+    "cornerRadius": 26,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6673,7 +6673,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bc34e47b6b744072be326b"
+    "_id": "4bd6026841334adf8b0fd5"
   },
   {
     "__type__": "cc.UITransform",
@@ -6741,7 +6741,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "439894d447f743bea34a0c"
+    "_id": "1397ff686a354c2b98b718"
   },
   {
     "__type__": "cc.UITransform",
@@ -6838,7 +6838,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "750bf6387da046f6a562b3"
+    "_id": "4df377930e9f48e8bd36e5"
   },
   {
     "__type__": "cc.UITransform",
@@ -6882,7 +6882,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "HUB CHECK",
+    "_string": "大厅营火",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -6938,10 +6938,7 @@
     "__prefab": null,
     "markerId": "dungeon-hub-entry",
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "413b43cb-75e7-45c8-bbf4-58e3e4fdf8c8@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -6954,10 +6951,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "checkpoint",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+    "selectedPath": "",
     "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -7017,7 +7014,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "07df850a27714313be5dba"
+    "_id": "34b1399a3f724141ac0afa"
   },
   {
     "__type__": "cc.UITransform",
@@ -7085,7 +7082,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "df3e8f512e1c4f13a2e4f9"
+    "_id": "c53290128e5a42c2b4b621"
   },
   {
     "__type__": "cc.UITransform",
@@ -7120,17 +7117,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 76,
-      "g": 101,
-      "b": 136,
-      "a": 225
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 218,
-      "g": 239,
-      "b": 255,
-      "a": 102
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -7182,7 +7179,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "40f92713e8e04585ac6318"
+    "_id": "957374881be8423c9f87f4"
   },
   {
     "__type__": "cc.UITransform",
@@ -7226,7 +7223,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BACK TO RUINS",
+    "_string": "返回遗迹",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -7290,10 +7287,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -7306,10 +7300,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -7369,7 +7363,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "211e88ebc2f4460bb92023"
+    "_id": "90ce9add787b45548f0e27"
   },
   {
     "__type__": "cc.UITransform",
@@ -7437,7 +7431,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f757a42001c3406dbf8889"
+    "_id": "b43a1c17eb164690a69f4f"
   },
   {
     "__type__": "cc.UITransform",
@@ -7472,17 +7466,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 73,
-      "g": 102,
-      "b": 134,
-      "a": 225
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 236,
-      "b": 255,
-      "a": 100
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -7534,7 +7528,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1f3424669cfe4d27869761"
+    "_id": "75a2e1b187e9454aaffd83"
   },
   {
     "__type__": "cc.UITransform",
@@ -7578,7 +7572,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ROOM A",
+    "_string": "箱子间",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -7642,10 +7636,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -7658,10 +7649,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -7712,7 +7703,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d2d85e4164d9451590a7e7"
+    "_id": "f9c8738c72994c08a780cf"
   },
   {
     "__type__": "cc.UITransform",
@@ -7726,8 +7717,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7780,7 +7771,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f7b6da5dffa241ffa3ce7d"
+    "_id": "28334f0ff61c499d9dad84"
   },
   {
     "__type__": "cc.UITransform",
@@ -7794,8 +7785,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7815,20 +7806,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 126,
-      "g": 77,
-      "b": 71,
-      "a": 176
+      "r": 255,
+      "g": 232,
+      "b": 214,
+      "a": 184
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 213,
-      "b": 200,
-      "a": 64
+      "g": 246,
+      "b": 232,
+      "a": 96
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -7877,7 +7868,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b466cbfc79a54cdf9052dd"
+    "_id": "a1371e2d9ee249c6a6bb0e"
   },
   {
     "__type__": "cc.UITransform",
@@ -7891,8 +7882,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -7914,20 +7905,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 243,
-      "b": 238,
+      "r": 166,
+      "g": 104,
+      "b": 91,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PENDING",
+    "_string": "○",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -7986,7 +7977,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "562551b108f14e92b4190a"
+    "_id": "7601e189f4cc4b8a9db2c4"
   },
   {
     "__type__": "cc.UITransform",
@@ -8000,8 +7991,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8054,7 +8045,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "fe93eb58b1f344e3b4172b"
+    "_id": "8f506cca659d4b94a59d6b"
   },
   {
     "__type__": "cc.UITransform",
@@ -8068,8 +8059,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8089,20 +8080,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 67,
-      "g": 146,
-      "b": 88,
-      "a": 176
+      "r": 221,
+      "g": 250,
+      "b": 201,
+      "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 213,
+      "r": 247,
       "g": 255,
-      "b": 209,
-      "a": 64
+      "b": 229,
+      "a": 98
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -8151,7 +8142,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d4633ac36173478bbdde40"
+    "_id": "eaf9a47c947c4ac3a719dd"
   },
   {
     "__type__": "cc.UITransform",
@@ -8165,8 +8156,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8188,20 +8179,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 235,
-      "g": 255,
-      "b": 235,
+      "r": 58,
+      "g": 116,
+      "b": 72,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "DONE",
+    "_string": "✓",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -8253,7 +8244,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "cc8863feaca94449ab0ec5"
+    "_id": "96be0cdf5a0e40779f9b04"
   },
   {
     "__type__": "f8e54c5GLpPCY27vRljXHek",
@@ -8337,7 +8328,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "aa4d1e08b4e54d0f8c1d23"
+    "_id": "34c2e8f89e3c420d939bb3"
   },
   {
     "__type__": "cc.UITransform",
@@ -8405,7 +8396,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "047baf24dc134679b3e0dd"
+    "_id": "0110c032c4574bd1be30a8"
   },
   {
     "__type__": "cc.UITransform",
@@ -8440,17 +8431,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 73,
-      "g": 102,
-      "b": 134,
-      "a": 225
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 236,
-      "b": 255,
-      "a": 100
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -8502,7 +8493,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b1974356bd3c46b2ab0248"
+    "_id": "ee29499dfb5f4e41ad277f"
   },
   {
     "__type__": "cc.UITransform",
@@ -8546,7 +8537,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ROOM B",
+    "_string": "弹花间",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -8610,10 +8601,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -8626,10 +8614,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -8680,7 +8668,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1e984b2a0836444b82da3d"
+    "_id": "d1d91dc739d34d5c823c4f"
   },
   {
     "__type__": "cc.UITransform",
@@ -8694,8 +8682,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8748,7 +8736,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "738f82e4ae834522b87afe"
+    "_id": "46b89f8a79984506a525bc"
   },
   {
     "__type__": "cc.UITransform",
@@ -8762,8 +8750,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8783,20 +8771,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 126,
-      "g": 77,
-      "b": 71,
-      "a": 176
+      "r": 255,
+      "g": 232,
+      "b": 214,
+      "a": 184
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 213,
-      "b": 200,
-      "a": 64
+      "g": 246,
+      "b": 232,
+      "a": 96
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -8845,7 +8833,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ff1377ce5260409082af2a"
+    "_id": "0ce26d7149cb4dc5b8291a"
   },
   {
     "__type__": "cc.UITransform",
@@ -8859,8 +8847,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -8882,20 +8870,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 243,
-      "b": 238,
+      "r": 166,
+      "g": 104,
+      "b": 91,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PENDING",
+    "_string": "○",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -8954,7 +8942,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f48870c5b318490489e090"
+    "_id": "ecae8a9739ab4def883936"
   },
   {
     "__type__": "cc.UITransform",
@@ -8968,8 +8956,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9022,7 +9010,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5edeab33230648e3b4c2a3"
+    "_id": "61008e0e1228499faea7c0"
   },
   {
     "__type__": "cc.UITransform",
@@ -9036,8 +9024,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9057,20 +9045,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 67,
-      "g": 146,
-      "b": 88,
-      "a": 176
+      "r": 221,
+      "g": 250,
+      "b": 201,
+      "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 213,
+      "r": 247,
       "g": 255,
-      "b": 209,
-      "a": 64
+      "b": 229,
+      "a": 98
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -9119,7 +9107,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "83abcfcc730d464e8906a6"
+    "_id": "67377bb1adc6400f92c789"
   },
   {
     "__type__": "cc.UITransform",
@@ -9133,8 +9121,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9156,20 +9144,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 235,
-      "g": 255,
-      "b": 235,
+      "r": 58,
+      "g": 116,
+      "b": 72,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "DONE",
+    "_string": "✓",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -9221,7 +9209,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "85475f39f75c4a2bb3133b"
+    "_id": "5856377bbff64189aaa2ef"
   },
   {
     "__type__": "f8e54c5GLpPCY27vRljXHek",
@@ -9305,7 +9293,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b051f663155742b3a71108"
+    "_id": "4d3af1cb2b8c43aab1433b"
   },
   {
     "__type__": "cc.UITransform",
@@ -9373,7 +9361,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bbfa62260b374f6c882bd1"
+    "_id": "4ad9cafbafc14c9c961da7"
   },
   {
     "__type__": "cc.UITransform",
@@ -9408,17 +9396,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 73,
-      "g": 102,
-      "b": 134,
-      "a": 225
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 236,
-      "b": 255,
-      "a": 100
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -9470,7 +9458,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "32a70199ea5b451d91d20a"
+    "_id": "d5f87deb06a241aba5f52c"
   },
   {
     "__type__": "cc.UITransform",
@@ -9514,7 +9502,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ROOM C",
+    "_string": "炸虫间",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -9578,10 +9566,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -9594,10 +9579,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -9648,7 +9633,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bf22c189e83c415bbf4d40"
+    "_id": "d4980ed0d11042d98397d5"
   },
   {
     "__type__": "cc.UITransform",
@@ -9662,8 +9647,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9716,7 +9701,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "31fa9cbc5227406989513c"
+    "_id": "a9f1219d44d04e51b980b6"
   },
   {
     "__type__": "cc.UITransform",
@@ -9730,8 +9715,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9751,20 +9736,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 126,
-      "g": 77,
-      "b": 71,
-      "a": 176
+      "r": 255,
+      "g": 232,
+      "b": 214,
+      "a": 184
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 213,
-      "b": 200,
-      "a": 64
+      "g": 246,
+      "b": 232,
+      "a": 96
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -9813,7 +9798,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "7e9643655f1e4a4b92de0d"
+    "_id": "3a316ae5daed4cf38370cc"
   },
   {
     "__type__": "cc.UITransform",
@@ -9827,8 +9812,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 116,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9850,20 +9835,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 255,
-      "g": 243,
-      "b": 238,
+      "r": 166,
+      "g": 104,
+      "b": 91,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PENDING",
+    "_string": "○",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -9922,7 +9907,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "59e1d6b80b7a48f6861995"
+    "_id": "3a8ad15215e84711830cd7"
   },
   {
     "__type__": "cc.UITransform",
@@ -9936,8 +9921,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -9990,7 +9975,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "afc897f5092241e3b3da50"
+    "_id": "7d7362ed0ecb443bb630ed"
   },
   {
     "__type__": "cc.UITransform",
@@ -10004,8 +9989,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -10025,20 +10010,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 67,
-      "g": 146,
-      "b": 88,
-      "a": 176
+      "r": 221,
+      "g": 250,
+      "b": 201,
+      "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 213,
+      "r": 247,
       "g": 255,
-      "b": 209,
-      "a": 64
+      "b": 229,
+      "a": 98
     },
     "strokeWidth": 2,
-    "cornerRadius": 12,
+    "cornerRadius": 15,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -10087,7 +10072,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1ef1510c6bb44ca9acfffd"
+    "_id": "02ec885db6cd436d9ba0fe"
   },
   {
     "__type__": "cc.UITransform",
@@ -10101,8 +10086,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 96,
-      "height": 34
+      "width": 44,
+      "height": 30
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -10124,20 +10109,20 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 235,
-      "g": 255,
-      "b": 235,
+      "r": 58,
+      "g": 116,
+      "b": 72,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "DONE",
+    "_string": "✓",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 14,
-    "_fontSize": 14,
+    "_actualFontSize": 18,
+    "_fontSize": 18,
     "_fontFamily": "Arial",
-    "_lineHeight": 24,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -10189,7 +10174,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2d88d28805204c2bb6f6a2"
+    "_id": "76891be267b048b0ab4eb4"
   },
   {
     "__type__": "f8e54c5GLpPCY27vRljXHek",
@@ -10264,7 +10249,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "2842f5b889f54ee2bc5d4f"
+    "_id": "293bb4d4d4ab4745b976e0"
   },
   {
     "__type__": "cc.UITransform",
@@ -10332,7 +10317,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "414a95ed6f924146b11582"
+    "_id": "77e996981b72472a8dd816"
   },
   {
     "__type__": "cc.UITransform",
@@ -10367,20 +10352,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 137,
-      "g": 70,
-      "b": 73,
+      "r": 176,
+      "g": 104,
+      "b": 92,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 212,
-      "b": 205,
-      "a": 120
+      "g": 221,
+      "b": 209,
+      "a": 112
     },
     "strokeWidth": 2,
-    "cornerRadius": 18,
+    "cornerRadius": 20,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -10429,7 +10414,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bebcff4e19734ae7b8f9c9"
+    "_id": "ac1d10e44d034b0a830428"
   },
   {
     "__type__": "cc.UITransform",
@@ -10473,7 +10458,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOSS LOCKED",
+    "_string": "首领门未开",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -10538,7 +10523,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "0b61cd5999414fe29ea3a7"
+    "_id": "73077aec0cbd4e1d8da369"
   },
   {
     "__type__": "cc.UITransform",
@@ -10606,7 +10591,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "688ae44d06c645869a069c"
+    "_id": "d7f884562a86427381ba3d"
   },
   {
     "__type__": "cc.UITransform",
@@ -10703,7 +10688,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "e0334e4a07db4069a16b25"
+    "_id": "3dfa58fd3bd34eef99cedd"
   },
   {
     "__type__": "cc.UITransform",
@@ -10747,7 +10732,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOSS OPEN",
+    "_string": "首领门已开",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -10821,7 +10806,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "75005faf2dcb4586bb0ee3"
+    "_id": "985d5071ae0b4299a8a387"
   },
   {
     "__type__": "cc.UITransform",
@@ -10889,7 +10874,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5cbcb65761c74b628554aa"
+    "_id": "725792cae8c94c0a96c75f"
   },
   {
     "__type__": "cc.UITransform",
@@ -10924,17 +10909,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 98,
-      "g": 126,
-      "b": 168,
-      "a": 232
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 226,
-      "g": 240,
-      "b": 255,
-      "a": 110
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -10986,7 +10971,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5e5b58dca46c4b219e9c90"
+    "_id": "6a413512a7ee4e76832aee"
   },
   {
     "__type__": "cc.UITransform",
@@ -11030,7 +11015,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ENTER BOSS",
+    "_string": "挑战首领",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -11094,10 +11079,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -11110,10 +11092,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -11157,7 +11139,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "6300ebc729224c2698b02b"
+    "_id": "adff8a4e994a4f6cb161b2"
   },
   {
     "__type__": "f8e54c5GLpPCY27vRljXHek",
@@ -11237,7 +11219,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "20903844004c44eb8d8e0b"
+    "_id": "e85750959f2e4936aadf74"
   },
   {
     "__type__": "cc.UITransform",
@@ -11305,7 +11287,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5a780efdf72e42f9b13ba0"
+    "_id": "f33873ece09f4311b815c5"
   },
   {
     "__type__": "cc.UITransform",
@@ -11402,7 +11384,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9a52a1790fc743f19f422d"
+    "_id": "4d6219e02ff84f8fb5bdf9"
   },
   {
     "__type__": "cc.UITransform",
@@ -11446,7 +11428,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Each room teaches one echo. Done badges light up after each clear.",
+    "_string": "三间试炼收徽章",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -11511,7 +11493,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "49cb40ff3a144045bdd245"
+    "_id": "b83e349736954e1fac1c21"
   },
   {
     "__type__": "cc.UITransform",
@@ -11579,7 +11561,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "283fae0b7e4149c880df6a"
+    "_id": "4c726caf40fb4f9fbab609"
   },
   {
     "__type__": "cc.UITransform",
@@ -11676,7 +11658,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "60a9b398c6214d38a0c8ac"
+    "_id": "6fac7dbeece04903895e3d"
   },
   {
     "__type__": "cc.UITransform",
@@ -11720,7 +11702,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "The boss gate opens after three clear relics.",
+    "_string": "三枚徽章开首领门",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,

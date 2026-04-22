@@ -1,0 +1,155 @@
+{
+  "file": "tile/outdoor_ground_flowers_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_flowers_v01.png",
+  "category": "tile",
+  "candidateName": "outdoor_ground_flowers_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "base green is dark/saturated rather than bright-warm — reduces toy-diorama luminosity",
+          "curved flower cluster arrangement creates a visible diagonal sweep when tiled — breaks seamless illusion at macro scale"
+        ],
+        "reasoning": "Warm flower palette (pink/white/orange accents on deep green) correctly invokes Zelda outdoor flora and shows good emotional intent. Pixel placement is deliberate and chunky: flower patches read as hard-edged 2–4px clusters with no gradient bleed or noise mush, and the tile seams are invisible at 1x. Technically competent. Two concerns hold it from a pass: (1) the base green is rich and dark — closer to forest shadow than the bright, sun-lit Hyrule ground the target aesthetic calls for; (2) the scattered flowers follow a subtle curved sweep arrangement that becomes a repeating diagonal streak across a 2×2 tile grid, making the tiling pattern perceptible. Emotional score ~6, technical ~7; weighted 60/40 → 6.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "diagonal_flower_band_creates_repeating_stripe",
+          "pink_cluster_density_uneven_upper_center"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Column 0 vs column 31 — both edges are predominantly dark green with sparse flower pixels; the color values appear to match closely, no hard seam break. (2) Row 0 vs row 31 — top and bottom rows are similarly green-dominant with scattered small flower fragments; no obvious discontinuity. (3) 3x3 mental tile test — this is where the problem surfaces: the pink/salmon flower shapes form a loose diagonal band running from upper-left toward lower-right across the 32x32 area. When tiled, this diagonal band concatenates into a repeating diagonal stripe that draws the eye across the full tiled surface. Not a polka-dot but a macro stripe artifact. DENSITY: The flower mass is slightly concentrated in the upper-center-to-center region; lower-right quadrant is noticeably sparser/greener, creating subtle light-dark rhythm on repetition. BACKGROUND QUALITY: The dark green base is well-chosen and would recede behind sprites, but the large pink/salmon fragments (some spanning ~4-5px) are vivid enough to compete with small foreground elements. Edge seamlessness is good; the primary problem is the diagonal macro-pattern that violates the 'no dominant focal feature' criterion for a tiling texture.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "white_patches_slightly_cool"
+        ],
+        "reasoning": "Base hue is a rich saturated mid-green that dominates decisively — bright, warm-outdoor Hyrule feel, not muted or grey-dungeon. Candy-pink/salmon flower accents are palette-consistent (match coral/salmon swatches in reference sheet) and carry the required warmth pop. Warm orange-tan secondary patches reinforce warm undertones. Internal tone count: deep green, mid green, lighter green, pink/salmon, warm tan/orange, off-white — roughly 6 tones, squarely in the 6–12 normal range. No pure-black or cold-grey shadows visible; darker areas use deeper green not achromatic black. Minor issue: scattered white/near-white patches read slightly cool rather than warm cream — could benefit from a slight warm ivory tint to prevent any cold intrusion, but area coverage is small enough not to break overall harmony. Palette compatibility is high: all dominant hues appear in or adjacent to the Echoes-tuned reference swatches. Mood verdict: BRIGHT/WARM. Passes threshold at 8.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "tile_energy_too_high",
+          "palette_clash_with_scene",
+          "foreground_readability_compromised",
+          "non_native_aesthetic"
+        ],
+        "reasoning": "The candidate tile (outdoor_ground_flowers_v01) is a dense bright green field with scattered pink/white flower details — very high visual energy and saturation. The Echoes scene uses a uniformly dark, muted palette: dark teal grid floors, brownish-red dirt zones, grey stone walls. The tile's vivid green + pink combination is several stops brighter than every other surface in the scene and would compete directly with foreground sprites rather than recede behind them. The flower details (small bright pink/white blobs) are the same scale and contrast as interactable items and small enemies, creating serious legibility confusion. The tile is also stylistically foreign — it reads as a spring garden or RPG meadow, not the grim dungeon/ruins aesthetic native to this game. Seam risk is also high given the chaotic high-frequency pattern. No meaningful readability of foreground sprites could be preserved if this tile were used as the ground fill.",
+        "confidence": 0.92
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The tile swatch (visible in composite-scene as a center preview) displays a bright saturated green base with scattered pink/white flower pixel clusters — reads cleanly as flower-dotted outdoor grass. Color palette is warm and lively, hand-pixeled charm is evident, no grimdark or cold dungeon tones. Mood is firmly in the fairy-tale Hyrule outdoor register. The surrounding scene context is darker (teal dungeon grid, reddish-brown combat zone) but that reflects the existing scene environment, not the tile itself. Tile contribution to outdoor mood is positive and coherent with the target aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "noise_mush",
+          "features_too_small",
+          "too_many_micro_clusters",
+          "tile_louder_than_sprites"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count: The tile displays as a chaotic scatter of tiny pink/white pixel clusters on green — no distinct 3-8 readable macro-features; instead there are dozens of micro-clusters merging into visual mush, far exceeding the 10-feature ceiling. (2) Feature scale: At the displayed preview size (~125px rendering 32px tile content, ~4x zoom), the largest identifiable pink cluster is ~8-10px wide, meaning at 1x tile size it is only ~2-3px — sub-readable speckle territory. (3) Compared to a 32x32 player sprite: the tile is LOUDER, not quieter. The high-contrast pink/white noise against green creates more visual energy than the character sprites visible in the scene and the other ground tiles (dark dungeon tile, grey stone tile) which are all appropriately quiet. The result is a texture that would compete with and distract from any sprite placed on top. Density failure mode: 'totally chaotic noise mush' per rubric.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 0,
+      "fails": 2,
+      "avgScore": 4.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "seam_edge_mismatch",
+          "gradient_bleed_flower_petals",
+          "soft_edge_anti_aliasing",
+          "uneven_flower_density_at_boundary"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 vs column 31 — left edge opens on solid green pixels; right edge has prominent white/pink flower elements flush against the boundary. These do NOT match in hue or tone. FAIL. (b) Row 0 vs row 31 — top row appears mostly uniform green; bottom row has scattered flower clusters — mismatch in density. FAIL. (c) 3x3 mental tile — horizontal repeats would produce a hard green-to-flower seam every 32px; vertical repeats show density gradient that would form banding. SEAM FAIL. TELL ANALYSIS: (1) Sub-pixel noise: background green has subtle 1-2px speckle variation not consistent with hand-placed pixels, mild. (2) AA edges at boundary: some flower petal corners show 1px grey fringe rather than clean pixel-art snap. (3) Gradient bleed: pink and peach flower petals transition luminance gradually across 3-4 pixels instead of hard 2-tone stepping — clear AI softness. (4) Painted digital blur: overall tile reads acceptably blocky at 8x but petal interiors have feathered cores inconsistent with manual pixel placement. (5) Melting edges: a few petal-to-grass transitions melt rather than snap. (6) Color bleed: minor green fringe bleeds into white petals at 8x. (7) Noise patches: not a significant issue. (8) SEAM ARTIFACTS: critical — right edge flower density vs left edge green-only creates an obvious vertical seam when tiled. This alone is a hard fail. Tile cannot be used as a seamless repeat without seam fixing.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "palette_non_overlap",
+          "shading_technique_mismatch",
+          "warmth_saturation_opposite",
+          "pixel_density_distribution_alien",
+          "different_game_aesthetic"
+        ],
+        "reasoning": "Peer set (LEFT) is a dense dungeon/indoor tileset: desaturated grays, blacks, dark blues, teal accents, hard-stepped pixel shading, gritty stone textures, intricate small-feature density. Candidate (RIGHT) is a bright saturated green ground scatter with large loose pink/white flower blobs — warm, cheerful, soft-edged, low-contrast internal structure. (1) Palette overlap: near-zero; peer palette is cool-dark, candidate is warm-bright green+pink, no shared hue family. (2) Pixel density: peer tiles pack tiny deliberate features; candidate uses coarse scattered color blobs, far fewer distinct pixels per 32x32 equivalent. (3) Shading: peer uses classic hard-step shadows with clear outlines; candidate has gradient-like color blending between green base and flower petals — visually softer. (4) Warmth/saturation: peers are heavily desaturated cool; candidate is maximally warm and saturated — opposite end of spectrum. (5) Hand-pixeled charm: peers show intentional pixel placement; candidate looks algorithmically scattered or texture-filtered, lacking craft. (6) Photo-realism: low on both sides, not a disqualifying issue. (7) Overall feel: candidate reads as a bright casual/mobile game tile; peers read as dark dungeon-crawler. Even granting that outdoor vs indoor surface type is not penalized, every rendering-style dimension diverges catastrophically. This tile cannot coexist in the same game without a jarring visual seam.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (RIGHT) displays a bright, saturated green ground tile densely scattered with pink and white flower pixels. The palette is warm and cheerful — vivid greens, soft pinks, and white highlights — directly evoking Hyrule outdoor meadow/lawn tiles. Pixel art is hand-crafted in style with no anti-aliasing or photorealistic texture. No cold greys, no desaturation, no dungeon stonework, no blood/skull motifs, no sci-fi or corporate aesthetics detected. The peer reference (LEFT) shows a grimdark dungeon tileset for contrast; the candidate diverges completely from that register. Minor note: a few of the mid-green pixels read slightly cool, but this is within the natural variation of a pixeled grass field and does not meaningfully drift from Hyrule-outdoor-bright. Overall tone is solidly fairy-tale adventure outdoor ground.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 0,
+      "fails": 2,
+      "avgScore": 4.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.45,
+    "aestheticAvg": 6.67,
+    "uiContextAvg": 4.33,
+    "adversarialMin": 2,
+    "warningCount": 2,
+    "failCount": 4,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.126Z"
+}

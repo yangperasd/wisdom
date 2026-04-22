@@ -1,0 +1,157 @@
+{
+  "file": "armor/armor_leather_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\armor_leather_v02.png",
+  "category": "armor",
+  "candidateName": "armor_leather_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "palette_too_earthy_not_hyrule_warm",
+          "missing_bright_saturated_accent_colors",
+          "silhouette_reads_rugged_not_charming_toy_diorama"
+        ],
+        "reasoning": "Technical axis holds up well: 1px hard outlines are present and consistent across all zoom panels, shading uses 2-3 hard tones (no AA visible), and all pixels are grid-snapped — that earns a solid 7/10 on the 40% technical weight. Emotional axis is weaker (score ~5.5/10 on 60% weight): the palette is dominated by muted browns/oranges and a mid-tone green with a white chest panel. While brown + green is nature-appropriate for Hyrule, the overall impression skews earthy and rugged rather than bright/warm/charming. The reference Denzi armor pieces show snappier contrast and cleaner read-at-a-glance silhouettes. Compared to the Zelda: Echoes of Wisdom toy-diorama aesthetic — which calls for saturated yellows, pinks, vibrant blues, and friendly rounded forms — this design lacks those accent saturations and feels more generic fantasy-RPG than Hyrule-charming. The silhouette at 1× zoom is somewhat ambiguous. Combined weighted score: 0.4×7 + 0.6×5.5 ≈ 6.1, rounded to 6.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "limited_charm_personality",
+          "white_chest_highlight_loses_contrast_on_light_bg",
+          "shoulder_pauldrons_read_slightly_mushy_at_distance",
+          "generic_armor_archetype_no_strong_personality_hook"
+        ],
+        "reasoning": "Silhouette reads adequately as chest armor — green vertical panels plus extended shoulder pauldrons give a recognizable outline. At 1x the shape is compact and identifiable as armor, which is the minimum. On dark bg contrast is solid (green + white vs dark). On light bg the white chest highlight nearly dissolves into the cream field, weakening definition there. The nature-themed leafy/feathery shoulders add some organic character but the overall impression is functional equipment, not a charming toy-like object. Shapes are angular and structural rather than round/soft. No playful personality hook that would pass a sticker test — it reads as 'generic leather armor' rather than something with a memorable silhouette or charm signature. Charming-but-mushy is not quite the failure mode; clear-but-charmless is closer. Marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "pixel_art_outlines_appear_near_pure_black",
+          "sky_blue_and_candy_pink_hues_absent",
+          "white_chest_accent_reads_slightly_cold"
+        ],
+        "reasoning": "The armor uses a bright saturated mid-green chest plate paired with warm rust-orange leather drapes — a near-complementary split that reads as vibrant and warm, aligning well with the Echoes sunset-orange and saturated-green targets. The parchment-white chest accent is broadly compatible with palette neutrals. Color temperature overall is warm-dominant; no muddy desaturation, no cold corporate greys in the mid-tones. Main concerns: (1) pixel-art outline strokes appear to be very dark brown or pure black — the rightmost panel on the light background exposes near-black pixels that border the shadow-quality rule; if they are #0e0e0e or similar rather than a warm dark-brown/plum, that is a minor violation. (2) The white highlight on the chest is slightly neutral-cool rather than a warm cream, creating a subtle cold spot. Neither issue significantly damages the overall warm-bright read, but together they prevent a clean pass. Palette compatibility is solid: green and orange both map to reference swatches in rows 1-2; no neon or goth tones detected.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "character_sprite_confusion",
+          "style_integration_soft"
+        ],
+        "reasoning": "The armor_leather_v02 sprite is clearly locatable — its warm white/cream/orange/green palette pops strongly against both the dark-red dungeon tiles and the teal-gray stone floor. Silhouette is well-defined and 0.5s spottability is met. Dark-area visibility is solid; the light-colored torso reads cleanly against all background regions in frame. However, the sprite's proportions and pose closely resemble a standing character (player or NPC) rather than a distinct equipment item, which risks confusion with interactive entities in the scene. The pixel art style is close enough to the game's aesthetic but the color saturation is slightly elevated compared to surrounding tiles, giving a mild 'dropped-in' feel rather than fully native integration. No severe tonal clash, no outline loss, and the Echoes cleanliness standard is mostly maintained — this is a borderline pass/marginal case.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "earthy_muted_palette_below_target_saturation",
+          "leather_material_reads_closer_to_neutral_adventurer_than_bright_fairy_tale"
+        ],
+        "reasoning": "The armor_leather_v02 sprite uses cream/white torso, warm orange-brown shoulder pieces, and green accents — a warm, nature-friendly palette that avoids all flagged out-of-tone categories (no grimdark, no edgy aggression, no cold/corporate). The compact pixel silhouette is cute and approachable. However, leather armor is inherently earthy and muted; the saturation level falls short of the target 'bright sunny magical toy diorama' aesthetic. The sprite is tonally compatible but does not actively reinforce the warm sparkly fairy-tale mood — it sits in neutral adventurer territory. No hard pass, but no hard fail either.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "character_sprite_slightly_elongated"
+        ],
+        "reasoning": "The leather armor is composited as a worn skin on the player character. The character with armor occupies roughly 1.5x tile height, which is slightly tall for a 32x32 reference but within acceptable range for top-down 2D with perspective treatment. Armor proportions on the body look correct — chest padding and draping are visible without overwhelming the silhouette. The asset does not violate the 'item must not exceed player size' rule since it is a wearable. Scene retains toy diorama feel; no zoomed-in wallpaper effect. Minor concern: vertical elongation edges toward inconsistent perspective for strict top-down, but not a hard fail.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "slight_asymmetry_shoulder_fur",
+          "outline_inconsistency_fur_boundary",
+          "noisy_brown_pixel_placement"
+        ],
+        "reasoning": "4x/8x zoom inspection of the leather armor sprite. PASS criteria met: no sub-pixel blending, no AA edges, solid green body areas are clean, no color bleed between green and brown, semantic coherence is strong (readable chest armor with shoulder pauldrons and heart motif). MARGINAL issues: (1) Shoulder fur texture on left vs right pauldron shows minor pixel-level asymmetry — a handful of brown/orange pixels differ in placement between sides, suggesting generation rather than hand-mirroring. (2) Outline consistency around the fur boundary fluctuates between 0px and 1px gap in several spots on the upper shoulder fringe, where a clean hand-crafted sprite would maintain a uniform 1px dark outline. (3) The brown/orange fur pixel cluster has a slightly stochastic scatter pattern that feels more noise-sampled than deliberately placed — individual pixels at the fur tips appear random rather than following intentional dithering logic. Core form, palette discipline (3 discrete tones per region), and structural silhouette are solid. Not a clear fail, but the fur-boundary tells push this below a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "presentation_mismatch_armor_worn_on_figure_vs_standalone_icons",
+          "color_temperature_divergence_warm_orange_green_vs_cool_metallic_peers",
+          "highlight_style_matte_leather_vs_metallic_specular_sheen_on_peers",
+          "palette_overlap_limited_to_outline_and_shadow_only_primary_hues_differ",
+          "charm_level_slightly_lower_character_form_presence_breaks_iconic_item_silhouette_pattern"
+        ],
+        "reasoning": "Peer set (LEFT) consists of standalone equipment icons — helmets and shields — rendered in cool metallic grays, blues, and golds with bright specular highlights on curved surfaces. Candidate (RIGHT) shows leather armor WORN on a character torso, immediately breaking the standalone-icon presentation convention. Outline weight (1px) and outline color (near-black) are consistent with peers. Shadow direction (top-left light source) also matches. However: (1) Color temperature is warm brown/orange on pauldrons + green-teal on chest vs the cool-dominant metallic palette of peers — notable divergence. (2) Highlight style is matte/fabric rather than the metallic specular blobs seen on peer helmets/shields — expected for leather vs metal, but still reduces family cohesion. (3) Palette overlap is shallow: shared only in outline and shadow; no primary-color overlap. (4) The full-figure armor presentation vs isolated equipment icon breaks silhouette consistency. (5) Charm level: peers read as crisp, iconic items; candidate blends item + character form, diluting the iconic quality. Rendering technique (pixel art, anti-alias level, detail density) is consistent. Score 6 — passes technical rendering bar but presentation and palette choices create visible seam vs the peer family.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (right, 4x) shows a pixel-art torso armor in warm orange-brown leather with a green tunic underneath — palette and silhouette read clearly as Hyrule-adjacent Nintendo-family-friendly. Clean, bright hues; no desaturation, no grim edge-highlights, no realistic material rendering, no fan-service silhouette. The peer helmets on the left lean slightly more metallic/neutral-cool, making the candidate comparatively warmer and more on-tone than its peers rather than less. Only minor flag: one peer helmet has Viking horns and darker value which edges toward adventure-epic, but the candidate itself does not share that drift. Overall tone alignment is strong.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.12,
+    "aestheticAvg": 6,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 6,
+    "warningCount": 8,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.098Z"
+}

@@ -1,0 +1,165 @@
+{
+  "file": "consumable/potion_energy_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_energy_v00.png",
+  "category": "consumable",
+  "candidateName": "potion_energy_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "swirl_detail_noisy_at_native_scale",
+          "white_curve_pattern_reduces_silhouette_clarity"
+        ],
+        "reasoning": "Emotional axis (60%): The potion reads warmly and charitably — saturated greens, gold/orange cork, round gourd silhouette all land squarely in the friendly Hyrule toy-diorama register. The white swirl conveys 'energy' bubbling, palette is bright and inviting. Score ~7.5/10. Technical axis (40%): 1px hard outlines are present, 2–3 tone hard shading on the bottle body is clean, no visible AA, pixel-grid-snapped at all zoom levels. However, the white swirl stripe introduces higher-frequency detail that reads as visual noise at native (1×) size — the candy-stripe pattern competes with the silhouette rather than reinforcing it, which weakens legibility at game-play resolution. Denzi reference items achieve clarity through simpler highlight placements. Score ~6.5/10. Composite: 0.6×7.5 + 0.4×6.5 = 4.5 + 2.6 = 7.1 → 7. Recommend simplifying the swirl to a single highlight pip or two-pixel arc to improve small-scale readability without losing the energy-potion character.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x silhouette too small to read clearly",
+          "white body blends into light background",
+          "swirl detail reads as noise at small size"
+        ],
+        "reasoning": "The 4x panels show a rounded potion bottle with a green/white swirl body, orange cork, and bottom sparkle effects — friendly toy charm is present and the shape passes the sticker test at 4x. Silhouette is a clean bottle-with-stopper form, soft and non-aggressive. However at 1x the sprite collapses into an unreadable smudge: the swirl pattern merges and only a vague bright blob survives. On the light/cream background the white body areas bleed into the background, reducing silhouette pop. Dark background contrast is solid. Charm score is decent (rounded, warm accent, personality in the swirl) but 1x legibility is the key failure point for an in-game item icon.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "outline_near_black",
+          "limited_warm_shadow_color"
+        ],
+        "reasoning": "The potion body uses a clean saturated green and the stopper/cap is a warm orange-gold — both strong matches to the Echoes target palette (saturated greens, sunset oranges, parchment golds). The white-cream swirl highlight reads as bright and energetic, avoiding muddy desaturation. Internal harmony between the green body and orange accent is sound complementary contrast. However, the pixel outlines and shadow areas appear to be very dark, near-black rather than colored darks (deep teal, plum, or warm brown) as required. The bright warm mood is present but the shadow treatment pulls slightly cold/neutral. Overall the sprite is bright and palette-compatible, not goth or cold-corporate, but the outline/shadow color discipline is marginal.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small_sprite_size_reduces_locatability",
+          "placed_on_dark_red_tile_reduces_contrast",
+          "no_strong_outline_or_glow_to_aid_spotting"
+        ],
+        "reasoning": "The potion_energy_v00 sprite appears as a small pixel-art bottle (~25px tall) with a white/cream body and green stopper, placed on the dark reddish tile area. Light body colors provide moderate contrast against the dark background, making it distinguishable from bg tiles, and the pixel-art style is consistent with the game aesthetic. However, the sprite is quite small in the scene context, requiring deliberate scanning to locate it within 0.5s. Placement on the darkest tile zone (red hazard floor) reduces pop. No outline, glow, or animated indicator aids pickup spotting. No confusion with enemies or interactive elements. Style fits Echoes cleanliness but lacks the brightness/pop that would push this to a clear pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_small_against_dark_bg",
+          "pre_existing_dungeon_dark_scene"
+        ],
+        "reasoning": "The potion_energy_v00 sprite itself is a small pixelated bottle character with warm green and yellow coloring, a rounded cute silhouette, and a whimsical pointed cap — all consistent with the target cute/fairy-tale palette. It does not introduce grimdark, horror, or out-of-tone elements. However, the sprite is quite small relative to the scene and does not strongly anchor or reinforce the bright sunny fairy-tale mood against the pre-existing dark dungeon-crawler backdrop (dark teal tiles, red-speckled floor, stone walls). The sprite is tonally appropriate in isolation, but its contribution to overall scene mood coherence is weak. The base scene's dominant dark atmosphere remains the larger mood concern; the sprite itself passes, but the composite reads marginal rather than a confident pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "item_slightly_oversized_for_consumable_category"
+        ],
+        "reasoning": "The potion_energy_v00 sprite composited into the scene appears approximately 28-32px tall against a 32px tile grid, placing it at roughly 88-100% of the 32x32 player reference size. Consumable items must be 50-75% of player (16-24px), so this item is measurably oversized for its category — it reads closer to a character sprite than a ground pickup. Perspective is consistent with top-down diorama style and the item does not overwhelm the scene or produce a wallpaper feel, but the scale violation relative to the consumable spec keeps this in marginal territory.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "stray_pixels_bottle_base",
+          "slight_asymmetry_bottle_body",
+          "irregular_cork_pixel_arrangement",
+          "minor_color_bleed_at_stripe_edges"
+        ],
+        "reasoning": "8x zoom reveals a pixel art energy potion with generally clean construction but several marginal issues. Sub-pixel features: none detected — pixel grid is respected throughout. AA edges: clean hard-pixel boundaries, correct for pixel art. Noise in solid areas: 2-3 isolated stray pixels visible at the lower perimeter of the bottle in 8x view, not clearly intentional shadow/decoration pixels. Inconsistent outlines: outline is predominantly 1px black but at the bottom-left corner of the 8x sprite there are 1-2 pixel gaps breaking the silhouette continuity. Gradient vs hard tones: palette is discrete (dark green, mid green, yellow-gold, white, brown-cork) — no gradient banding detected, this is clean. Pattern artifacts: the diagonal green-yellow stripe is consistent and intentional. Melting details: none. Asymmetry: the bottle body leans very slightly left at pixel level in 8x, not severe but detectable. Color bleed: minor 1-pixel color contamination at a few green-to-yellow stripe boundaries. Semantic: bottle silhouette with cork cap, striped liquid body, and specular highlight reads clearly as an energy potion — no semantic failure. Overall the sprite is functional pixel art but the stray edge pixels and minor outline gap prevent a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "outline_weight_mismatch",
+          "outline_color_absent",
+          "shadow_direction_undefined",
+          "highlight_style_flat_vs_metallic",
+          "color_temperature_warm_vs_cool",
+          "zero_palette_overlap",
+          "detail_density_much_lower",
+          "rendering_style_basic_pixel_vs_polished_rendered",
+          "charm_level_insufficient"
+        ],
+        "reasoning": "Peer set (Denzi helmets) exhibits a consistent polished semi-3D rendering with strong 1-2px black outlines, crisp metallic highlights from upper-left, cool/neutral palette (silvers, grays, gold, teal, red accents), and high detail density for sprite size. Candidate (potion_energy_v00) fails on nearly every dimension: (1) outline weight — peers have bold defined outlines, candidate has negligible/absent outlines, just color transitions; (2) outline color — peers use solid dark/black outlines, candidate has none; (3) shadow direction — peer shadows are consistent upper-left highlight / lower-right shadow, candidate shadow direction is ambiguous and undersupported; (4) shadow count — peers have layered metallic shadow+highlight, candidate has 1 flat gradient at most; (5) highlight intensity — peers show crisp specular metallic highlights, candidate has diffuse soft gradient with no metallic read; (6) color temperature — peers are cool/neutral metallic, candidate is warm green-yellow-white, opposite end of spectrum; (7) detail density — peers pack significant panel/rivet/visor detail into each sprite, candidate is sparse blocky pixelation; (8) rendering style — peers look hand-painted with polish, candidate looks like placeholder/prototype pixel art; (9) palette overlap — zero shared hues between candidate and peer set; (10) proportion — acceptable (different item type); (11) charm level — Denzi helmets have character and polish, candidate feels unfinished and stylistically alien to the family. Nine of eleven dimensions are failing. The candidate does not belong to the same visual family as the peer set.",
+        "confidence": 0.91
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "peer_refs_read_grimdark_not_hyrule",
+          "candidate_lacks_warmth_and_whimsy",
+          "color_too_neutral_missing_sunny_brightness",
+          "no_sparkle_or_magical_charm_cues"
+        ],
+        "reasoning": "Peer references (left): dense grid of metallic helmets in dark steel/grey tones — reads closer to Runescape or generic dungeon-crawler than Zelda Echoes of Wisdom. That context is already a tone-risk flag. Candidate potion (right, 4x): small pixel-art green bottle with leaf/cork detail. On the positive side it is clearly NOT grimdark, not edgy, not uncanny, and not cold-corporate — it avoids all hard-fail categories. However it also fails to positively express the target tone: the green is muted and cool rather than warm/sunny; there are no sparkle, glow, or fairy-dust cues that signal whimsical magic; the silhouette is generic apothecary-bottle with no toy-diorama playfulness. Compared to warm Hyrule item icons (which tend to have a golden rim, inner light bloom, and a slightly oversaturated jewel-like quality), this reads as merely functional. Score 6 — does not fail the tone outright but fails to pass the warmth/whimsy bar; marginal verdict.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.45,
+    "aestheticAvg": 6.67,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 3,
+    "warningCount": 8,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.136Z"
+}

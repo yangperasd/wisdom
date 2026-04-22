@@ -1,0 +1,164 @@
+{
+  "file": "accessory/amulet_protection_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\accessory\\amulet_protection_v00.png",
+  "category": "accessory",
+  "candidateName": "amulet_protection_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "chain_diagonals_risk_softness",
+          "pendant_silhouette_angular_not_rounded"
+        ],
+        "reasoning": "Emotional axis (60%): Strong pass. Warm gold + saturated emerald green read as bright, charming, Hyrule-appropriate jewelry. Design is inviting and toy-like — not grim or threatening. The color palette is exactly the saturated warm/cool complementary pairing the brief calls for. Minor deduction: the diamond/marquise silhouette skews angular rather than the round-friendly ideal, slightly reducing approachability. Score ~7.8. Technical axis (40%): Solid pass. 1px hard outlines are clearly present on the pendant body and chain links. Gold setting uses 3 distinct tones (highlight, midtone, shadow) with hard edges — no gradient blending. Gem facets follow the same limited-palette hard-shading discipline. Pixel grid alignment looks correct across zoom panels. Main concern: the chain uses diagonal runs which at intermediate zoom levels can suggest softness, though at target display size this is unlikely to register. Score ~8.0. Weighted composite: 0.6×7.8 + 0.4×8.0 = 4.68 + 3.20 = 7.88 → rounded 8. Denzi reference comparison: reference helmets confirm hard-outline + 2-3 tone hard-shading as the peer standard; candidate matches this technical discipline. Verdict: pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_too_angular",
+          "lacks_round_soft_charm",
+          "1x_readability_weak_pendant_detail_lost",
+          "no_personality_expression"
+        ],
+        "reasoning": "At 1x the amulet reads as a tiny dark triangle with a hint of green — pendant detail is almost entirely lost, failing the sticker test. The 4x views reveal decent pixel craft: gold chain links, a green gem with highlight pixels, and a pointed marquise/diamond pendant shape. However the overall silhouette is angular and somewhat aggressive — pointed top and bottom, diamond-facet angles — which conflicts with the Echoes of Wisdom 'round/soft/toy charm' ideal. Contrast is adequate on both dark and light backgrounds (gold and green pop reasonably), but the form reads more 'edgy accessory' than 'friendly toy charm'. No expressive personality — it's a competent amulet sprite but lacks the softness, roundness, or readable character that earns a pass. Clear-but-charmless leans toward marginal rather than fail due to the reasonable contrast.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "shadow_pixels_near_black",
+          "dark_presentation_panels_neutral_grey",
+          "gem_saturation_below_bright_target"
+        ],
+        "reasoning": "Gold chain and warm amber tones align well with Echoes parchment-gold palette. Emerald green gem has decent saturation and pairs harmoniously with the gold. However, the pendant outline/shadow pixels are near-black charcoal rather than colored darks (deep teal, plum, or warm brown) as required. The two dark presentation panels use neutral grey-black backgrounds (~#1a1a1a), not colored shadow darks. The gem green, while acceptable, sits slightly below the BRIGHT/candy target — a more vivid kelly or spring green would better fit the saturated-greens spec. Overall the warm+green core relationship is sound, but shadow color quality fails the palette rule.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "white triangular chain element has a stark flat quality that reads as slightly pasted rather than native pixel art",
+          "item is small relative to scene — spottability without the guide arrow is reduced",
+          "white top portion could briefly read as a UI indicator or directional arrow at first glance"
+        ],
+        "reasoning": "The amulet is placed on the dark reddish dungeon floor tiles where both the bright white chain-clasp and the saturated green gem provide reasonable luminance and chroma contrast. The silhouette (inverted-triangle top + teardrop gem) is distinct from background tiles and the nearby slime entity. However, the white geometric top looks somewhat flat and pasted against the textured dark tile surface — it lacks the weathered pixel-art shading that would make it feel native. The green gem reads clearly as a pickup item and is the strongest element. Overall the asset is locatable with moderate effort but not instantly spottable in 0.5 s without the red-arrow hint; integration quality is acceptable but below the clean Echoes aesthetic standard.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_style_generic_rpg_item",
+          "lacks_whimsical_sparkle_detail",
+          "cute_round_quality_weak"
+        ],
+        "reasoning": "The amulet sprite is a pixel-art pendant with a white triangular bail and a bright saturated green teardrop gem. The bright green gem color is consistent with the fairy-tale magical palette (warm greens) and the teardrop gem shape is classic fairy-tale treasure iconography. No negative tone elements are introduced — no skulls, darkness, aggression, or grimdark qualities. However, the sprite reads more as a generic RPG inventory item than a distinctly cute/whimsical fairy-tale accessory: the bail is angular rather than round/bubbly, there are no sparkle or glow accent pixels to evoke 'magical shimmer', and the overall silhouette is austere. The surrounding scene is dark dungeon-crawler in atmosphere (dark tiles, dark background) which the amulet does nothing to counter. The sprite itself is inoffensive and color-compatible but falls short of the 'toy diorama / bright sunny magical / cute round' target. Marginal — acceptable if no cuter alternative exists, but a rounder gem with sparkle accents would better match the target mood.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "item_exceeds_player_size",
+          "perspective_mismatch_frontal_vs_topdown"
+        ],
+        "reasoning": "The amulet_protection_v00 accessory renders at approximately 50-60px in height within the scene — clearly exceeding the 32x32 player size constraint. For an accessory/item category, target is 50-75% of player (~16-24px); this asset is instead ~150-180% of player height, violating the NEVER-larger-than-player rule. Additionally, the pendant bail and gem are drawn in a frontal/profile view perspective rather than top-down, creating a perspective mismatch with the dungeon floor tiles. The oversized scale makes it read as a decorative centerpiece rather than a small dropped-item pickup, losing the toy-diorama feel.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Inspected both 4x and 8x zoom views of the emerald pendant pixel art. (1) Sub-pixel features: none detected — all features resolve to clean integer pixel boundaries at 8x. (2) AA edges: none — outlines show hard pixel stepping as expected for pixel art. (3) Noise in solid areas: background black is clean, gold and green regions show no stray noise pixels. (4) Outline consistency: 1px outline throughout pendant and gem setting, no missing or doubled segments. (5) Shading: gem uses 3 discrete green tones (highlight, mid, shadow); gold chain uses 2–3 hard tones — no gradient blending. (6) Pattern artifacts: chain diagonal pixel pattern is deliberate and repeats consistently; gem facet crosshatch is intentional. (7) Melting details: none — small 4x version remains legible and distinct. (8) Symmetry: marquise gem shape is bilaterally symmetric along vertical axis; gold setting mirrors correctly. (9) Color bleed: no green bleeding into gold border, no gold into black background. (10) Semantic coherence: emerald pendant on gold chain is entirely appropriate for a 'protection amulet'. No clear AI generation artifact identified across all 10 criteria.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "outline_weight: amulet cord/chain uses thick white pixels that read heavier and brighter than the 1px dark outlines on all peers",
+          "outline_color: dominant white outline on cord is absent from every peer; peers use dark-gray/black outlines exclusively",
+          "highlight_intensity: gem facet highlight (near-white pixel) is far more saturated and prominent than the subtle single-tone highlights on peer helmets",
+          "color_temperature: peers are overwhelmingly cool-gray metallic with at most one warm accent; amulet introduces a vivid mid-green gem + stark white cord that shifts temperature visibly outside peer range",
+          "palette_overlap: white is essentially unused across the entire peer sheet; its dominance on the cord is a palette discontinuity",
+          "shadow_count: gem renders 3+ distinct shading tones; peers max out at 2 tones per sprite",
+          "detail_density: gem facets add detail layers not present in peer sprites at equivalent scale; peers are intentionally flat",
+          "charm_level: peers are utilitarian, muted, low-affect war-gear; amulet gem sparkle reads as noticeably 'cuter' / more decorative, mismatching the dour peer register"
+        ],
+        "reasoning": "Ignoring item-type difference (amulet vs helmet is fine), the candidate still breaks consistency on at least 6 of 11 dims. The white cord is the single biggest flag — no peer uses white as a primary structural color. The gem's multi-tone facet shading and bright highlight push detail density and highlight intensity above the peer ceiling. Palette overlap is weak: peer palette is restricted to grays, blacks, and desaturated accent metals; vibrant green + white is a new color family. Shadow count and detail density are both elevated. Charm level mismatch is real — the sparkling gem reads decorative against uniformly grim helmet silhouettes. Score 4 / fail.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "peer_reference_grimdark_contamination",
+          "pendant_geometry_reads_occult_adjacent",
+          "generic_pixel_rpg_not_distinctly_whimsical",
+          "missing_toy_diorama_warmth_and_depth",
+          "chain_rendering_stiff_lacks_charm"
+        ],
+        "reasoning": "Candidate (right): gold-chain amulet with bright green gem on parchment bg. Color palette is warm and not desaturated — no immediate grimdark fail. However the triangular pendant silhouette edges toward geometric/occult-adjacent rather than the rounded, friendly shapes typical of Nintendo fairy-tale aesthetics (e.g. Zelda pendants tend to be more ornate or organic). Pixel rendering is clean but generic — indistinguishable from a dozen OSRS-adjacent RPGs; lacks the toylike warmth, specular pop, or whimsy markers that signal Hyrule/family-friendly. Critical red flag: the LEFT peer reference row is filled with dark, realistic medieval combat helmets in desaturated steel — unmistakably dungeon-crawler/GRIMDARK register. This suggests the generative pipeline or reference library has tonal contamination. The candidate amulet itself narrowly passes the color test but fails to positively assert the target tone. Marginal — acceptable if surrounding assets are warm and the amulet is relit/restyled with rounder forms and a warmer glow; not acceptable as a hero or UI-prominent asset without iteration.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.28,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 4,
+    "warningCount": 5,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.094Z"
+}

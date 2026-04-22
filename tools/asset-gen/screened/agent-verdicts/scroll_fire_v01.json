@@ -1,0 +1,162 @@
+{
+  "file": "consumable/scroll_fire_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\scroll_fire_v01.png",
+  "category": "consumable",
+  "candidateName": "scroll_fire_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_saturation_below_hyrule_standard",
+          "fire_element_composition_busy_and_noisy",
+          "scroll_silhouette_boxy_not_round_friendly",
+          "lacks_toy_diorama_warmth"
+        ],
+        "reasoning": "Emotional (60%): The fire scroll uses warm oranges and parchment beige which add some Zelda-adjacent warmth, and the flame accent communicates the fire theme clearly. However, the palette is muted and desaturated compared to the bright/saturated Hyrule standard — no vibrant greens, blues, or pinks are present to anchor it in the Echoes of Wisdom mood. The scroll body shape is rectangular and boxy rather than having the round, friendly silhouette expected for a toy-diorama consumable. The fire element on top creates a top-heavy, chaotic read rather than a charming, readable icon. Emotional score ~5/10. Technical (40%): Pixel grid snapping appears clean in the zoomed views, 1px hard outlines are present on the scroll body, and 2-3 tone shading is visible on the cylindrical scroll ends and body face. However, the orange flame pixels are somewhat scattered and lack the tight, deliberate pixel construction seen in Denzi-tier reference work — the fire reads as noisy rather than hand-crafted. Technical score ~6/10. Weighted: 0.6*5 + 0.4*6 = 5.4, rounded to 5. Verdict: marginal. Needs more saturated palette, friendlier rounder silhouette, and tighter fire pixel construction to pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x silhouette noisy — fire sparks fragment the outline and dissolve readable shape",
+          "charm is absent: rectangular scroll with angular fire reads functional/utilitarian, not soft/toy-like",
+          "fire elements too small at 1x to register as fire; look like stray pixels",
+          "dark-bg contrast marginal — shadow underside and dark-outline scroll body merge at 4x DARK",
+          "no round/soft forms; design skews edgy-pixel rather than friendly-sticker"
+        ],
+        "reasoning": "The scroll body is recognisable at 4x on both light and dark backgrounds, and the orange fire accent provides colour pop. However the core Cute & Charm criteria are not met: silhouette is broken up by small angular flame sparks that add noise without adding personality, the overall form is boxy and stiff rather than round and huggable, and the 1x read is a blurry rectangle with ambiguous speckles. On the dark panel the scroll merges with the background shadow, reducing confidence further. Passes a bare minimum legibility bar (hence 5 not ≤4) but fails the sticker test — you would not instantly read 'charming fire-scroll' from the 1x thumbnail. Needs softer silhouette, rounder rolled-scroll ends, and larger/cleaner flame shape to push into pass territory.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The scroll_fire_v01 sprite demonstrates strong warm harmony. Parchment body reads as saturated warm cream/gold well within the Echoes palette range. Fire/flame elements are vivid sunset oranges and amber-gold — fully saturated, not muddy or neon. Scroll bindings are warm ochre-brown. Shadow cast at scroll base is a warm tan/brown, not pure black or grey — compliant with colored-darks requirement. No cold blues, no desaturated greys, no near-black appear in the asset pixels themselves. Palette cross-reference: parchment gold and fire orange map cleanly onto the palette-extract warm-orange and cream swatches. Color range is intentionally narrow (fire theme) but internally coherent and mood-appropriate for BRIGHT/WARM target. Demo background panels are dark charcoal but these are presentation contexts, not asset pixels; asset sprite itself is fully compliant.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small_sprite_size",
+          "border_zone_placement",
+          "low_silhouette_distinctness"
+        ],
+        "reasoning": "The scroll_fire_v01 sprite is a small white/light-colored pixel art item placed on the dark teal floor tiles, near the border between the dark red dungeon tile area and the open floor. Positive: the lighter coloring (cream/white base with a cross-star motif) provides reasonable luminance contrast against the dark floor, making it technically spottable within 0.5s with focused attention. The pixel art style is consistent with the Echoes aesthetic and does not look obviously pasted. Negative: the sprite is quite small relative to the scene, reducing immediate salience in peripheral vision. Placement at the edge of two different tile types (dark red dungeon vs. teal floor) creates a visually busy transition zone that partially undermines the sprite's silhouette clarity. The cross/star pattern could momentarily be confused with a sparkle VFX or debris rather than a collectible scroll. No strong outline or glow to anchor it distinctly against the background. Overall the asset is visible but requires deliberate attention rather than being instantly spottable; it passes a basic readability bar but falls short of a confident pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon_crawler",
+          "sprite_scale_too_small_to_fully_assess_detail"
+        ],
+        "reasoning": "The scroll_fire_v01 sprite itself presents as a bright, sparkly white/gold pixel cross or star-burst — which reads as magical/whimsical and is reasonably in-tone for cute fairy-tale. It does not introduce grimdark, horror, or aggressive elements. However, the surrounding scene is dominated by a dark dungeon-crawler aesthetic (deep teal grid tiles, dark reddish-speckled rooms, stone walls, low-key lighting) that was already present in the original. The sprite adds a point of brightness but cannot counterbalance the overall composition's dungeon mood. The small rendering size makes it difficult to assess finer detail (scroll ornaments, flame shape), leaving uncertainty about whether the 'fire' element reads as warm-cozy or dark-threatening at larger sizes. Marginal: sprite direction is correct (bright, sparkly, magical) but context tone is misaligned with target fairy-tale/toy-diorama mood.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "item_overwhelms_scene",
+          "inconsistent_scale_for_consumable"
+        ],
+        "reasoning": "The scroll_fire_v01 consumable is composited on a brown display pedestal at the left side of the scene. The entire display unit spans roughly 130×90px while the player character (white sparkle sprite) is approximately 32×32px — making the item presentation over 4× the player's area footprint. Consumables must be 50–75% of player size and NEVER larger. Even discounting the pedestal, the sprite element itself appears at least equal to or larger than the player. This directly triggers the 'item bigger than player' error condition. The oversized item also dominates the local scene tile area, creating a wallpaper rather than toy-diorama feel. Perspective alignment (top-down orthographic) is acceptable, but scale is the primary blocker.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry_fire_starburst",
+          "color_bleed_fire_to_scroll_body",
+          "outline_inconsistency_right_edge",
+          "noise_pixels_scroll_texture"
+        ],
+        "reasoning": "At 8x zoom the central fire/spark starburst shows clear left-right asymmetry: the left flame arm has 2 orange pixels stacked while the right arm has only 1, and the lower arm extends 1px further than the upper. The boundary pixels where the fire meets the scroll parchment body show orange and red color bleed into what should be clean beige/tan cells. On the right edge of the scroll body there are 3-4 isolated light-gray pixels that appear to be unintentional AA remnants or noise rather than intentional shading — inconsistent with the otherwise clean 1px hard outline. The cross-hatch scroll texture lines have a subtle regularity artifact: the diagonal strokes maintain nearly machine-perfect 1px spacing without the micro-variation a human would introduce. No gradient shading violations (hard 3-tone palette on body), no melting details, no semantic failure (scroll + fire reads correctly). Sub-pixel features and pattern artifacts are present but minor. Overall: AI-assisted or AI-generated with imperfect cleanup; passes on semantics and palette discipline but fails on strict pixel-art symmetry and clean boundary requirements.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_divergence",
+          "low_palette_overlap",
+          "candidate_apparent_scale_smaller_than_peers",
+          "shadow_and_highlight_unverifiable_at_render_size"
+        ],
+        "reasoning": "Peer set is dominated by steel/silver/gray helmets with gold accent pieces — a cool-to-neutral temperature band. The fire scroll candidate is entirely warm (orange-red-yellow), yielding near-zero shared palette values with the majority of peers; only the gold helmets provide any warm overlap. Color temperature divergence alone costs ~2 points by adversarial standard. Separately, the candidate renders noticeably smaller than all peers in the comparison sheet, which raises a canvas/resolution inconsistency flag — if the sprite is correct size, the layout scale should match. This prevents confident assessment of outline weight, shadow direction, shadow count, and highlight intensity, all of which appear consistent in the peers but cannot be confirmed on the candidate at this apparent pixel density. Rendering style (pixel art, clean forms) and charm level (small cute item) are acceptably consistent with Denzi family. Proportion penalty waived per item-type rule. Net: style skeleton is Denzi-compatible but palette and scale flags push to marginal.",
+        "confidence": 0.62
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "peer_references_are_grimdark_combat_helmets_suggesting_wrong_asset_family",
+          "candidate_scroll_fire_reads_as_generic_rpg_inventory_item_rather_than_distinctly_whimsical_fairy_tale",
+          "fire_element_risks_looking_threatening_rather_than_playful_magical"
+        ],
+        "reasoning": "Peer references (left panel) are clearly out-of-tone: grey metallic battle-worn combat helmets consistent with desaturated dungeon-crawler or Western AAA, not cute Nintendo fairy-tale. The candidate (right, 4x on parchment bg) shows a scroll/fire icon with warm orange-red fire tones and golden-tan parchment — colour temperature aligns with 'bright/warm/sunny' target, which is a positive signal. However, the overall composition reads as a generic RPG spell-scroll inventory icon rather than a distinctly whimsical toy-diorama or Hyrulean magical artefact. The fire glyph lacks the soft/round/friendly silhouette language expected for Nintendo-family-friendly aesthetics; it could plausibly appear in a grimdarker dungeon-crawler at the same pixel scale. Warm palette saves it from outright fail, but absent clear whimsy markers (bubbly outlines, saturated pastels, anthropomorphic charm), tonal confidence in the fairy-tale register is low.",
+        "confidence": 0.65
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.35,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.140Z"
+}

@@ -72,7 +72,7 @@ export class BreakableTarget extends Component {
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
   }
 
   public applyExplosion(_origin?: Readonly<Vec3>): boolean {
@@ -118,8 +118,8 @@ export class BreakableTarget extends Component {
   }
 
   private bindGameManager(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
   }
 
   private applyPresentationState(): void {

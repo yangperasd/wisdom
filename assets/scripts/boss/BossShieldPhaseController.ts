@@ -46,14 +46,15 @@ export class BossShieldPhaseController extends Component {
   private vulnerableTimer = 0;
 
   protected onLoad(): void {
-    this.shieldTarget?.events.on(BREAKABLE_EVENT_BROKEN, this.onShieldBroken, this);
-    this.shieldTarget?.events.on(BREAKABLE_EVENT_RESET, this.refreshState, this);
-    this.bossHealth?.events.on(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
+    const shieldTarget = this.getShieldTarget();
+    shieldTarget?.events?.on(BREAKABLE_EVENT_BROKEN, this.onShieldBroken, this);
+    shieldTarget?.events?.on(BREAKABLE_EVENT_RESET, this.refreshState, this);
+    this.bossHealth?.events?.on(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
     this.refreshState();
   }
 
   protected onEnable(): void {
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
   }
 
   protected update(dt: number): void {
@@ -70,11 +71,9 @@ export class BossShieldPhaseController extends Component {
       return;
     }
 
-    const shieldBroken = typeof this.shieldTarget?.isCurrentlyBroken === 'function'
-      ? this.shieldTarget.isCurrentlyBroken()
-      : (this.shieldTarget as unknown as { isBroken?: boolean })?.isBroken ?? false;
-    if (shieldBroken && this.isBossAlive()) {
-      this.shieldTarget?.resetState();
+    const shieldTarget = this.getShieldTarget();
+    if (this.isShieldBroken(shieldTarget) && this.isBossAlive()) {
+      shieldTarget?.resetState();
       return;
     }
 
@@ -82,13 +81,14 @@ export class BossShieldPhaseController extends Component {
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
   }
 
   protected onDestroy(): void {
-    this.shieldTarget?.events.off(BREAKABLE_EVENT_BROKEN, this.onShieldBroken, this);
-    this.shieldTarget?.events.off(BREAKABLE_EVENT_RESET, this.refreshState, this);
-    this.bossHealth?.events.off(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
+    const shieldTarget = this.getShieldTarget();
+    shieldTarget?.events?.off(BREAKABLE_EVENT_BROKEN, this.onShieldBroken, this);
+    shieldTarget?.events?.off(BREAKABLE_EVENT_RESET, this.refreshState, this);
+    this.bossHealth?.events?.off(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
   }
 
   private onShieldBroken(): void {
@@ -154,16 +154,31 @@ export class BossShieldPhaseController extends Component {
       return false;
     }
 
-    // Guard: shieldTarget may resolve to a Node instead of BreakableTarget
-    // at runtime if the serialized reference type is mismatched.
-    if (typeof this.shieldTarget?.isCurrentlyBroken === 'function') {
-      return this.shieldTarget.isCurrentlyBroken();
-    }
-
-    return (this.shieldTarget as unknown as { isBroken?: boolean })?.isBroken ?? false;
+    return this.isShieldBroken(this.getShieldTarget());
   }
 
   public isDangerState(): boolean {
     return this.isBossAlive() && !this.isDamageWindowOpen();
+  }
+
+  private getShieldTarget(): BreakableTarget | null {
+    const target = this.shieldTarget as BreakableTarget | Node | null;
+    if (!target) {
+      return null;
+    }
+
+    if (typeof (target as BreakableTarget).isCurrentlyBroken === 'function') {
+      return target as BreakableTarget;
+    }
+
+    return (target as Node).getComponent?.(BreakableTarget) ?? null;
+  }
+
+  private isShieldBroken(shieldTarget: BreakableTarget | null): boolean {
+    if (typeof shieldTarget?.isCurrentlyBroken === 'function') {
+      return shieldTarget.isCurrentlyBroken();
+    }
+
+    return (shieldTarget as unknown as { isBroken?: boolean } | null)?.isBroken ?? false;
   }
 }

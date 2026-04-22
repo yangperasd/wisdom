@@ -126,27 +126,27 @@ test('computeBossPhaseState exposes danger and damage windows', () => {
 });
 
 test('formatHudCheckpoint keeps checkpoint names readable', () => {
-  assert.equal(formatHudCheckpoint('camp-entry'), 'Camp');
-  assert.equal(formatHudCheckpoint('dungeon-room-b-entry'), 'Room B');
-  assert.equal(formatHudCheckpoint(null), 'None');
+  assert.equal(formatHudCheckpoint('camp-entry'), '营地');
+  assert.equal(formatHudCheckpoint('dungeon-room-b-entry'), '弹花房');
+  assert.equal(formatHudCheckpoint(null), '未激活');
   assert.equal(formatHudCheckpoint('custom-marker'), 'custom-marker');
 });
 
 test('computeEchoHudButtonState describes selected and locked echo buttons', () => {
   assert.deepEqual(computeEchoHudButtonState('TouchEchoBox', true, false), {
-    label: 'BOX',
+    label: '箱子',
     scale: 1,
     tint: 'unlocked',
   });
 
   assert.deepEqual(computeEchoHudButtonState('TouchEchoFlower', true, true), {
-    label: 'FLOWER *',
+    label: '弹花 *',
     scale: 1.08,
     tint: 'selected',
   });
 
   assert.deepEqual(computeEchoHudButtonState('TouchEchoBomb', false, false), {
-    label: 'LOCK',
+    label: '炸虫·锁',
     scale: 0.94,
     tint: 'locked',
   });
@@ -180,6 +180,7 @@ test('computeMobileHudLayoutFrame keeps controls inside safe bounds', () => {
 
   assert.equal(roomy.compact, false);
   assert.equal(roomy.tight, false);
+  assert.equal(roomy.mobile, false);
   assert.equal(roomy.showBottomControls, true);
   assert.ok(roomy.touch.joystick.x < -480);
   assert.ok(roomy.touch.attack.x > 500);
@@ -196,6 +197,7 @@ test('computeMobileHudLayoutFrame keeps controls inside safe bounds', () => {
   });
 
   assert.equal(tight.compact, true);
+  assert.equal(tight.mobile, false);
   assert.equal(tight.showBottomControls, false);
   assert.equal(tight.showCheckpointLabel, false);
   assert.equal(tight.showRespawnButton, false);
@@ -203,21 +205,43 @@ test('computeMobileHudLayoutFrame keeps controls inside safe bounds', () => {
   assert.ok(tight.touch.attack.x > 420);
   assert.ok(tight.hud.pause.y > 250);
 
-  const ultraTight = computeMobileHudLayoutFrame({
+  const ultraTightViewport = {
     canvasWidth: 1280,
     canvasHeight: 640,
     safeX: 44,
     safeY: 0,
     safeWidth: 1036,
     safeHeight: 620,
-  });
+  };
+  const ultraTight = computeMobileHudLayoutFrame(ultraTightViewport);
 
   assert.equal(ultraTight.tight, true);
+  assert.equal(ultraTight.mobile, false);
   assert.equal(ultraTight.showBottomControls, false);
   assert.equal(ultraTight.showCheckpointLabel, false);
   assert.equal(ultraTight.showRespawnButton, false);
   assert.equal(ultraTight.controlScale, 0.88);
   assert.ok(ultraTight.touch.reset.y < ultraTight.touch.attack.y);
+  assert.equal(
+    ultraTight.touch.reset.y,
+    ultraTightViewport.safeY - ultraTightViewport.canvasHeight / 2 + 16,
+  );
+
+  const phone = computeMobileHudLayoutFrame({
+    canvasWidth: 812,
+    canvasHeight: 375,
+    safeX: 0,
+    safeY: 0,
+    safeWidth: 812,
+    safeHeight: 375,
+  });
+
+  assert.equal(phone.mobile, true);
+  assert.equal(phone.controlScale, 1.35);
+  assert.equal(phone.showEchoRow, false);
+  assert.equal(phone.showRespawnButton, false);
+  assert.equal(phone.touch.echoBox.x, -99999);
+  assert.equal(phone.touch.summon.y, phone.touch.attack.y);
 });
 
 test('computePlayerVisualState keeps hurt and attack above movement states', () => {

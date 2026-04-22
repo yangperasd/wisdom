@@ -1,0 +1,156 @@
+{
+  "file": "summon/echo_bombbug_idle_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_bombbug_idle_v02.png",
+  "category": "summon",
+  "candidateName": "echo_bombbug_idle_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): Strong warm-orange dominant palette with teal accent and white face reads bright/charming/friendly — squarely Hyrule toy-diorama mood. Round, compact silhouette is non-threatening and inviting; no grim or scary quality. Saturation is high and appropriate. Score ~8/10 emotionally. Technical (40%): Zoomed panels reveal clean 1px hard outlines around the full body silhouette with no anti-aliasing blur. Orange body exhibits 3 distinct hard-shaded tone bands (highlight, mid, shadow) without gradient blending. Pixels are snapped to grid; the 4th panel on the light background confirms clean pixel boundaries with no sub-pixel fringing. Gray shadow base is appropriately simple. Compared against Denzi summon-category reference, the candidate matches scale, outline weight, and shading count conventions. Score ~8/10 technically. Combined weighted score: 0.6×8 + 0.4×8 = 8.0 — meets pass threshold."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_mushy",
+          "claw_appendages_add_visual_noise",
+          "grey_base_loses_contrast_on_midtone_bg",
+          "aggressive_claw_shapes_undercut_toy_charm"
+        ],
+        "reasoning": "At 4x the character reads clearly: round orange body with a white face center, flanked by bold orange claw/wing appendages and teal accents at the top — personality is present and color contrast is strong on both dark and light backgrounds. However, at 1x (native) the sprite collapses into a small orange blob; the face, teal accents, and appendage detail are all lost, leaving only an ambiguous silhouette. The claw/wing shapes that give the bombbug its energy also create a busy outer edge that muddies the 1x read. Charm is moderate: the round face center and warm palette lean cute, but the spiky/claw geometry pushes toward 'edgy-aggressive' rather than 'friendly toy.' The grey shadow base disappears on mid-value backgrounds. Would benefit from a chunkier, rounder silhouette with the appendages simplified to 2-3 dominant pixel groups for better 1x readability, and softening the claw tips to push further toward sticker-charm.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "ground_shadow_neutral_grey"
+        ],
+        "reasoning": "Dominant warm saturated orange body with complementary teal accent and clean white highlight reads bright and warm — well aligned with the Echoes sunset-orange/sky-teal palette vocabulary. Internal body shading uses darker warm orange rather than grey, preserving warmth. Outlines appear as dark warm-brown/navy rather than pure black. Main concern: the small elliptical ground shadow beneath the character is a neutral cool-grey instead of a colored dark (deep teal, plum, or warm brown), which is a minor but clear violation of the no-grey-shadows rule. Overall mood is cheerful and warm, not grim or corporate. Raises to pass with a colored ground shadow.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small sprite size reduces sub-0.5s spottability without arrow aid",
+          "white/gray base risks blending into adjacent gray stone tiles",
+          "slightly pasted feel — pixel density and shading style diverges marginally from surrounding tileset"
+        ],
+        "reasoning": "The asset (warm golden-orange round body, white/gray pedestal base) is placed at the transition between dark-red dungeon tiles and gray stone. Warm hues provide moderate contrast against the cool dark background, and the silhouette is compact and distinct. However, the sprite is small (~40px tall in the scene), making unaided spotting slower than 0.5s. The white base partially mirrors the gray cobblestone area to the right, risking merge at a glance. The overall rendering style is close but not fully native — slight luminosity and anti-aliasing differences give a mild paste-in impression. No hue conflict with the enemy slot indicator or UI buttons. Echoes color language (warm accent on dark ground) is respected, keeping the scene relatively clean. Marginal pass; increasing sprite contrast or adding a subtle shadow ring would push to a solid pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dark_dungeon_context_tension"
+        ],
+        "reasoning": "The echo_bombbug_idle_v02 sprite itself is a small, rounded, warm-toned figure — golden/orange head atop a white rounded body — fitting the 'cute round, whimsical toy' target profile well. It introduces no grimdark, horror, or aggressive elements and does not shift the sprite-level mood in a problematic direction. However, the surrounding scene environment is heavily dark-dungeon-crawler in palette (dark teal tiles, maroon/dark-red terrain, dim overall lighting), which sits in tension with the 'bright sunny magical fairy-tale' target. The sprite alone earns a pass on character design, but the scene-level mood coherence is marginal because the bright cheerful sprite reads as an isolated bright spot against an otherwise out-of-tone dungeon aesthetic. Score reflects the sprite being on-tone but the composition not fully achieving the target warmth.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "summon_larger_than_player",
+          "violates_50_80_percent_rule",
+          "footprint_overwhelms_tile_grid"
+        ],
+        "reasoning": "The echo_bombbug_idle_v02 summon entity (the bordered/framed creature in the left portion of the playfield) occupies roughly 145x95px in the composite scene, while the player character (golden trophy figure at center) occupies approximately 30-35px wide by 65px tall. The bombbug footprint is therefore ~4x the player width — a clear violation of the 50-80% summon size rule. The large bordered base/platform the creature sits on further inflates its visual weight, making it dominate an entire tile area and disrupting the toy-diorama scale hierarchy. Perspective appears consistent (top-down), but the sheer size disproportion makes the entity read as a boss or large obstacle rather than a summoned companion.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "inconsistent_outline_widths",
+          "minor_petal_asymmetry",
+          "gradient_shading_in_orange_petals"
+        ],
+        "reasoning": "8x zoom reveals generally clean pixel boundaries with no sub-pixel bleed or AA smearing. Solid background areas are noise-free. Palette is appropriately limited (orange, white, teal, gray, near-black). However, the radial petal/flame segments around the body show slight width inconsistency — some segments read as 2px-wide outlines while adjacent ones appear 1px, a common AI-gen rounding artifact. The teal eye-dots are symmetric and clean. The orange petal shading uses 3 tones but transitions between them are slightly gradient-like rather than hard-edge pixel steps, suggesting possible AI upscaling or generation. The gray base shadow is clean. Semantic coherence is high — the bomb-bug design reads correctly. No melting details, no color bleed, no pattern tiling artifacts. Overall the sprite is mostly clean pixel art but the outline inconsistency in the petal ring and mild gradient tone transitions prevent a full pass.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch",
+          "detail_density_far_exceeds_peers",
+          "highlight_intensity_incompatible",
+          "shadow_treatment_incompatible",
+          "scale_resolution_mismatch",
+          "charm_level_register_mismatch"
+        ],
+        "reasoning": "Candidate is in a fundamentally different art style from the Denzi peer set. (1) Outline weight: peers use crisp 1px pixel outlines; candidate has blended, painterly edges with no clean pixel boundary. (2) Outline color: peers dark-black outlines consistent; candidate outlines dissolve into gradient shading. (3) Shadow direction: peers flat or single-drop shadow; candidate has full volumetric shading implying overhead-front light source. (4) Shadow count: peers 0-1 shadow layers; candidate has multi-layer ambient+diffuse+specular rendering. (5) Highlight intensity: peers near-zero specular; candidate has prominent white specular blobs (high-gloss sphere treatment) completely absent from peers. (6) Color temperature: candidate warm orange dominant — not inherently wrong but pairs with a completely alien palette register. (7) Detail density: candidate packs stripe patterns, gradient banding, skull/face detail, and pedestal texture into a single sprite that dwarfs peer detail count by 5-10x. (8) Proportion: candidate sprite occupies ~4x the pixel area of peers at ostensibly matching scale, indicating a resolution/resolution-class mismatch. (9) Rendering style: peers are classic flat-to-semi-flat Denzi roguelike pixel art (iconic, read at 16px); candidate is polished mobile-game style with 3D-illusion shading — incompatible aesthetic register. (10) Palette overlap: partial warm-neutral overlap but candidate's teal-blue accent and high-key orange/white have no echo in peer palette. (11) Charm level: peers are compact, iconographic, low-key cute; candidate has a flashy, high-polish mobile charm that clashes in tone. All 11 dimensions show meaningful-to-severe divergence. This sprite cannot coexist in the same UI sheet as the Denzi peers without breaking visual cohesion.",
+        "confidence": 0.91
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "segmented-armor silhouette reads slightly tactical/mechanical rather than soft-toy",
+          "spiky shell rim adds mild edge tension absent in warmest peer designs"
+        ],
+        "reasoning": "Candidate uses a warm amber-orange palette with teal accent highlights — palette alignment with target (bright/warm/sunny Hyrule) is strong. The rounded, pill-bug body form and single white orb center preserve a toy-diorama quality. Shadow treatment is clean and grounded. However, the tightly segmented, overlapping shell plates create a slightly armored/mechanical silhouette that drifts toward 'dungeon-crawler enemy' rather than 'whimsical storybook creature'. Peer sprites on the left lean softer and rounder with looser outlines. The bomb concept is handled well (no overt danger iconography), but the carapace detailing pushes just past the friendliest Nintendo register. Not a fail — no grimdark, no desaturation, no edgy elements — but needs one pass of softening the shell segmentation to fully clear marginal.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.22,
+    "aestheticAvg": 7,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 3,
+    "warningCount": 6,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.112Z"
+}

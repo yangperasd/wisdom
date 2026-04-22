@@ -1,0 +1,151 @@
+{
+  "file": "consumable/potion_speed_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_speed_v02.png",
+  "category": "consumable",
+  "candidateName": "potion_speed_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): Strong warm-orange saturated hue, round bulbous bottle silhouette reads as friendly and toy-diorama. Blue bubble dots inside add charm and 'magic' legibility. Gold/yellow stopper cap contributes brightness. Overall mood is bright, cheerful Hyrule-adjacent — no grimness. Score ~8.5/10 emotional. Technical (40%): Clear 1px hard black outlines visible at all zoom levels with no anti-aliasing bleed. Body shading uses 3 discrete tones (light highlight, mid orange, dark shadow on lower curve) — within spec. Blue bubble details are individually pixel-grid-snapped. Cork stopper shows 2-tone hard shading. Pixel grid alignment is consistent. Compared to Denzi peer reference (armor/consumable category), the outline weight and tonal discipline match the category standard. No dithering or soft gradients. Score ~7.5/10 technical. Weighted: 0.6*8.5 + 0.4*7.5 = 5.1 + 3.0 = 8.1 → 8 integer. Verdict: pass.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_outline_weak",
+          "1x_inner_detail_lost"
+        ],
+        "reasoning": "Round bubbly bottle form is immediately readable as a potion — classic toy charm, passes sticker test easily. Orange/amber body with blue dot accents and cork stopper gives warm, friendly personality consistent with Echoes of Wisdom style. Dark bg contrast is excellent; orange pops cleanly with no muddiness. At 1x the rounded silhouette reads as a bottle but inner bubbles vanish and the stopper merges slightly with the body. On the light/cream bg the bottle outline is thinner than ideal — lighter areas of the body blend toward the background, reducing edge crispness compared to the dark bg panel. Charm is genuinely high: proportions are round and soft, no aggressive shapes, personality is visible. Falls just short of pass threshold due to the light-bg outline weakness and minor 1x silhouette compression.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "cold_neutral_grey_hardware",
+          "stopper_near_black_not_colored_dark"
+        ],
+        "reasoning": "Dominant palette is strongly BRIGHT/WARM: saturated amber-orange body is exactly the sunset-orange range, sky-blue dot accents form a clean complementary pair, and the parchment-gold cork ties into warm mid-values — all three hit Echoes palette anchors well. Internal color harmony is high between orange and blue. However the bottle stopper/cap is rendered in near-black charcoal, and the waist ring/base band use cold neutral grey, both violating the 'shadows are colored darks (deep teal/plum/warm brown), NEVER pure black/grey' rule. These hardware elements are small relative to the warm orange mass, so the overall mood reads bright and warm at a glance, but the grey tones are a genuine harmony break against the Echoes palette's requirement for colored darks throughout. Bringing the stopper to a warm dark brown or deep teal, and the ring to a warm brown, would push this to a clear pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "placement near dark-red tile boundary slightly reduces local contrast"
+        ],
+        "reasoning": "The potion_speed_v02 asset uses a warm orange/amber liquid in a light-colored bottle with cork — its warm hue pops immediately against the cool dark-teal background tiles, meeting the 0.5s spottability bar. Pixel-art style matches the rest of the scene; the bottle silhouette is distinct from enemies, the EchoBox creature, and UI buttons. No hue clash with the background. Visibility dips slightly where the sprite overlaps the dark-red tile area, but the bright orange body still reads clearly. Overall the asset is well-integrated, uncluttered, and fits the Echoes aesthetic.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The potion_speed_v02 sprite is a pixel-art glass bottle with warm amber/orange liquid, a golden stopper cap, and blue sparkle/star decorative accents. Its round squat silhouette, warm saturated palette (orange-gold dominant), and sparkle detail land squarely in cute magical fairy-tale territory. No grimdark, no edgy or aggressive design language, no realistic rendering, no cold-corporate aesthetic. The sprite introduces a bright warm accent into the existing scene without clashing or pulling tone toward any out-of-tone category. The surrounding scene uses dark dungeon tiles, but that is pre-existing context; the new sprite itself maintains cute-sunny-magical coherence and reads as a whimsical collectible item consistent with the target diorama aesthetic.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "consumable_exceeds_75pct_cap"
+        ],
+        "reasoning": "The potion_speed_v02 bottle occupies roughly 65×95px on screen. Estimating tile grid at ~64px per tile, the 32×32 player would render at approximately 32–48px on screen. The potion's footprint equals or exceeds the player's width and clearly exceeds it in height (~150% of player height), violating the hard rule that consumable items must be 50–75% of player size and NEVER larger. Art style and perspective are consistent with the toy-diorama top-down aesthetic, and the sprite does not overwhelm the scene compositionally, but the absolute size violation for the consumable category prevents a passing score.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 0,
+      "fails": 1,
+      "avgScore": 6.67,
+      "reason": "pass"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_in_bottle_body_highlight",
+          "cork_non_discrete_tonal_steps",
+          "soft_luminosity_ramp_in_shine_circle"
+        ],
+        "reasoning": "At 8x zoom the bottle body highlight circle shows a gradual luminosity ramp — luminance transitions smoothly rather than stepping through 2-3 hard discrete tones as hand-crafted pixel art would. The cork cap exhibits similar tonal softness with no crisp palette steps visible. These are the primary AI generation tells: diffusion-based pixel art generators interpolate shading rather than dithering or using explicit color ramps. Positive findings: pixel blocks are clean squares with no sub-pixel bleeding; AA edge artifacts absent on the bottle silhouette outline; outline width is consistent 1px throughout; blue bubble pixels are discrete clean blocks; background is solid with no noise pixels; no color bleed across region boundaries; semantic design is coherent for a speed potion (lightning bolt face, energetic orange+blue palette). The gradient-like shading in the body is the primary concern preventing a pass verdict.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "rendering_style_mismatch: peers use detailed/realistic pixel shading with nuanced surface texture (rivets, visor depth, metal facets); candidate uses simplified flat-block shading more typical of a chibi/cute register",
+          "detail_density: peer helmets pack high-frequency detail into their sprite footprint; candidate potion has comparatively sparse interior detail — large solid-fill zones dominate",
+          "shadow_handling: peers show multi-tone ambient occlusion and directional specular; candidate has only one highlight band and near-absent cast shadow",
+          "apparent_scale_discrepancy: candidate occupies visibly more canvas area than peers at stated matching scale, suggesting upscaled or differently-proportioned asset",
+          "charm_level: peers read as serious medieval RPG gear; candidate leans noticeably more toy/cartoon — charm register does not match peer family"
+        ],
+        "reasoning": "The potion_speed_v02 candidate shares the correct pixel-art medium and uses a consistent dark outline weight (~1px), but diverges meaningfully from the Denzi peer set on at least four critical axes. Peer helmets demonstrate a meticulous, semi-realistic shading grammar: multiple highlight stops, ambient-occlusion darks on recessed geometry, and fine surface detail that fills the sprite footprint. The candidate instead relies on two-tone block shading (bright fill + single darker band) with large undetailed regions. The shadow treatment is shallow — peers show directional drop-shadows and sub-surface darkening; the candidate shows minimal shadow depth. Scale or framing also looks off: the potion sprite reads as substantially larger in the comparison frame, which exaggerates the simplicity gap. Finally, the charm register diverges — the candidate has a rounded, friendly silhouette and saturated warm palette that feels more casual/cute than the cooler, harder-edged military aesthetic of the peer set. None of these issues are explained by item-type difference; they are rendering-style and quality-level inconsistencies. Score 5 — marginal, borderline fail.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "peer_helmets_lean_dungeon_crawler",
+          "candidate_lacks_whimsical_personality",
+          "borderline_generic_mobile_cartoon_risk"
+        ],
+        "reasoning": "The candidate potion (right, 4x) presents warm orange/amber coloring and a round cute silhouette that broadly fits the bright/sunny Hyrule target. The small golden crown cap is a positive whimsical touch. However, two concerns push this to marginal rather than pass: (1) The LEFT peer references are predominantly dark-metal dungeon-crawler helmets — cold grays and steel tones — suggesting the broader asset set risks tonal inconsistency even if this potion is individually warm. (2) The candidate's design language reads slightly generic mobile-cartoon: the round bottle + solid warm fill is a common trope and lacks the toy-diorama tactility or storybook illustration quality that distinguishes Nintendo-family-friendly from generic casual. No hard fails detected (no grimdark, no fan-service, no cold-corporate, no occult). Score 7: passes threshold check with reservations; would benefit from one more whimsical detail or hand-crafted texture touch to firmly clear the 8+ bar.",
+        "confidence": 0.74
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.4,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 5,
+    "warningCount": 5,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.138Z"
+}

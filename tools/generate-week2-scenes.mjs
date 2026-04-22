@@ -239,12 +239,15 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
   const canvasId = 2;
   const cameraId = 3;
   const canvasNode = items[canvasId];
+  const cameraComponent = items[4];
   const canvasTransform = items[5];
   const canvasComponent = items[6];
   const widgetComponent = items[7];
 
   canvasNode._name = 'Canvas';
   canvasNode._children = [ref(cameraId)];
+  cameraComponent._color = color(247, 242, 221, 255);
+  cameraComponent._clearFlags = 7;
   canvasTransform._contentSize = size(960, 640);
   canvasComponent._cameraComponent = ref(4);
   widgetComponent._top = 0;
@@ -337,6 +340,20 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     });
   };
 
+  const addHudPanelSkin = (nodeId, bindingKey) => {
+    const imageBinding = getImageBindingProps(bindingKey);
+    if (!imageBinding) {
+      return null;
+    }
+
+    addAssetBindingTag(nodeId, bindingKey);
+    return addComponent(nodeId, types['assets/scripts/visual/HudPanelSkin.ts'], {
+      visualSpriteFrame: imageBinding.spriteFrame,
+      visualTexture: imageBinding.texture,
+      hideLabelWhenSkinned: true,
+    });
+  };
+
   const addSafeAreaRoot = (nodeId, width = 960, height = 640) => {
     addComponent(nodeId, 'cc.UITransform', {
       _priority: 0,
@@ -392,6 +409,18 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     );
     return { nodeId };
   };
+
+  const addDecorPanels = (parentId, prefix, decorations) => decorations.map((decor, index) => addPanelNode(
+    parentId,
+    `${prefix}-${index + 1}`,
+    decor.position,
+    decor.width,
+    decor.height,
+    decor.fillColor,
+    decor.strokeColor,
+    decor.active ?? true,
+    decor.cornerRadius ?? Math.max(10, Math.round(Math.min(decor.width, decor.height) / 2)),
+  ));
 
   const addLabel = (
     parentId,
@@ -543,7 +572,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
   const playerNode = addLabeledNode(
     worldRootId,
     'Player',
-    'PLAYER',
+    '小勇者',
     options.playerStart ?? vec3(-420, -20, 0),
     94,
     48,
@@ -634,15 +663,15 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     maxRigY: options.cameraBounds?.maxY ?? 80,
   });
 
-  const hudTopBar = addPanelNode(hudRootId, 'HudTopBar', vec3(0, 278, 0), 930, 88, color(15, 24, 32, 225), color(114, 164, 179, 70), true, 20);
-  const hudObjectiveCard = addPanelNode(hudRootId, 'HudObjectiveCard', vec3(0, 216, 0), 930, 52, color(25, 43, 38, 212), color(115, 172, 146, 58), true, 16);
-  const hudControlsCard = addPanelNode(hudRootId, 'HudControlsCard', vec3(0, -274, 0), 930, 54, color(19, 26, 34, 188), color(113, 144, 169, 42), true, 16);
-  const sceneTitleLabel = addLabel(hudRootId, 'HudSceneTitle', options.sceneTitle, vec3(-340, 278, 0), 260, 34, 24, color(245, 246, 240, 255), true, true, 0, 1);
-  const objectiveLabel = addLabel(hudRootId, 'HudObjective', options.objectiveText, vec3(0, 216, 0), 780, 34, 18, color(226, 244, 224, 255), true, false, 1, 1);
-  const healthLabel = addLabel(hudRootId, 'HudHealth', '生命 3/3', vec3(20, 278, 0), 150, 28, 18, color(245, 232, 221, 255), true, true, 1, 1);
-  const echoLabel = addLabel(hudRootId, 'HudEcho', '当前回响 箱子', vec3(206, 278, 0), 240, 28, 18, color(228, 242, 255, 255), true, false, 1, 1);
-  const checkpointLabel = addLabel(hudRootId, 'HudCheckpoint', '检查点 未激活', vec3(384, 278, 0), 220, 28, 16, color(220, 223, 226, 255), true, false, 1, 1);
-  const controlsLabel = addLabel(hudRootId, 'HudControls', '左侧摇杆移动，右侧按钮攻击与召唤', vec3(0, -274, 0), 860, 32, 16, color(206, 220, 234, 255), true, false, 1, 1);
+  const hudTopBar = addPanelNode(hudRootId, 'HudTopBar', vec3(0, 278, 0), 930, 88, color(255, 244, 210, 232), color(255, 219, 142, 96), true, 22);
+  const hudObjectiveCard = addPanelNode(hudRootId, 'HudObjectiveCard', vec3(0, 216, 0), 930, 52, color(255, 251, 229, 226), color(255, 230, 158, 88), true, 18);
+  const hudControlsCard = addPanelNode(hudRootId, 'HudControlsCard', vec3(0, -274, 0), 930, 54, color(231, 248, 218, 210), color(190, 229, 166, 82), true, 18);
+  const sceneTitleLabel = addLabel(hudRootId, 'HudSceneTitle', options.sceneTitle, vec3(-340, 278, 0), 260, 34, 24, color(75, 52, 27, 255), true, true, 0, 1);
+  const objectiveLabel = addLabel(hudRootId, 'HudObjective', options.objectiveText, vec3(0, 216, 0), 780, 34, 18, color(72, 80, 44, 255), true, false, 1, 1);
+  const healthLabel = addLabel(hudRootId, 'HudHealth', '生命 3/3', vec3(20, 278, 0), 150, 28, 18, color(132, 61, 52, 255), true, true, 1, 1);
+  const echoLabel = addLabel(hudRootId, 'HudEcho', '回响 箱子', vec3(206, 278, 0), 240, 28, 18, color(48, 96, 106, 255), true, false, 1, 1);
+  const checkpointLabel = addLabel(hudRootId, 'HudCheckpoint', '营火 未激活', vec3(384, 278, 0), 220, 28, 16, color(93, 79, 58, 255), true, false, 1, 1);
+  const controlsLabel = addLabel(hudRootId, 'HudControls', '左侧摇杆移动，右侧按钮攻击与召唤', vec3(0, -274, 0), 860, 32, 16, color(61, 88, 64, 255), true, false, 1, 1);
 
   const addTouchButton = (name, text, position, width, height, tint, fill, stroke, command, parentId = touchHudRootId) => {
     const buttonNode = addLabeledNode(
@@ -680,14 +709,14 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     _contentSize: size(148, 148),
     _anchorPoint: vec2(0.5, 0.5),
   });
-  addComponent(joystickVisualId, types['assets/scripts/visual/RectVisual.ts'], rectVisualProps(color(18, 28, 34, 176), color(178, 214, 220, 96), 74, 3));
+  addComponent(joystickVisualId, types['assets/scripts/visual/RectVisual.ts'], rectVisualProps(color(234, 248, 222, 188), color(185, 226, 170, 116), 74, 3));
   const joystickKnobId = addNode('Joystick-Knob', joystickNodeId, vec3());
   addComponent(joystickKnobId, 'cc.UITransform', {
     _priority: 0,
     _contentSize: size(62, 62),
     _anchorPoint: vec2(0.5, 0.5),
   });
-  addComponent(joystickKnobId, types['assets/scripts/visual/RectVisual.ts'], rectVisualProps(color(111, 183, 194, 255), color(235, 255, 255, 120), 31, 2));
+  addComponent(joystickKnobId, types['assets/scripts/visual/RectVisual.ts'], rectVisualProps(color(95, 184, 158, 255), color(235, 255, 235, 136), 31, 2));
   addComponent(joystickNodeId, types['assets/scripts/input/TouchJoystick.ts'], {
     player: ref(playerControllerId),
     knob: ref(joystickKnobId),
@@ -695,19 +724,19 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     deadzone: 10,
   });
 
-  const touchAttack = addTouchButton('TouchAttack', 'ATTACK', vec3(350, -196, 0), 118, 70, color(31, 18, 12, 255), color(236, 159, 89, 245), color(255, 236, 212, 100), 0);
-  const touchPlaceEcho = addTouchButton('TouchPlaceEcho', 'SUMMON', vec3(224, -248, 0), 124, 66, color(18, 27, 16, 255), color(131, 207, 145, 245), color(226, 255, 225, 100), 1);
-  const touchRespawn = addTouchButton('TouchRespawn', 'RESET', vec3(390, -286, 0), 94, 46, color(255, 243, 240, 255), color(111, 69, 74, 225), color(255, 219, 208, 100), 2);
-  const touchEchoBox = addTouchButton('TouchEchoBox', 'BOX', vec3(182, -154, 0), 82, 42, color(35, 27, 17, 255), color(214, 176, 96, 255), color(255, 236, 186, 100), 3);
-  const touchEchoFlower = addTouchButton('TouchEchoFlower', 'FLOWER', vec3(282, -154, 0), 94, 42, color(236, 255, 235, 255), color(67, 146, 88, 255), color(213, 255, 209, 100), 4);
-  const touchEchoBomb = addTouchButton('TouchEchoBomb', 'BOMB', vec3(388, -154, 0), 88, 42, color(255, 241, 238, 255), color(156, 68, 66, 255), color(255, 209, 200, 100), 5);
-  const touchPause = addTouchButton('TouchPause', 'PAUSE', vec3(414, 278, 0), 102, 42, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 8);
-  const pausePanel = addPanelNode(hudRootId, 'PausePanel', vec3(0, 0, 0), 430, 286, color(14, 21, 29, 236), color(170, 199, 219, 84), false, 24);
-  addLabel(pausePanel.nodeId, 'PauseTitle', 'Paused', vec3(0, 98, 0), 260, 40, 26, color(245, 246, 240, 255), true, true, 1, 1);
-  addLabel(pausePanel.nodeId, 'PauseBody', 'Continue, restart from the checkpoint, or return to camp.', vec3(0, 46, 0), 340, 54, 16, color(212, 224, 234, 255), true, false, 1, 1);
-  addTouchButton('PauseContinue', 'CONTINUE', vec3(0, -18, 0), 178, 54, color(22, 34, 19, 255), color(131, 207, 145, 245), color(226, 255, 225, 100), 9, pausePanel.nodeId);
-  addTouchButton('PauseRestart', 'RESTART', vec3(0, -88, 0), 178, 54, color(255, 243, 240, 255), color(111, 69, 74, 225), color(255, 219, 208, 100), 2, pausePanel.nodeId);
-  addTouchButton('PauseCamp', 'RETURN CAMP', vec3(0, -158, 0), 198, 54, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 10, pausePanel.nodeId);
+  const touchAttack = addTouchButton('TouchAttack', '攻击', vec3(350, -196, 0), 118, 70, color(31, 18, 12, 255), color(236, 159, 89, 245), color(255, 236, 212, 100), 0);
+  const touchPlaceEcho = addTouchButton('TouchPlaceEcho', '召唤', vec3(224, -248, 0), 124, 66, color(18, 27, 16, 255), color(131, 207, 145, 245), color(226, 255, 225, 100), 1);
+  const touchRespawn = addTouchButton('TouchRespawn', '复活', vec3(390, -286, 0), 94, 46, color(255, 243, 240, 255), color(111, 69, 74, 225), color(255, 219, 208, 100), 2);
+  const touchEchoBox = addTouchButton('TouchEchoBox', '箱子', vec3(182, -154, 0), 82, 42, color(35, 27, 17, 255), color(214, 176, 96, 255), color(255, 236, 186, 100), 3);
+  const touchEchoFlower = addTouchButton('TouchEchoFlower', '弹花', vec3(282, -154, 0), 94, 42, color(236, 255, 235, 255), color(67, 146, 88, 255), color(213, 255, 209, 100), 4);
+  const touchEchoBomb = addTouchButton('TouchEchoBomb', '炸虫', vec3(388, -154, 0), 88, 42, color(255, 241, 238, 255), color(156, 68, 66, 255), color(255, 209, 200, 100), 5);
+  const touchPause = addTouchButton('TouchPause', '暂停', vec3(414, 278, 0), 102, 42, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 8);
+  const pausePanel = addPanelNode(hudRootId, 'PausePanel', vec3(0, 0, 0), 430, 286, color(255, 246, 222, 242), color(255, 218, 148, 112), false, 26);
+  addLabel(pausePanel.nodeId, 'PauseTitle', '暂停', vec3(0, 98, 0), 260, 40, 26, color(75, 52, 27, 255), true, true, 1, 1);
+  addLabel(pausePanel.nodeId, 'PauseBody', '继续游玩、回到营火，或返回营地。', vec3(0, 46, 0), 340, 54, 16, color(83, 78, 61, 255), true, false, 1, 1);
+  addTouchButton('PauseContinue', '继续', vec3(0, -18, 0), 178, 54, color(22, 34, 19, 255), color(131, 207, 145, 245), color(226, 255, 225, 100), 9, pausePanel.nodeId);
+  addTouchButton('PauseRestart', '回营火', vec3(0, -88, 0), 178, 54, color(255, 243, 240, 255), color(111, 69, 74, 225), color(255, 219, 208, 100), 2, pausePanel.nodeId);
+  addTouchButton('PauseCamp', '回营地', vec3(0, -158, 0), 198, 54, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 10, pausePanel.nodeId);
 
   const gameManagerId = addComponent(persistentRootId, types['assets/scripts/core/GameManager.ts'], {
     playerRoot: ref(playerNode.nodeId),
@@ -800,6 +829,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     getImageBindingProps,
     addSceneDressingSkin,
     addPanelNode,
+    addDecorPanels,
     addLabel,
     addLabeledNode,
     addSensorBox,
@@ -838,7 +868,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
 }
 
 function addEnemy(builder, config) {
-  const { addNode, addComponent, addLabeledNode, addDynamicBody, getImageBindingProps, resetNodes, refs, types } = builder;
+  const { addNode, addComponent, addLabeledNode, addDynamicBody, addAssetBindingTag, getImageBindingProps, resetNodes, refs, types } = builder;
   const commonEnemyBinding = getImageBindingProps('common_enemy');
   const patrolPointAId = addNode(`${config.name}-PatrolA`, builder.roots.worldRootId, config.patrolA);
   const patrolPointBId = addNode(`${config.name}-PatrolB`, builder.roots.worldRootId, config.patrolB);
@@ -858,6 +888,7 @@ function addEnemy(builder, config) {
     true,
   );
   addDynamicBody(enemyNode.nodeId, 88, 36);
+  addAssetBindingTag(enemyNode.nodeId, 'common_enemy');
   const enemyHealthId = addComponent(enemyNode.nodeId, types['assets/scripts/combat/HealthComponent.ts'], {
     maxHealth: config.maxHealth ?? 2,
     invulnerableSeconds: 0.2,
@@ -940,8 +971,8 @@ function addScenePortal(builder, config) {
     18,
     color(236, 247, 255, 255),
     config.active ?? true,
-    config.fillColor ?? color(73, 102, 134, 225),
-    config.strokeColor ?? color(214, 236, 255, 100),
+    config.fillColor ?? color(195, 149, 112, 228),
+    config.strokeColor ?? color(255, 244, 220, 118),
     16,
     true,
   );
@@ -1061,18 +1092,26 @@ async function generateStartCamp(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  const campBackdrop = addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(0, 4, 0), 1560, 560, color(34, 58, 54, 255), color(118, 173, 163, 52), true, 26);
-  const campLeftLane = addPanelNode(roots.worldRootId, 'CampLeftLane', vec3(-420, -12, 0), 310, 250, color(45, 71, 60, 210), color(142, 201, 176, 46), true, 20);
-  const campPlateZone = addPanelNode(roots.worldRootId, 'CampPlateZone', vec3(80, -82, 0), 420, 160, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
-  const campGateZone = addPanelNode(roots.worldRootId, 'CampGateZone', vec3(374, -20, 0), 262, 186, color(61, 48, 55, 196), color(201, 161, 180, 44), true, 20);
-  const campTopLane = addPanelNode(roots.worldRootId, 'CampTopLane', vec3(-10, 186, 0), 930, 98, color(26, 50, 42, 180), color(140, 186, 167, 42), true, 18);
+  const campBackdrop = addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(0, 4, 0), 1560, 560, color(235, 243, 222, 255), color(249, 244, 228, 54), true, 26);
+  const campLeftLane = addPanelNode(roots.worldRootId, 'CampLeftLane', vec3(-420, -12, 0), 310, 250, color(239, 247, 223, 212), color(252, 247, 229, 46), true, 20);
+  const campPlateZone = addPanelNode(roots.worldRootId, 'CampPlateZone', vec3(80, -82, 0), 420, 160, color(250, 233, 192, 206), color(255, 243, 212, 58), true, 22);
+  const campGateZone = addPanelNode(roots.worldRootId, 'CampGateZone', vec3(374, -20, 0), 262, 186, color(244, 227, 214, 198), color(253, 238, 230, 44), true, 20);
+  const campTopLane = addPanelNode(roots.worldRootId, 'CampTopLane', vec3(-10, 186, 0), 930, 98, color(229, 244, 229, 182), color(248, 252, 237, 42), true, 18);
   addSceneDressingSkin(campBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
   addSceneDressingSkin(campLeftLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
   addSceneDressingSkin(campPlateZone.nodeId, 'outdoor_path_cobble', { tiled: true });
   addSceneDressingSkin(campGateZone.nodeId, 'outdoor_wall_standard', { tiled: true });
   addSceneDressingSkin(campTopLane.nodeId, 'outdoor_ground_green', { tiled: true });
+  addPanelNode(roots.worldRootId, 'CampPathGlow', vec3(70, -38, 0), 494, 182, color(255, 248, 229, 94), color(255, 252, 245, 26), true, 34);
+  addDecorPanels(roots.worldRootId, 'CampAccent', [
+    { position: vec3(-346, 114, 0), width: 24, height: 24, fillColor: color(255, 243, 211, 220), strokeColor: color(255, 251, 236, 92), cornerRadius: 18 },
+    { position: vec3(-314, 80, 0), width: 18, height: 18, fillColor: color(255, 225, 231, 208), strokeColor: color(255, 249, 250, 86), cornerRadius: 14 },
+    { position: vec3(-248, 46, 0), width: 22, height: 12, fillColor: color(231, 248, 224, 206), strokeColor: color(248, 255, 246, 82), cornerRadius: 10 },
+    { position: vec3(-28, 122, 0), width: 28, height: 16, fillColor: color(255, 247, 226, 184), strokeColor: color(255, 253, 241, 70), cornerRadius: 12 },
+    { position: vec3(190, 104, 0), width: 18, height: 18, fillColor: color(233, 244, 255, 200), strokeColor: color(250, 253, 255, 86), cornerRadius: 14 },
+  ]);
 
   addCheckpoint(builder, {
     name: 'Checkpoint-Camp',
@@ -1084,14 +1123,14 @@ async function generateStartCamp(scriptIds, prefabIds) {
   addCheckpoint(builder, {
     name: 'Checkpoint-CampReturn',
     markerId: 'camp-return',
-    label: 'WEST GATE CHECK',
+    label: '西门营火',
     position: vec3(440, -20, 0),
   });
 
   const campPlate = addLabeledNode(
     roots.worldRootId,
     'CampPlate',
-    'PRESS PLATE',
+    '压住机关',
     vec3(102, -64, 0),
     126,
     42,
@@ -1122,7 +1161,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
   const campGateClosed = addLabeledNode(
     roots.worldRootId,
     'CampGate-Closed',
-    'WEST GATE',
+    '西侧栅门',
     vec3(316, -20, 0),
     188,
     52,
@@ -1137,7 +1176,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
   const campGateOpen = addLabeledNode(
     roots.worldRootId,
     'CampGate-Open',
-    'WEST OPEN',
+    '栅门已开',
     vec3(316, -20, 0),
     188,
     52,
@@ -1159,8 +1198,6 @@ async function generateStartCamp(scriptIds, prefabIds) {
     targetMarkerId: 'field-west-entry',
     targetPosition: { x: -500, y: -20, z: 0 },
     active: false,
-    fillColor: color(82, 117, 153, 232),
-    strokeColor: color(220, 240, 255, 112),
   });
   addComponent(campPlate.nodeId, types['assets/scripts/puzzle/PressurePlateSwitch.ts'], {
     allowedNodeNameIncludes: 'Echo-box',
@@ -1171,10 +1208,10 @@ async function generateStartCamp(scriptIds, prefabIds) {
 
   addLabeledNode(roots.worldRootId, 'CampHint-Box', '放置箱子压住机关', vec3(110, 12, 0), 208, 38, 16, color(237, 246, 229, 255), true, color(68, 122, 84, 180), color(207, 248, 214, 62), 14, false);
   addLabeledNode(roots.worldRootId, 'CampHint-Move', '先熟悉移动与攻击', vec3(-284, 96, 0), 196, 38, 16, color(235, 241, 255, 255), true, color(54, 81, 111, 180), color(210, 228, 255, 62), 14, false);
-  addLabeledNode(roots.worldRootId, 'CampSign', 'BOX TRAINING', vec3(-32, 184, 0), 200, 40, 16, color(255, 247, 232, 255), true, color(121, 90, 54, 180), color(240, 219, 178, 54), 12, false);
+  addLabeledNode(roots.worldRootId, 'CampSign', '箱子练习', vec3(-32, 184, 0), 200, 40, 16, color(255, 247, 232, 255), true, color(121, 90, 54, 180), color(240, 219, 178, 54), 12, false);
 
-  const campVictoryBanner = addLabeledNode(roots.worldRootId, 'CampVictoryBanner', 'TRIAL COMPLETE', vec3(286, 182, 0), 248, 46, 18, color(235, 255, 235, 255), false, color(67, 146, 88, 255), color(213, 255, 209, 100), 16, true);
-  const campVictoryHint = addLabeledNode(roots.worldRootId, 'CampVictoryHint', 'You returned with the relic. The camp now marks the route as cleared.', vec3(286, 136, 0), 420, 38, 16, color(235, 255, 235, 255), false, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
+  const campVictoryBanner = addLabeledNode(roots.worldRootId, 'CampVictoryBanner', '试炼完成', vec3(286, 182, 0), 248, 46, 18, color(235, 255, 235, 255), false, color(67, 146, 88, 255), color(213, 255, 209, 100), 16, true);
+  const campVictoryHint = addLabeledNode(roots.worldRootId, 'CampVictoryHint', '带回遗物后，营地会点亮回家的路。', vec3(286, 136, 0), 420, 38, 16, color(235, 255, 235, 255), false, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
   addFlagGateController(builder, {
     name: 'CampVictoryController',
     requiredFlags: ['boss-cleared'],
@@ -1183,7 +1220,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
 
   addEnemy(builder, {
     name: 'CampEnemy',
-    label: 'SLIME',
+    label: '史莱姆',
     position: vec3(-130, 30, 0),
     patrolA: vec3(-210, 30, 0),
     patrolB: vec3(-60, 30, 0),
@@ -1205,18 +1242,26 @@ async function generateFieldWest(scriptIds, prefabIds) {
     cameraOffsetX: -110,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(110, 0, 0), 1840, 560, color(24, 40, 46, 255), color(104, 137, 150, 50), true, 26);
-  const fieldLane = addPanelNode(roots.worldRootId, 'FieldLane', vec3(-260, -10, 0), 860, 250, color(45, 68, 52, 220), color(144, 193, 162, 42), true, 22);
-  const trapLane = addPanelNode(roots.worldRootId, 'TrapLane', vec3(278, 4, 0), 360, 210, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
-  const landingLane = addPanelNode(roots.worldRootId, 'LandingLane', vec3(598, 102, 0), 280, 118, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
-  const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(0, 184, 0), 1460, 102, color(29, 55, 43, 184), color(139, 188, 163, 42), true, 20);
+  const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(110, 0, 0), 1840, 560, color(214, 236, 200, 255), color(247, 245, 225, 50), true, 26);
+  const fieldLane = addPanelNode(roots.worldRootId, 'FieldLane', vec3(-260, -10, 0), 860, 250, color(238, 246, 221, 220), color(250, 249, 232, 42), true, 22);
+  const trapLane = addPanelNode(roots.worldRootId, 'TrapLane', vec3(278, 4, 0), 360, 210, color(247, 230, 197, 190), color(255, 241, 221, 50), true, 22);
+  const landingLane = addPanelNode(roots.worldRootId, 'LandingLane', vec3(598, 102, 0), 280, 118, color(230, 240, 249, 188), color(241, 247, 255, 58), true, 20);
+  const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(0, 184, 0), 1460, 102, color(230, 243, 214, 184), color(248, 251, 232, 42), true, 20);
   addSceneDressingSkin(fieldBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
   addSceneDressingSkin(fieldLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
   addSceneDressingSkin(trapLane.nodeId, 'outdoor_path_cobble', { tiled: true });
   addSceneDressingSkin(landingLane.nodeId, 'outdoor_path_cobble', { tiled: true });
   addSceneDressingSkin(fieldTopStrip.nodeId, 'outdoor_ground_green', { tiled: true });
+  addPanelNode(roots.worldRootId, 'FieldPathGlow', vec3(-230, -36, 0), 540, 186, color(255, 247, 228, 92), color(255, 252, 244, 26), true, 34);
+  addDecorPanels(roots.worldRootId, 'FieldAccent', [
+    { position: vec3(-336, 108, 0), width: 22, height: 22, fillColor: color(255, 241, 206, 216), strokeColor: color(255, 249, 233, 90), cornerRadius: 16 },
+    { position: vec3(-292, 78, 0), width: 18, height: 18, fillColor: color(237, 248, 224, 206), strokeColor: color(251, 255, 243, 84), cornerRadius: 14 },
+    { position: vec3(-154, 154, 0), width: 26, height: 14, fillColor: color(254, 231, 217, 198), strokeColor: color(255, 248, 244, 74), cornerRadius: 10 },
+    { position: vec3(182, 116, 0), width: 20, height: 20, fillColor: color(232, 244, 255, 202), strokeColor: color(250, 253, 255, 86), cornerRadius: 14 },
+    { position: vec3(514, 132, 0), width: 24, height: 16, fillColor: color(255, 245, 220, 192), strokeColor: color(255, 251, 241, 74), cornerRadius: 12 },
+  ]);
 
   addCheckpoint(builder, {
     name: 'Checkpoint-FieldWest',
@@ -1228,7 +1273,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
   addCheckpoint(builder, {
     name: 'Checkpoint-FieldWestReturn',
     markerId: 'field-west-return',
-    label: 'RUINS GATE CHECK',
+    label: '遗迹门营火',
     position: vec3(708, 102, 0),
   });
 
@@ -1240,13 +1285,11 @@ async function generateFieldWest(scriptIds, prefabIds) {
     targetMarkerId: 'camp-return',
     targetPosition: { x: 440, y: -20, z: 0 },
     active: true,
-    fillColor: color(76, 101, 136, 225),
-    strokeColor: color(218, 239, 255, 102),
   });
 
   addEnemy(builder, {
     name: 'FieldEnemy',
-    label: 'SCOUT',
+    label: '巡逻',
     position: vec3(-72, 36, 0),
     patrolA: vec3(-170, 36, 0),
     patrolB: vec3(30, 36, 0),
@@ -1267,12 +1310,12 @@ async function generateFieldWest(scriptIds, prefabIds) {
 
   addLabeledNode(roots.worldRootId, 'WestHint-Flower', '在陷阱左侧放下弹花', vec3(150, 92, 0), 240, 38, 16, color(235, 255, 234, 255), true, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
   addLabeledNode(roots.worldRootId, 'WestHint-Ruins', '穿过这里即可进入遗迹试炼场', vec3(598, 178, 0), 280, 38, 16, color(231, 243, 255, 255), true, color(58, 92, 126, 182), color(205, 228, 255, 72), 14, false);
-  addLabeledNode(roots.worldRootId, 'WestLanding', 'SAFE LANDING', vec3(598, 102, 0), 180, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
+  addLabeledNode(roots.worldRootId, 'WestLanding', '安全落点', vec3(598, 102, 0), 180, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
 
   const trapNode = addLabeledNode(
     roots.worldRootId,
     'Trap-West',
-    'TRAP',
+    '箭台',
     vec3(314, -4, 0),
     96,
     42,
@@ -1315,8 +1358,6 @@ async function generateFieldWest(scriptIds, prefabIds) {
     targetMarkerId: 'field-ruins-entry',
     targetPosition: { x: -520, y: -20, z: 0 },
     active: true,
-    fillColor: color(92, 124, 166, 232),
-    strokeColor: color(226, 240, 255, 110),
     width: 200,
     height: 52,
   });
@@ -1328,49 +1369,55 @@ async function generateFieldWest(scriptIds, prefabIds) {
 async function generateFieldRuins(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('FieldRuins', scriptIds, prefabIds, {
     musicCueId: 'field-ruins',
-    sceneTitle: 'Ruins Approach',
-    objectiveText: 'Unlock BombBug, blast the wall, and enter the trial gate.',
+    sceneTitle: '遗迹小径',
+    objectiveText: '解锁炸虫，炸开裂墙，进入试炼门',
     playerStart: vec3(-520, -20, 0),
     cameraBounds: { minX: -420, maxX: 620, minY: -80, maxY: 110 },
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
 
-  const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(28, 34, 44, 255), color(112, 132, 162, 48), true, 26);
-  const ruinsLane = addPanelNode(roots.worldRootId, 'RuinsLane', vec3(-220, -10, 0), 900, 260, color(52, 61, 68, 214), color(161, 183, 197, 42), true, 22);
-  const ruinsPickupZone = addPanelNode(roots.worldRootId, 'RuinsPickupZone', vec3(20, 170, 0), 420, 120, color(58, 79, 68, 188), color(171, 214, 190, 48), true, 20);
-  const crackedWallZone = addPanelNode(roots.worldRootId, 'CrackedWallZone', vec3(404, -14, 0), 320, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
-  const dungeonApproachZone = addPanelNode(roots.worldRootId, 'DungeonApproachZone', vec3(724, 88, 0), 310, 118, color(59, 86, 112, 194), color(197, 222, 246, 58), true, 20);
+  const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(248, 239, 221, 255), color(251, 243, 227, 48), true, 26);
+  const ruinsLane = addPanelNode(roots.worldRootId, 'RuinsLane', vec3(-220, -10, 0), 900, 260, color(248, 234, 209, 214), color(252, 243, 226, 42), true, 22);
+  const ruinsPickupZone = addPanelNode(roots.worldRootId, 'RuinsPickupZone', vec3(20, 170, 0), 420, 120, color(251, 237, 215, 188), color(255, 246, 229, 48), true, 20);
+  const crackedWallZone = addPanelNode(roots.worldRootId, 'CrackedWallZone', vec3(404, -14, 0), 320, 220, color(244, 224, 206, 192), color(252, 237, 226, 50), true, 22);
+  const dungeonApproachZone = addPanelNode(roots.worldRootId, 'DungeonApproachZone', vec3(724, 88, 0), 310, 118, color(235, 240, 249, 194), color(246, 249, 255, 58), true, 20);
   addSceneDressingSkin(ruinsBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
   addSceneDressingSkin(ruinsLane.nodeId, 'outdoor_path_cobble', { tiled: true });
   addSceneDressingSkin(ruinsPickupZone.nodeId, 'outdoor_ground_flowers', { tiled: true });
   addSceneDressingSkin(crackedWallZone.nodeId, 'outdoor_wall_cracked', { tiled: true });
   addSceneDressingSkin(dungeonApproachZone.nodeId, 'outdoor_wall_broken', { tiled: true });
+  addPanelNode(roots.worldRootId, 'RuinsPathGlow', vec3(-186, -36, 0), 560, 188, color(255, 246, 228, 90), color(255, 251, 244, 26), true, 34);
+  addDecorPanels(roots.worldRootId, 'RuinsAccent', [
+    { position: vec3(-348, 110, 0), width: 24, height: 24, fillColor: color(255, 241, 214, 216), strokeColor: color(255, 250, 238, 90), cornerRadius: 18 },
+    { position: vec3(-304, 76, 0), width: 18, height: 18, fillColor: color(241, 233, 252, 204), strokeColor: color(251, 247, 255, 84), cornerRadius: 14 },
+    { position: vec3(-124, 146, 0), width: 26, height: 14, fillColor: color(255, 231, 219, 200), strokeColor: color(255, 248, 244, 74), cornerRadius: 10 },
+    { position: vec3(198, 106, 0), width: 20, height: 20, fillColor: color(236, 246, 228, 204), strokeColor: color(251, 255, 245, 86), cornerRadius: 14 },
+    { position: vec3(560, 132, 0), width: 22, height: 16, fillColor: color(255, 240, 222, 194), strokeColor: color(255, 250, 241, 74), cornerRadius: 12 },
+  ]);
 
   addCheckpoint(builder, {
     name: 'Checkpoint-FieldRuins',
     markerId: 'field-ruins-entry',
-    label: 'RUINS CHECK',
+    label: '遗迹营火',
     position: vec3(-534, -20, 0),
   });
 
   addScenePortal(builder, {
     name: 'Portal-FieldWestReturn',
-    label: 'BACK TO WEST',
+    label: '返回西径',
     position: vec3(-712, -20, 0),
     targetScene: 'FieldWest',
     targetMarkerId: 'field-west-return',
     targetPosition: { x: 708, y: 102, z: 0 },
     active: true,
-    fillColor: color(76, 101, 136, 225),
-    strokeColor: color(218, 239, 255, 102),
     width: 196,
   });
 
   addEnemy(builder, {
     name: 'RuinsEnemy',
-    label: 'GUARD',
+    label: '守卫',
     position: vec3(-34, 24, 0),
     patrolA: vec3(-148, 24, 0),
     patrolB: vec3(58, 24, 0),
@@ -1380,7 +1427,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
 
   addEchoPickup(builder, {
     name: 'EchoPickup-Bomb-Ruins',
-    label: 'UNLOCK BOMB',
+    label: '解锁炸虫',
     position: vec3(4, 170, 0),
     width: 180,
     echoId: 2,
@@ -1390,14 +1437,14 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     tint: color(255, 241, 236, 255),
   });
 
-  addLabeledNode(roots.worldRootId, 'RuinsHint-Bomb', 'PLACE BOMB BUG BY THE WALL', vec3(232, 92, 0), 290, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
-  addLabeledNode(roots.worldRootId, 'RuinsHint-Dungeon', 'THE TRIAL GATE OPENS AFTER THE BLAST', vec3(724, 166, 0), 330, 38, 16, color(231, 243, 255, 255), true, color(58, 92, 126, 182), color(205, 228, 255, 72), 14, false);
-  addLabeledNode(roots.worldRootId, 'RuinsLanding', 'TRIAL PATH', vec3(724, 88, 0), 172, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
+  addLabeledNode(roots.worldRootId, 'RuinsHint-Bomb', '把炸虫放到裂墙旁', vec3(232, 92, 0), 290, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
+  addLabeledNode(roots.worldRootId, 'RuinsHint-Dungeon', '裂墙炸开后通往试炼', vec3(724, 166, 0), 330, 38, 16, color(231, 243, 255, 255), true, color(58, 92, 126, 182), color(205, 228, 255, 72), 14, false);
+  addLabeledNode(roots.worldRootId, 'RuinsLanding', '试炼入口', vec3(724, 88, 0), 172, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
 
   const ruinsWallClosed = addLabeledNode(
     roots.worldRootId,
     'RuinsWall-Closed',
-    'CRACKED WALL',
+    '裂墙',
     vec3(434, -14, 0),
     196,
     56,
@@ -1412,7 +1459,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
   const ruinsWallOpen = addLabeledNode(
     roots.worldRootId,
     'RuinsWall-Open',
-    'WALL OPEN',
+    '通路已开',
     vec3(434, -14, 0),
     196,
     56,
@@ -1428,14 +1475,12 @@ async function generateFieldRuins(scriptIds, prefabIds) {
   addSceneDressingSkin(ruinsWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const dungeonPortal = addScenePortal(builder, {
     name: 'Portal-DungeonHub',
-    label: 'ENTER DUNGEON',
+    label: '进入试炼厅',
     position: vec3(840, 88, 0),
     targetScene: 'DungeonHub',
     targetMarkerId: 'dungeon-hub-entry',
     targetPosition: { x: -500, y: -20, z: 0 },
     active: false,
-    fillColor: color(92, 124, 166, 232),
-    strokeColor: color(226, 240, 255, 110),
     width: 210,
     height: 52,
   });
@@ -1463,8 +1508,8 @@ async function generateFieldRuins(scriptIds, prefabIds) {
 async function generateDungeonHub(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonHub', scriptIds, prefabIds, {
     musicCueId: 'dungeon-hub',
-    sceneTitle: 'Trial Hub',
-    objectiveText: 'Clear the three chambers to unlock the boss gate.',
+    sceneTitle: '试炼大厅',
+    objectiveText: '完成三个小房间，打开首领门',
     playerStart: vec3(-500, -20, 0),
     cameraBounds: { minX: -420, maxX: 620, minY: -80, maxY: 110 },
     cameraOffsetX: -120,
@@ -1472,34 +1517,32 @@ async function generateDungeonHub(scriptIds, prefabIds) {
 
   const { addPanelNode, addLabeledNode, resetNodes, roots } = builder;
 
-  addPanelNode(roots.worldRootId, 'HubBackdrop', vec3(120, 0, 0), 1940, 560, color(24, 30, 40, 255), color(109, 132, 160, 48), true, 26);
-  addPanelNode(roots.worldRootId, 'HubLeftLane', vec3(-270, -10, 0), 760, 250, color(44, 60, 70, 214), color(154, 179, 196, 42), true, 22);
-  addPanelNode(roots.worldRootId, 'HubTopStrip', vec3(0, 186, 0), 1560, 104, color(34, 48, 61, 182), color(147, 174, 194, 46), true, 20);
-  addPanelNode(roots.worldRootId, 'BossGateZone', vec3(516, -2, 0), 300, 230, color(82, 56, 62, 188), color(217, 177, 185, 52), true, 24);
+  addPanelNode(roots.worldRootId, 'HubBackdrop', vec3(120, 0, 0), 1940, 560, color(235, 232, 243, 255), color(246, 241, 228, 56), true, 28);
+  addPanelNode(roots.worldRootId, 'HubLeftLane', vec3(-270, -10, 0), 760, 250, color(225, 239, 216, 214), color(248, 244, 226, 46), true, 24);
+  addPanelNode(roots.worldRootId, 'HubTopStrip', vec3(0, 186, 0), 1560, 104, color(239, 236, 246, 182), color(247, 242, 232, 50), true, 22);
+  addPanelNode(roots.worldRootId, 'BossGateZone', vec3(516, -2, 0), 300, 230, color(247, 225, 198, 188), color(251, 236, 216, 56), true, 26);
 
   addCheckpoint(builder, {
     name: 'Checkpoint-DungeonHub',
     markerId: 'dungeon-hub-entry',
-    label: 'HUB CHECK',
+    label: '大厅营火',
     position: vec3(-514, -20, 0),
   });
 
   addScenePortal(builder, {
     name: 'Portal-FieldRuinsReturn',
-    label: 'BACK TO RUINS',
+    label: '返回遗迹',
     position: vec3(-706, -20, 0),
     targetScene: 'FieldRuins',
     targetMarkerId: 'field-ruins-entry',
     targetPosition: { x: 760, y: 88, z: 0 },
     active: true,
-    fillColor: color(76, 101, 136, 225),
-    strokeColor: color(218, 239, 255, 102),
     width: 188,
   });
 
   addScenePortal(builder, {
     name: 'Portal-DungeonRoomA',
-    label: 'ROOM A',
+    label: '箱子间',
     position: vec3(-110, 122, 0),
     targetScene: 'DungeonRoomA',
     targetMarkerId: 'dungeon-room-a-entry',
@@ -1509,31 +1552,31 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   const roomAStatusPending = addLabeledNode(
     roots.worldRootId,
     'RoomA-StatusPending',
-    'PENDING',
+    '○',
     vec3(-110, 78, 0),
-    116,
-    34,
-    14,
-    color(255, 243, 238, 255),
+    44,
+    30,
+    18,
+    color(166, 104, 91, 255),
     true,
-    color(126, 77, 71, 176),
-    color(255, 213, 200, 64),
-    12,
+    color(255, 232, 214, 184),
+    color(255, 246, 232, 96),
+    15,
     true,
   );
   const roomAStatusDone = addLabeledNode(
     roots.worldRootId,
     'RoomA-StatusDone',
-    'DONE',
+    '✓',
     vec3(-110, 78, 0),
-    96,
-    34,
-    14,
-    color(235, 255, 235, 255),
+    44,
+    30,
+    18,
+    color(58, 116, 72, 255),
     false,
-    color(67, 146, 88, 176),
-    color(213, 255, 209, 64),
-    12,
+    color(221, 250, 201, 188),
+    color(247, 255, 229, 98),
+    15,
     true,
   );
   addFlagGateController(builder, {
@@ -1544,7 +1587,7 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   });
   addScenePortal(builder, {
     name: 'Portal-DungeonRoomB',
-    label: 'ROOM B',
+    label: '弹花间',
     position: vec3(110, 122, 0),
     targetScene: 'DungeonRoomB',
     targetMarkerId: 'dungeon-room-b-entry',
@@ -1554,31 +1597,31 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   const roomBStatusPending = addLabeledNode(
     roots.worldRootId,
     'RoomB-StatusPending',
-    'PENDING',
+    '○',
     vec3(110, 78, 0),
-    116,
-    34,
-    14,
-    color(255, 243, 238, 255),
+    44,
+    30,
+    18,
+    color(166, 104, 91, 255),
     true,
-    color(126, 77, 71, 176),
-    color(255, 213, 200, 64),
-    12,
+    color(255, 232, 214, 184),
+    color(255, 246, 232, 96),
+    15,
     true,
   );
   const roomBStatusDone = addLabeledNode(
     roots.worldRootId,
     'RoomB-StatusDone',
-    'DONE',
+    '✓',
     vec3(110, 78, 0),
-    96,
-    34,
-    14,
-    color(235, 255, 235, 255),
+    44,
+    30,
+    18,
+    color(58, 116, 72, 255),
     false,
-    color(67, 146, 88, 176),
-    color(213, 255, 209, 64),
-    12,
+    color(221, 250, 201, 188),
+    color(247, 255, 229, 98),
+    15,
     true,
   );
   addFlagGateController(builder, {
@@ -1589,7 +1632,7 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   });
   addScenePortal(builder, {
     name: 'Portal-DungeonRoomC',
-    label: 'ROOM C',
+    label: '炸虫间',
     position: vec3(330, 122, 0),
     targetScene: 'DungeonRoomC',
     targetMarkerId: 'dungeon-room-c-entry',
@@ -1599,31 +1642,31 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   const roomCStatusPending = addLabeledNode(
     roots.worldRootId,
     'RoomC-StatusPending',
-    'PENDING',
+    '○',
     vec3(330, 78, 0),
-    116,
-    34,
-    14,
-    color(255, 243, 238, 255),
+    44,
+    30,
+    18,
+    color(166, 104, 91, 255),
     true,
-    color(126, 77, 71, 176),
-    color(255, 213, 200, 64),
-    12,
+    color(255, 232, 214, 184),
+    color(255, 246, 232, 96),
+    15,
     true,
   );
   const roomCStatusDone = addLabeledNode(
     roots.worldRootId,
     'RoomC-StatusDone',
-    'DONE',
+    '✓',
     vec3(330, 78, 0),
-    96,
-    34,
-    14,
-    color(235, 255, 235, 255),
+    44,
+    30,
+    18,
+    color(58, 116, 72, 255),
     false,
-    color(67, 146, 88, 176),
-    color(213, 255, 209, 64),
-    12,
+    color(221, 250, 201, 188),
+    color(247, 255, 229, 98),
+    15,
     true,
   );
   addFlagGateController(builder, {
@@ -1636,22 +1679,22 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   const bossGateClosed = addLabeledNode(
     roots.worldRootId,
     'BossGate-Closed',
-    'BOSS LOCKED',
+    '首领门未开',
     vec3(520, -2, 0),
     216,
     60,
     18,
     color(255, 241, 239, 255),
     true,
-    color(137, 70, 73, 255),
-    color(255, 212, 205, 120),
-    18,
+    color(176, 104, 92, 255),
+    color(255, 221, 209, 112),
+    20,
     true,
   );
   const bossGateOpen = addLabeledNode(
     roots.worldRootId,
     'BossGate-Open',
-    'BOSS OPEN',
+    '首领门已开',
     vec3(520, -2, 0),
     216,
     60,
@@ -1665,15 +1708,13 @@ async function generateDungeonHub(scriptIds, prefabIds) {
   );
   const bossPortal = addScenePortal(builder, {
     name: 'Portal-BossArena',
-    label: 'ENTER BOSS',
+    label: '挑战首领',
     position: vec3(708, -2, 0),
     targetScene: 'BossArena',
     targetMarkerId: 'boss-arena-entry',
     targetPosition: { x: -520, y: -20, z: 0 },
     active: false,
     width: 196,
-    fillColor: color(98, 126, 168, 232),
-    strokeColor: color(226, 240, 255, 110),
   });
 
   addFlagGateController(builder, {
@@ -1683,8 +1724,8 @@ async function generateDungeonHub(scriptIds, prefabIds) {
     deactivateWhenReady: [bossGateClosed.nodeId],
   });
 
-  addLabeledNode(roots.worldRootId, 'HubHint-Rooms', 'Each room teaches one echo. Done badges light up after each clear.', vec3(110, 186, 0), 440, 38, 16, color(236, 244, 255, 255), true, color(56, 82, 116, 184), color(207, 226, 255, 62), 14, false);
-  addLabeledNode(roots.worldRootId, 'HubHint-Boss', 'The boss gate opens after three clear relics.', vec3(520, 122, 0), 330, 38, 16, color(255, 241, 239, 255), true, color(92, 63, 76, 184), color(255, 219, 214, 62), 14, false);
+  addLabeledNode(roots.worldRootId, 'HubHint-Rooms', '每个房间教会一种回响，完成后徽章会亮起。', vec3(110, 186, 0), 440, 38, 16, color(236, 244, 255, 255), true, color(56, 82, 116, 184), color(207, 226, 255, 62), 14, false);
+  addLabeledNode(roots.worldRootId, 'HubHint-Boss', '收齐三枚遗物后，首领门会打开。', vec3(520, 122, 0), 330, 38, 16, color(255, 241, 239, 255), true, color(92, 63, 76, 184), color(255, 219, 214, 62), 14, false);
 
   await builder.finalize();
 }
@@ -1692,8 +1733,8 @@ async function generateDungeonHub(scriptIds, prefabIds) {
 async function generateDungeonRoomA(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomA', scriptIds, prefabIds, {
     musicCueId: 'dungeon-room',
-    sceneTitle: 'Room A - Box',
-    objectiveText: 'Summon a box to hold the plate and claim the relic.',
+    sceneTitle: '箱子房',
+    objectiveText: '召唤箱子压住机关，拿到房间遗物',
     playerStart: vec3(-500, -20, 0),
     cameraBounds: { minX: -420, maxX: 360, minY: -80, maxY: 90 },
     cameraOffsetX: -120,
@@ -1701,20 +1742,20 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
 
   const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  const roomABackdrop = addPanelNode(roots.worldRootId, 'RoomABackdrop', vec3(0, 0, 0), 1500, 520, color(34, 48, 56, 255), color(130, 157, 174, 42), true, 24);
-  const roomAChallengeZone = addPanelNode(roots.worldRootId, 'RoomAChallengeZone', vec3(120, -18, 0), 500, 180, color(96, 77, 48, 205), color(225, 198, 140, 58), true, 22);
+  const roomABackdrop = addPanelNode(roots.worldRootId, 'RoomABackdrop', vec3(0, 0, 0), 1500, 520, color(244, 238, 229, 255), color(247, 238, 219, 48), true, 28);
+  const roomAChallengeZone = addPanelNode(roots.worldRootId, 'RoomAChallengeZone', vec3(120, -18, 0), 500, 180, color(247, 228, 191, 205), color(255, 241, 211, 60), true, 24);
   addSceneDressingSkin(roomABackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
   addSceneDressingSkin(roomAChallengeZone.nodeId, 'outdoor_path_cobble', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-DungeonRoomA',
     markerId: 'dungeon-room-a-entry',
-    label: 'ROOM A CHECK',
+    label: '箱子房营火',
     position: vec3(-514, -20, 0),
   });
   addScenePortal(builder, {
     name: 'Portal-DungeonHubReturn-A',
-    label: 'BACK TO HUB',
+    label: '返回大厅',
     position: vec3(-698, -20, 0),
     targetScene: 'DungeonHub',
     targetMarkerId: 'dungeon-hub-entry',
@@ -1726,7 +1767,7 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
   const roomAPlate = addLabeledNode(
     roots.worldRootId,
     'RoomA-Plate',
-    'PLATE',
+    '机关',
     vec3(86, -50, 0),
     112,
     42,
@@ -1754,14 +1795,14 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
   });
   addSensorBox(roomAPlate.nodeId, 102, 32);
 
-  const roomAGateClosed = addLabeledNode(roots.worldRootId, 'RoomA-GateClosed', 'GATE', vec3(266, -18, 0), 156, 52, 18, color(255, 241, 239, 255), true, color(124, 53, 52, 255), color(255, 202, 196, 120), 16, true);
-  const roomAGateOpen = addLabeledNode(roots.worldRootId, 'RoomA-GateOpen', 'OPEN', vec3(266, -18, 0), 156, 52, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
+  const roomAGateClosed = addLabeledNode(roots.worldRootId, 'RoomA-GateClosed', '小门', vec3(266, -18, 0), 156, 52, 18, color(255, 241, 239, 255), true, color(124, 53, 52, 255), color(255, 202, 196, 120), 16, true);
+  const roomAGateOpen = addLabeledNode(roots.worldRootId, 'RoomA-GateOpen', '已开', vec3(266, -18, 0), 156, 52, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
   addSceneDressingSkin(roomAGateClosed.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   addSceneDressingSkin(roomAGateOpen.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomAGateBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomA-GateBarrier',
-    'LOCK',
+    '阻挡',
     vec3(356, -18, 0),
     86,
     180,
@@ -1779,7 +1820,7 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
   });
   const roomAClearRelic = addProgressFlagPickup(builder, {
     name: 'RoomA-ClearRelic',
-    label: 'CLAIM BOX RELIC',
+    label: '拿取箱子遗物',
     flagId: 'room-a-clear',
     position: vec3(446, -18, 0),
     width: 196,
@@ -1793,10 +1834,10 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
   });
   roomAClearRelic.nodeId && (builder.items[roomAClearRelic.nodeId]._active = false);
 
-  addLabeledNode(roots.worldRootId, 'RoomAHint', 'Only the box can keep this plate held down.', vec3(104, 84, 0), 280, 38, 16, color(255, 246, 231, 255), true, color(113, 88, 58, 184), color(240, 219, 178, 54), 14, false);
+  addLabeledNode(roots.worldRootId, 'RoomAHint', '只有箱子能稳稳压住机关。', vec3(104, 84, 0), 280, 38, 16, color(255, 246, 231, 255), true, color(113, 88, 58, 184), color(240, 219, 178, 54), 14, false);
   addEnemy(builder, {
     name: 'RoomA-Enemy',
-    label: 'WARDEN',
+    label: '看守',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -1811,8 +1852,8 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
 async function generateDungeonRoomB(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomB', scriptIds, prefabIds, {
     musicCueId: 'dungeon-room',
-    sceneTitle: 'Room B - Flower',
-    objectiveText: 'Use SpringFlower to cross the trap lane and claim the relic.',
+    sceneTitle: '弹花房',
+    objectiveText: '用弹花越过陷阱，拿到房间遗物',
     playerStart: vec3(-500, -20, 0),
     cameraBounds: { minX: -420, maxX: 520, minY: -90, maxY: 110 },
     cameraOffsetX: -120,
@@ -1820,45 +1861,37 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
 
   const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
 
-  const roomBBackdrop = addPanelNode(roots.worldRootId, 'RoomBBackdrop', vec3(80, 0, 0), 1720, 520, color(30, 48, 40, 255), color(132, 178, 156, 42), true, 24);
-  const roomBTrapLane = addPanelNode(roots.worldRootId, 'RoomBTrapLane', vec3(180, -10, 0), 420, 240, color(109, 63, 46, 188), color(242, 184, 144, 50), true, 22);
-  const roomBLandingZone = addPanelNode(roots.worldRootId, 'RoomBLandingZone', vec3(536, 84, 0), 250, 110, color(57, 91, 118, 188), color(197, 224, 255, 58), true, 20);
+  const roomBBackdrop = addPanelNode(roots.worldRootId, 'RoomBBackdrop', vec3(80, 0, 0), 1720, 520, color(243, 235, 224, 255), color(247, 239, 221, 48), true, 28);
+  const roomBTrapLane = addPanelNode(roots.worldRootId, 'RoomBTrapLane', vec3(180, -10, 0), 420, 240, color(246, 220, 191, 188), color(255, 235, 216, 54), true, 24);
+  const roomBLandingZone = addPanelNode(roots.worldRootId, 'RoomBLandingZone', vec3(536, 84, 0), 250, 110, color(223, 237, 248, 188), color(238, 246, 255, 60), true, 22);
   addSceneDressingSkin(roomBBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
   addSceneDressingSkin(roomBTrapLane.nodeId, 'outdoor_ground_ruins', { tiled: true });
   addSceneDressingSkin(roomBLandingZone.nodeId, 'outdoor_ground_flowers', { tiled: true });
-  const roomBTopBarrier = addLabeledNode(
+  const roomBTopBarrier = addPanelNode(
     roots.worldRootId,
     'RoomB-TopBarrier',
-    'BOUNDARY',
     vec3(170, 184, 0),
     1280,
-    64,
-    14,
-    color(232, 240, 255, 255),
+    44,
+    color(239, 247, 255, 126),
+    color(216, 234, 255, 54),
     true,
-    color(64, 83, 108, 128),
-    color(200, 224, 255, 44),
-    12,
-    true,
+    22,
   );
   addSensorBox(roomBTopBarrier.nodeId, 1270, 60);
   addComponent(roomBTopBarrier.nodeId, types['assets/scripts/puzzle/PlayerBarrierZone.ts'], {
     playerNameIncludes: 'Player',
   });
-  const roomBBottomBarrier = addLabeledNode(
+  const roomBBottomBarrier = addPanelNode(
     roots.worldRootId,
     'RoomB-BottomBarrier',
-    'BOUNDARY',
     vec3(170, -204, 0),
     1280,
-    64,
-    14,
-    color(232, 240, 255, 255),
+    44,
+    color(239, 247, 255, 126),
+    color(216, 234, 255, 54),
     true,
-    color(64, 83, 108, 128),
-    color(200, 224, 255, 44),
-    12,
-    true,
+    22,
   );
   addSensorBox(roomBBottomBarrier.nodeId, 1270, 60);
   addComponent(roomBBottomBarrier.nodeId, types['assets/scripts/puzzle/PlayerBarrierZone.ts'], {
@@ -1868,12 +1901,12 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
   addCheckpoint(builder, {
     name: 'Checkpoint-DungeonRoomB',
     markerId: 'dungeon-room-b-entry',
-    label: 'ROOM B CHECK',
+    label: '弹花房营火',
     position: vec3(-514, -20, 0),
   });
   addScenePortal(builder, {
     name: 'Portal-DungeonHubReturn-B',
-    label: 'BACK TO HUB',
+    label: '返回大厅',
     position: vec3(-698, -20, 0),
     targetScene: 'DungeonHub',
     targetMarkerId: 'dungeon-hub-entry',
@@ -1882,7 +1915,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     width: 188,
   });
 
-  const roomBTrap = addLabeledNode(roots.worldRootId, 'RoomB-Trap', 'TRAP', vec3(220, -6, 0), 96, 42, 18, color(58, 27, 10, 255), true, color(223, 128, 69, 255), color(255, 217, 184, 120), 14, true);
+  const roomBTrap = addLabeledNode(roots.worldRootId, 'RoomB-Trap', '箭台', vec3(220, -6, 0), 96, 42, 18, color(58, 27, 10, 255), true, color(223, 128, 69, 255), color(255, 217, 184, 120), 14, true);
   addSceneDressingSkin(roomBTrap.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomBTrapSpawn = addNode('RoomB-Trap-Spawn', roomBTrap.nodeId, vec3(56, 0, 0));
   addComponent(roomBTrapSpawn, 'cc.UITransform', {
@@ -1908,7 +1941,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
   const roomBGapHazard = addLabeledNode(
     roots.worldRootId,
     'RoomB-GapHazard',
-    'GAP',
+    '缺口',
     vec3(388, -10, 0),
     260,
     250,
@@ -1927,21 +1960,19 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     ignoreWhileForcedMoving: true,
   });
 
-  addLabeledNode(roots.worldRootId, 'RoomBHint', 'Place the flower near the trap and ride the launch.', vec3(140, 94, 0), 330, 38, 16, color(235, 255, 234, 255), true, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
-  addLabeledNode(roots.worldRootId, 'RoomBLaunchHint', 'FLOWER SPOT', vec3(126, -56, 0), 166, 34, 14, color(235, 255, 234, 255), true, color(67, 146, 88, 172), color(213, 255, 209, 66), 12, true);
+  addLabeledNode(roots.worldRootId, 'RoomBHint', '弹花起跳', vec3(128, 84, 0), 154, 34, 15, color(55, 108, 63, 255), true, color(226, 251, 211, 206), color(247, 255, 230, 82), 17, true);
   const roomBClearRelic = addProgressFlagPickup(builder, {
     name: 'RoomB-ClearRelic',
-    label: 'CLAIM FLOWER RELIC',
+    label: '拿取弹花遗物',
     flagId: 'room-b-clear',
     position: vec3(706, 84, 0),
     width: 210,
     destroyOnCollected: true,
   });
-  addLabeledNode(roots.worldRootId, 'RoomBLanding', 'LANDING', vec3(536, 84, 0), 156, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
 
   addEnemy(builder, {
     name: 'RoomB-Enemy',
-    label: 'SCOUT',
+    label: '巡逻',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -1962,8 +1993,8 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
 async function generateDungeonRoomC(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('DungeonRoomC', scriptIds, prefabIds, {
     musicCueId: 'dungeon-room',
-    sceneTitle: 'Room C - Bomb',
-    objectiveText: 'Place BombBug by the cracked wall to reveal the relic.',
+    sceneTitle: '炸虫房',
+    objectiveText: '把炸虫放到裂墙旁，露出房间遗物',
     playerStart: vec3(-500, -20, 0),
     cameraBounds: { minX: -420, maxX: 480, minY: -90, maxY: 100 },
     cameraOffsetX: -120,
@@ -1971,43 +2002,35 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
 
   const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
 
-  const roomCBackdrop = addPanelNode(roots.worldRootId, 'RoomCBackdrop', vec3(60, 0, 0), 1680, 520, color(36, 36, 44, 255), color(158, 148, 172, 42), true, 24);
-  const roomCBombZone = addPanelNode(roots.worldRootId, 'RoomCBombZone', vec3(230, -10, 0), 360, 220, color(102, 70, 54, 190), color(230, 191, 156, 50), true, 22);
+  const roomCBackdrop = addPanelNode(roots.worldRootId, 'RoomCBackdrop', vec3(60, 0, 0), 1680, 520, color(243, 237, 218, 255), color(255, 240, 204, 64), true, 28);
+  const roomCBombZone = addPanelNode(roots.worldRootId, 'RoomCBombZone', vec3(230, -10, 0), 360, 220, color(250, 222, 188, 204), color(255, 236, 208, 82), true, 24);
   addSceneDressingSkin(roomCBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
   addSceneDressingSkin(roomCBombZone.nodeId, 'outdoor_path_cobble', { tiled: true });
-  const roomCTopBarrier = addLabeledNode(
+  const roomCTopBarrier = addPanelNode(
     roots.worldRootId,
     'RoomC-TopBarrier',
-    'BOUNDARY',
     vec3(140, 184, 0),
     1240,
-    64,
-    14,
-    color(232, 240, 255, 255),
+    44,
+    color(244, 247, 230, 126),
+    color(232, 244, 205, 58),
     true,
-    color(73, 74, 101, 128),
-    color(208, 212, 255, 44),
-    12,
-    true,
+    22,
   );
   builder.addSensorBox(roomCTopBarrier.nodeId, 1230, 60);
   addComponent(roomCTopBarrier.nodeId, types['assets/scripts/puzzle/PlayerBarrierZone.ts'], {
     playerNameIncludes: 'Player',
   });
-  const roomCBottomBarrier = addLabeledNode(
+  const roomCBottomBarrier = addPanelNode(
     roots.worldRootId,
     'RoomC-BottomBarrier',
-    'BOUNDARY',
     vec3(140, -204, 0),
     1240,
-    64,
-    14,
-    color(232, 240, 255, 255),
+    44,
+    color(244, 247, 230, 126),
+    color(232, 244, 205, 58),
     true,
-    color(73, 74, 101, 128),
-    color(208, 212, 255, 44),
-    12,
-    true,
+    22,
   );
   builder.addSensorBox(roomCBottomBarrier.nodeId, 1230, 60);
   addComponent(roomCBottomBarrier.nodeId, types['assets/scripts/puzzle/PlayerBarrierZone.ts'], {
@@ -2017,12 +2040,12 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
   addCheckpoint(builder, {
     name: 'Checkpoint-DungeonRoomC',
     markerId: 'dungeon-room-c-entry',
-    label: 'ROOM C CHECK',
+    label: '炸虫房营火',
     position: vec3(-514, -20, 0),
   });
   addScenePortal(builder, {
     name: 'Portal-DungeonHubReturn-C',
-    label: 'BACK TO HUB',
+    label: '返回大厅',
     position: vec3(-698, -20, 0),
     targetScene: 'DungeonHub',
     targetMarkerId: 'dungeon-hub-entry',
@@ -2031,14 +2054,14 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     width: 188,
   });
 
-  const roomCWallClosed = addLabeledNode(roots.worldRootId, 'RoomC-WallClosed', 'CRACKED WALL', vec3(250, -10, 0), 196, 56, 18, color(255, 241, 239, 255), true, color(137, 78, 67, 255), color(255, 211, 201, 120), 16, true);
-  const roomCWallOpen = addLabeledNode(roots.worldRootId, 'RoomC-WallOpen', 'WALL OPEN', vec3(250, -10, 0), 196, 56, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
+  const roomCWallClosed = addLabeledNode(roots.worldRootId, 'RoomC-WallClosed', '裂墙', vec3(250, -10, 0), 196, 56, 18, color(255, 241, 239, 255), true, color(137, 78, 67, 255), color(255, 211, 201, 120), 16, true);
+  const roomCWallOpen = addLabeledNode(roots.worldRootId, 'RoomC-WallOpen', '通路已开', vec3(250, -10, 0), 196, 56, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
   addSceneDressingSkin(roomCWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   addSceneDressingSkin(roomCWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
   const roomCWallBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomC-WallBarrier',
-    'LOCK',
+    '阻挡',
     vec3(336, -10, 0),
     92,
     180,
@@ -2056,7 +2079,7 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
   });
   const roomCClearRelic = addProgressFlagPickup(builder, {
     name: 'RoomC-ClearRelic',
-    label: 'CLAIM BOMB RELIC',
+    label: '拿取炸虫遗物',
     flagId: 'room-c-clear',
     position: vec3(446, -10, 0),
     width: 200,
@@ -2078,11 +2101,10 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     hideLabelsWhenSkinned: true,
   });
 
-  addLabeledNode(roots.worldRootId, 'RoomCHint', 'BombBug is the only echo that can break this wall.', vec3(144, 92, 0), 340, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
-  addLabeledNode(roots.worldRootId, 'RoomCBombHint', 'BOMB SPOT', vec3(130, -52, 0), 146, 34, 14, color(255, 245, 238, 255), true, color(135, 68, 62, 172), color(255, 209, 200, 66), 12, true);
+  addLabeledNode(roots.worldRootId, 'RoomCHint', '炸虫开墙', vec3(128, 84, 0), 154, 34, 15, color(126, 70, 56, 255), true, color(255, 232, 214, 206), color(255, 247, 230, 82), 17, true);
   addEnemy(builder, {
     name: 'RoomC-Enemy',
-    label: 'GUARD',
+    label: '守卫',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -2104,8 +2126,8 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
 async function generateBossArena(scriptIds, prefabIds) {
   const builder = await createSceneBuilder('BossArena', scriptIds, prefabIds, {
     musicCueId: 'boss-arena',
-    sceneTitle: 'Boss Arena',
-    objectiveText: 'Defeat the trial core and claim the route forward.',
+    sceneTitle: '首领庭院',
+    objectiveText: '先破盾，再趁窗口输出；胜利后回营地。',
     playerStart: vec3(-520, -20, 0),
     cameraBounds: { minX: -420, maxX: 520, minY: -90, maxY: 100 },
     cameraOffsetX: -120,
@@ -2113,32 +2135,98 @@ async function generateBossArena(scriptIds, prefabIds) {
 
   const { addAssetBindingTag, addPanelNode, addLabeledNode, addDynamicBody, addComponent, addNode, addSceneDressingSkin, getImageBindingProps, items, resetNodes, roots, types } = builder;
 
-  const bossBackdrop = addPanelNode(roots.worldRootId, 'BossBackdrop', vec3(100, 0, 0), 1800, 540, color(40, 30, 38, 255), color(170, 132, 156, 42), true, 26);
-  const bossLane = addPanelNode(roots.worldRootId, 'BossLane', vec3(140, -10, 0), 860, 260, color(70, 46, 56, 196), color(218, 177, 190, 46), true, 24);
+  const bossBackdrop = addPanelNode(roots.worldRootId, 'BossBackdrop', vec3(100, 0, 0), 1800, 540, color(245, 235, 220, 255), color(255, 238, 204, 64), true, 28);
+  const bossLane = addPanelNode(roots.worldRootId, 'BossLane', vec3(140, -10, 0), 860, 260, color(243, 214, 176, 204), color(255, 234, 205, 76), true, 26);
   addSceneDressingSkin(bossBackdrop.nodeId, 'outdoor_wall_standard', { tiled: true });
   addSceneDressingSkin(bossLane.nodeId, 'outdoor_wall_cracked', { tiled: true });
 
   addCheckpoint(builder, {
     name: 'Checkpoint-BossArena',
     markerId: 'boss-arena-entry',
-    label: 'BOSS CHECK',
+    label: '首领营火',
     position: vec3(-534, -20, 0),
   });
 
   const bossCore = addLabeledNode(
     roots.worldRootId,
     'BossEnemy-Core',
-    'TRIAL CORE',
+    '',
     vec3(240, -10, 0),
-    180,
-    72,
-    22,
-    color(255, 244, 239, 255),
+    132,
+    120,
+    18,
+    color(255, 246, 230, 255),
     true,
-    color(148, 63, 78, 255),
-    color(255, 211, 218, 120),
-    20,
+    color(219, 132, 98, 226),
+    color(255, 232, 206, 132),
+    58,
     true,
+  );
+  const bossCoreInnerId = addNode('BossEnemy-Core-Inner', bossCore.nodeId, vec3(0, 0, 0));
+  addComponent(bossCoreInnerId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(92, 88),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreInnerId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(255, 192, 142, 244), color(255, 246, 216, 152), 44, 2),
+  );
+  const bossCoreOrbId = addNode('BossEnemy-Core-Orb', bossCore.visualNodeId, vec3(0, 4, 0));
+  addComponent(bossCoreOrbId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(68, 68),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreOrbId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(255, 236, 176, 242), color(255, 255, 234, 150), 34, 2),
+  );
+  const bossCoreBaseId = addNode('BossEnemy-Core-Base', bossCore.visualNodeId, vec3(0, -40, 0));
+  addComponent(bossCoreBaseId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(86, 18),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreBaseId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(181, 122, 96, 228), color(255, 234, 214, 90), 9, 1),
+  );
+  const bossCoreEyeLeftId = addNode('BossEnemy-Core-EyeLeft', bossCore.visualNodeId, vec3(-18, 10, 0));
+  addComponent(bossCoreEyeLeftId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(12, 16),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreEyeLeftId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(81, 66, 63, 255), color(255, 255, 248, 82), 6, 1),
+  );
+  const bossCoreEyeRightId = addNode('BossEnemy-Core-EyeRight', bossCore.visualNodeId, vec3(18, 10, 0));
+  addComponent(bossCoreEyeRightId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(12, 16),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreEyeRightId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(81, 66, 63, 255), color(255, 255, 248, 82), 6, 1),
+  );
+  const bossCoreShineId = addNode('BossEnemy-Core-Shine', bossCore.nodeId, vec3(22, 24, 0));
+  addComponent(bossCoreShineId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(28, 16),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addComponent(
+    bossCoreShineId,
+    types['assets/scripts/visual/RectVisual.ts'],
+    rectVisualProps(color(255, 255, 242, 198), color(255, 255, 255, 72), 8, 1),
   );
   addDynamicBody(bossCore.nodeId, 150, 60);
   addAssetBindingTag(bossCore.nodeId, 'boss_core');
@@ -2149,42 +2237,168 @@ async function generateBossArena(scriptIds, prefabIds) {
     deactivateNodeOnDepleted: false,
     acceptDamage: false,
   });
-  const bossShieldClosed = addLabeledNode(
-    roots.worldRootId,
-    'BossShield-Closed',
-    'BOMB TO BREAK',
-    vec3(240, -10, 0),
-    228,
-    92,
-    18,
-    color(255, 245, 238, 255),
-    true,
-    color(114, 71, 58, 188),
-    color(255, 214, 200, 78),
+  const addShieldPart = (parentId, name, position, width, height, fillColorValue, strokeColorValue, cornerRadius, active = true) =>
+    addPanelNode(parentId, name, position, width, height, fillColorValue, strokeColorValue, active, cornerRadius);
+
+  const bossShieldClosedNodeId = addNode('BossShield-Closed', roots.worldRootId, vec3(240, -10, 0), true);
+  addComponent(bossShieldClosedNodeId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(184, 118),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-ShellLobe',
+    vec3(-20, 6, 0),
+    82,
+    50,
+    color(255, 241, 217, 250),
+    color(255, 231, 195, 120),
     22,
-    true,
   );
-  const bossShieldOpen = addLabeledNode(
-    roots.worldRootId,
-    'BossShield-Open',
-    'SHIELD DOWN',
-    vec3(240, -10, 0),
-    228,
-    92,
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-HingeFin',
+    vec3(-60, -14, 0),
     18,
-    color(235, 255, 235, 255),
-    false,
-    color(67, 146, 88, 188),
-    color(213, 255, 209, 80),
-    22,
-    true,
+    58,
+    color(214, 151, 109, 236),
+    color(255, 236, 214, 96),
+    11,
   );
-  addComponent(bossShieldClosed.nodeId, types['assets/scripts/puzzle/BreakableTarget.ts'], {
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-CharmCore',
+    vec3(20, 2, 0),
+    42,
+    40,
+    color(255, 226, 170, 255),
+    color(255, 245, 220, 154),
+    20,
+  );
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-Counterweight',
+    vec3(50, -22, 0),
+    24,
+    18,
+    color(178, 118, 92, 236),
+    color(255, 234, 214, 88),
+    7,
+  );
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-Latch',
+    vec3(34, 26, 0),
+    16,
+    10,
+    color(255, 249, 228, 210),
+    color(255, 255, 255, 72),
+    5,
+  );
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-Spark',
+    vec3(0, 30, 0),
+    14,
+    10,
+    color(255, 255, 242, 208),
+    color(255, 255, 255, 66),
+    5,
+  );
+  addShieldPart(
+    bossShieldClosedNodeId,
+    'BossShield-Closed-Anchor',
+    vec3(-34, -28, 0),
+    24,
+    16,
+    color(170, 120, 92, 232),
+    color(255, 236, 214, 92),
+    8,
+  );
+
+  const bossShieldOpenNodeId = addNode('BossShield-Open', roots.worldRootId, vec3(240, -10, 0), false);
+  addComponent(bossShieldOpenNodeId, 'cc.UITransform', {
+    _priority: 0,
+    _contentSize: size(188, 118),
+    _anchorPoint: vec2(0.5, 0.5),
+  });
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-ShellLobe',
+    vec3(-28, -2, 0),
+    76,
+    44,
+    color(235, 255, 241, 246),
+    color(255, 247, 231, 114),
+    20,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-HingeFin',
+    vec3(-64, 10, 0),
+    18,
+    52,
+    color(168, 198, 133, 228),
+    color(245, 255, 226, 82),
+    10,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-CharmCore',
+    vec3(12, -4, 0),
+    38,
+    36,
+    color(212, 244, 187, 248),
+    color(240, 255, 226, 148),
+    17,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-Counterweight',
+    vec3(50, 14, 0),
+    22,
+    16,
+    color(132, 184, 124, 228),
+    color(246, 255, 223, 84),
+    7,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-Latch',
+    vec3(22, 28, 0),
+    14,
+    10,
+    color(255, 255, 246, 196),
+    color(255, 255, 255, 72),
+    5,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-Spark',
+    vec3(38, 20, 0),
+    14,
+    10,
+    color(255, 255, 249, 192),
+    color(255, 255, 255, 66),
+    5,
+  );
+  addShieldPart(
+    bossShieldOpenNodeId,
+    'BossShield-Open-Anchor',
+    vec3(-34, -24, 0),
+    22,
+    16,
+    color(126, 177, 121, 226),
+    color(246, 255, 223, 82),
+    8,
+  );
+  const bossShieldBreakable = addComponent(bossShieldClosedNodeId, types['assets/scripts/puzzle/BreakableTarget.ts'], {
     startsBroken: false,
-    activateOnBroken: [ref(bossShieldOpen.nodeId)],
-    deactivateOnBroken: [ref(bossShieldClosed.nodeId)],
-    intactVisualNode: ref(bossShieldClosed.nodeId),
-    brokenVisualNode: ref(bossShieldOpen.nodeId),
+    activateOnBroken: [ref(bossShieldOpenNodeId)],
+    deactivateOnBroken: [ref(bossShieldClosedNodeId)],
+    intactVisualNode: ref(bossShieldClosedNodeId),
+    brokenVisualNode: ref(bossShieldOpenNodeId),
     intactSpriteFrame: null,
     brokenSpriteFrame: null,
     breakClip: null,
@@ -2193,10 +2407,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     resetClipVolume: 1,
     hideLabelsWhenSkinned: true,
   });
-  addAssetBindingTag(bossShieldClosed.nodeId, 'boss_shield_closed');
-  addAssetBindingTag(bossShieldOpen.nodeId, 'boss_shield_open');
-  addSceneDressingSkin(bossShieldClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
-  addSceneDressingSkin(bossShieldOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addAssetBindingTag(bossShieldClosedNodeId, 'boss_shield_closed');
+  addAssetBindingTag(bossShieldOpenNodeId, 'boss_shield_open');
   const bossPatrolA = addNode('BossEnemy-PatrolA', roots.worldRootId, vec3(120, -10, 0));
   const bossPatrolB = addNode('BossEnemy-PatrolB', roots.worldRootId, vec3(340, -10, 0));
   const bossAi = addComponent(bossCore.nodeId, types['assets/scripts/enemy/EnemyAI.ts'], {
@@ -2231,7 +2443,7 @@ async function generateBossArena(scriptIds, prefabIds) {
 
   const bossExitPortal = addScenePortal(builder, {
     name: 'Portal-BossVictory',
-    label: 'RETURN TO CAMP',
+    label: '回营地',
     position: vec3(706, -10, 0),
     targetScene: 'StartCamp',
     targetMarkerId: 'camp-entry',
@@ -2239,37 +2451,33 @@ async function generateBossArena(scriptIds, prefabIds) {
     active: false,
     width: 188,
   });
-  const victoryBanner = addLabeledNode(roots.worldRootId, 'BossVictoryBanner', 'TRIAL CLEARED', vec3(516, 96, 0), 240, 46, 18, color(235, 255, 235, 255), false, color(67, 146, 88, 255), color(213, 255, 209, 100), 16, true);
-  const bossStatus = addLabeledNode(roots.worldRootId, 'BossStatusBanner', 'DANGER: BREAK SHIELD', vec3(516, 96, 0), 268, 46, 18, color(255, 241, 239, 255), true, color(148, 63, 78, 255), color(255, 211, 218, 100), 16, true);
-  const bossWindowBanner = addLabeledNode(roots.worldRootId, 'BossWindowBanner', 'WINDOW: ATTACK NOW', vec3(516, 96, 0), 268, 46, 18, color(235, 255, 235, 255), false, color(67, 146, 88, 255), color(213, 255, 209, 100), 16, true);
-  const bossReturnHint = addLabeledNode(roots.worldRootId, 'BossReturnHint', 'Take the exit and return the relic to camp.', vec3(516, 142, 0), 330, 38, 16, color(235, 255, 235, 255), false, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
+  const victoryBanner = addLabeledNode(roots.worldRootId, 'BossVictoryBanner', '回营地', vec3(516, 90, 0), 136, 36, 16, color(54, 112, 69, 255), false, color(224, 251, 204, 224), color(247, 255, 229, 106), 18, true);
+  const bossStatus = addLabeledNode(roots.worldRootId, 'BossStatusBanner', '破盾', vec3(516, 90, 0), 112, 36, 16, color(142, 76, 62, 255), true, color(255, 229, 210, 224), color(255, 247, 230, 106), 18, true);
+  const bossWindowBanner = addLabeledNode(roots.worldRootId, 'BossWindowBanner', '快打', vec3(516, 90, 0), 112, 36, 16, color(54, 112, 69, 255), false, color(224, 251, 204, 224), color(247, 255, 229, 106), 18, true);
 
   const bossController = addNode('BossEncounterControllerNode', roots.worldRootId, vec3());
   addComponent(bossController, types['assets/scripts/boss/BossEncounterController.ts'], {
     bossHealth: ref(bossHealth),
     bossRoot: ref(bossCore.nodeId),
     clearFlagId: 'boss-cleared',
-    activateOnCleared: [ref(bossExitPortal.nodeId), ref(victoryBanner.nodeId), ref(bossReturnHint.nodeId)],
-    deactivateOnCleared: [ref(bossStatus.nodeId), ref(bossWindowBanner.nodeId), ref(bossShieldClosed.nodeId), ref(bossShieldOpen.nodeId)],
+    activateOnCleared: [ref(bossExitPortal.nodeId), ref(victoryBanner.nodeId)],
+    deactivateOnCleared: [ref(bossStatus.nodeId), ref(bossWindowBanner.nodeId), ref(bossShieldClosedNodeId), ref(bossShieldOpenNodeId)],
   });
   const bossShieldController = addNode('BossShieldControllerNode', roots.worldRootId, vec3());
   const bossShieldControllerComponent = addComponent(bossShieldController, types['assets/scripts/boss/BossShieldPhaseController.ts'], {
-    shieldTarget: ref(bossShieldClosed.nodeId),
+    shieldTarget: ref(bossShieldBreakable),
     bossHealth: ref(bossHealth),
     bossAI: ref(bossAi),
     bossContactDamage: ref(bossContactDamage),
     vulnerableSeconds: 3.2,
     dangerMoveSpeed: 84,
     vulnerableMoveSpeed: 22,
-    activateWhenShieldBroken: [ref(bossShieldOpen.nodeId)],
-    deactivateWhenShieldBroken: [ref(bossShieldClosed.nodeId)],
+    activateWhenShieldBroken: [ref(bossShieldOpenNodeId)],
+    deactivateWhenShieldBroken: [ref(bossShieldClosedNodeId)],
     activateWhenDanger: [ref(bossStatus.nodeId)],
     activateWhenVulnerable: [ref(bossWindowBanner.nodeId)],
   });
   items[bossVisualId].shieldController = ref(bossShieldControllerComponent);
-
-  addLabeledNode(roots.worldRootId, 'BossHint', 'Break the shield with BombBug, then use the short attack window before it reforms.', vec3(172, 184, 0), 520, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
-
   await builder.finalize();
 }
 

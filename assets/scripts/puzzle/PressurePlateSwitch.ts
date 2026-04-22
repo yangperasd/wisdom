@@ -31,11 +31,11 @@ export class PressurePlateSwitch extends Component {
   }
 
   protected onEnable(): void {
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
   }
 
   protected onDestroy(): void {

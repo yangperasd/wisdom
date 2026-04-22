@@ -414,8 +414,8 @@
     },
     "bindingKey": "projectile_arrow",
     "selectedPath": "assets/prefabs/ArrowProjectile.prefab",
-    "fallbackPath": "",
-    "sourceManifest": "asset_selection_manifest.entities",
+    "fallbackPath": "assets/prefabs/ArrowProjectile.prefab",
+    "sourceManifest": "asset_binding_manifest_v2.worldEntities",
     "bindingStatus": "temporary_placeholder",
     "_id": ""
   },
@@ -431,7 +431,7 @@
       "__id__": 1
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 23

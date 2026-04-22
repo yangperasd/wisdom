@@ -140,18 +140,18 @@ export function computeBossPhaseState(options) {
 
 export function formatHudCheckpoint(markerId) {
   const labels = {
-    'camp-entry': 'Camp',
-    'field-west-entry': 'West Path',
-    'field-ruins-entry': 'Ruins',
-    'dungeon-hub-entry': 'Trial Hub',
-    'dungeon-room-a-entry': 'Room A',
-    'dungeon-room-b-entry': 'Room B',
-    'dungeon-room-c-entry': 'Room C',
-    'boss-arena-entry': 'Boss Gate',
+    'camp-entry': '营地',
+    'field-west-entry': '林间小径',
+    'field-ruins-entry': '遗迹',
+    'dungeon-hub-entry': '试炼大厅',
+    'dungeon-room-a-entry': '箱子房',
+    'dungeon-room-b-entry': '弹花房',
+    'dungeon-room-c-entry': '炸虫房',
+    'boss-arena-entry': '首领门',
   };
 
   if (!markerId) {
-    return 'None';
+    return '未激活';
   }
 
   return labels[markerId] ?? markerId;
@@ -159,9 +159,9 @@ export function formatHudCheckpoint(markerId) {
 
 export function computeEchoHudButtonState(buttonName, unlocked, selected) {
   const labels = {
-    TouchEchoBox: 'BOX',
-    TouchEchoFlower: 'FLOWER',
-    TouchEchoBomb: 'BOMB',
+    TouchEchoBox: '箱子',
+    TouchEchoFlower: '弹花',
+    TouchEchoBomb: '炸虫',
   };
 
   const baseLabel = labels[buttonName] ?? null;
@@ -170,7 +170,7 @@ export function computeEchoHudButtonState(buttonName, unlocked, selected) {
   }
 
   if (!unlocked) {
-    return { label: 'LOCK', scale: 0.94, tint: 'locked' };
+    return { label: `${baseLabel}·锁`, scale: 0.94, tint: 'locked' };
   }
 
   if (selected) {
@@ -208,37 +208,48 @@ export function computeMobileHudLayoutFrame(options = {}) {
   const safeTop = safeY + safeHeight - halfHeight;
   const compact = safeWidth <= 1180 || safeHeight <= 690;
   const tight = safeWidth <= 1060 || safeHeight <= 620;
-  const controlScale = tight ? 0.88 : compact ? 0.94 : 1;
-  const joystickInsetX = tight ? 122 : compact ? 128 : 134;
-  const joystickInsetY = tight ? 106 : compact ? 114 : 122;
-  const attackInsetX = tight ? 108 : compact ? 112 : 118;
-  const summonOffsetX = tight ? 132 : compact ? 138 : 144;
+  const aspect = canvasHeight > 0 ? canvasWidth / canvasHeight : 1;
+  const mobile =
+    canvasWidth <= 900 ||
+    canvasHeight <= 480 ||
+    (aspect >= 1.9 && canvasHeight <= 520);
+  const controlScale = mobile ? 1.35 : tight ? 0.88 : compact ? 0.94 : 1;
+  const joystickInsetX = mobile ? 96 : tight ? 122 : compact ? 128 : 134;
+  const joystickInsetY = mobile ? 96 : tight ? 106 : compact ? 114 : 122;
+  const attackInsetX = mobile ? 100 : tight ? 108 : compact ? 112 : 118;
+  const summonOffsetX = mobile ? 200 : tight ? 150 : compact ? 160 : 170;
   const resetOffsetX = tight ? 12 : 16;
   const echoBaseOffsetX = tight ? 308 : compact ? 320 : 332;
-  const echoStepX = tight ? 96 : 102;
-  const attackBaseY = safeBottom + (tight ? 100 : compact ? 108 : 116);
-  const echoRowY = attackBaseY + (tight ? 76 : compact ? 82 : 88);
+  const echoStepX = tight ? 128 : 136;
+  const attackBaseY = safeBottom + (mobile ? 126 : tight ? 100 : compact ? 108 : 116);
+  const echoRowY = attackBaseY + (tight ? 110 : compact ? 116 : 122);
   const pauseInsetX = tight ? 70 : 76;
   const pauseInsetY = tight ? 34 : 38;
-  const hudWidth = clamp(safeWidth - (tight ? 44 : 56), 760, 1236);
-  const objectiveWidth = clamp(safeWidth - (tight ? 64 : 88), 700, 1190);
+  const hudWidth = clamp(safeWidth - (tight ? 88 : 116), 700, 1120);
+  const objectiveWidth = clamp(safeWidth - (tight ? 120 : 176), 620, 1040);
   const controlsWidth = clamp(safeWidth - 420, 420, 900);
+  const topBarY = safeTop - 40;
+  const objectiveY = safeTop - (tight ? 92 : 96);
 
   return {
     compact,
     tight,
+    mobile,
     controlScale,
     showBottomControls: !compact,
     showCheckpointLabel: !compact,
-    showRespawnButton: !compact,
+    showRespawnButton: !compact && !mobile,
+    showEchoRow: !mobile,
     hud: {
       topBar: {
         width: hudWidth,
-        y: safeTop - 42,
+        height: 76,
+        y: topBarY,
       },
       objectiveCard: {
         width: objectiveWidth,
-        y: safeTop - 100,
+        height: 44,
+        y: objectiveY,
       },
       controlsCard: {
         width: controlsWidth,
@@ -246,23 +257,23 @@ export function computeMobileHudLayoutFrame(options = {}) {
       },
       sceneTitle: {
         x: -(hudWidth / 2) + 162,
-        y: safeTop - 42,
+        y: topBarY,
       },
       health: {
         x: compact ? 30 : 40,
-        y: safeTop - 42,
+        y: topBarY,
       },
       echo: {
         x: compact ? 206 : 232,
-        y: safeTop - 42,
+        y: topBarY,
       },
       checkpoint: {
         x: (hudWidth / 2) - (compact ? 126 : 112),
-        y: safeTop - 42,
+        y: topBarY,
       },
       objective: {
         x: 0,
-        y: safeTop - 100,
+        y: objectiveY,
       },
       controls: {
         x: 0,
@@ -284,23 +295,23 @@ export function computeMobileHudLayoutFrame(options = {}) {
       },
       summon: {
         x: safeRight - attackInsetX - summonOffsetX,
-        y: attackBaseY - (tight ? 44 : 48),
+        y: attackBaseY,
       },
       reset: {
         x: safeRight - attackInsetX + resetOffsetX,
-        y: safeBottom + (tight ? 46 : 54),
+        y: safeBottom + (tight ? 16 : 24),
       },
       echoBox: {
-        x: safeRight - echoBaseOffsetX,
-        y: echoRowY,
+        x: mobile ? -99999 : safeRight - echoBaseOffsetX,
+        y: mobile ? -99999 : echoRowY,
       },
       echoFlower: {
-        x: safeRight - echoBaseOffsetX + echoStepX,
-        y: echoRowY,
+        x: mobile ? -99999 : safeRight - echoBaseOffsetX + echoStepX,
+        y: mobile ? -99999 : echoRowY,
       },
       echoBomb: {
-        x: safeRight - echoBaseOffsetX + echoStepX * 2,
-        y: echoRowY,
+        x: mobile ? -99999 : safeRight - echoBaseOffsetX + echoStepX * 2,
+        y: mobile ? -99999 : echoRowY,
       },
     },
   };

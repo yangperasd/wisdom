@@ -1,0 +1,152 @@
+{
+  "file": "key/key_gold_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_gold_v02.png",
+  "category": "key",
+  "candidateName": "key_gold_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): The key reads as warm, bright, and charming — saturated gold/orange shaft with a circular bow housing a multicolored gem (pink, blue, green, red pixels) that evokes classic Zelda treasure aesthetics. Round bow silhouette is friendly and toy-diorama in feel. Color palette is fully within the bright/warm Hyrule spectrum; nothing grim or desaturated. Emotional score: 8/10. Technical (40%): At the zoomed panels the 1px hard outline is clean and consistent with no anti-aliasing bleed. The key shaft shows a clear 2–3 tone hard shading progression (dark border, mid gold, lighter gold highlight on the inner edge). All pixels appear grid-snapped and the hand-pixeled texture reads authentically. Gem pixels are small distinct colored blocks — stylistically appropriate and not muddy. Technical score: 8/10. Weighted total: 0.6×8 + 0.4×8 = 8.0. Denzi reference (helmets/shields) confirms the technical bar for 1px outlines and limited hard tone shading, which this key meets. No axis failures detected.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "1x gem detail lost as noise",
+          "light-bg contrast slightly soft for gold mid-tones"
+        ],
+        "reasoning": "Golden key has genuine toy charm: round decorative head with colourful gem (pink/green/blue), warm fantasy-RPG palette, clean pixel outlines. Silhouette reads unambiguously as a key at 1x — bow ring + shaft + teeth are all distinguishable despite tiny size. On dark/black bg, golden orange pops nicely and personality is clear. On cream bg the gold still reads but feels slightly flat without strong dark outline anchor. Main weakness: the colourful gem and bow detail collapse to indistinct noise at 1x, so the charm payload only arrives at 4x. Passes sticker test at 4x — cute, friendly, instantly legible. Falls just short of clean pass due to 1x detail loss and marginal light-bg punch.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Key body is rich warm amber-gold (matches parchment golds / warm mid-values). Gem bow uses vivid pixel accents: candy pink/magenta, bright green, cyan-blue — all present in the Echoes reference palette row 2-3. Outlines read as warm dark brown/reddish-dark, not pure black or cold grey. Presentation panels use near-black neutral backgrounds but these are display scaffolding, not asset color. Internal harmony is strong: gold-pink-green-cyan forms a lively split-complementary triad with warm bias. Mood is BRIGHT and playful / treasure-like, not grim or cold. Saturation is high across all key hues. No muddy, neon, or cold-corporate tones detected. Minor: fourth panel's parchment background could be slightly warmer but aligns with palette cream. Overall palette compatibility with Echoes-tuned swatch is high.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.67,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small_size_reduces_sub_500ms_spottability",
+          "rainbow_head_is_visually_noisy_for_echoes_clean_aesthetic",
+          "slightly_pasted_in_feel_pixel_art_vs_vector_ui_mismatch"
+        ],
+        "reasoning": "The key is placed against a dark navy background and the warm gold shaft provides decent contrast, making it identifiable as a key within ~1s. The silhouette is recognizable and it is clearly distinct from bg tiles. However, the multicolor/rainbow pixel-art head introduces visual noise that clashes with the clean dark-teal Echoes aesthetic seen in other UI elements (buttons, banners). The asset is small, which slightly pushes spottability past the 0.5s threshold without the red marker. The gold hue of the shaft somewhat echoes the gold banners in-scene, which is a minor confusion risk. No severe overlap or disappearance issues, but the rainbow-head style feels pasted-in rather than native to this UI language.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "base_scene_dark_context",
+          "sprite_small_relative_to_scene"
+        ],
+        "reasoning": "The key_gold_v02 sprite itself is tonally appropriate for cute fairy-tale: warm gold shaft, multicolored gem decoration suggesting whimsy/magic, small cute proportions. It does not introduce grimdark, horror, aggressive, or corporate elements. However, the base scene context is already quite dark (deep navy/black background, dungeon-hub UI, Boss-lock buttons) which is borderline dungeon-crawler in tone. The sprite adds warmth and color to the scene but is small enough that its fairy-tale qualities are subtle in context. The sprite does not shift mood problematically — it is the brightest, most whimsical element visible — but the surrounding scene context prevents a confident pass verdict.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "key height approximately 90px in 672px viewport; with 32x32 player at ~54px screen height, key approaches or slightly exceeds player size, violating items-never-larger-than-player rule",
+          "no player sprite directly visible in scene for precise comparison",
+          "key is shown in hub/UI overlay context rather than in-world, making size judgment uncertain"
+        ],
+        "reasoning": "The key_gold_v02 asset appears in a dungeon hub UI panel between the '回遗迹前奏' label and an arrow pointing to a locked Boss door. Estimating from viewport height (672px) and assuming a ~400 game-unit tall view, 1 game unit ≈ 1.68 screen px, placing a 32px player at ~54 screen px. The key sprite reads roughly 85-90px tall on screen, suggesting ~50-53 game units — at or slightly above the player's 32-unit height. Item category 'key' should sit at 50-75% of player (16-24 units), so the asset is noticeably oversized for its category. Art style is consistent pixel art with flat 2D top-down perspective and good toy-diorama detailing; no perspective mismatch or scene-overwhelm issues. Size is the sole concern but it is a concrete rule violation. Scored marginal (6): pass requires clear sub-75% sizing relative to player.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "unusual_white_pink_rectangular_element_top",
+          "minor_key_teeth_asymmetry"
+        ],
+        "reasoning": "Pixel art key with circular gem head and shaft. Inspected 4x and 8x zoom. Positive: outline is consistently ~1px dark brown throughout; no sub-pixel features (correct for pixel art); no AA blending on edges (appropriate); background solid with no noise pixels; gem head uses clean checkerboard pattern with 3-4 hard tones (no gradient shading); shaft uses 2-3 hard gold/orange tones without gradient bleed; no melting details on shaft or bit teeth; semantic form clearly reads as a key. Concerns: (1) A white/pink rectangular shape sits at the top of the key ring — ambiguous whether this is an intentional 'tag' design element or a leftover generation artifact (label patch); it appears in both zoom levels identically, slightly suspicious as it has crisp rectangular pixel-perfect edges unlike the organic key shape below. (2) The key bit (teeth cutouts at lower-right) shows slight left-right asymmetry in notch depth — could be intentional pixel art decision or generation drift. No color bleed detected between gold and teal/pink palette zones. Pattern on gem head is symmetric and internally consistent. Overall the asset reads as competent pixel art with one ambiguous top element preventing a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "palette_divergence_rainbow_gem_top",
+          "charm_level_mismatch",
+          "color_saturation_outlier",
+          "color_temperature_warmer_than_peers"
+        ],
+        "reasoning": "Peer set (Denzi helmets) uses a consistently muted, cool-to-neutral metallic palette: silvers, dark grays, teal, and subdued bronze/gold. The candidate key_gold_v02 has a gold shaft that is arguably within range, but the ornate top decoration introduces vivid rainbow/multi-hue pixels (cyan, hot pink, bright yellow, green) that are entirely absent from the peer palette — this is the single biggest breach. Color temperature and saturation for that element spike well above any peer. Charm level is also a mismatch: the helmets read as utilitarian/stern equipment sprites; the rainbow gem makes the key feel distinctly magical/cute, a different tonal register. Rendering style (pixel art, 1-2px dark outlines) and shadow direction are consistent with peers, and detail density is comparable. Outline weight and highlight intensity look roughly aligned. Proportion difference (elongated key vs square helmets) is not penalized per item-type rules. Net: 2 hard failures (palette overlap, charm level) and 1 soft failure (saturation/temperature) against 7 acceptable or passing dimensions — lands in marginal territory.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "rainbow-stripe-risks-generic-mobile-cartoon",
+          "peer-reference-helmets-read-dungeon-crawler-not-warm-fairy-tale",
+          "warm-palette-contrast-between-peers-and-candidate-suggests-tonal-inconsistency-in-asset-set"
+        ],
+        "reasoning": "The candidate key (right, 4x) presents a bright multicolored rainbow-stripe shaft with a whimsical decorative top on parchment background — pixel-art execution is clean and the overall silhouette reads toy-like and magical, consistent with Echoes/Nintendo-family target. The warm chromatic variety (pink, yellow, orange, green, teal, violet bands) avoids grimdark, desaturated, or cold-corporate failure modes. However, the rainbow-stripe patterning sits dangerously close to generic-mobile-cartoon territory — it would not look out of place in a Candy Crush or Merge-style UI, which is an OUT-OF-TONE category. The peer reference grid (left) is dominated by dark metallic medieval helmets with desaturated steel tones; these read as dungeon-crawler or Western-AAA adjacent rather than bright/sunny/warm fairy-tale, which either indicates the peer set itself has tonal drift or that the warm-parchment framing is meant to compensate. The candidate key is the stronger tonal fit of the two sides — it passes the NOT-grimdark test clearly — but the generic-mobile-candy risk from the undifferentiated rainbow banding keeps it in marginal territory rather than a confident pass. A more bespoke gold-and-magic glow treatment (vs. equal-width rainbow stripes) would better lock in fairy-tale specificity.",
+        "confidence": 0.74
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.4,
+    "aestheticAvg": 7.67,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.123Z"
+}

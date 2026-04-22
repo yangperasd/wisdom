@@ -1,0 +1,160 @@
+{
+  "file": "tile/outdoor_wall_cracked_v04.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_cracked_v04.png",
+  "category": "tile",
+  "candidateName": "outdoor_wall_cracked_v04",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "saturation_low_for_hyrule_outdoor_target",
+          "pink_accent_dots_feel_scattered_rather_than_purposeful_crack_detail",
+          "warm_tone_is_correct_but_could_be_richer"
+        ],
+        "reasoning": "Candidate is a warm sandy-tan brick/stone wall tile with clear mortar lines, deliberate pixel-grid-snapped brickwork, and 2-tone hard shading on individual bricks — technically clean with no gradient bleed or noise mush, and tiling is seamless. Small pinkish-red accent pixels are scattered through the surface adding handcrafted feel, though they read as semi-random rather than intentional crack highlights. Emotionally the warm sandstone palette fits the Zelda: Echoes of Wisdom outdoor register (not grim, not muddy, toy-diorama quality), but the overall saturation sits lower than the bright/saturated Hyrule-outdoor target; the palette would benefit from a punchier warm mid-tone. Compared to Denzi reference stone tiles the pixel structure and shading discipline are on par, though the Denzi tiles show slightly more deliberate surface storytelling. A solid outdoor wall tile held back to marginal by modest saturation and the scattered accent dots lacking purposeful crack narrative.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scattered_colored_accent_pixels_may_catch_eye",
+          "minor_density_variation_in_crack_distribution"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Col 0 vs col 31 — the horizontal brick/mortar bands appear to continue across the left-right boundary without a visible step or tone shift; edge continuity looks intact. (2) Row 0 vs row 31 — top and bottom rows sit within the same horizontal brick-row rhythm; no obvious luminance jump at the vertical seam. (3) 3x3 mental tiling — no single dominant hot-spot; the crack pattern is distributed broadly enough that no feature clusters as a polka-dot. OVERALL: The texture is a beige/tan brick-wall pattern with distributed cracks and occasional small pink/red accent pixels (likely moss or damage chips). The four panels confirm reasonable seamlessness — tile repeats flow without hard seam lines. Visual density is fairly even with no large empty swaths or dense isolated clusters. It reads as a background wall and would not compete strongly with a foreground sprite. DEDUCTIONS: The scattered pink/red accent pixels, while small, are the brightest individual features and could subtly telegraph tile boundaries at certain repeat scales if a cluster aligns near an edge. Crack density has slight variation — upper-center region is marginally lighter. Neither issue is severe, but together they hold the score below a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Dominant hue is warm sandy beige with 3–4 brown/tan tonal steps for crack macro features — good internal range without hue drift. Small pink/coral accent dots scattered across the surface are palette-consistent with the reference candy-pink. Shadow/depth regions use deeper warm brown rather than pure black or cool grey, satisfying the hue-shifted shadow rule. Overall mood is warm and sun-touched (BRIGHT/WARM), not grim or cold. Saturation is moderate but correct for a stone-wall material — sits above muddy AAA-realistic and well below neon. Base hue and accent color both land cleanly on the Echoes-tuned palette (warm browns, cream, candy-pink).",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "tile_too_bright_for_dark_palette",
+          "wrong_aesthetic_register",
+          "high_texture_energy_competes_foreground",
+          "sharp_boundary_seam_visible",
+          "low_contrast_risk_for_light_sprites"
+        ],
+        "reasoning": "The candidate tile is a light beige/cream cracked plaster texture. The Echoes scene uses a dark teal grid aesthetic with muted, low-energy backgrounds. The tile's brightness is starkly higher than all surrounding tiles — it reads as a patch of light in a dark scene rather than native ground. The cracked pattern is visually busy (many fine detail lines) which would compete with sprites placed on top. The rectangular application boundary is sharply visible as a seam against the adjacent dark teal floor. No foreground sprites appear directly on the tile in the composite, but the pale background would reduce contrast for any mid-to-light-toned sprite. The tile looks imported from a Mediterranean/ruins tileset rather than the dungeon/field aesthetic of this game.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "cracked_texture_leans_dungeon",
+          "dark_scene_context_reduces_outdoor_reading"
+        ],
+        "reasoning": "The tile itself displays warm sandy-cream tones with brown crack details — palette is appropriate for Hyrule-style outdoor stone and avoids grimdark, horror, or sci-fi registers. Pixelated hand-crafted quality is present. However, the 'cracked' motif introduces a mild dungeon-interior ambiguity: cracks on outdoor walls read as aged ruin rather than bright sunny field. The surrounding scene is also predominantly dark teal and reddish-brown, which contextually pulls the tile's perceived mood darker than its own palette warrants. Tile does not fail outright — warmth and pixel charm are genuine — but falls short of the bright fairy-tale Hyrule outdoor brief. Would benefit from warmer highlights, grass/moss accent pixels, or lighter base tone to clearly anchor it as sunny exterior rather than aged interior stonework.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "high_local_contrast_risks_attention_competition",
+          "feature_density_approaches_upper_bound"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count at 1x: ~6-8 distinct features visible — irregular stone patches, 3-4 crack-line clusters, mortar-gap suggestions, and a few darker pit-spots. Count is within the 3-8 target but sits at the upper end. (2) Largest feature scale: dominant crack lines span roughly 8-12px across the 32x32 tile; individual stone patches are 4-8px — within the readable range. (3) vs 32x32 player sprite: the tile reads quieter overall (no strong silhouette, lower saturation) but the high local contrast between the light stone faces and dark crack gaps pushes visual energy moderately high. The beige/cream palette is light and somewhat prominent against the darker floor tiles in the composite scene, meaning when tiled across a large floor area it draws slightly more attention than ideal background texture should. Core density and scale rules are met, but the contrast budget is tight — hence marginal rather than pass.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "scattered_color_speckle_artifacts",
+          "digital_painted_gradient_shading",
+          "possible_horizontal_seam_bands",
+          "unresolved_noise_patches"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 vs column 31 — in the tiled 8x panel, vertical tile junctions are not clearly distinguishable from internal mortar lines, suggesting approximate but not pixel-perfect edge continuity; inconclusive. (b) Row 0 vs row 31 — horizontal bands at regular intervals in the tiled view appear slightly darker/lighter than interior mortar rows, indicating row-edge mismatch; mild seam is present. (c) 3x3 mental tile — faint horizontal banding grid is detectable, flagging a seam concern. TELL AUDIT: (1) Sub-pixel speckle: YES — scattered pink, orange, and peach stray pixels visible throughout at both zoom levels; these do not correspond to crack or mortar geometry and are consistent with AI diffusion noise. (2) Anti-aliased boundary edges: mild, not severe. (3) Gradient bleed: YES — brick/block interior shading transitions are smooth gradients rather than hard 2-4-tone pixel steps; shading reads as 'digital painted'. (4) Blurry painted look: YES — interior block faces lack crisp pixelated structure; edges soften rather than snap. (5) Edge melting: mild at block corners. (6) Color bleed: the stray colored dots may be color bleed from an adjacent detail layer rather than intentional design. (7) Unreadable noise patches: 2-3 areas in the lower quadrant show muddy detail. (8) SEAM: mild horizontal seam banding in tiled view; not a hard fail but clearly visible at 8x. Overall: the most damaging issues are the stray color speckle (strong AI tell) and the gradient-bleed shading style; the horizontal seam banding pushes this into marginal-fail territory.",
+        "confidence": 0.71
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_mismatch_severe",
+          "warmth_bias_opposite",
+          "shading_technique_divergence",
+          "unexplained_pink_accent_elements",
+          "pixel_density_lower",
+          "no_visual_language_continuity_with_peers"
+        ],
+        "reasoning": "Peer tiles (LEFT) establish a dark dungeon pixel-art vocabulary: cool grey/black stone, teal and red accents, high-contrast hard-stepped shading, dense feature count, strong hand-pixeled charm. Candidate (RIGHT) delivers a sandy beige outdoor wall with warm tan tones, scattered pink accent dots, smoother gradient transitions, and significantly fewer features per tile cell. (1) Palette overlap: near-zero — peers are cool grey/teal/red/black; candidate is beige/tan/pink/blue-grey. (2) Pixel density: candidate is noticeably sparser; peer tiles pack dungeon props, rubble, and texture within each cell. (3) Shading: peers use hard-stepped highlights/shadows; candidate has softer, more gradient-like transitions suggesting different source workflow. (4) Warmth/saturation: peers cool and desaturated; candidate is warm and slightly washed. (5) Hand-pixeled charm: peers show deliberate pixel placement; candidate appears closer to upscaled or procedural source. (6) Photo-realism contamination: moderate — the sandy texture reads as photo-derived or AI-generated flat noise rather than intentional pixel-art mark-making. (7) Overall feel: candidate looks like a different game entirely — sandy ruins aesthetic vs the dark dungeon language of the peer set. Even granting that 'outdoor wall' is a different surface type, the style, palette, and rendering pipeline clearly diverge from the established Echoes visual identity.",
+        "confidence": 0.84
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "grey_stone_patches_dilute_warmth",
+          "lacks_sunny_brightness_of_peak_hyrule_outdoor"
+        ],
+        "reasoning": "Candidate (right) is a warm beige/tan cracked limestone wall tile with scattered pink speckles and amber accents on a parchment background — clearly not grimdark, horror, sci-fi, or cold-corporate. The dominant hue is warm sandy cream which aligns with friendly Hyrule outdoor stone. Pink speckles read as whimsical and fairy-tale positive. However, a non-trivial proportion of the stone blocks render in neutral-to-cool grey, which dilutes the overall warmth and nudges the texture toward a generic stone look that could slide into dungeon-adjacent territory. The tile lacks the bright sunny saturation characteristic of peak Zelda outdoor environments. For a cracked wall specifically, warmth is acceptable; the concern is that grey patches under scrutiny could be mistaken for dungeon stone if the surrounding context is dark. Not a fail — no cold/grim palette, no skull or blood motifs, no desaturation — but not a confident pass either.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.33,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 3,
+    "warningCount": 6,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.131Z"
+}

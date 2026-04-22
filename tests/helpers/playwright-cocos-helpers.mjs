@@ -114,8 +114,8 @@ export async function readRuntimeState(page) {
     const echoManager = echoRoot?.components?.find((component) => component?.constructor?.name === 'EchoManager');
     const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
     const gameManager = persistentRoot?.components?.find((component) => component?.constructor?.name === 'GameManager');
-    const gateClosed = worldRoot?.getChildByName?.('Gate-Closed');
-    const gateOpen = worldRoot?.getChildByName?.('Gate-Open');
+    const gateClosed = worldRoot?.getChildByName?.('Gate-Closed') ?? worldRoot?.getChildByName?.('CampGate-Closed');
+    const gateOpen = worldRoot?.getChildByName?.('Gate-Open') ?? worldRoot?.getChildByName?.('CampGate-Open');
     const bombGateRoot = worldRoot?.getChildByName?.('BombGateRoot');
     const bombWallClosed = bombGateRoot?.getChildByName?.('BombWall-Closed');
     const bombWallOpen = bombGateRoot?.getChildByName?.('BombWall-Open');
@@ -161,12 +161,67 @@ export async function readRuntimeState(page) {
   });
 }
 
+export async function readSceneSwitchState(page) {
+  return page.evaluate(() => {
+    const scene = window.cc?.director?.getScene?.();
+    const canvas = scene?.getChildByName?.('Canvas');
+    const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
+    const sceneLoader = persistentRoot?.components?.find((component) => component?.constructor?.name === 'SceneLoader')
+      ?? window.SceneLoader?.instance
+      ?? null;
+
+    return sceneLoader?.getSwitchState?.() ?? null;
+  });
+}
+
+export async function simulateSceneSwitchFailure(page, targetSceneName, options = {}) {
+  return page.evaluate(({ requestedTargetSceneName, failureMode, failureMessage }) => {
+    const scene = window.cc?.director?.getScene?.();
+    const canvas = scene?.getChildByName?.('Canvas');
+    const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
+    const sceneLoader = persistentRoot?.components?.find((component) => component?.constructor?.name === 'SceneLoader');
+    const director = window.cc?.director;
+    if (!sceneLoader || !director?.loadScene) {
+      throw new Error('SceneLoader or director.loadScene is missing from the runtime graph.');
+    }
+
+    const originalLoadScene = director.loadScene;
+    director.loadScene = (...args) => {
+      if (failureMode === 'throw') {
+        throw new Error(failureMessage);
+      }
+
+      return false;
+    };
+
+    const accepted = sceneLoader.switchScene(requestedTargetSceneName);
+    const state = sceneLoader.getSwitchState?.() ?? null;
+    const retryTarget = state?.targetScene ?? null;
+    const retryAvailable = Boolean(state?.status === 'failed' && retryTarget && sceneLoader.retryLastFailedSwitch);
+    director.loadScene = originalLoadScene;
+
+    return {
+      accepted,
+      state,
+      retryTarget,
+      retryAvailable,
+    };
+  }, {
+    requestedTargetSceneName: targetSceneName,
+    failureMode: options.failureMode ?? 'return-false',
+    failureMessage: options.failureMessage ?? `Injected preview loadScene failure for ${targetSceneName}.`,
+  });
+}
+
 
 export async function pressTouchButton(page, buttonName) {
   return page.evaluate((nodeName) => {
     const scene = window.cc?.director?.getScene?.();
     const canvas = scene?.getChildByName?.('Canvas');
     const touchHudRoot = canvas?.getChildByName?.('TouchHudRoot');
+    const worldRoot = canvas?.getChildByName?.('WorldRoot');
+    const playerNode = worldRoot?.getChildByName?.('Player');
+    const player = playerNode?.components?.find((component) => component?.constructor?.name === 'PlayerController');
     const buttonNode = touchHudRoot?.getChildByName?.(nodeName);
     const button = buttonNode?.components?.find((component) => component?.constructor?.name === 'TouchCommandButton');
     if (!buttonNode || !button) {
@@ -183,6 +238,7 @@ export async function pressTouchButton(page, buttonName) {
 
     return {
       buttonName: buttonNode.name,
+      isAttacking: player?.isAttacking?.() ?? null,
     };
   }, buttonName);
 }
@@ -321,8 +377,8 @@ export async function unlockEcho(page, echoId) {
   }, echoId);
 }
 
-export async function triggerPlateContact(page, plateName, echoName) {
-  return page.evaluate(({ requestedPlateName, requestedEchoName }) => {
+export async function triggerPlateContact(page, plateName, echoName, options = {}) {
+  return page.evaluate(({ requestedPlateName, requestedEchoName, gateClosedName, gateOpenName, maxDistance }) => {
     const scene = window.cc?.director?.getScene?.();
     const canvas = scene?.getChildByName?.('Canvas');
     const worldRoot = canvas?.getChildByName?.('WorldRoot');
@@ -335,15 +391,98 @@ export async function triggerPlateContact(page, plateName, echoName) {
       throw new Error(`Unable to trigger pressure plate contact for ${requestedPlateName} with ${requestedEchoName}.`);
     }
 
+    const echoPosition = echoNode.worldPosition;
+    const platePosition = plateNode.worldPosition;
+    const echoDistance = Math.hypot(
+      echoPosition.x - platePosition.x,
+      echoPosition.y - platePosition.y,
+    );
+    if (Number.isFinite(maxDistance) && echoDistance > maxDistance) {
+      throw new Error(`${requestedEchoName} is too far from ${requestedPlateName} (${echoDistance.toFixed(1)}).`);
+    }
+
     plateSwitch.onBeginContact(null, echoCollider, null);
 
-    const gateClosed = worldRoot?.getChildByName?.('Gate-Closed');
-    const gateOpen = worldRoot?.getChildByName?.('Gate-Open');
+    const gateClosed = (gateClosedName ? worldRoot?.getChildByName?.(gateClosedName) : null)
+      ?? worldRoot?.getChildByName?.('Gate-Closed')
+      ?? worldRoot?.getChildByName?.('CampGate-Closed');
+    const gateOpen = (gateOpenName ? worldRoot?.getChildByName?.(gateOpenName) : null)
+      ?? worldRoot?.getChildByName?.('Gate-Open')
+      ?? worldRoot?.getChildByName?.('CampGate-Open');
     return {
+      echoDistance,
       gateClosedActive: gateClosed?.active ?? null,
       gateOpenActive: gateOpen?.active ?? null,
     };
-  }, { requestedPlateName: plateName, requestedEchoName: echoName });
+  }, {
+    requestedPlateName: plateName,
+    requestedEchoName: echoName,
+    gateClosedName: options.gateClosedName ?? null,
+    gateOpenName: options.gateOpenName ?? null,
+    maxDistance: options.maxDistance ?? null,
+  });
+}
+
+export async function triggerPortalContact(page, portalName, options = {}) {
+  return page.evaluate(({ requestedPortalName, interceptSwitch, maxDistance }) => {
+    const scene = window.cc?.director?.getScene?.();
+    const canvas = scene?.getChildByName?.('Canvas');
+    const worldRoot = canvas?.getChildByName?.('WorldRoot');
+    const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
+    const portalNode = worldRoot?.getChildByName?.(requestedPortalName);
+    const playerNode = worldRoot?.getChildByName?.('Player');
+    const portal = portalNode?.components?.find((component) => component?.constructor?.name === 'ScenePortal');
+    const playerCollider = playerNode?.components?.find((component) => component?.constructor?.name === 'BoxCollider2D');
+    const sceneLoader = portal?.sceneLoader
+      ?? persistentRoot?.components?.find((component) => component?.constructor?.name === 'SceneLoader')
+      ?? null;
+    const gameManager = persistentRoot?.components?.find((component) => component?.constructor?.name === 'GameManager');
+
+    if (!portalNode || !portal || !playerCollider || !sceneLoader) {
+      throw new Error(`Unable to trigger portal contact for ${requestedPortalName}.`);
+    }
+
+    const wasActive = portalNode.activeInHierarchy ?? false;
+    const playerPosition = playerNode.worldPosition;
+    const portalPosition = portalNode.worldPosition;
+    const playerDistance = Math.hypot(
+      playerPosition.x - portalPosition.x,
+      playerPosition.y - portalPosition.y,
+    );
+    if (Number.isFinite(maxDistance) && playerDistance > maxDistance) {
+      throw new Error(`Player is too far from ${requestedPortalName} (${playerDistance.toFixed(1)}).`);
+    }
+
+    const targetScene = portal.targetScene ?? '';
+    let requestedScene = null;
+    const originalSwitchScene = sceneLoader.switchScene;
+    if (interceptSwitch) {
+      sceneLoader.switchScene = (sceneName) => {
+        requestedScene = sceneName;
+      };
+    }
+
+    portal.onBeginContact(null, playerCollider, null);
+    if (interceptSwitch) {
+      sceneLoader.switchScene = originalSwitchScene;
+    }
+
+    const checkpoint = gameManager?.getCheckpoint?.() ?? null;
+
+    return {
+      portalName: portalNode.name,
+      wasActive,
+      playerDistance,
+      targetScene,
+      requestedScene,
+      checkpointSceneName: checkpoint?.sceneName ?? null,
+      checkpointMarkerId: checkpoint?.markerId ?? null,
+    };
+  }, {
+    requestedPortalName: portalName,
+    interceptSwitch: options.interceptSwitch ?? false,
+    maxDistance: options.maxDistance ?? null,
+  });
 }
 
 export async function readPlayerHealth(page) {
@@ -462,22 +601,44 @@ export async function applyDamageToPlayer(page, amount = 1) {
   }, amount);
 }
 
-export async function killPlayer(page) {
-  return page.evaluate(() => {
+export async function killPlayer(page, options = {}) {
+  const { disableAutoRespawn = false } = options;
+  return page.evaluate((opts) => {
     const scene = window.cc?.director?.getScene?.();
     const canvas = scene?.getChildByName?.('Canvas');
     const worldRoot = canvas?.getChildByName?.('WorldRoot');
     const playerNode = worldRoot?.getChildByName?.('Player');
+    const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
     const health = playerNode?.components?.find(c => c?.constructor?.name === 'HealthComponent');
+    const playerCtrl = playerNode?.components?.find(c => c?.constructor?.name === 'PlayerController');
+    const gameManager = persistentRoot?.components?.find(c => c?.constructor?.name === 'GameManager');
     const max = health?.maxHealth ?? 3;
-    // Apply enough damage to deplete, stepping between each to clear invulnerability
+
+    // The PlayerController now reacts to GAME_EVENT_RESPAWN_REQUESTED by calling
+    // respawnAt(), which fully resets HP. That is the correct product behavior
+    // (manual TouchRespawn and auto-death both restore HP through the same
+    // event), but it prevents "deplete HP and observe HP=0" tests unless the
+    // helper temporarily detaches the listener for the duration of the kill.
+    const detached = opts.disableAutoRespawn && health && playerCtrl && gameManager;
+    if (detached) {
+      health.events?.off?.('health-depleted', playerCtrl.onHealthDepleted, playerCtrl);
+      gameManager.events?.off?.('respawn-requested', playerCtrl.onRespawnRequested, playerCtrl);
+    }
+
+    // Apply enough damage to deplete, stepping between each to clear invulnerability.
     for (let i = 0; i < max + 5; i++) {
       health?.applyDamage?.(1);
-      // clear invulnerability timer manually
       if (health) health.invulnerableTimer = 0;
     }
+
+    // Restore the production wiring before the rest of the test runs.
+    if (detached) {
+      health.events?.on?.('health-depleted', playerCtrl.onHealthDepleted, playerCtrl);
+      gameManager.events?.on?.('respawn-requested', playerCtrl.onRespawnRequested, playerCtrl);
+    }
+
     return { currentHealth: health?.getCurrentHealth?.() ?? 0 };
-  });
+  }, { disableAutoRespawn });
 }
 
 export async function saveGame(page) {
@@ -515,7 +676,7 @@ export async function waitForSceneSwitch(page, targetSceneName, timeoutMs = 5000
 
 /**
  * Prepare the page for a clean visual screenshot:
- * - Hide Cocos Creator preview toolbar (top 37px)
+ * - Hide Cocos Creator preview toolbar
  * - Disable FPS / debug stats overlay
  * - Disable DebugHud component if present
  */
@@ -559,22 +720,34 @@ export async function prepareCleanScreenshot(page) {
   await stepFrames(page, 2);
 }
 
-/**
- * Take a clean screenshot with the Cocos editor toolbar cropped out.
- * The toolbar occupies the top ~37px of the viewport.
- */
-export async function takeCleanScreenshot(page) {
-  await prepareCleanScreenshot(page);
+export async function getCleanScreenshotOptions(page, options = {}) {
   const viewport = page.viewportSize();
-  const toolbarHeight = 37;
-  return page.screenshot({
+  if (!viewport) {
+    throw new Error('Viewport size is unavailable for clean screenshot capture.');
+  }
+
+  const cropTopPx = options.cropTopPx ?? 0;
+  if (cropTopPx < 0 || cropTopPx > viewport.height) {
+    throw new Error(`Invalid cropTopPx value: ${cropTopPx}`);
+  }
+
+  return {
     clip: {
       x: 0,
-      y: toolbarHeight,
+      y: cropTopPx,
       width: viewport.width,
-      height: viewport.height - toolbarHeight,
+      height: viewport.height - cropTopPx,
     },
-  });
+  };
+}
+
+/**
+ * Take a clean screenshot after the preview toolbar and debug overlays are hidden.
+ * By default the full viewport is preserved so top HUD/title pixels are not lost.
+ */
+export async function takeCleanScreenshot(page, options = {}) {
+  await prepareCleanScreenshot(page);
+  return page.screenshot(await getCleanScreenshotOptions(page, options));
 }
 
 export async function readFlowState(page) {

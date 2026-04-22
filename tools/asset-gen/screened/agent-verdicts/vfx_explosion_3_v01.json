@@ -1,0 +1,153 @@
+{
+  "file": "explosion/vfx_explosion_3_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\explosion\\vfx_explosion_3_v01.png",
+  "category": "explosion",
+  "candidateName": "vfx_explosion_3_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "particle_scatter_lacks_toy_diorama_charm",
+          "central_blob_form_generic_not_distinctly_zelda"
+        ],
+        "reasoning": "Emotional (60%): Warm orange/yellow/white palette reads bright and friendly, not grim. Scattered particles convey energy without menace. However the explosion lacks the toy-diorama charm and round-friendly silhouette specificity expected for Zelda: Echoes of Wisdom — it reads as competent VFX rather than charming Hyrule magic. Score ~7/10. Technical (40%): Clean 1px hard outlines around central mass, 2-3 tone hard shading (white core → saturated orange mid → dark orange-brown edge), no visible AA, pixel-grid-snapped throughout, particles are individually hand-pixeled. Matches Denzi reference quality for hard-edge pixel construction. Score ~8/10. Combined: 0.6×7 + 0.4×8 = 7.4 → 7, marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_center_bleeds",
+          "1x_detail_loss",
+          "outer_particles_fade_on_light_bg"
+        ],
+        "reasoning": "Warm orange pixel-art explosion with round burst core and scattered particle debris. On dark bg, the orange pops with good contrast and the silhouette reads clearly as an energetic burst — has genuine pixel-toy charm. On light/cream bg, the pale center core bleeds into the background, weakening the central silhouette; outer scattered pixels also lose contrast and become nearly invisible. At 1x the sprite is quite small and reads generically as 'fire dot' — personality disappears entirely. Charm is present in the warm palette and round bubbly core but the multi-bg failure and 1x loss prevent a pass. Not mushy or edgy, just insufficiently contrast-tuned for bright surfaces.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The explosion VFX uses a warm, saturated orange palette at its core with cream/parchment highlights — direct matches to the 'sunset oranges' and 'parchment golds' specified in the Echoes-tuned target. Particle scatter maintains orange and warm amber tones throughout. Dark accent pixels read as warm brown/dark orange rather than pure black or cold grey, satisfying the 'colored darks' requirement. Saturation is strong without crossing into neon territory. Mood is unambiguously BRIGHT and WARM. No muddy desaturated zones, no cold blues, no goth near-blacks in the asset itself. Preview panel backgrounds are dark/neutral but are display scaffolding, not asset content. Palette compatibility against the reference swatches is high: the dominant hues land on the orange-red, amber/gold, and warm cream columns. Minor note: palette breadth is narrow (fire-only range), but for a fire explosion this is contextually correct and not a harmony fault.",
+        "confidence": 0.92
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The explosion VFX is immediately spottable against the cool-gray brick background — warm orange/amber rim with white-hot center provides strong hue and value contrast. Silhouette is a clear circular burst with pixel-art jagged edges that match the game's overall pixel aesthetic. No confusion with the boss entity (dark blue-black tones) or background tiles (uniform cool gray). Scale is appropriate for the arena. Outer edge has minor pixel scatter but does not read as visual noise at gameplay distance. Echoes-cleanliness is satisfied: bright, uncluttered, single clear focal point. Dark-area visibility is not a concern here as the scene is mid-tone throughout.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "boss-battle context adds intensity that slightly undercuts purely cute/sunny target"
+        ],
+        "reasoning": "The explosion sprite itself uses warm orange/yellow/cream pixel-art burst with white sparkle pixels radiating outward in a round, bubbly shape — colors align well with the warm sunny palette (yellows, oranges, white light). The round pixel silhouette and sparkle fringe read as whimsical/magical rather than grimdark or aggressive. No out-of-tone palette shifts (no desaturated greys, no blood-red, no cold-corporate blues). However, the overall boss-battle scene context (grey stone dungeon walls, shadowy creature) already sits on the dungeon-crawler edge of the spectrum, and an 'explosion' VFX, even a cute one, carries inherent combat intensity. The VFX itself passes tone; the surrounding scene context pulls the composite marginally below a clean pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "explosion_slightly_large_relative_to_player",
+          "explosion_width_approaches_player_width"
+        ],
+        "reasoning": "The explosion VFX (vfx_explosion_3_v01) is composited near center-scene. The player character on the left appears to be roughly 32x32px. The explosion sprite with its orange flame ring and white core spans approximately 80-90px diameter — roughly 2.5x the player width. For an explosion effect this is borderline: it reads as impactful but slightly oversized for a tight top-down diorama feel. It does not overwhelm the full scene and the tile floor provides good grounding. Perspective is consistent with the flat top-down view. The toy-diorama feel is mostly intact — the explosion does not bleed into HUD space or tile borders. However, at this scale it risks feeling 'wallpaper-ish' if the player is only 32px; a 10-15% size reduction would bring it into the preferred 50-80% summon/effect range relative to scene entities. No perspective mismatch, no HUD overlap.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry_skull_face_center",
+          "scatter_pattern_ai_randomness",
+          "minor_outline_inconsistency"
+        ],
+        "reasoning": "Pixel art explosion shown at 4x and 8x zoom. Overall structure is clean: hard-toned palette (dark bg, orange fire ring, white-hot center, scattered ember pixels), no anti-aliasing detected, no gradient shading — colors are discrete. Background solid area is clean with no noise pixels. Fire ring transitions look crisp. HOWEVER: (1) The skull/face motif embedded in the white center shows subtle asymmetry in the dark-spot eye/mouth placement that is atypical of deliberate hand-craft — left eye pixel cluster differs in shape from right. (2) The radial scatter of ember pixels exhibits an AI-typical pseudo-random distribution: statistically even angular coverage without the natural clumping a human artist would introduce, slight 'too-uniform' feel. (3) A few outline pixels on the upper-left quadrant of the fire ring are 1px where the rest of the ring is 2px, suggesting inconsistent edge treatment. No color bleed, no sub-pixel features, no melting details, no semantic failure — the explosion reads correctly. Marginal: technically executable but scatter distribution and asymmetric face details raise mild suspicion.",
+        "confidence": 0.62
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "outline_absent: peers have defined 1px dark outlines; candidate edges are organic fire pixels with no dark border",
+          "outline_color_mismatch: peers use black/near-black outline; candidate has no outline color at all — fire edge only",
+          "shadow_treatment_diverges: peers use directional drop-shadow; candidate has glow/bloom self-illumination with no cast shadow",
+          "pixel_scale_mismatch: candidate individual pixels appear 2–3x larger than peer sprite pixels at matched canvas scale — density inconsistent",
+          "color_temperature_extreme: candidate is all-warm orange/yellow/white fire palette; peer set is mixed-cool (greens, blues, purples dominate) — near-zero palette overlap",
+          "highlight_intensity_too_high: central sphere has very bright white specular; peers have subdued, low-contrast highlights",
+          "rendering_style_diverges: candidate has a soft gradient-within-pixels painted feel on the sphere; peers are flat classic Denzi pixel art"
+        ],
+        "reasoning": "The peer reference sheet is a classic Denzi-style sprite set: small, tight pixel art characters and creatures with consistent dark outlines, directional drop shadows, subdued highlights, and a mixed-cool color palette. The candidate vfx_explosion_3_v01 fails on multiple structural dimensions: (1) no dark outline anywhere — the fire edge is organic and outline-free; (2) no directional shadow — replaced by warm glow that is stylistically alien to the peer set; (3) highlight intensity on the central sphere is dramatically higher than any peer sprite; (4) the pixel grid scale appears coarser than peers at matched display size; (5) the warm orange/yellow/white fire palette shares almost no hue overlap with the predominantly green/purple/blue/neutral peer palette. On the positive side, the candidate is drawn in pixel art, has a charming face motif embedded in the explosion center (charm level +), and the overall silhouette is readable. However, the rendering-style and structural-style gaps are wide enough that it reads as a different artistic lineage placed next to Denzi sprites. Confidence reflects clear visibility of the comparison image.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "explosion_reads_generic_action_not_whimsical",
+          "central_face_element_ambiguous_charm"
+        ],
+        "reasoning": "The candidate VFX uses a warm amber/orange/golden palette with scattered pixel particles, which aligns well with the bright/warm/sunny target tone and matches the pixel art style of the peer references. No grimdark, desaturated, edgy, or cold-corporate elements are present. However, the explosion is a fairly standard starburst-scatter pattern that reads more like a generic action-game hit effect than something distinctively whimsical or fairy-tale. The central grey-beige disc has a faint face-like quality that adds a small charm note, but it is subtle enough to be ambiguous — it could read as a generic impact flash. The overall execution is inoffensive and warm, but lacks the distinctive toy-diorama or magical-sparkle quality that would make it feel unmistakably Nintendo-family-friendly whimsical. Falls just short of a confident pass.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.52,
+    "aestheticAvg": 7,
+    "uiContextAvg": 7.33,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.154Z"
+}

@@ -48,11 +48,11 @@ export class ProjectileTrap extends Component {
   }
 
   protected onEnable(): void {
-    GameManager.instance?.events.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetTrap, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.resetTrap, this);
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetTrap, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetTrap, this);
   }
 
   protected update(dt: number): void {

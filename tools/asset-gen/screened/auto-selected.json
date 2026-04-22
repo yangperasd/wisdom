@@ -1,0 +1,979 @@
+{
+  "timestamp": "2026-04-20T03:10:20.607Z",
+  "topK": 1,
+  "totalSelected": 81,
+  "selected": [
+    {
+      "promptId": "amulet_protection",
+      "file": "accessory\\amulet_protection_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\accessory\\amulet_protection_v00.png",
+      "category": "accessory",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.2412109375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "ring_magic",
+      "file": "accessory\\ring_magic_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\accessory\\ring_magic_v01.png",
+      "category": "accessory",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.2529296875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "armor_chain",
+      "file": "armor\\armor_chain_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\armor_chain_v00.png",
+      "category": "armor",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 21,
+        "opaqueRatio": 0.2861328125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "armor_leather",
+      "file": "armor\\armor_leather_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\armor_leather_v02.png",
+      "category": "armor",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.345703125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "boots_speed",
+      "file": "armor\\boots_speed_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\boots_speed_v02.png",
+      "category": "armor",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.1484375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "bar_health_fill",
+      "file": "bar\\bar_health_fill_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\bar\\bar_health_fill_v00.png",
+      "category": "bar",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 9,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "bar_health_frame",
+      "file": "bar\\bar_health_frame_v05.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\bar\\bar_health_frame_v05.png",
+      "category": "bar",
+      "score": 8,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.58984375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "btn_action_normal",
+      "file": "button\\btn_action_normal_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\btn_action_normal_v01.png",
+      "category": "button",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.9561631944444444,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "btn_action_pressed",
+      "file": "button\\btn_action_pressed_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\btn_action_pressed_v04.png",
+      "category": "button",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.46875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "pause_button",
+      "file": "button\\pause_button_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\pause_button_v00.png",
+      "category": "button",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.9904513888888888,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "touch_attack_button",
+      "file": "button\\touch_attack_button_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\touch_attack_button_v02.png",
+      "category": "button",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "touch_echo_button",
+      "file": "button\\touch_echo_button_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\touch_echo_button_v00.png",
+      "category": "button",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 13,
+        "opaqueRatio": 0.8467881944444444,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "touch_respawn_button",
+      "file": "button\\touch_respawn_button_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\touch_respawn_button_v02.png",
+      "category": "button",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.4448784722222222,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "touch_summon_button",
+      "file": "button\\touch_summon_button_v07.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\touch_summon_button_v07.png",
+      "category": "button",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.4817708333333333,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "food_apple",
+      "file": "consumable\\food_apple_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\food_apple_v00.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.1484375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "food_bread",
+      "file": "consumable\\food_bread_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\food_bread_v02.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 13,
+        "opaqueRatio": 0.1025390625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "potion_energy",
+      "file": "consumable\\potion_energy_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_energy_v00.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.1162109375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "potion_health",
+      "file": "consumable\\potion_health_v05.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_health_v05.png",
+      "category": "consumable",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 21,
+        "opaqueRatio": 0.3349609375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "potion_mana",
+      "file": "consumable\\potion_mana_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_mana_v04.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.337890625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "potion_speed",
+      "file": "consumable\\potion_speed_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_speed_v02.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.30859375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "scroll_fire",
+      "file": "consumable\\scroll_fire_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\scroll_fire_v01.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.1962890625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "scroll_teleport",
+      "file": "consumable\\scroll_teleport_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\scroll_teleport_v01.png",
+      "category": "consumable",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.466796875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "boss_core",
+      "file": "enemy\\boss_core_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\enemy\\boss_core_v00.png",
+      "category": "enemy",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.1640625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "breakable_target",
+      "file": "enemy\\breakable_target_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\enemy\\breakable_target_v00.png",
+      "category": "enemy",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.453125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "common_enemy",
+      "file": "enemy\\common_enemy_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\enemy\\common_enemy_v00.png",
+      "category": "enemy",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.3056640625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_explosion_1",
+      "file": "explosion\\vfx_explosion_1_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\explosion\\vfx_explosion_1_v00.png",
+      "category": "explosion",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.34765625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_explosion_2",
+      "file": "explosion\\vfx_explosion_2_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\explosion\\vfx_explosion_2_v04.png",
+      "category": "explosion",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.3994140625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_explosion_3",
+      "file": "explosion\\vfx_explosion_3_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\explosion\\vfx_explosion_3_v01.png",
+      "category": "explosion",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.3828125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_explosion_4",
+      "file": "explosion\\vfx_explosion_4_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\explosion\\vfx_explosion_4_v02.png",
+      "category": "explosion",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 13,
+        "opaqueRatio": 0.322265625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_heal_1",
+      "file": "heal\\vfx_heal_1_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\heal\\vfx_heal_1_v01.png",
+      "category": "heal",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 12,
+        "opaqueRatio": 0.4462890625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_heal_2",
+      "file": "heal\\vfx_heal_2_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\heal\\vfx_heal_2_v01.png",
+      "category": "heal",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.3251953125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_heal_3",
+      "file": "heal\\vfx_heal_3_v07.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\heal\\vfx_heal_3_v07.png",
+      "category": "heal",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 10,
+        "opaqueRatio": 0.4072265625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "icon_arrow",
+      "file": "icon\\icon_arrow_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_arrow_v00.png",
+      "category": "icon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.2881944444444444,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "icon_echo_bomb",
+      "file": "icon\\icon_echo_bomb_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_echo_bomb_v00.png",
+      "category": "icon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.2482638888888889,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "icon_echo_box",
+      "file": "icon\\icon_echo_box_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_echo_box_v00.png",
+      "category": "icon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.2864583333333333,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "icon_echo_flower",
+      "file": "icon\\icon_echo_flower_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_echo_flower_v01.png",
+      "category": "icon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 15,
+        "opaqueRatio": 0.171875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "system_confirm_icon",
+      "file": "icon\\system_confirm_icon_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\system_confirm_icon_v00.png",
+      "category": "icon",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 14,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "system_pause_icon",
+      "file": "icon\\system_pause_icon_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\system_pause_icon_v00.png",
+      "category": "icon",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.9965277777777778,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_hit_spark",
+      "file": "impact\\vfx_hit_spark_v06.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\impact\\vfx_hit_spark_v06.png",
+      "category": "impact",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.4306640625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "key_boss",
+      "file": "key\\key_boss_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_boss_v01.png",
+      "category": "key",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.193359375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "key_gold",
+      "file": "key\\key_gold_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_gold_v02.png",
+      "category": "key",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.10546875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "key_iron",
+      "file": "key\\key_iron_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_iron_v01.png",
+      "category": "key",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.1259765625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_echo_summon",
+      "file": "magic\\vfx_echo_summon_v03.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\magic\\vfx_echo_summon_v03.png",
+      "category": "magic",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "barrier_closed",
+      "file": "marker\\barrier_closed_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\marker\\barrier_closed_v02.png",
+      "category": "marker",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 23,
+        "opaqueRatio": 0.3623046875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "barrier_open",
+      "file": "marker\\barrier_open_v03.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\marker\\barrier_open_v03.png",
+      "category": "marker",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 22,
+        "opaqueRatio": 0.3623046875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "checkpoint",
+      "file": "marker\\checkpoint_v05.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\marker\\checkpoint_v05.png",
+      "category": "marker",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.2109375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "controls_card",
+      "file": "panel\\controls_card_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\controls_card_v00.png",
+      "category": "panel",
+      "score": 6,
+      "analysis": {
+        "uniqueColors": 26,
+        "opaqueRatio": 0.8739149305555556,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "hud_top_bar",
+      "file": "panel\\hud_top_bar_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\hud_top_bar_v00.png",
+      "category": "panel",
+      "score": 8,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.5725911458333334,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "objective_card",
+      "file": "panel\\objective_card_v07.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\objective_card_v07.png",
+      "category": "panel",
+      "score": 8,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.64453125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "panel_dialog",
+      "file": "panel\\panel_dialog_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\panel_dialog_v01.png",
+      "category": "panel",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "panel_inventory",
+      "file": "panel\\panel_inventory_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\panel_inventory_v01.png",
+      "category": "panel",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_dust_poof",
+      "file": "particle\\vfx_dust_poof_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\particle\\vfx_dust_poof_v02.png",
+      "category": "particle",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.416015625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_portal_glow",
+      "file": "portal\\vfx_portal_glow_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\portal\\vfx_portal_glow_v00.png",
+      "category": "portal",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_bombbug_active",
+      "file": "summon\\echo_bombbug_active_v06.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_bombbug_active_v06.png",
+      "category": "summon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.1259765625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_bombbug_idle",
+      "file": "summon\\echo_bombbug_idle_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_bombbug_idle_v02.png",
+      "category": "summon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.193359375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_box_active",
+      "file": "summon\\echo_box_active_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_box_active_v02.png",
+      "category": "summon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.2060546875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_box_idle",
+      "file": "summon\\echo_box_idle_v07.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_box_idle_v07.png",
+      "category": "summon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.1357421875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_flower_active",
+      "file": "summon\\echo_flower_active_v05.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_flower_active_v05.png",
+      "category": "summon",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 24,
+        "opaqueRatio": 0.4765625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "echo_flower_idle",
+      "file": "summon\\echo_flower_idle_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_flower_idle_v02.png",
+      "category": "summon",
+      "score": 9,
+      "analysis": {
+        "uniqueColors": 25,
+        "opaqueRatio": 0.3359375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_ground_flowers",
+      "file": "tile\\outdoor_ground_flowers_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_flowers_v01.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_ground_green",
+      "file": "tile\\outdoor_ground_green_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_green_v02.png",
+      "category": "tile",
+      "score": 6,
+      "analysis": {
+        "uniqueColors": 4,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_ground_ruins",
+      "file": "tile\\outdoor_ground_ruins_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_ruins_v00.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 10,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_path_cobble",
+      "file": "tile\\outdoor_path_cobble_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_path_cobble_v00.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 8,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_wall_broken",
+      "file": "tile\\outdoor_wall_broken_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_broken_v00.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 8,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_wall_cracked",
+      "file": "tile\\outdoor_wall_cracked_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_cracked_v04.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 8,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "outdoor_wall_standard",
+      "file": "tile\\outdoor_wall_standard_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_standard_v00.png",
+      "category": "tile",
+      "score": 7,
+      "analysis": {
+        "uniqueColors": 8,
+        "opaqueRatio": 1,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "rope",
+      "file": "tool\\rope_v06.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tool\\rope_v06.png",
+      "category": "tool",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 18,
+        "opaqueRatio": 0.4677734375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "torch",
+      "file": "tool\\torch_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tool\\torch_v01.png",
+      "category": "tool",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 13,
+        "opaqueRatio": 0.103515625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "vfx_arrow_trail",
+      "file": "trail\\vfx_arrow_trail_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\trail\\vfx_arrow_trail_v04.png",
+      "category": "trail",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.1181640625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "coin_gold",
+      "file": "treasure\\coin_gold_v04.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\coin_gold_v04.png",
+      "category": "treasure",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 17,
+        "opaqueRatio": 0.1806640625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "gem_emerald",
+      "file": "treasure\\gem_emerald_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_emerald_v00.png",
+      "category": "treasure",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 14,
+        "opaqueRatio": 0.1826171875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "gem_ruby",
+      "file": "treasure\\gem_ruby_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_ruby_v00.png",
+      "category": "treasure",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 15,
+        "opaqueRatio": 0.32421875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "gem_sapphire",
+      "file": "treasure\\gem_sapphire_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_sapphire_v01.png",
+      "category": "treasure",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 14,
+        "opaqueRatio": 0.2685546875,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "pickup_relic",
+      "file": "treasure\\pickup_relic_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\pickup_relic_v00.png",
+      "category": "treasure",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.3203125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "axe_battle",
+      "file": "weapon\\axe_battle_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\axe_battle_v02.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 13,
+        "opaqueRatio": 0.115234375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "bow_longbow",
+      "file": "weapon\\bow_longbow_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\bow_longbow_v00.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.16015625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "dagger_quick",
+      "file": "weapon\\dagger_quick_v01.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\dagger_quick_v01.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.1474609375,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "mace_holy",
+      "file": "weapon\\mace_holy_v02.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\mace_holy_v02.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 20,
+        "opaqueRatio": 0.1142578125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "staff_magic",
+      "file": "weapon\\staff_magic_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\staff_magic_v00.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 16,
+        "opaqueRatio": 0.37890625,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "sword_fire",
+      "file": "weapon\\sword_fire_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\sword_fire_v00.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 14,
+        "opaqueRatio": 0.1376953125,
+        "paletteDistance": 0
+      }
+    },
+    {
+      "promptId": "sword_iron",
+      "file": "weapon\\sword_iron_v00.png",
+      "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\sword_iron_v00.png",
+      "category": "weapon",
+      "score": 10,
+      "analysis": {
+        "uniqueColors": 19,
+        "opaqueRatio": 0.1142578125,
+        "paletteDistance": 0
+      }
+    }
+  ]
+}

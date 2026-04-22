@@ -18,6 +18,10 @@ export function shouldRequirePreviewSmoke() {
   return isTruthy(process.env.REQUIRE_PREVIEW_SMOKE);
 }
 
+export function shouldRequireWechatVerify() {
+  return isTruthy(process.env.REQUIRE_WECHAT_VERIFY);
+}
+
 export function normalizeBaseUrl(baseURL) {
   return baseURL.endsWith('/') ? baseURL : `${baseURL}/`;
 }
@@ -97,7 +101,55 @@ export async function runPlaywrightSmoke(baseURL, rootDir = projectRoot) {
 
   await runCommand(
     process.execPath,
-    [playwrightCliEntry, 'test', '-c', './playwright.config.mjs', './tests/preview-smoke.spec.mjs'],
+    [
+      playwrightCliEntry,
+      'test',
+      '-c',
+      './playwright.config.mjs',
+      './tests/preview-smoke.spec.mjs',
+      './tests/first-session-runtime.spec.mjs',
+      './tests/scene-loader-failure.spec.mjs',
+    ],
+    { cwd: rootDir, env },
+  );
+}
+
+export async function runPlaywrightFirstSessionJourney(baseURL, rootDir = projectRoot) {
+  const playwrightCliEntry = getPlaywrightCliEntry(rootDir);
+  const env = {
+    ...process.env,
+    PREVIEW_BASE_URL: normalizeBaseUrl(baseURL),
+  };
+
+  await runCommand(
+    process.execPath,
+    [
+      playwrightCliEntry,
+      'test',
+      '-c',
+      './playwright.config.mjs',
+      './tests/first-session-journey.spec.mjs',
+    ],
+    { cwd: rootDir, env },
+  );
+}
+
+export async function runPlaywrightVisualInitial(baseURL, rootDir = projectRoot) {
+  const playwrightCliEntry = getPlaywrightCliEntry(rootDir);
+  const env = {
+    ...process.env,
+    PREVIEW_BASE_URL: normalizeBaseUrl(baseURL),
+  };
+
+  await runCommand(
+    process.execPath,
+    [
+      playwrightCliEntry,
+      'test',
+      '-c',
+      './playwright.config.mjs',
+      './tests/visual-scene-initial.spec.mjs',
+    ],
     { cwd: rootDir, env },
   );
 }

@@ -1,0 +1,149 @@
+{
+  "file": "heal/vfx_heal_3_v07.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\heal\\vfx_heal_3_v07.png",
+  "category": "heal",
+  "candidateName": "vfx_heal_3_v07",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "heart_center_fill_lacks_internal_shading_detail"
+        ],
+        "reasoning": "Emotional axis (60%): Strong pass. Heart motif with saturated bright-green glow aura and scattered pink/yellow sparkle dots nails the warm, friendly, charming Hyrule mood. Palette—white core, layered greens, warm accent sparkles—aligns perfectly with the saturated greens/yellows/pinks spec. Round friendly silhouette, toy-diorama brightness, zero grimness. Emotional score ~8.5/10. Technical axis (40%): Solid pass. Pixel-grid-snapped heart outline, clearly visible 1px hard edges at all zoom levels, no anti-aliasing artifacts. Two-to-three tone hard shading present (white fill → light green inner glow → dark green outline layer). Sparkle particles are clean single-pixel or 2px dots, hand-pixeled appearance confirmed at 4× zoom. One minor flag: the white interior fill occupies most of the heart area with very little internal shading variation, making the center feel slightly washed out compared to Denzi reference density. Technical score ~7.5/10. Weighted composite: 0.6×8.5 + 0.4×7.5 = 8.1 → rounded to 8. Verdict: pass.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "white_fill_merges_on_light_bg"
+        ],
+        "reasoning": "Heart silhouette is universally readable and instantly iconic even at 1x. The pixel art green outline with small orange/yellow sparkle dots delivers strong toy charm and friendly personality — sticker test: yes. On dark bg, white fill + colored outline creates excellent contrast and the glow reads as healing energy. On light/cream bg, the white interior blends slightly with the background, but the green outline edge rescues readability — marginal concern, not a fail. Edge cleanliness is good for pixel art style; deliberate pixelation reads as intentional not mushy. Shape is round, soft, non-aggressive. No silhouette confusion. Charm and clarity both meet threshold.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Heart VFX uses spring green outline, candy pink sparkles, warm orange/gold sparkle dots, and a luminous white core — all firmly within the Echoes-tuned bright warm palette. Green matches the saturated greens column; pinks and oranges match the coral/warm-orange swatches in palette-extract. White core reads as bright and life-affirming, ideal for a heal effect. No muddy desaturated tones, no neon, no cold corporate hues. The dark test-panel backgrounds are presentation frames only and not part of the asset itself. Minor note: shadow/dark regions on the asset are absent entirely (pure highlight-and-sparkle silhouette), which is acceptable for a small VFX but means shadow-color quality cannot be evaluated here. Overall harmony is bright, warm, and palette-compatible.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 3,
+      "marginals": 0,
+      "fails": 0,
+      "avgScore": 8,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "slight_pasted_fringe_outline"
+        ],
+        "reasoning": "The vfx_heal_3_v07 heart shape is large, bright white, and immediately spottable against the dark tile backgrounds in well under 0.5s. Heart silhouette is universally readable as a heal effect with no confusion with other entities (creature, pressure plate, UI buttons). High contrast white works well over both the dark-red tile area and the dark-teal open area. Pixel-art style with colored green/pink fringe border is consistent with the game's overall pixel aesthetic and reads as intentional VFX animation framing rather than an artifact. The effect is clean and uncluttered, matching the Echoes bright-effect feel. Minor issue: the colored pixel fringe gives a slight sticker-on-scene appearance rather than fully seamless integration, but does not meaningfully harm readability or visual coherence.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The vfx_heal_3_v07 sprite is a bright white heart with a green pixel-sparkle outline border. The heart shape is inherently cute and round (in-tone), the white core reads as warm/sunny/magical, and the green sparkle pixels around the edge are charmingly whimsical — exactly the fairy-tale sparkle register the target calls for. The heal VFX actually lifts the overall scene mood: the base environment has a somewhat dark teal dungeon-grid tone, but the sprite introduces brightness and warmth at the interaction point. No grimdark, horror, aggressive, or cold-corporate elements present. The pixelated sparkle treatment avoids anime fan-service or realistic rendering. Minor note: the surrounding environment is slightly dungeon-crawler in palette, but the sprite itself is solidly in-tone and its job as a heal effect is to inject that warm magical moment — which it does successfully.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "vfx_larger_than_player",
+          "effect_overwhelms_scene",
+          "wallpaper_feel_not_diorama"
+        ],
+        "reasoning": "The heal VFX is a large white heart occupying roughly 1.5 tile widths in scene space — approximately 3x the expected 32x32 player footprint. Category 'heal' is a transient effect that should appear at or smaller than player scale (≤32px game units), never dominating the viewport. The heart is the most visually prominent element on screen, crowding out the actual gameplay entities and giving the scene a 'cutscene wallpaper' feel rather than a toy-diorama in-world effect. Perspective is also mismatched: a top-down 2D game requires heal effects to read as flat on the ground plane or as a compact burst above the character, not a large upright heart floating at mid-screen. The glowing white fill further overwhelms surrounding tile detail.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 0,
+      "fails": 1,
+      "avgScore": 6.33,
+      "reason": "pass"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scattered_stray_pixels_bottom_right_large_heart",
+          "slight_asymmetry_sparkle_dot_placement",
+          "minor_outline_thickness_variation_at_corners"
+        ],
+        "reasoning": "Pixel art heart heal VFX sprite shown at 8x zoom. Main structure is clean with hard-edge pixels and no anti-aliasing artifacts. Color palette is disciplined: black background, green outer border, yellow/gold inner border, white fill, accent colors (pink, yellow, light) for sparkle particles. No gradient shading — all hard tones. No sub-pixel bleeding or color bleed on primary outlines. Semantic read is correct (heart shape with sparkles = heal VFX). However: (1) Several isolated stray pixels appear near bottom-right of the large heart outside the main shape boundary; these may be intentional particles but distribution is irregular in a way that reads noisy rather than designed. (2) Sparkle dot placement inside the large heart is asymmetric left-vs-right without clear compositional intent. (3) Outline pixel thickness shows minor variation at a few corner transitions (1px vs 2px). None of these are decisive failures — the VFX particle intent makes many scattered pixels plausible — but the irregularities prevent a clean pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "outline_color_mismatch: thick green/teal chunky border vs thin dark 1px outlines on all peers",
+          "outline_weight_mismatch: candidate border is 3-4px dithered pattern vs hairline peer outlines",
+          "highlight_intensity_extreme: blown-out white core occupies majority of sprite vs tightly controlled specular dots on peers",
+          "rendering_style_divergence: flat glow/UI-heart treatment vs classic pixel character art with shading passes on peers",
+          "shadow_absent: no directional drop-shadow present; peers consistently show 1 shadow",
+          "detail_density_low: simple 2-tone heart form vs dense multi-element character sprites",
+          "palette_overlap_weak: white + green + isolated pink dots share almost no hues with warm/saturated peer palette",
+          "charm_level_mismatch: execution reads clinical UI icon rather than the endearing creature personality peers exhibit"
+        ],
+        "reasoning": "LEFT panel shows ~50 Denzi character/creature sprites: consistent thin dark outlines, rich warm-to-neutral saturated palettes, controlled highlights, single directional shadow, moderate-to-high detail density, and strong creature 'charm.' RIGHT panel candidate vfx_heal_3_v07 is a large heart silhouette dominated by a blown-white interior and a thick dithered green border. At least 6 of the 11 dimensions fail hard: outline color (green vs black), outline weight (chunky vs hairline), highlight intensity (overexposed core vs pinpoint spec), rendering style (luminous glow vs opaque pixel character), shadow (absent vs present), and charm level (UI icon vs cute creature). Detail density and palette overlap are also significantly below peer baseline. The only partial alignments are the pixel grid structure and a few stray pink sparkle dots that loosely echo peer accent colors. This candidate does not belong in the same sprite family without a substantial rework of its border treatment, value range, and shadow pass.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The candidate (right) is a pixel-art heart with a green leafy/vine border, soft pink flower-dot accents, and yellow-gold sparkle pixels on a warm parchment background. Every design choice maps cleanly to the target tone: heart silhouette = wholesome Nintendo healing shorthand; green vine framing = nature/fairy-tale magic; pastel pink florals = cute/charming; warm yellows = bright sunny Hyrule warmth. No desaturation, no grim or edgy elements, no uncanny anatomy, no cold corporate palette. The peer reference sheet (left) shows classic top-down Zelda-lineage sprites with comparable warm earthy palette and whimsy—the candidate reads as a natural companion to that set. The only marginal concern is that a plain glowing heart is a very generic healing trope, but the vine+flower pixel execution elevates it above generic-mobile-cartoon territory. Net result: solidly on-tone.",
+        "confidence": 0.87
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.92,
+    "aestheticAvg": 8,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 3,
+    "warningCount": 1,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.157Z"
+}

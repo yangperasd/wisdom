@@ -1,0 +1,164 @@
+{
+  "file": "key/key_iron_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_iron_v01.png",
+  "category": "key",
+  "candidateName": "key_iron_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "bow_checker_pattern_reads_mechanical_not_magical",
+          "palette_warm_but_under_saturated_vs_target_hyrule_brightness",
+          "teal_shank_color_is_good_but_bow_grey_tones_pull_mood_cooler"
+        ],
+        "reasoning": "Emotional (60%): The key has a round friendly silhouette and a warm teal+orange colour combo that reads charming at a glance. The rounded bow head and decorative teeth give it personality fitting a toy-diorama Hyrule item. However the bow's black/white checker motif reads slightly chess-board/mechanical rather than magical or whimsical — it pulls the mood slightly away from the saturated greens/blues/yellows/pinks target palette. The grey tones in the bow dominate the first read, softening the brightness. Emotional score ~7/10. Technical (40%): 1px hard outlines are consistent and clean across all zoom panels. Shading uses 2-3 hard tones with no anti-aliasing visible. Pixels are grid-snapped and the design reads well at all zoom levels shown. Hand-pixeled feel is present. Versus Denzi reference (armor/helm items), the pixel discipline is comparable. Technical score ~8/10. Weighted composite: 0.6×7 + 0.4×8 = 7.4 → 7. Passes technical bar, marginal on emotional warmth/saturation.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_mushy_at_1x",
+          "bit_bow_reads_noisy_not_charming",
+          "dark_bg_contrast_weak_on_shaft",
+          "personality_present_but_busy"
+        ],
+        "reasoning": "At 1x the key silhouette collapses into a thin indistinct stick — the head detail is completely lost and the bow reads as a smudge, not a recognizable friendly shape. Sticker test fails at 1x. At 4x the pixel art is competent: the checkered bow has personality and the teal/orange accent palette adds warmth. On dark bg the grey shaft has poor separation from background. On light bg it reads better but the bow still feels busy rather than charming — lots of small pixel details that add visual noise instead of a clean round-soft silhouette. The key has mild charm (cute bow top, warm palette) but the silhouette clarity is below threshold for instant readability. Charm and clarity are both mid — neither strength compensates the other's weakness. Marginal pass leaning toward fail on silhouette criterion.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "dominant_color_neutral_gray_cold_desaturated",
+          "warm_midvalues_not_dominant",
+          "near_black_backgrounds_violate_colored_darks_rule"
+        ],
+        "reasoning": "The iron key sprite is ~60-70% neutral gray/silver — cold and desaturated, directly contrary to the BRIGHT/WARM mandate that warm mid-values dominate. Orange/rust accents (~15%) and teal shaft highlight (~10%) are palette-compatible and prevent a score of 1-2, but they are too minor to shift the overall impression away from 'conventional dungeon-gray object.' Presentation panels 1-3 use near-black/dark-charcoal backgrounds rather than the required colored darks (deep teal/plum/warm brown). The parchment panel 4 background is correctly warm. Overall mood reads grim/cold rather than BRIGHT harmonious Echoes-tuned warm.",
+        "confidence": 0.85
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "low_contrast_against_dark_bg",
+          "small_sprite_size_reduces_spottability",
+          "no_outline_or_glow_to_aid_visibility",
+          "gray_iron_tone_blends_with_dark_blue_gray_background"
+        ],
+        "reasoning": "The key_iron_v01 sprite appears as a small pixel-art iron key in the center-left of the scene. Against the dark blue-gray dungeon background, the gray/brown iron color offers only moderate contrast — it is findable under focused inspection but does not pop immediately at 0.5s glance. The key shape silhouette is recognizable as a game item, and the pixel art style is consistent with the Echoes aesthetic, so it does not feel pasted. However, there is no outline, glow, or ambient particle effect to draw the eye, and the sprite is quite small relative to the scene. Dark-area visibility is marginal: the key sits in an uncluttered zone which helps somewhat, but the tonal similarity to the background is the primary readability obstacle. No confusion with other entities (character sprite is clearly distinct). Overall: visible but below the 0.5s spottability threshold without additional pickup indicator.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "iron_key_concept_leans_dungeon_crawler",
+          "scene_palette_is_cold_dark_not_warm_sunny",
+          "sprite_lacks_whimsical_sparkle_or_round_cuteness"
+        ],
+        "reasoning": "The composite scene retains a cold dark sci-fi/dungeon-crawler palette (deep blacks, muted blues, dim gold UI) that was already present in the original — this is not caused by the new sprite but contextually frames it poorly against the fairy-tale target. The key_iron_v01 sprite itself is a small pixel-art item with a muted warm-brown/orange coloring; it does not introduce grimdark horror or aggression, but 'iron key' as a concept and the sprite's utilitarian pixel rendering lean toward dungeon-RPG rather than whimsical toy-diorama. No bright warm yellows, pinks, or sparkle present. The sprite neither saves nor worsens the existing cold tone, placing it at marginal — acceptable if the scene palette is later warmed, but not yet in-tone for a cute sunny fairy-tale aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "item_height_near_player_height",
+          "item_may_exceed_75pct_player_size"
+        ],
+        "reasoning": "The key_iron_v01 is composited as a standing prop next to what appears to be the player character. The key sprite (ring head + shaft) extends to approximately 85-95% of the player character height, which exceeds the 50-75% item size budget. For a key category item, it should read as a collectible object noticeably smaller than the player. The perspective and art style are consistent with the top-down diorama aesthetic, and the item does not overwhelm the scene visually. However, the proportional size relationship is borderline—the key reads more like a character-scale prop than a small collectible. No perspective mismatch or wallpaper zoom issue detected.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "shading_gradient_bleed",
+          "outline_weight_inconsistency"
+        ],
+        "reasoning": "At 8x zoom, the iron keys show generally clean pixel art structure. The checkerboard bow pattern is crisp and precise — a hallmark of deliberate pixel art. Background is solid dark with no noise. However, two concerns: (1) The shank shading on the right-side large keys shows more color steps than a strict 2-3-tone palette — the orange/brown transitions have intermediate blended values that suggest AI gradient interpolation rather than hand-placed dithering. (2) Outline weight varies slightly: some edges are 1px clean, others have 2px-wide outline segments at corners without clear artistic intent, and a few interior detail lines are missing outlines entirely. No semantic failures — shapes clearly read as keys. No color bleed into background. Sub-pixel inspection shows no fractional features. Overall: a competent AI-generated pixel art asset with minor shading and outline inconsistencies, not severe enough to fail outright.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "highlight_intensity_too_flat",
+          "shadow_count_insufficient",
+          "detail_density_low",
+          "rendering_style_mismatch_2d_icon_vs_3d_pixel_art",
+          "charm_level_deficient_peers_feel_alive_key_feels_generic"
+        ],
+        "reasoning": "Peer helmets exhibit classic Denzi chunky 3D-suggestive pixel art: multi-pass shading, bright specular highlights on upper faces, clear top-left light source with bottom-right cast shadows, and expressive 'alive' character. The key_iron_v01 candidate breaks on 4 critical dims: (1) Highlight intensity — the key is nearly flat with no visible specular pop, while every peer helmet has a bright highlight chip; (2) Shadow count — peers show at least two shadow zones (core shadow + drop shadow or cast shadow), the key shows a single flat shading pass at most; (3) Detail density — at comparable pixel scale the peers pack in rivets, visor slits, plume overlaps, cheek-plate edges; the key is a minimal silhouette read with almost no internal pixel articulation; (4) Rendering style — helmets read as solid 3D objects; key reads as a flat 2D icon, closer to a UI glyph than a world-drop sprite. Charm level also fails: the peer family has personality and weight; the key feels like placeholder clip-art. Outline weight and color are close enough (dark 1px perimeter), and color temperature shares a cool-metallic range, so those two dims partially save the score from 1-2 territory. Net: 4/10, fail.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "cold_silver_palette_lacks_fairy_tale_warmth",
+          "generic_utilitarian_key_silhouette_not_whimsical",
+          "no_charm_detail_or_magical_sparkle_cues"
+        ],
+        "reasoning": "The candidate iron key (right, 4x) is clean pixel-art but reads cold and utilitarian. Its near-white/silver hue has zero warmth, sitting closer to a 'generic RPG inventory item' register than the bright, toy-diorama Hyrule target. The peer helmets on the left are also somewhat dark/military, but they carry enough variety and pixel-charm to stay in range. The key itself has no whimsy cues (no warm highlight, no subtle glow, no rounded toy-ish weight) that would anchor it to the 'cute fairy-tale' tone. It does not cross into grimdark, edgy, or occult territory, so it avoids a hard fail, but the absence of warmth and character detail keeps it firmly marginal. A warmer tint on the shaft and a small bright highlight on the bow would likely push it to pass.",
+        "confidence": 0.74
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.05,
+    "aestheticAvg": 5.67,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 4,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.124Z"
+}

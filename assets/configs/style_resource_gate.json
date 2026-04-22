@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-21",
+  "northStar": {
+    "mustKeep": [
+      "bright",
+      "warm",
+      "cute",
+      "round",
+      "toy-like"
+    ],
+    "mustNotSlipInto": [
+      "dark",
+      "gray-heavy",
+      "dirty-green-noise",
+      "realistic-cracks",
+      "sharp-gothic",
+      "bloody-pressure",
+      "cold-hard-metal",
+      "heavy-gold-trim",
+      "mixed-ui-systems",
+      "mixed-pixel-handpainted-realistic"
+    ]
+  },
+  "aiAssetBoundary": {
+    "sourceMarker": "ai-generated",
+    "generatedPathPrefixes": [
+      "assets/art/generated/",
+      "assets/art/items/generated/"
+    ],
+    "finalSafeWhitelist": []
+  },
+  "visualKeyExemptions": [],
+  "keys": {
+    "player": {
+      "role": "protected",
+      "finalGateState": "reference-locked",
+      "rule": "keep the hero silhouette on the hand-curated paperdoll path"
+    },
+    "portal": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "keep the traversal portal on a warm procedural placeholder until final cute portal art lands"
+    },
+    "echo_spring_flower": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "keep the spring-flower echo as a reference/asset-gap prop until a final cute variant lands"
+    },
+    "echo_bomb_bug": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "keep the bomb-bug echo as a reference/asset-gap prop until a final cute variant lands"
+    },
+    "outdoor_wall_standard": {
+      "role": "must-redo",
+      "finalGateState": "blocked-final"
+    },
+    "outdoor_wall_broken": {
+      "role": "must-redo",
+      "finalGateState": "blocked-final"
+    },
+    "outdoor_wall_cracked": {
+      "role": "must-redo",
+      "finalGateState": "blocked-final"
+    },
+    "outdoor_path_cobble": {
+      "role": "must-redo",
+      "finalGateState": "blocked-final"
+    },
+    "outdoor_ground_flowers": {
+      "role": "must-redo",
+      "finalGateState": "blocked-final"
+    },
+    "outdoor_ground_green": {
+      "role": "transition",
+      "finalGateState": "temporary-transition"
+    },
+    "outdoor_ground_ruins": {
+      "role": "transition",
+      "finalGateState": "temporary-transition"
+    },
+    "boss_shield_closed": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "pair with boss_shield_open as a temporary shield system"
+    },
+    "boss_shield_open": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "pair with boss_shield_closed as a temporary shield system"
+    },
+    "projectile_arrow": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "temporary projectile prefab binding until final cute projectile art lands"
+    },
+    "common_enemy": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "enemy body may not use generated art as a first-release anchor"
+    },
+    "hud_top_bar": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "main HUD may not use AI skins directly; keep one warm procedural renderer"
+    },
+    "objective_card": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "main HUD may not use AI skins directly; keep one warm procedural renderer"
+    },
+    "controls_card": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "main HUD may not use AI skins directly; keep one warm procedural renderer"
+    },
+    "touch_attack_button": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "touch controls may not use AI skins directly; keep procedural rounded buttons"
+    },
+    "touch_summon_button": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "touch controls may not use AI skins directly; keep procedural rounded buttons"
+    },
+    "touch_respawn_button": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "touch controls may not use AI skins directly; keep procedural rounded buttons"
+    },
+    "touch_echo_button": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "touch controls may not use AI skins directly; keep procedural rounded buttons"
+    },
+    "pause_button": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "pause touch control may not use AI skins directly; keep procedural rounded buttons"
+    },
+    "system_pause_icon": {
+      "role": "accent",
+      "finalGateState": "candidate-accent"
+    },
+    "system_confirm_icon": {
+      "role": "accent",
+      "finalGateState": "candidate-accent"
+    },
+    "boss_core": {
+      "role": "accent",
+      "finalGateState": "candidate-accent"
+    },
+    "checkpoint": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "keep checkpoint as a warm procedural placeholder until final cute checkpoint art lands"
+    },
+    "barrier_closed": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "puzzle barrier may not use generated art as a first-release anchor"
+    },
+    "barrier_open": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "puzzle barrier may not use generated art as a first-release anchor"
+    },
+    "breakable_target": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "breakable targets stay procedural until final cute affordance art lands"
+    },
+    "pickup_relic": {
+      "role": "transition",
+      "finalGateState": "temporary-transition",
+      "rule": "room reward stays procedural until final cute reward art lands"
+    },
+    "environment_dungeon_floor_family": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "family selector for dungeon floor materials"
+    },
+    "environment_dungeon_wall_family": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "family selector for dungeon wall materials"
+    },
+    "environment_dungeon_prop_family": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "family selector for dungeon prop materials"
+    }
+  }
+}

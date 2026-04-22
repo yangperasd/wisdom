@@ -4,13 +4,13 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 import {
   projectRoot,
-  resolveConfiguredWechatBuildOutputDir,
+  resolveLastWechatBuildOutputDir,
   resolveWechatDevToolsCli,
   wechatDevToolsPort,
 } from './wechat-build-utils.mjs';
 
 const cliPath = await resolveWechatDevToolsCli();
-const projectPath = await resolveConfiguredWechatBuildOutputDir(projectRoot);
+const projectPath = await resolveLastWechatBuildOutputDir(projectRoot);
 const port = process.env.WECHAT_DEVTOOLS_PORT || `${wechatDevToolsPort}`;
 const lang = process.env.WECHAT_DEVTOOLS_LANG || 'zh';
 const projectConfigPath = path.join(projectPath, 'project.config.json');
@@ -45,9 +45,6 @@ console.log(`[wechat-devtools] project: ${projectPath}`);
 console.log(`[wechat-devtools] port: ${port}`);
 console.log(`[wechat-devtools] compileType: ${projectConfig.compileType}`);
 console.log(`[wechat-devtools] appid: ${projectConfig.appid}`);
-console.log(
-  '[wechat-devtools] the logged-in WeChat account must have developer access to this appid, otherwise the IDE can open the project but will refuse game services and test capabilities.',
-);
 
 const child = spawn(
   devtoolsExePath,

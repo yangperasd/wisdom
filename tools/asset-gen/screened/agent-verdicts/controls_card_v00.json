@@ -1,0 +1,162 @@
+{
+  "file": "panel/controls_card_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\panel\\controls_card_v00.png",
+  "category": "panel",
+  "candidateName": "controls_card_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "interior content area is a large flat white/cream zone — sparse icon density reduces visual richness",
+          "small icons at native resolution lose legibility (control glyphs ambiguous at 1×)",
+          "icon cluster at bottom-center feels stylistically looser than the border craftsmanship"
+        ],
+        "reasoning": "Emotional axis (60%): The ornate golden border with corner medallions, warm orange-brown palette, and saturated accent colors (teal gem, pink/red, green) project a friendly Hyrulean toy-diorama warmth — no grim tones, round silhouettes, charming overall mood. Scores ~8/10 on emotion. Technical axis (40%): 1px hard outlines are consistent at all zoom levels; the border shows clean 2–3 tone hard shading (bright gold highlight → mid orange → dark brown shadow); pixels are grid-snapped with no sub-pixel bleed; hand-pixeled irregularity is present. However the interior icons are small and some outlines soften at native size, and the large flat interior background is under-textured relative to Denzi peer panel quality. Scores ~6/10 on technical. Weighted: 0.6×8 + 0.4×6 = 7.2 → 7. Marginal — border frame is pass-quality; interior content needs density, legibility, and texture work to reach full pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x interior detail fully lost — only card silhouette survives",
+          "light-bg contrast moderate; border merges slightly with pale surroundings",
+          "interior layout feels dense/cluttered — sticker read requires squinting at 4x"
+        ],
+        "reasoning": "The card border is genuinely charming — warm golden-brown pixel-art wood with round gem corners hits the 'friendly toy' register nicely and has clear game personality. Silhouette of the card shape itself reads cleanly at 1x as a rectangular UI panel, which is the minimum. However all internal content (bar, pencil graphic, tiny character icons) completely dissolves at 1x; only the colored border survives. On dark bg the card pops well — warm gold against dark reads with authority. On the light bg the border contrast drops noticeably and the card edge is harder to parse. The interior charm is there (cute little pixel characters, pink/blue icons, green areas) but the composition is busy and no single element is instantly iconic at small size. Passes charm and dark-bg criteria; falls short on 1x interior readability and light-bg edge clarity.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Card frame uses warm saturated amber/parchment gold — exemplary Echoes palette match. Interior fill is warm cream, not cold white. Accent gem is bright sky blue. Interactive elements deploy saturated greens, candy pinks, warm teals, and red-orange dots — all landing squarely in the target palette. Shadow/dark areas on the frame use warm amber-brown darks and deep teal, never pure black or neutral grey. Mood reads BRIGHT and WARM throughout. Canvas preview background is charcoal but that is chrome, not card design, and does not affect the card's own color quality. Palette cross-check against reference swatches: all major hues present (sky blue, saturated green, candy pink, parchment gold, warm brown, teal) have clear matches in the Echoes-tuned reference sheet. No muddy desaturated, neon, or cold corporate tones detected within the card artwork itself.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "warm_palette_tonal_clash",
+          "visual_clutter_from_icons",
+          "bright_center_jarring_against_dark_bg",
+          "card_style_mismatches_game_ui_language"
+        ],
+        "reasoning": "The controls_card_v00 is immediately locatable (<0.5s) due to its large warm sandy/cream palette sitting against a predominantly cool dark-teal dungeon background — high luminance contrast ensures it pops. The red arrow reinforces findability. Silhouette is clear and rectangular, no confusion with game entities (player, tiles, UI buttons). However, the card fails on Echoes-cleanliness: (1) The warm parchment/beige/orange color vocabulary clashes with the game's established cool aesthetic (dark teals, gray stone, clean dark panels with white text). (2) Multiple small pixel-art icons arranged around the card perimeter create noticeable visual noise rather than the bright/uncluttered feel the franchise favors. (3) The cream-white central field is very bright and feels pasted rather than native — especially against the dark dungeon tiles it overlaps. (4) The RPG inventory-card visual language doesn't match the game's clean HUD button style (solid colored rounded rectangles with clear Chinese labels). The asset reads as legible and findable but aesthetically foreign to this scene's established visual grammar.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "card_warmth_adequate_but_not_sparkly",
+          "surrounding_dark_scene_undercuts_fairy_tale_brightness"
+        ],
+        "reasoning": "The controls_card_v00 sprite itself uses warm parchment/cream background with rounded corners and colorful gem-style corner/edge decorations (blue, red, green, gold accents), which aligns reasonably well with the cute fairy-tale adventure target. The card shape is friendly and non-aggressive; the warm tan border and cream center are in the parchment/cozy-adventure register. No grimdark, horror, corporate, or edgy elements are introduced by the card. However, the card falls short of 'bright sunny magical' — it reads more as 'cozy storybook inventory card' than 'sparkly fairy-tale whimsy.' The surrounding scene (dark teal dungeon grid, dark background) is not changed by the sprite but creates contrast that further mutes the card's warmth. The card itself is not a tone violation, but it does not strongly reinforce the bright/saturated/sparkle qualities of the target aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "panel occupies ~27% scene width, moderately large but contextually acceptable for a tutorial card",
+          "internal item illustrations appear slightly dense/small within card bounds, reducing readability at game scale"
+        ],
+        "reasoning": "The controls_card_v00 panel is a UI overlay tutorial card composited centrally over the top-down scene. As a 'panel' category it is not subject to world-entity size rules (player 32px baseline), but is evaluated for scene proportion and toy-diorama fit. The card spans roughly 350x175px against a 1280x680 scene (~7% area), which is reasonable for a controls instruction popup. Pixel art aesthetic inside the card (illustrated items, scroll border) matches the game's toy-diorama style well. No perspective inconsistency — flat UI panel reads correctly as an overlay. Minor concerns: the card is on the larger end for a UI panel and occludes a significant central gameplay area; the illustrated items inside the card are rendered quite small relative to card area, making them hard to read. No creature/item world-size violations visible. No 'wallpaper' or 'zoomed-in' distortion. Marginal rather than pass due to panel size and dense internal layout.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "inconsistent_dash_pattern",
+          "gradient_shading_on_border_frame",
+          "ambiguous_oval_pixel_alignment",
+          "color_bleed_near_corner_gems",
+          "minor_aa_at_outer_card_edge"
+        ],
+        "reasoning": "Inspected at 8x zoom. Pixel art style masks many standard AI tells, but several concerns remain. (1) The horizontal decorative top bar (dark teal/green strip) shows non-uniform dash spacing — some dashes appear 2px wide, others 1px, inconsistent for hand-crafted pixel art. (2) The gold border frame uses a subtle luminosity gradient across its width rather than strict 2-3 hard tone steps; this gradient banding is a generation artifact. (3) The central oval/pill element has irregular pixel stepping on its curves — Bresenham-correct circles produce a predictable staircase; this oval deviates from that, suggesting synthesized geometry. (4) Minor color halo bleed (1-2 stray pixels of blue) visible around the top-center gem corner ornament. (5) Outer card edge against the dark background shows faint anti-aliasing smear at several corners — not expected in true pixel art rendered without AA. Small icons (cassette, face) are too small at source resolution to judge critically. Overall construction is deliberate and palette is restrained, keeping this from a fail, but the pattern inconsistencies and gradient frame shading are clear AI generation tells.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_divergence_beige_cream",
+          "detail_density_gap",
+          "rendering_aesthetic_clash",
+          "shadow_treatment_inconsistency"
+        ],
+        "reasoning": "Peers are Denzi dungeon tiles — cool stone grays, teal/cyan accents, dark reds, gold, bone white, with gritty high-detail pixel texture. Candidate is a UI controls card with a warm beige/cream interior that is completely absent from the peer palette; this single hue alone breaks temperature parity. (1) Outline weight: peers have seamless or subtly beveled tile edges; candidate has thick uniform rectangular frame border — heavier and more UI-centric. (2) Outline color: brown frame tones partially align, but the green teal corner studs read more decorative than the peers' structural teal. (3) Shadow direction: dungeon tiles show ambient/no directional shadow; candidate card has explicit drop-shadow border implying top-left light source — inconsistent treatment. (4) Shadow count: peers 0-1 subtle shadows; candidate has a multi-layer shadow/border effect. (5) Highlight intensity: candidate highlights on the card rim are slightly brighter and more stylized than tile-peer highlights. (6) Color temperature: FAIL — peers are overwhelmingly cool; candidate interior is warm tan/cream, a jarring departure. (7) Detail density: peers pack cracks, vines, stains, cross-hatching at high density; candidate is nearly flat and sparse by comparison. (8) Proportion: rectangular card vs square tiles — different item type, not penalized per rules. (9) Rendering style: both pixel art, but peers are gritty/environmental; candidate is clean/UI-friendly — aesthetic register does not match. (10) Palette overlap: teal corner pieces connect, but the dominant beige/cream and soft pink/flesh tones have no anchor in the peer set. (11) Charm level: peers are neutral-grim dungeon assets; candidate reads softer and friendlier, misaligning affective register. Multiple hard failures in temperature, palette, and density place this below the marginal band.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "peer_reference_reveals_grimdark_tonal_tension",
+          "dark_dungeon_tileset_with_blood_stains_and_lava_visible_in_project_assets",
+          "candidate_card_warm_but_project_level_tonal_drift_flagged",
+          "internal_card_icons_too_small_to_fully_assess_at_resolution"
+        ],
+        "reasoning": "Candidate (RIGHT): the controls card itself presents a warm sandy-parchment background with a colorful gem-corner decorative border and small pixel art icons inside. This reads toy-diorama, cozy, Nintendo-adjacent — broadly in-tone for the warm/whimsical/fairy-tale target. However, the peer reference panel (LEFT) reveals the broader project asset palette: a large dungeon tileset grid saturated with dark stone, blood-red stains, lava/fire, cages, and desaturated grimdark tones. This is a strong out-of-tone signal at the project level — the dungeon tiles read as a Western dungeon-crawler or rogue-lite, not a bright/sunny Hyrule or wholesome toy-diorama world. The candidate card survives in isolation, but the surrounding asset context shows meaningful tonal drift away from the Echoes-of-Wisdom/Zelda target. Score reflects: card itself ~8, project tonal context pulls it down to 6. Flagging as marginal pending review of whether the dark tiles are intended as a contrast/sub-zone or represent uncorrected drift.",
+        "confidence": 0.71
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.98,
+    "aestheticAvg": 7,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 4,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.110Z"
+}

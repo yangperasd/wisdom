@@ -1,0 +1,165 @@
+{
+  "file": "armor/armor_chain_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\armor_chain_v00.png",
+  "category": "armor",
+  "candidateName": "armor_chain_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "chain_texture_not_clearly_rendered",
+          "reads_as_robe_not_armor"
+        ],
+        "reasoning": "Emotional axis (60%): Strong pass at ~8/10. The candidate radiates the correct Zelda EoW mood — saturated sky-blue coat, warm golden-yellow face/hair, brown boots, cheerful smile. Silhouette is round and friendly, toy-diorama scale reads well at all four zoom levels. Color palette is squarely in the bright/warm Hyrule register. Technical axis (40%): ~6/10. Pixel grid is cleanly snapped, 1px hard outlines are consistent, and the blue garment uses 2-3 tone hard shading (light, mid, dark-outline). No anti-aliasing artifacts detected. However, the 'chain' mail texture is not visually present — the garment reads as a plain blue fabric robe rather than interlocked metal rings. The Denzi peer reference shows armor with clear structural detail (rivets, panels, metallic highlight ramps). This candidate lacks any chain-link surface detail or metallic sheen cue that would confirm the armor category. Weighted composite: 0.6×8 + 0.4×6 = 7.2 → 7. Verdict: marginal. Needs chain-link texture layer or at least a subtle tile pattern to pass the armor-category read.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "weak_charm_personality",
+          "1x_silhouette_too_generic",
+          "lacks_toy_sticker_appeal",
+          "robes_blend_on_light_bg_edges"
+        ],
+        "reasoning": "At 4x the character reads cleanly on both dark and light backgrounds — the blue robe and white hair create decent contrast, and the friendly smiley face adds a hint of personality. However the silhouette is a generic upright humanoid RPG figure with no distinctive shape hook (no exaggerated hat, round head, chunky limbs) that would pass the sticker test. At 1x (grey bg panel) the sprite shrinks to a blob with almost no readable charm — the face disappears and the overall read is 'blue smudge person.' The design is competent pixel art but sits in the charming-but-mushy zone: the face tries to be cute yet the boxy robe + chain detail pulls toward functional-RPG rather than friendly-toy. Needs rounder proportions, a more distinctive silhouette anchor (bigger head or exaggerated accessory), and edge outlines that hold on both bg colours at small size.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "cool_blue_dominates_over_warm_midvalues",
+          "limited_palette_variety_missing_greens_pinks_golds",
+          "outline_darkness_borderline_near_black"
+        ],
+        "reasoning": "Sprite uses a harmonious sky-blue robe with cream/white trim, warm orange skin tone, and warm brown boots — all palette-compatible with the Echoes swatch. Mood is bright and friendly, not grim or cold. However, the dominant hue is a cool sky blue rather than the warm mid-values (sunset oranges, parchment golds, candy pinks) that should lead the composition. The palette repertoire is narrow: blue + white + brown + skin, with no greens, golds, or pinks from the Echoes range present. Outlines appear very dark navy — likely deep teal rather than pure black, which is acceptable but borderline. Shadow quality on the sprite itself reads acceptable (dark navy, not flat grey). Overall: harmonious and bright but tilts cool; warm anchor colors are present but subordinate.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "chain_detail_fine_at_scene_scale",
+          "armor_distinguishable_from_player_base_only_on_close_inspection"
+        ],
+        "reasoning": "The armor_chain_v00 sprite is composited onto the player character and placed in the transition zone between the dark-red dungeon tiles and the grey stone area. Locatability is good: the white/blue/gold color palette contrasts clearly against the dark dungeon background and the character can be spotted within 0.5s. Silhouette is clean and humanoid, distinct from the EchoBox item in the lower-left corner and from all other scene entities. The bright tones prevent dark-area blending issues. Pixel art style matches the game's Echoes aesthetic without appearing pasted. However, the chain mail texture detail on the armor is difficult to resolve at the scene's native scale — the fine chainlink pattern merges into a uniform light-blue/white tone, making the 'chain' identity of the armor unclear without zooming in. Color hue is distinct from background tiles and no tonal clash is observed. Overall a functional, readable sprite that just misses pass threshold due to loss of armor-type readability at distance.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "chain_armor_dungeon_crawler_lean",
+          "scene_background_too_dark_for_fairy_tale"
+        ],
+        "reasoning": "The armor_chain_v00 sprite shows a small pixel character in blue/white chain mail armor. The coloring (light blue tunic, white/blonde head) is partially in-tone with the warm blues/whites of the fairy-tale palette. However, chain mail armor is a classic dungeon-crawler signifier — it reads as medieval RPG warrior rather than cute fairy-tale hero. The scene background is dark teal grid tiles with reddish-brown floors, already skewing toward dungeon-crawler atmosphere; the chain armor sprite does not counteract this but rather reinforces it. No grimdark, horror, or aggressive elements are present — the sprite is mild — but the armor archetype conflicts with the target toy-diorama / whimsical-sparkle aesthetic. Borderline marginal; would pass if armor had more rounded, toylike detailing or warmer color accents (pink trim, golden buckles) to signal fairy-tale rather than dungeon delve.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "item_width_exceeds_player",
+          "armor_item_approaches_player_size_threshold"
+        ],
+        "reasoning": "The composite scene shows armor_chain_v00 displayed inside a loot/echo-box container in the lower-left. The player character (center) reads as approximately 35px wide × 90px tall. The armor item rendered inside the box spans roughly 70-80px width, making it effectively at or slightly wider than the player — exceeding the 50-75% NEVER-larger rule for pickup items. The display-box framing partially mitigates the visual impact (it reads as a preview thumbnail rather than a world-space object), but the underlying asset dimensions are too large for an armor category item that could appear as a ground drop. Perspective is consistent with the top-down diorama view; scene composition and overall diorama feel are acceptable. No effects overwhelm the scene. Score docked primarily for size violation vs. player reference.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "inconsistent_outline_width",
+          "asymmetry",
+          "gradient_shading_in_armor_plates",
+          "chain_pattern_irregularities",
+          "color_bleed_hair_face_junction"
+        ],
+        "reasoning": "Zoomed inspection reveals multiple AI tells at 8x. Outline thickness varies between 1px and 2px inconsistently around shoulders, hips, and lower robe hem — clean pixel art maintains uniform outline weight. Left/right body symmetry breaks in the shoulder pad sizing and the chain mail checkerboard positioning is slightly off-axis. The brown/tan armor shoulder plates show subtle luminance gradation rather than strict 2-3 hard tones, a classic AI softness artifact. The chain mail body pattern (blue-white checker) has pixel-level irregularities: some cells are 1x1, others bleed into adjacent cells, indicating the generator lost track of the repeating tile. Slight color fringing where white hair meets the dark outline near the face. Face is minimal and semantically passable. Background is clean. The sprite reads as armor+chain at a glance (no semantic failure) but the accumulated micro-artifacts across outline weight, symmetry, and pattern regularity push this to marginal rather than pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "palette_saturation_mismatch: peers use desaturated metallic grays/silvers; candidate is dominated by vivid blues and pure white — chain armor expected to be gray/silver metallic",
+          "representation_type_divergence: peers are flat equipment-icon sprites (helmets, shields); candidate is a full standing humanoid character figure — even ignoring item-type differences, this is a structural rendering inconsistency",
+          "color_temperature_drift: candidate introduces warm blonde/yellow hair tones not present anywhere in peer palette",
+          "highlight_style: peers use tight specular highlights on convex metal surfaces; candidate highlights are broad flat fabric-style whites inconsistent with chain mail rendering",
+          "charm_level: peers are inert item icons with zero personality; candidate is an expressive humanoid figure — charm gap is category-wide and significant",
+          "outline_color: peers use near-black (#1a1a1a range) outlines consistently; candidate outline appears slightly softer/warmer, subtle but detectable divergence",
+          "detail_density: candidate's character anatomy (hair, face, boots) introduces detail dimensions entirely absent from peer icon set — density qualitatively higher"
+        ],
+        "reasoning": "Peer set is classic RPG item-icon sprites: armor pieces and shields rendered as isolated objects with muted metallic palettes, tight 1px near-black outlines, and minimal personality. Candidate armor_chain_v00 presents as a full standing humanoid character dressed in vivid blue-and-white robes/armor with blonde hair — a fundamentally different representational form. Ignoring item-type per instructions, the style breaks are: (1) palette is wrong for chain — vivid saturated blue vs expected metallic gray; (2) highlight language is cloth/fabric rather than interlinked metal rings; (3) warm hair tones pollute an otherwise cool-metallic peer palette; (4) charm delta is high — a standing character with face and flowing cape reads several notches above the neutral item-icon charm level of peers. Outline weight and shadow direction are the only clean passes. Six of eleven dimensions show meaningful discontinuity.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "cool_blue_palette_not_warm",
+          "generic_rpg_silhouette_lacks_whimsy",
+          "armor_design_reads_neutral_not_toylike"
+        ],
+        "reasoning": "Candidate (right, 4x): pixel-art armored figure in blue-white with silver hair. Art quality is clean and competent, pixel style is broadly consistent with retro Nintendo aesthetics. However, the color temperature is distinctly cool (desaturated blue + grey-white) rather than the warm, sunny, Hyrule-golden palette the target tone demands. The armor silhouette reads as a competent generic-fantasy RPG knight rather than a charming toy-diorama character; it lacks the rounded whimsy, warm highlight rims, and expressive chibi-leaning proportions that signal 'wholesome Nintendo family-friendly.' Not failing outright — no grimdark elements, no edginess, no fan-service — but the warmth deficit and generic-knight read push it out of a clean pass. Peer left references include similarly cool-toned helmets, so the candidate is consistent with those peers, but that consistency does not rescue either from the tonal drift. Marginal: needs warmer palette and softer, more character-forward design pass.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.7,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 5,
+    "warningCount": 9,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.097Z"
+}

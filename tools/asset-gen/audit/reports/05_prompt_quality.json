@@ -1,0 +1,677 @@
+{
+  "prompts": [
+    {
+      "id": "sword_iron",
+      "category": "weapon",
+      "prompt_length": 418,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "sword_fire",
+      "category": "weapon",
+      "prompt_length": 341,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "sword_ice",
+      "category": "weapon",
+      "prompt_length": 321,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.63",
+      "issues": []
+    },
+    {
+      "id": "axe_battle",
+      "category": "weapon",
+      "prompt_length": 326,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "staff_magic",
+      "category": "weapon",
+      "prompt_length": 351,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.38",
+      "issues": []
+    },
+    {
+      "id": "bow_longbow",
+      "category": "weapon",
+      "prompt_length": 340,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "dagger_quick",
+      "category": "weapon",
+      "prompt_length": 347,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.63",
+      "issues": []
+    },
+    {
+      "id": "mace_holy",
+      "category": "weapon",
+      "prompt_length": 337,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "potion_health",
+      "category": "consumable",
+      "prompt_length": 429,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.25",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "potion_mana",
+      "category": "consumable",
+      "prompt_length": 406,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.63",
+      "issues": []
+    },
+    {
+      "id": "potion_energy",
+      "category": "consumable",
+      "prompt_length": 379,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 6,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "potion_speed",
+      "category": "consumable",
+      "prompt_length": 391,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.38",
+      "issues": []
+    },
+    {
+      "id": "scroll_fire",
+      "category": "consumable",
+      "prompt_length": 351,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 3,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.63",
+      "issues": []
+    },
+    {
+      "id": "scroll_teleport",
+      "category": "consumable",
+      "prompt_length": 336,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 3,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "key_iron",
+      "category": "key",
+      "prompt_length": 337,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "1.00",
+      "issues": []
+    },
+    {
+      "id": "key_gold",
+      "category": "key",
+      "prompt_length": 373,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "key_boss",
+      "category": "key",
+      "prompt_length": 374,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "gem_ruby",
+      "category": "treasure",
+      "prompt_length": 385,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "1.00",
+      "issues": []
+    },
+    {
+      "id": "gem_sapphire",
+      "category": "treasure",
+      "prompt_length": 360,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "gem_emerald",
+      "category": "treasure",
+      "prompt_length": 361,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "1.00",
+      "issues": []
+    },
+    {
+      "id": "coin_gold",
+      "category": "treasure",
+      "prompt_length": 381,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "ring_magic",
+      "category": "accessory",
+      "prompt_length": 350,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "amulet_protection",
+      "category": "accessory",
+      "prompt_length": 340,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "armor_leather",
+      "category": "armor",
+      "prompt_length": 349,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "armor_chain",
+      "category": "armor",
+      "prompt_length": 338,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "boots_speed",
+      "category": "armor",
+      "prompt_length": 350,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "food_apple",
+      "category": "consumable",
+      "prompt_length": 373,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "food_bread",
+      "category": "consumable",
+      "prompt_length": 345,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.38",
+      "issues": []
+    },
+    {
+      "id": "torch",
+      "category": "tool",
+      "prompt_length": 369,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "1.00",
+      "issues": []
+    },
+    {
+      "id": "rope",
+      "category": "tool",
+      "prompt_length": 338,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "echo_box_idle",
+      "category": "summon",
+      "prompt_length": 520,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.13",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "echo_box_active",
+      "category": "summon",
+      "prompt_length": 427,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "echo_flower_idle",
+      "category": "summon",
+      "prompt_length": 558,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.25",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "echo_flower_active",
+      "category": "summon",
+      "prompt_length": 445,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.25",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "echo_bombbug_idle",
+      "category": "summon",
+      "prompt_length": 603,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.38",
+      "issues": []
+    },
+    {
+      "id": "echo_bombbug_active",
+      "category": "summon",
+      "prompt_length": 473,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.38",
+      "issues": []
+    },
+    {
+      "id": "vfx_explosion_1",
+      "category": "explosion",
+      "prompt_length": 381,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 6,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "vfx_explosion_2",
+      "category": "explosion",
+      "prompt_length": 349,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "vfx_explosion_3",
+      "category": "explosion",
+      "prompt_length": 325,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "vfx_explosion_4",
+      "category": "explosion",
+      "prompt_length": 323,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "vfx_heal_1",
+      "category": "heal",
+      "prompt_length": 327,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.25",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "vfx_heal_2",
+      "category": "heal",
+      "prompt_length": 331,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "vfx_heal_3",
+      "category": "heal",
+      "prompt_length": 314,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 3,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.63",
+      "issues": []
+    },
+    {
+      "id": "vfx_hit_spark",
+      "category": "impact",
+      "prompt_length": 346,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 6,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.13",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "vfx_portal_glow",
+      "category": "portal",
+      "prompt_length": 347,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.00",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "vfx_dust_poof",
+      "category": "particle",
+      "prompt_length": 308,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.50",
+      "issues": []
+    },
+    {
+      "id": "vfx_arrow_trail",
+      "category": "trail",
+      "prompt_length": 309,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 3,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.00",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "vfx_echo_summon",
+      "category": "magic",
+      "prompt_length": 387,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.00",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "btn_action_normal",
+      "category": "button",
+      "prompt_length": 373,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.00",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "btn_action_pressed",
+      "category": "button",
+      "prompt_length": 352,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 3,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "panel_inventory",
+      "category": "panel",
+      "prompt_length": 366,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.13",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "panel_dialog",
+      "category": "panel",
+      "prompt_length": 344,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.13",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "bar_health_frame",
+      "category": "bar",
+      "prompt_length": 308,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.25",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "bar_health_fill",
+      "category": "bar",
+      "prompt_length": 291,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.00",
+      "issues": [
+        "low_r0_pass_rate"
+      ]
+    },
+    {
+      "id": "icon_echo_box",
+      "category": "icon",
+      "prompt_length": 351,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "icon_echo_flower",
+      "category": "icon",
+      "prompt_length": 365,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    },
+    {
+      "id": "icon_echo_bomb",
+      "category": "icon",
+      "prompt_length": 352,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 5,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.75",
+      "issues": []
+    },
+    {
+      "id": "icon_arrow",
+      "category": "icon",
+      "prompt_length": 351,
+      "required_keyword_hits": 2,
+      "has_resolution_mention": true,
+      "recommended_keyword_hits": 4,
+      "negative_keyword_hits": 5,
+      "r0_pass_rate": "0.88",
+      "issues": []
+    }
+  ],
+  "_summary": {
+    "total_prompts": 58,
+    "with_issues": 14,
+    "missing_keywords": 0,
+    "weak_negatives": 0,
+    "low_pass_rate": 14
+  }
+}

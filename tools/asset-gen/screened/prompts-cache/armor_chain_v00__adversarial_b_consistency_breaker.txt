@@ -1,0 +1,9 @@
+ADVERSARIAL AGENT B — Style Consistency Breaker. Find ANY discontinuity vs peer family. HARSH.
+11 dims: outline weight; outline color; shadow direction; shadow count; highlight intensity; color temperature; detail density; proportion; rendering style; palette overlap; CHARM LEVEL (peers cute Echoes? candidate match?).
+NOTE: peer set is same-category Denzi sprites. Don't penalize for being a different ITEM TYPE within the category — focus on style/palette/rendering CONSISTENCY.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\armor_chain_v00\vs-peers.png (LEFT: peer reference sheet; RIGHT: candidate at matching scale)
+Check all 11. Include "confidence".
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

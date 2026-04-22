@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';
 import {
   optimizeWechatRuntimeSettings,
   wechatPackageBudgetBytes,
+  wechatPackageWarningBytes,
   wechatRecommendedDownloadConcurrency,
 } from '../tools/wechat-build-utils.mjs';
 
 describe('wechat runtime settings optimization', () => {
-  test('budget is 10MB', () => {
-    assert.equal(wechatPackageBudgetBytes, 10 * 1024 * 1024);
+  test('budget is the WeChat 4MB main-package hard cap', () => {
+    assert.equal(wechatPackageBudgetBytes, 4 * 1024 * 1024);
+  });
+
+  test('warning threshold leaves release safety margin', () => {
+    assert.equal(wechatPackageWarningBytes, Math.floor(3.7 * 1024 * 1024));
+    assert.ok(wechatPackageWarningBytes < wechatPackageBudgetBytes);
   });
 
   test('recommended download concurrency is 8', () => {

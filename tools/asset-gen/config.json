@@ -1,0 +1,114 @@
+{
+  "comfyui": {
+    "api_url": "http://127.0.0.1:8188",
+    "output_dir": "./generated",
+    "timeout_ms": 600000,
+    "first_prompt_extra_ms": 180000
+  },
+  "generation": {
+    "_comment": "Two presets per the Pixel Art XL author's official guidance (https://huggingface.co/nerijs/pixel-art-xl). 'standard_quality' uses regular SDXL params for max fidelity; 'lcm_fast' uses the LCM-LoRA combo for ~4x faster generation at slightly lower quality.",
+    "base_resolution": [1024, 1024],
+    "target_resolutions": {
+      "standard": [32, 32],
+      "tall":     [32, 48],
+      "ui_small": [24, 24],
+      "ui_med":   [48, 48],
+      "ui_panel": [128, 128]
+    },
+    "downscale_method": "nearest_neighbor",
+    "downscale_factor": 8,
+    "candidates_per_prompt": 8,
+    "active_preset": "standard_quality",
+    "presets": {
+      "standard_quality": {
+        "cfg_scale": 7.5,
+        "steps": 28,
+        "sampler": "dpmpp_2m_sde",
+        "scheduler": "karras",
+        "use_lcm_lora": false,
+        "pixel_art_lora_weight": 1.0,
+        "ip_adapter_weight": 0.4,
+        "batch_size": 2
+      },
+      "lcm_fast": {
+        "cfg_scale": 1.5,
+        "steps": 8,
+        "sampler": "lcm",
+        "scheduler": "sgm_uniform",
+        "use_lcm_lora": true,
+        "lcm_lora_weight": 1.0,
+        "pixel_art_lora_weight": 1.2,
+        "ip_adapter_weight": 0.4
+      }
+    },
+    "use_refiner": false,
+    "vae_fix": "fp16-fix",
+    "seed_strategy": "random",
+    "batch_size": 2
+  },
+  "post_process": {
+    "remove_background": true,
+    "palette_remap": true,
+    "max_colors": 24,
+    "edge_sharpen": false,
+    "force_pixel_grid": true
+  },
+  "screening": {
+    "claude_model": "claude-sonnet-4-20250514",
+    "claude_model_adversarial": "claude-sonnet-4-20250514",
+    "max_concurrent_agents": 3,
+    "round0_checks": {
+      "_comment": "Thresholds tuned per category. UI fills (bar_health_fill, btn solid) are 100% opaque — they fail a transparent-ratio check. VFX glows may be fuzzy-alpha. Category override keys lookup by prompt.category.",
+      "min_alpha_ratio": 0.15,
+      "max_alpha_ratio": 0.95,
+      "min_colors": 4,
+      "max_colors": 48,
+      "min_opaque_ratio": 0.06,
+      "palette_distance_threshold": 60,
+      "category_overrides": {
+        "bar":       {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.80, "min_opaque_ratio": 0.20},
+        "button":    {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.60, "min_opaque_ratio": 0.30},
+        "panel":     {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.50, "min_opaque_ratio": 0.40},
+        "trail":     {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.95, "min_opaque_ratio": 0.04},
+        "portal":    {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.95, "min_opaque_ratio": 0.08},
+        "magic":     {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.95, "min_opaque_ratio": 0.08},
+        "particle":  {"min_alpha_ratio": 0.30, "max_alpha_ratio": 0.95, "min_opaque_ratio": 0.05},
+        "impact":    {"min_alpha_ratio": 0.20, "max_alpha_ratio": 0.90, "min_opaque_ratio": 0.08},
+        "tile":      {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.05, "min_opaque_ratio": 0.90},
+        "icon":      {"min_alpha_ratio": 0.00, "max_alpha_ratio": 0.85, "min_opaque_ratio": 0.15},
+        "marker":    {"min_alpha_ratio": 0.10, "max_alpha_ratio": 0.90, "min_opaque_ratio": 0.10},
+        "enemy":     {"min_alpha_ratio": 0.15, "max_alpha_ratio": 0.90, "min_opaque_ratio": 0.10},
+        "pickup":    {"min_alpha_ratio": 0.15, "max_alpha_ratio": 0.90, "min_opaque_ratio": 0.10}
+      }
+    },
+    "round1_aesthetic": {
+      "pass_threshold": 6,
+      "min_pass_votes": 2
+    },
+    "round2_ui_context": {
+      "pass_threshold": 6,
+      "min_pass_votes": 2,
+      "preview_server_url": "http://127.0.0.1:7456"
+    },
+    "round3_adversarial": {
+      "veto_on_any_fail": true,
+      "min_confidence_for_veto": 0.8
+    },
+    "scoring_weights": {
+      "aesthetic": 0.35,
+      "ui_context": 0.35,
+      "adversarial": 0.30
+    }
+  },
+  "paths": {
+    "art_root": "../../assets/art",
+    "reference_sheets": "./reference-sheets",
+    "prompts": "./prompts",
+    "generated": "./generated",
+    "screened": "./screened",
+    "approved": "./approved",
+    "rejected": "./rejected",
+    "gallery_output": "./review-gallery.html",
+    "asset_binding_manifest": "../../assets/configs/asset_binding_manifest_v2.json"
+  }
+}

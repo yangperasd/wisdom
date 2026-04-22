@@ -1,0 +1,165 @@
+{
+  "file": "tile/outdoor_wall_standard_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_standard_v00.png",
+  "category": "tile",
+  "candidateName": "outdoor_wall_standard_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "brick_mortar_lines_weak",
+          "horizontal_banding_repetition",
+          "saturation_below_zelda_brightness_target"
+        ],
+        "reasoning": "Emotional (60%): The warm tan/sandy palette with brown tones reads correctly as an outdoor Hyrule wall — not grim or muddy. Scattered accent pixels (pink/coral, teal/sky-blue) are a strong Zelda-style detail that adds organic life to the surface. However, the overall brightness and saturation are a notch below the 'toy-diorama' vibrancy target; the tile reads more like aged limestone than the bright cheerful Hyrule stonework seen in the source games. Score ~5.5/10 emotionally. Technical (40%): Pixel placement is deliberate — rectangular brick shapes are evident, no gradient bleed, no AA smearing, hard edges throughout. The seamless tiling is solid across the side-by-side panels. Weaknesses: mortar/grout lines between individual bricks lack contrast definition, making macro structure harder to read at small size; horizontal register bands repeat with modest variance, creating a faint striping artifact at tile edges. Score ~7/10 technically. Weighted: 0.6×5.5 + 0.4×7.0 = 3.3 + 2.8 = 6.1 → 6. Passing the tile would require punchier inter-brick contrast (darker mortar), a saturation lift on the base tan, and more vertical variance to break the horizontal banding pattern.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "vertical_density_gradient",
+          "accent_stripe_banding",
+          "upper_third_focal_concentration"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Column 0 vs column 31 — brick mortar lines appear to continue reasonably across the horizontal seam; no sharp discontinuity detected, horizontal tileability looks acceptable. (2) Row 0 vs row 31 — top row and bottom row are both neutral tan-brown mortar tones, vertical seam appears passable. (3) 3x3 mental tile test — this is where the tile fails: the colorful accent pixels (pink ~(8,10), red ~(12,6), orange ~(10,14), blue ~(14,8) etc.) are concentrated in the upper ~35% of the 32px height, while the lower 65% is near-uniform tan brick with minimal accent scatter. When tiled 3x3 this creates a conspicuous horizontal stripe of color noise repeating every 32px vertically, forming a visible polka-band pattern. The base brick mortar structure is coherent and the edge seams are workable, but the non-uniform vertical density of the accent/detail pixels is a tileability defect. As a background wall texture it should read as neutral at any zoom — the accent concentration breaks that. Score 5 marginal: edge seams ok, but vertical banding from accent clustering prevents clean pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scattered_cool_grey_blue_pixels_mildly_undercut_warm_harmony",
+          "blue_grey_accent_not_clearly_teal_shifted"
+        ],
+        "reasoning": "Dominant hue is a warm sandy tan/khaki — correct bright outdoor-wall base, strongly Hyrule-reminiscent. Pink/coral accent pixels are palette-consistent (candy-pink present in Echoes swatch). Brick mortar uses lighter cream tones, inter-brick shadows shift to deeper warm brown rather than pure black — shadow hue quality is good. However, scattered blue-grey pixels throughout the brickwork read as slightly cold/grey rather than decisively teal-shifted; they are sparse enough not to dominate but numerous enough to introduce a cool note that weakens overall warmth. Saturation is appropriate for a stone/masonry outdoor wall — not muddy or neon. Internal tone count is roughly 6-8 which is normal for a tile. Palette compatibility is mostly solid; the borderline issue is those blue-grey pixels which sit at the edge of acceptable teal-accent vs. cold-grey deviation. Raising to pass would require those cool pixels to shift warmer or into a clear teal/muted-cobalt that sits on the Echoes palette.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "brightness_too_high_for_background",
+          "aesthetic_clash_with_echoes_dark_palette",
+          "foreground_sprite_contrast_risk"
+        ],
+        "reasoning": "The candidate tile presents as a warm beige/sandy stone texture with moderate variation (pinks, whites, tans). Compared to the existing Echoes scene which uses consistently dark cool-toned tiles (dark teal grid floor, dark reddish dungeon areas), this tile is dramatically brighter and warmer in color temperature. If tiled as ground it would overpower the scene's established dark/moody aesthetic. Dark-colored sprites like the enemy creature on the left would lose contrast against a light warm ground, reducing readability. The tile does not read as native Echoes ground — it belongs to a desert or sandy outdoor biome palette, not a dungeon/field ruin context. No seam data is directly observable but the high variance sandy texture would likely produce visible grid artifacts at tile boundaries. Energy level is too high for a background support role.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "tile_warmth_underdeveloped",
+          "scene_context_dark_contrast"
+        ],
+        "reasoning": "The outdoor_wall_standard_v00 tile (visible as the beige/sandy preview panel in the composite) uses warm sandy/tan tones with hand-pixeled detail, directionally correct for a Hyrule-style outdoor wall. Color palette avoids grimdark, sci-fi, cold grey, or horror reads. However, the warmth is somewhat flat and undersaturated — the tile lacks the cheerful brightness and vibrancy expected for a sunny fairy-tale outdoor stone wall. The surrounding scene is dominated by very dark teal/black dungeon-like tiles, and while this is a scene context issue rather than the tile itself, the tile's muted warmth does not assert itself strongly enough to counter the dark mood. It reads as a passable outdoor stone texture but not as the bright, sunny, Hyrule-field-charming wall the target aesthetic calls for. No hard fails (no goth, horror, neon, or realistic muddy elements). Marginal pass — acceptable if other scene elements are brighter, but the tile itself would benefit from more saturation and pixel charm.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "feature_scale_borderline_large",
+          "texture_energy_slightly_high"
+        ],
+        "reasoning": "Geometry check: (1) Macro-feature count at 1x — the tile shows irregular stone/masonry chunks; I can distinguish approximately 6-8 distinct stone block shapes, which sits within the 3-8 acceptable range. (2) Largest feature scale — the biggest stone chunks appear to span roughly 8-10px within the 32x32 grid, slightly exceeding the ideal 4-8px ceiling. (3) Energy comparison vs 32x32 player sprite — the tile reads quieter than the player sprite overall, but the high-contrast irregular mottling (tan patches against darker mortar lines) gives it moderate visual energy that approaches competition with foreground elements. The texture is not chaotic noise, but the individual stone block shapes trend slightly large and the contrast between block and mortar is pronounced enough to pull attention. Passes on count, marginal on scale, marginal on energy. Overall: marginal.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "seam_artifact_high_risk",
+          "sub_pixel_noise_speckle",
+          "gradient_bleed_no_hard_step_shading",
+          "blurry_painted_digital_look",
+          "color_bleed_between_elements",
+          "unreadable_noise_patches",
+          "anti_aliased_brick_edges"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 vs Column 31 — at 8x zoom the leftmost pixel column is tan/beige with a specific light value; the rightmost column shows a different mix of cream and tan values; they do NOT match pixel-for-pixel in hue or tone — seam would be visible horizontally. (b) Row 0 vs Row 31 — top row is noticeably lighter/brighter than bottom row which carries more pink and gray-blue speckles; they do NOT match — seam would be visible vertically. (c) When mentally tiled 3x3 — the random speckle distribution (pink, orange, blue-gray) would produce a visible grid of seam lines both horizontally and vertically. SEAM FAILS on both axes — automatic critical failure. TELLS FOUND: (1) Sub-pixel noise/speckle — scattered pink, orange, blue-gray pixels throughout that read as AI color noise, not intentional dithering; no clean palette discipline. (2) Anti-aliased edges — at 8x, the boundaries between brick mortar and brick face are soft/anti-aliased rather than hard 1-pixel steps. (3) Gradient bleed — shading transitions across brick surfaces are smooth gradients, not 2-4 discrete tone steps as pixel art requires. (4) Blurry painted digital look — at 8x zoom individual 'pixels' have internal tonal variation; bricks lack the crisp hard-edge signature of hand-pixeled art. (5) Color bleed — pink and orange speckles bleed across the mortar/brick boundary with no containment. (6) Unreadable noise patches — dense mid-tile regions at 8x show chaotic pixel arrangements with no discernible structural intent. Mortar lines partially dissolve into the brick face. PASS CRITERIA MET: 0 of 8. The tile fails on both seam geometry and 6 of 8 AI artifact tells.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "palette_divergence_warm_vs_cool",
+          "pixel_density_too_low",
+          "shading_technique_mismatch",
+          "warmth_saturation_opposite",
+          "different_game_feel"
+        ],
+        "reasoning": "Candidate (right) is a warm sandy/beige/pink wall texture that fails on nearly every style axis vs the peer set (left). (1) Palette overlap: near-zero — peers are cool gray-dominant with teal/cyan accents and high contrast darks; candidate is warm sandy beige with pink tones, a completely different hue family. (2) Pixel density: candidate has sparse, uniform block pattern with very few sub-tile features; peers are densely detailed at the 32x32 scale. (3) Shading technique: peers use hard-stepped pixel art contrast with clear dark-to-light edges; candidate looks soft and low-contrast, lacking distinct pixel art stepping. (4) Warmth/saturation bias: peers are cool and desaturated (dungeon stone); candidate is warm and relatively saturated — opposite direction. (5) Hand-pixeled charm: candidate reads as procedural or texture-fill, missing the deliberate pixel-by-pixel character of peers. (6) Photo-realism contamination: low but the uniform block tiling lacks intentional pixel craft. (7) Overall feel: candidate looks like a sandy outdoor wall from a bright desert game, not the dark dungeon/ruin aesthetic of the 'Echoes outdoor' peer family. This is a fundamental style mismatch, not a surface-type difference.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "muted_saturation",
+          "missing_sunny_green_tones"
+        ],
+        "reasoning": "Candidate (right, 4x on parchment) presents warm tan/sandy brick stonework with scattered pink highlights and golden accents. Avoids all hard-fail categories cleanly: no cold grey dungeon stone, no blood/skulls, no sci-fi/corporate palette, no desaturation, no AAA muddy realism. The warm tan base and rosy-pink accents are fairy-tale friendly and not ungracious for a Hyrule-style outdoor wall. However, overall saturation is somewhat muted and there is a faint dusty neutrality that flirts with 'pleasant beige' rather than 'bright sunny Hyrule'. No sunny greens appear anywhere — acceptable for a wall tile but noted absence. Pink speckling reads as flowering vine growth which is charming and on-tone. Peer reference (left) is starkly grimdark dungeon with red blood pools, cold grey stones, and occult-adjacent teal runes — candidate is unambiguously warmer and friendlier by comparison. Scores marginal rather than pass because it needs slightly more saturation pop and warmth to fully commit to the Hyrule outdoor register.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 1,
+      "fails": 2,
+      "avgScore": 4,
+      "vetoes": 2,
+      "reason": "vetoed_by_2"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.57,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 2,
+    "warningCount": 6,
+    "failCount": 3,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.132Z"
+}

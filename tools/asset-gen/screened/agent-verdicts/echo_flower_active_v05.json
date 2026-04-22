@@ -1,0 +1,145 @@
+{
+  "file": "summon/echo_flower_active_v05.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_flower_active_v05.png",
+  "category": "summon",
+  "candidateName": "echo_flower_active_v05",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional axis (60%): Strong pass. Saturated pinks, sky blues, and vibrant greens nail the bright/warm/charming Hyrule palette. The fairy silhouette is round and friendly, surrounded by cheerful pink blooms and lush leaves — textbook toy-diorama feel. Zero grimness. Emotional resonance is high and immediately readable at all zoom levels. Technical axis (40%): Pass. 1px hard black outlines are consistent and unbroken around the fairy, wings, flowers, and leaves. Shading uses 2-3 hard tonal steps with no gradients or anti-aliasing detected. Pixels are grid-snapped throughout; the sprite reads as cleanly hand-pixeled. Comparison to Denzi summon-category reference confirms style parity — similar outline weight, palette saturation, and silhouette clarity. Combined weighted score: emotional ~9 × 0.6 + technical ~8 × 0.4 = 8.6, rounded to 9."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_mushy",
+          "complex_floral_surround_reduces_instant_read"
+        ],
+        "reasoning": "Strong charm — the fairy-among-flowers composition is soft, round, and full of personality; pink+cyan+green palette reads friendly-toy immediately. On both dark and light 4x panels contrast is solid: wings and figure pop against black, hold up against cream. At 4x the silhouette is expressive and readable — fairy body, wing spread, and flower cluster each have distinct shape. The failure mode is 1x: the floral environment collapses into a colour blob around the central figure, making the character hard to isolate at native size. The sprite passes the charm test and the sticker test at 4x, but the 1x panel cannot carry the silhouette alone. No edgy or aggressive forms anywhere. Verdict: marginal — charm and colour are there, but 1x readability must improve (stronger outline or reduced floral clutter around the silhouette edge) to pass cleanly.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Sprite exhibits strong Echoes-palette color harmony. Candy pink flowers and warm peach skin tones anchor a bright warm mood. Sky-blue fairy wings provide a clean complementary contrast against the pinks without going cold or corporate. Saturated leafy greens complete a near-triadic relationship (pink/blue/green) that reads cheerful and alive. Shadow areas in leaves use deep teal-green and flower darks use deep rose-mauve — colored darks throughout, no pure black or grey in the sprite art itself. No muddy desaturated areas, no neon oversaturation, no goth near-blacks. The parchment-background panel confirms the sprite pops warmly on light grounds. Palette compatibility with reference swatches (sky blue, teal, saturated green, candy pink, parchment gold) is excellent across all hue ranges used.",
+        "confidence": 0.93
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 8.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The echo_flower_active_v05 sprite is immediately spottable: bright pink/magenta flowers and cyan-blue wings create strong contrast against the dark teal dungeon tiles. Locatability well under 0.5s — the silhouette reads as a distinct fairy/botanical form with no ambiguity. Placed over the darker brown-red tile section, the bright saturation keeps it fully visible with no loss in the dark area. Pixel art style is consistent with the surrounding game art, no obvious 'pasted-on' seam. No confusion risk with the nearby 黏黏球 entity label or stone wall tiles — character shape and palette are unique. Colors (warm pink, cool cyan, yellow accents) are energetic and uncluttered, fitting the Echoes aesthetic cleanly.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The echo_flower_active_v05 sprite is a bright pixel-art fairy/flower character with warm pink blooms and cool blue-teal wings — strongly in-tone for cute fairy-tale adventure. Saturated pinks and blues read as whimsical and magical; the fairy silhouette with petal clusters evokes toy diorama charm rather than dungeon-crawler grit. The sprite stands out luminously against the dark tile background, pulling the scene's focal point toward the bright magical register rather than blending into the grimdark surroundings. The surrounding scene environment remains the pre-existing dark dungeon aesthetic (out-of-tone by itself), but the sprite under evaluation does not contribute to or amplify that darkness — it contrasts and brightens it. No issues with aggression, horror, realism, or cold-corporate tones in the sprite itself. Confidence: 0.88",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "summon_exceeds_size_limit",
+          "dominates_scene",
+          "breaks_toy_diorama_scale"
+        ],
+        "reasoning": "echo_flower_active_v05 is categorized as a summon (spec: 50-80% of 32x32 player = ~16-26px). In the composite scene the sprite occupies approximately 100x110 screen pixels against a ~32px tile grid, placing it at roughly 300% of player size — far above the 80% ceiling. The oversized fairy figure dominates the tile-based floor area and overwhelms surrounding environmental elements, destroying the toy-diorama feel. Perspective is stylistically consistent with the pixel-art top-down look, but the sheer scale mismatch is a hard spec violation for the summon category.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 0,
+      "fails": 1,
+      "avgScore": 6.33,
+      "reason": "pass"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_wings",
+          "inconsistent_outline_weight",
+          "noisy_dithering_body",
+          "color_bleed_dress_transitions"
+        ],
+        "reasoning": "Inspected both 4x (thumbnail, upper-left) and 8x (main sprite, right). Wings use more than 2-3 discrete blue tones; the light-to-dark transition reads as a smooth gradient rather than deliberate hard steps — classic AI shading tell. Outline weight is inconsistent: some silhouette edges are 1px clean outlines, others are 0px (missing) or bleed into adjacent hues, particularly around the lower torso and leaf cluster. Dithering in the dress/body area contains clusters that appear statistically noisy rather than manually placed — pixel placement does not follow a recognizable ordered or Bayer dither pattern, suggesting generative origin. Minor color bleed between the peach skin tones and the pink dress pixels in 3-4 transition zones. Flowers and overall composition are coherent with no semantic failures; macro edges are hard (no sub-pixel AA at the pixel-art scale). Sprite reads as AI-generated pixel art with post-processing cleanup — not clean hand-authored work, but not severely broken either.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "detail_density_mismatch",
+          "scale_resolution_mismatch",
+          "rendering_style_divergence",
+          "highlight_intensity_overblown",
+          "charm_aesthetic_mismatch"
+        ],
+        "reasoning": "Across 11 dims: (1) OUTLINE WEIGHT — peers use clean 1px hard outlines at their native scale; candidate has thicker compound outlines with color-tinted inner borders, heavier than peers. (2) OUTLINE COLOR — peers use near-black dark outlines consistently; candidate mixes dark outlines with hue-shifted borders (dark pink on body, dark teal on wings), partial mismatch. (3) SHADOW DIRECTION — indeterminate on peers due to small scale; candidate shows top-left light source with consistent cast shadows, no strong conflict but unverifiable. (4) SHADOW COUNT — peers at their resolution carry 1-2 shading steps max; candidate has 3+ distinct value steps per region (wing gradients, skin, petal layers) — substantially more complex. (5) HIGHLIGHT INTENSITY — peers show restrained or no specular highlights; candidate has prominent near-white hotspots on head, wings, and flower petals — noticeably brighter than peer family. (6) COLOR TEMPERATURE — peers span a wide neutral-to-cool palette (greens, purples, grays, earth tones); candidate is warm-dominant (saturated pinks, peach) with a cool accent (cyan wings) — temperature profile diverges from peer median. (7) DETAIL DENSITY — most severe failure: peers are tightly constrained minimal sprites with ~16-32px character heights; candidate at matching scale is ~60-70px tall with elaborate flora, multiple wing layers, facial features, decorative flowers — detail density is 3-4x peer norm. (8) PROPORTION — candidate's head-to-body ratio and overall silhouette complexity far exceed the compact, readable shapes of peers; silhouette reads as 'elaborate' vs peers' 'clean icon'. (9) RENDERING STYLE — peers follow classic Denzi flat-cell pixel art; candidate uses a more contemporary 'painterly pixel' approach with gradient-simulated shading and anti-aliased curves — generation gap is visible. (10) PALETTE OVERLAP — peer family shares a recurring set of ~6-8 anchor colors; candidate's dominant pink/peach/cyan cluster appears in almost none of the peer sprites — palette island. (11) CHARM LEVEL — peers are cute in a retro minimal way (small creature charm); candidate is cute in a modern elaborate fantasy-fairy way — charm register mismatches the peer family's restrained aesthetic. Net: 5 out of 11 dims are clear failures, 3 are marginal; only shadow direction and some partial outline consistency survive scrutiny.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "minor_cool_wing_hue"
+        ],
+        "reasoning": "Candidate is a pixel-art flower fairy: soft pink petals, sky-blue butterfly wings, green stem, accent blossoms on parchment bg. Palette reads spring/fairy-tale and is coherent with the peer sprite sheet (Zelda-style top-down characters). No grimdark, no edgy, no fan-service, no cold-corporate, no occult signals detected. The sky-blue wings introduce a slightly cool note against the 'warm/sunny' target ideal, but it is well within the whimsical-magic range (think Navi, Tingle sprites) and does not tip into desaturated or cold territory. Pixel resolution and chunky readability match toy-diorama aesthetic. No uncanny valley concerns. Wholesome Nintendo-family-friendly: confirmed. Marginal deduction of 1 point for the cool-blue wing hue slightly undercutting the 'bright/warm/sunny Hyrule' axis; all other axes pass cleanly.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.33,
+    "aestheticAvg": 8.33,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 4,
+    "warningCount": 2,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": true
+  },
+  "timestamp": "2026-04-20T03:15:03.114Z"
+}

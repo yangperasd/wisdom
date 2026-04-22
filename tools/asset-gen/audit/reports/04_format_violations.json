@@ -1,0 +1,6268 @@
+{
+  "candidates": [
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v00.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v01.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v02.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v03.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v04.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v05.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v06.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/amulet_protection_v07.png",
+      "prompt_id": "amulet_protection",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v00.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v01.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v02.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v03.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v04.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v05.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v06.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/accessory/ring_magic_v07.png",
+      "prompt_id": "ring_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v00.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v01.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v02.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v03.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v04.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v05.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v06.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_chain_v07.png",
+      "prompt_id": "armor_chain",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v00.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v01.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v02.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v03.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v04.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v05.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v06.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/armor_leather_v07.png",
+      "prompt_id": "armor_leather",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v00.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v01.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v02.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v03.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v04.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v05.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v06.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/armor/boots_speed_v07.png",
+      "prompt_id": "boots_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v00.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v01.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v02.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v03.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v04.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v05.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v06.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_fill_v07.png",
+      "prompt_id": "bar_health_fill",
+      "width": 60,
+      "height": 8,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        60,
+        8
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v00.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v01.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v02.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v03.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v04.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v05.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v06.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/bar/bar_health_frame_v07.png",
+      "prompt_id": "bar_health_frame",
+      "width": 64,
+      "height": 12,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        64,
+        12
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v00.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v01.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v02.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v03.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v04.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v05.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v06.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_normal_v07.png",
+      "prompt_id": "btn_action_normal",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v00.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v01.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v02.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v03.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v04.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v05.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v06.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/button/btn_action_pressed_v07.png",
+      "prompt_id": "btn_action_pressed",
+      "width": 48,
+      "height": 48,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        48,
+        48
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v00.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v01.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v02.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v03.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v04.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v05.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v06.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_apple_v07.png",
+      "prompt_id": "food_apple",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v00.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v01.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v02.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v03.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v04.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v05.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v06.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/food_bread_v07.png",
+      "prompt_id": "food_bread",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v00.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v01.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v02.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v03.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v04.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v05.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v06.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_energy_v07.png",
+      "prompt_id": "potion_energy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v00.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v01.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v02.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v03.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v04.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v05.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v06.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_health_v07.png",
+      "prompt_id": "potion_health",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v00.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v01.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v02.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v03.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v04.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v05.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v06.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_mana_v07.png",
+      "prompt_id": "potion_mana",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v00.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v01.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v02.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v03.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v04.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v05.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v06.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/potion_speed_v07.png",
+      "prompt_id": "potion_speed",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v00.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v01.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v02.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v03.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v04.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v05.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v06.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_fire_v07.png",
+      "prompt_id": "scroll_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v00.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v01.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v02.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v03.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v04.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v05.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v06.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/consumable/scroll_teleport_v07.png",
+      "prompt_id": "scroll_teleport",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v00.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v01.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v02.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v03.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v04.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v05.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v06.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_1_v07.png",
+      "prompt_id": "vfx_explosion_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v00.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v01.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v02.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v03.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v04.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v05.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v06.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_2_v07.png",
+      "prompt_id": "vfx_explosion_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v00.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v01.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v02.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v03.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v04.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v05.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v06.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_3_v07.png",
+      "prompt_id": "vfx_explosion_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v00.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v01.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v02.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v03.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v04.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v05.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v06.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/explosion/vfx_explosion_4_v07.png",
+      "prompt_id": "vfx_explosion_4",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v00.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v01.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v02.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v03.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v04.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v05.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v06.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_1_v07.png",
+      "prompt_id": "vfx_heal_1",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v00.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v01.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v02.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v03.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v04.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v05.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v06.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_2_v07.png",
+      "prompt_id": "vfx_heal_2",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v00.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v01.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v02.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v03.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v04.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v05.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v06.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/heal/vfx_heal_3_v07.png",
+      "prompt_id": "vfx_heal_3",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v00.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v01.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v02.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v03.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v04.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v05.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v06.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_arrow_v07.png",
+      "prompt_id": "icon_arrow",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v00.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v01.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v02.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v03.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v04.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v05.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v06.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_bomb_v07.png",
+      "prompt_id": "icon_echo_bomb",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v00.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v01.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v02.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v03.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v04.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v05.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v06.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_box_v07.png",
+      "prompt_id": "icon_echo_box",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v00.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v01.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v02.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v03.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v04.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v05.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v06.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/icon/icon_echo_flower_v07.png",
+      "prompt_id": "icon_echo_flower",
+      "width": 24,
+      "height": 24,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        24,
+        24
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v00.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v01.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v02.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v03.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v04.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v05.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v06.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/impact/vfx_hit_spark_v07.png",
+      "prompt_id": "vfx_hit_spark",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v00.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v01.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v02.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v03.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v04.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v05.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v06.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_boss_v07.png",
+      "prompt_id": "key_boss",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v00.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v01.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v02.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v03.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v04.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v05.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v06.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_gold_v07.png",
+      "prompt_id": "key_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v00.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v01.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v02.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v03.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v04.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v05.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v06.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/key/key_iron_v07.png",
+      "prompt_id": "key_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v00.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v01.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v02.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v03.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v04.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v05.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v06.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v07.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v00.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v01.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v02.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v03.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v04.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v05.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v06.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_dialog_v07.png",
+      "prompt_id": "panel_dialog",
+      "width": 128,
+      "height": 64,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        64
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v00.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v01.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v02.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v03.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v04.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v05.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v06.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/panel/panel_inventory_v07.png",
+      "prompt_id": "panel_inventory",
+      "width": 128,
+      "height": 128,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        128,
+        128
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v00.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v01.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v02.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v03.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v04.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v05.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v06.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/particle/vfx_dust_poof_v07.png",
+      "prompt_id": "vfx_dust_poof",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v00.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v01.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v02.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v03.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v04.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v05.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v06.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/portal/vfx_portal_glow_v07.png",
+      "prompt_id": "vfx_portal_glow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v00.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v01.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v02.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v03.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v04.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v05.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v06.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_active_v07.png",
+      "prompt_id": "echo_bombbug_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v00.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v01.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v02.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v03.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v04.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v05.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v06.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_bombbug_idle_v07.png",
+      "prompt_id": "echo_bombbug_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v00.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v01.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v02.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v03.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v04.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v05.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v06.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_active_v07.png",
+      "prompt_id": "echo_box_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v00.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v01.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v02.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v03.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v04.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v05.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v06.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_box_idle_v07.png",
+      "prompt_id": "echo_box_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v00.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v01.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v02.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v03.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v04.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v05.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v06.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_active_v07.png",
+      "prompt_id": "echo_flower_active",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v00.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v01.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v02.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v03.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v04.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v05.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v06.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/summon/echo_flower_idle_v07.png",
+      "prompt_id": "echo_flower_idle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v00.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v01.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v02.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v03.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v04.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v05.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v06.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/rope_v07.png",
+      "prompt_id": "rope",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v00.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v01.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v02.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v03.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v04.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v05.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v06.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/tool/torch_v07.png",
+      "prompt_id": "torch",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v00.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v01.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v02.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v03.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v04.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v05.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v06.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/trail/vfx_arrow_trail_v07.png",
+      "prompt_id": "vfx_arrow_trail",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v00.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v01.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v02.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v03.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v04.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v05.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v06.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/coin_gold_v07.png",
+      "prompt_id": "coin_gold",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v00.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v01.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v02.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v03.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v04.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v05.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v06.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_emerald_v07.png",
+      "prompt_id": "gem_emerald",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v00.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v01.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v02.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v03.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v04.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v05.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v06.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_ruby_v07.png",
+      "prompt_id": "gem_ruby",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v00.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v01.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v02.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v03.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v04.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v05.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v06.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/treasure/gem_sapphire_v07.png",
+      "prompt_id": "gem_sapphire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v00.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v01.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v02.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v03.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v04.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v05.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v06.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/axe_battle_v07.png",
+      "prompt_id": "axe_battle",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v00.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v01.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v02.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v03.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v04.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v05.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v06.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/bow_longbow_v07.png",
+      "prompt_id": "bow_longbow",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v00.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v01.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v02.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v03.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v04.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v05.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v06.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/dagger_quick_v07.png",
+      "prompt_id": "dagger_quick",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v00.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v01.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v02.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v03.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v04.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v05.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v06.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/mace_holy_v07.png",
+      "prompt_id": "mace_holy",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v00.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v01.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v02.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v03.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v04.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v05.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v06.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/staff_magic_v07.png",
+      "prompt_id": "staff_magic",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v00.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v01.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v02.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v03.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v04.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v05.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v06.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_fire_v07.png",
+      "prompt_id": "sword_fire",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v00.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v01.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v02.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v03.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v04.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v05.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v06.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_ice_v07.png",
+      "prompt_id": "sword_ice",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v00.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v01.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v02.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v03.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v04.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v05.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v06.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    },
+    {
+      "file": "tools/asset-gen/generated/weapon/sword_iron_v07.png",
+      "prompt_id": "sword_iron",
+      "width": 32,
+      "height": 32,
+      "channels": 4,
+      "has_alpha": true,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": true
+    }
+  ],
+  "violations": [
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v00.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v00.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v01.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v01.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v02.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v02.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v03.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v03.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v04.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v04.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v05.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v05.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v06.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v06.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v07.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "wrong_dimensions"
+    },
+    {
+      "file": "tools/asset-gen/generated/magic/vfx_echo_summon_v07.png",
+      "prompt_id": "vfx_echo_summon",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "has_alpha": false,
+      "expected": [
+        32,
+        32
+      ],
+      "dim_match": false,
+      "violation": "no_alpha_channel"
+    }
+  ],
+  "_summary": {
+    "total_pngs": 464,
+    "violations": 16,
+    "wrong_dimension_count": 8,
+    "no_alpha_count": 8
+  }
+}

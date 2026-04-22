@@ -65,3 +65,32 @@ export function computeRespawnBossState(bossHealthCurrent, bossHealthMax) {
     vulnerableTimer: 0,
   };
 }
+
+export function computeTouchDamageWindowBudget(options) {
+  const {
+    bossHealth,
+    vulnerableSeconds,
+    playerAttackDuration,
+    targetInvulnerableSeconds,
+    assumedTouchAttackCadenceSeconds = 0.55,
+    shieldBreakRecognitionSeconds = 0.35,
+  } = options ?? {};
+
+  const cadenceSeconds = Math.max(
+    assumedTouchAttackCadenceSeconds,
+    playerAttackDuration,
+    targetInvulnerableSeconds,
+  );
+  const usableWindowSeconds = Math.max(0, vulnerableSeconds - shieldBreakRecognitionSeconds);
+  const attacksPerWindow = Math.floor(usableWindowSeconds / cadenceSeconds);
+  const windowsToDefeat = attacksPerWindow > 0
+    ? Math.ceil(bossHealth / attacksPerWindow)
+    : Number.POSITIVE_INFINITY;
+
+  return {
+    cadenceSeconds,
+    usableWindowSeconds,
+    attacksPerWindow,
+    windowsToDefeat,
+  };
+}

@@ -1,0 +1,7 @@
+AESTHETIC AGENT B — Cute & Charm + Silhouette Clarity. Reference: Echoes of Wisdom — distinct silhouette + friendly toy charm. Good = round/soft, instantly readable at 1x, contrast on bright AND dark bg, visible personality, sticker test. Bad = mushy silhouette, edgy aggressive shapes, no personality.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\zoom.png (1x grey | 4x clean | 4x DARK | 4x LIGHT)
+Evaluate readability at 1x, contrast on both bgs, edge cleanliness, CHARM. Charming-but-mushy or clear-but-charmless both fail.
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

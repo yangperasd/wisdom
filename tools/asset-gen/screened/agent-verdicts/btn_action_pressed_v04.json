@@ -1,0 +1,158 @@
+{
+  "file": "button/btn_action_pressed_v04.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\btn_action_pressed_v04.png",
+  "category": "button",
+  "candidateName": "btn_action_pressed_v04",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "base_color_saturation_low",
+          "icon_density_reduces_readability"
+        ],
+        "reasoning": "Emotional (60%): The button reads as warm and friendly — sandy/tan base with orange-amber and teal-blue accent icons, rounded square silhouette gives a toy-chunky feel appropriate for Zelda EoW. However, the sandy beige base is more muted/earthy than the bright saturated greens/blues/yellows/pinks called for by the brief. The 'pressed' depth cue (gold bottom trim shift) is subtle and charming. Icons scatter evocatively but cluster densely, diluting the cheerful pop. Score ~7/10. Technical (40%): Strong execution — 1px hard outlines are clean and consistent, 2-3 tone hard shading is visible on corners and face, pixel grid snapping is rigorous, no anti-aliasing detected, hand-pixeled icons are clearly crafted per-pixel. Pressed state geometry is communicated correctly. Score ~8/10. Weighted: 0.6*7 + 0.4*8 = 7.4 → 7. Marginal: passes technical bar, emotional warmth is present but brightness/saturation of the base field needs lifting to hit the bright/charming Hyrule mood threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x_detail_loss",
+          "light_bg_low_contrast",
+          "busy_interior_hurts_charm_read"
+        ],
+        "reasoning": "Silhouette is a clean rounded square — instantly readable as a button at 1x. Pixel art style carries warmth and game personality (sandy tones, colorful accent icons, gold trim). On dark bg contrast is solid and the design pops well. However: (1) on light/white bg the beige body blends — only dark outlines and accent colors save it, leaving insufficient contrast margin. (2) At 1x, all interior iconography collapses to indistinct colored noise — the design relies on detail that vanishes at small sizes. (3) The interior is packed and busy rather than simply charming; feels more like a HUD panel than a friendly toy button, so the 'sticker test' reads as 'game inventory panel' rather than an immediately lovable character. Silhouette clarity passes, charm is present but diluted by complexity, light-bg contrast is borderline. Marginal overall.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "shadow_colors_near_neutral_warm_brown_not_distinctly_deep_teal_or_plum"
+        ],
+        "reasoning": "Button base is warm parchment/gold — strong palette match. Sunset orange accents are vivid and well-placed. Sky blue and teal icon elements align with Echoes sky-blue spec. Golden trim border reinforces warm mid-value dominance. Overall mood reads BRIGHT and WARM, no grim or cold shift. Dark/shadow areas on the button border use warm-brown darks which avoid pure black, but stop short of the distinctly colored deep-teal or plum shadows the spec calls for — they read as neutral warm brown rather than expressively chromatic darks. Saturation is good but could be pushed slightly further in accent regions. No muddy desaturation, no neon, no cold corporate tones. Palette compatibility with Echoes reference swatch is solid; marginal rather than pass purely due to shadow chroma being understated.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "warm-beige-clashes-with-cool-dark-palette",
+          "reads-as-tooltip-or-ui-panel-not-a-button",
+          "oversized-relative-to-surrounding-game-entities",
+          "icon-contents-add-visual-noise-and-confusion"
+        ],
+        "reasoning": "The composited element is a large warm beige/tan panel with pixel art icons, positioned center-frame. Locatability is strong — high contrast against the dark teal and grey tile backgrounds means it is spotted immediately. It is clearly distinct from all background tiles. However, integration is poor on several dimensions: (1) The warm beige hue clashes with the game's predominantly cool dark palette (teal HUD, dark grey stone, muted greens); (2) The element reads as a tooltip popup or inventory panel rather than an action button — the interior pixel icons reinforce this misread; (3) At this scale it dominates the scene and draws attention away from the actual gameplay elements like the monster and pressure plate; (4) The flat, bright face sits visually 'above' the game world rather than embedded in it, giving a pasted-on feel. Silhouette is readable but the UI-overlay impression undermines Echoes cleanliness.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The btn_action_pressed_v04 sprite presents as a warm parchment/tan inventory panel with colorful item icons and orange-warm border tones. The parchment background, bright saturated item colors, and cozy 'book/inventory' feel align well with the target cute fairy-tale adventure palette (warm yellows/oranges/parchment). The sprite introduces warmth and whimsy into the scene rather than shifting toward any out-of-tone categories (no grimdark, no cold-corporate, no horror elements). The overall contribution is a cozy, storybook-style panel consistent with the toy diorama / bright sunny magical aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "button_footprint_large_for_hud",
+          "in_world_chest_item_oversized_relative_to_player"
+        ],
+        "reasoning": "btn_action_pressed_v04 is composited as one of the two large action buttons (召唤/攻击) at bottom-right. As a touch-target action button for mobile, the scale (~150x70px screen) is within acceptable range and clearly reads as HUD overlay rather than world object. Perspective is flat-UI over top-down world, which is standard. However, the buttons occupy a substantial portion of the screen and are on the large side of acceptable—borderline overwhelming for a 'toy diorama' feel. Separately, the in-world box/chest item (黏黏球) visible in the scene is significantly larger than the player entity, violating item scale rules, though this is not directly attributable to the button asset itself. The button's pressed variant is not distinctly visible from the default state in this composite, making it hard to evaluate pressed-state proportion independently. No severe per-button violations; marginal due to overall HUD button size and scene context.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "minor_asymmetry_icon_layout",
+          "background_fill_possible_noise_pixels"
+        ],
+        "reasoning": "Pixel art is largely clean. Hard-tone palette, no gradient shading, no melting details, no visible AA blending — edges step cleanly at 8x. Border outline is consistent thickness throughout. Corner stud decoration is regular. Semantic read is coherent (inventory action button with item icons). Two concerns keep this out of pass territory: (1) Icon placement within the button is noticeably asymmetric — the six icons are scattered without apparent grid anchor, more consistent with an AI compositor than a hand-placed layout. (2) The beige/tan fill in the large 8x version shows faint pixel-level chroma variation in what should be a flat tone — subtle noise pattern inconsistent with clean hand-painted pixel art. No color bleed or sub-pixel fractional features detected. No semantic failures. The tells are marginal rather than clear failures, warranting a 7.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_no_overlap",
+          "rendering_style_divergence",
+          "outline_color_mismatch",
+          "detail_density_mismatch",
+          "charm_level_mismatch",
+          "highlight_style_mismatch"
+        ],
+        "reasoning": "Peer sheet (LEFT) is a dense Denzi dungeon tileset: cold/dark palette dominated by charcoal grays, deep teals, muted reds, and near-black earth tones; 1px hard dark outlines; dithered pixel-art shading with high texture density; gritty dungeon-crawl character. Candidate (RIGHT) is a warm beige/cream UI inventory panel with gold border trim, sparse flat interior, light-warm color temperature, and smooth rounded-corner aesthetic. 11-dim breakdown — (1) Outline weight: peers use razor-thin 1px dark outlines; candidate has thick gold-trim border — FAIL. (2) Outline color: peers dark gray/black; candidate gold-yellow — FAIL. (3) Shadow direction: peers embed shadow in dithered shading (consistent); candidate shows minimal or absent cast shadow — marginal. (4) Shadow count: peers ~1 integrated; candidate 0-1, acceptable in isolation but inconsistent with style. (5) Highlight intensity: peers moderate dithered highlights; candidate has brighter flat edge highlights — marginal. (6) Color temperature: peers solidly cold-dark; candidate warm-light — SEVERE FAIL. (7) Detail density: peers extremely dense with dithering, cracks, stains; candidate largely flat and sparse — FAIL. (8) Proportion: both roughly square, acceptable. (9) Rendering style: peers gritty dithered pixel art; candidate smooth flat-shaded UI widget — FAIL. (10) Palette overlap: near zero shared colors between peer family and candidate — SEVERE FAIL. (11) Charm level: peers have gritty dungeon personality; candidate reads as generic RPG inventory UI with no matching character — FAIL. 7 of 11 dimensions fail hard; the candidate would read as a completely foreign sprite if placed alongside these peers.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "icon_grid_reads_as_generic_mobile_inventory",
+          "blue_teal_screen_icon_introduces_cold_tech_note",
+          "pressed_inset_border_treatment_leans_generic_ui_template"
+        ],
+        "reasoning": "The candidate (right panel) carries the right skeleton: warm parchment/cream base and a gold-brass border ring both read Zelda-adjacent toy-diorama, which is on-tone. The pressed-state inset is readable. However, the interior is filled with a grid of small thumbnail icons whose variety and layout echo a generic mobile-game inventory UI more than a hand-crafted fairy-tale object. One icon appears to be a blue/teal screen or device tile, injecting a cold tech note that conflicts with the warm handmade aesthetic. The gold border itself is correct but the corner geometry is slightly mechanical rather than organic/stamped-wax-seal style. None of these are catastrophic drifts — the overall warmth and pixel scale keep it from failing — but the mobile-inventory grid pattern is a repeatable signal that accumulates against the whimsical target. Score 7 marginal rather than 8 pass.",
+        "confidence": 0.76
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.38,
+    "aestheticAvg": 6.67,
+    "uiContextAvg": 7,
+    "adversarialMin": 2,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.107Z"
+}

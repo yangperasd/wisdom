@@ -1,0 +1,146 @@
+{
+  "file": "weapon/mace_holy_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\mace_holy_v02.png",
+  "category": "weapon",
+  "candidateName": "mace_holy_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "handle_shading_flat",
+          "shaft_tonal_range_underdeveloped"
+        ],
+        "reasoning": "Emotional axis strong (≈8.5/10): the mace reads as bright, warm, and toy-diorama-friendly — saturated sky-blue shaft with an orange/gold gem-crown head nails the Hyrule mood; silhouette is round and decorative, never grim. Technical axis weaker (≈6/10): 1-px hard outlines are present and pixel-grid is clean at all zoom levels, but the blue handle uses only ~2 flat tones with minimal highlight/shadow separation, falling short of the expected 2–3-tone hard shading budget for a weapon of this size; the Denzi reference weapons show crisper tonal steps even on narrow shafts. Weighted score: 0.6×8.5 + 0.4×6.0 = 7.5 → 7. Passes emotional brief comfortably; needs one more shading pass on the handle to reach full pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_handle_contrast_weak",
+          "1x_silhouette_tiny_detail_loss",
+          "charm_competent_not_magnetic"
+        ],
+        "reasoning": "At 4x the mace reads clearly as a holy/divine weapon with a distinct crown-like ornate head, blue shaft, and orange-gold flame/gem top — decent personality. Dark bg contrast is strong; the light shaft and warm accent pop well. Light bg (4th panel) reveals the issue: the pale-blue handle bleeds into the cream background, losing definition along the shaft edges. At 1x the silhouette collapses to a thin stick with a vague blob head — identifiable as 'weapon on a stick' but the holy character evaporates. Charm is present (rounded top cluster, warm+cool color combo, toy-scepter vibe) but not distinctive enough to pass the sticker test — it reads more as competent pixel art than an instantly lovable icon. Needs either a darker outline on the handle for light-bg legibility or a warmer/bolder handle color, plus slightly more exaggerated head-to-shaft size ratio to survive 1x.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The holy mace exhibits strong color harmony aligned with the Echoes-tuned palette. Primary palette: sky-blue shaft, saturated sunset-orange flame/gem top, warm brown handle, cream/white highlights — a classic warm-cool complementary split where warm (orange) dominates the focal point. All hues match swatches in the reference palette (sky blue, amber-orange, warm brown, parchment white). Shadow areas on the asset itself use deeper blue-teal and warm brown darks, not pure grey or black. Overall mood reads BRIGHT and warm with a holy/radiant character. Minor note: the sky-blue shaft leans slightly cool in isolation, but it is visually subordinate to the warm orange crown, so overall warmth balance is maintained. Saturation is healthy throughout — no muddy or desaturated passages. Palette compatibility is high.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The mace_holy_v02 is placed on the dark reddish-brown tile zone. Its warm golden/orange orb head and light-blue shaft create strong contrast against the cool dark background, making it spottable well within 0.5s. Silhouette is unmistakably staff/mace-shaped — no confusion with the dark-purple creature in the lower-left panel or with UI buttons. The pixel-art style and color palette (gold + cyan) match the Echoes bright/uncluttered aesthetic without tonal clash. The orb head retains full readability in the darker tile area. Minor note: the light-blue shaft is similar in hue to the joystick icon at bottom-left, but spatial separation and the dominant gold head prevent any real confusion. Overall integration is clean and native-feeling.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_environment_dark_dungeon_tone"
+        ],
+        "reasoning": "The mace_holy_v02 sprite itself is a small pixel-art figure holding a staff/holy mace with a bright sky-blue crystal orb on top and warm orange/gold body tones. The sprite's color palette (cyan orb, warm amber handle) is consistent with a magical fairy-tale aesthetic — bright, whimsical, light-aligned. It does not introduce grimdark, horror, aggressive, or cold corporate elements. However, the surrounding scene environment is dark dungeon-crawler in tone (dark teal tiles, near-black background, red-veined floor area), which pre-exists and is not caused by this sprite. The sprite itself is cute and in-tone for the target aesthetic; the tension is context-based rather than intrinsic to the new asset. Marginal pass: sprite passes on its own merits, but placement in this dark scene slightly dilutes the sunny fairy-tale mood.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "weapon_slightly_oversized_relative_to_player"
+        ],
+        "reasoning": "The mace_holy_v02 (blue crystal orb on gold staff) is composited in scene at roughly 75-85% of player character height. The weapon item category guideline specifies 50-75% of player size. The item sits at or slightly above the upper threshold, making it marginally oversized. The elongated staff shape accentuates the perceived height. Perspective is consistent with the top-down view and the toy diorama aesthetic is largely preserved — no wallpaper zoom-out feel, no overwhelming effects. No gross category or perspective errors. A slight scale reduction (~10-15%) would bring it squarely within spec.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "flame_orb_chaotic_pixel_scatter",
+          "minor_outline_inconsistency"
+        ],
+        "reasoning": "4x and 8x zoom inspection reveals mostly clean pixel art. Handle (light blue) is consistent and clean. Mace head bowl shape with gold/orange tones and white highlights is coherent. However: (1) the flame/orb cluster at the top shows chaotic pixel scatter — individual blue, orange, and white pixels are distributed in a pattern that lacks clear intentional placement rhythm, consistent with AI stochastic noise rather than deliberate pixel art decision-making; (2) the dark outline is slightly inconsistent — some edges are 1px outlined, some areas appear to lose the outline entirely on the left shoulder of the mace head; (3) no sub-pixel features, no AA bleed, no gradient shading violations — palette is properly hard-limited. Background is uniformly dark with no noise pixels. Semantic coherence is intact: holy mace with energy/flame crown reads correctly. The scatter in the flame area is the primary concern and keeps this out of 'pass' territory.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch: candidate introduces cold bright blue (flame/crystal head) absent from all peer warm-metallic palettes",
+          "palette_no_overlap: the electric/ice blue of the head does not appear in any peer sprite — palette island",
+          "highlight_intensity_outlier: blue flame emits a near-glow brightness level that exceeds the modest specular highlights on all peer items",
+          "proportion_tall: candidate height-to-width ratio is visibly more elongated than the compact, stocky peers; handle reads overly long relative to head mass",
+          "charm_level_drift: peers read earthy/practical warrior gear; candidate reads magical/dramatic — tonal register slightly outside the cohort's cuteness band"
+        ],
+        "reasoning": "Rendering style and outline weight are on-model (1px dark outlines, consistent pixel density). Shadow direction is acceptable. Detail density is appropriate. However four issues compound into a meaningful style break: (1) The holy mace head is rendered in a saturated cold blue/white that has zero palette overlap with every peer item — peers are exclusively warm metallics (silvers, golds, red plumes, dark irons). (2) That blue element also carries higher luminance contrast than any peer highlight, functioning visually as a light emitter. (3) The sprite is noticeably taller and thinner than the reference set; peers cluster around squarish-to-moderate aspect ratios, the candidate is a slim vertical. (4) The 'cute echo' charm register the peers carry is slightly undercut by the dramatic magical torch-flame aesthetic. None of these are fatal alone, but together they prevent a clean pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The candidate mace_holy_v02 (right, 4x) displays a pixel-art mace with a bright blue magical flame/orb atop a clean tan wooden handle. The glowing blue element reads as whimsical holy magic, consistent with Zelda-style enchanted items and toy-diorama aesthetics. No grimdark coloring, no desaturated dungeon-crawler palette, no occult or edgy symbolism. The flame is warm-cool complementary — the blue glow against a warm background is inviting rather than cold or sinister. Peer references on the left include some heavier armored helmets that brush dungeon-crawler territory, but the candidate itself stays squarely in Nintendo-family-friendly magic-weapon territory. Shape language is simple and friendly (round orb, stubby proportions). Minor note: 'mace' as a weapon type could trend violent, but the holy/light theming fully neutralizes that risk at this pixel-art scale.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.4,
+    "aestheticAvg": 7,
+    "uiContextAvg": 7,
+    "adversarialMin": 5,
+    "warningCount": 6,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.125Z"
+}

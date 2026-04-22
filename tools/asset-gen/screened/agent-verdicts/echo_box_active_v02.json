@@ -1,0 +1,153 @@
+{
+  "file": "summon/echo_box_active_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_box_active_v02.png",
+  "category": "summon",
+  "candidateName": "echo_box_active_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "palette_skews_cool_missing_warm_yellows_greens_pinks",
+          "active_sparkle_could_read_brighter_warmer"
+        ],
+        "reasoning": "Emotional (60%): The sprite reads as charming and toy-like — round white face, cute proportions, wooden crate base, and active blue sparkles convey a friendly summon feel rather than anything grim. However, the dominant palette is cool (teals, cyans, muted blues) with very little of the warm saturated greens/yellows/pinks the Hyrule spec requires. The skull-like face is cute not scary. Emotional score ~7/10. Technical (40%): Clean 1px hard outlines visible at all zoom levels, 2-3 tone hard shading on the crate body, no anti-aliasing artifacts, pixel-grid-snapped. Comparable in craft to Denzi peer reference. Technical score ~8/10. Weighted: (7×0.6)+(8×0.4)=7.4 → 7. Verdict marginal: passes technical axis, falls short on the warm/saturated Hyrule emotional palette requirement."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_detail_lost",
+          "skull_face_slightly_edgy_vs_pure_friendly"
+        ],
+        "reasoning": "At 4x the sprite has clear charm and personality: round skull-like head with expressive face, blue sparkle wings flanking the sides, and a sturdy barrel/crate base — the 'active' energy is immediately legible and the composition reads as a magical toy. Contrast holds on both dark and light backgrounds; the blue sparkles pop well on dark, and the darker teal/brown barrel reads fine on the cream bg. Edge cleanliness is good at 4x — pixel art is tight. However at 1x the wing sparkles and face detail collapse into a fuzzy blob; only the gross silhouette (small figure with something sticking out sideways) survives. The skull-motif face skirts the 'friendly toy' boundary — not aggressively edgy, but not purely cute-round either. Silhouette shape is reasonably distinctive (round head + boxy torso + side sparks) but the 1x read is weaker than ideal. Passes the sticker test at 4x, marginal at 1x.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Character palette is well-aligned with the Echoes-tuned target. Active state expressed via bright cyan/sky-blue sparkle wings — saturated and energetic without tipping neon. Base body uses warm brown/tan mid-values as prescribed. Face is warm white-cream, not cold grey. Teal-blue secondary accents provide cool contrast that reads harmonious against the warm base. Outlines appear dark teal/navy-brown rather than pure black — shadow quality passes. No muddy desaturated areas, no cold corporate tones, no goth near-blacks within the sprite itself. Internal hue relationships (warm brown + sky blue + teal + cream) form a clean analogous-plus-complement structure consistent with the reference palette swatches. Mood reads bright and cheerful, appropriate for an active/awakened echo entity.",
+        "confidence": 0.87
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "potential_confusion_with_player_sprite",
+          "slightly_pasted_feel"
+        ],
+        "reasoning": "The echo_box_active_v02 sprite (white/blue humanoid figure) is clearly visible against both the dark dungeon tiles and the mid-tone teal floor — bright white body with blue accents provides strong luminance contrast in all background zones. Silhouette is distinct and spottable well within 0.5s. The sprite does not blend into any background tile. However, its humanoid form and palette closely resemble what a player character sprite would look like, creating mild entity-type confusion. The composited sprite also reads as slightly 'inserted' rather than fully native due to crisp edges against the softer pixel-art tile textures. No tonal clash with overall Echoes palette — the light/bright feel is consistent. Dark-area visibility is acceptable; the white body provides enough contrast even on the dark red-flecked dungeon tiles. Overall readability is solid but entity disambiguation is a concern.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_background_dark_dungeon_tone"
+        ],
+        "reasoning": "The echo_box_active_v02 sprite itself reads as cute and whimsical: a warm brown/wooden box frame containing colorful pink-purple magical energy or creature, sitting on a pale blue base — warm parchment tones with saturated fairy-tale accent colors. The active state conveys magic and life without aggression or grimdark elements. The player character visible in the composite is round and cute, consistent with the toy-diorama target. However, the surrounding scene environment (dark teal grid tiles, near-black stone floors with reddish texture, charcoal stone walls) carries a dungeon-crawler atmosphere that is pre-existing and not introduced by this sprite. The sprite itself does not shift mood problematically — it holds its own cute/magical identity within the darker environment — but the tonal gap between the sprite warmth and the cold-dark scene background prevents a clean pass score. No out-of-tone elements (grimdark, horror, aggressive, cold-corporate, goth) are present in the sprite itself.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "summon_oversized",
+          "exceeds_player_size",
+          "violates_50_80_percent_rule"
+        ],
+        "reasoning": "The echo_box_active_v02 (category: summon) composited into the scene measures approximately 100x80px on screen, while the player sprite is approximately 40-45px tall. This makes the echo box roughly 180-220% of player height — well above the 50-80% ceiling for summons and explicitly violating the 'NEVER larger than player' constraint. The box also reads more like a large environmental prop than a summoned companion, disrupting the toy-diorama sense of scale. Perspective is flat top-down consistent with the scene, so no perspective mismatch, but the sheer size overpowers nearby entities and pulls visual weight away from the player character.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_wings",
+          "outline_inconsistency",
+          "color_bleed_wing_edges"
+        ],
+        "reasoning": "8x zoom inspection: (1) Crystal wings show multi-tone blue gradient transitions rather than strict 2-3 hard-stop pixel art shading — at least 4-5 distinct blue values create a smooth-ish fade that reads as AI-generated gradient rather than deliberate dithering. (2) Outline width is inconsistent: bottom/base of character has heavier dark border (~2px equivalent) while upper wing extremities taper to 1px or missing outline on some tips. (3) Minor color bleed visible at wing-body junction where blue pixels encroach into the white body region by 1-2 pixels in an irregular pattern. (4) Background solid dark area is clean with no noise. (5) Symmetry is approximate but not perfect — left crystal cluster has one extra pixel row vs right. (6) No sub-pixel rendering artifacts; pixel grid is clean and consistent at 1px resolution. (7) Semantic integrity is solid — reads clearly as an active echo-box sprite character on a glowing pedestal. (8) No pattern tiling artifacts. Overall: passes basic pixel art grid discipline but fails on gradient shading and minor outline inconsistency, placing it in marginal territory.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch",
+          "proportion_chibi_vs_standard",
+          "palette_temperature_divergence",
+          "highlight_intensity_far_exceeds_peers",
+          "detail_density_incompatible_at_matched_scale",
+          "charm_level_overt_cute_vs_subtle_incidental"
+        ],
+        "reasoning": "Peer sheet (left) shows classic small-scale Denzi pixel art sprites: tightly packed, ~16-32px tall, muted/earthy palette with cool accents, flat shading, 1px dark outlines, minimal highlight work, standard humanoid/creature proportions, charm is incidental not designed. Candidate (right) is a large chibi box-spirit with pronounced wings, a round white face, pastel blue/white/pink/gold palette—none of which has strong overlap with peer palette temperature. Six of eleven dims fail hard: (1) Outline weight—similar 1px but the candidate's per-pixel density at matched scale is lower, making outlines look thicker relatively; (2) Outline color—consistent dark, minor pass; (3) Shadow direction—no cast shadow in candidate, peers also lack them, marginal pass; (4) Shadow count—pass; (5) Highlight intensity—candidate has bright specular clusters on wings and face absent from entire peer sheet, fail; (6) Color temperature—candidate is cool-pastel dominant, peers are warm-neutral dominant, fail; (7) Detail density—at matched scale candidate is ~40% the detail density of peers, fail; (8) Proportion—candidate is aggressively chibi (head ≥ 50% body height), peers are standard RPG proportions, fail; (9) Rendering style—candidate uses gradient-like dithered shading for a 'painterly' feel; peers use pure flat pixel art, fail; (10) Palette overlap—roughly 2 shared hues out of ~8 dominant hues, fail; (11) Charm level—candidate is deliberately kawaii/cute-designed, peers are incidentally charming via classic pixel craft, fail. 6 hard fails out of 11 dims. Even granting item-type leniency, the stylistic gulf is too wide for a same-family pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "blue_crystals_slight_cool_drift"
+        ],
+        "reasoning": "Candidate (RIGHT): chunky pixel-art wooden box with warm amber/golden body, pink-peach accent highlights, and blue-cyan sparkle/crystal bursts on top and sides. Warm wooden tones dominate, firmly anchoring the read as a cozy treasure-box prop. The blue crystalline elements are the only mild concern — in isolation they could skew cold/icy — but within the full read they function as whimsical magic-sparkle rather than frost or occult energy, a pattern consistent with Zelda-family echos. Peer reference (LEFT) sprite sheet confirms the target register: warm, chunky, friendly top-down sprites with saturated primaries and no grit. Candidate sits well within that register. No grimdark, no edginess, no desaturation, no corporate flatness, no fan-service detailing, no uncanny realism detected. Minor deduction: the crystal-blue hue is the coolest element in the composition and, at 4x zoom, occupies notable visual real-estate — a warmer tint (soft gold or peach) could push confidence from 8 to 9.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.45,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 3,
+    "warningCount": 5,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.113Z"
+}

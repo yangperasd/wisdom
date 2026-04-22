@@ -1,0 +1,159 @@
+{
+  "file": "summon/echo_box_idle_v07.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_box_idle_v07.png",
+  "category": "summon",
+  "candidateName": "echo_box_idle_v07",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "lower_body_desaturated",
+          "palette_warmth_below_peak_zelda",
+          "limited_shading_depth_on_torso"
+        ],
+        "reasoning": "Emotional (60%): The Echo Box reads immediately as a friendly toy-like summon — green lid/hat, cream body, a readable face, round boxy silhouette. Mood is charming and non-threatening, fitting Hyrule toy-diorama energy. However, the brown/orange leg region is dull and the overall palette sits slightly under the bright saturated warmth expected; greens are solid but whites and browns lack the punchy saturation seen in Denzi peer summons. Emotional score ~7/10. Technical (40%): 1px hard outlines are clean and consistent across the sprite; pixel-grid snapping is tight with no sub-pixel bleed; shading uses 2-3 hard tones on the green cap and 2 on the body — within spec, though the torso shading is minimal and flattens the form slightly. Hand-pixeled quality reads authentic. Technical score ~8/10. Weighted total: 7×0.6 + 8×0.4 = 7.4 → 7. Passes technical bar, marginal on emotional vibrancy. A saturation pass on the lower body and a touch more highlight/shadow contrast on the torso would push this to a clean pass."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "white_body_low_contrast_on_light_bg",
+          "1x_silhouette_borderline_readable"
+        ],
+        "reasoning": "Charming design: box/chest body with an organic plant sprouting from the top gives clear personality and a friendly toy quality. Silhouette at 4x is crisp and instantly readable — rounded torso, stubby feet, distinctive green crown — passes the sticker test. On dark backgrounds (panels 2 and 3) contrast is strong; white and green elements pop cleanly. Main weakness: on the light/cream background (panel 4) the white torso bleeds into the background, losing edge definition on roughly half the body; only the green top and darker outline pixels hold the silhouette. At 1x (panel 1) the figure resolves to a small green-topped blob — character type is guessable but fine detail is lost. Charm is present and the design avoids aggressive/edgy shapes, but the light-bg contrast gap prevents a confident pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "body_dominant_hue_is_cold_neutral_grey_violates_colored_darks_rule",
+          "warm_mid_values_do_not_dominate_grey_mass_overwhelms_warm_accents",
+          "overall_mood_reads_industrial_robotic_not_bright_warm"
+        ],
+        "reasoning": "The sprite has correct accent colors — saturated green leaf/sprout and small orange warm touches align well with the Echoes palette. However the dominant body mass is a cold neutral steel-grey, which directly violates the 'shadows are colored darks (deep teal/plum/warm brown), NEVER pure black/grey' rule. Grey occupies roughly 50-60% of the sprite's pixel area, pulling the overall mood toward cool/industrial. White face panel is neutral but tolerable. The green and orange accents are on-palette and would pass individually, but they are too minor to rescue the overall harmony from the grey dominance. To pass, the body grey should be shifted to a warm brown, deep teal, or plum-tinted dark so colored darks anchor the form instead of desaturated grey.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small sprite footprint reduces sub-0.5s spottability",
+          "positioned at boundary between dark red-tile zone and mid-tone open area — moderate contrast only",
+          "white boxy silhouette could be confused with player character at a glance"
+        ],
+        "reasoning": "The echo_box_idle_v07 sprite (white pixel-art cube character at ~(635,340) in composite) is absent in the original and clearly composited in. Pros: white/light coloring provides reasonable contrast against the dark tile floor; pixel-art style is consistent with other game entities and reads as native, not pasted; silhouette is boxy and distinct from organic bg tile shapes. Cons: the sprite is small (~30px), making instant 0.5s locatability borderline; it sits at a lighting boundary (dark red area edge to open mid-tone area) so contrast is inconsistent depending on exact tile underneath; its white boxy form is close in read to the player character sprite also present in the scene, creating mild entity confusion risk. No outline disappearance or tonal clash with the Echoes palette, but overall integration is adequate rather than strong — qualifies as marginal.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_backdrop_dark_dungeon_crawler",
+          "sprite_small_low_presence"
+        ],
+        "reasoning": "The echo_box_idle_v07 sprite itself is a small, compact white-and-green pixel-art robot/box character — reads cute, round, and toy-like, consistent with the fairy-tale target palette. It introduces no out-of-tone elements (no grimdark, no horror, no edgy aggression). However, the backdrop scene it is composited into is already quite dark: deep teal tiles, reddish shadow regions, and stone walls give a dungeon-crawler ambiance that competes with 'bright sunny magical.' The sprite is too small to anchor or lift the overall mood. On its own design merits the sprite passes; in composite context it contributes only modestly to the warm/whimsical target and cannot counteract the scene's pre-existing darkness. Verdict: marginal — sprite design is in-tone, scene integration is not fully sunny/fairy-tale.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "summon_oversized",
+          "perspective_inconsistency"
+        ],
+        "reasoning": "Player sprite is approximately 32x32px. The echo_box_idle_v07 summon in the dark arena area presents a visual footprint of roughly 90-110px wide x 60-75px tall (including its dark mass/tentacle spread), placing it at ~280-340% of player size. Summons must be 50-80% of player (target ~16-26px), so this entity is roughly 4x over the upper bound. Even discounting the dark ambient effects and measuring only the box body (~50px), it still exceeds 150% of player — still a clear violation. Secondary issue: the entity reads as a flat frontal-perspective sprite composited onto a top-down tile floor, creating a perspective mismatch with the player and environment. Scene feel skews toward wallpaper/background prop rather than toy-diorama summon companion.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "noise_pixels_background",
+          "inconsistent_outline",
+          "asymmetry",
+          "color_bleed_green_accents"
+        ],
+        "reasoning": "8x zoom reveals a pixel-art character (cat/creature, green+white palette) with several tells. Most damning: scattered stray pixels in the solid dark background — clusters of off-black and near-white specks that are not part of the sprite and have no compositional purpose (noise tell #3). Outline inspection shows width flicker: the body outline alternates 1px/2px around the head crown and left shoulder, while the right arm edge drops to 0px (missing outline) at two pixel runs — inconsistent outline tell #4. Green leaf/accent patches show low-level chroma bleed into adjacent white pixels along diagonal joins (tell #9). Minor left-right body asymmetry: the lower torso is 1px wider on the right half at row ~18 vs row ~18 left (tell #8). Positive: hard-tone shading (3 discrete values, no gradient bands), palette is disciplined (~8 colors), no obvious melting in the 8x view, semantic read as idle creature sprite is clear. The 4x thumbnail on the left shows acceptable detail merge given size. Background noise and outline inconsistency are the primary failure vectors.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch: candidate is modern chibi/kawaii pixel art; peers are classic Denzi roguelike sprites with gritty creature aesthetic",
+          "charm_level_outlier: candidate is dramatically cuter and more mascot-like than any peer in the reference sheet — no peer approaches this chibi proportion",
+          "proportion_break: candidate has oversized round head, stubby body, large expressive eyes typical of modern cute games; Denzi peers use standard or monster proportions",
+          "palette_low_overlap: candidate palette is white/cream/mint-green; Denzi peer palette is earthy browns, dark greens, saturated reds/purples/yellows — minimal intersection",
+          "detail_density_low: candidate body is smooth and clean; peers are densely detailed for their pixel count with texture dithering and complex shading",
+          "highlight_intensity_high: large white eye highlights and smooth white body create a 'glossy' look absent in peer set",
+          "color_temperature_cold: candidate reads distinctly cool/neutral vs the warmer earth-toned peer set"
+        ],
+        "reasoning": "The candidate echo_box_idle_v07 is a well-executed cute chibi sprite, but it belongs to a completely different visual language than the Denzi peer set. The Denzi sprites on the left are classic roguelike pixel art — creature-focused, earth-toned, densely textured, with no charm-maximization. The candidate reads as a modern indie 'mascot' character: round proportions, giant expressive eyes with bright highlights, a clean white body with smooth gradients, and a mint-green hood that introduces a pastel palette absent from all peers. Six of eleven dimensions show significant discontinuity (rendering style, charm level, proportion, palette overlap, detail density, color temperature). Outline color and shadow treatment are acceptable matches, but that is insufficient to pass. This sprite would look visually orphaned next to any peer in the reference sheet.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate (right, 4x) presents a compact, pudgy pixel-art character in warm off-white/cream with layered green cap decoration and visible pink blush cheeks. Silhouette is round and toy-like — no sharp or aggressive geometry. Palette reads warm (cream body, muted sage-green trim, soft pink accents) against the parchment background, fully consistent with bright/warm Hyrule and toy-diorama targets. No desaturation, no cold-corporate geometry, no grimdark or edgy elements detectable. Compares favorably to the peer sprite sheet (left) which anchors the Zelda Echoes-of-Wisdom reference family: candidate shares the same pixel fidelity, friendly rounding, and warm-nature color language. The only minor note is the predominantly white body could risk reading 'clinical' at thumbnail scale, but the cream tone and soft green trim keep it firmly in fairy-tale territory. Tonal fit is solid.",
+        "confidence": 0.83
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.98,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 3,
+    "warningCount": 6,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.114Z"
+}

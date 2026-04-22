@@ -1,0 +1,156 @@
+{
+  "file": "armor/boots_speed_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\armor\\boots_speed_v02.png",
+  "category": "armor",
+  "candidateName": "boots_speed_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): Warm orange-brown leather with sky-blue/white cuff trim delivers a bright, charming, adventurous read consistent with Hyrule toy-diorama mood. Silhouette is chunky and friendly; no grim or scary elements. Color saturation on the orange tones is strong; blue accent adds brightness pop. Score ~8. Technical (40%): Clear 1px hard outlines visible at all zoom panels; 3-tone hard shading (highlight/mid/shadow) on the leather body with no anti-aliasing bleed; pixels are grid-snapped with no sub-pixel drift observable. Matches Denzi armor reference quality in line weight and palette discipline. Score ~8. Combined: 0.6×8 + 0.4×8 = 8.0. Verdict: pass.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x silhouette too small to read as distinct item",
+          "limited personality — competent but forgettable pixel boots",
+          "darker sole areas merge with dark bg, reducing silhouette edge clarity"
+        ],
+        "reasoning": "At 4x the boots read clearly as a pair of adventure boots — warm orange-brown body, blue cuff accent, blocky pixel art toe shape that is friendly and toy-like. Light bg contrast is strong; dark bg is adequate but the boot sole's darker pixels bleed into the bg slightly. Charm is present (rounded pixel shapes, colour pop from the blue trim) but not memorable — no distinctive hook that makes these boots feel personality-driven vs generic. The sticker test at 1x fails: the sprite shrinks to an ambiguous warm smudge with no readable silhouette. Score 6: clears basic charm bar at 4x but falls short on 1x readability and distinctiveness needed for a confident pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Boots use warm saturated orange-amber leather as the dominant mid-value, paired with a bright sky-blue cuff accent — both tones map cleanly to the Echoes palette swatches (sunset oranges + sky blues). Shadow/dark pixels read as warm dark brown rather than pure black or neutral grey, satisfying the colored-darks requirement. The blue accent is warm-leaning sky rather than cold corporate or icy. No muddy desaturation, no neon spikes. Mood is bright and warm. Minor note: outline pixels at the darkest extremes approach near-black, but this is within acceptable pixel-art convention given that all fill colors remain fully saturated and warm. Palette compatibility is strong across all four zoom previews.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "low_contrast_against_dark_red_tiles",
+          "small_sprite_size_reduces_pop",
+          "no_outline_or_glow_to_boost_legibility"
+        ],
+        "reasoning": "The boots_speed_v02 sprite (warm orange/golden winged boots, pixel-art style) is placed at the boundary between the dark-red tiled zone and the open teal grid area. The warm orange tones provide moderate contrast against the cool-dark teal background tiles, making it locatable within ~1s rather than 0.5s. However, the boots partially overlap the dark red/maroon tile zone where warm browns in the background reduce the contrast advantage. No outline or ambient glow separates the asset from background texture, so the silhouette relies entirely on hue difference. The sprite style matches the game's pixel-art aesthetic cleanly — no pasted-in quality — and the winged-boot silhouette is recognizable. It does not strongly resemble any other on-screen entity (player, enemy, pressure plate). The Echoes-cleanliness is adequate: bright palette, no tonal clash with UI colors. Main weakness is that in the dark-tile portion the asset can be missed on a quick scan; it passes locatability on the lighter tile strip but marginal overall due to absence of contrast-enhancing outline and small footprint.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_environment_dark_dungeon_crawler_preexisting"
+        ],
+        "reasoning": "The boots_speed_v02 sprite itself uses warm golden/amber tones with white accents — consistent with the cute fairy-tale palette target (warm yellows/oranges). The sprite introduces no grimdark, horror, edgy, or otherwise out-of-tone elements. The accompanying red directional arrow is a functional UI element that reads as whimsical-energetic rather than aggressive. However, the overall scene environment in both composite and original is dark teal/grey dungeon-crawler tiles with a black background — this conflicts with the 'bright sunny magical toy diorama' target aesthetic. Critically, this darkness is pre-existing in the original-scene reference and is NOT introduced by the boots sprite. The boots themselves, evaluated in isolation, are warm and on-tone (score would be 8+). Rated marginal rather than pass because the sprite's warm glow does not sufficiently counter the ambient dark dungeon environment, and the composite does not feel 'bright sunny magical' as a whole scene.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "boots sprite appears at ~75-80% of player height, pushing upper bound of 50-75% item rule",
+          "item display box on left fills nearly full box area, slightly oversized for diorama item showcase"
+        ],
+        "reasoning": "The composite scene shows a top-down dungeon layout with player sprite (~32x32). The boots_speed_v02 item is composited both in a left-side display box and as world sprites flanking the player. In-world, the boots reach roughly 75-80% of player height — technically within marginal tolerance but nudging past the 75% ceiling for armor/item category. The display box showcase (left side) also renders the boots quite large relative to the box frame. Perspective is consistent with the scene's top-down style; no wallpaper zoom-out issue. The toy-diorama feel is mostly intact. No gross violations (item is not larger than player), but size is at the loose edge of the spec, warranting a marginal rather than pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_bleed_around_blue_highlights",
+          "inconsistent_outline_weight_1px_vs_2px",
+          "gradient_transitions_in_orange_body_not_clean_2-3_tone_steps",
+          "melting_details_in_smaller_4x_sprite",
+          "inter-boot_asymmetry_in_strap_pixel_placement",
+          "noise_scatter_pixels_at_boot_silhouette_edge"
+        ],
+        "reasoning": "8x zoom reveals several AI tells. Most damning: the blue lightning-stripe highlights bleed into adjacent orange pixels with intermediate mixed-color pixels rather than a clean hard boundary — classic AI color diffusion. The orange/brown boot body uses ~5 distinct tones with gradual luminance steps instead of the 2-3 hard palette tones expected from hand-crafted pixel art. Outline weight is inconsistent: left boot silhouette alternates between 1px and 2px strokes on the same contour pass. The smaller sprite (upper-left, apparent 4x view) shows smeared/melted lace detail — individual pixel clusters blend together suggesting upscaling or diffusion-model hallucination. Boot asymmetry is beyond normal pose difference: right boot strap pixel count and placement does not mirror-match left boot geometry. Background is clean (no noise there), but the boot silhouette boundary has scattered 1-pixel noise dots. Semantic shape is recognizable as speed boots, so no outright semantic failure, but the cumulative artifact density pushes this to marginal.",
+        "confidence": 0.74
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch",
+          "detail_density_too_low",
+          "highlight_intensity_insufficient",
+          "shading_complexity_gap",
+          "charm_level_below_peers"
+        ],
+        "reasoning": "Peer set (Denzi helmets and shields) exhibits sophisticated multi-tone gradient shading with clear 3D volumetric form — every peer uses 4-6 distinct shading steps to convey curvature and material. The boots_speed_v02 candidate uses roughly 2-3 flat color blocks with minimal transitional shading, producing a visibly flatter, more primitive pixel-art feel. Outline weight is consistent (1px dark), and outline color matches. Shadow direction appears roughly correct (top-left light source), but shadow count is lower — peers show distinct ambient-occlusion-style darkening at recessed areas that boots lack. Highlight intensity on peers is strong and specular (especially the gold and teal helmets); boots show only a modest warm-orange highlight strip with no secondary bounce light. Detail density on peers includes rivets, engravings, face-plate geometry, and shield boss detail; boots show almost no surface detail beyond color zoning. Proportion is plausible for the item type. Palette overlap is not penalised (different item type = different hue family is acceptable). Charm level is the clearest failure: peers project 'inventory-quality RPG equipment' refinement; boots read as a rough draft or placeholder at the current rendering resolution. The cumulative gap in rendering sophistication and detail density pushes this below the marginal threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "peer_reference_set_skews_dungeon_crawler",
+          "boots_design_generic_RPG_not_distinctly_whimsical",
+          "warm_color_positive_but_silhouette_lacks_fairy_tale_charm"
+        ],
+        "reasoning": "The candidate boots (right, 4x) display a warm orange/amber palette which aligns with the bright/warm target tone — no grimdark desaturation, no edgy spikes, no occult markings. However, the peer reference set (left) is a collection of heavily detailed medieval helmet icons with metallic shading, horned visors, and skull-like dark shields that read as classic dungeon-crawler RPG rather than cute Nintendo-family-friendly fairy-tale. The boots themselves are competent pixel art but feel generic RPG-item rather than distinctly whimsical or toy-diorama in silhouette — no rounded charm curves, no enchantment sparkle cues, no Zelda-esque warmth in the design language. The warm hue saves it from a fail, but the overall tonal register of the sheet sits closer to a mid-tier PC RPG than Echoes-style wholesome charm.",
+        "confidence": 0.68
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.98,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 4,
+    "warningCount": 6,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.103Z"
+}

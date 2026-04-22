@@ -24,14 +24,15 @@ import {
   killPlayer,
   setProgressFlag,
   prepareCleanScreenshot,
+  getCleanScreenshotOptions,
   resetMechanicsLab,
   triggerPlateContact,
+  triggerPortalContact,
 } from './helpers/playwright-cocos-helpers.mjs';
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-const TOOLBAR_HEIGHT = 37;
 const SCREENSHOT_DIR = 'tests/__screenshots__/demo-audit';
 
 /** Collect JS console errors during a callback. */
@@ -51,9 +52,8 @@ async function collectConsoleErrors(page, fn) {
 /** Take a cropped screenshot (no editor toolbar) and save to the audit dir. */
 async function auditScreenshot(page, label) {
   await prepareCleanScreenshot(page);
-  const vp = page.viewportSize();
   const buffer = await page.screenshot({
-    clip: { x: 0, y: TOOLBAR_HEIGHT, width: vp.width, height: vp.height - TOOLBAR_HEIGHT },
+    ...(await getCleanScreenshotOptions(page)),
     path: `${SCREENSHOT_DIR}/${label}.png`,
   });
   return buffer;
@@ -69,12 +69,17 @@ async function readHudStatus(page) {
 
     if (!hudRoot) return { hasHud: false };
 
-    // Collect all Label text content under HudRoot
+    // We mirror what a tester would actually see. `node.active` in Cocos is the
+    // local flag, not the cumulative state -- a child node may have
+    // `_active=true` while sitting under an inactive parent and therefore be
+    // invisible. Use `activeInHierarchy` so deactivated subtrees are skipped.
+
+    // Collect all Label text content under HudRoot.
     const labels = [];
     const walkLabels = (node) => {
-      if (!node) return;
+      if (!node || node.activeInHierarchy === false) return;
       for (const comp of (node.components ?? [])) {
-        if (comp?.constructor?.name === 'Label' && comp.string != null) {
+        if (comp?.constructor?.name === 'Label' && comp.enabled !== false && comp.string != null) {
           labels.push({ node: node.name, text: comp.string });
         }
       }
@@ -84,15 +89,13 @@ async function readHudStatus(page) {
     };
     walkLabels(hudRoot);
 
-    // Check for debug elements
+    // Check for debug elements that are actually visible to the player.
     const debugElements = [];
     const walkDebug = (node) => {
-      if (!node) return;
+      if (!node || node.activeInHierarchy === false) return;
       const name = node.name?.toLowerCase?.() ?? '';
       if (name.includes('debug') || name.includes('dev-') || name.includes('test-')) {
-        if (node.active) {
-          debugElements.push(node.name);
-        }
+        debugElements.push(node.name);
       }
       for (const child of (node.children ?? [])) {
         walkDebug(child);
@@ -254,11 +257,17 @@ test.describe('Demo Playthrough Audit', () => {
 
       // --- 8. Attack -------------------------------------------------------
       try {
-        await pressTouchButton(page, 'TouchAttack');
-        await stepFrames(page, 2);
-        const afterAttack = await readRuntimeState(page);
-        if (!afterAttack.isAttacking) {
+        const attackResult = await pressTouchButton(page, 'TouchAttack');
+        let attackObserved = attackResult.isAttacking === true;
+        if (!attackObserved) {
+          await stepFrames(page, 1);
+          const afterOneFrame = await readRuntimeState(page);
+          attackObserved = afterOneFrame.isAttacking;
+        }
+        if (!attackObserved) {
           addIssue('CRITICAL', 'Attack button pressed but player is not in attacking state');
+        } else {
+          await stepFrames(page, 2);
         }
       } catch (e) {
         addIssue('CRITICAL', `Attack button failed: ${e.message}`);
@@ -325,15 +334,21 @@ test.describe('Demo Playthrough Audit', () => {
     await movePlayerNearTarget(page, 'Portal-FieldWest', -18, 0);
     await stepFrames(page, 5);
 
-    // Check portal readiness
+    // Check portal readiness and execute the real ScenePortal transition.
     const state = await readRuntimeState(page);
     console.log(`  Portal-FieldWest active: portal is ${state.worldNames.includes('Portal-FieldWest') ? 'present' : 'MISSING'}`);
     console.log(`  Camp gate open: ${state.gateOpenActive ?? 'N/A'}`);
 
     await auditScreenshot(page, 'flow-portal-camp-to-field');
 
-    // The portal node should exist - it's initially inactive but gating is handled
+    expect(gateOpened || state.gateOpenActive === true, 'Camp gate should be open before entering Portal-FieldWest').toBe(true);
     expect(state.worldNames).toContain('Portal-FieldWest');
+    const portalResult = await triggerPortalContact(page, 'Portal-FieldWest', { interceptSwitch: true });
+    expect(portalResult.wasActive, 'Portal-FieldWest should be active before contact').toBe(true);
+    expect(portalResult.targetScene).toBe('FieldWest');
+    expect(portalResult.requestedScene).toBe('FieldWest');
+    expect(portalResult.checkpointSceneName).toBe('FieldWest');
+    expect(portalResult.checkpointMarkerId).toBe('field-west-entry');
   });
 
   // =========================================================================
@@ -393,8 +408,11 @@ test.describe('Demo Playthrough Audit', () => {
     expect(beforeHealth.current).toBe(beforeHealth.max);
     console.log(`  Starting HP: ${beforeHealth.current}/${beforeHealth.max}`);
 
-    // Kill the player
-    const killResult = await killPlayer(page);
+    // Kill the player. PlayerController now auto-respawns when health hits 0
+    // (the manual TouchRespawn and auto-death paths share the same
+    // GAME_EVENT_RESPAWN_REQUESTED handler), so disableAutoRespawn lets us see
+    // the dead state and then explicitly verify the manual button restores HP.
+    const killResult = await killPlayer(page, { disableAutoRespawn: true });
     console.log(`  After kill: HP=${killResult.currentHealth}`);
     expect(killResult.currentHealth).toBe(0);
 
@@ -413,16 +431,14 @@ test.describe('Demo Playthrough Audit', () => {
       await stepFrames(page, 15);
       const afterRespawn = await readPlayerHealth(page);
       console.log(`  After respawn: HP=${afterRespawn.current}/${afterRespawn.max}`);
-      respawnWorked = afterRespawn.current > 0;
+      respawnWorked = afterRespawn.current > 0 && afterRespawn.current === afterRespawn.max;
     } catch (e) {
       console.log(`  Respawn button error: ${e.message}`);
     }
 
     await auditScreenshot(page, 'flow-player-respawned');
 
-    if (!respawnWorked) {
-      console.log('  [CRITICAL] Respawn did not restore player health');
-    }
+    expect(respawnWorked, 'Manual TouchRespawn must restore player HP back to max').toBe(true);
   });
 
   // =========================================================================
@@ -677,22 +693,28 @@ test.describe('Demo Playthrough Audit', () => {
       const scene = window.cc?.director?.getScene?.();
       const canvas = scene?.getChildByName?.('Canvas');
       const worldRoot = canvas?.getChildByName?.('WorldRoot');
+      const hudRoot = canvas?.getChildByName?.('HudRoot');
+      const gameHud = hudRoot?.components?.find((component) => component?.constructor?.name === 'GameHud');
       const bossVictoryBanner = worldRoot?.getChildByName?.('BossVictoryBanner');
       const bossWindowBanner = worldRoot?.getChildByName?.('BossWindowBanner');
       const portalVictory = worldRoot?.getChildByName?.('Portal-BossVictory');
-      const bossReturnHint = worldRoot?.getChildByName?.('BossReturnHint');
       const bossStatusBanner = worldRoot?.getChildByName?.('BossStatusBanner');
 
       return {
+        bossObjectiveText: String(gameHud?.objectiveText ?? ''),
         bossVictoryBannerActive: bossVictoryBanner?.active ?? null,
         bossWindowBannerActive: bossWindowBanner?.active ?? null,
         portalVictoryActive: portalVictory?.active ?? null,
-        bossReturnHintActive: bossReturnHint?.active ?? null,
         bossStatusBannerActive: bossStatusBanner?.active ?? null,
       };
     });
 
     console.log(`  Victory UI state: ${JSON.stringify(victoryState)}`);
+    expect(victoryState.bossObjectiveText.trim()).not.toBe('');
+    expect(victoryState.bossVictoryBannerActive).toBe(true);
+    expect(victoryState.bossWindowBannerActive).toBe(false);
+    expect(victoryState.portalVictoryActive).toBe(true);
+    expect(victoryState.bossStatusBannerActive).toBe(false);
     await auditScreenshot(page, 'flow-boss-defeated');
 
     expect(flags).toContain('boss-cleared');

@@ -45,8 +45,8 @@ export class SceneMusicController extends Component {
   }
 
   protected onEnable(): void {
-    this.resolveSceneLoader()?.events.on(SCENE_EVENT_WILL_SWITCH, this.onSceneWillSwitch, this);
-    GameManager.instance?.events.on(GAME_EVENT_FLOW_CHANGED, this.onFlowChanged, this);
+    this.resolveSceneLoader()?.events?.on(SCENE_EVENT_WILL_SWITCH, this.onSceneWillSwitch, this);
+    GameManager.instance?.events?.on(GAME_EVENT_FLOW_CHANGED, this.onFlowChanged, this);
   }
 
   protected start(): void {
@@ -56,8 +56,8 @@ export class SceneMusicController extends Component {
   }
 
   protected onDisable(): void {
-    this.resolveSceneLoader()?.events.off(SCENE_EVENT_WILL_SWITCH, this.onSceneWillSwitch, this);
-    GameManager.instance?.events.off(GAME_EVENT_FLOW_CHANGED, this.onFlowChanged, this);
+    this.resolveSceneLoader()?.events?.off(SCENE_EVENT_WILL_SWITCH, this.onSceneWillSwitch, this);
+    GameManager.instance?.events?.off(GAME_EVENT_FLOW_CHANGED, this.onFlowChanged, this);
   }
 
   protected onDestroy(): void {

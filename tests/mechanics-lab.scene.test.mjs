@@ -119,7 +119,7 @@ test('MechanicsLab scene wires critical custom components', async () => {
   assert.equal(trapComponent.hideLabelWhenSkinned, true);
   assert.ok(checkpointMarker.visualSpriteFrame?.__uuid__, 'Checkpoint-01 should bind a checkpoint sprite frame.');
   assert.equal(checkpointBinding.bindingKey, 'checkpoint');
-  assert.match(checkpointBinding.selectedPath, /ashenzaris_altar\.png$/);
+  assert.match(checkpointBinding.selectedPath, /checkpoint\.png$/);
   assert.equal(worldBackdropBinding.bindingKey, 'outdoor_ground_ruins');
   assert.equal(flowerBinding.bindingKey, 'echo_spring_flower');
   assert.match(flowerBinding.selectedPath, /EchoSpringFlower\.prefab$/);
@@ -151,7 +151,11 @@ test('ArrowProjectile prefab exposes visual and impact-ready structure', async (
   assert.equal(projectileComponent.rotateToDirection, true);
   assert.equal(assetBinding.bindingKey, 'projectile_arrow');
   assert.match(assetBinding.selectedPath, /ArrowProjectile\.prefab$/);
-  assert.equal(debugLabel._active, true);
+  // DebugLabel is dev scaffolding ("ARROW" placeholder text). It must spawn
+  // inactive so testers never see it; the node stays in the prefab structure
+  // so a developer can flip it back on while iterating. setPlaceholderLabelVisible
+  // also explicitly skips developer-only labels at runtime.
+  assert.equal(debugLabel._active, false);
 });
 
 test('MechanicsLab scene keeps initial gate states consistent', async () => {

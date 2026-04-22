@@ -17,8 +17,8 @@
     "test:integration": "playwright test -c ./playwright.config.mjs --grep-invert @visual",
     "test:visual": "playwright test -c ./playwright.config.mjs --grep @visual",
     "test:visual:update": "playwright test -c ./playwright.config.mjs --grep @visual --update-snapshots",
-    "test:cocos": "playwright test -c ./playwright.config.mjs ./tests/cocos-*.spec.mjs",
-    "test:responsive": "playwright test -c ./playwright.config.mjs ./tests/responsive-*.spec.mjs",
+    "test:cocos": "playwright test -c ./playwright.config.mjs ./tests/cocos-audio-visual.spec.mjs ./tests/cocos-echo-system.spec.mjs ./tests/cocos-enemy-ai.spec.mjs ./tests/cocos-health-component.spec.mjs ./tests/cocos-physics-collision.spec.mjs ./tests/cocos-player-controller.spec.mjs ./tests/cocos-scene-lifecycle.spec.mjs",
+    "test:responsive": "playwright test -c ./playwright.config.mjs ./tests/responsive-hud-behavior.spec.mjs ./tests/responsive-safe-area.spec.mjs ./tests/responsive-touch-input.spec.mjs",
     "test:ci": "node ./tools/run-ci-tests.mjs",
     "test:all": "npm run test:node && npm run test:integration",
     "build:wechat:config": "node ./tools/generate-wechat-build-config.mjs",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
-    "miniprogram-automator": "^0.12.1"
+    "miniprogram-automator": "^0.12.1",
+    "sharp": "^0.34.5"
   }
 }

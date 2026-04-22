@@ -1,0 +1,161 @@
+{
+  "file": "marker/checkpoint_v05.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\marker\\checkpoint_v05.png",
+  "category": "marker",
+  "candidateName": "checkpoint_v05",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "body_palette_reads_solemn_not_charming",
+          "silhouette_tall_rectangular_lacks_round_friendliness",
+          "cool_blue_cross_dominates_warm_gold_accent"
+        ],
+        "reasoning": "Technical axis is strong: clean 1px hard outlines throughout, 2-3 tone hard shading on gold crown and stone base, no AA, pixel-grid-snapped geometry, hand-pixeled detail. Scores ~8 technically. Emotional axis is weaker: the dark teal body framing a glowing blue cross reads sacred/formal rather than bright-warm-charming Hyrule. Gold crown at top and red gem add warmth but are visually minor compared to the cool dominant body. Silhouette is a tall narrow obelisk — not round or toy-diorama-friendly. Palette hits saturated blues and golds (Zelda-adjacent) but composition mood leans shrine/temple rather than joyful adventure checkpoint. Not grim or scary, so not a hard fail on emotional axis, but charm is subdued. Emotional ~6. Weighted: 0.6*6 + 0.4*8 = 6.8, rounded to 7. Marginal — warmer body colors or a friendlier silhouette would push to pass."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "insufficient_cute_charm",
+          "angular_not_round_soft",
+          "not_toy_like"
+        ],
+        "reasoning": "Silhouette clarity is solid — the tall obelisk with gold crown and blue crystal reads cleanly at 1x on grey, and both dark and light backgrounds provide strong contrast. Pixel edges are crisp with no mushiness. However, the design fails the cute/toy-charm bar: shapes are angular and rectangular (stately monument aesthetic) rather than round/soft as required by the Echoes of Wisdom reference. The overall feel is regal/mystical-dungeon-artifact, not friendly-sticker-toy. It would not pass the sticker test for cuteness — a child would describe it as 'a fancy column' not 'a friendly thing.' Silhouette clarity keeps it out of fail territory, but the charm deficit is real and significant.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "neutral_grey_stone_base",
+          "near_black_background_context_panel"
+        ],
+        "reasoning": "Warm gold crown/frame accents are saturated and harmonious with target palette. Sky blue crystals are bright and well-matched to the Echoes palette's sky blues. Dark body panel behind the crystal appears deep teal rather than pure black — colored dark, acceptable. However, the stone base segments use a neutral mid-grey that conflicts with the 'no pure grey' shadow rule. The leftmost context panel shows the sprite against a near-pure-black background which introduces cold/grim contrast. Overall mood is warm-accented but grounded by grey stone and dark surround — leaning toward functional rather than BRIGHT/WARM. Palette compatibility is good for gold and blue elements; stone needs a warm brown or teal tint to fully comply.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "base_blends_dark_floor",
+          "silhouette_narrow_may_lose_lower_half_on_dark_tiles"
+        ],
+        "reasoning": "The checkpoint_v05 totem is immediately locatable: the gold crown top and bright blue mid-section provide strong contrast against the dark red dungeon tiles, and the asset is spottable well within 0.5s. The silhouette is tall and vertical — distinctive from the low-profile enemy blob and pressure-plate entities nearby. No hue clash with background. Pixel-art style is consistent with surrounding scene elements, avoiding a pasted-in look. Minor concerns: the darker base of the asset shows mild blending with the floor on the red tile area, and the narrow vertical profile means the lower third can partially dissolve against darker regions. Overall Echoes-cleanliness is acceptable — ornate but not cluttered — though the palette is slightly richer/busier than the game's typical clean read. Functional and recognizable; falls just short of clean pass due to base-edge legibility risk.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite reads as formal/monumental rather than cute/whimsical",
+          "lacks the round bubbly silhouette expected of fairy-tale assets",
+          "solemn obelisk aesthetic edges toward dungeon-crawler save-point trope",
+          "warm palette present (blue crystal, gold crown) but overall feel is stiff/architectural rather than playful"
+        ],
+        "reasoning": "The checkpoint_v05 sprite is a tall pixel-art totem/pillar with a blue crystalline body and gold crown-like decoration. Color palette (mid-blue, gold) is within the allowed warm/magical range and avoids all flagged out-of-tone categories (no grimdark, no aggression, no cold-corporate). However the sprite's silhouette is tall, symmetrical, and monumental — more 'magic obelisk' than 'cute fairy-tale object'. The toy-diorama / cute-round brief calls for bubbly, approachable shapes with warmth and sparkle; this sprite is restrained and formal. It does not break the scene's tone but does not reinforce it either. The dark dungeon environment already stresses the target aesthetic; adding an austere totem further dilutes the cute/sunny quality rather than elevating it. Pass threshold not met; recommend rounder body, warmer accent colours (pinks/yellows), and a more playful top flourish to push into pass territory.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "marker taller than player height reference by ~3-4x (appears ~130px screen height vs ~45px per tile)",
+          "front-facing perspective sprite inconsistent with top-down world view",
+          "scale too large for marker category — should be 50-75% of player, not larger"
+        ],
+        "reasoning": "The checkpoint_v05 marker is the tall blue/gold totem figure composited in the center of the scene. In screen space it occupies roughly 40px wide × 130px tall against a tile grid where one tile ≈ 45px — making it approximately 3 tiles tall (~96 game units). The player reference is 32×32, so this marker is ~3× the player height, violating the rule that items/markers must never exceed player size. Additionally the sprite reads as a front-elevation/isometric statue while the world is strictly top-down orthographic, creating a perspective mismatch. The toy-diorama feel is disrupted because the marker dominates the mid-scene vertically and reads as foreground decor rather than a ground-plane object. Combination of oversized scale and perspective inconsistency pushes verdict to fail.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "minor_gem_shading_transitions"
+        ],
+        "reasoning": "8x zoom reveals clean individual pixel boundaries throughout — no sub-pixel rendering or AA bleed on outer edges. Solid color areas (dark background, gold trim bands) are free of noise pixels. Outlines are consistently 1px dark throughout the sprite perimeter and internal divisions. Gold elements use 3 discrete tones (highlight/mid/shadow) — no smooth gradient detected. The central blue gem uses 2-3 hard tones with a lighter center cluster; transitions are discrete pixel steps, not gradients, though the step density could be flagged as borderline smooth at the gem core. No repeating AI texture patterns detected. Detail elements (top flame gem, side decorative mounts, bottom teal panel) are crisp with no melting. Left-right symmetry holds for structural elements; minor asymmetry in top flame pixels is consistent with intentional pixel art style. No color bleed between blue gem and gold frame. Semantically coherent checkpoint/shrine totem. One minor issue: the gem center shading uses closely-spaced tone steps that approach a smooth transition — not a disqualifying artifact but worth noting. Overall execution is consistent with clean hand-crafted or high-quality procedural pixel art.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_overlap_low",
+          "charm_level_deficit",
+          "detail_density_lower",
+          "highlight_intensity_weaker"
+        ],
+        "reasoning": "Peer set (Denzi helmets) uses varied warm-cool balance with grays, reds, golds, and teal accents; candidate is monolithically cool blue-cyan with almost no warm tones — color temperature mismatch is notable. Outline weight appears roughly consistent (1px dark), and rendering style is both pixel art, so those dims hold. Shadow direction is ambiguous on candidate's narrow tower form, only 1 visible shadow zone vs peers' 2-3. Highlight intensity: peers show crisp bright white/light highlight spots; candidate's blue palette mutes highlight contrast significantly. Palette overlap: only the teal/cyan helmet peers share any hue overlap, leaving ~70% of the peer palette unrepresented. Detail density: candidate has a simple striped/segmented column, peers pack more internal detail per pixel-area. Proportion: candidate is extremely tall-narrow (approx 4:1 H:W); peers are compact ~1:1 — item-type difference noted but the silhouette reads as 'generic asset' not 'Denzi charm'. Charm level: peer helmets project personality (horns, crests, faces implied); checkpoint tower is utilitarian with no personality features, falling noticeably short of peer CHARM LEVEL. Overall: style-engine is correct (pixel art, dark outline) but palette, temperature, charm, and highlight execution are divergent enough to flag as marginal.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "candidate_lacks_warmth",
+          "generic_pixel_art_no_whimsy",
+          "muted_blue_tone_not_sunny",
+          "architectural_element_feels_utilitarian_not_diorama"
+        ],
+        "reasoning": "LEFT peers are clearly out-of-tone: steel-grey medieval helmets with realistic proportions and cold desaturated palettes — grimdark/dungeon-crawler register, hard fail against target. RIGHT candidate (4x tower/pillar) avoids the worst grimdark sins: no dark steel, no gore, no edginess. However it reads as generic utilitarian RPG architecture rather than warm fairy-tale toy-diorama. The blue-teal palette is cool rather than bright/warm/sunny; there is no visual whimsy, no charm cue, no Hyrulean warmth or Nintendo-family-friendly delight. It would not look out of place in a generic mobile dungeon crawler. Not a fail, but it needs warmer hues, more personality/silhouette charm, and a clear diorama-toy quality to fully pass the Echoes/BotW-Echoes tone bar.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.58,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.107Z"
+}

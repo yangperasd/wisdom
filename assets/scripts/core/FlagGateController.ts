@@ -1,6 +1,6 @@
 import { _decorator, CCString, Component, Node, SpriteFrame } from 'cc';
 import { GameManager } from './GameManager';
-import { GAME_EVENT_FLAGS_CHANGED } from './GameTypes';
+import { GAME_EVENT_FLAGS_CHANGED, GAME_EVENT_RESPAWN_REQUESTED } from './GameTypes';
 import { applySpriteFrameToPlaceholderVisual } from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
@@ -46,7 +46,8 @@ export class FlagGateController extends Component {
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.applyStateAfterReset, this);
   }
 
   public applyState(): void {
@@ -67,8 +68,16 @@ export class FlagGateController extends Component {
   }
 
   private bindGameManager(): void {
-    GameManager.instance?.events.off(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
-    GameManager.instance?.events.on(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.applyStateAfterReset, this);
+    GameManager.instance?.events?.on(GAME_EVENT_FLAGS_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.on(GAME_EVENT_RESPAWN_REQUESTED, this.applyStateAfterReset, this);
+  }
+
+  private applyStateAfterReset(): void {
+    // RoomResetController also reacts to respawn and may restore initial node
+    // visibility, so re-apply flag-gated state one tick later.
+    this.scheduleOnce(() => this.applyState(), 0);
   }
 
   private applyVisualSkins(): void {

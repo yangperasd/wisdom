@@ -1,18 +1,15 @@
 import { test, expect } from '@playwright/test';
 import {
   ensurePreviewServer, openPreviewScene, stepFrames,
-  resetMechanicsLab, unlockEcho, pressTouchButton, prepareCleanScreenshot,
+  resetMechanicsLab, unlockEcho, pressTouchButton, prepareCleanScreenshot, getCleanScreenshotOptions,
 } from './helpers/playwright-cocos-helpers.mjs';
-
-const TOOLBAR_HEIGHT = 37;
 
 test.describe('@visual echo button states', () => {
   test.beforeAll(async ({ baseURL }) => { await ensurePreviewServer(baseURL); });
 
   async function cleanShot(page) {
     await prepareCleanScreenshot(page);
-    const vp = page.viewportSize();
-    return { clip: { x: 0, y: TOOLBAR_HEIGHT, width: vp.width, height: vp.height - TOOLBAR_HEIGHT } };
+    return getCleanScreenshotOptions(page);
   }
 
   test('default state: Box selected, Flower and Bomb locked', async ({ page }) => {

@@ -153,9 +153,9 @@
     "_far": 2000,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 247,
+      "g": 242,
+      "b": 221,
       "a": 255
     },
     "_depth": 1,
@@ -446,7 +446,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "004c371a9df64f7ca16907"
+    "_id": "a499b9c78e5a43aeb80b35"
   },
   {
     "__type__": "cc.Node",
@@ -508,7 +508,7 @@
         "__id__": 45
       },
       {
-        "__id__": 297
+        "__id__": 298
       }
     ],
     "_prefab": null,
@@ -538,7 +538,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4f9b349019894bbab1cf4d"
+    "_id": "c37c3c25d5f042588c3007"
   },
   {
     "__type__": "cc.Node",
@@ -624,7 +624,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "a406b771c127414cafdf94"
+    "_id": "f37dc164ddd746459ed28c"
   },
   {
     "__type__": "cc.Node",
@@ -698,7 +698,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1975618eb7e84650adcf73"
+    "_id": "3b66b3818ef745f9bc49d6"
   },
   {
     "__type__": "cc.UITransform",
@@ -892,7 +892,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f6d2d38e1aaf449e851a8e"
+    "_id": "2e0caa9c1ec645eea219b5"
   },
   {
     "__type__": "cc.UITransform",
@@ -960,7 +960,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "228e3b6b6fed4ba09e19b6"
+    "_id": "4dc1477049484201b1e0b6"
   },
   {
     "__type__": "cc.UITransform",
@@ -1057,7 +1057,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "08f6614ccb8741be971c9f"
+    "_id": "89bc31cc91754da6869ca3"
   },
   {
     "__type__": "cc.UITransform",
@@ -1101,7 +1101,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PLAYER",
+    "_string": "小勇者",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -1238,7 +1238,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "78d1b425c6574a3c9c7ce5"
+    "_id": "363bd4e8c42a4951858f1a"
   },
   {
     "__type__": "cc.UITransform",
@@ -1358,7 +1358,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d144ea7921ba455bac0dc9"
+    "_id": "6f90915b7d104feeb18775"
   },
   {
     "__type__": "05c94DBx9BF/rI3SBLi8DRz",
@@ -1538,7 +1538,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "093ad2818b0e4f8ab380d6"
+    "_id": "d0e644f84b04435fa535a2"
   },
   {
     "__type__": "cc.UITransform",
@@ -1573,20 +1573,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 15,
-      "g": 24,
-      "b": 32,
-      "a": 225
+      "r": 255,
+      "g": 244,
+      "b": 210,
+      "a": 232
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 114,
-      "g": 164,
-      "b": 179,
-      "a": 70
+      "r": 255,
+      "g": 219,
+      "b": 142,
+      "a": 96
     },
     "strokeWidth": 2,
-    "cornerRadius": 20,
+    "cornerRadius": 22,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1635,7 +1635,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "1e1fad4040444c3f903e73"
+    "_id": "d7e59819fba6497aadf0c5"
   },
   {
     "__type__": "cc.UITransform",
@@ -1670,20 +1670,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 25,
-      "g": 43,
-      "b": 38,
-      "a": 212
+      "r": 255,
+      "g": 251,
+      "b": 229,
+      "a": 226
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 115,
-      "g": 172,
-      "b": 146,
-      "a": 58
+      "r": 255,
+      "g": 230,
+      "b": 158,
+      "a": 88
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 18,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1732,7 +1732,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "49c42a2c27f04698bf7a51"
+    "_id": "9e61fea77bf64fa1989117"
   },
   {
     "__type__": "cc.UITransform",
@@ -1767,20 +1767,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 19,
-      "g": 26,
-      "b": 34,
-      "a": 188
+      "r": 231,
+      "g": 248,
+      "b": 218,
+      "a": 210
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 113,
-      "g": 144,
-      "b": 169,
-      "a": 42
+      "r": 190,
+      "g": 229,
+      "b": 166,
+      "a": 82
     },
     "strokeWidth": 2,
-    "cornerRadius": 16,
+    "cornerRadius": 18,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -1829,7 +1829,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "dbc219e838eb413abd107f"
+    "_id": "37563c4a01f94c3588e43d"
   },
   {
     "__type__": "cc.UITransform",
@@ -1866,14 +1866,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 246,
-      "b": 240,
+      "r": 75,
+      "g": 52,
+      "b": 27,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Room A - Box",
+    "_string": "箱子房",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
     "_actualFontSize": 24,
@@ -1934,7 +1934,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9040b6f7b25f4e53a1eabd"
+    "_id": "e33b05868c6d4889bdce23"
   },
   {
     "__type__": "cc.UITransform",
@@ -1971,14 +1971,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 226,
-      "g": 244,
-      "b": 224,
+      "r": 72,
+      "g": 80,
+      "b": 44,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Summon a box to hold the plate and claim the relic.",
+    "_string": "召唤箱子压住机关，拿到房间遗物",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -2039,7 +2039,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "7c8512baf3124e90a7d09d"
+    "_id": "edef9b91764045e09ac86b"
   },
   {
     "__type__": "cc.UITransform",
@@ -2076,9 +2076,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 232,
-      "b": 221,
+      "r": 132,
+      "g": 61,
+      "b": 52,
       "a": 255
     },
     "_sharedMaterial": null,
@@ -2144,7 +2144,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "e26b5b46311b477dba9751"
+    "_id": "f5603d4d64aa4ae7b80188"
   },
   {
     "__type__": "cc.UITransform",
@@ -2181,14 +2181,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 228,
-      "g": 242,
-      "b": 255,
+      "r": 48,
+      "g": 96,
+      "b": 106,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "当前回响 箱子",
+    "_string": "回响 箱子",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -2249,7 +2249,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "7c8953921d0542279678be"
+    "_id": "58515e72a0fc4a3f9956af"
   },
   {
     "__type__": "cc.UITransform",
@@ -2286,14 +2286,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 220,
-      "g": 223,
-      "b": 226,
+      "r": 93,
+      "g": 79,
+      "b": 58,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "检查点 未激活",
+    "_string": "营火 未激活",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -2354,7 +2354,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9011d21ed74349e4ace2f3"
+    "_id": "8fb171439eba4f35b32cb7"
   },
   {
     "__type__": "cc.UITransform",
@@ -2391,9 +2391,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 206,
-      "g": 220,
-      "b": 234,
+      "r": 61,
+      "g": 88,
+      "b": 64,
       "a": 255
     },
     "_sharedMaterial": null,
@@ -2466,7 +2466,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b3cfa8c5f34c4970bcf8a4"
+    "_id": "5c6f53404b5e440c93958c"
   },
   {
     "__type__": "cc.UITransform",
@@ -2534,7 +2534,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b72b4d74cb8e4bf48cc48b"
+    "_id": "9f4b02baddc6417ea800a7"
   },
   {
     "__type__": "cc.UITransform",
@@ -2569,17 +2569,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 18,
-      "g": 28,
-      "b": 34,
-      "a": 176
+      "r": 234,
+      "g": 248,
+      "b": 222,
+      "a": 188
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 178,
-      "g": 214,
-      "b": 220,
-      "a": 96
+      "r": 185,
+      "g": 226,
+      "b": 170,
+      "a": 116
     },
     "strokeWidth": 3,
     "cornerRadius": 74,
@@ -2631,7 +2631,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ca1c70b9f8ce4807b3423c"
+    "_id": "e28f4e33a7bb47dca6772d"
   },
   {
     "__type__": "cc.UITransform",
@@ -2666,17 +2666,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 111,
-      "g": 183,
-      "b": 194,
+      "r": 95,
+      "g": 184,
+      "b": 158,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 235,
       "g": 255,
-      "b": 255,
-      "a": 120
+      "b": 235,
+      "a": 136
     },
     "strokeWidth": 2,
     "cornerRadius": 31,
@@ -2754,7 +2754,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f35f4b8af8e247d3903672"
+    "_id": "c12d9237563a43e6a76970"
   },
   {
     "__type__": "cc.UITransform",
@@ -2822,7 +2822,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "dec870b6532c432da391dc"
+    "_id": "343c593d07314a0caface3"
   },
   {
     "__type__": "cc.UITransform",
@@ -2919,7 +2919,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b1f7bbeefba14286813182"
+    "_id": "b2c5215c4cbb467fa1ccd0"
   },
   {
     "__type__": "cc.UITransform",
@@ -2963,7 +2963,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ATTACK",
+    "_string": "攻击",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3047,7 +3047,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "20122374fecb48c4bb5a1d"
+    "_id": "35c70195d02f4103a6e3e3"
   },
   {
     "__type__": "cc.UITransform",
@@ -3115,7 +3115,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9c65ca73a23c44feba0ec5"
+    "_id": "dbc2721ed83546e9a02ca4"
   },
   {
     "__type__": "cc.UITransform",
@@ -3212,7 +3212,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "595b6b1bf78e48db879d91"
+    "_id": "a5ba32278c91486aa33f59"
   },
   {
     "__type__": "cc.UITransform",
@@ -3256,7 +3256,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "SUMMON",
+    "_string": "召唤",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3340,7 +3340,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5e9334d7ed3843b5ae07d7"
+    "_id": "f7b99fe662d14a57bd5638"
   },
   {
     "__type__": "cc.UITransform",
@@ -3408,7 +3408,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "fef3faedafa94af6927010"
+    "_id": "dab941fbace24d08a16bec"
   },
   {
     "__type__": "cc.UITransform",
@@ -3505,7 +3505,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ceb741a4a20a4e7fb15c94"
+    "_id": "b122e9fed6fa468d8411b0"
   },
   {
     "__type__": "cc.UITransform",
@@ -3549,7 +3549,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RESET",
+    "_string": "复活",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -3633,7 +3633,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "45bfabb824ca4009bb0bfd"
+    "_id": "c20be58e4f4844f790a7c9"
   },
   {
     "__type__": "cc.UITransform",
@@ -3701,7 +3701,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "49cf0b7586644e9aba10fe"
+    "_id": "2b44e245986c4586a81d04"
   },
   {
     "__type__": "cc.UITransform",
@@ -3798,7 +3798,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "62530df4ac2f47e088842f"
+    "_id": "43ebed40a47848ff8b8092"
   },
   {
     "__type__": "cc.UITransform",
@@ -3842,7 +3842,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOX",
+    "_string": "箱子",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -3926,7 +3926,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "742c9d24fd81441f881265"
+    "_id": "90eae76566804958ab8376"
   },
   {
     "__type__": "cc.UITransform",
@@ -3994,7 +3994,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "26e3a87fda594f1abd3639"
+    "_id": "202a65c98899402c8299cc"
   },
   {
     "__type__": "cc.UITransform",
@@ -4091,7 +4091,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4eb1939f955446daad9066"
+    "_id": "5513a42c38294d60a71083"
   },
   {
     "__type__": "cc.UITransform",
@@ -4135,7 +4135,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "FLOWER",
+    "_string": "弹花",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4219,7 +4219,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "64b224cdd4934064a5b9ae"
+    "_id": "93556351be264a07bc9997"
   },
   {
     "__type__": "cc.UITransform",
@@ -4287,7 +4287,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d0d4c88868914b89b27d09"
+    "_id": "f49a116a41df4b56894171"
   },
   {
     "__type__": "cc.UITransform",
@@ -4384,7 +4384,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "44f636bee0024e9e8b8f25"
+    "_id": "20f5e5f87da140b59a96be"
   },
   {
     "__type__": "cc.UITransform",
@@ -4428,7 +4428,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BOMB",
+    "_string": "炸虫",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4512,7 +4512,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "c8fca4c7a5ae463895e459"
+    "_id": "0bb3df6fc2374a5faf13ee"
   },
   {
     "__type__": "cc.UITransform",
@@ -4580,7 +4580,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ec864e8417e94d6abbcd30"
+    "_id": "d1a4e613a2194f658332a0"
   },
   {
     "__type__": "cc.UITransform",
@@ -4677,7 +4677,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "0caaff56d6994ee1818444"
+    "_id": "a889136516ae49a1947fdb"
   },
   {
     "__type__": "cc.UITransform",
@@ -4721,7 +4721,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PAUSE",
+    "_string": "暂停",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -4814,7 +4814,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "0b2b475061a64c7f854d53"
+    "_id": "f98d14a8780a4be98d9343"
   },
   {
     "__type__": "cc.UITransform",
@@ -4849,20 +4849,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 14,
-      "g": 21,
-      "b": 29,
-      "a": 236
+      "r": 255,
+      "g": 246,
+      "b": 222,
+      "a": 242
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 170,
-      "g": 199,
-      "b": 219,
-      "a": 84
+      "r": 255,
+      "g": 218,
+      "b": 148,
+      "a": 112
     },
     "strokeWidth": 2,
-    "cornerRadius": 24,
+    "cornerRadius": 26,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -4911,7 +4911,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "88f3ca0ab29e4a51ac6e7d"
+    "_id": "9710f34b7334436591521d"
   },
   {
     "__type__": "cc.UITransform",
@@ -4948,14 +4948,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 245,
-      "g": 246,
-      "b": 240,
+      "r": 75,
+      "g": 52,
+      "b": 27,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Paused",
+    "_string": "暂停",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 26,
@@ -5016,7 +5016,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "78767222c5da4a8e911310"
+    "_id": "864b53060de441fcbe0d0b"
   },
   {
     "__type__": "cc.UITransform",
@@ -5053,14 +5053,14 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 212,
-      "g": 224,
-      "b": 234,
+      "r": 83,
+      "g": 78,
+      "b": 61,
       "a": 255
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Continue, restart from the checkpoint, or return to camp.",
+    "_string": "继续游玩、回到营火，或返回营地。",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5128,7 +5128,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "20a5ed6512bc4f14a81f5f"
+    "_id": "cce8362d795a46ddab6a4f"
   },
   {
     "__type__": "cc.UITransform",
@@ -5196,7 +5196,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "81cf2c083cee42999e3cb1"
+    "_id": "85813053ac1f461c9b5f18"
   },
   {
     "__type__": "cc.UITransform",
@@ -5293,7 +5293,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b08bf879320b404aae8a6f"
+    "_id": "a67dd0e58e7542fbbfd2d3"
   },
   {
     "__type__": "cc.UITransform",
@@ -5337,7 +5337,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "CONTINUE",
+    "_string": "继续",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5421,7 +5421,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "38c89f557d6d434aabed28"
+    "_id": "248a62eb421d4842aa6dae"
   },
   {
     "__type__": "cc.UITransform",
@@ -5489,7 +5489,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4da9aac9b8aa45e0be6f14"
+    "_id": "8cf1be2c27ea4be197f9a0"
   },
   {
     "__type__": "cc.UITransform",
@@ -5586,7 +5586,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "755e3f709cdc430b9e0f7e"
+    "_id": "07f34af777044cee9f19fe"
   },
   {
     "__type__": "cc.UITransform",
@@ -5630,7 +5630,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RESTART",
+    "_string": "回营火",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -5714,7 +5714,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8eff1c28e6ce4f21bf0daf"
+    "_id": "0429b0e5ee6f444b89c2a8"
   },
   {
     "__type__": "cc.UITransform",
@@ -5782,7 +5782,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "ceaf6593c9c4487b88c044"
+    "_id": "90957acfed244da4bb5c6b"
   },
   {
     "__type__": "cc.UITransform",
@@ -5879,7 +5879,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "671ec59076cb4263a0e1f4"
+    "_id": "3271eff31b5b4010a85a23"
   },
   {
     "__type__": "cc.UITransform",
@@ -5923,7 +5923,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "RETURN CAMP",
+    "_string": "回营地",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -6149,8 +6149,8 @@
     "pauseButton": {
       "__id__": 136
     },
-    "sceneTitle": "Room A - Box",
-    "objectiveText": "Summon a box to hold the plate and claim the relic.",
+    "sceneTitle": "箱子房",
+    "objectiveText": "召唤箱子压住机关，拿到房间遗物",
     "desktopHintText": "WASD 移动  J 攻击  K 召唤  Q/E 切换",
     "mobileHintText": "左侧摇杆移动，右侧按钮攻击与召唤",
     "_id": ""
@@ -6245,7 +6245,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8155c01a41de4b82a09a79"
+    "_id": "bb07ae5132f54cd683980f"
   },
   {
     "__type__": "cc.UITransform",
@@ -6280,20 +6280,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 34,
-      "g": 48,
-      "b": 56,
+      "r": 244,
+      "g": 238,
+      "b": 229,
       "a": 255
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 130,
-      "g": 157,
-      "b": 174,
-      "a": 42
+      "r": 247,
+      "g": 238,
+      "b": 219,
+      "a": 48
     },
     "strokeWidth": 2,
-    "cornerRadius": 24,
+    "cornerRadius": 28,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6348,7 +6348,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8723b4ede7444edf9225db"
+    "_id": "2c85fa8ceb914538a1cae0"
   },
   {
     "__type__": "cc.UITransform",
@@ -6383,20 +6383,20 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 96,
-      "g": 77,
-      "b": 48,
+      "r": 247,
+      "g": 228,
+      "b": 191,
       "a": 205
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 225,
-      "g": 198,
-      "b": 140,
-      "a": 58
+      "r": 255,
+      "g": 241,
+      "b": 211,
+      "a": 60
     },
     "strokeWidth": 2,
-    "cornerRadius": 22,
+    "cornerRadius": 24,
     "drawFill": true,
     "drawStroke": true,
     "_id": ""
@@ -6411,10 +6411,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "outdoor_ground_green",
-    "selectedPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_a.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "phase_3_selected",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -6428,10 +6428,7 @@
     "__prefab": null,
     "visualRoot": null,
     "spriteFrame": null,
-    "texture": {
-      "__uuid__": "48bb2cd7-f437-42bb-9562-12d52c38b0b6@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "texture": null,
     "hideLabelWhenSkinned": false,
     "tiled": true,
     "_id": ""
@@ -6446,10 +6443,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "outdoor_path_cobble",
-    "selectedPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_a.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "phase_3_selected",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -6463,10 +6460,7 @@
     "__prefab": null,
     "visualRoot": null,
     "spriteFrame": null,
-    "texture": {
-      "__uuid__": "f211eeeb-919f-4e14-886c-2f43bf9cc9e9@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "texture": null,
     "hideLabelWhenSkinned": false,
     "tiled": true,
     "_id": ""
@@ -6528,7 +6522,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3905fb4531054ab98cfc92"
+    "_id": "d810218b2165490bbd68bd"
   },
   {
     "__type__": "cc.UITransform",
@@ -6596,7 +6590,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "17f3081dbf37473eb8338a"
+    "_id": "1247a2912e0d43f592761e"
   },
   {
     "__type__": "cc.UITransform",
@@ -6693,7 +6687,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f29d4b73d3ef47a18fb6f3"
+    "_id": "c5210ceeb4c747c4984b8e"
   },
   {
     "__type__": "cc.UITransform",
@@ -6737,7 +6731,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "ROOM A CHECK",
+    "_string": "箱子房营火",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -6793,10 +6787,7 @@
     "__prefab": null,
     "markerId": "dungeon-room-a-entry",
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "413b43cb-75e7-45c8-bbf4-58e3e4fdf8c8@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -6809,10 +6800,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "checkpoint",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
+    "selectedPath": "",
     "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -6872,7 +6863,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "3b7c0a984e7e40bc82e904"
+    "_id": "14afe78d7bda4cc3b9c5e3"
   },
   {
     "__type__": "cc.UITransform",
@@ -6940,7 +6931,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "a545f50083a54963aafd83"
+    "_id": "739f2378d97c4bf1a03882"
   },
   {
     "__type__": "cc.UITransform",
@@ -6975,17 +6966,17 @@
     "__prefab": null,
     "fillColor": {
       "__type__": "cc.Color",
-      "r": 73,
-      "g": 102,
-      "b": 134,
-      "a": 225
+      "r": 195,
+      "g": 149,
+      "b": 112,
+      "a": 228
     },
     "strokeColor": {
       "__type__": "cc.Color",
-      "r": 214,
-      "g": 236,
-      "b": 255,
-      "a": 100
+      "r": 255,
+      "g": 244,
+      "b": 220,
+      "a": 118
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -7037,7 +7028,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "c02bc1c1e9714416b12d93"
+    "_id": "dd5954297dcf4ef191ef00"
   },
   {
     "__type__": "cc.UITransform",
@@ -7081,7 +7072,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "BACK TO HUB",
+    "_string": "返回大厅",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -7145,10 +7136,7 @@
     "targetPositionZ": 0,
     "preloadTarget": true,
     "playerNameIncludes": "Player",
-    "visualSpriteFrame": {
-      "__uuid__": "b844d9a0-8984-4fb0-a7b4-f00d829f3f72@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "visualSpriteFrame": null,
     "_id": ""
   },
   {
@@ -7161,10 +7149,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "portal",
-    "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-    "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "first_pass_wired",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -7224,7 +7212,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d6600ad2ffc14fa9a3d9c9"
+    "_id": "46e437d00e734128b89c18"
   },
   {
     "__type__": "cc.UITransform",
@@ -7292,7 +7280,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4f7ac4de2a2a44cb96c88f"
+    "_id": "53bf36d8c63f484abbf80a"
   },
   {
     "__type__": "cc.UITransform",
@@ -7389,7 +7377,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f03f9795c08f43589ac212"
+    "_id": "0ddcdb2794144ab4b4c802"
   },
   {
     "__type__": "cc.UITransform",
@@ -7433,7 +7421,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "PLATE",
+    "_string": "机关",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -7556,7 +7544,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "56b2d43c63564b35a17d55"
+    "_id": "7c4be75cbb804e68b3644d"
   },
   {
     "__type__": "cc.UITransform",
@@ -7624,7 +7612,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "bda21ab982a44100b93642"
+    "_id": "13d8c27599fe4838957a4c"
   },
   {
     "__type__": "cc.UITransform",
@@ -7721,7 +7709,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9d26c4a5e2374592a04e46"
+    "_id": "7be0f6e74c604ae5b7202a"
   },
   {
     "__type__": "cc.UITransform",
@@ -7765,7 +7753,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "GATE",
+    "_string": "小门",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -7833,7 +7821,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "d52d3cf379594508bf9c6a"
+    "_id": "6dc713816c874054b085a2"
   },
   {
     "__type__": "cc.UITransform",
@@ -7901,7 +7889,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b6b6d9ef2eaa40ef9b26d1"
+    "_id": "af7b6aaff30a4dd5b5cdaf"
   },
   {
     "__type__": "cc.UITransform",
@@ -7998,7 +7986,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8d340f899eb848f6bc34ba"
+    "_id": "d152459927b2412aae3976"
   },
   {
     "__type__": "cc.UITransform",
@@ -8042,7 +8030,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "OPEN",
+    "_string": "已开",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -8069,10 +8057,7 @@
     "_enabled": true,
     "__prefab": null,
     "visualRoot": null,
-    "spriteFrame": {
-      "__uuid__": "fc56ba57-eafc-4d2f-9c48-3b085baee8cc@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "spriteFrame": null,
     "texture": null,
     "hideLabelWhenSkinned": true,
     "tiled": false,
@@ -8088,10 +8073,7 @@
     "_enabled": true,
     "__prefab": null,
     "visualRoot": null,
-    "spriteFrame": {
-      "__uuid__": "3e045e5d-7115-4c3e-b15c-239dcf3e36ea@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "spriteFrame": null,
     "texture": null,
     "hideLabelWhenSkinned": true,
     "tiled": false,
@@ -8151,7 +8133,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "f7181604b5f7428eb6275a"
+    "_id": "daa236e1a9b048d3afe0e3"
   },
   {
     "__type__": "cc.UITransform",
@@ -8219,7 +8201,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "547e6bf0aa3a45f8bb05dc"
+    "_id": "73be0d1e494b4b4b83c87b"
   },
   {
     "__type__": "cc.UITransform",
@@ -8316,7 +8298,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "5c1578b7776549868ceb59"
+    "_id": "0f88d7903bb04da1ae873f"
   },
   {
     "__type__": "cc.UITransform",
@@ -8360,7 +8342,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "LOCK",
+    "_string": "阻挡",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -8477,7 +8459,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "a13f6055314a4e19b33b48"
+    "_id": "ab856c58dffc4bd087a0f4"
   },
   {
     "__type__": "cc.UITransform",
@@ -8545,7 +8527,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "9d8e7cff5dd940c0a3a910"
+    "_id": "c3a54e3e6ad64d3d816230"
   },
   {
     "__type__": "cc.UITransform",
@@ -8642,7 +8624,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "e31d6ffc37744220b8e3b6"
+    "_id": "e54e7e9bfa4a43889557ae"
   },
   {
     "__type__": "cc.UITransform",
@@ -8686,7 +8668,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "CLAIM BOX RELIC",
+    "_string": "拿取箱子遗物",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 18,
@@ -8772,10 +8754,10 @@
     "_enabled": true,
     "__prefab": null,
     "bindingKey": "pickup_relic",
-    "selectedPath": "assets/art/items/denzi/items/helmet/helmet_enchanted.png",
-    "fallbackPath": "assets/art/items/denzi/items/shield/shield_deep_a.png",
+    "selectedPath": "",
+    "fallbackPath": "",
     "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "ready_not_scene_bound",
+    "bindingStatus": "rect_visual_placeholder",
     "_id": ""
   },
   {
@@ -8855,7 +8837,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "c4c147e80abc4882b4c98c"
+    "_id": "7fbdbd8da4cc45b391ebf1"
   },
   {
     "__type__": "cc.UITransform",
@@ -8923,7 +8905,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "6176a4dfb7104fb9a958af"
+    "_id": "80b6c106ef4c451ab1a9d9"
   },
   {
     "__type__": "cc.UITransform",
@@ -9020,7 +9002,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "df4382cee3eb4c58b5eee0"
+    "_id": "94af3e9836f6402ab224a1"
   },
   {
     "__type__": "cc.UITransform",
@@ -9064,7 +9046,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "Only the box can keep this plate held down.",
+    "_string": "箱子压住机关",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 16,
@@ -9118,7 +9100,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "53afafae00034cd7b81b03"
+    "_id": "8ca8cee772db4ac6aeeb77"
   },
   {
     "__type__": "cc.Node",
@@ -9157,7 +9139,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8d16ab5660a343e88e60b3"
+    "_id": "80912bd4b995447cb924e4"
   },
   {
     "__type__": "cc.Node",
@@ -9196,6 +9178,9 @@
       },
       {
         "__id__": 296
+      },
+      {
+        "__id__": 297
       }
     ],
     "_prefab": null,
@@ -9225,7 +9210,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "4210b6c24b334adf9a9108"
+    "_id": "79959acbbcd640b1a4a4a4"
   },
   {
     "__type__": "cc.UITransform",
@@ -9293,7 +9278,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "b2c6f473401f475f9f3597"
+    "_id": "3b6d954ab6ea4c17af0fd0"
   },
   {
     "__type__": "cc.UITransform",
@@ -9390,7 +9375,7 @@
       "y": 0,
       "z": 0
     },
-    "_id": "8de422fbe073440999a103"
+    "_id": "a48b9e8740d64c8991460c"
   },
   {
     "__type__": "cc.UITransform",
@@ -9434,7 +9419,7 @@
     },
     "_sharedMaterial": null,
     "_useOriginalSize": true,
-    "_string": "WARDEN",
+    "_string": "史莱姆",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -9507,6 +9492,22 @@
     "_id": ""
   },
   {
+    "__type__": "3d2a6zMsZNMmK4uaNDa0rs2",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 283
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "bindingKey": "common_enemy",
+    "selectedPath": "",
+    "fallbackPath": "",
+    "sourceManifest": "asset_binding_manifest_v2.worldEntities",
+    "bindingStatus": "rect_visual_placeholder",
+    "_id": ""
+  },
+  {
     "__type__": "2df14ZD4fNE45davoqMNU1L",
     "_name": "",
     "_objFlags": 0,
@@ -9556,39 +9557,24 @@
     "_enabled": true,
     "__prefab": null,
     "enemyAI": {
-      "__id__": 294
+      "__id__": 295
     },
     "health": {
-      "__id__": 293
+      "__id__": 294
     },
     "visualRoot": {
       "__id__": 285
     },
     "idleSpriteFrame": null,
-    "idleTexture": {
-      "__uuid__": "2fc0cb24-c268-4a2d-838a-673b2e3c2081@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "idleTexture": null,
     "patrolSpriteFrame": null,
-    "patrolTexture": {
-      "__uuid__": "2fc0cb24-c268-4a2d-838a-673b2e3c2081@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "patrolTexture": null,
     "chaseSpriteFrame": null,
-    "chaseTexture": {
-      "__uuid__": "2fc0cb24-c268-4a2d-838a-673b2e3c2081@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "chaseTexture": null,
     "hurtSpriteFrame": null,
-    "hurtTexture": {
-      "__uuid__": "2fc0cb24-c268-4a2d-838a-673b2e3c2081@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "hurtTexture": null,
     "defeatedSpriteFrame": null,
-    "defeatedTexture": {
-      "__uuid__": "2fc0cb24-c268-4a2d-838a-673b2e3c2081@6c48a",
-      "__expectedType__": "cc.Texture2D"
-    },
+    "defeatedTexture": null,
     "hurtFlashSeconds": 0.18,
     "hideLabelWhenSkinned": true,
     "mirrorFacing": true,

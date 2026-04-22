@@ -1,0 +1,152 @@
+{
+  "file": "consumable/food_apple_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\food_apple_v00.png",
+  "category": "consumable",
+  "candidateName": "food_apple_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): The apple reads as warm, friendly, and inviting — saturated reds and oranges with vivid green leaf accents nail the bright Hyrule mood. Round silhouette and toy-like proportions feel charming rather than realistic. No grim/dark tones; palette is cheerful and Zelda-appropriate. Score: 8/10. Technical (40%): Consistent 1px hard outlines visible at all zoom levels with no anti-aliasing bleed. Shading uses 2-3 hard tonal steps on the body (dark-red outline → mid-red → warm orange highlight) plus a small white specular dot for gloss — all pixel-grid snapped. Leaf detailing is clean with distinct pixel clusters. Compared to the Denzi armor reference, the craft level is comparable: disciplined palette, hard transitions, no sub-pixel blurring. Score: 8/10. Weighted: 0.6×8 + 0.4×8 = 8.0. Passes both emotional and technical axes.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_mushy_at_1x",
+          "leaf_detail_lost_small",
+          "highlight_blob_reduces_readability"
+        ],
+        "reasoning": "At 1x the apple reads as a vague warm blob — the round shape suggests food but apple identity is uncertain; no distinct stem/leaf silhouette visible at that scale. At 4x the pixel art is charming: warm red body, green leaf cluster, a creamy highlight patch give it friendly toy appeal. Contrast on dark bg is good (bright red pops). On the light bg the drop-shadow helps lift it but the highlight patch blends slightly into the cream background, softening perceived contrast. Edge cleanliness is fair — the pixel outline is well-defined at 4x but the highlight mass makes the top-right silhouette feel mushy rather than crisp. Personality is present (rounded, inviting colour palette, leaf tuft) but the highlight treatment trades silhouette clarity for a shiny effect, which is the main charm-vs-clarity tension here. Passes the sticker test on dark bg, marginal on light. Rounds to marginal overall.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Apple sprite exhibits strong internal color harmony aligned with Echoes-tuned palette. Body uses warm saturated red-orange (not muddy, not neon), highlight is a peachy-salmon warm tone that reads cheerful and bright. Leaf/stem is a saturated mid-green matching the palette's greens. Shadow side of the apple uses warm dark brown-red rather than neutral grey or pure black — shadow coloring criterion met. Drop shadow on parchment background is a warm taupe, acceptable. Overall mood is unambiguously BRIGHT and WARM: classic complementary red-green pairing with warm orange accent. No cold corporate tones, no desaturated muddy areas, no goth near-blacks detected. Palette compatibility is high — all hues present in the reference swatch sheet. Minor note: drop shadow could be shifted slightly toward warm teal or plum per the colored-darks guideline, but current warm taupe is within acceptable range.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.67,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "red_hue_blends_with_dark_red_dungeon_tiles",
+          "small_sprite_size_reduces_spotability",
+          "borderline_0.5s_locatability"
+        ],
+        "reasoning": "The apple sprite (~30px) is placed on the dark red dungeon tile floor where the apple body's red/pink hue partially blends with the background. The green leaf on top provides the primary differentiating detail and helps break the camouflage. Locatability without the arrow guide would likely exceed 0.5s due to color similarity with the tile background. The pixel art style is native to the game's aesthetic and does not look pasted. There is no confusion with other entities (EchoBox is a distinct rectangular shape, enemy sprites are different silhouettes). The apple's position at the tile boundary gives slight edge contrast. Overall the asset is passable but the red-on-red-background color pairing is a mild readability concern that keeps it marginal rather than a clear pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon"
+        ],
+        "reasoning": "The food_apple_v00 sprite itself is a round, cute pixel-art apple in warm reds/pinks with a green leaf — friendly, bright, and in-tone for a cute fairy-tale aesthetic. It does not introduce grimdark, edgy, or horror elements. However, the surrounding scene is a dark dungeon-crawler environment (dark teal grid tiles, shadowy brown-red floor, low-key lighting) that sits at odds with the 'bright sunny magical toy diorama' target tone. The sprite alone is a pass-grade asset, but placed in this scene context the overall composite leans marginal. The apple does not shift mood negatively; it is actually the brightest, most cheerful element present. Flagging context mismatch rather than sprite failure.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "item_near_player_size",
+          "consumable_slightly_oversized"
+        ],
+        "reasoning": "The food_apple_v00 consumable appears roughly 38-45px in the composited scene, close to the 32x32 player reference size. Per spec, consumable items should be 50-75% of the player (16-24px). The apple reads as nearly player-sized rather than a small pickup. Pixel art style and top-down perspective are consistent with the scene. No wallpaper/zoom issues. Toy-diorama feel is preserved, but the apple's visual footprint slightly competes with entity-scale objects.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading",
+          "color_bleed",
+          "asymmetry"
+        ],
+        "reasoning": "Pixel art apple sprite examined at 4x and 8x zoom. Overall structure is clean with a dark 1px outline and limited palette (dark outline, orange-red body, white highlight, green leaf). Three concerns flagged: (1) Gradient shading — the body transitions from dark orange at bottom to lighter orange-salmon toward center without strict hard-tone jumps; more intermediate color steps than a hand-crafted 2-3-tone approach would use, suggesting AI interpolation. (2) Color bleed — the white highlight cluster bleeds into the orange body with 2-3 stray off-palette pixels at the boundary rather than a clean hard edge. (3) Asymmetry — right silhouette of the apple body bulges slightly more than the left when compared pixel-column by pixel-column, consistent with AI shape generation rather than deliberate pixel pushing. No sub-pixel AA detected (pixels are full-grid), no repeating pattern artifacts, no melting or semantic failure (reads clearly as an apple). Outline thickness is consistent at 1px throughout. Score 7 reflects a usable but not pristine pixel art asset.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch",
+          "charm_level_deficit",
+          "detail_density_gap",
+          "shadow_quality_inferior",
+          "highlight_work_underdeveloped"
+        ],
+        "reasoning": "Peer set (Denzi helmets) exhibits hallmark characteristics: smooth anti-aliased edges, multi-layer dithered shading, crisp 1px dark outlines with consistent weight, deliberate highlight glints, moderate-to-high detail density per sprite, and a distinctive 'cute-but-functional' RPG charm. The food_apple_v00 candidate fails on multiple fronts. (1) Outline weight: peers maintain tight 1px outlines; apple outlines appear slightly blotchy/inconsistent at equivalent scale. (2) Rendering style: the apple reads as a different pixel art tradition—flatter, cruder pixel placement vs. the refined Denzi multi-tone shading approach. (3) Shadow count/quality: peers show nuanced 2–3 tone shadow gradations; the apple shadow work is rudimentary, essentially 1-tone darkening with no dithering. (4) Highlight intensity: peer helmets have distinct specular highlight pixels; apple highlight is minimal and lacks the characteristic Denzi 'pop'. (5) Detail density: peers pack rivets, trim, and decorative elements at tiny scale demonstrating high pixel-craft; apple is a largely plain shape with minimal interior detail. (6) Charm level: Denzi sprites have a characteristic chibi charm even for armor; the apple reads as a generic utility sprite without that warmth—missing the character-imbued quality of the peer set. Color temperature and palette overlap differences are excused as expected for food vs. armor item type. Proportion is acceptable. However the cumulative rendering quality gap across 5+ dimensions is too large to overlook. This sprite does not convincingly belong to the Denzi family.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "low_distinctiveness_vs_generic_pixel_food",
+          "peer_refs_are_dungeon_helmets_not_warm_food_comps"
+        ],
+        "reasoning": "Candidate apple (right, 4x) shows warm saturated red with simple rounded pixel form — no grimdark, no cold desaturation, no edgy elements. Color temperature is broadly in-target for bright/sunny Nintendo aesthetic. However the sprite reads as competent-generic pixel food rather than distinctly Zelda/fairy-tale-charming: no sparkle, no leaf warmth, no whimsical silhouette flourish that would anchor it to toy-diorama or Hyrule-warmth. Peer reference sheet (left) consists entirely of dark metallic dungeon helmets — a poor warm-tone comparator set, making cross-panel tonal grading unreliable. Apple itself does not FAIL but lacks the positive charm signal needed for a confident pass.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.1,
+    "aestheticAvg": 7.67,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 4,
+    "warningCount": 6,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.116Z"
+}

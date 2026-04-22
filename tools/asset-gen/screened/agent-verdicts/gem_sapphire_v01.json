@@ -1,0 +1,155 @@
+{
+  "file": "treasure/gem_sapphire_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_sapphire_v01.png",
+  "category": "treasure",
+  "candidateName": "gem_sapphire_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): Bright saturated cyan-blue reads as a classic Zelda treasure gem — cheerful, warm, toy-diorama friendly. Rounded oval silhouette is approachable and charming, not threatening. Saturation is strong and fits the Hyrule palette brief. Score ~8/10 emotionally. Technical (40%): 1px hard black outline is consistent around the full perimeter with no visible anti-aliasing. Palette is tightly constrained to 3 tones: sky-blue base, darker blue shadow band at bottom, and crisp white highlights at upper-center. All pixels snap cleanly to the grid at every zoom level. Shading is hard/flat with no gradients. Matches Denzi-style hard-outline, limited-palette execution seen in reference sheet. Score ~8/10 technically. Weighted total ~8. No blocking issues found.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "internal_facet_detail_creates_visual_noise_at_small_sizes",
+          "dithered_edge_pixels_reduce_silhouette_crispness_on_dark_bg",
+          "personality_mostly_lost_at_1x"
+        ],
+        "reasoning": "The sapphire gem has a genuinely charming rounded-oval silhouette — soft, friendly, not aggressive. Blue pops clearly on the dark background and holds adequately on the light cream background. The highlight rendering gives it a satisfying toy-gem personality and it passes the sticker test conceptually. However, the internal facet/cross-hatch pixel pattern introduces visual noise that muddies the read as the gem shrinks — at 1x on grey the shape is still recognizable as a gem blob but the interior charm is fully lost. The dithered outer edge on the dark panel softens the contour slightly, keeping silhouette clarity just below a clean pass. Charming shape and good color choice, but needs cleaner interior detail hierarchy (dominant highlight, simpler secondary facets) to push to pass tier.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Gem sapphire uses a well-saturated cerulean/sky-blue as its dominant hue, which maps directly to the 'sky blues' listed in the Echoes-tuned palette. Highlights are clean light-blue/white — appropriate gem sparkle, not blown-out neon. Shadow tones on the gem itself read as dark teal/deep blue rather than pure black or neutral grey, satisfying the colored-shadows requirement. The asset is bright and vibrant without muddiness or desaturation. Not cold-corporate: the blue is warm-sky rather than icy. Mood reads BRIGHT and gem-like. Palette compatibility is high — sky blue is an explicit target hue. Minor note: the gem is cool-dominant rather than warm-dominant overall, but a sapphire is intrinsically a cool-blue jewel and the brief explicitly includes sky blues; no deduction warranted.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.67,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "slight_pasted_on_feel_no_ground_shadow",
+          "hue_overlap_with_joystick_ui_element",
+          "small_size_limits_sub_0_5s_spottability"
+        ],
+        "reasoning": "The gem_sapphire_v01 pixel-art gem (light blue/cyan crystalline ~60px icon) sits against the dark navy hub background and is clearly readable — good luminance contrast, distinctive faceted silhouette, and blue tones pop from the dark slate tiles. Pixel-art style matches the game's golden banner elements and overall aesthetic. However: (1) the gem floats without a drop shadow or floor contact indicator, giving a slightly composited/pasted-on appearance; (2) the bottom-left joystick widget shares the same light-cyan palette, creating mild hue confusion at a glance; (3) the gem is relatively small and positioned in empty midground space — may not hit the 0.5s spottability bar on a crowded real-play screen without a subtle glow or shadow anchor. Overall readability is solid on a clean hub scene but integration polish is needed for a confident pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon_ui",
+          "sprite_generic_pixel_gem_lacks_fairy_tale_warmth"
+        ],
+        "reasoning": "The gem_sapphire_v01 sprite is a small pixelated blue crystalline gem with faceted highlights and a light icy-blue sparkle. The color (bright sapphire blue) fits the target palette (blues/magical) and the sparkle facets align with 'whimsical sparkle.' It does not trigger any out-of-tone flags (no grimdark, no edgy, no horror). However, the sprite reads as a fairly generic pixel-art collectible gem rather than distinctly fairy-tale or toy-diorama. The surrounding scene UI (dark blue-grey panels, red Boss-lock button, dungeon-hub layout) already leans dungeon-crawler, and the gem blends into that context without actively countering it. The sprite itself is inoffensive and appropriately colorful, but lacks the warmth, roundness, or whimsical personality that would strongly anchor it in the cute sunny fairy-tale register. A more rounded silhouette, warmer rim-light, or small sparkle particles would push it to a clear pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gem displays at ~60-65px apparent size in composite, exceeding 50-75% of 32px player rule (target 16-24px)",
+          "shown in UI narrative panel rather than true world-space placement — proportion vs in-world entities cannot be fully validated",
+          "sprite feels like a menu/HUD icon at this scale rather than a droppable world item"
+        ],
+        "reasoning": "The sapphire gem sprite is composited into a dungeon-hub narrative panel illustrating the 'collect 3 relics' objective. Visually the gem occupies roughly 60-65px in the screenshot, which is significantly larger than the 16-24px envelope allowed for treasure-category items (50-75% of 32px player). In isolation the pixel-art style, color, and facing angle are solid and perspective-consistent with a top-down diorama. However the composite does not place the gem alongside a player or world tile for direct proportion comparison — it sits in a semi-UI showcase context where larger display is typical for tutorial clarity. That ambiguity prevents a hard fail, but the size would be non-compliant if reused at this scale in world-space. Toy-diorama feel is partially maintained; no wallpaper/oversaturation issues. Recommend providing a world-space composite with a 32px player reference to confirm in-game sizing before promotion.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry_highlights",
+          "minor_inconsistent_outline"
+        ],
+        "reasoning": "At 8x zoom the gem body and outline are crisp pixel-aligned blocks with no sub-pixel bleed, no AA edges, and a clean dark background — no stray noise pixels detected. Hard-tone shading (dark navy outline, 3 distinct blue tones, white specular highlights) is correct for pixel art; no gradient wash found. Semantic read is solid: clearly a faceted sapphire gem with UI stack counter overlay. Two concerns keep this out of 'pass': (1) The white specular highlight cluster in the upper gem body is visibly asymmetric — left-side highlight pixel count and placement do not mirror the right side, a common AI pixel-art failure mode where the model approximates reflective symmetry rather than enforcing it. (2) A 1–2 pixel outline inconsistency appears at the lower-right facet edge where the dark outline thins to a single pixel while adjacent edges carry a 2-pixel wide dark border. Neither defect is catastrophic but together they suggest the sprite was not hand-corrected after generation.",
+        "confidence": 0.55
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "color_saturation_outlier",
+          "scale_proportion_mismatch",
+          "highlight_intensity_too_high",
+          "palette_overlap_near_zero",
+          "internal_texture_pattern_inconsistent"
+        ],
+        "reasoning": "Peer set (helmets) uses muted desaturated metallic palette: grays, silvers, dark metals, occasional warm gold and cool teal — all low-to-mid saturation. Candidate is vivid cyan-blue at full saturation, a dramatic outlier. (1) OUTLINE WEIGHT: peers use clean 1px dark outlines; candidate outline visible but harder to read against bright blue fill — marginal. (2) OUTLINE COLOR: peers use near-black; candidate appears dark blue outline, slight deviation. (3) SHADOW DIRECTION: peers imply top-left light; candidate top-lit highlight plausible, consistent. (4) SHADOW COUNT: peers show 1-2 shadow layers; candidate appears to have 1 — acceptable. (5) HIGHLIGHT INTENSITY: FAIL — peers have subtle to moderate specular; candidate has very prominent white circular/grid highlight pattern dominating the face, intensity far exceeds peer norm. (6) COLOR TEMPERATURE: peers are cool-neutral metallic; candidate is intense cool blue, beyond the cool range peers establish — pushed to extreme. (7) DETAIL DENSITY: candidate shows a grid/mosaic internal texture not seen in peers; peers use clean smooth fills with minimal internal linework — inconsistent rendering approach. (8) PROPORTION: candidate sprite is rendered visibly larger than all peers in the comparison sheet even at ostensibly matching scale — notable size outlier. (9) RENDERING STYLE: peers are clean pixel art geometric armor shapes; candidate has a chibi-face quality (large white circular highlights read as 'eyes') giving a character-like rather than item-like appearance, inconsistent with peer register. (10) PALETTE OVERLAP: near zero — no grays, silvers, dark metals, or earthy tones shared with peers; the entire hue space is different. (11) CHARM LEVEL: peers have utilitarian pixel-art charm without explicit face/character features; candidate reads as a cute face-character which, while charming, is a different register from peer helmets. Overall: 5 of 11 dimensions fail or are marginal; color and scale issues are severe enough to reject.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "cool_color_temperature_conflicts_with_warm_sunny_target",
+          "reads_generic_rpg_gem_rather_than_whimsical_hyrule",
+          "peer_references_are_dark_militaristic_helmets_misaligned_with_fairy_tale_target",
+          "lacks_distinctive_nintendo_charm_sparkle"
+        ],
+        "reasoning": "Candidate (right, 4x): a pixel-art sapphire gem in vivid cool blue with white highlight facets. It is not grimdark, not edgy, not corporate — it reads as a clean, competent pixel RPG collectible. However, the color temperature is notably cold/icy rather than the warm-sunny palette the target aesthetic demands. The highlight style is generic RPG inventory art rather than toy-diorama whimsy. Peer references (left) are a grid of dark metallic helmets — mostly gray dungeon-crawler armor — which themselves skew away from the bright/friendly Hyrule target, making side-by-side tonal comparison difficult; the helmets arguably pull the composition colder. The gem alone would not fail a Nintendo tone test outright, but it does not radiate the 'warm fairy-tale sparkle' of Echoes or Link's Awakening gem icons. No occult, fan-service, or GRIMDARK flags. The marginal score reflects a neutral-to-cool drift rather than an active tone violation.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.22,
+    "aestheticAvg": 7.67,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 4,
+    "warningCount": 6,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.119Z"
+}

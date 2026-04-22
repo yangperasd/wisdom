@@ -1,0 +1,164 @@
+{
+  "file": "button/btn_action_normal_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\button\\btn_action_normal_v01.png",
+  "category": "button",
+  "candidateName": "btn_action_normal_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "interior panel is flat neutral gray — low charm density for a Zelda UI element",
+          "action icon inside button is very small and unclear at 1x, hurts readability and personality",
+          "gem row decorations feel slightly disconnected from the frame rather than organically integrated"
+        ],
+        "reasoning": "Emotional axis (60%): The ornate golden/amber frame with its warm saturated tones and multi-color gem accents (red, cyan, blue, pink) strongly evokes the bright, charming Hyrule aesthetic — rounded corners reinforce the friendly toy-diorama silhouette and the palette is squarely in bright/warm Zelda UI territory. Score ~8/10. Technical axis (40%): Zoomed views show hard pixel outlines without AA, 2–3 tone shading on the frame edge, and apparent pixel-grid snapping throughout; no visible blurring artifacts. However the interior content area is mostly flat light-gray with minimal detail, and the icon reads as a small smudge at 1x. Score ~7/10. Weighted composite: (8×0.6)+(7×0.4)=7.6, rounded to 7. Marginal — emotionally on-target but interior flatness and icon illegibility keep it below a clean pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "icon_too_small_at_1x",
+          "sparse_composition",
+          "chest_icon_lost_below_8px",
+          "internal_icon_off_center_low"
+        ],
+        "reasoning": "Silhouette at 1x: the rounded-rectangle button shape is instantly legible as a UI button — soft corners, clean edge, good contrast against both the dark-grey and the warm-golden backgrounds. That part passes. Charm: the pixel-art treasure-chest + gem-row motif is warm and toy-like, consistent with Echoes-of-Wisdom aesthetics; the colour palette (amber, cyan, red gems) has personality and the chest reads 'adventure loot' at a glance when zoomed. However two things knock it to marginal. First, at true 1x the chest icon collapses to a ~5px blob — the silhouette is readable as 'something inside a button' but not as 'chest', so the personality is invisible at shipping size. Second, the interior is sparse: the chest sits small and low-left leaving a large empty white field, so the button reads visually lightweight / unfinished rather than 'sticker-quality' confident. On dark bg contrast is fine; on the golden-frame light bg the light interior still reads. Edge cleanliness at 4x is good — no fringing or muddy anti-alias. Summary: clear-but-underpowered-on-charm at 1x; charm present at 4x but icon needs to be larger / more centred to survive downscale. Marginal, borderline pass if icon scale is bumped ~1.5x."
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "inner_panel_fill_is_cool_neutral_grey_not_warm",
+          "dark_background_in_thumbnail_is_near_black_uncolored_shadow",
+          "inner_area_lacks_warm_tint_to_match_frame_temperature"
+        ],
+        "reasoning": "The golden amber frame border is a strong parchment gold — warm, saturated, excellent palette match. Gem accent icons (red, cyan/sky, pink) are bright and well-saturated, aligning with candy pinks and sky blues targets. The center item icon carries warm orange tones consistent with the palette. However, the inner panel fill is a cool light grey (#c8c8c8 range), desaturated and temperature-mismatched against the warm frame — it reads as corporate/neutral rather than bright-warm. The thumbnail context background is a near-neutral dark charcoal, not a colored dark (no teal, plum, or warm brown). Shadows must be colored darks per spec; this uncolored near-black is a moderate violation. Overall warmth is carried almost entirely by the frame border; the interior and context background drag the score down. Frame harmony is good, interior harmony is marginal.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "large_footprint_occludes_game_world",
+          "bright_white_interior_contrasts_harshly_with_dark_scene",
+          "size_inconsistency_vs_compact_action_buttons_elsewhere"
+        ],
+        "reasoning": "The element is a large card-style UI panel with a golden pixel-art border and white interior, composited over the dark red tile area. Locatability is excellent — the bright white field and ornate gold frame make it spottable in well under 0.5s. Distinction from bg tiles is strong; the white+gold palette is completely unlike the dark teal/red tile textures. Visibility in dark areas is high due to the luminous interior. The pixel-art golden frame style is consistent with the game's overall Echoes aesthetic and matches the retro feel. However, as a 'button' it is unusually large — covering roughly 14% of the screen — and partially occludes game entities and terrain, which is unclean. The bright white card interior creates a harsh luminance jump relative to the surrounding dark environment. Additionally, its card-panel form factor diverges noticeably from the compact rounded buttons (召唤, 攻击, 压板) used elsewhere in the same HUD, creating mild style inconsistency. The element functions readably but does not feel fully native at this scale.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_background_dark_dungeon_contrast"
+        ],
+        "reasoning": "The btn_action_normal_v01 sprite appears as a popup card/panel with a warm golden-amber parchment border, rounded corners, bright colorful gem-like icons (pink/red/teal/blue/magenta) at the top, and a clean white interior. These elements are individually in-tone: warm golden border reads as fairy-tale/whimsical, the bright saturated gem icons add sparkle, and the rounded card shape is cute. No grimdark, cold-corporate, horror, or aggressively edgy elements are present in the sprite itself. However, the surrounding scene remains a dark teal dungeon-crawler aesthetic with low-saturation tiles, which creates mild tonal tension with the target 'bright sunny magical' goal. The sprite does not shift the mood problematically on its own — it actually introduces warmth into an otherwise cold scene — but the overall composition falls short of 'sunny fairy-tale toy diorama' because the backdrop dominates. Marginal pass: sprite is safe and leans whimsical, but the golden warmth could be pushed further to fully anchor the fairy-tale target.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "action buttons occupy ~15% screen width each, together dominating lower-right quadrant and reducing visible game world",
+          "large rectangular buttons contrast with 32x32 pixel-art world scale, leaning toward wallpaper feel rather than toy diorama",
+          "HUD icon rule ≤24x24 not applicable to full action buttons, but overall HUD footprint is heavy"
+        ],
+        "reasoning": "The btn_action_normal_v01 action buttons (召唤/攻击) render as large rounded rectangles (~160×80 px on 1280×640 canvas) in the bottom-right corner. As mobile touch targets this sizing is understandable, but relative to the 32×32 player unit they are disproportionately massive — each button is roughly 5× player width and 2.5× player height. The flat 2D HUD overlay is perspectively consistent (no world-space mismatch), and the style color/border language matches the game aesthetic. However, paired with the top HUD bar and center dialog panel already on screen, the combined UI coverage tips the scene toward 'UI mockup' rather than 'toy diorama with controls'. Score docked for scale imbalance vs. world entities and heavy real-estate footprint, but not failing because category is a UI button (not a world object) and touch usability justifies larger sizing.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_in_border",
+          "minor_icon_asymmetry",
+          "possible_color_bleed_on_small_icons"
+        ],
+        "reasoning": "Pixel art UI panel asset inspected at 4x and 8x zoom. Overall structure is consistent pixel art style with clean rounded corners and regular inner dot pattern. GRADIENT SHADING: The golden border exhibits 4+ distinct tone bands rather than clean 2-3 hard tones, suggesting AI-blended shading rather than hand-placed pixel dithering. ASYMMETRY: Top icon row arrangement (crossed-swords, red gem, blue gem, teal gem, red gem) lacks the bilateral symmetry expected from hand-crafted pixel art UI. Left corner decoration differs subtly from right in exact pixel placement at 8x. COLOR BLEED: Small gem icons show 1-2px color contamination at their outer edges that bleeds into the golden border background — consistent with AI upscaling artifacts. NO MELTING or SEMANTIC FAILURE detected; the panel reads correctly as a game UI button. SUB-PIXEL: At 8x the corner AA steps are clean integer pixels. OUTLINE: Dark outline is consistently 1px throughout, no missing or double-width sections. NOISE: Solid gray interior is noise-free. Net assessment: gradient shading and icon asymmetry are the primary flags — marginal pass, not clean enough for pass but no single catastrophic tell warrants outright fail.",
+        "confidence": 0.67
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "outline_color_mismatch: peers use dark/black pixel outlines; candidate frame uses bright gold borders — fundamentally different outline language",
+          "color_temperature_conflict: peer sheet dominated by cool stone-grey, teal, and dark red; candidate frame is aggressively warm golden-orange with a near-white interior — opposite temperature register",
+          "background_luminosity_break: candidate interior is near-white/light-grey, starkly different from the dark dungeon atmosphere across all peer tiles",
+          "highlight_intensity_overblown: golden frame corners and edges are highly luminous; peers have subtle pixel-art highlights, never this saturated or large-area bright",
+          "palette_overlap_poor: candidate introduces large-area white and thick golden yellow not present as dominant tones in any peer tile; overlapping colors (small gold, orange) are minor accent usage in peers vs dominant usage in candidate",
+          "shadow_direction_absent: candidate frame has no clear directional shadow consistent with peers' implied top-left or diffuse pixel shading",
+          "charm_level_mismatch: peers are gritty dungeon-atmosphere tiles; candidate is an ornate UI-frame button with a cute chibi inner sprite — charm register and intended emotional tone are divergent from the peer aesthetic family"
+        ],
+        "reasoning": "The candidate is pixel-art in technique, and the small inner sprite may be individually acceptable, but the dominant visual element — the large golden ornate UI frame with white interior — is stylistically incompatible with the Denzi dungeon-tile peer family. Color temperature (warm vs cool), outline color (gold vs dark), interior luminosity (near-white vs dark-stone), and charm register (decorative UI vs gritty dungeon) all diverge simultaneously. No single dimension alone would fail it, but six of eleven dimensions show clear breaks, making this a composite style-consistency failure. Score 4.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "white-gray interior reads slightly cold against warm parchment border",
+          "central icon is very small and lacks the bold charming presence typical of Nintendo-style UI",
+          "warmth is border-deep but does not fully saturate the button interior"
+        ],
+        "reasoning": "Candidate (right panel): warm sandy-parchment background, golden pixel-art ornate border, colorful gem icons atop — all on-tone for fairy-tale whimsy and Zelda-adjacent charm. The frame style is toy-diorama appropriate and the palette stays warm/friendly. However, the interior fill is near-white/light-gray which reads cooler and more generic-mobile-UI than warm Hyrule. The central icon sprite is so small it barely registers tone; no readable character personality at a glance. Peer reference (left) is clearly out-of-tone (desaturated dungeon-crawler tileset with blood splatter, cold stone, horror mouth tile) — candidate avoids that register entirely, which is good. But candidate still hasn't fully committed to the bright-sunny-warm-whimsical target: interior needs warmer tint, icon needs more expressive presence. Not a fail, but not a confident pass.",
+        "confidence": 0.75
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.75,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 4,
+    "warningCount": 8,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.106Z"
+}

@@ -1,17 +1,33 @@
 import path from 'node:path';
+import { existsSync } from 'node:fs';
 import {
   projectRoot,
   isPreviewServerHealthy,
   resolvePreviewBaseUrl,
   runNodeScript,
+  runPlaywrightFirstSessionJourney,
   runPlaywrightSmoke,
+  runPlaywrightVisualInitial,
   shouldRequirePreviewSmoke,
+  shouldRequireWechatVerify,
 } from './test-runner-helpers.mjs';
+import {
+  resolveLastWechatBuildOutputDir,
+} from './wechat-build-utils.mjs';
 
 const nodeTestScript = path.join(projectRoot, 'tools', 'run-automation-tests.mjs');
+const verifyWechatScript = path.join(projectRoot, 'tools', 'verify-wechat-build-output.mjs');
 
 console.log('[ci-tests] running node-level tests');
 await runNodeScript(nodeTestScript, projectRoot);
+
+const wechatOutputDir = await resolveLastWechatBuildOutputDir(projectRoot);
+if (existsSync(wechatOutputDir) || shouldRequireWechatVerify()) {
+  console.log(`[ci-tests] running WeChat build verification for ${wechatOutputDir}`);
+  await runNodeScript(verifyWechatScript, projectRoot);
+} else {
+  console.log('[ci-tests] WeChat build verification skipped: build output not found');
+}
 
 const baseURL = await resolvePreviewBaseUrl(projectRoot);
 if (!baseURL) {
@@ -35,3 +51,9 @@ if (!isHealthy) {
 
 console.log(`[ci-tests] running preview smoke against ${baseURL}`);
 await runPlaywrightSmoke(baseURL, projectRoot);
+
+console.log(`[ci-tests] running first-session journey against ${baseURL}`);
+await runPlaywrightFirstSessionJourney(baseURL, projectRoot);
+
+console.log(`[ci-tests] running initial visual snapshots against ${baseURL}`);
+await runPlaywrightVisualInitial(baseURL, projectRoot);

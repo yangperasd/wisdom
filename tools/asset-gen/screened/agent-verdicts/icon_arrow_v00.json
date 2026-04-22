@@ -1,0 +1,155 @@
+{
+  "file": "icon/icon_arrow_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_arrow_v00.png",
+  "category": "icon",
+  "candidateName": "icon_arrow_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional axis (60%): Strong pass. Saturated teal badge background paired with warm orange-yellow arrow shaft hits the bright/warm/charming Hyrule mood precisely. Rounded badge silhouette reads as friendly toy-diorama. Color palette — teal, orange, white highlights, dark brown outlines — is unmistakably Zelda inventory style. Not grim or scary in any reading. Technical axis (40%): Pass. Hard 1px outlines visible and consistent around the arrow form and badge border. Shading uses 2-3 hard tone steps on the shaft (no gradient blending or anti-aliasing blur detected). Pixels appear grid-snapped with clean edges at all zoom levels shown. Fletching and arrowhead are legible and correctly detailed. Compared to Denzi peer reference, silhouette clarity and outline discipline are on par. Minor note: the arrow tip highlight could be one pixel sharper at native size, but this is not a failing issue. Combined weighted score: 0.6×8 + 0.4×8 = 8.0."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_unreadable",
+          "arrow_concept_unclear",
+          "internal_figure_too_complex_for_small_sizes",
+          "sticker_test_fail_at_1x"
+        ],
+        "reasoning": "Rounded squircle container and warm teal+orange palette have genuine toy charm, and the 4x views hold up on both dark and light backgrounds with decent contrast. However, the 1x panel collapses to an indistinct colored smudge — no readable silhouette survives. At 4x the interior figure reads as a humanoid holding something aloft rather than as an 'arrow projectile'; the arrow identity is not instantly parseable. The container shape is strong but the inner design is too complex and lacks a single dominant silhouette. Charming in color and framing, but fails the sticker test and the 1x readability bar.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The arrow icon uses a triadic sky-blue / sunset-orange / vivid-green palette that aligns well with the Echoes-tuned reference swatches. Sky-blue rounded-rect background is bright and saturated (not cold or corporate). The arrow character body reads as warm amber-orange, matching sunset-orange range in the palette. Green border accent adds life without muddying. Dark outlines and shadows are deep teal, not pure black or neutral grey — correct per brief. Overall mood is BRIGHT and WARM. Saturation levels are healthy across all three hue regions. Palette compatibility is high: all three key hues appear directly in the reference sheet. Minor note: the green accent is thinner than the other two color areas, giving the composition a slight blue-dominance tilt, but this does not harm harmony. Threshold 8 met.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "flat_modern_style_vs_pixel_art_aesthetic",
+          "pasted_appearance_no_pixel_art_texture",
+          "no_outline_or_dithering_to_match_game_style"
+        ],
+        "reasoning": "The red arrow is immediately locatable (<0.5s) with strong contrast against the dark teal dungeon floor — no confusion with background tiles or the player character. Silhouette is clean and unambiguous. However, the arrow is a solid flat-design geometric shape with no pixel art styling, dithering, or outline treatment, which clashes with the game's pixel art aesthetic. It reads as a UI overlay pasted on top rather than a native game asset. Dark-area visibility is excellent due to the saturated red. No confusion with other game entities. Echoes-cleanliness is acceptable but the tonal mismatch (flat vector vs pixel art) prevents a pass score.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "arrow_color_slightly_aggressive",
+          "scene_tone_dark_dungeon_context"
+        ],
+        "reasoning": "The new arrow sprite is a solid bright red filled arrow pointing right, rendered in a clean flat style. The red is vivid and saturated which fits the 'bright' criterion, but pure signal-red skews slightly aggressive/warning rather than cute fairy-tale warm. The overall scene context is notably dark (dark teal dungeon tiles, near-black backgrounds, muted grays) which is borderline OUT-OF-TONE for the sunny/warm target aesthetic — though this is scene context not the sprite itself. The arrow itself as an isolated UI indicator is functionally clear and its saturated color is not grimdark or cold-corporate. However, a warmer hue (golden-yellow, warm orange, or soft pink) would better match the fairy-tale warmth palette. The sprite does not introduce horror, goth, or realistic textures, so it avoids the hardest fails. Marginal pass: the arrow shape and saturation are acceptable but the red hue choice leans directive/alert rather than whimsical/magical.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "arrow_size_exceeds_icon_guideline",
+          "size_approaches_player_scale",
+          "icon_category_should_be_leq24x24"
+        ],
+        "reasoning": "The red arrow composited into the scene appears approximately 35-45px in screen space, roughly matching the player character size (~32x32). For category 'icon', HUD icons must be ≤24x24 — this arrow is visibly player-sized rather than the expected sub-player scale. It reads as a world-space directional marker rather than a compact UI glyph. No perspective mismatch and no scene-overwhelming effect, but the scale is marginal for an icon asset. Toy diorama feel is acceptable; the arrow does not dominate the scene, but it sits at roughly 100–120% of player size instead of the expected ≤75%.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_in_flame",
+          "background_color_noise",
+          "minor_asymmetry",
+          "inconsistent_outline_thickness"
+        ],
+        "reasoning": "At 8x zoom the flame/glow arrowhead tip shows multi-tone gradient-like transitions rather than 2-3 hard pixel tones — the white core bleeds into yellow then orange with soft intermediate shades suggesting generative blending rather than deliberate pixel placement. The sky-blue icon background is not flat: scattered lighter and darker blue pixels create low-level noise in what should be a solid fill. The outline of the rounded-rect card border wavers between 1px and 2px thickness, most visible at the top-left and bottom-right corners. The flame plume leans slightly left, breaking the expected vertical symmetry of an upward arrow. The fletching (bottom feathers) details partially melt into the shaft — individual vane shapes are ambiguous at 8x. No outright semantic failure (it reads as a flaming arrow projectile icon), and the overall pixel-block structure is intact, preventing an outright fail, but the accumulation of soft gradient tells and noise in solid regions is inconsistent with clean hand-crafted pixel art.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_non_overlap",
+          "glow_orb_not_in_peer_set",
+          "highlight_intensity_extreme",
+          "charm_level_mismatch"
+        ],
+        "reasoning": "Peer set: 12 helmet icons rendered in cool metallic pixel art — grays, silvers, one teal accent, one gold — with a consistent top-left light source, dark heavy outlines, and subdued highlights that read as polished metal. Charm register is gritty-functional, not magical. Candidate arrow: (1) OUTLINE WEIGHT — arrow has outlines but they're partially dissolved by the glow bloom; peers have crisp, uniform 1-2px black outlines — marginal fail. (2) OUTLINE COLOR — both dark, acceptable. (3) SHADOW DIRECTION — arrow shows a bottom-right cast shadow on the orb rim, peers use top-left lighting — minor inconsistency. (4) SHADOW COUNT — both ~1-2 layers, OK. (5) HIGHLIGHT INTENSITY — the arrow glows with a blazing warm-white core; peers have subtle specular dots. Extreme mismatch — fail. (6) COLOR TEMPERATURE — arrow is warm orange/amber plus teal orb; peers are solidly cool (gunmetal, steel, one teal helm, one yellow-gold). No warm-orange item exists in the peer sheet — fail. (7) DETAIL DENSITY — arrow body is simpler than helmets, but that is item-type difference — borderline acceptable. (8) PROPORTION — comparable icon footprint, pass. (9) RENDERING STYLE — both pixel art, but arrow uses a 'magic glow' visual language (radial gradient bloom, soft anti-alias on orb) that reads as a different sub-style from the clean hard-edge pixel helmets — marginal fail. (10) PALETTE OVERLAP — peer palette: near-black, mid-gray, light-gray, silver, white-spec, teal, gold. Candidate palette: bright orange, warm yellow, teal-cyan, off-white bloom. Overlap is at most the teal tone; fail. (11) CHARM LEVEL — peers are stoic/gritty armour pieces; candidate radiates magical-elemental energy with its orb presentation. Charm register diverges significantly — fail. Summary: 5 of 11 dimensions fail outright, 2 marginal. Palette and color-temperature drift are the hardest issues to reconcile without a redesign.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "flame_tip_edges_toward_combat_edgy",
+          "peer_reference_set_skews_dark_metallic_making_calibration_uncertain"
+        ],
+        "reasoning": "Candidate arrow (right, 4x) presents a pixelated item icon with a teal/blue shaft and warm orange flame tip on a light parchment surround. Positive signals: bright warm palette, clean readable silhouette, pixel art style consistent with top-down Nintendo aesthetic (Link's Awakening / Echoes of Wisdom family). Does not read as grimdark, desaturated dungeon-crawler, cold-corporate, or occult. Minor concern: the flame/fire emitter on the arrowhead introduces a faint 'combat power' vibe that nudges slightly away from 'whimsical magic toy-diorama' and toward conventional weapon iconography. This is not a hard fail but prevents a confident pass. Peer reference set on the left consists of dark gray metallic helmet icons that skew noticeably heavier than the target tone, which reduces calibration confidence—the candidate reads warmer and more approachable than those peers, which is a positive relative signal.",
+        "confidence": 0.65
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.75,
+    "aestheticAvg": 7,
+    "uiContextAvg": 6,
+    "adversarialMin": 4,
+    "warningCount": 6,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.120Z"
+}

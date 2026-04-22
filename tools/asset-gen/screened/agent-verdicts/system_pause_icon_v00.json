@@ -1,0 +1,170 @@
+{
+  "file": "icon/system_pause_icon_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\system_pause_icon_v00.png",
+  "category": "icon",
+  "candidateName": "system_pause_icon_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "pause_concept_mapping_unclear",
+          "slightly_flat_depth_vs_denzi_reference",
+          "cloud_element_feels_disconnected_from_icon_language"
+        ],
+        "reasoning": "Emotional (60%): Warm amber/orange body with saturated blue accent tabs and yellow base hits the bright/warm Hyrule palette well. The chunky blocky form reads friendly and toy-like, not grim. However the iconographic concept — a small device screen showing a bar-graph/bookmark panel — is an unusual abstraction for a pause action in a Zelda context; the charm is present in color but the narrative clarity of the symbol is weak. Score ~7/10 emotionally. Technical (40%): 1px hard outlines are consistently applied with no anti-aliasing visible at any zoom level. Shading uses 2-3 hard tones per region (highlight, mid, shadow on the orange body; two tones on the blue tabs). Pixel grid alignment is clean throughout. Compared to Denzi reference helmets, the dimensional illusion is slightly shallower — Denzi pieces use stronger shadow masses to sell volume; this icon is somewhat front-lit and flat. Score ~7.5/10 technically. Weighted: 0.6*7 + 0.4*7.5 = 4.2+3.0 = 7.2 → 7."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "pause_function_not_readable",
+          "light_bg_contrast_weak",
+          "silhouette_reads_as_device_not_pause",
+          "1x_detail_loss"
+        ],
+        "reasoning": "Warm pixel-art sticker has genuine charm — rounded square frame, orange/yellow palette, toy-like feel all pass the personality test. But the core silhouette problem: at 1x the icon reads as 'phone/media library app', not 'pause'. The classic two-bar pause glyph is buried inside a device illustration; a player scanning at speed won't decode 'pause' from the shape alone. On dark bg contrast is acceptable; on the light/cream bg the orange frame loses separation and the whole read gets muddy — borderline fail for bright-background use. Charm is present (cute, soft, sticker-worthy shape) but function-legibility and dual-background contrast both sit below the pass threshold, landing this squarely in marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dark_grey_backgrounds_violate_colored_shadow_rule",
+          "outline_pixels_may_use_cold_grey_not_warm_brown"
+        ],
+        "reasoning": "The icon itself uses a warm harmonious palette: sunset orange/amber body, sky blue pause bars, parchment gold tones — all aligning well with the Echoes-tuned target. Internal color harmony is strong and mood reads BRIGHT/WARM. However, two of four display variants show dark charcoal/near-black presentation backgrounds (violating the 'shadows are colored darks, NEVER pure black/grey' rule). The icon's outline/border pixels appear to use cold dark grey rather than deep teal, plum, or warm brown. The reference palette contains no grey/black swatches — colored darks only. Promotion to pass requires replacing grey backgrounds and outlines with warm or teal-based darks.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "pause_function_not_communicated",
+          "art_style_mismatch",
+          "entity_confusion",
+          "world_placement_vs_ui_layer"
+        ],
+        "reasoning": "The icon (orange-bordered rectangle with colorful vertical stripes interior) is physically visible in 0.5s due to its bright warm frame contrasting against the dark teal/red tile background. However, several readability problems reduce its integration quality. First, the interior design — vertical colored bars — bears no resemblance to standard pause iconography (two parallel bars) and reads instead as an inventory item, collectible, or bookshelf tile, causing immediate functional confusion. Second, the clean, modern colored stripe style inside the frame clashes with the surrounding low-res pixel-art tile textures, making it look composited rather than native. Third, the asset is placed floating at world level rather than in a HUD overlay layer, which in an Echoes-style game would be expected for a system UI icon — players will scan game entities first, not this quadrant, for a pause button. Fourth, while the orange border provides adequate luminance contrast against the mid-dark background, the overall silhouette (tall rectangle) is indistinguishable from game objects like signs, books, or pickups. The Echoes-cleanliness standard is not met: the icon introduces visual noise without communicating its function, and the style registers as foreign rather than native to the game's aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_warm_but_icon_language_abstract",
+          "scene_context_remains_dark_dungeon_crawler"
+        ],
+        "reasoning": "The pause icon sprite itself uses warm parchment/cream tones with colorful bright accent bars (pink, yellow, blue), which aligns with the cute fairy-tale warm palette target. The rectangular book/notepad form reads as friendly and non-threatening. However, the icon's visual language is abstract and does not strongly evoke whimsical sparkle or fairy-tale magic — it reads more like a UI card than a charming fairy-tale element. The surrounding scene context is pre-existing dark dungeon-crawler tiling (dark teal grid, red-veined tiles, stone walls), which the sprite does not worsen but also does not meaningfully counteract. The sprite passes on color tone (warm, bright, no grimdark/goth/horror signals) but falls short of fully embodying the sunny toy-diorama aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "icon_oversized_exceeds_24x24_limit",
+          "icon_larger_than_player_32x32",
+          "reads_as_world_prop_not_hud_icon",
+          "violates_item_bigger_than_player_rule"
+        ],
+        "reasoning": "The composited system_pause_icon_v00 appears in the scene as a large orange/yellow rectangular card roughly 90x90px — approximately 3x the reference player size of 32x32. For the 'icon' category, HUD icons must be ≤24x24px; this asset is nearly 4x over that limit in screen space. It also exceeds player size, triggering the explicit 'item bigger than player' error condition. At this scale it reads as a world-space prop or collectible rather than a compact UI icon. The artwork itself (colorful book-spine motif) is legible but the scale mismatch is fundamental: the asset would need to be scaled down ~75–80% to fit within spec. Perspective (top-down orthographic) is consistent with the scene, so no perspective error, but scale failure is disqualifying.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "aa_edges_outer_border",
+          "noise_pixels_solid_orange_areas",
+          "outline_thickness_inconsistency",
+          "pause_bar_asymmetry_color_mismatch"
+        ],
+        "reasoning": "Outer dark border shows clear anti-aliased transition pixels at corners and along edges — not pure pixel art. The large orange frame region contains scattered off-tone pixels that break solid-fill consistency. The two pause bars differ in hue (blue vs teal-cyan) without obvious intentional contrast rationale, and their rendered widths appear slightly unequal at 8x zoom. Inner border outline oscillates between 1px and 2px segments on top vs bottom edges. No gradient shading (hard tones used — pass), no melting, no pattern tiling artifacts, no semantic failure (pause icon reads correctly). Enough accumulation of sub-pixel AA bleed and noise to keep this out of clean-pass territory.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "outline_weight_mismatch: peers use uniform 1-2px black character outlines; candidate uses a thick decorative orange/tan frame border — completely different outline paradigm",
+          "outline_color_mismatch: peers all use near-black (#1a1a1a range) outlines; candidate frame is warm orange-brown, no black outline on the icon content itself",
+          "shadow_absent: peers consistently show cast/form shadows (darker underside pixels, drop shadow pixel rows); candidate has zero shadow treatment — flat UI widget",
+          "highlight_missing: peers show bright specular highlight dots (1-2px white/near-white pixels at top-left of each form); candidate has no highlight spots",
+          "rendering_style_break: peers are pixel-art organic character shapes with hand-crafted shading; candidate is a geometric rectangular UI panel — fundamentally different rendering paradigm",
+          "proportion_mismatch: peers fill their sprite area with organic rounded volumes; candidate is a hard-cornered rectangle with inset bars — zero volume or silhouette variety",
+          "detail_density_low: peers pack shading, highlight, and material detail into small area; candidate content is near-empty (two plain bars on light ground)",
+          "palette_overlap_weak: peers are metallic cool-neutral with selective warm accents (red plume, gold trim); candidate is warm wood-tan + cool blue bars — palette intersection is minimal",
+          "charm_level_failure: peers have chibi-cute proportions and personality; candidate reads as a generic mobile UI widget with no character",
+          "background_treatment_inconsistent: peers are rendered on transparent/dark backgrounds letting outline define the form; candidate has a filled light interior behind bars, breaking silhouette language"
+        ],
+        "reasoning": "The candidate pause icon fails on nearly every consistency axis against the Denzi helmet peer set. The most severe breaks are rendering paradigm (geometric UI panel vs organic pixel-art character sprite), complete absence of shadow and highlight treatments that define the peer family's shading language, and the frame-border outline style that shares nothing with the peers' consistent black character outlines. Color temperature and palette overlap are weak but secondary. Even granting that a system icon is a different item type, the visual language — pixel density, shading vocabulary, silhouette character, charm — should still echo the established Denzi style; this candidate reads as an asset from a different game engine entirely. Score 3/10, fail.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "pause_bars_feel_generic_digital",
+          "lacks_whimsy_and_fairy_tale_charm",
+          "blue_bars_skew_cold_versus_warm_target_palette"
+        ],
+        "reasoning": "The candidate pause icon sits on a warm parchment background inside a wooden/golden frame — both positive signals toward the warm-cozy fairy-tale target. However, the two blue/teal vertical pause bars read as generic UI chrome rather than whimsical or diorama-toy. They carry no storybook magic, no hand-crafted warmth. The framing earns points; the iconography itself is neutral-to-cold and could belong to a generic mobile game or mid-tier WebGL title just as easily as a Nintendo-family title. No grimdark, no edgy, no fan-service — so it doesn't hard-fail — but it doesn't sparkle with the Hyrule warmth or Echoes-style charm either. Marginal: needs either a warmer hue for the bars (amber/gold) or a more organic/illustrated treatment to fully land in-tone.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 4.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.87,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 5,
+    "adversarialMin": 3,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.146Z"
+}

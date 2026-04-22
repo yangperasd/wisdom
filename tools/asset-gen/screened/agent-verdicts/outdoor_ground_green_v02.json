@@ -1,0 +1,157 @@
+{
+  "file": "tile/outdoor_ground_green_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_ground_green_v02.png",
+  "category": "tile",
+  "candidateName": "outdoor_ground_green_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "limited_tonal_range",
+          "orange_accents_feel_scattered_not_clustered",
+          "variation_density_slightly_monotonous"
+        ],
+        "reasoning": "Emotional (60%): The tile reads clearly as Zelda-style outdoor grass ground. Saturated medium greens with warm orange accent dots evoke the right Hyrule outdoor warmth — not grim, not muddy, not photo-realistic. The orange specks add just enough warmth to feel toy-diorama-like. Score ~7/10. Technical (40%): Deliberate pixel placement is evident — lighter green scattered patches create organic variation without noise mush. Hard pixel edges, no AA, grid-snapped. Seamless tiling verified across all shown panel repeats. Tone count is ~3 greens + orange = 4 tones, within spec. Minor concerns: the variation density is fairly uniform across the tile (no macro clustering of features), which makes large tiled areas feel slightly wallpaper-repetitive. The orange dots appear randomly scattered rather than forming organic micro-clusters, slightly reducing hand-crafted feel. Score ~7/10. Weighted: 7×0.6 + 7×0.4 = 7. Marginal — acceptable background filler tile, but would benefit from one additional mid-tone cluster grouping and more intentional orange accent placement to elevate to pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sparse orange accent dots may form a subtle repeating pattern at large tile counts",
+          "minor density variation: bottom-right quadrant appears slightly busier than top-left"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Column 0 vs column 31 — both show the same mid-green base with scattered 1-2px lighter green specks; no obvious seam break, edge continuity looks solid. (2) Row 0 vs row 31 — top and bottom rows are visually consistent mid-green noise; no brightness discontinuity detected. (3) 3x3 mental tile: the orange/yellow accent pixels (~8-10 per tile) are spread unevenly — a slight cluster near upper-center and lower-right would produce a faint diagonal polka rhythm at 3x3+ scale, not egregious but noticeable on close inspection. DENSITY: overall balanced — green noise fills the field uniformly, no large empty swaths or dense hot-spots. The lighter green sub-pixel speckle gives organic variation. BACKGROUND QUALITY: strong ground-tile candidate; the muted palette recedes behind sprites. The orange dots are the only mild concern — they are small but high-contrast, and their non-uniform scatter means they could form a subtle repeating dot grid artifact when the tile is used at scale. Score 7: passes basic seamlessness and density criteria but orange dot clustering prevents a clean pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Tile is dominated by a well-saturated mid-green with 2–3 lighter/darker green tone variants creating macro texture — exactly the 6-12 internal tones expected for a ground tile. The warm orange accent dots (flowers/seeds) are palette-consistent with the Echoes warm-orange swatch entry and read as candy-bright rather than neon-artificial. No pure black or cold-grey shadows are present; darker areas are achieved via deeper green tones (hue-shifted, not value-only). Mood is unambiguously BRIGHT/WARM: the green sits in the saturated forest-green to grass-green range seen in the reference palette rows 1–2, and the orange accent aligns with the warm-orange swatch. Palette compatibility is strong — all hues present in the tile are represented in the Echoes-tuned swatch. Minor note: hue range is narrow (greens + one warm accent), but this is appropriate for a ground tile and the brief explicitly allows fewer hues. No gradient bleed, no AAA-muted desaturation, no cold dungeon tones detected.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "tile_energy_too_high",
+          "aesthetic_mismatch",
+          "visible_seam_boundary",
+          "potential_sprite_competition"
+        ],
+        "reasoning": "The candidate green tile is significantly brighter and more saturated than all surrounding tiles in the Echoes scene (dark teal background, dark brown hazard area, dark gray stone). In the composite, the green patch reads as a jarring insert from a different game aesthetic rather than native ground. The rectangular tile boundary is visually obvious — a hard-edged seam where the bright green meets the dark teal. The tile's orange/yellow texture flecks could be mistaken for collectible items. The energy level is too high for a background-supportive role in this dark, desaturated dungeon aesthetic; sprites placed on top would need to fight the vivid green to remain legible. The existing scene tiles all sit in a low-luminance, low-saturation band; this tile sits well above that band.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_contrast"
+        ],
+        "reasoning": "The tile itself (outdoor_ground_green_v02) is clearly in-tone: bright saturated greens with warm orange-tinted accent pixels, clean hand-pixeled style, reads unambiguously as outdoor Hyrule-style grass ground. No grimdark, no sci-fi, no horror signal from the tile. However, the surrounding scene context is significantly darker than expected for a sunny fairy-tale outdoor — the base background is a dark teal grid, there is a large dark reddish dungeon-looking area to the left, and the overall scene atmosphere skews indoor/dungeon. The tile does not pull the scene toward any out-of-tone direction; it is the brightest, warmest element present. But it cannot overcome the dark surrounding scene to produce a coherent sunny outdoor mood. Tile asset itself scores 8+, but in composite context the scene-level mood coherence drops to marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "features_slightly_small",
+          "borderline_speckle_density"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count at 1x: ~5-7 distinct lighter-green grass-tuft clusters plus 2-3 warm orange/brown dot accents scattered across the 32x32 tile — count is within the 3-8 acceptable range. (2) Largest feature scale: light-green highlight clusters span roughly 3-5px each; the warm accent dots are ~2-3px — the lower end of the 4-8px target, approaching speckle territory but still individually readable at 1x. (3) Versus a 32x32 player sprite: tile energy is clearly quieter — medium forest-green base with subdued variation; no single element dominates the frame; would not compete with sprites placed on top. Overall the tile passes density intent (not featureless, not chaotic mush) and reads as ground, but the feature scale skews slightly small/fine rather than bold grass tufts, keeping it in marginal rather than a clean pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "seam_edge_sparsity",
+          "background_green_tone_count_exceeds_2",
+          "orange_dot_distribution_too_uniform_algorithmically",
+          "seam_pixel_match_unverifiable"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Col 0 vs col 31 — at 4x zoom the left and right edges show similar dark-green density, but pixel-for-pixel hue/tone match cannot be confirmed; orange dots appear sparse at the left edge vs interior, suggesting the wrap was not hand-verified. (b) Row 0 vs row 31 — top row appears slightly denser in dark green than bottom row; orange dot density also thins near bottom-right corner of the 4x tile. (c) 3x3 mental tiling — the uneven edge density of the orange spots would likely produce a faint cross-hair seam artifact on repeat, which is a critical tile defect. TELL AUDIT: (1) No sub-pixel JPEG speckle — PASS. (2) No anti-aliased 32x32 boundary — PASS. (3) Background green shows 3+ distinct tones rather than the expected hard-stepped 2-4; some patches in the 8x view show intermediate green values suggesting gradient bleed — MARGINAL FAIL. (4) 8x zoom shows hard pixel edges overall — PASS. (5) No melting at element edges — PASS. (6) No color bleed between orange and green — PASS. (7) Pattern is readable as grass+flower-spot ground — PASS. (8) SEAM: orange dot edge sparsity strongly suggests the tile does not wrap cleanly; this is the decisive failure point. The overall palette discipline and pixel sharpness are acceptable, but the unverifiable seam and edge sparsity drop this to marginal. An adversarial repeat test would likely reveal a visible dot-density seam.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "palette_mismatch",
+          "pixel_density_collapse",
+          "shading_technique_divergence",
+          "saturation_overcook",
+          "charm_deficit",
+          "wrong_game_feel"
+        ],
+        "reasoning": "Peer set exhibits dense, high-craft pixel art with cool-to-neutral, low-saturation palettes and hard-stepped detail work — stone textures, cracks, object overlays, tight value contrast. The candidate is a flat, near-featureless bright-green field with scattered orange-dot noise. (1) Palette overlap: near zero — peers live in slate-gray/dark-brown/black; candidate is saturated lime-green with orange accents, brightness delta is enormous. (2) Pixel density: peers pack 20-40 distinct features per 32x32 cell; candidate has <5 non-noise pixels per cell — density ratio roughly 10:1 deficit. (3) Shading: peers use deliberate hard-stepped multi-value shading; candidate is essentially single-value flat fill with random 1px noise — no edge lighting, no depth cues. (4) Warmth/saturation: peers are cool and desaturated; candidate is over-saturated warm green — feels like a placeholder or prototype block. (5) Hand-pixeled charm: peers show clear intentional craft; candidate reads as procedural noise generation, not authored pixel art. (6) Photo-realism: both zero — neutral. (7) Overall feel: peers communicate a cohesive classic RPG dungeon/outdoor world with strong visual grammar; candidate looks like a Minecraft default block or a tileset from a completely different, much simpler game. Allowing fully for surface-type differences (stone vs grass), the rendering style, value range, density, and craft level are all severe mismatches. Cannot pass without a complete rework to match peer pixel density and value/saturation discipline.",
+        "confidence": 0.92
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "green_hue_slightly_cool_neutral_vs_warm_yellow_green"
+        ],
+        "reasoning": "Candidate (right panel) is a bright saturated green outdoor grass tile rendered in clear pixel-art / hand-pixeled style. Dominant hue is a medium-bright green with subtle darker-green dither variation and several warm orange/amber accent pixels scattered throughout — these warm accents nudge the tile toward the Hyrule-outdoor-friendly palette. No grimdark stone, no horror markings, no desaturation, no sci-fi or corporate grey is present. The tile reads immediately as a cheerful outdoor ground surface consistent with a fairy-tale adventure aesthetic. Minor concern: the primary green is a relatively pure/neutral green rather than a decisively warm yellow-green, which keeps it just at the pass threshold rather than strongly above it. The peer-reference panel (left) displays dungeon/grimdark stone tiles — the candidate contrasts sharply and favorably against that reference, confirming it is tonally aligned with the bright-outdoor target rather than the dungeon-crawler fail category.",
+        "confidence": 0.85
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.27,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6,
+    "adversarialMin": 2,
+    "warningCount": 5,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.128Z"
+}

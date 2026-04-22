@@ -1,0 +1,159 @@
+{
+  "file": "weapon/axe_battle_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\axe_battle_v02.png",
+  "category": "weapon",
+  "candidateName": "axe_battle_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_too_aggressive",
+          "palette_missing_warm_accent_colors",
+          "blade_grays_feel_cold_utilitarian",
+          "insufficient_charm_for_zelda_eow_toy_diorama_mood"
+        ],
+        "reasoning": "Technical execution is solid: 1px hard outlines present on all panels, 3-tone hard shading on blade (dark/mid/highlight) and 2-tone on orange handle, pixels are grid-snapped with no anti-aliasing, hand-pixeled feel throughout. Technical score ~7. Emotional axis is weaker: the warm orange handle adds some brightness but the overall battle-axe silhouette is angular and aggressive — not the round, friendly, toy-diorama quality that defines Zelda EoW. The blade's gray/silver tones read as cold and utilitarian rather than charming. The Denzi reference weapons are more compact, higher-contrast, and 'cute' in proportion; this axe trends toward realistic weapon design. Missing the saturated greens/blues/yellows/pinks that anchor the franchise palette. Emotional score ~5. Weighted total: 0.6×5 + 0.4×7 = 5.8 → 6, marginal."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "1x_silhouette_unreadable",
+          "shape_aggressive_not_cute",
+          "light_bg_blade_contrast_weak",
+          "no_round_soft_language"
+        ],
+        "reasoning": "At 1x the axe is a tiny diagonal smear — you cannot read 'axe' at all, only 'diagonal object'. On dark bgs (panels 2–3) the orange handle and light blade pixels contrast well and the silhouette is clean at 4x. On the light bg (panel 4) the pale blade pixels bleed into the cream background; only the dark outline pixels save the edge. Charm score is the fatal failure: the brief calls for round/soft/friendly-toy language and passes the 'sticker test', but a battle axe is structurally angular and aggressive — wedge blade, spiked poll, aggressive diagonal stance. No amount of pixel-art warmth makes this shape feel round or cute. The asset may be competent pixel work but it does not pass the Cute & Charm gate.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "shadow_colors_cold_near_black",
+          "blade_body_uses_desaturated_dark_grey_not_colored_dark",
+          "limited_warm_hue_range_only_orange_no_complementary_sky_or_teal"
+        ],
+        "reasoning": "The axe asset leads with warm sunset-orange on the handle and blade accents, which aligns well with the Echoes palette's warm mid-value intent. However, the blade body and its shadow pixels resolve to cold near-black/dark-charcoal rather than the required colored darks (deep teal, warm brown, or plum). The hue range is narrow — essentially monochromatic orange-over-dark — with no supporting sky blues, parchment golds, or candy pinks to build harmonic richness. The asset reads warm at a glance due to the orange dominance, but fails the shadow-color quality criterion (no pure/cold blacks) and lacks the multi-hue harmony the Echoes palette targets. Score raised from fail to marginal because the orange saturation is genuinely strong and the mood is not grim or neon, just harmonically thin.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small sprite size reduces sub-0.5s spottability",
+          "busy dark-red tile background creates visual noise around asset",
+          "no drop shadow or ground integration — slightly floaty appearance",
+          "diagonal orientation aids silhouette but small pixel count limits clarity at a glance"
+        ],
+        "reasoning": "The axe_battle_v02 sprite sits on the dark red tile section, roughly center-frame. Warm orange handle and metallic head provide reasonable hue contrast against the cool-dark dungeon tiles, making it identifiable within ~1s of directed attention. However, the sprite is small relative to the scene and the red-speckled tile texture generates noise that competes with the asset edges. Silhouette reads as a diagonal axe shape once focused, but is unlikely to pop within 0.5s against this background without the red arrow aid. Art style is consistent pixel-art matching the game's Echoes aesthetic — no jarring paste-in artifacts. No color confusion with other in-scene entities (the creature sits in a clearly framed box to the left). Overall: visible and stylistically native, but spottability is marginal due to size and busy surroundings.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "weapon_sprite_combat_tone",
+          "base_scene_dungeon_crawler_palette"
+        ],
+        "reasoning": "The axe_battle_v02 sprite is a pixelated battle axe with warm orange-brown colors. Its warm palette (orange handle, brown head) adds some warmth to the scene and does not push into grimdark or horror territory. However, a battle axe is inherently combat/aggressive-leaning — not the cute, round, whimsical shapes expected for a cute fairy-tale toy-diorama aesthetic. The base scene itself already reads as dungeon-crawler (dark teal grid tiles, dark reddish floor area, gray stone walls), which is already out-of-tone for the target. The new sprite neither saves the scene's tone nor dramatically worsens it. The warm orange-brown colors are a partial positive, but the axe silhouette and combat associations prevent a passing score. Marginal: acceptable if no cuter alternative exists, but not ideal for the target aesthetic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "weapon_near_player_size_upper_bound"
+        ],
+        "reasoning": "The axe_battle_v02 weapon is composited into the scene floating freely. Estimating from the scene: the player character in the bordered tile area is approximately 55-65px, and the axe sprite appears to be roughly 55-65px tall as well — placing it at ~90-100% of player size rather than the required 50-75% for a weapon category item. It is not dramatically oversized, but it is at or slightly beyond the upper bound. Perspective is consistent with top-down 2D. The toy diorama aesthetic is maintained; the axe does not overwhelm the scene. No perspective mismatch. One issue: weapon should read smaller than the player to feel like a wielded/pickup item rather than an equal-scale entity.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "blade_asymmetry",
+          "outline_inconsistency_blade_junction",
+          "irregular_pixel_clustering_at_head"
+        ],
+        "reasoning": "8x zoom inspection reveals clean pixel blocks with no sub-pixel leakage — each logical pixel renders as a clean square block, no AA smearing. Background is solid near-black with no noise scatter. Color palette is appropriately limited: dark outline, orange/copper handle, white-silver blade with spot accents. No gradient shading detected; tonal transitions are hard-edged. Handle pixels are consistent and well-formed along the diagonal. CONCERNS: (1) Blade asymmetry — the axe head is notably lopsided in a way that reads less like intentional battle-axe design and more like shape collapse; the upper lobe is disproportionately small vs the lower. (2) Blade-handle junction has a cluster of mixed orange+white pixels that lacks the clean separation expected in hand-authored pixel art — characteristic of diffusion-model blending at detail boundaries. (3) Outline at the blade perimeter shows 1–2 pixel width variation within the same edge run, particularly on the upper blade curve. No color bleed, no melting, no pattern artifacts, no semantic failure — the object reads clearly as an axe. Overall: technically sound pixel art with localized construction anomalies consistent with AI generation.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch: candidate axe blade is distinctly orange/rust-warm vs peer weapons which are silver/steel or gold — not a standard palette member",
+          "highlight_intensity: orange blade face is more saturated and higher-contrast than the muted metallic sheen on peer weapons",
+          "scale_disparity: candidate renders noticeably larger than all peer sprites in the reference sheet, undermining the 'matching scale' claim and suggesting proportion normalization was not done rigorously",
+          "charm_level: peer helmets carry character detail (horns, crests, visor slits) giving them personality; candidate axe is geometrically competent but visually inert — below the warmth/charm register of the family",
+          "palette_overlap: only minimal palette intersection — gray handle partially overlaps with peer metals, but the dominant orange-rust hue is absent from all peer items visible in the sheet"
+        ],
+        "reasoning": "Rendering style (hard-edge pixel art, 1px black outline) and shadow direction (top-left source) align with the peer set. However, the candidate departs on several style consistency axes that matter: (1) The axe blade's dominant hue is a warm orange-rust, whereas every peer weapon in the sheet reads either cool silver-gray or warm gold-yellow — orange occupies a gap between those two families and pulls the candidate out of palette. (2) The blade's lit face is more vividly saturated than peer highlights, which are restrained to a single lighter tone rather than a full orange ramp. (3) Physical size in the composite image is roughly 3-4× any single peer sprite; even if the item is canonically larger, the composite should normalise to a common canvas size — this was not done, making cross-comparison unreliable and suggesting pipeline slippage. (4) Charm register is below par: peers carry deliberate design charm (Viking horns, Roman plumes), while the candidate is a plain utilitarian silhouette with no character signal. Passing on rendering technique but failing on palette coherence and charm target.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Candidate axe (right, 4x) presents a warm orange-red hue on the axe head with a clean brown wooden handle — the colour temperature is solidly in the bright/warm/sunny register. Pixel art style is clean and legible, consistent with classic Nintendo top-down Zelda (LttP/EoW) vocabulary. No grimdark elements (no blood, no skull motifs, no desaturated palette, no hyper-realistic shading). Shape silhouette reads as a toy prop rather than a threatening weapon — appropriate for the family-friendly target. Peer reference column (left) shows similarly styled small weapons and helmets in the same pixel vocabulary; candidate does not drift darker or edgier than those peers. Minor note: one peer helmet reads slightly skull-adjacent, but that is in the reference column, not the candidate. Candidate itself stays comfortably within the wholesome toy-diorama range.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.23,
+    "aestheticAvg": 5,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.099Z"
+}

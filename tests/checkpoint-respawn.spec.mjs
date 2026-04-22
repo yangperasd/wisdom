@@ -41,11 +41,41 @@ test.describe('checkpoint and respawn mechanics', () => {
     const before = await readPlayerHealth(page);
     expect(before.current).toBeGreaterThan(0);
 
-    const result = await killPlayer(page);
+    // PlayerController now reacts to GAME_EVENT_RESPAWN_REQUESTED with a full
+    // respawnAt(), so just calling applyDamage in a loop would bounce HP back
+    // to max. Pass disableAutoRespawn so this specific test can observe the
+    // depleted state in isolation; production wiring is restored before the
+    // helper returns.
+    const result = await killPlayer(page, { disableAutoRespawn: true });
     expect(result.currentHealth).toBe(0);
 
     const after = await readPlayerHealth(page);
     expect(after.current).toBe(0);
+  });
+
+  test('manual respawn restores player health and clears combat state', async ({ page }) => {
+    await openPreviewScene(page, 'MechanicsLab', ['Player', 'Checkpoint-01']);
+    await resetMechanicsLab(page);
+
+    // Drop the player to zero HP without auto-respawn so we can verify the
+    // manual TouchRespawn path on its own.
+    await killPlayer(page, { disableAutoRespawn: true });
+    const dead = await readPlayerHealth(page);
+    expect(dead.current).toBe(0);
+
+    // Now exercise the production flow: GameManager.requestRespawn() must be
+    // enough to restore HP, position state, and any forced-move/attack timers.
+    await page.evaluate(() => {
+      const scene = window.cc?.director?.getScene?.();
+      const canvas = scene?.getChildByName?.('Canvas');
+      const persistentRoot = canvas?.getChildByName?.('PersistentRoot');
+      const gm = persistentRoot?.components?.find(c => c?.constructor?.name === 'GameManager');
+      gm?.requestRespawn?.();
+    });
+    await stepFrames(page, 5);
+
+    const restored = await readPlayerHealth(page);
+    expect(restored.current).toBe(restored.max);
   });
 
   test('checkpoint state can be read from the game manager', async ({ page }) => {

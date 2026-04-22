@@ -1,0 +1,167 @@
+{
+  "file": "tile/outdoor_wall_broken_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\tile\\outdoor_wall_broken_v00.png",
+  "category": "tile",
+  "candidateName": "outdoor_wall_broken_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "missing macro structure — no readable stone block forms or mortar lines defining a 'wall'",
+          "accent pixel scatter feels random rather than deliberate (many isolated pink/orange/grey dots with no hierarchical grouping)",
+          "broken-wall character is absent: tile reads as sandy gravel or dirt, not damaged masonry",
+          "palette variety is too wide for 2-4 tone hard shading discipline; colors scatter without anchoring to a macro shape"
+        ],
+        "reasoning": "Emotional (60%): The base hue is warm sandy-tan with orange and red-pink accents — correctly bright and warm, avoiding grim muddy tones. However the 'broken wall' reading is nearly absent; the texture looks like scattered pebbles or loose dirt rather than cracked stone masonry. Zelda outdoor walls carry strong readable block geometry even in their roughest state. The warmth is present but the character is diffuse. ~6/10. Technical (40%): Pixels are hard-edged, no anti-aliasing, grid-snapped — the fundamentals are correct. Tiling is seamless. However the design lacks the macro→micro hierarchy the Denzi reference exemplifies: large stone blocks defined by 2-4 tones, then detail pixels on top. Here the entire surface is uniform fine scatter with no large-scale structure. The dot palette also exceeds the 2-4 tone discipline, introducing too many hues without anchoring them to macro forms. ~4.5/10. Weighted: 0.6×6 + 0.4×4.5 ≈ 5.4 → 5. Marginal; needs a structural pass to introduce recognisable stone-block macro shapes before the scatter detail layer.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scattered_accent_dots_risk_polka_dot_repetition",
+          "some_orange_warm_spots_slightly_clustered_upper_region"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Column 0 vs column 31 — the three side-by-side 4x panels show no hard seam line at left/right edges; the tan base and scattered pixel noise continue without abrupt luminance break, so horizontal tileability passes. (2) Row 0 vs row 31 — top and bottom rows show comparable density of the speckled noise with no obvious stripe or tone jump; vertical tileability passes. (3) 3x3 mental tile: the warm orange accent dots (~5-8 prominent pixels visible per tile area) are randomly distributed but a handful of slightly brighter orange clusters near the upper-center region could produce a soft polka-dot suggestion at repetition distance ~32px — not severe, but detectable at game zoom. BASE QUALITY: brownish-tan khaki base with multi-color pixel debris (orange, pink, grey, dark) reads convincingly as a broken/weathered wall surface. Visual density is fairly even — no large flat swath vs. busy zone imbalance. DARK panel confirms no single dominant hot-spot that locks the eye. LIGHT panel shows no hidden washed-out zone. BACKGROUND FITNESS: the muted base color would support a player sprite; the colored speckles add texture without competing strongly with foreground. Minor concern is the slight orange warmth concentration which, when tiled 4x4+, may produce a subtle regular rhythm. Overall functional tile with mild pattern-echo risk.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scattered cool blue-grey pixel dots introduce minor cold notes against an otherwise warm palette",
+          "base tan/khaki could push slightly more saturated to fully hit Hyrule-bright outdoor energy"
+        ],
+        "reasoning": "Dominant base is a warm sandy tan/khaki with good saturation for a wall texture — correctly sits in the warm brown/stone palette family. Orange-amber accent dots are strong and palette-consistent. Candy-pink scatter accents are present and match the reference palette's pink-magenta band. Darker tones read as brownish rather than pure black — shadow hue shift is correct. However, ~5-8% of scattered pixels are a cool blue-grey that pulls slightly cold, and the overall luminance sits just below the target 'bright saturated Hyrule outdoor' bar. No pure-black shadows, no muddy desaturated grey, no gradient bleed. Passes internal harmony and palette compatibility; narrowly misses full-pass on brightness/saturation target for an outdoor wall tile.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_clash_warm_vs_cool",
+          "tile_too_bright_for_background",
+          "hard_seam_at_tile_boundary",
+          "not_native_to_echoes_aesthetic"
+        ],
+        "reasoning": "The candidate tile (outdoor_wall_broken_v00) is a warm sandy/beige broken-stone texture applied to a section of the scene floor. Comparing composite vs original: (1) Color palette mismatch — the entire Echoes scene uses a cool dark teal grid and dark gray stone; the warm beige tile is a completely different color family and reads as foreign to the scene. (2) Brightness too high — the tan tile is noticeably brighter than surrounding ground tiles, which would reduce contrast for dark foreground sprites placed on top of it. (3) Hard visible seam — the rectangular boundary where the candidate tile meets the original teal ground is sharply visible with no blending, creating an obvious grid artifact. (4) Not native aesthetic — the sandy broken-stone look belongs to an outdoor ruins/desert context, not the dungeon interior established by the rest of the scene. Foreground sprite readability on this tile would be degraded due to the brightness lift and textural busyness.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "palette_could_be_warmer",
+          "charm_factor_moderate"
+        ],
+        "reasoning": "The tile (visible as the center sample in the composite) presents warm sandy-beige/tan stone with hand-pixeled texture — clearly reading as outdoor broken stone wall rather than dungeon or sci-fi. The warm cream/tan palette avoids cold greys and grimdark tones, placing it tonally in the outdoor camp. However, the 'bright fairy-tale Hyrule' target asks for more saturation and sunny vibrancy; the sandy tones here are somewhat muted/neutral and the broken texture adds mild visual weight. No out-of-tone red flags (no blood, no neon, no cold dungeon grey), but the tile lacks the expressive pixeled charm and warm luminosity that would fully carry the sunny Hyrule-field mood. Passes mood gate minimally — marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "color_chaos_edges_toward_noise",
+          "feature_scale_slightly_large",
+          "high_chromaticity_competes_with_sprites"
+        ],
+        "reasoning": "GEOMETRY CHECK: (1) Macro-feature count: ~5-7 distinct elements visible at 1x — stone block outlines, mortar gaps, color-varied chips, and crack lines. Count is within 3-8 range, PASSES. (2) Largest feature scale: stone block segments span roughly 10-12px each, slightly above the ideal 4-8px ceiling. (3) Energy vs 32x32 player sprite: the tile is moderately quieter than a character but the scattered pink/red/beige color patches introduce enough chromaticity variation that the texture feels restless. It reads more like rubble scatter than a coherent wall surface, which is appropriate for 'broken wall' semantics, but the multicolor speckle pattern at 1x risks merging into noise mush rather than distinct readable macro features. Feature density and count are acceptable; the marginal score reflects the feature scale being slightly oversized and the color variety approaching chaotic territory rather than clean 3-5 dominant macro features with clear hierarchy.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "seam_mismatch_column_0_31",
+          "seam_mismatch_row_0_31",
+          "scattered_single_pixel_noise",
+          "non_uniform_edge_density"
+        ],
+        "reasoning": "GEOMETRY CHECK: (a) Column 0 vs Column 31 — at 8x zoom the leftmost and rightmost pixel columns show different element distributions; a prominent orange fragment near top-left has no mirror element at the top-right column edge, indicating column 0 ≠ column 31. FAIL. (b) Row 0 vs Row 31 — top row carries sparse cream/light elements; bottom row has a different scatter density; they do not visually match pixel-for-pixel. FAIL. (c) 3x3 mental tile — both vertical and horizontal seam lines would be visible as discontinuous bands of color, since edge elements on opposite sides are unbalanced. SEAM FAIL. TELL AUDIT: (1) Sub-pixel speckle — several isolated 1x1 px dots of off-palette color scattered across mid-field; borderline noise. (2) Anti-aliasing at boundary — not observed; edges are hard-pixel, clean. (3) Gradient bleed — not present; background tan is consistent and stone elements use flat color fills. (4) Blurry painted-digital look — absent; 8x zoom shows crisp discrete pixels. (5) Melting/morphing at edges — not observed. (6) Color bleed between elements — not observed; palette separation is clean. (7) Unreadable noise patches — a few clusters of 1-2 px mixed-color dots are ambiguous but not severely unreadable. (8) Seam artifact — confirmed fail as noted above. Summary: pixel art style and color discipline are solid, but the tile fails the primary tileability requirement. The random scatter was not edge-wrapped, producing inevitable seam lines on repetition.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "palette_mismatch_warm_sandy_vs_cool_dark_stone",
+          "brightness_far_exceeds_peer_range",
+          "pixel_scatter_appears_procedural_noise_not_hand_pixeled",
+          "shading_technique_undefined_vs_hard_stepped_peers",
+          "warmth_saturation_inverted_vs_peer_cool_desaturated_palette",
+          "no_recognizable_outdoor_dungeon_game_identity",
+          "pixel_density_featureless_vs_dense_peer_tiles"
+        ],
+        "reasoning": "Candidate tile (outdoor_wall_broken_v00) is a light sandy-beige surface with scattered bright noise pixels — pinks, yellows, random grays, occasional teal flecks. Peer set is unambiguously dark-toned: stone grays, near-blacks, dark earthy browns, with teal as an accent, all rendered in classic hard-stepped pixel art with clear intentional feature placement. (1) Palette overlap: near-zero. Peers live in value range ~20-120/255; candidate base is ~180-200/255. Completely separate color spaces. (2) Pixel density: peers pack rich detail into each 32x32 cell — cracks, mortar lines, rubble, stains. Candidate shows scattered random-looking dots with no cohesive structural features. (3) Shading: peers use hard-stepped value steps. Candidate has no legible shading logic — looks like noise dithering. (4) Warmth/saturation: peers are cool and largely desaturated dungeon aesthetic; candidate is warm sandy beige with saturated bright flecks. Exact opposite bias. (5) Hand-pixeled charm: peers have clear authorial intentionality; candidate reads as procedurally generated noise. (6) Photo-realism: not a primary issue for either, but candidate lacks any pixel art identity. (7) Overall feel: peers are unmistakably a dark fantasy outdoor/dungeon game; candidate could be from a completely different genre (desert exploration, mobile puzzle game). Even granting that a 'broken wall' may differ in surface type from floor/ground peers, the STYLE and PALETTE divergence is categorical, not subtle. This tile would visually rupture any scene it shares with the peer set.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "grey-cool pixel contamination dilutes warmth",
+          "lacks vibrant green/moss accents typical of Hyrule outdoor stonework",
+          "texture flatness borders plain dungeon-rubble rather than fairy-tale adventurous wall",
+          "no strong warm-highlight pixel clusters that signal hand-crafted Hyrule charm"
+        ],
+        "reasoning": "Candidate (right panel, 4x on parchment) is a sandy/tan broken-stone wall tile. Dominant hue is warm beige-tan which is directionally correct for warm-stone Hyrule outdoor. However a notable scatter of cool-grey and neutral pixels across the surface introduces a stone-cold dungeon undertone. The peer reference tiles (left) are overtly grimdark—dark grey stone, teal-glow, blood-red—making the candidate warmer by contrast, but that contrast does not fully redeem the candidate on its own merits. Missing: sunny accent greens, mossy warm highlights, the hand-detailed pixel clusters that read as 'friendly' outdoor Zelda-esque masonry. The overall read is 'neutral sandy rubble' sitting between dungeon-ruin and warm outdoor—not a hard fail, but not a confident pass. Marginal.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 4.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.68,
+    "aestheticAvg": 6.33,
+    "uiContextAvg": 5.33,
+    "adversarialMin": 2,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.130Z"
+}

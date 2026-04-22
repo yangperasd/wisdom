@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08",
+  "generatedAt": "2026-04-20",
   "scope": "detailed_entity_binding",
   "primaryStyle": {
     "world": "denzi",
@@ -31,42 +31,78 @@
   },
   "uiEntities": {
     "hud_top_bar": {
-      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_line.png",
-      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition",
+      "rule": "main HUD must stay on a warm procedural renderer until final hand-approved HUD art lands"
     },
     "objective_card": {
-      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_flat.png",
-      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_gloss.png"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition",
+      "rule": "objective HUD must stay image-free during the cute-style lock pass"
     },
     "controls_card": {
-      "selectedPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png",
-      "fallbackPath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_depth_flat.png"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition",
+      "rule": "controls HUD must stay image-free during the cute-style lock pass"
     },
     "touch_attack_button": {
-      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
-      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/cross.png"
+      "selectedBasePath": "",
+      "selectedIconPath": "",
+      "fallbackBasePath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "touch_summon_button": {
-      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
-      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/plus.png"
+      "selectedBasePath": "",
+      "selectedIconPath": "",
+      "fallbackBasePath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "touch_respawn_button": {
-      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
-      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/home.png"
+      "selectedBasePath": "",
+      "selectedIconPath": "",
+      "fallbackBasePath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "touch_echo_button": {
-      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_gloss.png",
-      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/exclamation.png"
+      "selectedBasePath": "",
+      "selectedIconPath": "",
+      "fallbackBasePath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "pause_button": {
-      "selectedBasePath": "assets/art/ui/hud/kenney/PNG/Red/Default/button_round_line.png",
-      "selectedIconPath": "assets/art/ui/icons/kenney_game_icons/pause.png"
+      "selectedBasePath": "",
+      "selectedIconPath": "",
+      "fallbackBasePath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "system_pause_icon": {
-      "selectedPath": "assets/art/ui/icons/kenney_game_icons/pause.png"
+      "selectedPath": "assets/art/ui/icons/echoes/system_pause_icon.png",
+      "fallbackPath": "assets/art/ui/icons/kenney_game_icons/pause.png",
+      "source": "ai-generated"
     },
     "system_confirm_icon": {
-      "selectedPath": "assets/art/ui/icons/kenney_game_icons/checkmark.png"
+      "selectedPath": "assets/art/ui/icons/echoes/system_confirm_icon.png",
+      "fallbackPath": "assets/art/ui/icons/kenney_game_icons/checkmark.png",
+      "source": "ai-generated"
     }
   },
   "worldEntities": {
@@ -76,79 +112,135 @@
       "rule": "one player build shared across all scenes"
     },
     "common_enemy": {
-      "selectedPath": "assets/art/characters/enemies/denzi/monsters/deepdwarf/deepdwarf_a.png",
-      "rule": "do not switch enemy family by scene"
+      "selectedPath": "",
+      "rule": "keep enemies on a warm procedural placeholder until final cute enemy art lands",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "boss_core": {
-      "selectedPath": "assets/art/characters/enemies/denzi/monsters/seraph/seraph.png",
-      "fallbackPaths": [
-        "assets/art/characters/enemies/denzi/monsters/seraph/seraph_doll.png",
-        "assets/art/characters/enemies/denzi/monsters/seraph/seraph_item_sword.png"
-      ],
-      "rule": "lock one boss family before art polish"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "fallbackPaths": [],
+      "status": "rect_visual_placeholder",
+      "rule": "world-space warm procedural core placeholder until final cute boss art lands"
+    },
+    "echo_spring_flower": {
+      "selectedPath": "assets/prefabs/EchoSpringFlower.prefab",
+      "fallbackPath": "assets/prefabs/EchoSpringFlower.prefab",
+      "status": "asset_gap",
+      "rule": "keep the spring-flower echo as a reference/asset-gap prop until a final cute variant lands"
+    },
+    "echo_bomb_bug": {
+      "selectedPath": "assets/prefabs/EchoBombBug.prefab",
+      "fallbackPath": "assets/prefabs/EchoBombBug.prefab",
+      "status": "asset_gap",
+      "rule": "keep the bomb-bug echo as a reference/asset-gap prop until a final cute variant lands"
+    },
+    "boss_shield_closed": {
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "world-space warm rounded RectVisual placeholder; pair with boss_shield_open until final cute shield art lands"
+    },
+    "boss_shield_open": {
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "world-space warm rounded RectVisual placeholder; pair with boss_shield_closed until final cute shield art lands"
+    },
+    "projectile_arrow": {
+      "selectedPath": "assets/prefabs/ArrowProjectile.prefab",
+      "fallbackPath": "assets/prefabs/ArrowProjectile.prefab",
+      "status": "temporary_placeholder",
+      "rule": "keep one projectile prefab binding for all trap uses until final cute projectile art lands"
     },
     "checkpoint": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-      "rule": "same checkpoint prop language across scenes",
-      "status": "first_pass_wired"
+      "selectedPath": "",
+      "rule": "warm rounded placeholder transition until final cute checkpoint art lands",
+      "status": "rect_visual_placeholder",
+      "fallbackPath": "",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "portal": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
-      "status": "first_pass_wired",
-      "rule": "requires dedicated portal art later"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "procedural warm rounded placeholder until final cute traversal portal art lands"
     },
     "barrier_closed": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
-      "status": "first_pass_wired"
+      "selectedPath": "",
+      "status": "rect_visual_placeholder",
+      "fallbackPath": "",
+      "bindingTag": "transition",
+      "source": "runtime-transition",
+      "rule": "use procedural puzzle barrier until final cute wall/gate art lands"
     },
     "barrier_open": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png",
-      "status": "first_pass_wired"
+      "selectedPath": "",
+      "status": "rect_visual_placeholder",
+      "fallbackPath": "",
+      "bindingTag": "transition",
+      "source": "runtime-transition",
+      "rule": "use procedural puzzle barrier until final cute wall/gate art lands"
     },
     "outdoor_ground_green": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_a.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "transition placeholder while a final warm tile remains pending"
     },
     "outdoor_ground_flowers": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_a.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "rule": "temporary warm fallback placeholder",
+      "status": "rect_visual_placeholder",
+      "fallbackPath": ""
     },
     "outdoor_path_cobble": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_a.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "temporary lane transition placeholder"
     },
     "outdoor_ground_ruins": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "transition placeholder while a final cute ruins approach set lands"
     },
     "outdoor_wall_standard": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_b.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "transition placeholder to remove dark baseline wall cues"
     },
     "outdoor_wall_broken": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_b.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "transition placeholder to remove dark broken-wall fallback"
     },
     "outdoor_wall_cracked": {
-      "selectedPath": "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
-      "fallbackPath": "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_b.png",
-      "status": "phase_3_selected"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "rule": "transition placeholder to remove dark cracked-wall fallback"
     },
     "breakable_target": {
-      "selectedPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_pressureplate.png",
-      "fallbackPath": "assets/art/characters/enemies/denzi/monsters/traps/trap_unidentified.png"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "pickup_relic": {
-      "selectedPath": "assets/art/items/denzi/items/helmet/helmet_enchanted.png",
-      "fallbackPath": "assets/art/items/denzi/items/shield/shield_deep_a.png",
-      "status": "ready_not_scene_bound"
+      "selectedPath": "",
+      "fallbackPath": "",
+      "status": "rect_visual_placeholder",
+      "bindingTag": "transition",
+      "source": "runtime-transition"
     },
     "environment_dungeon_floor_family": {
       "selectedPath": "assets/art/environment/dungeon/denzi/floor/compound/standard"
@@ -248,8 +340,8 @@
         "portal",
         "barrier_closed",
         "barrier_open",
-        "environment_dungeon_floor_family",
-        "environment_dungeon_wall_family"
+        "outdoor_ground_green",
+        "outdoor_ground_ruins"
       ],
       "audioTargets": [
         "ui_click_primary",
@@ -272,10 +364,11 @@
         "assets/art/ui/icons/kenney_game_icons/exclamation.png"
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+        "outdoor_wall_standard",
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_broken"
       ]
     },
     "BossArena": {
@@ -370,13 +463,13 @@
         "Camp gate states now share the same wall-language as other open and closed traversal blockers."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
-        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_standard",
+        "outdoor_wall_broken",
+        "barrier_closed",
+        "barrier_open"
       ]
     },
     "FieldWest": {
@@ -421,12 +514,10 @@
         "The west-side projectile trap now uses the same cracked-wall material language as the surrounding ruined path."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
-        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png"
+        "outdoor_ground_green",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked"
       ]
     },
     "FieldRuins": {
@@ -473,13 +564,11 @@
         "The cracked wall and opened wall now use explicit closed and broken wall presentation instead of staying as label-first placeholders."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
-        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
-        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+        "outdoor_ground_ruins",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken"
       ]
     },
     "DungeonRoomA": {
@@ -493,17 +582,17 @@
         "barrier_open"
       ],
       "notes": [
-        "RoomA now shares the same dungeon checkpoint, portal, and gate language as the hub.",
+        "RoomA now uses placeholder-first dungeon family keys for room visuals to avoid dark-family visual fallback.",
         "Backdrop and challenge lane now bind the same dungeon floor subset instead of staying as raw placeholder panels.",
         "Closed and open gate states now use the shared barrier presentation path so later sprite swaps do not need room-specific code."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+        "outdoor_ground_green",
+        "outdoor_path_cobble",
+        "outdoor_wall_standard",
+        "outdoor_wall_broken",
+        "barrier_closed",
+        "barrier_open"
       ]
     },
     "DungeonRoomB": {
@@ -514,20 +603,21 @@
         "outdoor_ground_green",
         "outdoor_ground_flowers",
         "outdoor_ground_ruins",
-        "outdoor_wall_cracked"
+        "outdoor_wall_cracked",
+        "projectile_arrow"
       ],
       "notes": [
-        "RoomB now uses the same dungeon floor family as the hub and mainline scenes instead of relying on raw placeholder blocks.",
+        "RoomB now uses placeholder-first dungeon keys instead of fallback to darkgreen, ashenzaris, sarcophagus, and cinder art.",
         "The trap lane and gap hazard now read as one hazardous strip, while the landing pad uses a contrasting floor treatment.",
         "The projectile trap now shares the same cracked dungeon wall presentation as other damaged interaction points."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_b.png",
-        "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_b.png",
-        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png"
+        "outdoor_ground_ruins",
+        "outdoor_ground_flowers",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken",
+        "projectile_arrow"
       ]
     },
     "DungeonRoomC": {
@@ -541,17 +631,17 @@
         "outdoor_wall_broken"
       ],
       "notes": [
-        "RoomC now reuses the same ruined dungeon floor and wall language as the exterior breach leading into the dungeon.",
+        "RoomC now uses placeholder-first ruined floor and wall keys to avoid dark fallback families and retain soft path readability.",
         "The bomb placement pocket is now visually separated from the rest of the room, making the required BombBug interaction easier to read.",
         "Closed and opened wall states now bind explicit cracked and broken wall art instead of staying label-first."
       ],
       "worldSpriteFramesApplied": [
-        "assets/art/environment/dungeon/denzi/features/ashenzaris_altar.png",
-        "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_a.png",
-        "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_a.png",
-        "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_c.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_a.png",
-        "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_a.png"
+        "outdoor_ground_ruins",
+        "outdoor_path_cobble",
+        "outdoor_wall_cracked",
+        "outdoor_wall_broken",
+        "barrier_closed",
+        "barrier_open"
       ]
     },
     "MechanicsLab": {
@@ -565,6 +655,7 @@
         "barrier_closed",
         "barrier_open",
         "breakable_target",
+        "projectile_arrow",
         "player",
         "common_enemy"
       ],
@@ -626,5 +717,6 @@
       "BossArena still has no resolved runtime battle BGM file under assets/audio/music, so only UI and portal feedback were propagated there.",
       "DungeonHub pickup/relic art is selected, but no dedicated pickup node exists in the scene yet."
     ]
-  }
+  },
+  "_aiIntegrationNote": "AI-generated assets wired 2026-04-20. Original paths demoted to fallbackPath/fallbackBasePath. Field \"source\":\"ai-generated\" marks updated entries."
 }

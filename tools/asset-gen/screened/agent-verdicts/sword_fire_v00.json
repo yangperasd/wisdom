@@ -1,0 +1,156 @@
+{
+  "file": "weapon/sword_fire_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\weapon\\sword_fire_v00.png",
+  "category": "weapon",
+  "candidateName": "sword_fire_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_too_rigid_for_toy_diorama",
+          "design_lacks_zelda_charm_character"
+        ],
+        "reasoning": "Emotional (60%): Warm golden/orange palette with cyan gem accent reads as bright and adventurous — not grim. Saturation is appropriate for Hyrule mood. However the silhouette is a conventional straight-edged sword shape without the round friendly curves expected from Echoes of Wisdom toy-diorama aesthetic. Charm factor is adequate but not strong. Score ~6/10. Technical (40%): 1px hard outlines are clearly present at all zoom levels. Shading uses 2-3 hard tones (bright highlight, warm mid, shadow) with no anti-aliasing. Pixels are grid-snapped and hand-pixeled. Matches Denzi-category technique well — clean, readable at small size. Score ~7/10. Weighted: 0.6×6 + 0.4×7 = 6.4 → marginal. Primary gap is emotional: the design needs more personality/roundness to feel like a Zelda toy rather than a generic RPG sword sprite.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "thin_silhouette_fails_1x_readability",
+          "weapon_shape_limits_toy_charm",
+          "fire_detail_lost_at_1x",
+          "reduced_contrast_on_light_bg"
+        ],
+        "reasoning": "At 1x the sword is a narrow vertical sliver — instantly readable as 'something long' but not as a distinct charming icon. The pixel art execution is clean and the gold+blue gem palette is pleasant, but swords are inherently edgy rather than round/soft, so toy-charm is capped. On dark backgrounds the warm gold pops well; on the light cream background contrast drops and the silhouette relies on a thin dark outline. Fire details are completely lost at 1x. Edge quality at 4x is good — no mushiness. The gem accent adds the most personality but is too small to register at 1x. Charming in color, weak in silhouette clarity and charm at game scale.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dark_near-black_showcase_backgrounds_dominate_3_of_4_panels",
+          "backgrounds_violate_no-pure-black-grey_rule_even_if_presentational"
+        ],
+        "reasoning": "The sword sprite itself is well within the Echoes-tuned palette: warm parchment golds and burnt oranges dominate the blade, a saturated teal/cyan accent at the guard provides a harmonious complementary hue, and the shadow pixels on the blade use warm amber-brown darks rather than pure black — all strong positives. Palette compatibility with the reference swatches is high (matches the sunset-orange and teal-sky columns directly). However, three of the four showcase panels use a near-black charcoal background that is cold and achromatic, which conflicts with the 'shadows are colored darks, NEVER pure black/grey' directive and drags the overall image mood toward grim/cold. The rightmost panel on cream/parchment background shows the ideal presentation context. Score reflects the sprite quality being solid but the image as presented violating the no-cold-grey-black constraint across most of its area.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "placement_at_tile_boundary",
+          "potential_player_character_confusion"
+        ],
+        "reasoning": "The sword_fire_v00 asset is a tall golden/yellow flaming sword with blue fire at its base, placed at the boundary between the dark red dungeon tiles and the lighter teal area. Locatability is good — the bright warm gold against the cool dark background is spottable well within 0.5s. Silhouette is clean and sword-shaped with no ambiguity about the object type. The blue flame base adds contrast depth. Pixel art style is consistent with the Echoes game aesthetic. Main concerns: (1) the asset straddles the dark-red-tile/grey-tile boundary, creating minor visual split that could weaken the perceived outline on its lower half; (2) without other characters in the scene, the tall humanoid-scale sprite could briefly be mistaken for the player entity on first glance. No significant hue clash with background — the warm gold pops clearly from the teal/dark environment. Overall clean and mostly well-integrated, held back slightly by boundary placement and scale ambiguity.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "weapon_combat_association",
+          "dungeon_crawler_context_tension"
+        ],
+        "reasoning": "The sword_fire_v00 sprite is a bright golden-yellow pixel art sword with blue accent details — the warm gold color fits the target warm palette (yellows/parchment) and the sprite itself is not grimdark or aggressive in isolation. However, a sword weapon sprite inherently carries combat/dungeon-crawler connotations that create mild tension with the 'cute fairy-tale toy diorama' target aesthetic. The baseline scene is already quite dark (dark teal dungeon tiles, murky red zone) which amplifies this tension. The sprite does not worsen the overall mood — it actually adds a warm bright element — but it does not meaningfully pull the scene toward sunny/whimsical fairy-tale either. The 'fire' suffix suggests potential flame effects that could tip toward aggressive if animated. No grimdark, horror, or edgy elements detected in the static sprite itself.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "item_near_or_at_player_height",
+          "weapon_should_be_50_75pct_of_player"
+        ],
+        "reasoning": "The sword_fire_v00 asset composited into the scene appears as a tall vertical flame-sword standing upright. Estimating from scene proportions, the sword height is roughly 90-100px in the ~690px-tall viewport, placing it at approximately player scale (32x32 reference). For a weapon-category item the spec requires 50-75% of player size, never larger. This asset is borderline at ~100% player height, violating the upper bound. Width is narrow and appropriate for a sword. Perspective matches top-down 2D. Fire effect is visible but does not overwhelm the scene. Toy-diorama feel is acceptable but the oversized vertical extent nudges it toward a wallpaper/hero-prop look rather than a ground-item pickup. No perspective inconsistency or wrong-creature-category issues. Marginal — recommend trimming asset height to ~20-24px equivalent at game resolution.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "inconsistent_outline",
+          "noise_pixels_fire_base",
+          "color_bleed_fire_edge",
+          "minor_asymmetry_blade_shading"
+        ],
+        "reasoning": "8x zoom inspection reveals: (1) Outline inconsistency — right blade edge drops from 1px to missing in 2-3 spots, and left edge shows a 2px segment near the guard junction. (2) Fire-base noise — 3-4 stray orange/brown pixels scatter into background in the lower flame cluster that don't align with any intentional dither pattern. (3) Color bleed — cyan guard bleeds one pixel diagonally into the gold blade body at top-left corner of guard, suggesting soft-blend generation rather than hard-placed pixel. (4) Blade shading asymmetry — left bevel of blade is 2 tones (dark gold + highlight), right bevel is 1 tone for roughly 40% of blade length, inconsistent with a hand-crafted approach. Positive findings: background is clean, no sub-pixel AA smearing on most edges, semantic read (blade/guard/pommel/fire) is coherent, primary palette is disciplined 3-tone gold. Severity is minor but accumulates across 4 categories; borderline marginal/fail.",
+        "confidence": 0.7
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_overlap_low",
+          "highlight_intensity_excessive",
+          "shadow_handling_divergent"
+        ],
+        "reasoning": "Peer set uses predominantly cool/neutral tones (dark steel, silver-gray helmets, muted gold staff) with restrained saturation. Candidate fire sword is aggressively warm — bright orange-red blade with near-white yellow highlights that blow out far beyond the intensity of any peer. (1) OUTLINE WEIGHT: 1px consistent, matches peers — OK. (2) OUTLINE COLOR: dark outlines present — OK. (3) SHADOW DIRECTION: peers show consistent directional shadow; fire sword replaces shadow with ambient glow bloom — inconsistent. (4) SHADOW COUNT: peers use 1 drop-shadow layer; candidate has zero discrete shadow, relying on fire emission — inconsistent. (5) HIGHLIGHT INTENSITY: peers have 1-2 subtle highlight pixels; candidate has a large bright-white highlight cluster at blade tip — significantly over-bright. (6) COLOR TEMPERATURE: peers cluster near cool-neutral with minor warm gold accents; candidate is saturated orange/red/yellow wall-to-wall — the worst offender. (7) DETAIL DENSITY: comparable pixel density to peers — acceptable. (8) PROPORTION: fits peer bounding-box scale — OK. (9) RENDERING STYLE: pixel art consistent — OK. (10) PALETTE OVERLAP: candidate's orange-red-yellow palette shares almost no colors with the steel/gray/dark-brown peer palette; the gold staff is the closest peer but it is desaturated metallic vs vivid flame — low overlap. (11) CHARM LEVEL: peers carry quiet medieval-gear charm; candidate skews toward flashy RPG icon aesthetic — minor misalignment but not fatal. Two hard failures (color temp, palette) plus two softer divergences (highlight, shadow) keep this at marginal rather than pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The candidate fire sword (right, 4x) presents a warm golden blade with bright orange flame accents — colors firmly in the bright/warm/sunny target palette. The pixel art execution is clean and toy-like, consistent with Nintendo family-friendly aesthetics. No grimdark desaturation, no cold corporate palette, no edgy angular styling. The fire effect reads as whimsical magic rather than destructive menace. Peer references on the left include slightly heavier armor helmets but the candidate itself stays on the warmer, more charming end of the spectrum. Sword silhouette proportions are fairly standard rather than exaggeratedly cute, but this is within acceptable range for the target aesthetic.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.7,
+    "aestheticAvg": 6,
+    "uiContextAvg": 6,
+    "adversarialMin": 5,
+    "warningCount": 8,
+    "failCount": 0,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.143Z"
+}

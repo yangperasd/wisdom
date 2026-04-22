@@ -1,0 +1,165 @@
+{
+  "file": "key/key_boss_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\key\\key_boss_v01.png",
+  "category": "key",
+  "candidateName": "key_boss_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "silver_medallion_center_cools_warm_palette",
+          "reference_category_mismatch_helmets_vs_key"
+        ],
+        "reasoning": "Emotional (60%): The boss key reads warmly — saturated gold/orange shaft with small blue gem accents conveys 'special treasure' charm fitting bright Hyrule mood. Silhouette is ornate and readable. The oval silver/gray center medallion is the weak point: it introduces a cooler, metallic note that slightly undercuts the warm/friendly palette goal. Rounded bow and decorative bit add toy-diorama quality. Emotional score ~7/10. Technical (40%): 1px hard outlines visible in dark brown/black; 2-3 tone hard shading on shaft (orange → gold → highlight); pixels grid-snapped with no anti-aliasing; hand-pixeled construction evident across all zoom panels. Passes technical axis cleanly. Technical score ~8/10. Reference note: provided Denzi reference sheet shows gray metallic helmets — different item category, limiting direct comparison, but confirms hard-outline/limited-palette standard which the candidate meets. Combined: 0.6×7 + 0.4×8 = 7.4, rounded to 7, verdict marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "1x silhouette is a mushy indistinct blob — unreadable as a key",
+          "poor contrast on bright/light background — gold washes into cream",
+          "low charm factor — ornate but not toy-soft; gem loop reads as mechanical rather than friendly",
+          "no rounded-softness language in the bow shape; bits feel sharp and angular at pixel level"
+        ],
+        "reasoning": "At 1x the sprite fails the silhouette test immediately: it collapses to a vertical smudge with no legible key identity. The 4x panels show decent pixel-art craft — gold/orange palette, oval gem hub, decorative bow — and on dark backgrounds the warm gold reads reasonably well. However on the bright/light panel (rightmost) contrast drops sharply and the key nearly disappears against the pale cream, meaning it fails the dual-background requirement. Charm potential exists in the gem-and-bow motif but the shapes trend angular and mechanical rather than round-soft-toy; compared to Echoes of Wisdom's plump friendly silhouettes this reads as 'dungeon prop' not 'adorable artifact'. Charming-but-mushy rule applies: the 1x collapse alone disqualifies a pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "key_head_neutral_grey",
+          "shadow_backgrounds_cold_near_black",
+          "palette_coverage_too_narrow",
+          "missing_greens_and_pinks"
+        ],
+        "reasoning": "The key sprite has warm gold/amber shaft tones that align with parchment-gold and sunset-orange quadrant of the Echoes palette, and small sky-blue accent dots are on-spec. However, the diamond key head is a flat neutral mid-grey — desaturated, neither warm nor a colored dark — which conflicts with the BRIGHT/WARM requirement. More critically, the four display-panel backgrounds are cold charcoal near-blacks, violating the spec that shadows be colored darks (deep teal, plum, or warm brown) rather than pure grey/black. The last cream-background panel reads better. Overall palette breadth is narrow: gold + grey + tiny blue + near-black, with no greens, no candy pinks, and minimal warmth in shadow areas. Mood reads as restrained/muted treasure-item rather than vibrant Echoes-tuned BRIGHT WARM. The core key silhouette shape and gold tones are salvageable; the grey head should shift to a warm tinted hue (parchment ivory or warm copper highlight) and any dark staging areas must use deep teal or warm plum as shadow color.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "small_scale_reduces_sub_500ms_spotting",
+          "thin_vertical_silhouette_ambiguous_at_glance",
+          "item_cluster_may_read_as_decorative_noise_without_red_arrow"
+        ],
+        "reasoning": "The three key sprites are placed against a dark navy background and carry warm gold/white pixel-art coloring that provides adequate luminance contrast. Stylistically they match the game's ornate pixel aesthetic (gold filigree, similar palette to dungeon UI buttons), so they feel native rather than pasted. However, all three items are rendered at a small scale and their silhouettes are tall, thin vertical shapes — indistinct from generic staff or wand props at a quick glance. Without the red arrow annotation, a player would likely need more than 0.5 s to consciously identify them as 'boss keys'. The dark background is actually helpful here (no competing tile hues), and the blue accent on one key adds a second differentiating color read. No serious tonal clash with the Echoes aesthetic. Main weakness is scale and silhouette clarity, not color integration.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "scene_palette_skews_dark_not_sunny",
+          "key_sprite_functional_not_whimsical",
+          "missing_warmth_saturation_pop"
+        ],
+        "reasoning": "The key_boss_v01 sprite (golden pixel-art key with faint sparkle) is benign and not grimdark/horror/edgy — it does not shift tone negatively. Warm gold color is directionally in-tone for the fairy-tale palette. However the sprite reads as a generic RPG dungeon key rather than something 'bright sunny magical' or 'toy diorama whimsical': no rounded bubbly silhouette, no saturated warm glow, no playful gem sparkle that would anchor it to the cute-fairy-tale register. The surrounding scene UI (deep navy-black panels, locked Boss UI) amplifies the coldness and the sprite does little to counteract it. Composite mood is adventure-RPG-functional rather than cute-sunny-fairy-tale. No out-of-tone flags triggered (not grimdark, not anime fan-service, not cold-corporate). Marginal — acceptable but the sprite could be warmer, rounder, and more sparkly to earn a pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "item height significantly exceeds 75% of player (keys ~85px tall vs 32px player reference)",
+          "elongated key silhouettes read more as decorative wallpaper elements than grounded toy-diorama props",
+          "no player reference visible in composite scene making exact ratio hard to confirm"
+        ],
+        "reasoning": "The key_boss_v01 asset appears as three tall pixel-art key/staff objects composited into the dungeon hub scene. Each key is roughly 15-20px wide but ~85px tall — well above the 50-75% of player (32px) height budget for items. Width is within spec but vertical extent is approximately 2.5-3x player height, violating the item size rule. The display context (quest-relic showcase panel with arrow) partially mitigates the concern since this may be an intentional UI highlight rather than a free-roaming world prop, but taken as an in-scene asset the height is non-compliant. Perspective is consistent with the top-down 2D style and the asset doesn't overwhelm the scene visually, but the toy-diorama feel is weakened. No creature/summon category errors; this is an item. Score 5 — marginal, needs height reduction to ~16-24px or explicit framing as UI-only collectible display.",
+        "confidence": 0.65
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "minor_asymmetry_shaft_mid_left_variant",
+          "few_stray_pixels_near_edges"
+        ],
+        "reasoning": "8x zoom inspection of pixel art key sprites (multiple size variants). Sub-pixel features: none — clean pixel grid throughout. AA edges: none — all hard pixel boundaries as expected for pixel art. Noise in solid areas: a few isolated stray pixels near key edges, minor. Outline consistency: outlines are 1px throughout and consistent; no missing or doubling. Shading: proper 2-3 hard tones (dark outline, mid orange/gold, bright highlight) — no gradients detected. Pattern artifacts: none. Melting details: smallest scale variants are appropriately sparse for their pixel budget. Asymmetry: the shaft of the middle-left medium-scale variant shows slight left/right asymmetry of about 1px, acceptable for this art style. Color bleed: none observed at color boundaries. Semantic coherence: all sprites read clearly as ornate keys with handle, shaft, and bow — no structural confusion. Overall the palette is tightly controlled and the pixel grid discipline is solid. Minor issues do not rise to marginal level.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_temperature_mismatch",
+          "low_palette_overlap",
+          "outline_weight_thinner_than_peers",
+          "detail_density_higher_than_peers",
+          "charm_level_divergence"
+        ],
+        "reasoning": "Peer set is silver/grey-dominant metallic helmets with cool color temperature, bold 1-2px outlines, and moderate detail density. Candidate (boss key + staff) deviates on multiple axes: (1) COLOR TEMPERATURE — candidate is warm gold/yellow dominant, peers are cool grey-silver; no shared neutral mid-tone anchors the families together. (2) PALETTE OVERLAP — candidate palette is almost entirely warm yellows and golds; peers use this hue only as a minor accent (one gold helmet), making candidate look like it belongs to a different game tier or rarity system. (3) OUTLINE WEIGHT — candidate lines read as thinner and more filigree-like compared to the chunky, confident outlines on peer helmets; creates 'delicate jewelry vs sturdy armor' split. (4) DETAIL DENSITY — candidate key sprite is packed with fine interior linework (teeth, bow detail, chain links on staff); peers are clean silhouette-first reads. (5) CHARM LEVEL — peers have a compact, toy-like solidity that reads as 'cute game icon'; candidate's elongated key silhouette and busy interior feel more like a realistic inventory prop, reducing tonal cohesion with the peer family. Shadow direction (top-left) and count (single drop shadow) are consistent. Rendering style is pixel art throughout. Proportion critique waived per item-type exemption. Net: passes on structure, fails on palette/temperature/density — marginal, requires palette harmonization pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "cold_dark_palette_dominates_helmet_refs",
+          "candidate_weapon_lacks_whimsy",
+          "design_language_leans_dungeon_crawler_not_toy_diorama",
+          "insufficient_warmth_brightness_for_hyrule_aesthetic"
+        ],
+        "reasoning": "Peer reference column shows ~18 helmet sprites, majority in cold dark grey/black metalwork with sparse warm accents (one gold, one teal, small red plumes). This skews the visual reference pool toward DESATURATED DUNGEON-CRAWLER territory. The candidate 4x sprite (right column) depicts a staff/key item with a rectangular gold-topped handle — functional but lacking the whimsical curvature, charm details, or warm chromatic pop expected of a Nintendo fairy-tale boss key. Parchment background is on-tone. Aggregate reads as generic medieval fantasy leaning cold, not the bright/warm/toy-diorama energy of Echoes-style target.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.35,
+    "aestheticAvg": 5.33,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 5,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.123Z"
+}

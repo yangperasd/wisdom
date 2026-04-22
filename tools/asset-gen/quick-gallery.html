@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quick Review — AI-generated Echoes Assets (53)</title>
+<style>
+  :root { --bg: #f5efe1; --panel: #fffbef; --border: #c9b791; --gold: #cc9933; --text: #3a2e25; --muted: #8a7560; --pass: #4ea84e; --reject: #c4557a; --deep: #5fb3e6; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  header {
+    position: sticky; top: 0; z-index: 10; background: var(--panel);
+    border-bottom: 2px solid var(--gold); padding: 12px 24px;
+    display: flex; align-items: center; gap: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    flex-wrap: wrap;
+  }
+  h1 { margin: 0; font-size: 18px; }
+  .stats { color: var(--muted); font-size: 13px; }
+  .toolbar { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .toolbar button { padding: 6px 14px; border: 1px solid var(--gold); background: var(--gold); color: white; font-weight: 600; border-radius: 6px; cursor: pointer; }
+  .toolbar button:hover { background: #b8861d; }
+  main { padding: 20px; }
+  .category-section { margin-bottom: 32px; }
+  .category-title { margin: 0 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid var(--border); font-size: 16px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .card.approved { border-left: 4px solid var(--pass); background: linear-gradient(180deg, #e6f4e6 0%, var(--panel) 60%); }
+  .card.rejected { border-left: 4px solid var(--reject); background: linear-gradient(180deg, #fadce4 0%, var(--panel) 60%); opacity: 0.75; }
+  .card.deep { border-left: 4px solid var(--deep); }
+  .card-header { display: flex; align-items: baseline; gap: 8px; }
+  .card-id { font-weight: 600; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+  .card-score { background: var(--gold); color: white; padding: 1px 8px; border-radius: 10px; font-weight: 600; font-size: 12px; }
+  .sprite-row {
+    display: flex; gap: 8px; align-items: center; justify-content: center;
+    background: repeating-conic-gradient(#e8e2d0 0% 25%, #f0e9d2 0% 50%) 50% / 10px 10px;
+    padding: 12px; border-radius: 6px; border: 1px solid var(--border);
+    min-height: 140px;
+  }
+  .sprite-row img { image-rendering: pixelated; image-rendering: crisp-edges; }
+  .sprite-1x { width: 32px; height: 32px; }
+  .sprite-4x { max-width: 128px; max-height: 128px; }
+  .meta { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .actions { display: flex; gap: 4px; }
+  .actions button { flex: 1; padding: 6px 0; border: 1px solid var(--border); background: var(--bg); cursor: pointer; font-weight: 600; border-radius: 5px; font-size: 12px; }
+  .actions button.approve { background: var(--pass); color: white; border-color: var(--pass); }
+  .actions button.reject  { background: var(--reject); color: white; border-color: var(--reject); }
+  .actions button.deep    { background: var(--deep); color: white; border-color: var(--deep); }
+  .actions button.selected { box-shadow: 0 0 0 3px #2c7eb5 inset; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎨 Quick Review</h1>
+  <span class="stats">53 top candidates (1 per prompt) · 16 categories</span>
+  <div class="toolbar">
+    <button onclick="exportDecisions()">📥 Export decisions</button>
+    <span class="stats" id="decided">0 decided</span>
+  </div>
+</header>
+<main>
+
+  <section class="category-section">
+    <h2 class="category-title">accessory <span style="color:var(--muted);font-size:12px;font-weight:normal">(2)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="amulet_protection">
+          <div class="card-header">
+            <span class="card-id" title="amulet_protection">amulet_protection</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABbElEQVR4nO1WMU7DQBA88RA6NxROgWjc0bmK/QncWXRE8AJEwQPc0CFE5SdQuqBBsSy/wC+gcnNoVjdWsCDEyd1ZQhlplchWMrM7s/YpNUJdlfp9da5tY/16qdWuqKtSfmADURhIQzuTjyfRNB97kydpvB85AXL8ie67yeSPp0pKHYoGE2izSeTq7soOOYEJFPfX4udfWOSLw8a+bRLoals45V7f2SffFEFLBmv6TiOwkhOX5D8+K0w2YI3yjRpdGwHeySkAKyrB9DX6sQCQL1+W8wjQbSYrJwJMKL13Dwzf28zfBpxcnEnnw1qaTXBuRZLGOn/LRQA+URQAO1B4YjoTEIWBkLNziuA151YkaSxdEhTASTAXzgREYfCtc9bnw7NMgaF0HsB8JABVPBXuM1BXpXSIDQAhyQdbfKxis3FKAjEEQNDq9saPgNq8A7iSFOHU+99OzQzlpCO37dfx2pyQ1FzQc5IfccS/wBccpRbNENeUtwAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAC90lEQVR4nO3dMW7UQBTG8VEOQpeGIltEadylo1q4BOksOiI4AaLIAbahQyhVjkBJQYMcrTgBJ6BKM7S8byU/WZvE9nz/n/SqRES7+2nes2e8lHKk+x939f/6eX0eCscZbi9DlaUhAE+LAJgbWAG8DUsPQNYS9AUg6s5OQ+kMVdaGAExDAMx1rADeutYCMPUycb//Fap1r9+8CtXcB64IQEQAWAEqKwAtoNq0AKU9X5fE+vAn1srdvCijVdwQgEIAWAEKKwAtoHi2AHVwH+D3VayVKR/fhrLv+QSgePf8DCuAOQKAQO8D7D69C6WbJ3Pb9JtQdjd2HhsBMEcAzBEAjA6Jel393GcOB/17MrPw8T0yAmCOAJgjABgNRHYjKb3R9BB7uB5hOzifQM+fFwEwRwDMEQAc97h6ct6gk70G3u6VIQDmCIA5AoDg4Lo+mQEK2kIAzBEAcwTAnAZAn0Xs9Iwh9/rbQgDMEQBzBMCcBkB7/vbbNhQzQGMIgDkCYI4AmNN7//os31ZngORM4dyvBxMRAHMEwBwBMJMNfeo++32ZCeZ+fUgQAHMEwBwBMP/ATy5ehtLr/PTBEsF5gYUjAOYIgDkCYEbP9PXf+1A6A+jPtfbJDKB7B1r6PYZzvz/NIwDmCIA5AmBOr8u152fX+dlMcJL8e+wVEIDKZhErQGW3kBZQ2S5ewBCo1+WZbAbok/sE2fmCuVtk8wiAOQJgjgCY0x489To/q7+fv4bS+wJKN6Pmfn+aRwDMEQBzBMBcdgDk2Bmgl9p92YXiPAABqBwIYQWonAiiBVSOhC1gBtDS5wC0h2c9f5PtLfCs4LwIgDkCYI4AINC9AN0s0u/90x7fywygM8T1h/ehmAEWhgCYIwDmCIC57MugswdJNslMwH7/whEAcwTAHAHAaCCG28tQ2YGSQX6ft3dlCIA5AmCOAGDSfxw5SM/nWb/GEABzBMAcAcCoyvP93ioB8FYJgLdKAAAAAAAAAAAAAAAAAAAAAAAAwEr9A207bNB8URa3AAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=19, opaque=24%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('amulet_protection','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('amulet_protection','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('amulet_protection','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="ring_magic">
+          <div class="card-header">
+            <span class="card-id" title="ring_magic">ring_magic</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABe0lEQVR4nO1VoW7DMBD1l5SNtmBsbCwsIfuEmU1lq9YvqAb6ASZhA0OBo5MKAkKqRZa/oF9QVHLTu/git6u0dnGG/KRTnNi99+58d1UqISHhD7B2S3mR0eZh2dt6okj9F6jaEANPbxC1f30bV4T1JKfkMGQBe83idjwR5HQvIEy/GO85TW1dxRexnih2Hqa8R3glTsfPQl5kpJaP7Hzx8sxEHG2Qeqzvpjd8BudnT7N4IshH9fV+z4FifVoDpjTd98OuezodRwA5zZGJU4jAHePdrOZsIgh7MLxLNgYLaOuqu9/D7ogATybx33FO9rgIPz55bxC5Wc17xxI1HEt0KEyssS9rWPibQQIan3aJ6lKgCKPUQeOdHLXchYhSA3mR9W11LaJ1AvkruJY8uoAGbVeaX8mlLaUVBwuwuP9wEDnNQsKiBCmPaW9RB5G1247MD6GQ6JzJmah/SG1dsUOZCxgwP8j9QJI5EI38rJDS8OAJTcSNRp6QkKBGwjdJXyk66ptDKwAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAC2ElEQVR4nO3cMW4TQRQG4D0JHS0p6NLR0YWGI5AO0RGREyAKDuCGjoJqS1qkFBRuUFDECTgBlZuhzbyV/Jg4wo7f90mvspNd27/27c7O7DQBAAAAAAAAAAAAAAAciJubH+12nb143tXVy8uh+vho6mrfn4+EABQnAMUJQHFtvmpdRfH1eXvFQP358LmrfX9eAgEoTgCKE4Ajl/XkXXt+CxXHBeL21hdPu9r393P0BKA4AShOAIprv87b7crOAUbH/q+SWmwv7M/P73NX+/6+jo4AFCcAxQlAMfF+fAzA6Fh+ah68lxD2x7iAADQDQ44AzcigFtAMDd9BnMM3Xb7qKvbci3dvu4o9enHdPjjW38L7T5887iruT9z/k9cnXd13izw6AlCcABQnAMVl19XXX551FcX37zofYPVp1dXi/29+d7V4PXyefX+/B08AihOA4gSg+A8er7OznhrPCeL9+Pj3q/dvttY6OYeI24sV/z4bN5iqE4DiBKA4ASgu9uyFcJ092oPj64uevNn+/+P+ZdtbzAn8+q2ruL2pOgEoTgCKE4Bi4nV31mOz6/rYY7Pr7jjH8DS8P24/e3+s0c8zVSMAswA4AsyOAFrAXLMFZGP72XX1oTsLcwLNDxCAZoKII0AzQ0gLaKaI/cM5wPBavgN3aj7A2EmgABw5ATivPSNIAM5rByBeJ2dr6x66tXUCArC2UMQRYG2lkBawtlRsKbsX8NCsw/47B0gIQHECUJwAFJcFYLG2L6zX37dVsrYwWys4VScAxQlAcQJQ3OL27+gzgsL74znC6JzCVejpi2cTJ+W6XwCasX9HgGbsXwtoxv7vcA6w6NnJM4FGe/R913WyP+XXAgrAXHstYMYRoDgBoBN7ZqxseXl8Bs/OfX6z/RlC2fMB/LyDBKA4AShOANgtIOFeQHzGz2itknMOPf8/E4DiBKA4AQAAAAAAAAAAAAAAAAAAKvsLG66Tr04Odb4AAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=19, opaque=25%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('ring_magic','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('ring_magic','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('ring_magic','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">armor <span style="color:var(--muted);font-size:12px;font-weight:normal">(3)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="armor_chain">
+          <div class="card-header">
+            <span class="card-id" title="armor_chain">armor_chain</span>
+            <span class="card-score">9</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB4UlEQVR4nO2XsU4CQRCG70no7AyNHR2JhR2+AZW0dFywsL5Y8ADX0FlQkRATWxMLCxqCufAExAewolnzDftfFunMzRXGTSaMu8b5dvbf3yXL/scvRj6dhKranEQ5L0NrxTUonA7W3AHCYX8svBuFdX4VwvLNcgG5A1S0uxgfiybBXCsAxfozbBf9MwC6wVor4gu7Ubh8eK6LK2dtcHsT/AW4G53Fx/vSX4h5BLDPHwDpmhtAOS/rIr3uRZh1sjoE4HYEVbWxNlMIEFSPGImvxyebs7Vi7AOQxx1SABCCnB0zNOcmxJJdz0srMFztLceUVJSbII9wAcinE/vDFACAsC5EXfAzXqCr2jjAGtuNas9eXs10BMKgA3Yc0Q8aB5h1MlO+Adzf1cUVzLGmW9E4QFmMrd3slAJ0hDmgyNV+Ny/I493nkx2T6xgAItfvEI0D9LoXJjoV1o2QLwhKXtE4wACBLa5ttxST6RDkQLGGMbkADOPdB+QEIDogAOhDeeMAVWw3aleut6C8QQAu17CIIqNI2gHB4Iqad+3AcLWvFc9xECrqClAkHUgB0iNopQN5dDvtXMLUm8BNAxVvwcPeQo8RdUP2qy8p7t8PBsmO05dR1tbYLvq196f/C1oDyP7S+AbboyfaUJdrvQAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAD1klEQVR4nO2dsW4TQRRF/SV0dBENnTskCrrwB6mgpcOCgjqi8Ae4cUeRKhJCokWioEiDEkV8QcQHUNE82swd5KuV11nb9xzpVdnsep2ruW9m3rzMZgAAAAAAAAAAB8ri3du6H7e3P7eK1XrVxNTvBwYEEA4CCAcBhP/BHerxQ9HnTf3+8SCAcBBAOAggnPp7V/ej8/hfr5u4Wjxtoi6/tyHXK3r/qd8/HgQQDgIIBwGE063dn79povP0gbGS+5ED7BkIIBwEEA4CCOf86nfdj+uLZ01smwNcybqBPm/q948HAYSDAMJBAGG4gg/18JMPX5pwnn9irtfnnb580cTU38/RgwDCQQDhIIBwbAHIlvP+krj5cdkENYIIoIEiUUaAokoYCyjKxPckB+h+vmUOsBj4vKkt8uhBAOEggHAQQDh6Xt958vzJ4yaWj2aDYmFyAPYCEECxGcQIUOwGYgHFdvAO0P13XZtXj9YcQev6tWbwWuLPx09N6P2658n9H9oSjx4EEA4CCAcBhOPm4erBmiNo6PWnUtOnuPtRI4gAiiJRRoCiShgLKMrEd0A3r5dQDz77fNdEt3cgPYVujKfrOQF3GJW9AQRQ7A0wAhR7A1hAsTewg3UA9Vj1YM0BNLp1gfXm+gL9fe0X4A6qjG2JcSCAcBBAOAggnK63r6nbn3391oQ2kHA5gqLrAN3egekfMPX3d/AggHAQQDgIIByt09c6/y4HeP+qCef5Zyb0fvo8d65g6u/v4EEA4SCAcBBAOLrWr2v3Ok9XwWgSqfebS06h17u1f4V+AQigaBjBCFB0DMECipYxI+DO++vPdR6v17u9gaXkEHq9+zwaY1tiHAggHAQQDgIIRz1Va/qcx7tzBAvTX8DlFK5fwdTf38GDAMJBAOEggHC6GryL503ovF092/X0WUno9ZpT6PO0xxA5AAIokkBGgGIWgAUU08ARcOf9NUcYnAOsN/cB1BxA6w/c9WNbYhwIIBwEEA4CCMet3Wvdvru+6/Gz3txbWAXocgDOBiKA4nAoI0BxOhgLKI6Hj4CryVNPHroOcGtyBu0r6O7POsDIIIBwEEA4CCAc59HqyU4wundwKuE8nRwAARRJICNAMQvAAopp4B4mgUNzgNXAvQBygAcGAYSDAMJBAOG4dQDXt8/N81emxlDv555PPQACKOoBGAGKegAsoKgH2EEOoPvzGnqYVD3crRssTe9f/Ty2ZhEQAGwBI0A4CAAGMXQePzc5A/3/DwwEEA4CCAcBhKM9e1y///nA/xcw9fuBAQGEgwDCQQAAAAAAAAAAALP/8g/xnX2v0LFj5gAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=21, opaque=29%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('armor_chain','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('armor_chain','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('armor_chain','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="armor_leather">
+          <div class="card-header">
+            <span class="card-id" title="armor_leather">armor_leather</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB9UlEQVR4nO2WMU7DMBSGcwgmBpi6NgNbNrZOSReuwFaxUcEJmDhAFtaKqUdg6MCQBRVVnKCH6GL0Wf6jpygtJU7KwpOekji2/8/v2S9Jkn+LsGw8cvLk1Oa+bt3zRVL75/tyeIjypfRirLiaX7ny6c4/u93WrV+vfRvee0TSWVpPzsoRpA1RAeGbzYfvU0wn/sq7XgDWZnUeYrf1YrO3mQfJF7l/lrCccdHRyMajOs9NANzesw/Uh/4A4dEAVVgNk3KVYNN555YrvzcUtWiA1c1jvSomsytuc6JAPxuNzuKV2XhMSs5Z3SGA+cO9zztXxgJCVDpDFCGPiDPpIQiEeX95fuavjIvehMV04jj/iCPMxHhzL0jcAhABTkg0QL7IPQCmKOCEV3lXG+8BUL/oTViEFCiUFgAwIqFnAdCP/qoL0eJVOPtNgDa3ObenpxNANh45jqFWo0mpB23iKssaa6ti5whkoRIKwD7L2KSkQhvWjrXwnSJQNb5uOg20kRaJKl3aA4KIikAWAGwbodaHx9YItXFv+6uMdwKYh6rWBODY2ZqgtjaAXv+YyiD6G4BeLQvV7ieAwf4RsyMB+EkZBKAIAvsA1DZYBNJZWu/4P0kBtg9AxzD663eM6W/HAqgoJaewefg0S1zllygkp7YyiP9b0tG+AZnKfB6bT9/rAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAECUlEQVR4nO2dMY4TQRBF+xBEBBBNioPOJiObyCbhCmQWGSs4AZEPMAkpItojEGxAQIK8sjgBhyBpopXcn4WvxvYad70nVeR1e2b1Xb+6uqedEgAAAAAAAABAp4zPhtISCfoCAQQHAQQHAQSjfH9V9mPzJDXF7ZfrKs59P9AIAggOAggOAuiM+cNc9kM9W4u8r1e5ivn96yo28v7y80cV20/Pq9DxNOgjIIBCI4kMUOgkYgGFVvI/sFgvyn44z9UiTz1cx1NP35gaQmO3+1aFXs/qxVSFvq6fd2rLvDgQQHAQQHAQQHBa592/1QRSA6hnrz+vq1hIjbD8uKxC3+883oXeH30DBFDoG5ABCn0DLKCE7BuoB7r1+UNrAI3S+Pe6P8Bdj16/1hAaKRoIYEIAZICJDIAFTFjAfev3rnevrzsPPzS28nnl+qYK3W/g+hrUAGYDBwLoHAQwUQSSAaa4ReDNy3dlP9y8Wj2zdR5/7LiVvoBeX2vfIEUDAWQEQAbIZAAsIMewgNY9fuqpup6v8+6HrgGu3r6pQmc1+rrer9YI2ldIvYEAMgIgA2QyABaQY1qA4tbH1fPVUx+6JhjF4/Xznz5+VIW+rvcXfk8gAhhi7wlEAAMCwAIGMsCdCPT5f/V89Xj1WI1D9wuMxvNbawAtfvU5hBQN/fYjgGAggCUZgAywxALuRKCeqDWA4voCGtp42Zn1fTeefr7WAO76wu8J1H8AAggGAphi7wlEABMC+FsjyPXKW2sAtZit9Anc+10NoNen1+/OF0jRcK1gBNA5CCCTAcgAOY4FuG+8e97/0Brg2DE2rua1PveQegMBZARABshkACwgx7QA9Ux9NMzNm3U8dybPsT1/Y84Wdvfbeq5g6g0EkBEAGSCTAbCAHNMCXKvXnaun47W+3zHLnkRdK3A7mFrvt7XmuXgQwIAAyAADGQALGGJagJsXt/bW3XMDOp6uLayMp7vWtdsPoLi1j+6LQAQwIQAywEQGwAImLOC+GqDVUrRXr/v8nYevzHkEbjz9+9brd0fjpmg1QOt4CODCQAA1ZAAyQAllAe5cvdbx3LN/recJrM14x64B3NpA6g0EUIMAyACFDIAFlDAWcCjO0y+tBoBGEEBwEEBwEEBw3Ll9564BRoo4BDBSxZMBRqZxWMDIPD5eDbBYL6o4sSPGAwEEBwEEBwEEx3nwqWuA2YxHHwABFPoAZIBCHwALKPQBToDOs922cNYCOgMBBAcBBAcBQMWpa4CdeTYw/O/+nRsEEBwEEBwEABXau9eHT1trgGLOFOLf/5+BAIKDAIKDAILjfmvYef5szv7VvsB57hL+CAIIDgIIDgKAJmbj+dA5MwKIzYwAYjMjAAAAAAAAAAAIwi9FK8I6mwTU2wAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=19, opaque=35%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('armor_leather','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('armor_leather','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('armor_leather','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="boots_speed">
+          <div class="card-header">
+            <span class="card-id" title="boots_speed">boots_speed</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABRklEQVR4nO1VK27DQBDdQxgF1MgsMikzixRQ1tygzLQsUUixFZADmJQVhEa5hUlUyfIJrB4gKGSiN/WLNk6lquos2yeNbM+O9r357Nq5iIiIiD+gWT0KrMgzoe958SSfu9md3xTTt4NIV8r2wV2NayAFOXyIQWwQAS/7XomYLdfoo1/Ovb2AqvkSoG2PUr/XSsY12c2/iUUEcYgxF1DkmW5OjCuA8p82H7oWpAUABKiIc38zbJwJIpiAIs+uBP4QppNEv1H6YOQUQPKfKsAquFCQofcYQL8CvgAIxL1gTl5Xr5o1DWVnFfDOCwqGb3MBAEmRoU/CUwCjiNV6aSsinSTC805CrvnEeh90pT5NW9F4G48FsAVoky+E9m/yrZchBhCEuA3HcfCN58FEQDNkzwr8dtQ4JxBk8ndMh4zNNoyIiIhwt7gAy3dqG39eQI8AAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACdElEQVR4nO3dsW7TUBQG4DwEEwOZ2BALWzYkBjZ4AzbWbq1YmCsGP0AWNoauiLfIgpAqnqDqA3Riuaz2idTTK6eu5PN90pma2JbzK+f6XsfdbAAAAAAAAAAAAAAAAAAAAABO7HDxpt1Xu9cvJ5Vt78PH921cf67eTmru9jkxAShOAIoTgJV79fVXG1f7+3lSw4tNV2X724WeHgMWtxePJx7vMmdpxQSgOAEoTgCKiwH49PNmUrFHZ9ft2f4Oyfay7bd/N5Na5iytmAAUJwDFCUBxl4fbNq7o+vr3pPbf95OKPTvbX7t618Z11OODeHzxeJY5SysmAMUJQHECUFycm88CEc2dBxjC3P/dtx+TiqwFCECzGOQboFkN1AKa5eBHEMcAR2OCMBffe8/ekNxPkDEGeGQCUJwAFCcAxcWenvXg3nsCt8+ftXHF98e5fj1/YQJQnAAUJwDFxQBkPf/U8wBDMi+wzFkoTACKE4DiBKC4bL0/3gPYOw8wdI4B4hgkPl9gmbNSiAAUJwDFCUAx+8uzNq44CMwqzu1n8wLb8PrsARSx4vuf5qytiAAUJwDFCQATWU+P1+G9PfmQ/C4gVjYmuPhyPikf50wCUJwAFCcAxT/w7Pf7WQ/P9jd09vij5weE5wbGv1srEIBmscg3QLNaqAU0y8UP0Ntj544BtslaQJyY6h0jZNXbIldPAIoTgOIEoJje6/B4D2Ds4fG5gXOPbx+2N/f+AWMAAWgGgb4BmqsALaC5DHzAoC+bB3jq3+rtkvsT4hjC/x0MBKA4AShOAIrLruP10JUTgOIEoDgBAAAAAAAAAAAAAAAAAAAAANjc6z/4kaH7B8ALqwAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=15%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('boots_speed','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('boots_speed','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('boots_speed','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">bar <span style="color:var(--muted);font-size:12px;font-weight:normal">(1)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="bar_health_frame">
+          <div class="card-header">
+            <span class="card-id" title="bar_health_frame">bar_health_frame</span>
+            <span class="card-score">8</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAMCAYAAADS87vJAAAACXBIWXMAAAPoAAAD6AG1e1JrAAABN0lEQVR4nO1VMQrCQBA8fIgPsBUfYGcXG2srbe0M5gVi4QOusbOwEvyChYWNRMQX+AL7kzkc2axREowY1IEhMXize7O7d8b8kR3TqnGa5ttyCtotL7IN6y5eND3dsV8YqQkinh0PHPiOWIxHYw6HnctkQLxoJpLib1BvAsQaMA3UkxvkNyYJXb9emYRvPqYACqM1pa4snM47UweEo2FiIY2AcJGwM3tLskht5EsT+KSxmQywovJ8f1TdMgMtf8s9jwGh6AAK0EWIlh1yPF7qAHudGz2XdJYz92nw/NAzzxzlPnJ3QNBuue7qlEoT9VKDvmOuAbayPiBlzHUncufJ3L/jCeY2AGCw/WaZCFhp1O6C6hNX3yC6Qo+6B52lN6kPYtnOz26qtP+bsmEb1r3B8mr9dE7mF3EB4BWxiFCJeAgAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAAwCAYAAAD+f6R/AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAClUlEQVR4nO2dO07DQBBAVxyEA9BGHCAdnWmoqaBNR0ROEFH4ANvQpaBC4goUFDTIKOIEnIDetNmJlNFoY+868540VUIUj8cvM+sPIQAAAAAAAAAAVEh7HvpjRuntgbK01NO0YIcB9eQYBADUk2MQAFBPFdFcX/W7IQ/Qz+Usie5lfjD6n3vCkAMtnzLk/ovrRX8o2F/3g9ajzK/2A7fdfiURSoMAygoLAUz7B6NDAHQACKD8gdgjADqA0sVAB1A+nz0dQN4IIFsa60yp/b0MraWyhtweGcdGy591Btc+Tytwmd+97Te2tFp+9/anEbnGlJvPzphf6xpXbn2H2kAACAABzBAAHQAdAB3AjA6AEYARgBFg7mcEWD4+9Lth3UBtjUDOWGAjPscktIIk3zZk/WprAtrr2hpLqA0EUDcIYOD8rhEAHUDFIICB87tGAAigYhDAwPldOxeA9Ty/9v6hz7sDjEkrruVX6x0BIAA4HVoEQAcAfmkRAAIAv7SnLgDraUAtAdqiiEwoQEka470HJ7cIiADAMw0CoAMAvzQIAAGAXxrvAtBmfO3mhtz7y7VFFu1+bvBNVJ5/kHszj1aP1uMj1AYCgCkTEQACAL9EBIAAwC8RAYx7GlDOWLdvv4NGWN0lceyZjvvrh0W7UCb3GYSdcX++36yS+HvaJCHfL1+XMfk1AATAAzYQwAYB0AHwhB06gA0dACMAj9hiBJj7GQEk2sz2/fGahHWGO7u8SCJ3prOG9bSn9fOG/j8BVuR1Frkzee4zIrXt1b5Pbr3Ekb9/mBoIAAHUdAAhgJFBAAgAASzoABgBGAHoABb+RgCoC3nziVyD0RahZMGW3h4AMIAAAByDAAAcgwAAAAAAAAAAAIJ7/gGR3hkW4NZlYwAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=59%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('bar_health_frame','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('bar_health_frame','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('bar_health_frame','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">button <span style="color:var(--muted);font-size:12px;font-weight:normal">(1)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="btn_action_pressed">
+          <div class="card-header">
+            <span class="card-id" title="btn_action_pressed">btn_action_pressed</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB+klEQVR4nO1YO27DMAz1SXqFDD1BgQyd4p7Cm+GtQW/gqQfg0rXwlCN06NDBSxEj8BFyCxU0TIOxqUSBRbkGROAhiSXIfPyJTJJEiRIlSpQQAmVhEM3PIQjSl2fjVXk8VCJBzzhuKeeyF/q12cqjJVytJilkDt8D6Pc9noCyMCoE8Lm0dqyehjUbTJs5hyNoECjrs4EP6HA6/V5YH/dTeOzfXgeledggSdpf7x8n4OTUCaCSEgH8xH2Ebr9AAMpiQoC/U4UAKk3Y5JuLxOQE0DsEG4G6Vzr/yvUIjCsGKUhrNg9wovwcTiAVcsR7CLmWxnEO2MAJNCGSGF/oWttvVSDJys0SZTQUYM0Ejn2oBQkhLeuD5k28Wg+YNuvgg0gqJLhqDlAFIQJzW+xaaCVUb+JxTZ/rgXqkPBpGvZXQSFSwzAj/nkATIomXItD49MCSd0Gi4QGaB6idvheYsI3DMxUCXSntCeCwYlOShhrpDEpWU22N5GX6PpuAFDp8IkPYlN997rpZQCKJ5xq8EKvtoCx/F58zvHqAZl2csoiIjQB56JqX3h+SidVVCdChLn09HzFt62Cp/95CiHohah24dTRh2sxvM7cEwFc7zQ8LCdP3RbMJ8EE8pPLQ55AXAkshnUuA/yG1SgIow6U1Kp/aSKJEiRIlSpTkuvwB+bFZPZd/luMAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,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" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=47%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('btn_action_pressed','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('btn_action_pressed','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('btn_action_pressed','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">consumable <span style="color:var(--muted);font-size:12px;font-weight:normal">(8)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="food_apple">
+          <div class="card-header">
+            <span class="card-id" title="food_apple">food_apple</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABD0lEQVR4nO2TIQ7CQBBFN5wBhQBVg2gFwfQEqILhGKtJOAKCA6ypI8geoaICgWlC9iT4IX+TaYamcrZqfzKZdtPkv/0zNSYpKSlJUWWe0WK/JTOn3pcdFbYgVzuqnhV9Xk18gPvaEIxRuLVtbYBAj5qAbS115ytR04UOEADAnAtQx9OBosYN4aYMgC5TQambl3kW5osUOHKcfW+PoaQApA5gWxuWDcUzB9QYAh0jUgXYrJZD1JwAb72MnkHUASAJgBR4HBKAIdT3wNUumONmcvPxPgWAb9QBSrHxiH/KnM9UzSFePgYY/3ayvO/jATgBMU4A74hf3XwKgkcinyETW973fxAonM1inpSUlGQi6AdP7XQUJ6G/xAAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACLUlEQVR4nO3bIW7cQBQG4FXOUFSQoJKCBlQhPkFRWtJjLK7UIwTkAEvCqsIcIcCgwCRStCcpd+nOI6ORN53Y7/ukh5xdbWZ/ZZ6fJ7sdAAAAAAAAAAAAAAAAAAAAwMYMnz7Mp3Vx87Go3p+PVzYIQG6DAOQ2CMC2TD8+z6d1vb8u6vBwKOr2921RL38ei+r9+9BoEoDcJgHIbRKAbbm/3M2nFb/gWENo6vZP+6JiTxCvmwO8MQKQnAAkJwAbF/fg8fvPoubHsah4PQZkCD1A3PNrFXuKr9++FNV7vTZHAJITgOQEILna4CaK9+m1HuA+XG9tKmP1Xq/NEYDkBCA5AUgm7tHx+XtsCmuz/Ph+f+9+NVWr2EP0Xs/VEYDkBCA5AUiu9rw+ntmLVXue/xJ6iqU9Qbwen0X0Xs/VEYDkBCA5AUju6v27+bRqs/raHKB2rn9qnPXXegQ9gADMmkB/AWZ3AbaA2W3gGbT2AHEuUHt2MDX2ALWewPmAMxOA5AQgOQFIJu7hMQDxPrv1nP8YXn/uHiB+nt7ruToCkJwAJCcAycUAtJ7jj7P/c+/5Y+X9eq/f6glAcgKQnAAkVzvzV+sBlv5v39RYx+NzUb3Xb/UEIDkBSE4AkqsFoLUnWDoHGMPr4+y/93ptjgAkJwDJCQCLAlEbJB0afz7y9fxnApCcACQnABTi7H1pQI7h/ez5b5wAJCcAyQkAAAAAAAAAAAAAAAAAAAAAAACwRf8ANapBms6vTjIAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=15%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('food_apple','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('food_apple','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('food_apple','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="food_bread">
+          <div class="card-header">
+            <span class="card-id" title="food_bread">food_bread</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAA10lEQVR4nO2SoQ7CMBCG+yQ4LAaHw+HgKWZxNLwBQewBanAIVB+jAkNolj0BTzCFOfKXXXNmqFaQ3Jf86bZuua+3M0ZRFEX5R9zF0fO2Jnq/iPqGYvB0t0vqugdVL26PB2pn5ivQNzm4ry5hx+IohKAoTo9VSlUTaMciUoKDZwiEVot5eYkYfD6lPDlnOF+TCOYCAkUltrsNudM+C/DQSQHZDZYrKhCDTxK45nZz6+VvwHsYRKzFBGLwqTBOBYmpyH0MbDEBlpBdmAr2uQvpQ0VRFEUxv/kA9gMNAtQQL6oAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAABnElEQVR4nO3bIU4DQRQG4J4Eh8XgcDgcnAKLg3ADguAAa3AIFMdArCFtGk7ACVCYwXYeCcMkNLvZ933JrwqU7P5h3kyX1QoAAAAAAAAAAAAAAAAAAAAAAAAAAADgHw2PQ9nN+vm0Svn6qPN+WWXz+lJlvDmust2+VXHzZkYBklOA5BQgmZvb67Kbh4NVlR8zQFjzSyPx+80EM6MAySlAcgqQTOuGxzU6Jq7pm7Dvj6/3zhRTX5/FU4DkFCA5BUiutSb3zgRjI/HnxcQZ4uTosMrU12txFCA5BUhOAZKJa2yrAL37/HUjn/dPVeKMEJ8viDOAmUABiqHQX4BiV2AJKLaFf3B+cVZ2M9xdVWnNAK1n+npngLHz3KA1c+xzXloEBUhOAZJTgORiAeKaGmeC+PWts/vWWf/Y+dlA/P3i/w3E16e+vrOnAMkpQHIKkFxcM2Mh4r46zgT7zrrz/eMDLFNf39lTgOQUIDkF4NdC9J4L7DtDeP/WuYDb20kBklOA5BQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYmm+R4NAR9MFzUgAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=13, opaque=10%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('food_bread','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('food_bread','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('food_bread','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="potion_energy">
+          <div class="card-header">
+            <span class="card-id" title="potion_energy">potion_energy</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABE0lEQVR4nO2VMQ7CMAxFK+7ShaEdEEs3NibgFGwRGxU34AxZuiKmHoGxA0tFFXGCHqKL0bdiBOxOhJQvWYF28PO3nWZZUlLSP8ueDzR0LUUDuNcLelxXcQBoGjl5NABzM7TdrQltwO/gAKUpObFEcIChawkzgIgyiEREzvWcXE64EhTAePsBIAoKYBvLAc2W83AAxlden46EdQQE/geZBeOTQ0gICPR+c9lwK1ST28Z+9RuJEQARoRVqAFWRc/UAwQ34duO5ZwdkLlQBqiLnquUaRnI+p5HfqbahNCVbjKrFATkhcUgNwDaWrf69huECHMBz1VW0fu8x+fgQfW6EQGXacq5nCLRCtkBCdQCTkpIyJb0Am3NI30Lf6n0AAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACQklEQVR4nO3dPW4TQRgG4Ii70FDgAtHQ0VEFTkFn0WFxA87ghhZRcQRKijTIUZQTcAiaofW+SIyiKFnL7/NIX+X87K5fZWbnG28uLgAAAAAAAAAAAAAAAAAATtj+84dxXNc/vy9q7ePjgQlAOQEoJwDlrnYvxnEdvr1e1NrHxwMTgHICUE4Ayow/v8dx5Zh/MAc4bwJQTgDKCUC57Y/tOK63794sah+9gfz6tY+fexKAcgJQTgDKbbabcVwZiO2k1j5+7kkAyglAOQEol3v+shl0FWWP4JkRgHICUE4Ayo1wc/NrUdcxR5i9npPKtc+PCQEoJwDlBKBcBmC29n8Tc4CZtc+PCQEoJwDlBKBcBmD/Zf/fSk9ePltUWvv8mMg3TADKCEA5ASgzu8/fffq4qBGfHcwhIr/ffoETJwDlBKCcAJSZveEpx/BdzAmy33/59XJR2StY+/zrCUA5ASgnAGXyPv2u/fsc4zdROUeYyV7B2tfn7AlAOQEoJwDlXj1/Oo4rJ4EZkHwO4HTSePt+UbkOMGsurX19zp4AlBOAcgJQLgOQlff1s2cDjxjz/3k99gvk79MbEIChOeQvwNAdNAQM7eFHkGN8rsXnff1sHeAweT3NJqGPPSTWEYByAlBOAMrl2nuu1d/3wZAj1gVyHSB/flr7+pw9ASgnAOUEoNzs4925zz//R9BdN5FuJnOKta9HHQEoJwDlBICF7MdnQLJXMPtcwGZS9gCeGAEoJwDlBAAAAAAAAAAAAAAAAAAAaPIX/JyOHabzC20AAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=12%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('potion_energy','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('potion_energy','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('potion_energy','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="potion_health">
+          <div class="card-header">
+            <span class="card-id" title="potion_health">potion_health</span>
+            <span class="card-score">9</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB6klEQVR4nO1XO07DQBRc5QxUFFDRpMAFSkNHRxVouAKdlS5WOEFEwQHcpIsQVY6QIgUFTYRlcQKfgMrNQ/OyYz2sfMBxtsqTRl7bq515b2fXa+eO0TCuLy9Evh4Vn283kr3PxIWMu/tbWTw8KdLxQD6Sq3ACojgSAKQgp4BkNAwjotPripSFlp0BcjzL82UYEVEcCabBVgDCXEgTpuOBGhBGRDuogHSSCoAqaCUmaVgBUhZKCmDegwvIPSkCVxgybAVkRUwEE9DpdZXIZl8HVshByJPRsCJZR26ftS6i47Pm3G8DDIpoVYT47OJ5XBFAjAUCXtAdsiy0byvkURyt9ltP/JcKsFKtCch8VvABv4Lfz9MKvMcVffidwCa1t4DEk9r5t+R1ITJbVP1aWZrJaKiDW2KIWdcm2LcVAQtT7m3ZUwz7oBJAI9I8X1bqMY8YsP/a30puoYaFgLJoJiCex2okCDk/PdE1bQnwnu26MBDTD43IM7+WQWLB0lpy7g1owyt6MvICGpHXBfCKLFFOm+Ha0vt3ey2/zAuAB5g9BOBKP+xCY3IEyDHn9SnghsRTEF1O4Bn/Dygewt1/I+N+LvKrAhyU7zfh5cxpX1at0XE9MwPyDGDvd4kAOf1zsPPBpuA/A7GxozuGcz95s9j8nQWLNgAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADyklEQVR4nO2dMa7TQBRFR6yBigIqmhT8AtHQ0VH507AFuoiOL1gBomABbugsRJUlULigoEEfRawgK0hFM1RImRvw+6Pkx7HvOdKr7CS2c/XumzdjOyUAAAAAAAAAgJnw9NHDvBv516vBuP7yrIif31ZFjH0+UAkCMAcBmIMAzLl88TzvRv/y3WC0718X8f3qcRFjnw9UggDMQQDmIAAzLpYXeSjU01vx/KgGuHr7poixzxcEBGAOAjAHAZhz58ki70b+vSlCe/sR6vn6fev1jyLGPn97EIA5CMAcBACDRaE2htrKPoAKjMt95iAAcxCAOQjAHF0Qoh5/LWsAdY2g7k8NMDEQgDkIwBwEYE77qc1DcSl9gb0+gexPDTAxEIA5CMAcBGCOzt9HgljL/D41wMRBAOYgAHMQgDmRpyu6XdcQ0geYGAjAHARgDgIwJ/L4NghqgImDAMxBAOYggJmj43KN2nF/e2DoItSxr8/sQQDmIABzEIAZer9+5MnH9nyFmgABZIpCMkBmVIAFZIaFt0A0ro8me04dWdYgKvQJEECmUUQGyHQKsYBMq/gGROPu5ddlEZEHa82wrgxF1wvsPYdQjkeP99TD6MmBAMxBAOYgADN0nLxH4PHn1gdYB32Ksa/32YEAzEEA5iAAc1QA0bha1wdE7wXcfuiqog8+r9v1eKL3E+gziZI7CMAcBGAOAjAn8vTa+f9az98eWCPkVV9EdHw8bwABZF5AQQbIvIEEC8i8guYfNYB6bq3Ha81w7P23QUTHSw0Q1AAIwAwEYA4CMKe2d3/qcf82qBmi49E+gUZyBwGYgwDMQQAzQz0yGvfq/Lh6aPO5KeLUnr+tjL01jOr7sj3NDQSwQQBkgA0ZAAvYeFqA3guna+TUIh7cu1uELhCp9WD9/Wj/5sAaQ/9g3a5Fbpo7CKBDAGSAjgyABXQeFhDdL6+WUBtRr73W89vgeQO6v05WaUQ1QJo7CKBHAGSAngyABfRYwE1qgGi7jsu1cVI7Dj96r381/Ht29/7V1gAIYGYggI4MQAbosID/iUDXA0Tjfq0BdHu0fmDsSG5EFoAAZg4C6MgAZIAOC/grAp3PP3QuIHqAhNYEGtG6/ByEfp/+vmbEyPK0xklTRy8IAlggADLAggyABSw8LSB6Tl5tHyDy1Oj3bzs+3k9F6PFGfQ1dX5CmBgJICIAMkMgAWEDytACl1kOjl0HXfn7smqCRPzya/p7dewURQIMAyAANGQALaDwtwI0saxZrLXDs44cDQQDmZDKANxkBAAAAAAAAAMCZ8ge+iZB0dHUNUAAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=21, opaque=33%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('potion_health','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('potion_health','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('potion_health','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="potion_mana">
+          <div class="card-header">
+            <span class="card-id" title="potion_mana">potion_mana</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACJElEQVR4nO1XoU4DQRDd8A0oTBWGEEyDweFw5Q9QxdZxoQJ94RPO1CFQJIQEi0OcaWgufEHTD0DVLHnLvcvcdWb3ICEgOsnkLvTtm7eze7sP5/5bvN2femQfTJkNozgZJ0f7fnR+Fsdn11e+yCeBHAOKWbExAH8DEYoDizF+vYwSgwv41MQciyLxjtTIIYAJTFXNTeLB3m7gAwYJfLwDs8IvXh8aAdoAEGE2eEKgJZSc7FhMqENhkFAp3jnDbnGZ7JbF670PPMS7GBCBljG0AUGoiLxcRde14VsvmwmaAvJyFbBYAq6bJgA42YE+Atx0bE6qWaud44OQeLfItSVwCQEQzDQFFNj9+cR/3N4FUm7IlIA+S8DiCPCqwKwuiJCfoiaAvzNTAg5vnlpdUIGLzqfHz1ET2qulSgeQydPwNwITgVA8tUltYxvb+L5z+QG2d5TZ0Pv3S98Xi6M7huHx3ktoVc0DEINS7oVYGJPYcUw71ss/jmqbBVK+p5wOZofj1iouL66oHZNHJsE0KE4J6fMsDAK/044hTBFVDZBhgcMy1caEF5ImgiJpRNjVpIBB7WIsMInlPa/tg4YwZcekABQFKe7wmAB5xVrecKOltRiN07Us1vNLKG65F+kLUwK63sHsQt4xDdg4KQEQGhPQckHT8RfW6kDRsWOxPQCii8dla3aaWCwjRAJLW+asGIl/HlKOlyKlAM3pAEMReMJxmwL+Kj4BEvPpld+n/IgAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEbUlEQVR4nO2drW4bQRSFR3kGo5KgkigqqULCwsLaNyhKaZmtBgRbfQSTsoIiS1Wk0rICEytW1CeI/ABBIVOaOVv5djpzZ3e73yddtKv4enxyzvX+OQQAAACAf+Du60U8VEPrZ7N4nVQYOOevXsbn9ebtZVJ994cAnEEAmeAAjSECJuYAi4/z+LxWyw9JqSD0Daw+r5Iq7Uf/ni6QZr72u5D3E58ekgqN0fXS/vuesRCAMwggExygMUTAxB3AynQt3V+rdubqDGDVufRzf79NKjhz/GIWn5eun/ajpf1794sAKoMAcICIAxABcTQR0BkCpeHdz3VS1gxQ+w3oAunQpNujOJD3jGKtp3Uco/WMYjaMAMpAADhAxAGIgDjYCFCL10y0hhTd3/oentuf9fpWrYzjFsGZKOj6WP1794cAnEEAOEACDpAJEeBMNNBDmRa1M6wzo2Sy3OyTCo0x109mKGsGq94gAvAFARSCA2xxACJg2y4CNDMVPRdgndwo7U//vvaXexwgDCwCwvVVUt4zVQcE4AsCKAQH2OIARMDWLwL0dOXR2cnB0v29M7f2gaDQcwToDGOV+wyAAHxBAIXgAFscgAjY+kVA51p/ubfu8dOXpHR/6xKyvh1gObBzAVbmK7q+1RtEAL4ggEJwgDkOQATM/SLAynAl917B0v6s7/W5FXqOgNOb26RyjwtUbxAB+IIACsEB9jgAEbD3i4DSe/2sW8dqR9TgjqU7Hwp2f2gUAvAFARSCA1ziAETA5XAeHQt1I1dnFN1ee6aCnkEAE2eHA0ybHQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBW6PMA3O9Xn1i/g2dsCzq2fgfP2BZ0bP0OnrEt6Nj6HTz648bx1/ukwsD7fZRnHbfux3r28uAFigDKQACNwQEqgwNMzAH0mTXaoL4h3b/2s4JL+737epFU62cH63roP5RW6BsEUBcE4AwOUBkcYOIOoBlqZaq1f3x6SKp2v/okUX39Rxm69NGt3h947o9dtJ6hOiCAMhAADhBxACIgjjYCrAcZWg0r3pmr3+utfo+d+1H09XXo0+1Kc0EggLogABwg4gBEQBxsBFgN5OLdcOfchMwAub8hdFzZoayZRLEOvLmfLEIAMwSAA8xwACJgRgT8zQygmal4Z5aVsdYMoNS+PiBayLkRrea/c5g7AyCAwyAAHOAwOEAZREDjCND/aM3U05vbpFo7QO5v8Sq6vbS/WBvn6ykQwAYB4AAbHIAI2BABfzx/3vme/P1HUpr5eo1e6xnAOi7QOgJyZxTreoZQG+sFEUAeCAAHSMABKkMEVCZXoZr5eoFD3w6gM8qy8QyQu57h+iqpTr/exwEQwB4B4AB7HIAI2E8zAjRTFd1u7e99LkAX6N23h6RyP4BF5ZlFz43oTKL96v61ZxITBDBHADjAHAcgAubTjADN7NybGc1Dx5WxZpLcGWAn90LW7s8ShG4/OjtJKniDANYIAAdY4wBEwHqaEQAAAAD/Jb8B1YyaExa51Q4AAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=34%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('potion_mana','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('potion_mana','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('potion_mana','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="potion_speed">
+          <div class="card-header">
+            <span class="card-id" title="potion_speed">potion_speed</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABxUlEQVR4nO1WoW7DMBD1RwwNbKhsasFYWaWCsOQPxsqqslUjw0H7gJDyoErT+GBBSJUo6hdE/YaQm97V57puK01zYrDtpKdL1Mb37t3ZPqX+7YdWLB+JdjNGmU8I7yqklfnkhADl07AE3u4UBxaASFAC4+GA7m9vCF4QnECpM4cPSiAt9gTU9dYA79kqC0MiLfYEQ+dXmzV7kJh/zsOpkK0yJgEvUCGttuQX/D0CpT6AgKAExsMBN5wEB9CYcRL1SyJOomPWbXOOfMq7ohcio/nIBGGPe8BSgN+t3zslMR4OjgElyAXw1uyDRF1vj1m6WedTenpv6OH1g5/hUYbOGjNOosOCbuawCyosX56NAiDgrUKcRGfZ29vvTBWBJuxNIMW5rxeTu5+nIVeR3ezQA7oMtiJeBMjKBjtBTj2jjNuEDqlOCRTIXGS/Jn3XBErUu204ezmIQCRLFyYQmhQ46Q0N70El1lLDo7YyfslAwkREEfRBujiUR6vmvRUryaxtOHNRwB5IXcjI7i0/TOSVXvhW8LZhJeRb5WOVXsQoAamJODsXMPwHN6X9XWcEqs3aDJ/XgJp3Ftw1WRRNdkkBoJfA6jfbFzUPmevzOp8QAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADrElEQVR4nO2doW4bQRRF9yOKClpkVjWgLKxSwbL2D8rKrLK1SoqN+gFLyhdZqsILC0IsR1a+IOo3hExRJc/dKC+TXXvlvedID22ceKyTeW/ezK6rCgAAAAAAAABgJlyv3qXDSLdfHo1d9z4Lff3U44FCEMAcBDAHAczRnF5aA6TuQxZTjwcKQQBzEMAcBDDnx6sqHYYKsQtCa4SpxwOFIIA5CGAOAphz+XaRDuP1yxdZXMr1KKYeDxSCAOYggDkIYI4KEK3zd3KdGuDMQQBzEMAcBDBjff03PRb7/bYo1vL69mebxdTjBQEBzEEAcxDAHBVA0UOiN382Weh1rQmWv5dZTD1eEBDAHAQwBwEgQ9ftSivXo+DjPTMQwBwEMAcBzCnt/e+DmHo8UAgCmIMA5iCAOQhgDgKYgwDmIIA5KkD0DKAkQR/gzEEAcxDAHAQwvxFEz/BFOT9J6AGTj5/qLKYeLwgIYA4CmIMAM0dzcLiuv78bN7r89+t9BdQICJAoEpkBEqsEUkBimTgCF8uLdBhRTu5d1+8EKOwDJH194d+nJkCARE3ADJCoCUgBiZrgGY2cMIdHOXnkaPVeQ2qCcUEAcxDAHAQwRw9whOvyoev6Lr/++dddFm++X2WhP6/XdW+AM4YIkDhkygyQOGVMCkgcM38A7ZX3cujQdb4ycl9g9a3JIupTaI1jv1eAALX3XgEC1AhACqiZAf5LMHTdX3rvXxraV4giqGGoAWQKRAAzEKCmBmAGqH1rgN7DnYOcqTleQ5/3P7iPcJvXCL3zAMHeQGkfoXIDARoEYAZomAFIAY1nCihdN+t9AtFDoMJVRlcWUQ1QWlPY1wAI0HjXAAjQIAApoGEGeGoN0FvnR739Y/f6O2qAk6YABJgZCNBQAzADNL41QG//XlKArvujZwRpimjXX7OIcvaNnEnUKD5vEITeCFO5gQALBGAGWDADkAIWnikg6tXrdd1v1xyqodvNulfQao0Q9RH0fIC8vjeeYFlr/30ECLD1/mJKBNgiAClg6zsDhOtsyaG6zo/6ANEZwt3I0WtVs/+PAIkDIMwAiRNApIDEEbC4BoiesVNaE5w859/n70/7BNF4KzcQYIMAzAAbZgBSwIYUEKWDB/sE2p8X9Nz90FD0/ej3FD5lTNQABR8QAsyM0v8QBJgZCLAhBQwJ3e/Xe/eOHXvZzSPnH3kGQICZgQDmIACMKoyeMBq7D7CSYF1/YhDAHAQwBwEAAAAAAAAAAKpn8Q+uzZ8oDEZJQgAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=31%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('potion_speed','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('potion_speed','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('potion_speed','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="scroll_fire">
+          <div class="card-header">
+            <span class="card-id" title="scroll_fire">scroll_fire</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABIElEQVR4nO1UIQ7CMBTdSXBYDA5HMoEDg8bN4ljgBATBAWrmEFVLuMIEAkO2NDvBToDCfPLK2nTQCbIuJKQveWmy3/a9/v+yIPDw8PD4B0xGQ/qZeM6n/YvH2w3NF7MPokY8JHSAJax1T2fQoyIqI8JrhbhpQhi8xuPGd3OfMwPFJW2IKAOrc0XHQWCtOzUgLJdDWIKH0oDNhFMDbL/WIlilAYyHh3LevXUg51MpDhGsiroLZaRr73sAZx0QBhE8UIUQVKLojjrj5B9BFgN4ebbcyfZDFEJtQXVuoKiFZIvLiPCfoDSz7nFm4H44vQJXm1GpB1UeTDodATNCZRKBUzloq8NIdwMJswqAyEJbDec6izdMfEmMR1/g4eHhEdjxBD1aR8GXZ9S9AAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACWElEQVR4nO3coW7bUBQGYD/J2GjJmNmkgbKNDI+Njq1an2Aa6AOYjA0UVdorFAyUTImqPEGfoKjkjuaeVL2zYseJzvdJB1WqneSXz/H1TboOAAAAAAAAAAAAAAAAAAAAAADgBPRnr8t2LX0+HFgvALn1ApBbLwC5rK7flu1a+nw4sJUA5LYSgNxWAnBcLr59Ldv1/sP5pBWPV67fle2KQ+Dwc6hq7vNJTwCSE4DkBCC58vRQqtp8rioObff3f0dV7PF9qLuLN1WN/f9jz2/p9/voCEByApCcACQXA7D+c1PV2J7cmgE+/X6o6upVV9XUxzcDCEAxBLoCFHcBWkBxG/gfM8DUPTf2+B3h2UCcAaaeCQ45X50EAUhOAJITgORaARi+f6mq1ZPj33dmgKfw7CHMAPH5vXUAASgWglwBipVALaBYCp5BfJ4ee37syfHvrWquC2zq/Qet4+17PlGXnQAkJwDJCUByUy8ExT1+sfrGnsBYrZ4e1x1ar8eXUQWg+EEKV4DiF0m0gOInaWaYAeJ9/u3Hy6pKWPuPPT326Ln3KHbZCUByApCcACS3bwBaPXpnLX5Tr/3HL6eWm9uqpj4fM4AAFEOgK0BxF6AFFLeBz8wAjz9+VbWzh68xM7T29a9DtfYPjC3PAvYcAgUgGQFITgCSG7unbmzFPXx3jf0Bcx8/Br7LTgCSE4DkBCC5+Nu8cwfiKuwXmPt48fUt/X4fHQFITgCSEwBeDsSJ1zo8e/BxNyz9gQ0CsKylP7BBAARg0AIAAAAAAAAAAAAAAAAAAACAbjn/AKC3fD0qSGE6AAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=20%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('scroll_fire','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('scroll_fire','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('scroll_fire','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="scroll_teleport">
+          <div class="card-header">
+            <span class="card-id" title="scroll_teleport">scroll_teleport</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACKUlEQVR4nO1Xu0oDQRQd/BwRUvkPdtpYp0op6QymsF78hGm2sw6IkDaQwsJGCPsJix9glWbk3MxZbm5mdSdZA0IuXHZ2Mzvn7LmPmTh3sv9ovvShqj6CL8biGK/eZjL+U9AwWwqQm47C4G4gwPCwrsP1zZX8Vrx/bsiUvj8yVfxCAgIEfvH4Gs4uz5t7jDkH/vX0fBiJKoLpRSHz8KUWFdx8sblORw0ZPZd+EIHKOAhA7uXttPHJw704ntv5CI+ELdfCut5ZDGBCovQiL8dMSt5rcFyhWJYSXi2SAmf2a8fX8z2S056lQmVlRwWEIAvr0rOhgSMUVolsEoVJPACjBKECSzHlJCHzQ0iS+F3+YrxT340KibxI+U8qZBGo1GK80pFYtFSptpHrRGAVOxmuTKhUiQFYesJ8sRNrkrCqdSIwjGWjgfVXMSmlEUVPJdzeCgTFmsC6tKTPzxdNC5ZwmC9lYuYTKLcTh+FgSLgon6WSE6qhWlJrdSLgWxIx1WDaHKRs4oKY62IT86LthG3lSJX0/OwmpFXQyailJYA0ntI3DQrGkFmS2YcVnwgFF5KWbPo+nwkZBY5k3euk5JlkCRIAwP4PRbgNizqJ0Bx0TPOKBI9bJGDHuhvqvQGK7E3AkmDM2QUhLwggV3CPsZ3r+jIfici+HxMUYeAYroF7BdfGbbYBNeNO3a4PK2IIOJZN6ZhWgABOxM45/EdAOI5KwEVwWuc2ezK3bd8l2dvgxnG+IQAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAET0lEQVR4nO2dsWrcQBRFRT4nGLbKP6RzmtSuXJrtYrKF6yWfoMbd1oZgcBtIkSLNQJhPMPkAV2kU0nmuzF4mo/Wu9M6BV3lWllaXd0dvnma7DgAAAAAAAAAAAAAAYEb0t/3wPHJORfTb9d7IMv7Xj7sidPyxrxcEBBAcBBAcBLDwGzrcfS9CPbrbXBaxuloVoR6fJYY/j0Wcf3hfhP6/7c/fRYzmDHL+x/4+ZwcCCA4CCA4CCIZ7Dncerp6scXZzX8Sbd2+LcJ/X8e58NJ6+7Io49vd9ciCA4CCA4CCAheM8u9ZTtTZ/8fWxCK0LdA/fythc7g03Z6g9Xxfd0kEACQGQARIZAAtIWMAUnqlzAK3df/+4qYrrz5/2hh6/9fx17WG0trE0pp40IYCZgQASGYAMkOJYgF5g681Xzx5Zgqy/a+3dje9NT6H7fK3n69+1jjH7OgECSAiADJDIAFhAimEBtZ44tee7vv/aOJfnfnd9bs5RG7ObFCKAHQIgA+zIAFjALqYFtF7wqAlUUI+tfdev+ny2+4+vawWtdYLZCwIBJARABkhkACwgxbSA1h4/9Xh9F1DrAu5dwamjN3OC0fkLUwuiOzUQwA4BkAF2ZAAsYBfDAmqfu93797YuMHF/QZ44XrsucOz7jwAyAiADZDIAFpCxgP+qvTvPdH93oQ0Wju3E7yoees4xuzkAAkgIgAyQyABYQFqmBbh98vTvrodu6nfx1OMvdD8B2T+g9vhu7UDHt9Y1jn3/EUBGAGSATAbAAjIW8OIePc7D7FpA5WOm6ykc7RH0sD9a5xy1+xzOfg6AABICIAMkMgAWkGJaQO1zrfP42nftRvvzi6e7vYAvdO2g8Tnd9RgiAAQwkAHIAAMWgAUM85wDNPa4ubUDt5bgPNUdr5+451DrGvrewtTf17HvPwLICIAMkMkAWEDGAl7co6fW41wP4NR78OQDh84pWnscdY5xcnMABJAQABkgkQGwgBTDApTWC2zdJ/DQ7w72pi5Re/6ze+53IICEAMgAiQyABaSYFuAeC2tbxmpr7c6DR/v63Jbn6/YgUtxaRuucRM+3O3UQQI8AyAA9GQAL6GNawKFLxe4LGu0l3Li//5M53mjOUHnDtWdx9jdcQQAJAZABEhkAC0hYwIt9eBPPCdSDz27ui9A6wrX5beBR3WHitYbFeb5iGzERwIAAyAADGQALGBZpAa2WoLV2t4+fenTr+G3lvoG1vzegdYRu6SCANQIgA6zJAFjAOqYFtFqCW89XT1YP19r7IHMA7VfQz+v41vPtooMAgoMAgoMAoEkgWqt3PYi6NtCb8Rq1Ho/nN4IAgoMAgoMAYC/uhxmtp9+2jR/1+MHrggCCgwCCgwBgL24toDPjR78pBPMCAQQHAQQHAQRnJIDNZRnC6mo1PA9dO9DxcOIggOAggOAggOgYz3ec/MaMYEAAwUEAwUEAAAAAAAAAAADdP/4CW1y+tCH3unYAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=47%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('scroll_teleport','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('scroll_teleport','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('scroll_teleport','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">explosion <span style="color:var(--muted);font-size:12px;font-weight:normal">(4)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="vfx_explosion_1">
+          <div class="card-header">
+            <span class="card-id" title="vfx_explosion_1">vfx_explosion_1</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB+0lEQVR4nO1WMU7DQBC8l/ACOl6AlH/Q0aako07FA9zQu7KEkGiRUlC4QUFRXmDxBjeL5ryzWZ9T5M4WlUc6XeRcdmdn59YJYcWKGZB6I9J3IqdHCf+BQ30/SoTELzdB+Pnnq5l8v1hyQaXN3gK2T3excqhwKeHx+L1g8noTq0PQSASA/LqYPK242m1nkvj4FCzIjOBsASvnwnMQJIFI0pGbBem7IWhacb2JxEiOZvTn2IZiLwgD9l1MhEoZ3DygymCPzxKiD29dPolWg8fqXMC4mJAVYxH+HIAzVLBYhfrcZ6uQIAFNxO+xY3kly00YVBGnAO/8CCTT7M0L8Yz+LutGVLut9dWWVmZe8JKLWLIJWdeWdFBdhDeXX2yBJU8I+HbgTPSP80A2pNlbL1k5gvG+GziYlIQp50gV+0BSKfU6GpEEJDtRUFuUl7wf5MOCJ0Z3nj1npTScyg8SGEJeQap4NYFd+2tVpT0ePRMZVNE9fUlh5zC6rvLT+bXq5aexuJvcXnodv+k0ZNysFhzcePVBbORyp0rJiI5tI5GSm9AysQ4jypy2guOaJEw9vSHVa5XXe4KvXvTPz32aD7uvHGf9Z5oylEKSd7kld+PYZHb9Xex/gAff+7fP74PJtP9+1uOcN29YEiIyCjgy5gWjzZK+VJ3sH65YEQb8AZ8eQreZvyXRAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAD9UlEQVR4nO2dMYobQRBF5yQ+gTOfwDD3cKZUoTPHG+kATpwrEhiDU4MDB5sMaxadQPgMm5RTzW/YT9Ey1nS9BxWNRpqd/dTvriqNpgkAAAAAAAAAAAAAAAAAAABg48RxjlW8XNZx3q3if18v3BgEUBwEUBwEsHGeju/jOrLnq8cf3kyrcK///eu0it7Pz55fHgRQHARQHARQjGaffvq5Cnf+48d3cR3qwSF1gVt7+PPzEteR+dsBAQAZoDgIoBjqybrvVk9tBKJo7d/EpNeja4bOffznh31cx81u3CgggOIggOIggNH5/iNeC63Nq+e6QpDb57t4kvfXNYhbAzRrkuSaY3wQQCAAMkCQAbCAqGkBxjOb4737eDmua4yDWXO4mcHs9bneQLl5AQSwBgHoDSEDjA0ZoFgGsB4qnqserft0lyHsPMD59TqDHm/erzNDffh6ietw92vaOghgDQIgAwQZAAuIYSzAeW6z7056aBPOw90+/izhyF6fotfj6iAIAAEEGYAMEFgAFhBbWANkyfbn7T7c4dYAL697tPt8Pa5h78fWPL8XBLAGAZABggyABcS4FqCDIEK61m48vZnpy3I2awb5rqIrdTfXY/6+8b5HgAACAZABggyABcSQFqAX7PrrNsw+284LZGv5gvPs7jVLsrfQ+4yifw4CmBEAGWAmA2ABcw0LyM7cZcP1AqznK9n+/TnXO9DraeYfkvMAdw8CuCAAMsCFDIAFXGpagENr5a5f7vb5esPc9/ctL+YZQ2ZNYOscyTXFcPMBCEBAAGSAIANgAVHFApTuWrn57qBdI3TyaMTbXfsQ7q7w0wsC2CEAMsCODIAF7GpYgCt8aGg7OdsrcDfQ7tOPZobPlH51TaDPBMrWQVxdZLp3EMCCAMgACxkAC1hqWsDD45+4Drev7u3Hp99PaOoK5njvbxLpcffImM2BAGYEQAaYyQBYwDymBajnucJFtvbvBizccVu7F+zr5fqa3zBKDnlm7+90byCABQGQARYyABaw1LQAR/bZu+79XF3A7cuza4Aw/0D3eU1vw4litCFRBLBHAGSAPRkAC9jXtADr8eaRMa4239srOJhnF7s1ga17KDr/8OXzKjbX7HEgAAEBCGSAIANgATGsBbjf+tXmR/b5/m7mT49n9/mTkH29mymcRgcBnBAAGeBEBsACTjUtINv8aM53nu/mC7K1+XOu+dLb7BkeBFAcBFAcBAAptBCi8fbTt1U0M3mm/599Xv8kZGce+fcnQQDFQQDFQQDF0e5p9vz0jOHxtgMa5Qo9twYBFAcBFAcBwF0tOicYmwMCqM0BAdTmgAAAAAAAAAAAAAAAAAAAAABgMP4CshErnY/bD5gAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=35%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_explosion_1','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_explosion_1','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_explosion_1','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="vfx_explosion_2">
+          <div class="card-header">
+            <span class="card-id" title="vfx_explosion_2">vfx_explosion_2</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACJElEQVR4nO1WMW7CQBD0S9KlTZMuHZILOvhBOrd0QfkBFQ+gSe8KKV9IQeEmAqF7gcUb3Gw065vTYhznbEdIUTjp5LMNO7Ozs3dOktv462N9l8jVQVfFKYCKy65DQPJUCHY8fuoV95xdvx8H7M6DbFYL2ecTKZaPQpBwdZngvf6vKgPJcQTyVAMAsDkBtnx90clnIAdfYE0CVGzwKHxgzboqNSB8YOfmbaPvMPV3LlMioxQQ1jhPlQDBuAbAYbe9IAOCUIel6d0ph922ls8HQEbMGvcEIjkABBX8e1XDEGDM6DGbTzUAwSkvwVVems88D+SqUr1BgoM2mMKDI7MmQOgCo1JbKWhO2xmd4/ndt4/JXtVgu3VNekYk+ATksUacXt0gnkBrxhFEYEKWAgQQM5qA+GxRQ+v+KBK+HMw8mNHvJ3HgribA2lsPdJHgJmQ9oAY25KLl3+cTVUBlzNOzFvzWD7ZFfWeg/VQJvBeJJFDVdbP9z/n0cN9OwCsHE1vVbCl6mXDt29D2P3va7o72vqkAt+VB+8BsPg0qQEYGD/e+LJrlahH2fz6DEvZw6gUuVRlAEISyct9ni7UdSNZ8rH3v0/AI57pMA1CFprmYLUDtgcRas1vCLhjbhs1hA6EreC5YUsyYp6D9NkjGDOFXjSdgJ8hQcqxp2iY4zTichKs3DwThCUgQri+u24/f+Rz76duQoGo2s8nwQLvK2I+t8238+/EFJarAJH3yI0kAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEQklEQVR4nO2dLY7bUBSFvZKw0hKzskoBZe0OykzLOuoOBmUBIeVGI3ULBQVDolSjrMDyGoa8Uvu4ytGVM4nj+33SRXb+nKN77rvvPbuqAAAAAAAAAAAAAAAAVsxuU5Vh3Pr7wJXZIYDc7BBAbnYIYF08PvdlGO78cmrKMK7zLeHNQADJQQDJQQAro7TbMgrj2S8vhzKMyfvJ64uJa39/QAAwhAyQHASwcuZ64v7xWxnGsf04iueHehROUMUdl9DPn/y+164M49K//+5BAA0CIAM0ZAAsoElqAeK5elw9fG6oZz/8+H423PtpzaGTS3q+swDXx1gdCKBBAGSAhgyABTQ5LUBxHjsZ18s4Wy+gTg5FY/9zPwr9PI3J95MUrzVC+j4AAmhy9wEUMkByEMDKsXPw0hfQGsB5tjtfPfjvn6dRzK0ZtAbRvoOba1j9IlUEsEUAZIAtGQAL2K7TAtRT9bjzQC0C3bheX+882tUcO/kDbF/AfP6kVxC0AHc9FwcC6BEAGaAnA2ABfU4LUD5/+VSGoRfAeb7rvTvPn/Te3Zq/19j725pD3k/XG7gapLp3EECHAMgAHRkAC+hyWoBbIzfpncs4e64H230Bbawvcem5ArfmMLrPYHEggB4BkAF6MgAW0K/TAr7+6sow9Hh03D8ZNrq9e9eOk1nPILj1CVrz6Pl6fRa3aBQBNAiADNCQAbCAJqcFOFwNcPFx/K3jdP7+AW6uQAWg1xMB3PoPbhEAGaAlA2ABLRbwf88343adDImu+19cTXA6P3fgijy7YESiWjoIoEYAZICaDIAF1DksILrVy833R9cDXLsmOJp7AkXXA0zWQAZrjlv//whggwDIABsyABawSWoBivNM7QNMeuPy+slxtxfvrdcPnIJ7Ec0+A934MSkS9fOFamkggB4BkAF6MgAW0Ce1ADO/Hd3/7+LD+3ejuHgNcDo/ytElcdG+RrRRtPj1AAigRwBkgJ4MgAX0OS0gujUsuv9fPdrdezfayy+uhpjZB3D3Fk63ORQB1AiADFCTAbCAep0WoHv9XF9AGyPOc+3rzdzCoxZlso7f3f/fvZ/2CaLPHKruHQTQIQAyQEcGwAK6HBagxZzzZL0grrfu7u/v9uLNjb1p7LgFH26y5+4aPQoCOCAAMsCBDIAFHHJawGSRo4yb9QK4vsDcNXdu3L4XT48+Q8hN1rh9C/amUEvfGKIggAMCIAMcyABYwCGnBUSJXiDdV+CeLxCtKV7MMM49F9Dd+NHdAygdCCA5CCA5CCAZ7mbHrgaIhtYMrpf/IOe7JW1zPd8tiavWBgIYgwD0gpABChkACyirtQDF3fBAU6R7DqDzZHd+mXv86fcoor83HQggOQggOQgAzjLXM+06//b83sHoDRncI3QgCAJIDgJIDgKAN+XI/HxujgggN0cEkJsjAgAAAAAAAAAAAAAAAAAAAICV8Q9gEwLle06OyAAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=40%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_explosion_2','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_explosion_2','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_explosion_2','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="vfx_explosion_3">
+          <div class="card-header">
+            <span class="card-id" title="vfx_explosion_3">vfx_explosion_3</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACIklEQVR4nO1WMW7DMAz0Izp1aKesWbJlK9ChW/sKr9kS9AeZ8gAv2TPlER0yeCkaBH6BH+GFxRE6gVbkRHLRpc0BhBxH1h0pklJR3PAXsHpfyq8tfjzsdfHT6dOTfO2e/LPsngWmz117JgTfVdvq5wLFLQ5yiqlXM5GmlM1DIRRKUXzGHFgeWVP6Be3Hr28v+jyfTpSUAjhHAENuxVfrRbqQ42Ev9BgjxWBxJXVht4b3iAzyAd/gWed2rY4Qb8UOonYEoff0Vgn3HyqKBhJEhGIQITrSi4RIfi7MpxNVjb0nMaMSGt5jDvedZhM4GeKiQM9IgsVi5FaEjleiMYh6NfNlAzLgEmGUnGNTqoDsKgCYOLBUATTdLmwHotCU+lvfNaVWQzGEalv1EpChH9rza9Hg9mHkmsU11EHmhwuz6cQM4T4T4hxKzgFpSnm8v9PQx8jwbigR7XyKjzWmpAhsXKfreRPUf4zYzmGb9p0yRYxE+viYHGAUYCzFrGo4oQRdLcdKLcXoPQVkY+5qmG04x3uSswKyIOZc10PEHTY2J1DXYbjtfxCPfOA6F+vfgg3DvvNHrxMStmdmu50Tep98LxAH+xujemQ6W+xItkdzbN+Te4GFjQa2w0YgJMWIHuK/BSLXtCSIKUd7DdP/ulY9pIHURk3vgetF71IzSgQQ5sMYjLqIhLBJNOQRb8skxFaNKsNLQGh5OdUj13g36ty/4d/jG2wVhoP98nNkAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAERUlEQVR4nO2dIY7cQBBFfYiggCwKDTFbNpJBWHKK0GEZ5QZBc4Al4Yv6EAMClowyWuUEPkRIh9q/pf0q2TP2uN+TCtlxerxf9cvV3XbTAAAAAAAAAAAAAAAAVMThx/c8jKXHAzfmgADq5oAA6uaAAG7L5XfKw9Djr6/nPAx3vT/PuzwMd35+7vJbUZz/r8/DaCaiv+/p19Momq2DAM4IgAxwJgNgAec6LcDhPFc939UML4c2DyP//TaK44dmFM6iivGaGsKNR6OpHQRQOQigchDAnaGe6jw06nlfvn7Ow9Djj58+5mGop7sa4MWMJytBz48K/unnfhSrrxEQwDQQgIEM0JIBsIB2vRagnu+KOD3uagb13MLTTW8/Gi9yfe0z6OSR/h49vxivnK/HNeNFa5abgwB6BEAG6MkAWEBfhwU4D3bnh68vN6Dw7XQahVqSiyx/EO0juJpB+xD6e6JzC4q2IZqlQQAdAiADdGQALKCr0wKmojdMLUXn+53Hu77C1MhyfR2Pm993EV0DefcggBYBkAFaMgAW0G7TAlxfwD1nO0/WGza351+CNUFxfOG+weIggA4BkAE6MgAW0G3TAvQ51m1sUM9Wbu3hl7k93x2XuQz3GNysHQSQEAAZIJEBsIBUpwU43AIHjaU9/jIxirkLnTvQQlAEof++uJ6cr/sGmrWBAHoEQAboyQBYQL8NC9Dn/OgaQNfrv/Z8/tJ9g6OZ+9Dj7n42twYBJARABkhkACwg1WkBUwek50/1WPdOn7njURo3k2sEU0Pp+c3aQAAJAZABEhkAC0h1WoA2Jh7evxuF9vrn9my93rXXCB6D43c1z9zvGLo5CCAhADJAIgNgAalOC3CPge49feGiaeL+/7k9PgfH495N7O7n6gSDAE4IgAxwIgNgAac6LWDu9+NvbT3AxRSFGm6jyOomgxBAQgBkgEQGwAJSnRbgKPYCmu3S4b7AndUMR1P0OQHcHQggIQAyQCIDYAGpTgtQ3GbIoi9gvkF073/wo1kEujkQQIsAyAAtGQALaLdpAe4bQUrxQQTzzZ7oegLdXDm1d38J/n9qebp+wN2f1e//VxDADgGQAXZkACxgV4cFuBcYRK9nv/VraoSp7x6+6FxD8DuFrmaJFn3ues3SIIAOAZABOjIAFtDVaQHFy36DHzVy5xdFVPAlS279QZ45rj25ozVKszQIoEMAZICODIAFdHVawFSifQOdO4j2AaZ6epbj+j4E+3uV4NzJ5kAAPQIgA/RkACyg36YFRLeO6XN89EOK6qlahLl4EE+P9jV0vDqZ4zx/czUBAtgjADLAngyABezrtADH1PUDWyMHa467BwGMQQCVk8kAdZNrE8DcCyKuXUT9kT5F9A+ocxWb2xgyNwigchBA5SAAeBPttet6AT2/+Jav4G736hZl1g4CqBwEUDkIAAAAAAAAAAAAAAAAAAAAAKAZ8R8+KGiZwpKNJQAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=38%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_explosion_3','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_explosion_3','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_explosion_3','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="vfx_explosion_4">
+          <div class="card-header">
+            <span class="card-id" title="vfx_explosion_4">vfx_explosion_4</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABY0lEQVR4nO1WMW6DQBC8z7h1447OUop0zivSuswXrDzBD0hBxSNcpEhjHUJ5AS9IRbPWnG5Px3LAcUCkRIw0OmP7bnZnlwWlNmz4i9D5kbB+vR2Ivl/p10Sr6u7EIOzTfd/U6wZEQpgJN66XM/kOzRYqPwvCYVideFMHA3AUDmD/LFd0fjRBDGUfCmCVUlBMAJ5LswW1zRwlwIHGzogA1JK4Xs4dAQ4oJpDkhqT8iQyaOjrzoWZMQlXdpwsH3JosXNpNY5mbUqDhmD3/m1yGcigAK5btd23xpqbTy/MyAWgx65k/7x8d0SCJWo3KE3ISqLh1s7FNGc1UB4A+64coy2KuU2ZD5m3kDPyGC9Wfe8DMDa8UycOJRAC9maNUI2VILoG2D6JWViOEU5gfWPlpCqgUZPudOQCrvOelK3zN4rzXf4mZhcwe2Ef5u1oSpbXTuFDc3GeIovHYIcnVX882bPgXeAB8DDrr7ISRFQAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADB0lEQVR4nO3dMXLTQBQGYF2GlobOnWYo6MIp1FJyBYYjcACKVD4EBQUNk0xGJ9AJqNwsBY31PMOySPLa2u+beZVxElk/761WdtJ1AAAAAAAAAAAAADfo6bFP5xUf//HxTTqvNA6zqvNTsxoBaJwANE4Adn5CX15+zir3/DjjS6vLff3TlM5rtQPnDwFonAA0TgDYdManTMV9gy+fPsyqdBHKygSgcQLQOAG4sxP0/P04qzgz4+O5rxevw7cORMp8/9LXJx7/7vYVBODvBEAHSDqAEZB2OwJyYgfIXUdffcaPy9YAzZ3QUgLQOAFonABQpPrMH8vWBPFxp3uh6id4FICqqp/gUQAEYDQC/lvuOj/eC4gv9sXWae3/8aMZLwCjRZ4OMFrlGwGjy7xi8T12S2dwbg1Ru7rCNdHuCUAvADpArwMYAf0+R0B6fJtmFYW981u/zk+l1fr7AQRgEgAdYNIBjICpzREQxc/3V5/RY93KfQ5idwRgEAAdYNABjIBhnyMgd0C1r/Mv7hWcprLa+Oe7+3sDAjAIgA4w6ABGwGAEXGUNkJnZh9evZlU880/zenj/blbWALXXAAJwWwRgsAjUAYZ2F4FLf1lzrn59/jqrpTM9rV1B6XsUc7+H8OYJwJwABDrAoAMYAcN+R0CUjt/SrJZe9kW1Z/5p3XsJd78IjARgEgAdYNIBjICp0RGw8Vbvteuw8N7CxfMzx9/dOwGYBEAHmHQAI2BqYwSUHmBuEVT6Hr617/+nzPsBLj7envsakQAIQNIBdIBkBBgBaQ9rgGjpGmDza/tjuFdx7b0FG0ECkOwE6gDJVrARkFq4F5D7AxHF19WV6znsU8SPv8fHc383MerunQAcBUAHOOoARsCxzREQxb36+ALEx5d+nn/pvsJT5vm5mZ873vj8bu8EoBcAHaDXAYyAvs0RsPbI2LoOC79/7dfv7glA4wSgcQLQmNze+cW+QLifn/v3MVAP4T1+uX2IpRX3EWq/3jdHABonAI0TAAAAAAAAAAAAAAAAgO6f/Ab9W67OY1WK+gAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=13, opaque=32%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_explosion_4','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_explosion_4','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_explosion_4','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">heal <span style="color:var(--muted);font-size:12px;font-weight:normal">(3)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="vfx_heal_1">
+          <div class="card-header">
+            <span class="card-id" title="vfx_heal_1">vfx_heal_1</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB1ElEQVR4nO1WO27DMAz1CbP1GEH3niDoEbxkKzr6CB0ydOhSoPARgh6gkxcWT/VznmlK/iAtOuQBhBxbEh8fSSlVdcN/hnVns+ZkAH637bt9PT6l5wj8xjGt7W2d4+ZnERz6TfAuR/Z095DWYIQNa4ElJKw7X5j30XtSfKdK+Pk6l4Qxf5aEYRMl0dv+ZT+M9bGeqJJTLFJvnkQzdeod6Dvax2sTOsb7YX5fS7Fjs1RgfjMfsZfXE+baiJAGGMrfZiTcPe8G+TFGqeAcJcSAaKkwu3PcSRYUkEYGB2p850fMP7x9JgVgmjb1U2wjEwKIFBvC8I3PdEBC+g3PsFH+51KgUFmVgJqqos6VRH24H6UKe5cOskpzxnwjiohApEpEcNQxpS4AOInyMbc5JzkjaRJgR9BHVYLJ0anttoYAlWGdMA1FxwrfBYwIv5cSoHr+JCzWQE4B9v6a6JU898tdZBOkDcwmp9pcQQ7Vf6xDBVbB5IZTFWC5mtC8q2Nez9tINGNjdFHlU6XRAeSu9fUkuvEdoUrQOXPtb9DNTiNEdwTM9zrHTZKXwBaKSOilw7nVb8D6q1SLUw+rRX+7roG2j9Cf8bNn/bVh/P/4144jEjfcUG3EN4TY0ekZPCPBAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADy0lEQVR4nO2dPY7bMBCFdUJ1OYaQ3icQcgQ16YKUe4QULFK4MWD4CAEPsFUapkgTjQK/TEhZNuf7gKnktWTp7XsjUj/DAAAAAAAAAAAAAAAA0JDy80dZ1Vtal8H+/e12KX/W+6cvq9r7YL2L9anlm98raugNBJAQAA6QcAAiIPUZAeoH2QyvzUT7fXv3LOnDaVV2/Xa5LfkbLa8mCARwQgA4wAkHIAJOfUaAzcTNcvuDxHm/XF9lj+AdJyiV2+/dXtXD2O0/XBAIICEAHCDhAERAIgI2+fgvPYGo6du0KrV8+bysqrZnKDuPY9Run1r/nvH/ewf95aAjgIQAcICEAxABqf8I2ERC40yvzWDv9xVR1+9vq2p9gO33y+0X10sgAATwWHCAhAMQAanfCLArVGPT3sysPY/3lvc8fhIHRP3e1j2E14ERAAKoAweYcAAiYAocAWaod++x8PHruCo19m+Xt54rGMX2eHsI1UOp2lxgYo5P8/skEMCIAHCAEQcgAsagEVDZhHh3kMpgb6nvK5XL7fbP57wq2wTa8s5teI8PAkAAdeAACQcgAlLgCHDeG+ftAex5ut2Btuz61OfVARhFD+Fdn/28LffkT2UPhgAQQB04wAUHIAIucSPA7RjOsXVvD+At77jCzfkf7xXEMn9cl3Ouwu7vRz8jSYIAMgLAATIOQATkPiPAO5mh5u9tU9S6B2g9rjA37kHcl7EffV8AAsgIAAfIOAARkGNGgNogNfCh5tv3zuS96yp6GiUAdRGpOh4IAAHsCw6QcQAiIMeNAK8jyKamsx5gNqV6IltqYGh4NhBARgA4QMYBiIAcMwIs3sz3zg3Yvz8642dRatzDO/lz9DuTJAggIwAcIOMARECOEQGtTwPV/f6vdt5fnD2P2n97vyMJAZwRAA5wxgGIgDMR8F9sMtBQ+1Clo68hnEXm24Gc1k3g04MAFgSAAyw4ABGwxIwAi/c9fN5xAVt7X09wc07ueA+wevfw8GoggIQAcICEAxABKWYEWLxNkCp13l2b+VfnuIT7ARCV71Z+ORBAQgA4QMIBiIAUMwJaP47eO06gMn8S8/Uq09Xyo/f304EAgoMAgoMA4C61zaLqCcbKmzXV8u4Gch4NAggOAggOAgiOuhGidU9wdb7QQW3vMXutIxBAcBBAcBAArFAvSvRec1hEeQXI4doZBBAcBBAcBAB3UefhtQ9jLkc/rBnugwCCgwCCgwDA1UQOdjkZ3zcIIDgIIDgIAFyCgM4pCCA2BQHEpiAAAAAAAAAAAAAAAAAAAAAA6IxfLPIfRCWIjPwAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=12, opaque=45%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_heal_1','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_heal_1','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_heal_1','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="vfx_heal_2">
+          <div class="card-header">
+            <span class="card-id" title="vfx_heal_2">vfx_heal_2</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB+ElEQVR4nO2WMU7DQBBFfaMUnCAStW+RdBElUk6AOEKadAil8hEoKFLQoFhRTpATUKVZ9Jd9w8TE9gYIpMiXVpbtnZk/f2bWLooLzh3r9Wv4bw5F2G0jiRBCJ5l6WYWm3WoxDNhnoV5WQWswGcQlBXIdaJ/2l4+l2eiq+8nTJI9E7bLwmcuJCB3KFNIoRNlkY3bTUT6BMhl65xBSJk1FeA9BQdLjg+dhM+4msVoMbYMZpewhoj2xrptxXDj2thCKqrAnlSdLAQGHMvSBcUpQObXnwm4b38V7SphISL1OErP5LGaLQ4IRSKrIqa40mt7TsH5hhxq+rJ0ocZygwGJOUF19n/hFs3Hv1TOffRNVLyuTCWM5frm9ssxmdzcfAZB6M94jwhhTtr3y5ox0cLWTkYIjaTPrphqhet5Tqrl6g3sCZEBd5fjt/uGg/EYgkUYt+YEkDVv0oU4GEIAEz9qC6536hf1My9Hfk9J1q5c+LK6t/m0Ltah3tOv5hnzFdBSN+Q7QxRxAbSooewLa/qODO/guhgQZmirpHGBUDYkoo/gtIrXrWk/ENyWdj+w286kZszu/DYfOdZrUH05tcv+YgOAPD5NWZKYjk71wyBq1XyGz+6yvGtarVZwSazfX/nj9s//HVeM/76SS90Hyn1zyNmT/5VxwwTnjHYMNwV3YJZ4DAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAD8UlEQVR4nO2cMW7bQBBFeSMWOQGB1LyF1AkpA+QEQY7gJl0QuNIRUqRIkUawIPgEOkEqN5NW+xXoZyDTojjvAVNRtLir7/m7s7vsOgAAAAAAAAAAAAAAgAk5HHZxGnR2MRBAcRBAcRAANMTLMU5DuyeEt+6+/a9tnMa17Xt6HJpw7V88COCIAMgARzIAFnC8DwtQT9ToN/3F0EHg3D0w5Pn0+cfvYxPW0uS63r/5sWmimxsIYIcAyAA7MgAWsMMC/mdenJ3mqSfqGMJZ0mtbmpItbGl7bPs+rdqYG9kORwAjAiADjGQALGBcpgU4j3P3O0tRC9F58rV1hL35fjcGUbTW7/rD/f14XsdpdLcGAVwGAZABggyABcRiLEBTmvu8bZCgHeTGCPo8Z+vr0mGuA0OuZ9vrxhBndQX3PGbtoXtrEMBlEIBABmghAwhYwPq+LEBxtXJnGdrArMe7/yjn6QfpUPv3FXl+/b6z+91aiBGE1j1uLggEcEQAZIAjGQALONawgIevD3EaOm93Huo823m0ziq0Q/W626MX8v1uD2M2XPvctDG7toIAEMC0kAF6MgAW0Ne1APeAZx5rUI/XQY5L6Xo9uzw9JsNt2HD3Z+setj9vfY4CAawQABlgRQbAAlY1LUAb4AoTrsHqsb8/vmvCDbIePn9o4uwHcIWa5/Z6dozgzka6tY1sfyMABBBkADJAYAFYQMziOH12sUM9TT3fFVKundfvr6wbxPZnE9k6xbXRzQ0EMCIAMsBIBsACRizgX2MANw92iyvqsX++fGvitWv/oxsDmDGNq1to/7gxidvD2M19DIAA1giADLAmA2AB62VagGuAswA3JnB/b2rPf5Lv0/0L7vnduYWb7/O/FgQwIAAywEAGwAKGmhagnuk+n631x+P7Jtz6/9TRm7qFW78/a595D+HsQQA9AiAD9GQALKCvaQG6T9694ECvu02R7h1AU9cFNjLvdz+gff67/8EVBNCCAMgAQQbAAqKMBRiy++LdmMDNw21d4fny+wHcWUWLGaO4gyKLEwgCGBAAGWAgA2ABQ00LyO5rz44RsnsKR7PP39X27WFOs2dw9vv8XxsEsEUAZIAtGQAL2Na0AMV1gDu/7z7v1u9Hc33qwg0CQABBBiADBBaABUTJMYCSfeeNrbXrmEGWq3tT288+/+wOatwbCKA4CKA4CACmFUxy8eUgexiz01Z+zolBAMVBAMVBANCQPVy5T7579+4Pby4dBFAcBFAcBFAct0cve38H9wUCKA4CKA4CgBQhUMsvRiCA2gQCqE0ggFq4dxZ1sGwQQHEQQHEQAAAAAAAAAAAAAAAAAAAAAAAAAAAskb+iyhZ1/dumwQAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=33%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_heal_2','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_heal_2','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_heal_2','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="vfx_heal_3">
+          <div class="card-header">
+            <span class="card-id" title="vfx_heal_3">vfx_heal_3</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABfUlEQVR4nO2WO27DMAyGdbVeJpvv0TNk6d7JR8jgIUOXIIaQExg5gxcWP6s/oFMpkvwAWsAfINhOaD5Fys7t/AcEjIPUvOP9pUo+qaA/t3L8OOrCvUsAB/EOZJpTo1es6+ebLldDf25VGRXJ7fC45zXmMP9/Xq8cj8Kope1UAZQDmw0syuM/PNOgfea12IneREHDvxiHn8wEpx6ZGgf9zb6HezqBTL407v1F6xUzToMTQmkY9TPUUZWFhtFY2i5pIGU8JqeyuW6StotHu5BcFymTeiairoGdAWxruhQSBEvSWkzYmOyI7ExorAMrZIFQr8txDV1Az9c0nm1DAMMUXoPJvhIpG0ZyOxS3WMpoLPqiDABONR3HYGY5aBxlrT4PAHt3FmFcu7n4MEZntWXYR4scANyIk0ygHJmS2IGz+MNEwodGrhw8qhcbTEEjmhVmwGSCTlLWrY2EU4w72h7XjJwOui3x5tOLkb9/3bc1GsNOuM3qnmNxm+3suD/ANw3K3HJ4+8q4AAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADPElEQVR4nO3dO47bMBSFYW8tm0nHfWQNatJPxSWkSJEizSCCkBUEWYMaph0dBzogJIsU7/8BrGwPZOvMvdSD9uMBAAAAAAAAAABwoaLWP5txt52xLO/l42i9Pd0jAMERgOAIwGBcD5x/5PJxTF+n3aHPf/X2F5mD6PvR7Unf0mbo4zp+vX3aHY+7IwCZAFABMhWAFpBjtAB9g9oCXI8svz9vhnu+e/zo+1kqe/7RcfUc53QEIBEAKkCiAtACEi3gf8f1JX/fDO2B2nNV7XkDHa6FFaGvdz289vXu8dvNCdwOIgCJAFABEhWAFpDGaAG1x8Wuxx8m5+6fzjOYOUVy5ynk76va96fPd4HQ8ySt9z8BEASAClCoALSAMmwL0A3Wixdn93zXw6uZaw3JHNcf5T6P7ieFBOAYAlCJCpCoALSA1E8LUPa4uZZcKzibuz+hNbd9T9vbet0EATgXAaACFCoALaDcpgXof+zps/bgpsbrIghAYwQguIkKENvUWwCqr5+/eFZ/N4tZZ6Dc53t5IAjAMQQguIUKENty9wC4Dezt3Hr31v17DN06gssXk7oNJACVCEBwKxUgtvVmAVDVLYDzAlXc53v5DicA1yIAwSUqQGyp9wC4dQFukoMtO6dqvTCEALwWAQguUQFiS3cLgPZ4t8HYqr68LlrvfwJwEAEIbqYCxDbfPQBKe37va/HOVrsuonbS190kUBGATACoAJkKQAvIMVuA+169p6+OVYNfO0hmh+u1leYLQWoRgH0EgApQqAC0gDJsC3DcYsfhrPvfXfyIhgBkAkAFyFQAWkCO0QLcV6MOt7Rs3b8/ItwcgAAkAkAFSFQAWkCK2QKUu0ew+jBRrx00vpYwV36Bg7bIx+gIwBYBEFSAwVEBglcApT3b/YjS1dcOZvNTuOF3IAF4j/0ffBQVIDgCgF2uJz9NKt15gMrzBIuZk7jtZfceRACCIwDBEYDg3I8iuZsoa3+7eDLH+W4O0uZTGhgBCI4ABEcAsMv1aHeP4SKv//Lz72bw8XeOAARHAIIjANhV+yVMC5d3x0IAgiMAwREAbIRfmBEdAQiOAARHAAAAAAAAAAAAAAAAAAAAwIj+AcxRx9QsvTQZAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=10, opaque=41%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_heal_3','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_heal_3','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_heal_3','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">icon <span style="color:var(--muted);font-size:12px;font-weight:normal">(4)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="icon_arrow">
+          <div class="card-header">
+            <span class="card-id" title="icon_arrow">icon_arrow</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAA/klEQVR4nO2TsQrCMBCG8yRubmIHN+fMfYxumd2cO/kAXVwlUxehYwsODl0EkT6B+AwuJ3fNhVCq0DQdRA9+2lzD/93ROyH+8XUB+QmmBTRJeECkIkCtl3MALUmcG20OACCKioTVU2hpc6pU/hD0SuuHFYWBuPnb7TIcQpUVVWusZfvkDpqkPT/vFjK4k16AlmTKHdC7gYwGgJb0k6/nHHBU682KxJ2NAqRGaIgVs7GrIABVKjuekwBSM0ndnBcgPsS9gN1MhANwtTjnnwCL7XH4Vmf7DBDSNUMYThOfsUvq1idwJLsQd7lQ+B3veQEY4op3wZW3+TtgUEPx8/ECRoHxqRBKA7EAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB+0lEQVR4nO2boU7EQBCG90lwOEIFDo2+x8BV49BVPMAZLDl1hgR5JAhEDcnmwhOQewbMIOnOJp0013Ta7vclvzpuafJlZnZhGwIAAAAAAAAAAAAAAMDMkf2HdOP9PMUhCEBA0QgV4Czg+166cX6c8hAEIKBohAoYl6qupC+315dJZHfXG2u9kR9/+VQIQEDRVFTAtIgivL33Rg/dDDUDrPXqQ50klIYgAAE1FfAPLWjiltO0p0HJMGbC0PWPx68kYW0gwBkEOIOAicn22Wof3uger/bx2efWOUB9nn3/9yeJNRMWf05AgDMIcAYBaxOwU3/zVz3dGvLZzxszgRnQIoAKOLALElqQ0wwQFf0/4fi5T6IvarUPN72xzhnFzwBBgO8MEAQgoC5pCDdGdA/X+3irxw9NcTOgQQACGirgRAuaawuq1XrWRS5mAAJ8QYAzCFiZgMa4J3TuepwDWgRQAS0nYaEFjcTmZSPdjD0Dni5CEmYAAuYFFeAMAmYmwNq3H9X9/KlnwNXja5LFv1eMAGcQ4AwCnNk+b6UbLaQ5s2frmaHvDVnf1+eSbNOwdBDgDAKcQcDM0Hc5N2fOhKHvfOno36+fL6wNBDiDAGcQMHMhcWCs9wWGJpRGRAACIhWwpwUtlVh6D/cmIgABRROpAAAAAAAAAAAACMvgD8UzG2KkR7kQAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=29%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('icon_arrow','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('icon_arrow','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('icon_arrow','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="icon_echo_bomb">
+          <div class="card-header">
+            <span class="card-id" title="icon_echo_bomb">icon_echo_bomb</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABCElEQVR4nO2TLQ7CQBCF9yQ4HAGBQ1fgwKBRSIKjAYFuEBygBodAkRBuUFmD6REIB0BhhnwbBpamiG7B9SUvuzObfW9mf4ypUQOEi7mYHJLRUorypTE+XsQsJwLcvBwSgXbdF4NhX27rnRViJM7nMaAbLwOqRgjG0Uyi9PoiorqW7640WquTQBWnarogV0lYxVXYnbtmlQyiAkHIPMvO1rTXbvqZsFkFdS77QDYN84qVlQ3GT3HL+7sLYjr5rcE++OjA+5h4fiqkl8zxEFO1viZ+NPnSBmxCgIrdTtzLxtT7o3WmncILVVpzEb/qQbyNBdIBo34uRuI07Fpx5l4GeaNvrCRew/wbDxvGjsK4BId+AAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB+klEQVR4nO3boU7DUBjF8fskOFzDBA6NwA2DrkISHA0T6AaxB6jBIaZIyN5gcgazR1j2AFOYi+09S3Zz09Gvu/3/kqPWdoGTfu1dN+cAAAAAAAAAAAAAAOhJ9fri2+l6vNXDzLdz6uNnp6IAChi1ijOgX+X31rfjZo9BVOrx/dfKH8vB+49NSQEUUHIGbBlBfZne3/l29u+fQXRG6+u6f9fj6wjUdYPLDQUYowBjFGBM7+v3MqM1Tf0cpF7vkqIzPfZ+Xdcdg0cBxijAGAUMXPG29McSm/l6X68XfT2e9d87OAUFUMCoFZwBtv/wOjLjU7dPvWa4sSkogAJKzoAlI8hKfeIZrtHtN5ufIDoCb64ug7jc1RRAAQVnwI4R1BeduWVkhse294vbIPMLFyT1/bJfF1CAMQowRgHGus5kLzP/IL/bILF1ge6v6wSXGwowRgHGKCD3AhZhul70s/tsiAKMUYAxChjYF7OKyIyOPRPWz350f72vj31vSH8kqMd3544CjFGAMQowpjN1KjNY7+NT1wmpz4z1mpL9b8QowBgFGKMAY5OniW9nfuJnuLEcXHNEdvf9igKMUYAxCjDWfDT+WLysA/T12G++9HXdf11dB9GZr9u73FCAMQowRgFnXlDzz3Fj11AABYxawxkAAAAAAAAAAABcXv4A9+zsiQrgdqcAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=19, opaque=25%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('icon_echo_bomb','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('icon_echo_bomb','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('icon_echo_bomb','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="icon_echo_box">
+          <div class="card-header">
+            <span class="card-id" title="icon_echo_box">icon_echo_box</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABAUlEQVR4nGNgGAUjG1jpqf4/U24Mx5dXOWKwQWqOhFb9J8sC/wAPsAHEYLIsgLkQhHXqtv6P3/wM7mpkDBKjyAIQALH//3qGwDfSwOIgi0HBRbYFR0Kr/vfJMYANBFv26xmcBsmDLAAFJUUWnAG5HuRiJAwSB9EgCyiKgyNoFnzpWgZnw3xAURzo1G3933HmBdwSZBpkOcwBZFkASyWgMIYlWWQaxvZb4UeeBbPmz/oPwjDDcGGy4wDmUljOxYZB8mQnU/SgQC42QBgmDooTiiy4jORikMFXTmygng9mzZ+FYgHItSAaZAmIDbIABMiyYFZH/n8whkY2Lkx2JI8CugAA5iKNk5+BKQoAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAB3ElEQVR4nO3cIU4DQRiG4TkJDtdgcHU4VItB47BIkgp0g+AAa+oIQZEQblCBWFcEJ2g4AAqz2M5H0j+TlnyT6fskv9rNQvKmM9tuISUAAAAAAAAAAAAAAPZkfHI8bE5/e1o0q+ezbHY9X3+f5eUsm+bCE8CMAGYEMJtenA+bM5Y1uLZJrSGAGQHMCGAW3YePZUZ3b9lcva6zKb1eNHq91BoCmBHAjACVB1B6/vCzLpvP63yE7jH62VFqDQHMCGBGgMoCLOXz94ejlI2u4X/2DFnzo+P683UP0DeKqTUEMCOAGQEqD9Drfb/exxeOXl+P6x7Q/PMAApgRwIwAjQX4vn/MJjo/eh9wcM8DlgQgwIhXwIwlyLUEjWQNnvdf2UR7QulxXfKiJTC1hgBmBDAjgFn0vZypfB4ffZGr9Hh0/uRpkk1qDQHMCGBGALNu0Q3bZhqs2f89zT8PIIAZAcwIYBbdp/fB3/nue/TnN//dUAKYEcCMAGa7flbTF/5vCZ3o+vo8IbWGAGYEMCNA5QFWhffxusZ/vL9kw/sAAtSFV4AZASoL0MnzgNI9QO/b9bjuCXq+7kEqtYYAZgQwI4BZN78Zts6is077z4QJ4EUAMwIAAAAAAAAAAIB0YH4BHsHZmZxnIOsAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=29%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('icon_echo_box','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('icon_echo_box','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('icon_echo_box','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="icon_echo_flower">
+          <div class="card-header">
+            <span class="card-id" title="icon_echo_flower">icon_echo_flower</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAzElEQVR4nGNgGAWjYPgBJlOt//q5+v+pZuCVExv++63w+w9jgywA8UGW5B7I/Q8SmzV/FnkWggyAYYaqVDD+v+HI/2vXLsLF4PKUWMAAMvjXM7DhKPjXM7BvyLbASk8VxeUgfHmVIxjD+CA5ULCR7Xq/FX5gA+CuvpEGDn9kC8gKJlgE5kKDCGbokdAqeDyA2DALQGrJCiIrUDBBgbyUyH8QBoU9LKmiq6EI5B7IBQcXyHCywp0Q8FvhB44TWL6gCbhCTliPglHAQAkAAAK72UJVlig3AAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABhklEQVR4nO3aLU4DQRgG4EnPgMKgMAhQGBwXWMcRwM0FehQMlqB6BAQCS9gQTsAhMIvtfKKTpqGzP8+TvK7dbvJmfna2KQEAAAAAAAAAAADASKyuL4btXOWrIq3vb/ZWClDAoq2MgMP075thO91zV6T2+VhA/H5cE/JrLhKv9/j0WCTNXa8ABfRGwMYUdCxxDs6VpPX9zgybtyJfXx9Fater/v7cKKAxBTSmgMb2nfOH358yYc7fO+F68blh8WtAUoARkJe8C0pGwP+6uTwftpP23OfHfL7c7kzt+/H34tlSmhsFNKaAxhQwskW3C/vwOAdX9/XfD0Xi+f++a8DszoYU0JgCGlNAY7V3sLnyIFab09/u1kVq7wfi52trQLzfNDUKaEwBjSlg5A9iN/FsqOLs9GTYlXjeX/uv6KH3MzkKaEwBjSlg4nLYp9f+nDv78/1jywpQwKJlI6CtLrw/qKXx7c5PpwAFLFpnBIxLP/Xz+qnrFaCAReuNAAAAAAAAAAAAII3LHytrlNTdOJxtAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=15, opaque=15%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('icon_echo_flower','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('icon_echo_flower','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('icon_echo_flower','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">impact <span style="color:var(--muted);font-size:12px;font-weight:normal">(1)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="vfx_hit_spark">
+          <div class="card-header">
+            <span class="card-id" title="vfx_hit_spark">vfx_hit_spark</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACf0lEQVR4nO1XsW7bQAzVl2TLVmTplq2Ah27JH2jTFnSr0aWzpn6Al+yaAgTZM2bwEtQQ9AVGvsELi8fwMU/X1pa0FAVC4HC+Ox0f+cjjnavqXf5HabcvpuP6fj8al3JqffbGvn+2qd9jDlItkfp+b67gsDfrVt4ATgZKQGVm93Tn35VsTZY+vISCEohjKrehccPYc80NX+o9BJtdkVkagZ6eoZGRm8eb9Jbz3APmqjlSBwiVeRi6lfc/u0++xh5z9B7NAYdmxBpDOdsIGxpDLOml58Hh1TiXobFN+8XX0btErpRsTQJtw6OkLkDokQPrb8R4aBIErKBtbjf5HcazPO/DW6fVLGMJJrbrj3kqoJgGqKeYx3fJUgh1TqK+CjY00Rww2EiqwwCuwUhlZHbs69igCsgEc2LUwgAFV+8JzjzSY/qb2GEM7l5F5q+/fX1jgKAU/qZR3cqurj+PQqA5dZSB3dNdWoxESkMAGg1r7q2KrGcbGvvw/SGT9WRIdqGUFCkbUJQMxDFjlUtGMBc9viUYqdfxpHxow2ItOjDkbzlQHleGgPsngUL0vKOxxGY4JNZMvPR+aOzHWZXgKE68lKCblfIocB/nXsfwHIlIECaojtU4jTWL0tETUAqpxW8wALDLi3M3Al7BIBw3KsaYjYawV73q3HEDutd7n/TmhSRFRvOB2c7Sy9jzEssQTL2a+wDnRi0iWmQAhpgz6+khE5RszrqQaqFIk6e8nmkAaefTS9kim9S76HXUbl887hmeoFHfCCw2arQCzn6QaGnWhCkzOZ9iUYo5p6+nxS9iyJ/egmqAUqoh0j2LH6Vz/g8sunqXSH+ikCxOtHep/qH8ApWlfcUPfMrjAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEwklEQVR4nO2dvW4UMRSF/SR0dBENHd1KKejgDbZzF9ER0VBvlQdIQ78VEqKnpEiDgqI8wcjPkMa062OJw9Xsktnx90muZrzzd3LP9bVnkhIAAAAAAAAAAAAAAMAZsbsr9bBF+2+/TfWwneYsl3v8swcBDA4CGBwEsHBO7XEPD7/qYVv6+W/l95S0NhBACwI4MkSAhUMEaBk+AnQ34Ena/vKvTf/iXRI4V4C7YJ3h98+v9bBp/7lJ69mhDwABFARABChEACygrNMCXFauHjjXo11/57n1MdfDpufvtrvjdTnO2sf9CKAgACJAIQJgAWVMC1D0gjuPFJyn63Y3ztb2YOoIVz+umuZyCPf77nq0zpHWBgKYEAARYCICYAHTOi3AeXK0DqA3RLff7zdN099z27fye27cr02vR7dH6xquVJ6WDgLICIAIkIkAWEAe0wKUztMlROp8uRuXd2sCpLDi6gp6/Nvdh6bp8XV7h1mv4O7H6tcHIIAWBEAEqEQALKCerQW4cbStdRtPduPozuOj++tkzGPb3z0QrStou/1y2zR3fto/LR0EsEEARIANEQAL2IxpAYobt3e1dcHNl2ud4O76ddPcsnK9wS4H2AbH6fr7en62LmFw9/O5nz8C2CMAIsCeCIAF7Ae1gOg6/Ogavc7DTd2gw8wdVOnvjqc5SbSOsPrJHt2OAAoCIAIUIgAWUNZhAe4Coh7o6gRuOjncTA5Qg54fTfrcA3frI6LvJiIABHBciACZCIAF5HEsQD1zbq3crfO//vSxabYO4Dzd8Wj2dzmFXM+792+bFi0ERddTHP2BIwABARABKhEAC6ijWoBLUtx2XSBhcwT1dNP0eN24PcrTdNwmgrn4/L1pbs3i4uYSEMCEAIgAExEAC5jGsADnqa4QEa0b6A2ydQDzbp77KFN1dQT9PbNdz9c9MFfoifZHAAjguBABLokAWMDluBYwF5fEuLqAyxFOvR6gmhbNcRR3/encQQAFARABChEACyjrtADngc5D3bd47dxBcLrWrfGrLuuXdvMiNc15vn5zyP1PIb3fevz03CCAhACIAIkIgAWkdVqAC/Hu/f5ofx3n6xpB58luDWK0/30w54hO1rgPSizuPQAEkBEAESATAbCAPIYFRHG1dt1f6wDq2W9evWya5gSaVGkOoS9uuBt8If1dczmC2x69v9GcK/1vEEBGAESATATAAvKgFiAebv8Hj+zvpo+1f3SNYTQH2Jnz6R6wmezprsdcf3d/hbQ0EEALAiACVCIAFlCHsQD3F+8uMPpBBDf54jz7RqZz3aJOl4R1eYXURfR63Ysg7n4tDgSQEQARIBMBsIA8hgVECxHRBQ9ufzfMcjnAhantdx4fHeaZws/c/zOYnhsEUBAAEaAQAbCAMqYFzEUvSOf3XX9XGHGFl617r8Ekce6BRB+gE8TqQAAtCIAIUIkAWEBdjQW4bw1HFzDMXSTp+ne4JM4sCtX9F7eA49QggBYEQASoRAAsoA5jAcrcC3bz865/tJCyC85FRK9ndYUdBwJoQQBBiABnDhFg8Agwl7k3LLpeYTvauH3pIIDBQQCDgwAG57k/kLBd+wKNpYMABgcBDA4CAAAAAAAAAAAAAAAASP/MH4hG3KrQoMyEAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=43%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_hit_spark','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_hit_spark','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_hit_spark','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">key <span style="color:var(--muted);font-size:12px;font-weight:normal">(3)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="key_boss">
+          <div class="card-header">
+            <span class="card-id" title="key_boss">key_boss</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABq0lEQVR4nO1XMU7DQBC8l9C5Q27SXZcundPwhbR0WFBQU/GAa9ynSsMPUlC4QUZRXuBHuDk0i9cCiXjnwklQZKXTKcpmb252dvfi3MV+sGq9iuHpNrq/sDj0EQC67TIbgNAEiUfFjMdNFDtuKAC+LCi/99ddZH0d64gb1fd3dODD4Y0DUK1XlGNbL4QpNl1ILwUgGvTjxgimedW0zTGRwpSzKgAHgiVQqgufYSd/M/QROqAAdAalAABl60Jw7HMHACCbWofcpgCYgJCV82sA3XaZDCBJA+25DMyoHN/TKagMx3MYSNKAN6jCQaD06+FSBYYG6D4QiEEk9T/0nz0AO9ZuP8sADaA1NPAtqM6OmR4AA2NZGVA/6YrG4dn7gNrzlRMGGH/tnC4nA74szBY8xWwC3wcqkioEZMHS+ffI6ahsxnd/80DrxUxVWy/E6frxRXarrjF82AmHeCazvizkYH0TWlMRfgwD8MOlsKj0dmgypLAYBrQEAYASYpUiwvHFq93wlC9zockQ1LH/H8bykp7AKt2y0AQZNiyA6W2YE0BHvnRlDKfQe7H/Zh8B/RlQ2DlgHgAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADqElEQVR4nO2dLZIUQRCF6yQ4HIHBjcPhBsMVsDg2QKBRHKDNetQabjACgSF2YoMTcIg1he1+IzKayerM3vy+iFQTG1ub8/ZVdtZPtwYAAAAAAAAA8J8c377p85i+flgEiX3iIIDiIIDiIIBi9Me/fR4qgPvvrxcRPd7sTLdTn4fmL10+EYAvCKA4Ew5Qm2l3Avjzvi9Ckc9bMg4vn/d5tGScf971eaQbLwIYCwIYzCHbf5SAAAZzQAC1EqpF1M2nj4vIPv6Hh999Hi0b2ROIAAaDAMaCA1wJDjAYXQtoyfh186rPo0ufIl2jxWi9t2wggLEggCvBAQaDAxR3gOjevz6FaMKsxZVurG1s/ZSztz4FAnAGAawEBwiGKaC4A0SfA1ABalGqnbQHI/TnleF/j9QwujrYsoEAfEEAaxOGA8SCAxR3gOheujqAbrK0okvC9fOtvwCtQbI32hCAMwhgJThAMEwBxR1AV9v25gCTVSMkP+cQDgIoDgIoDgIoTrQAtAjdew1ws7fFIATgCwJYCQ4QDA7gCw6QrQ/wuO2mTP39NIIQQKcTiAN0WsFMAT3lWkD0HPXUngKOe1sMih4gAggGAfiCA6wEBwgmuletc7Q2UtbO+Uc9FxC8HyD94VAEMBYEYCUIB4gFByjuANEHQ5SL8/+SwK73AejnGnenRYwe/0UNggDWgQA2BgfwBQe4Ehyg2IYQC+u53mLr8WofI30NgAB8QQDO4ACDwQGKO0C2pwBrfAe9VzB4zt/9aiAC8AUBOIMDDAYHKO4A2YvAb89an0eXPkC28Vv3HLZsZEugggAGgwB8wQGcwQGKF4H63H8MvgvYQvcoRm+4MUEAviAAZ3CAweAAxR0ge6NCEzglr1nSL/4oCMAXBOAMDjAYHKCYA1yspxv77LON9/Tu8yJaMrRGSddpRQBjQQDO4ADO4ADFHEAHoPHiy49FWG/r3nr8+s6fc/KXMGn+wotsBLAtCMAZHOBKcIDiDqBFnzVAPZwZ/VIpHd8pWR9Ax6c1lcbmgkAAY0EAGyf4hAOsAwco7gCrL2RIvsfunKwPYB0EUQGk2yCCAK4DAQwGBxgMDlDcAdIVJdaOoNtlTWBeKrXx/oZsNZQJAvAFATiDAwwGByjuADqntuQCnYyDFxeHSZPtcUwHAigOAigOAiiOCkAvOsxeA9wb+xeoAQwQQHEQQHEQQHGsObUlY9J3A++t8ZINBFAcBFAcBAAAAAAAAAAAAAAAAJCHf6PHlQA5W2IFAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=19%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('key_boss','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('key_boss','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('key_boss','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="key_gold">
+          <div class="card-header">
+            <span class="card-id" title="key_gold">key_gold</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABIklEQVR4nO2VPW4CMRCF5yScIBLFniBdKsgl2C5KhwUFNUrBAdxsF0WpSIFEGykFhRsEQj4BJ6CieegNYFGlij1B2idZY2/jz/PzVqTVvWq7mmPz+YjgKvjpK4oDzDqCqwhRHACxTgAr+SoPEFyF/vMTWArf+PIAt2UQK806Yne5KUD3pasjiOPecALiebEJGYuBINaQ5TfcaKgGtNut8TBZ6ERkL4lvvL6YJSDE4e1dF/cqwpUwH9/4dDnFyG9U1izgAsC0Y/6jkZfr+bjPD0BpmseDVAKCcM9+yF4Cii9kD/Q+eint2gOxLvdXBNMd67MXXEfSwpI3FzMSKwVX5W+632Riw7dqAYKr0iSIFUCw7IPwHzIAmpKVFwTrMWwlf6ATymI5/TXW6BcAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACbUlEQVR4nO3dMWoUYRjH4TmJJxBSeAI7q8RLaCd2Bi1Si0UOsI2diFUsBNuARYptJEvICTxBKpvPdr93IIOsOJP5Pw+81W7CQH7sfvl2ZnYYAAAAAAAAHrDd1UXbn+svT7vZnj7pZvP+dTdzHz8HEkA4AYQTQLjzR0PbnynbsiaY+/g5kADCCSCcAMK125etmwlXw9du5j5+DiSAcAIIJ4Bw9f/6k+fPutmVzwo2HzfdzH38HEgA4QQQTgD81cbQwLoJIJwAwgkgXA1gIIsAwgkgnADCCSCcAMIJIJwAVu7o1VHbn3otYPv9q5ut6wDWRQDhBBBOAOFGJ4FOzK6cE1gft0Z4YAQQTgDhBBD+Bx++X3Zz+vZNN/UeQDc3P7t5fPatm3odgY2khRFAOAGEE0CYeu1e/T++bgTVNcHdh0/3zlCeP1LXHAiA/8grQDgBhJu64UMNZOo9v6qP199X2RcQQHOhiVeA5kojbwHNpWYLWAPUvf128aOb+vhdec8f/Xw5h9AaYGYCCCeAcAKgM9qbf/ein4nPAlpZI9Tn1/MHfBawMAIIJ4BwAghX9+Lr+QDHn4+7mdrbH+r5AGWN4XsFF0YA4QQQTgB0Rnv35T18dL+A24nrB+sagWUTQDgBhBMA95q6Z9DAugkgnADCCSBcvefPue8PyCKAcAIIJ4Bw7vsXTgDhBBBOAOEEEE4A4QQQTgDhBBBOAOEEEE4A4WoA1xPXCcx9vPxjAggngHACCFcD2Pru4CwCCCeAcAIIZxEYTgDhBBBOAOFqAK3eU8j9AtZNAOEEEE4A4ez9hxNAOAGEEwAAAAAAAJDkD/HVn+4Qz8piAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=11%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('key_gold','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('key_gold','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('key_gold','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="key_iron">
+          <div class="card-header">
+            <span class="card-id" title="key_iron">key_iron</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABMklEQVR4nO1UOwrCQBDdQ1hZaGVrY2cnWNjpRcQuS25g5QG2SW+VI1hapBHDHkE8g83IGxwJfhcyMSD7IIRsJvPevrcZYyIiIhRR7nOaL2ZktOHWK278qXlhR4TL+wNteobGwwGp7cqmCfW7nbciQCgAsdzxXW1y7w9MKk1d5p5EyPtH1HahvGUqDgg51qt1IIL9dDkxMUTjubYAlzluCPLq/VUMeIco5FI5A+XNASFfF2d2A+vAYz1qUQcHjAZsmjxlCptB8qoeAiQOFQHVxojjm60seDtlkUYby90yqKn67gXI37QlwGWOWnfABk61dwf0ZwI2PaMrYDwc3KfhzyOwacK/HgbLJwHy76vPgHKfBwkQEY0MoX63w5MvxAHkf9xO2j2Ex6YEhKKRMRwR8de4Ag1MQmTRitPWAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACe0lEQVR4nO3cMW4TURQF0FkEFQWppqWhc4dEQWc2EtERsYNUXkAa+lQsgZLCDcLKEhBroBna/Ifwl2VPPPE9R3pVlPjHvpn35s9khgEAAAAAAAAAAAAAACDE7vvX6XGtP7xv6tzrY2Y7Aci2E4BsOwGY193tx+lx1R771D13e/Nm2lcPDz+a2rwamlq9Hpuae73PngCEE4BwAhA+VN18/tTU1csXTc09E2xKD++pPb739fr7DekEIJwAhBOA8A+8nkfXnt7rqXdf7po6diZYd17/WPH7AgIwZm8MCcAoAFrA6Ajwv+vpvX2AXs+vR5hDj1Cr8hda9/6nP7/aKupMU7/fDNC5miYAF04ARjOAI8CYOwPUHl7Vnn/o1099beCqvF69VtCr+J4vAGP2Ib9yBAgnAOF6ZwG9nn+7/d1UPW2sP786dv3rst66vroPcJp37YIIQDgBCCcA4WrPPtQ/9+CVvfnak0+9/nWZAXrXDk79+s+eAIQTgHACwEE9tm4cnXtv/abOMPfv2iozyVOv79kTgHACEE4AaFx/u54e19Lenq3z/nkJQDgBCCcA4er1/2FhtmaAeQlAOAEIJwBh6t6/ITCMAIQTgHACQGPpz9W7mvkexHgCEE4AwglAuKUHYFOeB3Du9VwcAQgnAOEE4MLV+/x7j40bFmbrfoDjCEA4AQgnAGFqT68BqM/YeeoZYNX5f3/PAziSAIQTgHACEK4+JGppM0BV12cGOJIAhBOAcALA3nvqai1tH2BTrv//vH/blI/3QAIQTgDCCQB7nXsfoMcMMDMBCCcA4QSARZs8GzjbJADZJgHINgkAAAAAAAAAAAAAAAAwnMdfv2YmbaCYbQcAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=13%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('key_iron','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('key_iron','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('key_iron','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">panel <span style="color:var(--muted);font-size:12px;font-weight:normal">(2)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="panel_dialog">
+          <div class="card-header">
+            <span class="card-id" title="panel_dialog">panel_dialog</span>
+            <span class="card-score">7</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,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" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,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" alt="4x"/>
+          </div>
+          <div class="meta">colors=22, opaque=68%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('panel_dialog','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('panel_dialog','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('panel_dialog','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="panel_inventory">
+          <div class="card-header">
+            <span class="card-id" title="panel_inventory">panel_inventory</span>
+            <span class="card-score">6</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,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" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,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" alt="4x"/>
+          </div>
+          <div class="meta">colors=25, opaque=85%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('panel_inventory','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('panel_inventory','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('panel_inventory','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">particle <span style="color:var(--muted);font-size:12px;font-weight:normal">(1)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="vfx_dust_poof">
+          <div class="card-header">
+            <span class="card-id" title="vfx_dust_poof">vfx_dust_poof</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABn0lEQVR4nO1WIW7DQBD0Z8qqkrCysLKUFJeVGkYqKLbyhCNlAUGRqv4goMAkcmT1BVYeEGRy1bY37vR8TvZcJ8gjrSyd7ZvZ2b21k2TEiAiYLLV/sN5YWUsugWI1tbaubAt1ZXcf6/OKOCyWDVGXABGIGNQVI7ZL5giHstz+COJ7nkPm1djhrK+VQc6IyH9nX5bbOAFOBNyZ3d/Z3nUvVtOwzRHRS8Dm4dmi8aJL4IU4GN2UxZHMZbPbmyv1OpIYTMDjWxUkun55b6+7ZowWsQM5bSAlkRABWb4PCpB1eRfl41APK+POPYbOsSaUZ1tzoqMEagcOi6W687lZQ+HvoxJQUNfzx0eTaWgecBnz+cTqBXw+tca+ZHTKHcwPPoZ4R+6dFJDPJ78kAcjmDQm5w+u+CJRD1QfWWRWyER0e+jTjlEAA9waeVzeiydJgc8lYbQS4EsFikHKwC9HDyGTptxOoO0RxhjiGPjEE4T6mZLQAQ8HEXRn7AXG9f1AMCQjVmAlw9f+McJR7CWD4LjAB29zbcg2YAEPlrIQjRiQXwBdof6iZwfHZRgAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAADbElEQVR4nO2doW4bQRRF52fKqpKysrIylxSXlS6sVFBs5ROWlC0wilT1DwIKQipHVr9glA9YtGRKPS+Vbl9m6931O0d6KMk6tq/uffN2PE4JAAAAAAAAAAAAAAAAAAAAYGH6fVfOy83tXVW9ud7Szw8ECCA4CCA4CCAYx8Pbcl5lynW1MtXXe/h5W9XSzz88CCA4CCA4CCAY481Qzktl9P/uAY6mB1HFXAEBFAZLOEBhskgEFEbLzxns2HW+KsHp9KuqJz3E5Hy8xjlE/62vKkUHAQQHAQQHAQRHDnrWXgrz+7YnSdFBAMFBAMFBAMGbPpuJi2f6NG9PoOYOu/fvqkrXDgLICAAHyDgAEZBjRIC9v2+bvtln8xurHQJAADscAAfYEQFEwO4aeoC7D1/Keak9fpsfBE1tZecgm99TiAAyAsABMg5ABOSYEXDpdb59wd68elHV2q9fRE+UtgYCyAgAB8g4ABGQiYBL9AAfv9c1d0a//Pqjqubriz2Dm+8JLt0DIICVgQAyDoAD5LgRIC3f+QLYewm2bATs7x+rmrsH2Jvr2+er7n14a3NnFiGAAQHgAAMOQAQMMSJAfbhTnelz6T2B9v/tW88nmLnUGURpbSCAjABwgIwDEAE5ZgTYde/a9/l7t6yVmav19UlrAwFkBIADZByACMgxI8C7r9/7hQ9rW6eX1lKIv7///Lqqpd9/BDAhABxgwgGIgIkI+HsP8PtTXY3YJmrpucMozj9Qf+89y9g+3vp7AARQEAAOUHAAIqBcZQTYdal7S1gjNoJkJjvnDkfn9Vt7Au93GC39/iOAAwLAAQ44ABFwCBoBalY992xc7cOf+4smR/G5BBUB3v0G6v9HAAig4AA4QCECiICyih7AYtfRc++5s2fryh5AjKJPYhCjMt1b3qZwdZmvQAADAsABBhyACBhiRoCKBHXvwJaKFO86XH02cGzMeNVDqMdX5xKmrYEABgSAAww4ABEwEAHe/PuX+/HeDF66etFzbP6waMtz3nQE0CEAHKDDAYiAbvsRYPFGgHe2PncGj+Ln6kAHW/KMIkO6NhBAhwBwgA4HIAK6mBHgpXVZ6M3g3jmbv/pZ/tIggOAggOAgAKjwZrA6U6cnw7cFAggOAggOAgAAAAAAAAAAAAAAAAAAAAAAAAAASE/4A1XbihevYIOvAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=42%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('vfx_dust_poof','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('vfx_dust_poof','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('vfx_dust_poof','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">summon <span style="color:var(--muted);font-size:12px;font-weight:normal">(6)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="echo_bombbug_active">
+          <div class="card-header">
+            <span class="card-id" title="echo_bombbug_active">echo_bombbug_active</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABBklEQVR4nO1TMQrCQBA8fEg6GxFTBBvrFKmS/MAXiJ3Bxlos8oA06URSCeIfLK4RJE+4F1ilWdkle5zBSrwr5AaGy+0VM5udFcLDw8PD40vIIgLoFEATQ7HdQNveodqvwZm4RANNTMJIMtMpKAMBzsRhQBTHN+sG4IM4kt+yPAEnBmQRUdfcuVmzamA0n8B0dwXE8qKI4SqkGnZv1UAZCBJj4fSUkijf0cTzcLSbg7L/5YvZ+I0cRCuiWZ7ohPOc8aT9rys9e8pHp35vQhoCehX73Wdy3coqln3HnHqcs1MDQ6DI43bWNM0J25BGpzh/DKCzzqu60gHEE+9mDb+tm/Dw8PgrvAASnEyQbDto9QAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACA0lEQVR4nO3bMYoUQRQG4MGDmJmIuIGYGBsYrd7AE4iZi4mxGMwBJjETMRLEOxhsIsgcYU9gZFKm1huwKEand/v/PnjRzPQw1T/zqrq7NhsAAAAAAAAAAAAAAAAAAAAAAAAAgBO5vHjQ/qz266qvT4+7unj9qqv9/ntXu7cvu3IirzkBCCcA4QQg/IQfBKD0/H3p8bUO5gyltrc3XS39++MJQDgBCCcAYWZP+LG1LT2/ft/S4xFHAMIJQDgBCPe/e34rNfq+p8+edLX0+KyeAIQTgHACEG42APX927KuH63zZ4+39PisngCEE4BwAhCuBuDWw7td3Xvztavq+Zerv9bZi7Ou6vHqut8cQACaSaB/gGYVoAU0y8ATqD239uxRjz//eN5V7emjz9c5wc93H7o6dUuMIwDhBCCcANAZXct/dP/OUdUGzwg6HQsTgHACEE4AVqauy0fP4Y/uz9fX93X///tdV6PjHTxzUPYOLjNqKyIA4QQgnACEm+3Bw40ig/3+bVCj49srKADNZlH/AM1uYS2g2S7+D4zW8aPn+uv9eXOAG0YAwglAOAHgKHXO8OPb56m6nJxzOF3XjACEE4BwAhBm9lr9rtz/r88AutZ/wwhAOAEIJwBhag+fvXC0K5+fPV59/9LjEUcAwglAOAEAAAAAAAAAAAAAAAAAAAAA1u43nTjJLRbZU5UAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=13%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_bombbug_active','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_bombbug_active','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_bombbug_active','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="echo_bombbug_idle">
+          <div class="card-header">
+            <span class="card-id" title="echo_bombbug_idle">echo_bombbug_idle</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABW0lEQVR4nO1VO04DMRT0SejSpkm3HdIW6eAS0NKxIieIUnAAN+kotsohKCjcIKKIE+wJUm0z0Tzec5yVoEA2NB5ptPu8K834fWznKioqKn6BZj4D+hb7tx1CtwB2r/J+c7uEK41AwXEAPu/FhMR9K/FHfy0sK963Qre6uzDAmOI0wrXs4n7rozjZPT2Ca6kBrsn3cchvIHSLc7p15zTg1w9Sez6jQQDPVw5lDACS6sPhHRHjIE0oGRgH+S97L4CNp7vjbo+bl69mNAJiikaKNCO060kaiBlQAxQWWBly9wEsA2pABJMMxDjpg6wGgtafIjyILN1GrpH8T8xwMnKimc/Ona4mZDS1/pwE+8b6Z58C4qLGyTim42klyl4CgmM2FZvGYmDryx7HYXIg8cm0W/1daTTabFNy3f0Vgk2FTkaRC+g72KUjd4GScfEM+ETwJxY1QfyreEWFy4wT+sxCulvwgjAAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACpklEQVR4nO3dPW4TQRgGYJ+EjpaGLh0SBR1cAlo6IjgBouAAbtJRpMohKCjcIKyIE3ACKjdDm3lX8miJ47XzPY/0VfZurPWbnfH82KsVAAAAAAAAAAAAAAAAAAAAwJFdPHva7la7ftnV9sdNV5vL5121m+9d5fNfv3nVlTf4xAhAcQJQnAAUM2nDd3/6+v2ur+gTbPL4eDyP/3X9Ym8tfT3KEYDiBKA4AShm2GZHrT697WpuH2AVx2ebn32EPN/S1+vREYDiBKA4AShmfbVud2vU5mddfvzQVZ5vM7MPkOeb/M0Yh1j6+p09AShOAIoTgOKyjZ7bCcznZ6DWn993lfP9+fiw3xG+Pll1tfT1PDsCUJwAFCcAxQ0DEHKs/vb2Z1dDu/5zfK4JnIwDxPPz9VkvIADNghF3gGbFkCagWTL2HyZr/Aafu/Nz+98v37qanG83qJB9iuwjWDN4YAJQnAAUJwDFjdb1Z2UfYDgOsNvfB8g2fmI0N2B9gAA0C0TcAZoVQpqAZonYA4wDDPoAkzZ85jjAdnT8zPUBB+0gVSAAxQlAcQJQ3Gj+PwOSXxAxGrvfDirPl5Wvb9JnyH0GCAAzuAMUJwDFZZs7XKc/6BNMNprs9s//5z6B0d/L9QD2BQhAszHEHaDZGaQJaLaGHcDs+fiZewc3M/cejuYizAUcmAAUJwDFCUBxuTfvvm325p7HT/oAMc6w9PV6dASgOAEoTgB40C+QaPF4ju2P5v+9PUcmAMUJQHECQGe0Zu++dRHnd/lPjAAUJwDFCQDzFpWmwff+ubxnRgCKE4DiBKCY0W/6TH4v4Gp/5fHGAU6cABQnAMUJwCM3tw0/dq0QAB7Q0v/ha3eAZS39Bq8F4LR5w4sTgOIEoDgBAAAAAAAAAAAAACr6B5QIK82GCE03AAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=19%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_bombbug_idle','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_bombbug_idle','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_bombbug_idle','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="echo_box_active">
+          <div class="card-header">
+            <span class="card-id" title="echo_box_active">echo_box_active</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABeklEQVR4nO2VPU7DQBCFLe5CgxANokmXjg4a6lRJS0eEC+qII2zjjiKVpYgbuEiRJkpk5QQWB6BKM+gbZyzbCQixtkSxT3pyZrXr9+ZnnSgKCAgI8MB2mcrd/a1EfeLy5f1IAFHZFw262ePRvtGi8Dc3WhQCLEaoLV6n7ZutPhrn/gyXODHk+VpFBlfnyrqwxRjUfSKCCe/yA8tm+vxUiiROzm4uGgYsZi4MGIFeJgQBEcEM2X2+vpUi+0I286EOYWUkzfRpbQNe4nm+1pfpMMVjLTMG4Kn+s67DGI/1DJXzbgMwA1aF7wYQw+wxcSoV+cIlTsUh4rzchhDSAqNlzrqdibrEdpnqy+02IEbGxHYLzFSnwm0DCCFCmW1GGEi7DdyWqA/IbiKr6bWaoB0Y0huRZmqI9ewhLlvQBwYHAaadjHkS229b78WAS1yV+U+0SvRiYDMfVqQdjZiP0G6iLem1Be6QpbEds6eT+38KTPdvWP9XDAgI+Pf4AoA2XF/vmRQbAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACyklEQVR4nO3dsW7TUBQGYKvvwoIqFsTSjY0tLMxMsLIR0YG54hGysDEwVUK8QQeGLhFVxRNUeYBOLGaNf0tcWWlwyPk+6UzFlpP++Nx7fQ1dBwAAAAAAAAAAAAAAAAAAAHBgbn5c9tu1ePliUHNfH3smAMUJQHECcGBOP37vt2vX82VP73/f7VSri3eD2vX6Xn+767erq04AihOA4gSguOyJqXV89uhde34/sVrXd3G96bdr6uc7egJQnAAUJwDFrT6v+u1qub1dDyp78tmTR3+tqT3+rHF8jkFG1xdyTNBVJwDFCUBxAlB84afVI9Pyw/tBjXpyjClOnj0e1NQxwEnj+Hy4NHUMk9UdOwFYC4A7wNodQAtY12wBadR3Q7aMnHfff/oyqFFPjvP//Pp8UIup+wcur4YVP28tbKWuOgEoTgCKE4BictCTPXO0Z+78zaBybT7HAFkP/fz/Ps4/2jMY15ufJ9c5yj0bEICNALgDbNwBtIBNzRbQ0hoDtNYF9r0H8DbGMHk9rZ6f6xRzf98HRwCKE4DiBKCYfH6fPT8re34GprUnMGsRzwJa1Zrn5/lbn6erTgCKE4DiBIBJch6dPbf13kD27NOYx+fxrfcCWmMKv94HJgDFCUBxAlBcKwDZo7Mn59r868Z+hNxD2HpvIN9bmPv7OjoCUJwAFCcAxfW/3vbbdb18OqgcE+SzgwzQTb5HEPv+cwyR5796dT6o0bMABIAH5A5QnAAU1+rBuW8/5/H586s4vvXnW+c3BhCA3iDQHaA3C9ACetPAPWwYac3z/3UtGusE+26JR08AihOA4gSguAxAzrtblQtHk4+/jH8TKM7Xejg19/f33xOA4gSgOAFgoLUOMPVdv9WOx+f1eP9/zwSgOAEoTgCKy333h1b9xP9XEAFgirn/hi/dAeY19y94KQAAAAAAAAAAAAAAAAAAQDefP8sbxiwN/7WvAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=21%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_box_active','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_box_active','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_box_active','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="echo_box_idle">
+          <div class="card-header">
+            <span class="card-id" title="echo_box_idle">echo_box_idle</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABEUlEQVR4nO2VMQ7CMAxFo56BiQEmlg5kQF3YuEBvkpWKKzBwgC5sCDFxBEYGlooqR+gJmLoYfRNLUcWGXJY8yXKSDv5xbceYRCKR+IH2fqXyXJL5B9R3HNw6O76I+XRC7ubI+4aelw177NfLhb4Q6ywBpB+G4LIG2KsKaEMgCT40nKsLaAc3j8+AugDvG8qK/JP2vmOPfbXbjiOg/ZJ+nL32J30BNirCoQCATKgKyIqcg6D3hwZxqgKss9z38HJjQaaiqggbBCCQFF/8O4AIVKuFrMh56kFAHJzPtGtgHUatzP+4DWH1sebv6p1A4SGKh9AoD1J9rEnsMDP0qFa8hsdeMqCKD30fixFTD55IJIwCb6Q3mgSaoFSCAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACKUlEQVR4nO3dMW4TQRQGYIszpKIgVRoKXKA0dLmAb+KWiCtQcAA3dAil4ggpU9CgWD4CJ6BKs7SeRzFaLfEk+b9PetV6HWf0Z+fNZne9WgEAAAAAAAAAAAAAAAAAAAA8Mfu7H9Nxbb5vmhr9+XhkAhBOAMIJQJjp4fd0XHXOX2/XTekJXhgBCCcA4QQgzPnrs+m4trfbpg6HX03d31w1VbfX/T+8u2hq9O9LIQDhBCCcAISp6/iqnvipdShzfu/1Vd1/9HjEEYBwAhBOAML15ujenH9YWPX9R49HHAEIJwDhBCDc/17n72e+XzV6POIIQDgBCCcA4Xpz9KvLt0390zQ+tNcM1u11/+tPH5vSAwhAY/R4xHEECCcA4eY2gUvP9f/5/K2pavR4xBGAcAIQTgDCzb0gZGkPUNXzBKPHI44AhBOAcAIQrs7Bter9/ktrXXoOPYAATJpAR4DJKsAUMFkGnkCdg+v9/XV7bx3f03uolJ7gxAQgnACEE4BwvQDUObp3zV819z6AXg9SjR6/Z08AwglAOAGgUc/F1+f61R5g7py/re9X+F/AYAIQTgDCCUCY3rN6e8//n3tv4L7U7uuuqfrzrfsFoHGiv4scjgDhBIBFXxAx95lAG98r+LwIQDgBCCcAL1xdh/fqy5tVUz+v3ze1K6+v2+v+vfMACACPyREgnADQ6N3fPzcwu04Z/idGAMIJQDgBAAAAAAAAAAAAAAAAAACS/AVHJqC4XI5XOwAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=14%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_box_idle','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_box_idle','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_box_idle','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="echo_flower_active">
+          <div class="card-header">
+            <span class="card-id" title="echo_flower_active">echo_flower_active</span>
+            <span class="card-score">9</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACxUlEQVR4nO2WsWobQRCGjzxIHiAYVIQ8QCBFKsWNa3fpjnQ2SZHauMgDqHEXjCuBCai04AoXbkyMyRMceQBVaiZ84/3PcxsZdoVCIGRgudXu3s4///wzp6b5bwVm886av+XY0lidfvWn9u6u58PeHwO4Sk7tx3sH0B18GhzNTj74Whzv9t/uBsje52/GYA4AHMcoDy97m53NTCzg/Ob4pbVX7UYAnNd9ZbZY2snNT8OchfTUtiIW/WIjMqR7MO5iXgWgSSA0sEk78UjlzA0QZv47Aojv6r5yANhiaVAXL+L39Hw6UB7FGUUa36mPPqPv/v52uITn8cejIdovz5uBDY0cNFrZCsAeoglaiE/UTrQSIeLjmTuOOoka2koL7VU7XI5jUoD40IWc5NRv6h9bM3EYqKUviHJVhBwCjrm0MqoYszIgd9dzy0FEFhSx+gODM+hFIL5fvPa5xFrsvAuXyrlyH6OM58SAci/hYcyLnZtydvHmMW9ZT2CdvAMAMTKYo4cIVJWjO4tFaNkHRhqg5FjDIQAYXEqudT4vQd6NARWJ0dKhUVtdLN0hztEBc+Wbc4CAAfYBIdbUKasqwVK+ciHm7MQ2bOv+UWjReTLAKqCnPlgj88ZiZs9evfgtd6TC852cqhSZe5qSEQDrfnbeOUtNjVn2Gd6EPK/xkSWmKEfugYWi6DfSncD4+roffZZHKTF7EKU+4yH/Vd1wFV6O/3QUAfSSHqJTo2GOc29ACQD0x/xXWZfop5EwR/nKI3OxhCOVKPsMrxAzpzyCrgZhgW5FqB7AkMDyucqVdwTWu2ONtQk9Q3QrQi5ljSGnrKtFM48AvKpCMEU2TZfoAuVXzhgCoHPqjoCIoKud5+Z/PNb9iH6xEBlguB7Wve9V1/5TJrrlOGoBANpnwAYsiDnWml3aJAFQWohY0ce0wQLVsFPnzb9ovwAZCIMeXiPfWQAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAFQElEQVR4nO2dsW4TQRRFV3wIH2AhuUB8gCUKqoSGmo5uRUcEBXVEkQ/Yhs5CqSwhJEosbUGRBoEiviDyB7iiGVrPnSiXxzrJrucc6VXeeNezV+++eTO7aRoAAAAAAAAAgHsirfq0G9yIykAAlYMAKgcBVHaDXWw/LLOICuTX91Xajej5G0AAsEfIAJWDACrHeXr6/SoLPb5/8S4Ld77u9HXaDf2+bTCOnz/L4m5G7YBAAJWDACoHARw4j95/STeFHq81gHp8dF7+8vNV2o3uY5eF6wtsxfMvTh5n0X5rs9j3+On1u/EbHQhgGAiADJDIAFhAmqwFNF/XaTdOLzZZKEVRaD53p3fzeNeI6kzfINqHcOOj6Hjp8c3oQQA3gwDIAA0ZAAtoarEAZwkulHk7z0Ln6c6zC1ZSBwj699EaIPp73fg1owcBZCAAMkAiA2ABqR4LUOQHaKszmiL1748+HWXhevnRPYfb4J7E6O+ZftHnQAAJAZABEhkAC0hYwDWNj8vLH1k4T9TPT96+ycLN288eNllsTd/AxdCaRvcrHHwNgAA2CIAMsCEDYAGbOiyg2NAQXC6Ofq779nXe7vYEtrLnTz8f6vHR/QnR/RCjAwF0CIAM0JEBsICuTgsYulysnuw8Vz1e1wJ0z99c9he4GzK017/v9x9MDwSQEAAZIJEBsIBUpwUEp4nRXru+X8D18rfmOQLn4Vpz6PFuv0L4OQahmToIYIkAyABLMgAWsDwMC1BPHGoJ0b6Am8e7p4+ThF6P7l9wNcHP80UWerzbszj6G64ggBUCIAOsyABYwKoOC4h6qv69eqxb74/Oy6PXtzV9ALfe7zZ4KHr86G+4ggA6BEAG6MgAWEBXhwXY9ezzp3m4xY2Bj5Pr9+v6vlqU7hk8ltDjdf9AtEbRKARhxnN0G0IQQA4CIAMkMgAWkKqxAMXNq6N9AB0gfZZPv089XGsADR3QI1mvd9c/9FlA/b3RDDq6DSMIYIMAyAAbMgAWsMECrvOk8Lt1pQZQD1fP1/0Berxbv+/l+rQm0D6Anl9rAtfXKJj6cwLuAhHAGgGQAdZkACxgfaAWIOx7i9jQvoMb8II/V3m4DRpRzzdozeIs9Lb/h5G/ITogAgKIgQCc4MgAGWQALCDdqwUoxTt2hAdPZlkMXezQtYJi/d54em+eFdTji7UJg1qgfn9xvXI+7Us0YwcB5CAAgQywJANgAcvDtQDFea5rdOy7yh36PH4YU6TqgyM6PjotvPeqPwoC6BEAGaAnA2ABPRYQ7uJdUzMUFiPzfGdJ0Rc1Ooo9hYI7X/R6mqnxPzcdAfQIgAzQkwGwgH56FhD1PA3dc6ff7+bB2nrVzqPOuy/MCxr0ePX84gUQpgbQxk90+Xf0IIAcBEAGSGQALCBVYwGK6/3rCxL0eN3n7xZH9Hj93GWkM/Msop5fo3gOQdAaJlrTNFMDAeQgADJAIgNgAakaCxjau3fzcPc+AA23AWM+8Hj37KL+HlezFC+dmjoIYIEAyAALMgAWsKjDAty0R8P17t08XAdUv08jGU/X73fvItbjozVAsa0+WDONDgTQIgAyQEsGwALaOi3AeaIbALf+7jxbw9UArbk+995BrQmiNc3kb7iCAGYIgAwwIwNgAbM6LSCKzrN1QKK9f9cXSME+gEaxf0CuV883+Yc9bxsEUDkIoHIQQOW43r3z+Oh+gSQ1gDu/hvYNtC/g+hz6fU3tIIDKQQCVgwAghKsB3NrCmczj3bw/2trWvoA+N8DtHggCqBwEUDkIAAAAAAAAAACg+Sf+As+PMklN4MNoAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=24, opaque=48%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_flower_active','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_flower_active','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_flower_active','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="echo_flower_idle">
+          <div class="card-header">
+            <span class="card-id" title="echo_flower_idle">echo_flower_idle</span>
+            <span class="card-score">9</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACFUlEQVR4nO2VIU8DQRCFN/wQHIYQThAMDodqMWgUuAYHAYFuEPyAGhwhqCaEpJImCASGQBp+QcMPqKpZ8g37NtMDRHt3ri/Z7N7edefNmzfbEJZYYg50njpxNHqLRaeIrbtWntlnzTeaG0HRKeLk6jYHhczHS9+enw8u7F1jBFa21y1A7D/nzMPFkRFhrXd81wiBs/NTC8wgKIOs/bPeG7m6UfwRHPnLJBoJDrzxFFzj9WzL9uQNEKpi4/IxloPvbK5Zndv7ezaLQK97YntSI34ezxA4fBjPT6j7+mWZxOnPj69Xg2UqoxFUBCBHR/Du/X43G1FnMM9NYMSB6ceayVDtRmACarAHQYiGwTB6LETg8GH8+5DB0MogD/gyUALkz8o5LFSCjctHk1+Q05mRmCFF9CwTMnvi3k8Lq9BKHUAgMtfthxdERK1qRqwi/4wKJSm5kFR3reULyuBJExwvhSropkOsjoOh1RujATnfk4C0SFTK3iOnlAJhRGpNAILpjsidkciFutBOF49uPN96zFJC7Wn7ddyGZS8YETojKeHlV+YqQW3yAw5jKEMp4j3Qu+nZM2Qqtd5/KBsuE3DesPfTcb31FwjAwaigtQgpc+0zh7oxubrNpvP194bUaESBNnVPcmueITQdZwXYD01gkuT30ntFIFl7C3oQUIOgBOQ6tv+E1AWNyO+hINx8f60bJ7BEqBnf9nzvGiSOeukAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEBElEQVR4nO2doY4TURSGJ/sgOAwhVBAMDofqYtCrwDU4GlagNwgeoGYdIahNCAkSkgrEGgJpeIJNHwC15mDn/hP4uZnZtjPn+5Kj7sx0af+c/9xz7x2aBgAAAAAAAAAAAAAAAAAAAGDPLL4soh2bzfciZotZEfP38yLc+EKer9fr3+PGAQHAkJABkoMAkqOe+/vNuyKcp2vN8PPbRRF6//rpaRH6edQACCAoAskAwSwACwimgTfA0YM70Q714LhYF+Hm+c3psyIWUiPo9e7z9O/btSVOHgSQHASQHASQnOWrl9EO9XgN9XQNndfPKu93n9+pOQABQA/IAMlBAMkZ2vO197/uWRPg+QggKPrIAEHVjwUE074d1ABuj5/zfBeXy/tF6PPcfgPlpi1y8iCA5CCA5CCAkXP39adoR98f/OG920Xo+vzxk8dF6LirAVZnL4rQ57m+Qfx6XkTt93Xy8Sra0YwdBFAHAiADBBkAC4jJWMDZ5Tba0eH6qgi9/+2tJtqh83S3R0893dUAc6k59ByBft6PD4+KcHsE3feh483YQQAlCIAMEGQALCDSWEDHQ80/2I3rPNyd3VOPVw8PE/o8rUG0Rmk+fy2iFgSAAIIMQAYILAALiEnUANra7O2J4rG6NuD2A9SuDRzLWoB2Ku00t5LJtYIRQB0IQCADjBwyQPIMoMvB2vt3uH36Oq69eA3XRzgy97s9gTpem+Fql88PHgTwbxCAgQwwcsgAyTNA36LQnQNQj9Z5vnvv30r2C7gawZ1V7OwRrBRAM3UQQAkCMJABJgYZIHkG6BSFlaiA9AUSbn3fXb82+wt0baBW0PqD636JZuoggC0CIANsyQBYwDanBSjOEzuLI7IfQNfvdY+e4vb5R2VNoJbmaoJ0RZ8DASQHASQHAUCBnUgbj9Y9grper4I7Ec927yOw5wxMzcHPbUAAyUEAyUEAyXHv+HHv8as96xcy7voE7uxh5/nCvr/fgwcBJAcBJAcBJMctF3cEoucMTJ+gtvcfZp7v1gLo/SOAYPGHDBCs/mEBwfLvf6CeqeHm4a6IrN0PsDpfFaH3a82Q7qDH0CCA5CCA5CAAKOi7h8/WAEptX0D6EKz/DwwCSA4CSA4CSI56sApC+wLueldDbMw83z1fx/f9/Y0eBJAcBJAcBJAc9Xi3p692/T8q9xC6oA+AAIKDIGSA4CQQFhAcBRuAzvq+6d278eoa4rrs9dcWpUNbYjoQQHIQQHIQABS43n9trz8q+wgqSM4C7hgEkBwEkBwEkBz1cBfq6erhS3l3cOf/EzDnAuj9I4Cg908GCHr/WEDQ+z/AmkDf8zf09RveA7hfEEByEEByEAAAAAAAAAAAAAAAAEDzV/4A3NXyYw6ASQcAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=25, opaque=34%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('echo_flower_idle','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('echo_flower_idle','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('echo_flower_idle','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">tool <span style="color:var(--muted);font-size:12px;font-weight:normal">(2)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="rope">
+          <div class="card-header">
+            <span class="card-id" title="rope">rope</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACOUlEQVR4nNVXO07DQBS0OAMVBVQ0FKSIaNJFoqAzF4ncxcoNXHEAN+lTcQRKim1QUI4QcYY0i2blMWNnd/1JkOBJq3y8uzNv3mfXSfKfLX1+shgmn7rPcl3afLW0vwZYrssaDJ+TxcRuN3P3e3Z/23j2cp2cj0i+WjoAghGIXuMZv+t/nHcS+HYzt3bz2JCZI7Zut/twc7BudFhMPq297gIMGUkMXpi2kmsM+GgSn++vZwOnMVERml7g5pTYBQhwdE60m0fHNjmjsULgWFQFU0kPJWIbaY70LTc6VxaZf25abeZLGLBmVWAT7Qk6YkRIHuu9E2bSUELEtAG5zyI7UiRGgvO8D00FYg97q6TAWIGhhg6ESzsiicUIKEZtPvkhNSsCi2JGVbAGI/EY9gmGqiyyBgHGyzHuaZqkPhASiNZq0lIEmw4xzQkfhlcBe9g3FjG5hnivKoSqifnh7QWpKOBiXiXfUKPMgxRoHxrqxVCLgYSI1caHmq1jCKAK2qXIJO9FoN2AxnjfrvVYp03IDuY7QPoogYakt6c2BpU5OuhSuWr5FjliHf2g6zyIJp+pOl3oBNS6ZmXgOy+eeiriv5AjwXOijNQtn2uHQ7gIfvFwd3RIxRxI+prxEOJNF6MwXz+35CILXt3aedSbQOrJWL5wAHDxtnAvJrE9ENZR4DCUENjfXF3WRFQBgIOExlZzgReWWIL3MhLRCsCm8A7xV3B9G9IRSu5BBhKQ34VAPAJBVUaH99Lx1+wb/9kcb+ICyroAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEqElEQVR4nO2dPY7UQBCFLc5ARLBEmxAwQYtks5E2cGYuMiJjxQ0m2gM4ISfiCIQEkyBWewTEGUiadLtGmqeS2z226/ukivbHHvvpveofe7oOAAAAIADDxz5fqtNDKsr+fPw6FvXw5XNR1/58IEAAwUEAwUEAK8dmsMps+/PdYVfU72/7ouzf372/Lcp7vMebrqhrX7/VgwCCgwCCgwA2jh1X2wxWma0yWo3r78zx1O97/586vy46CCA4CCA4CCAYNtPzt/uivHPzqlp/vufnX/llqSY23NoCAkgIAAdIOAARkGJEgM08Na6/dobPjeoJuq2BAEoQAA6QcQAiIG82AqbuueuCMW6tJ0AAPhAADpBxACIgrzYCnn5+zy+LzJ+G2qNo1xq6a4MA6oIAgjPgALEZli4AZfnh17snovY0Xn1PIQKYFwQQnAEHiM2wdAHYE7B7+mzT0vwEV84onkOwPVbzphABzAsCCM6IA8RmXLoA1Fy/HSa2vkDe5ejTwp/dU5E7Hj8VNfsJIYC2IAADDnCPAxAB9+0iQGVm7Q0MtqlR28ptJnrfJ3ByVuseQTme/fzVTwABJASAAyQcgAhIMSPA+w6duSNGjfvlO32OZdM0dR6htSDU+VU/IAJICAAHSDgAEZBiRoDK5PzvT1HeSLFNjDfj7byBt57M2oX3PYKqx2gtAO/9kCCAWwSAA9ziAETALRFQY+7fztWr5whsprVmFPMK9vPY6ipjr8/saxW1F38QwDQQAA6QcQAiIDeLADuu9UaAWrw4G8cunNG5J7H2DVER0NUGAZQgABwg4wBEQA4TAVM/kBpGWktdG4NzP0Ht+zF7E4gALoMABDhAwgGIgLSeCLBz795MU3vu1jbuV6hXvc7dA9jrPflhUQTgAwHgABkHIALyZiJAHVA1GWfr+WLP39p5EBMz4eYBEEBCADhAwgGIgLSNCPB+pYl3WLR2hsY3ZO4e4wwEcBkE4BQMDjANHGBhDFuPAHUCU7ctr51BPCcw9VlBtSUPASCAjAPgAJkIIALyInoAi2qS1jYqGJxN39Tn9b3Xr5sbBNAjABygxwGIgH6bEaDGnZbaX4CwtHmCJ/MOIfVsY+2JHzXPUP07mhBACQLAATIOQATkzUbA2SZDk9lT3wWsjnfmMFd+f8BJNFmtb/jcx0MABgSAA2QcgAjIYSLAHsCu58/9PYBq27nqEdTv2ybp5Lyh6v/N3SOpmnwDEEBCADhAwgGIgBQzAlo/3qyO730Nm526Vpn/6sO7olQPoOZJWvdAXW0QQEIAOEDCAYiAFDMCalO7h7AvPFA9w/H0tyi51nEse4jaN7j2/ohu6SCAyyAAJzhAjwMQAf16IkBlmrcnsL//eNMVZTP88ONQ1O6wK6prjF1b2VzmWxBACQLAATIOQATkMBFgH4Sww563b14XpRzCOwqwmW97gsG52OLdL2A3bXonluaeh5gdBLBHADjAHgcgAvYxI2BqRJztARTYC2qHXXb9f3Bmvtpf4O0pbM2953JxIIAeAeAAPQ5ABPQxI0BhewI793+2FuBsorLpQbzzDN6a+oKIcCCA4CCA4CAAAAAAgK46/wHZssbwArJEQQAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=18, opaque=47%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('rope','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('rope','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('rope','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="torch">
+          <div class="card-header">
+            <span class="card-id" title="torch">torch</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAA60lEQVR4nO2WLQ7CQBBG5yQ4LAaHa7Kibmu4Qi2ShBMQBAeowSH2HMh1NT1BT4CqmWaanaXFknyTkL5ksnXzdn42JVpZ+YHmemKyJJ73zMHZSHBwrCEiJjefkHPoDQS6OlcA3gaelb4NBV4gzhJP0dV4gZhCWwEV4DR4enuTFkTdhK62WcM4awFcoA0F3zeUJSQOuy1OwlflIjm8AsLreGERkYDeXpGkWgmB0PiUXOaBLHjfnrkCJgLRcgAFvb2sI6Hhof8MYHDTN1TAp/VTATmhEm0o8htg0gpflYv/QfhT3Dwa/g5Y8pW/YwS9WxBTSHyJMQAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACHUlEQVR4nO3dIW4bQRiG4T1JWGlIWFmlgjCX9AqlhZVygqggBzApK/A5CpeF9AQ9QVHJhO6OwWhkV6Px9zzSjxywK73SzK53nWUBAAAAAAAAAJjc8flr2c5CFgGEE0A4AYRbvz2U7ZTTx92MPj7+MwGEE0A4AYSp1/jWrNUeYfTxcyEBhBNAOAGEaW3yzpyqz//92c3o86GTAMIJIJwAwp0F8PvLfjrvCyzMRQDhBBBOAOF67/W/nj7sxh5gcgIIJ4BwAgjXu8aXeqr7BqPPh04CCCeAcAIIVwfQmtL4rmD0+dBJAOEEEE4A4VrP+LWu+4s9wNwEEE4A4QQQrnnd39gDrN4NnJsAwgkgnADCXXojaLUHmJsAwgkgnADC1c8Avtwtu+kN5P39u92MPj8aBBBOAOEEEO7w6bFsp3fNX90HmJsAwgkgnADY+fX5qWynDuRQjev+GyOAcAIIJ4Bw9Zre2iTWRh8/FxJAOAGEE0C41pr/Wj0/MPp4uTIBhBNAOAGE+/v9Z9lOK4iF2yKAcAIIJ4BwngEMJ4BwAggngHCt6/6X6t3B0cfLlQkgnADCCSBM/dvAzWcAT/vfDaz/fvT50EkA4QQQTgDhWu/+tfYAa/W5PcFkBBBOAOEEEK5+zr8VxMF3BbdFAOEEEE4A4eo1/ex/BDWu+1e/FTw3AYQTQDgBhDv+OJZrzsJcBBBOAOEEAAAAAAAAAACkewMkIQUwzGed+QAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=13, opaque=10%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('torch','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('torch','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('torch','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">treasure <span style="color:var(--muted);font-size:12px;font-weight:normal">(4)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="coin_gold">
+          <div class="card-header">
+            <span class="card-id" title="coin_gold">coin_gold</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABN0lEQVR4nO2VoW7DMBCG/SR9grE9QaXiPoZZVThWHA3sAUzGpinIZHwgoCAkWmX5Caw+wJDJTXf1uec1rE6RP+kUOxf5fl/+OEo1Go3GHZhuDxzqUTg3wfjyDNBvKLrxnMc//XpZIWMq/HT4omI458D57ntHefNu6gsBANh+bovdg9eXudfXe/0GTke7gID+0mJ5peIIF4+hyFcrbrp9XryIBOXFfe5KNQHg9e2uZ5AGZY/UERADgB2uAnA+Q9EJO9QTcDpaMlZhvDkRKc9GrCbA8M7S4vQ65vjnEVULiCF7QArA773wxFICnJuomHS5PA/kYZTPBDvUFeDcBG8rRYv/vn7kYtkfXtNBhXl8TtUEYiAB1An0g9c0lv8CFoFXzKklcEmE7AgHFyZhMTzu79hoNBrqTv4A/c07DXlQRqoAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACS0lEQVR4nO3dMW4TQRQGYJ+EE9BxAiTqHIMuoqSjjihygG3oEHKVhp6CgmIbhGVxAsQBqGiGlnlGfhpl0Xr9vk96lb1eZ/LLb2Y92ex2AAAAAAAAAAAAAAAAAAAAABdmunvVRmrHdRGA4gSgOAG4Msfj1/Z3za+fddX2L87W3fyzq+z53/bPu1r75y9PAIoTgOIEoJisxz9987Gr2LPj8XNS8fjbT7ddxfNP76au1h6vqyMAxQlAcQJQTAtuPtx0Nbrub99fdjXH48Pj6euFOnx56Grt8ds8AShOAIoTgOKya/Gjj5/0/Cjr879/9DV4/rXHc3MEoDgBKE4Aim/YyHrucCWmeP7B18+uK6w9vhdPAIoTgOIEoLjYMx+9rl/YcXAPYrYfYe3xvjgCUJwAFCcAxZ2s+x8+95XNAeLxC5tGrxOE928OIADNJNAnQLMK0AKaZeA/xD11sYb3+C09J9ifP3+2R9AcICEAxQlAcQJQXLrOTnruyXcHS9s/bj/C2uN78QSgOAEoTgCKi+v2bD/A6Bwg/v3+PLqfwBxAAJpJoE+AZhWgBTTLwOXFPXexZ4/uyx+9f8A8eM+g9H4CYT/Af+6g2ycAxQlAcQJQXAxArPsnu65iz/319n1XWc8+ZPsPwvPjPYri+eP7W3s8N0cAihOA4gSguPhdQBaIky+PQs+Ozx/9fwGHZE4QH4/nW3s8N0cAihOA4gSAs7I5wegk8j6prMefzDHCHMavc2ECUJwAFCcAAAAAAAAAAAAAAAAAAAAAAABABX8AdQaw7gUcE+MAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=17, opaque=18%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('coin_gold','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('coin_gold','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('coin_gold','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="gem_emerald">
+          <div class="card-header">
+            <span class="card-id" title="gem_emerald">gem_emerald</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABLUlEQVR4nO1UMU7FMAytuAsLA5lYOAGT4RKMWUFwlCxdO3ZkhK0rUtUjcAgWo2f1RWmALf7Sl/Ikq6kT9T2/2B2Gjo6Oc8bt9aVe3FzpyYlDDCqT6LZ9WmB9MiEhhkyMNYix1u8ve3cjlkmsUgrAswzmeKa5gBBDrjKNKZMNr4/mQnyPyjOW9xAgkyiwLrMR53j7ODhg+x4C1mU2ASBl9QCqx7q8iuYCpOh6BEjroEO4BhcBMsmfpMyjN+CSSw/EvclKB3gVWCN3aM7W2DDrqkaAKvHOJiz33K4g7g6gSs46qy3DzYE0Jpt3Wv788mTP+4e7nOMv2WUM05isejpAR+gKm5DRXMC6zAcCklJIve8iYN2DJGWu3m8uAODH/yN2Ja+BUavj16GOjo5zwA+Zn+9iqmSEugAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACWklEQVR4nO3cMW7UQBQG4FXuQpOCVDScIJXhEpRuicJRtklLSUkJHS3Sao/AIWgmbeatlKeRdzHe933Sq+K1N84vP3tmnN0OAAAAAAAAAAAAAAAAAOA/9v7tm/aybt7ddrX29+PCBKA4AShOAK7c3XzXXtb0derqePz9ak1he/cIGyMAxQlAcQJQ/A+e9fi4/U0YB4jbt79/uoqfX/v3L08AihOA4gTgysXn8lhZAOLPR+uY7C/7Pmufv80TgOIEoDgBKC721Oy5fP+07yrr2bsvn7qK4wLzj7mr7Puc7B8BYAFXgOIEoLish0eHX9+6ij0+re8/uxodBzg5PgLAAq4AxQlAcTEAscdGsadnz/1RfO6P24/OFax9/jZPAIoTgOIEoLjRdf2xYk9fWlMyDhHnBtY+f5snAMUJQHECUFy2IOTcPX1K9h/XG8RxCesBBKBZEOIK0KwI0gKaJWFnkK3JGx0HyOYK5rB93N/wmkMEgAVcAYoTgOJO3tcPssmi+PlsTeBx8HjmAgSgZzLIFaCZDdQCmungf3MTGJ/Ls/f1s+f2abCMA1yYABQnAMUJQHGxx8f397Ox/IfHz13Fn3/4eN9Vtr/sfwl7N1AAmpdDXQGat4O1gOb18AvcA2SV9fBsXGAf9petCczq3C2xHAEoTgCKE4Di4nP1aCCynj4n9whLj7/2+ds8AShOAIoTgOJiALLKevLo/g4Lj7/2+ds8AShOAIoTADpZz710jz/o+esSgOIEoDgBYEh8VWtp7dgWAShOAIoTAAAAAAAAAAAAAAAAAADgmjwDJuX244YLNo4AAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=14, opaque=18%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('gem_emerald','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('gem_emerald','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('gem_emerald','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="gem_ruby">
+          <div class="card-header">
+            <span class="card-id" title="gem_ruby">gem_ruby</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAACBUlEQVR4nM1WO04DQQzdk9DRkoKOE6TbNBwD0RHBCRAFB0hDR51DTEFBEwntETjBVjSD3mgcvYw8Y0/YAkujfMb2PtvPXg/Df5Gvj30Mt08R0mMHm/nlPR189+irF3Ef3E7YGZ/4823aQ0e9mDuiYBvOgMe+ej9nY0a4fXxIv1GemjMBANEAcIaGXlndreI0HZJzfJb3u7fd0Tnuy4ekAHJpq6lvyc3VZUxOOonJALk8pnLIkch/42adDLXovYLy4ZhBhFzLMo0ApulKy5qReSVUAGh6ECbfWfUtZdysk6NWuqVMXFcBDb60/INLZjdMRq0FgKQ+ZSCzvAVAOkn4hGBbzzFZrWWhBYAzh88mgNBIE9gMY+n5Iwf2wZU517ScDYWytz0tekJag2dJzhqbS80Dr8AZZ8Iqg68NYzwhCIiFo2Wk7IYad5h8zcwG5a0l5Hm9GEwAyID2JjzRyVxwA4DUCMP6tQhLADhaMMdorWnW21oagG6Chz8sFMIflEfWtS4/gRaNZv0cIHA+t9dt+5E6gLcd/C9d0lOmLhnz8lGu6TxyyznOm/Aiw+umiI5JVJaAB5HWgovINB0iSiFjlO8EgPCkthlhD9g93/eDC0ZaGYDsBKWOlEcyOJzT42Pj3c3dUYIVTvVsTYNWX2t7qe2DsOP26wIQKXUug4rw7rDYa3hp+QXdUcWxidCGXwAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAEa0lEQVR4nO2dMY4UMRBFfRKySdmAbE9ABgnHQGSD8AkQAQfohKzjOUQHBCRIoz3CnmCiTYq0XYO2VLLbbbffkxwB2+6ez//ucnk2BAAAAID/cP19kfVYPsVkaHp7iIu6n9uP+dWh/35r8y9+AQQwIwAcYMYBiIB5zAiQyyLr0XomWuj5Ls4hL8/J2Pv+9XzKXwABCALAAQQHIAJkyAjo7b3Ywpr/zbjf1u5/8+u3/gC8IAAnCGBu+j8ADuAEByj8wLyLkK/fzrIe+t/r0nMojPWef1P3qyntAN46RKgNAkhBADiA4ABEgAwTAaV5+Pwg6/H09DcZGv3nudeffk2yHovxwPX1cz+QuzWQUWrfvNBTGwRwRgA4wBkHIALOY0bA49uTrMddJirCwZjUGsS79xB6BwFMCAAHmHAAImDqIwKs92bve/qHj+9lPfQNln7vb52r2vvQY/c1EQLYFgSAAwgOQARIsxFg7Zfn1sZ1xJSe793upbG9GwABwAocYHAQwOBsLYDS89N4e/7kaJsvuSCAwUEAg4MABkfX7nVG1q7dW6Vp7+bKzVjT6O3rUBndL1G9aRQBnBAADnDCAYiA05gRoNl7v95aA1i1/rs6wOX1pszaawDrnIS1e6oje/MJhsoggBkB4AAzDkAEzPtEQOt99aXrAo+V1wDeOof+cwSAAAQHwAGECCACpMoaoHZhQjdN6syzzvOb/QCXtC4QKpO711G9MIQAyoIADHCAGQcgAuZ2ImDvCeSet39q7Cyiu6dx5/4MBFAYBOAEB3jGAYiA5/0iQLP3OYGjcW39+wM0CKAsCGBwrjjA2Fx7E0Br6AfmrRPIznsDkAkCGBwEMDgIoPTRMIW3B0332OlR+jUy99zAsnG/g7fnr/prNgKICAAHiDgAERDHjABrAt4JWS1PP9+EZJSef+7ZwSXzA8iej9EvkPu8zAkjgIgAcICIAxABkQgosSjZuoHBG2G3jRdhuWsAPUqvmbIfoPfnI4AUBLCzgG84QN4D9H5AOEDjDqDf2/f+3rzej1othdcAm9cBEEBEADhAxAGIgDhmBGzN1ovM1ng0+h/03oM++3e454MAIgLAASIOQATEMSJAT9j6Th9NdzecuSbQ48/Xd8kIvYEAUhAADiA4ABEg3USA9xyAVYvXQ/98qy29t72J7kEAg4MABgcBDP6B680I7+FMb0eOVQfwCvKuzvBysEJLaRBARAA4QMQBiIA4ZgRoct+7vQ0RuXsB3i+IkMJnAQ8HAhgcBDA4CACy0Lt/eq/A+mJE7/WsNcBi9Cd46x65vxx6+v4lGeFoIIAUBIADCA5ABMhhI2Dv2rp3DSCqDlB6DWDtPVh1kNAbCCAFAeAAggMQAXLYCPCex6/9++695w6WTMeyttO9hz+b74FEACkIAAcQHIAIkGEiwLv/XnsNYL2WhcLo+/Me/EAAGyMIoCw4QAoOQATIUBHgLXWGwZhUncTsUeytEIQAXgcB4ACCAxABctgIAAAAgC74B4odW7XcCx5FAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=15, opaque=32%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('gem_ruby','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('gem_ruby','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('gem_ruby','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="gem_sapphire">
+          <div class="card-header">
+            <span class="card-id" title="gem_sapphire">gem_sapphire</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABUklEQVR4nO1Vu2rDQBC8Dwr4N1z5/AeqXKa1cYrU9w1q3LoMhEDadCnSGII+IeQb3FyYy80xbBRSZOUQ0MByepw0s7OrVQgzZsz4r+ju33J6eS9xdfuQd/ttvgjxbr/NIMcKcgBrXC+LkMmIh+HUMuYxQTd0jyt5XC8bCY6RPQIZM3COe4h8/tz7+nz3eyGxWmuzb5k+PpWVAlkSNydizUpfigzVeojguQpw6YloBJAcpBSAFc6oqEkc6GqGJFIBFKHXXQV0htA6YO9PImAYTq0h1W5LrrPBRUCqLy6f2EidEYvrRSOH0NVx5edAqiScAXTFBueDPuMioD/0re4ogVquDYkon17tj3Cz8ZmIUcpAEh3FWgrtBZceALTOtuutAyR2/SekbxpOR68l5th2EdAf+i9dz6YcI9apGbyQRgh+Cjdy4k/JFfaXfDHiGTPCBPgAtWYywZHcxqcAAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACxElEQVR4nO3dPW4TYRAG4D1QpFyDKnCDrShpiaCg3jOkoaVEQki0dBQ0SChHiDhDmo82O5EYj9Zobc/zSF/lOPHPm535fpxMEwAAAAAAAAAAAAAAAADACZm/PIynY/n555/j6sPX1bh993Y19n4+FAlAcwLQnABcuFij4xseb481P4q3v3z1YjVij7D3829PAJoTgOYE4MLd3/8aT0c2j8++PjMn6wbVx7P363f2BKA5AWhOAJqJ8+6sJsevj01hHHEef5WMeP/48+IYjw+rER/v7x+fV2Pv1/vkCEBzAtCcADSTrbVvnfen8/Rv31cj3p71INlegnUCARgWilwBhpVCJWBYKj6gB4ijWlPjPLy61j+FniC7f7UHcJ5AAIYDJa4Aw4kiJWA4UnaEHiCr+bGmZz3AHG6P6wzVnsI6QHEdQACaEYDmBKC5agCyeXhWo6s9wJz0BNXv78ygAAyHRl0BhlPDSsBwbPyAHmBrDd+6DjBv/Pl6gI1NoABcOAFoTgCaqwYgzsOzM4TVtft5Y83PzgfE5zd1JwDNCUBzAtBcde3/2Wfxjrw/v4Rx/eZ6NbKaH3uUm083q2EvQACGvQBXgGEvQAkY9gIO6AGyeXT18/tbx23y9weqz2fqTgCaE4DmBKC5GIC7j3erke3vx72A6lp+VD0P8Oyzfsn5g+n96/XoTgCaE4DmBIBNewNZTc5qflTdK6ieF3AeICEAzQlAcwLQXHV/fuu5/qh6/6zG2wsQgGEzyBVg2A1UAobt4CP0AFvP8GXrAktxHl99fPHM4P/sp86SADQnAM0JQHPxPMDWQGRnCucj1/jq3zXc+/U+OQLQnAA0JwCsHLsG7z0mavZ+wxYB2Nfeb9giAAKwKAGnY+/f4EXNF4BF0+cKsOj6lYDFtO/0bP1fwosaf94EoDkBaE4AAAAAAAAAAAAAgI7+AsOSLC6ZC7zVAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=14, opaque=27%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('gem_sapphire','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('gem_sapphire','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('gem_sapphire','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  <section class="category-section">
+    <h2 class="category-title">weapon <span style="color:var(--muted);font-size:12px;font-weight:normal">(8)</span></h2>
+    <div class="grid">
+      
+        <div class="card" data-id="axe_battle">
+          <div class="card-header">
+            <span class="card-id" title="axe_battle">axe_battle</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABD0lEQVR4nO2WMQ6CMBSGexI2Vxc3NxMHNrgJG4QbMHGAt7AzcQwGFyPhCByCpeZ/6VNponFpq0n/hDxg+T76XlqUion5pxz3Oy3BvTfwpTpo3Z/5AjjLU00dsYhzeJsoBrOE1gyGgEhM4+BOoqpLhqMCJHBUagqu83x1I1DVJYPlKwESCSdAO4Cj3wCiigxaonwky1OGypKjAo5ZwOVcgEyPAcazXpfHatz6E8+AU4FpHHgFAN6IGQmshvN5oJdpt99LO7wNpZ2NhOt2vAvAIqFChUJLkJmRsBId/YBEU/CeAQFvu+UnCdnAvIesEzOYRJsoPkGDzkRrfmawpfsX6J5nhn2eeItel3DwmBj1Ze7aNyqA7+thlAAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACS0lEQVR4nO3dMW4TQRiGYZ+EjpaGjg4pBR3chI6IG6TKAf4mvSuOQUGDQDkCh6BZ2p0/kkeWUTbe73mkqTZx5PUrzWR3bB8OAAAAAAAAAAAAABt49+b1sh4z/ee9aFdOAOEEEE4AO/fj9u2yHsvx5uToQXz89GEY9VDD6A68LAIIJ4BwAghz/+qwrEef458E0fQ5vq8BZmuC39+/DWPr8xFHAOEEEE4AYW6/flnWo8/5/Xifo2dzfj9ed5/H0Y4/Pv4cxtbnZ/cEEE4A4QQQ/oL3Mfu/vM/RszXB1s+XRgDhBBBOAOF6AP3+fZ/D+/HZmqFfSNr6+dIIIJwAwgkgXL9W34OYXcvvx/uc3/cL9LH1848ngHACCCeAcLP78T2Q/vvL3z/LesyuG/w6vh9G//vbnIVgAggngHACCNfv3z/ZENLm+HMff7Ym6NcN7B94ZgIIJ4BwAmBw7r79c0/fbL9Av1dQ9hQ+LwGEE0A4AfCszl4T3Ll3sCsCCCeAcAJg0Of4+8mawOnbGQGEE0A4ATAoa4JsJYBsJYBsJYBsNdmP4DrBzpUAspUAspUAOLlhxZogSwkgWwkgWwmAU4vE/nkGff+Azy3cmRJAthJAthIAlwQx+wwkrkwJIFsJIFsJgLVLv8dweDCuTwkgWwkgWwmAtdn+gf49iN6LuDMlgGwlgGwlAM5548lyvBlG/yzl4cG4PiWAbCWAbCWAbHXm9xlc+v0JvDAlgGwlgGwlANb6HG/OD7MIINsigGyLAAAAAAAAAAAAAIDD//cP+tGoD8/QGCYAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=13, opaque=12%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('axe_battle','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('axe_battle','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('axe_battle','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="bow_longbow">
+          <div class="card-header">
+            <span class="card-id" title="bow_longbow">bow_longbow</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABU0lEQVR4nO2XMU7DQBBFVxyELg0FLqI0dJEoUiW5AV26VTosbhBRcAA3dAi5ipQLpEyxDZooyglyAiqaQd/KoDWMAoVnaPKlbayV3s4fz187hLMcVD7cM+9nnMp+s4KXUtlnqofMHweGqufKD04ZGLpbHXzg282ysTlXEQsf+PvjS6tqaPw69oHzftYCC/zpMrBPvxX4zXWP3fstcJe+Uz38AQHYpe+kwDHnEjbVYs7ucBEOYNZ/UuCwXDSZjuzilhQ4gCJkPvaYVE+a7Yv5F1ysN3kBub49aftu99aAsS4GV9x5vIYTcAhQEzgptqPaXJh77Os8eLabpXp/f4fjDjBJPfqlekk8E3hS5hiOuMC16vOUw4ybwifTUesObz4oj5JRM835lNkPKKqP6+h3xabjAdBzqdjtmw6C/agY0M6D5a+K6/i/8MLTcu1PpvXwrGCrT6sn2vGkipfPAAAAAElFTkSuQmCC" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAC0klEQVR4nO3dMW4TQRhA4RUHSUdDgYuIhg6JgsrhBunoLDosboAocgA3dAilisQFKCncoLUiTpATuKIZWs9fMKx2dmfj9z5pykTe+Glnx+uddJ0kSZIkSZKa2H78kE5H+v0uG/vt5T9Hm1etagwAbusZgG1rAOdtH+bs/vZVNtKfh3wEuy+7bLQ+Hg1kAHB7zwBsewNg6QfO8dH194dstD4eDWQAcL1nALbeAM7b4eddOh3xIm+o1WaVjdbHpwIDgDt4BmA7GADL8fPXdDqGruuj9bd1NlofnwoMAO7oGYDtaAAsKXwnb6w4599cdNlofbwKDAAueQZgSwYAv3lTec5/+fxpNlofrwIDgOs9A7D1BnDeat+8Kc353t9fGAOAMwA4A4CLF3ndSHGO9/7+whkAnAHAGQBM7Td8F57PL+3Zs/v0Pht1jkr/zQDgDADOAGCmfsNL4jWA9/9nZgBwBgBnADC13/B1uJ9fcvX2TTbcu3dmBgBnAHAGAFP7Db8Kc3hJ3Mw5vh7X/RMzADgDgDMAmOof7IT780PFdb7fAZyYAcAZAJwBwKTb1+l0zP3Z/v39r2zEn4/jyYtn2ajzVwAzADgDgDMA+MaLc8/5UZzTnfMnZgBwBgBnADC1P9iJ6/ahVuH5/vj63OOnMgOAMwA4A4BvyhSftRv7+8fO+SlsBu2cX5kBwBkAnAHAtb7oK+3jt/J/9U7LAOAMAM4AYGo/Hx8vIp3zF84A4AwAzgDgxl70Dd2XLz6P7zq/MQOAMwA4A4CJe+zcXHTZKP183HOnpPSsnvvzz8wA4AwAzgDghn7wE+f0uO7f/Nhkw3X9whkAnAHAGQBcKYB4P7+0jvc7eo+MAcAZAJwBwMXP/uM6Ps7p7qt3ZgwAzgDgDECZeA3gnA9jAHAGAGcAMKV1f+vXp4kZAJwBwBkA/OZP7Q0gtHAGAGcAcAYgSZIkSZL0OP0FtJWvxELInX8AAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=16%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('bow_longbow','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('bow_longbow','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('bow_longbow','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="dagger_quick">
+          <div class="card-header">
+            <span class="card-id" title="dagger_quick">dagger_quick</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABVUlEQVR4nO1XsW7CMBD1R3TqQCdWMmRjq8TAhPmJskXdiMoXMPEBXlgrpo6MsDFkqYhQv4CPYDn0TjEyiQ0dcpaQeNLpkrzBz3e+O0epJx4S6y35Po++R97vrSLbZATA/1dYu1hv6WI1HA6/lGSJrIh+r0v0NyH4OsehIZIVoMdDKvKUFh3lT8HsQ1bAoqOIVoOwAMlzYOafvPB+9c4e71EjYJaG8q8pm31uCJCuhCJPyVqDlBRglobK3Q/v3LWrKEgKoNORSw+Gekc1wEdNQb/XvSyM3bvc2+tLsEG1Bj0ecsjhXQEQxK25qgKkSlRAWZ2F+iCCgRNrx/qGACtCdBboSoCtgDqP5uQtT6kIAC6P3YveCfSdFCAC3hkRKwVFnnrHtFwKTserxbD7KALMjUMYNQWAywcvKlICVGBeKEmUgfxbTkkjyRLu+1H+AUJojOEnHhlnqGV4+9P5v34AAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACr0lEQVR4nO3dr44TURhA8XkIFAIUlop1OBIEqvAS4BocDTwBqg9QgyWrkJWsW1FD2DQ8AQ+BubjNvR+hdyf3dqbLOb/kUwM0bU4yl/k7DJIkSZIkSZIkSffJ7ioV09nyyzLl0/vfVysDgDMAOANgWX1bpXyiuP3cA9NIBgBnAHAGQBf3ybVpdDh8T/ksVoti+nwp3Z0BwBkAnAGwPXv6JOWTfr4tJm5v/bxU0edb6c4MAM4A4AwA7tXrlymf/fqimM2joZjui86Pb8rRtAwAzgDgDAAu7uPT5YtiTr4G2Hl9wKwMAM4A4AwAZvvpXconBvDj8nkxcXv8+8NYHgeYlwHAGQCcAcBtP29TPusP749O7c8PY3kcYF4GAGcAcAagQjz/X5vmn2/nuYCzYgBwBgBnALBF383112Li9rGzHntcwDXAtAwAzgDgDAAu/f6V8ok3gsSJ9+/Hi0bj9mEs1wDTMgA4A4AzABXiPr+2j4+LyLE/5+OHD1I+rgFmZgBwBgBnAHBxnx+P5cftY9cAh7CG+OtZw5X7AuK5iml+FRADgDMAOAOAqwVQu16g9R1ByzDx83x28IkZAJwBwBkA3NQBRHEN4D5/YgYAZwBwBgBXC6B2H0Dr52/CM4e633uo4wwAzgDgDACudRHY+o6fRXhPYDwucJpvrVsGAGcAcAYAN/eBoE04DtD9fQQ6zgDgDADOAODmPhC0D8f+e7+bWBUGAGcAcAYA13wgKDxzaBgp/r/fNcDEDADOAOAMAG7uReDGcwHzMgA4A4AzALjWAFqvCdyHcwFeDzAxA4AzADgDgJt7EZgq7y/o8y31TwYAZwBwBqDCqc//Rz4L+MwYAJwBwBkAXLxfPz7f3/v3/3MGAGcAcAagQvO7gXW/GQCcAcAZgCRJkiRJkiRJ0nDrDxg5kAq3TtoFAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=15%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('dagger_quick','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('dagger_quick','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('dagger_quick','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="mace_holy">
+          <div class="card-header">
+            <span class="card-id" title="mace_holy">mace_holy</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABEklEQVR4nO2WsQrCMBCG8yTd3EQHt25CBzd9A7duxc3i4pypD5CleydB3B0cHLKIUvoE0mdw+eVSU6KrJAHNDwflKNx3/yXXMhb0hW7nHZhPoUog84l7CFEKoElBAH3sTm5BZD4BHneQioi5K44mhWm/AqkS1PXF/jgA9EV059oJyl2rqX0nipfdw+0BXLYqlvsOwLoDohSgq0cQVFipSdUz5WgU9I41AACqgO6cLNfzN8MawNCwncIsqnPjbGwPQPCVmnd2zN5AdMwXM/uHUPCVAvh0gyLfrN3sg3g06OZvbEOny4hE3epFxHypiJj7zk3pXcB8iQcAGUbQhkOIcA3/exHVrx8RbwDxaOD3Y8R+QU+NU2B4+DVy2QAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACZklEQVR4nO3doU7DUBSA4T4JDkdA4HAkCBy8AQ634CAYdNUeYAaPIiF4BAIxs0AWnoDwDJiL7Tkju2kIFPr/X3Lc0mzdn7S3ha5pJEmSJEmSRurl6bZ0pxGLAcAZAJwBwJWbg9Kd+cVumKHfn36YAcAZAJwBjNzsela6U15P46RzgFKb28cwQ38+VRgAnAHAGYCCvM4vH29xkulGE8bd+c8ZAJwBwBnAyOV1ft9r//N8jpBev1wuwnjv4I8xADgDgDMAmLxurx2Ta+v8eeU6Qd7e881+6c6vfXB9/YUaAIwBwBmAgtq1+62r+9Kddv6+dk7u3sLk7Xkd4I8xADgDgDMA+B985H/0yEHkY/yK13gvIb8+by/fK8jvZ+j9M3oGAGcAcAYAlw/hOYjaOj9fyy+V+/99Z+j9M3oGAGcAcAYA1/fafp6+x/S2sr2dyU6YoffP6BkAnAHAGQDcrD0r3cn37ycPkzB9zxHayhwdH4YZen/gGACcAcAZgNYGkc8BvnvS2Ka5uDwP49cxMAOAMwA4A1Cwt71ZurNy/7/ncwOnPjPofzEAOAOAMwAFed1ee0ZQo3ExADgDgDMABXldP3Wdz2IAcAYAZwBwtecFNBo3A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4BbLhelO216dvDQ708/zADgDADOAODyD0tO/c0gFgOAMwA4A5AkSZIkSVSfsbgHyxjHJnMAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=20, opaque=11%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('mace_holy','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('mace_holy','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('mace_holy','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="staff_magic">
+          <div class="card-header">
+            <span class="card-id" title="staff_magic">staff_magic</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABA0lEQVR4nGO4du3i/4HEDNQwBATg7F/P6OMAECBKHQEHMVCieUCj4Eho1f//G45A8P///790LSPLAwzEBCe6/Kz5sxCWQx0ABhuOkBwdDBT5/tczVEcQcABVo+A/msUwUF5ZRp8QOIKcBpAwxSEAAgR9DwJYLEdOiMSYA3YAOB6RggabRlypGRYSIItxBT0DEkDnYwBcmnDhM+XG//+vcvn//0ba/z45hv/4zKEYXMPiMCs9VbDFIJqQeqqDa9CoAVkOAgwDBc6UGw+c5SAw6oA+OQZwVmQYSAdco3WKxwcur3Ic2EToH+Dx32+F32g2HDhwZrQgKh8tio1HeGU0ChgoBADZBSt9Ew9p9wAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAC0UlEQVR4nO2bP2obQRyFdZJ0adO4cxdIkcpKkyvkCDHWEVLMAdykM8HVHsLla34IRE6QE6hyM4FUnhFIbPbPrPZ9H/wqS3i0fLw3O1ptDofITNheg03rBTCBAEgQJAASBBWwBAlqLr7+9U8xrdfPHgABMptAEiBzF0AFZG4D/6PTD3PvORrvIVZ/DoAAgQAkQJAAVEAsowJadx4TCIAEQQIgQVABByph/beBL193xeTu5fxUHH88FbO2PRACdAjQ3EISIEgAKiCWUQE1cy9o6P9//PlYzMXO785XwAnV62e/PiPvIRCgQwASoCMBqICOCvC47686NPfdEzTeA4w9qzsHQIBAABIgSAAqIDwroJ6hHX+J+4fvxVz9OcDaBgECAUiAIAGogPC8Dez9PEDXb1p/3qGDAB0CNLeQBAgSgAqI66yAmtYJcMLInX/s+Yzg0q4PAiBAJgFIgEwFUAH53x7g5PvxnmfNY3fc1M/NXzonOFYdP/VZ/6YnQ99/AgLsEIAE2JEAVMDOswKGLmDsDzT16P6mmPz8qZzf34pJ7zbFzH19FgcCnAcBekICXBkkgHkCzM3Ye4zbD++LSVXH139vvX57EMAcBDAHAWBUgeoDr9uq82u4/FcOApiDAOYgAJxF1XcDXC4zhADeCAG8EQJ4IwTwRgjgjRDAGyGAN0IAb4QA3ggBvBECeJOqZwLr3wq2Xh9MTEIAbxICeJMQwJtUCcBz/GYkBPAmIYA3CQG82T9/zG+n9XpgZvYI4M0eAbzZI4A32y+f89u5+3VXTOv1wcRsEcCbLQJ4s0UAb8QDId4IAbwRAngjBPBGCOCNEMAbIYA3QgBvhADeCAG8EQJ4IwTwRgjgjRDAGyGAN0IAb4QA3ggBvBECeCME8EYI4I0QwBshgDdCAG+EAN4IAbwRAngjBPBGCOCNEMAbIYA3QgAAAAAAAAAAAAAAAFgxfwFXhrffG3cMKwAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=16, opaque=38%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('staff_magic','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('staff_magic','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('staff_magic','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="sword_fire">
+          <div class="card-header">
+            <span class="card-id" title="sword_fire">sword_fire</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABCklEQVR4nO2XsQ2DMBBFb5IswQSRKOhgCtp0WGxAlQFo0ruiTJuOwl1SMEGUGWh+dI6NCJRJ7lLwJcvGzX++8+kw0aYP5EyCtjlAzRxDiVvf+SFqDtZQgiE8yHiXBbjavQeATV9zWIsBYH76CCAZBSwBQiREAY47mgB4LQrgTPIGEL/FAExdrQBIUu2pncKuApAX2SoCvCcGAJvq3gEsylC8J2BRhhwRWQD7Rym49Z18Q8JQghuSN7apDkBeZGjcwxurABw55+eLN/bNSArA1JU3my5hMOfBafmpeV5kYACeYwo4CnGfRVJyfPog0RKcK5YiacltAEY5BQg/JDrm4x2qAEREKs+yb+sJkYaGpsoYOO0AAAAASUVORK5CYII=" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACcElEQVR4nO3dMU7zMBiAYZ+ES3ACJAa2cgpWNhA36NQDdGHPxMjKxpCNDj0B4gwsZo2/SLWiCFnO+z7SN8GPGv5XijENTkmSJEmSJGmjxufrPJ3j/rGY1q9P/8wA4AwAzgDg/+H5/FDM6fPt4rR+/VrJAOAMAM4AYHIU7vkxiDGuEX6/i2l9PVrIAOAMAM4A4L6GmzyduAbIw2055/Dxyue3vj5VGACcAcAZANzin/vPlTWA+wJ9MQA4A4AzALjVAQyX9wlaX58qDADOAOAMAC4GcLhKxdTWAIfw+a4BOmMAcAYAZwBw8R6/dA0wVv596+tThQHAGQCcAcA9vzzl6axdAyT1xQDgDADOAOCOr8c8ndrefnYNsC0GAGcAcAYAt7u/y9NZuw+wC1+v9fWpwgDgDADOAODi+/p9PwCMAcAZAJwBwK19MGT0PIG+GQCcAcAZANzaB0Ny2EfwTKHOGACcAcAZAJwbQXAGAGcAcAYAt3Qj6BTOCfQMoc4ZAJwBwBkAXAwgHiAxu8cP5d6/a4DOGQCcAcAZAFwMID4osh9/isnhTCDXAJ0zADgDgDMAuNobQtL7RzE5rAFmZwZ5bmBfDADOAOAMAP6HIeM9u/pcwHD5nh8n/m6h9fXjGQCcAcAZAEzc248BxI/XfheQwr5A7etHrb8fOAYAZwBwBqBFZj/3Vxw8J3BbDADOAOAMQIXas4JJ22YAcAYAZwBwBgBnAHAGAGcAcAYAZwBwBgBnAHAGAGcAcAYAZwBwszOCzuW0fn36ZwYAZwBwBgAze8bfNQCLAcAZAJwBqBDPCDqF8du1cQYAZwBwBiBJkpTSH3+Pasksf4PeAAAAAElFTkSuQmCC" alt="4x"/>
+          </div>
+          <div class="meta">colors=14, opaque=14%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('sword_fire','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('sword_fire','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('sword_fire','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="sword_ice">
+          <div class="card-header">
+            <span class="card-id" title="sword_ice">sword_ice</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAAA2UlEQVR4nO2XsQ3DIBBFGcidl0iXbHAjpDNy45oZaLKCJeQdUtBYihjB8gw0Fx3YjaVUlvhIzpcQJY//DziUOilyCyukeBNk8WaYWByAumDNk71ucQBet3x/3LAA/pIONMPERwCOhYqR48ICcJSchiJH0r5s2rXMn/eYhu67DFXKBdG+a+NXTB2EMCcAmcWB4gAsitkBiQMCYPyasocB0Fb5fwCLioAjOIJdGICYmxEcQA0RkKsEQKOu4hDmOhywyLfg2g4Qsgh135XrA38J/jUjlztkGMBZfQGLT27qSRX1ngAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACX0lEQVR4nO3dsU3DQBhAYQZKxxJ0sME/Ah0RTWrP4IYVkFB2oLgGCWWEiBnSHK39R4oVTOLo3vukq9IcyZN8vpzJ3R1cfOzrcCw9H11ZGABbGABbGABbnbD0/HRh1QDYqgGwVQNgWW22dTgiLQJdFDbOAOAMAM4ANNJ3z3U4yvp+NHy7GtcbAFtvAGy9AbCVdM1/fHoYjaXnpwsrBsBWDICtGABbSQG4DwBTDICtGABbMQC24iKQrRgAWzEAtmIArAMgcwOoh30djqv9IfobA4AzADgDgMnX6BzAXJGeHfBZwhtjAHAGAGcAcP1bX4cj39fn178/30+O9evLaBytKdwXuC0GAGcAcAagk6bu67vyMxo+J9AYA4AzADgDgNvtvupwRFoD5NfzPsDS89dMBgBnAHAGAHf0Bf5hfH4g7wPkjaWl56+ZDADOAOAMAC4H0KVrfv6+3zVAYwwAzgDgDADu3HP+vfsAbTEAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzALipAyGZ3wU05ugTPhgAigHAGQBcPVPveYC2GACcAcAZAFy+7QvPBLIYAJwBwBkAnBtBcAYAZwBwBgCXAwj3AVgMAM4A4AwA7twA1v6v4LYYAJwBwBkAXA5gl34fwDOBjTMAOAOAMwA4N4LgDADOAOAMAG7q9wIynw1sTP6AOwNgMQA4A4DLAYRnAlkMAM4A4AwA7twA1p4JbIsBwBkAnAHA5Wt6TKwBlp6v/pkBwBkAnAFoJNIaIA/frsaFAbCFAbCFAbBFCmC12Y7G0vPThYUBsIUBsIUBSJIkoF/BsO7rBVGnKwAAAABJRU5ErkJggg==" alt="4x"/>
+          </div>
+          <div class="meta">colors=12, opaque=11%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('sword_ice','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('sword_ice','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('sword_ice','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+        <div class="card" data-id="sword_iron">
+          <div class="card-header">
+            <span class="card-id" title="sword_iron">sword_iron</span>
+            <span class="card-score">10</span>
+          </div>
+          <div class="sprite-row">
+            <img class="sprite-1x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAPoAAAD6AG1e1JrAAABGElEQVR4nO2WIQ7CQBBF9xAoBFW1Nbh1JIi6cglwDY4GTlDFAdbgUchK6hA1hKbhBKRnqBnyJ92mHKCzCdmfTJqqN3/2z2aV8vL6Z50XiurHjZzAqfuQjkKi65qa5infhI5CwgSC+cwNXPdlLka2AR2F9Lqu2LkTeJUtuUTgwXxG9N4RBNcoNJEdD3LOzcWw22QTcwNIvOjok01Mqigpr1pSpy27xwqK7L/J9wxmeFEO7lHIweQNUPdhsJ0AwPbSmfwYGoAAP235i6MQu/FMvv+Bp/dULngZVsyGbnTu8okvSt5/MXiNtXIFh4aEu4DXvfsxXOyhUY/gGL/ouiV96Kxz/IuPPq9aHre9YpWkdP+iEQd7eSlBfQHjmzuqHFm1QwAAAABJRU5ErkJggg==" alt="1x"/>
+            <img class="sprite-4x" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACV0lEQVR4nO3doY4TURiG4bkIFAIUFoM7jgSBKzcBboNjw15BVS9gDH4VEgluxRoC2XAFhGvADLbnb8Jkspu00+95kl81kDbzpmdOO9MdBgAAAAAAAAAAAAAW2z0Zpv35efO5m+X/I6uyE0C2nQCy7QSQZfr7e9qf9vxZN9P1q27u7r53c+znzz0JINzkHSDbJIBsraz59STw6eNH3Rz7+fLABBCueQfI1gSQfcDbzIyfxm6O/fy5JwGEa94BsjUBZB/wH9cvu6n7fGv+mWkCyNYEkK0JIPuA316++O9Y889ME0C2JoBsTQDrVvfl0693/RR1X1+nBnH58UM3x369FAIIJ4BwAqAzlu/j62zevO6mngPU6/jt+1dmFEC2UQDZRgFk25Q1fvjyrZvt7Z9uhqu33dR9f70RxP3/J24jgGwbAWTbCCDLuH0/7c+2rPEHa345J5jb99ep1wcc+/XHE0A4AYQTQLi6Tx/KGj/3OUBd4+d+08d3AydGAOEEEE4AYQ7W6LrOX/Wf7dfH6wdFfsdvZQQQTgDhBBD+Qc/SNf/i60U39vErI4BwAggngDAH9+LNXdO38Pv9gdMmgHACCCeAMIsv4iyPV6M1f10EEE4A4QQQ5uDeOmt+FgGEE0A4AYSbvQ7fPv+8CSCcAMIJIMzcSd/SNd9v9KyMAMIJIJwAwiw94PX7fvfurZwAwgkgnADCzF3QMbfPr//eNX0rI4BwAggngHD1pK/u6+vjc7/Fe+zXw0ICCCeAcAIIV//WrjU+jADCCSCcAAAAAAAAAAAAAACGB/cP/FO6vp0FbFcAAAAASUVORK5CYII=" alt="4x"/>
+          </div>
+          <div class="meta">colors=19, opaque=11%, palette-dist=0</div>
+          <div class="actions">
+            <button class="approve" onclick="decide('sword_iron','approve')">✅ Keep</button>
+            <button class="reject"  onclick="decide('sword_iron','reject')">❌ Reject</button>
+            <button class="deep"    onclick="decide('sword_iron','deep')">🔍 Deep AI</button>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+</main>
+
+<script>
+const decisions = JSON.parse(localStorage.getItem('quick-review-decisions') || '{}');
+function apply() {
+  document.querySelectorAll('.card').forEach(card => {
+    const id = card.dataset.id;
+    card.classList.remove('approved','rejected','deep');
+    card.querySelectorAll('.actions button').forEach(b => b.classList.remove('selected'));
+    const d = decisions[id];
+    if (d) {
+      card.classList.add(d === 'approve' ? 'approved' : d === 'reject' ? 'rejected' : 'deep');
+      const btn = card.querySelector('.actions button.' + d);
+      if (btn) btn.classList.add('selected');
+    }
+  });
+  document.getElementById('decided').textContent = Object.keys(decisions).length + ' decided';
+}
+function decide(id, choice) {
+  decisions[id] = choice;
+  localStorage.setItem('quick-review-decisions', JSON.stringify(decisions));
+  apply();
+}
+function exportDecisions() {
+  const lines = Object.keys(decisions).map(id => JSON.stringify({ id, decision: decisions[id] }));
+  const blob = new Blob([lines.join('\n')], { type: 'application/jsonl' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'quick-review-decisions.jsonl'; a.click();
+}
+apply();
+</script>
+</body>
+</html>

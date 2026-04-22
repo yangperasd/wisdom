@@ -471,7 +471,12 @@ async function generatePrefabs(scriptIds) {
   };
 
   const addPrefabLabel = (api, parentId, name, text, width, height, fontSize, tint, bold = false) => {
-    const labelNodeId = api.addNode(parentId, name, vec3());
+    // DebugLabel children are dev-only placeholders. Keep them in the prefab
+    // (so dev can re-enable when poking around), but spawn them inactive so
+    // they never reach a real player. The demo audit also keys off node.active
+    // when scanning for "debug elements visible".
+    const startsInactive = name === 'DebugLabel';
+    const labelNodeId = api.addNode(parentId, name, vec3(), !startsInactive);
     api.addComponentToNode(labelNodeId, 'cc.UITransform', {
       _priority: 0,
       _contentSize: size(width, height),
@@ -905,6 +910,10 @@ async function generateScene(scriptIds, prefabIds) {
   const touchHudRootId = addNode('TouchHudRoot', canvasId, vec3());
   addSafeAreaRoot(hudRootId);
   addSafeAreaRoot(touchHudRootId);
+  // DebugLabel is dev scaffolding ("Loading HUD..." placeholder). Keep the node
+  // in the scene (so dev can re-enable when iterating on the lab), but spawn
+  // inactive so testers never see it. demo-playthrough-audit also keys off
+  // node.active when scanning for "debug elements visible".
   const debugHudNode = addLabeledNode(
     hudRootId,
     'DebugLabel',
@@ -914,7 +923,7 @@ async function generateScene(scriptIds, prefabIds) {
     108,
     18,
     color(220, 255, 220, 255),
-    true,
+    false,
     color(21, 32, 39, 220),
     color(129, 182, 161, 120),
     18,

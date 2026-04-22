@@ -2,6 +2,7 @@ import { _decorator, Component, EventTarget, Node, Vec3 } from 'cc';
 import { HEALTH_EVENT_DAMAGED, HEALTH_EVENT_DEPLETED, HealthComponent } from '../combat/HealthComponent';
 import { EchoManager } from '../echo/EchoManager';
 import { GameManager } from '../core/GameManager';
+import { CheckpointData, GAME_EVENT_RESPAWN_REQUESTED } from '../core/GameTypes';
 
 const { ccclass, property } = _decorator;
 
@@ -39,14 +40,39 @@ export class PlayerController extends Component {
   private forcedMoveTimer = 0;
 
   protected onLoad(): void {
-    this.health?.events.on(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
-    this.health?.events.on(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
+    this.health?.events?.on(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
+    this.health?.events?.on(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
     this.syncAttackAnchor();
   }
 
+  protected onEnable(): void {
+    this.bindGameManager();
+  }
+
+  protected start(): void {
+    // GameManager may not have completed onLoad when PlayerController.onEnable
+    // first ran (script execution order is scene-position-dependent), so re-bind
+    // once start() guarantees all onLoads are done.
+    this.bindGameManager();
+  }
+
+  protected onDisable(): void {
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+  }
+
   protected onDestroy(): void {
-    this.health?.events.off(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
-    this.health?.events.off(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
+    this.health?.events?.off(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
+    this.health?.events?.off(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
+    GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+  }
+
+  private bindGameManager(): void {
+    const events = GameManager.instance?.events;
+    if (!events) {
+      return;
+    }
+    events.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+    events.on(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
   }
 
   protected update(dt: number): void {
@@ -198,24 +224,22 @@ export class PlayerController extends Component {
   }
 
   private onHealthDepleted(): void {
-    const manager = GameManager.instance;
-    if (!manager) {
-      return;
-    }
+    // Manual TouchRespawn / Key R and the automatic depletion path now both go
+    // through GameManager.requestRespawn(). The GAME_EVENT_RESPAWN_REQUESTED
+    // listener (onRespawnRequested) takes care of the actual respawn so HP,
+    // position, attack timers and forced-move state all reset together.
+    GameManager.instance?.requestRespawn();
+  }
 
-    manager.requestRespawn();
-    const checkpoint = manager.getCheckpoint();
-    if (!checkpoint) {
-      return;
-    }
-
-    this.respawnAt(
-      new Vec3(
-        checkpoint.worldPosition.x,
-        checkpoint.worldPosition.y,
-        checkpoint.worldPosition.z,
-      ),
-    );
+  private onRespawnRequested(checkpoint: CheckpointData | null): void {
+    const target = checkpoint
+      ? new Vec3(
+          checkpoint.worldPosition.x,
+          checkpoint.worldPosition.y,
+          checkpoint.worldPosition.z,
+        )
+      : this.node.worldPosition.clone();
+    this.respawnAt(target);
   }
 
   private syncAttackAnchor(): void {

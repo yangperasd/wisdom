@@ -1,17 +1,14 @@
 import { test, expect } from '@playwright/test';
 import {
-  ensurePreviewServer, openPreviewScene, stepFrames, setProgressFlag, prepareCleanScreenshot,
+  ensurePreviewServer, openPreviewScene, stepFrames, setProgressFlag, prepareCleanScreenshot, getCleanScreenshotOptions,
 } from './helpers/playwright-cocos-helpers.mjs';
-
-const TOOLBAR_HEIGHT = 37;
 
 test.describe('@visual boss states', () => {
   test.beforeAll(async ({ baseURL }) => { await ensurePreviewServer(baseURL); });
 
   async function cleanShot(page) {
     await prepareCleanScreenshot(page);
-    const vp = page.viewportSize();
-    return { clip: { x: 0, y: TOOLBAR_HEIGHT, width: vp.width, height: vp.height - TOOLBAR_HEIGHT } };
+    return getCleanScreenshotOptions(page);
   }
 
   test('BossArena with boss-cleared flag shows victory state', async ({ page }) => {

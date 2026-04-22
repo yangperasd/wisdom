@@ -1,0 +1,151 @@
+{
+  "file": "particle/vfx_dust_poof_v02.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\particle\\vfx_dust_poof_v02.png",
+  "category": "particle",
+  "candidateName": "vfx_dust_poof_v02",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Dust poof features warm cream/white body with pink flower-petal base and cute blue-eyed face — nails the bright/warm/charming Hyrule toy-diorama mood. Saturated pinks and warm orange outlines hit the palette targets; round, friendly silhouette reads zero threat. Technical execution is clean: 1px hard outlines clearly visible at all zoom levels, 2-3 tone hard shading (cream highlight / warm body / orange-brown shadow) with no anti-aliasing, fully pixel-grid snapped. Emotional axis ~9/10 × 0.6 = 5.4; technical axis ~8/10 × 0.4 = 3.2; composite ≈ 8.6. Confident pass.",
+        "confidence": 0.92
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "slight_edge_softness_at_1x"
+        ],
+        "reasoning": "At 1x the poof reads as a small round blob with a face — silhouette is legible even if detail is lost, passes the sticker test. At 4x the design is unmistakably charming: round puffy cloud body with pink donut/petal fringe at the base, bright blue dot eyes, rosy cheeks, and a tiny open mouth — strong friendly toy personality. The warm cream fill with golden-orange pixel outline keeps contrast solid on the dark background. On the light background the outline holds but blends slightly at corners, causing minor edge softness that doesn't break readability. Shape vocabulary is soft and round throughout — no aggressive or edgy elements. Personality is immediately visible. Passes cute-charm criteria and silhouette-clarity criteria at play resolution.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The dust poof sprite uses a tight, well-harmonized subset of the Echoes palette: creamy off-white/parchment body, warm orange-gold pixel outlines, candy-pink flower petals, and bright sky-blue eyes. Mood is unambiguously BRIGHT and WARM — cheerful, kawaii, zero grimness. Saturation is appropriate: the vivid pinks and oranges carry the energy while the cream body provides a warm neutral anchor. Outline/shadow pixels read as deep warm brown rather than pure black, satisfying the colored-darks rule. No cold corporate hues, no neon, no muddy desaturation. Palette compatibility with the reference swatch is high — candy pink, parchment gold, sky blue, and sunset orange are all present in the reference. Minor note: the creamy white is slightly cool-leaning at full zoom but stays within warm-neutral range and does not break harmony. Overall a solid color-harmony pass.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 3,
+      "marginals": 0,
+      "fails": 0,
+      "avgScore": 8.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "entity_confusion",
+          "transience_unreadable"
+        ],
+        "reasoning": "The composited asset (white fluffy poof sprite) is clearly spottable against the medium-dark dungeon stone floor — high luminance contrast makes it visible in under 0.5s and the silhouette is rounded and distinct from the rectangular tile pattern. Pixel-art style matches the game's native aesthetic and the bright, clean look is consistent with Echoes feel. However, two concerns push it to marginal: (1) the form reads as a character/entity rather than a transient VFX dust poof — it has a face and solid body mass, so players may interpret it as a new NPC or enemy instead of a momentary effect; (2) the asset overlaps/occludes the existing dark entity beneath it, creating a brief moment of visual noise where two distinct things occupy the same tile. No tonal clash with the background, no outline disappearance, and no HUD confusion observed.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "vfx_color_undersaturated",
+          "lacks_warm_tint"
+        ],
+        "reasoning": "The vfx_dust_poof_v02 presents as soft, rounded white/cream cloud puffs — shape and softness are on-tone for the cute fairy-tale target. The form language is whimsical and non-threatening, with no grimdark or aggressive qualities. However, the VFX reads as neutral-white rather than warm; the target palette calls for warm greens/blues/yellows/pinks/parchment and bright-sunny saturation. A subtle warm tint (soft yellow, cream, or pale pink) and a few sparkle pixels would push this from acceptable to fully in-tone. As-is the effect is inoffensive but undersells the magic.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "dust_poof_slightly_wide_relative_to_player"
+        ],
+        "reasoning": "The vfx_dust_poof_v02 particle renders as a flat, dark cloud shape to the left of the player character. Player reference appears ~60-70px tall in screen space; the dust poof spans roughly 90-100px wide x 35px tall — wider than the player horizontally. For a ground-level particle effect this footprint is borderline: the flat oval shape and low profile correctly suggest a top-down ground-dust cue and do not overwhelm the scene, but the horizontal spread slightly exceeds what a tightly-scoped 'particle' category should occupy relative to a 32x32 player. Perspective matches the top-down 2D style and the toy-diorama feel is preserved (no wallpaper-scale inflation). Main concern is lateral width — trimming the poof to ~70% of current width would bring it cleanly within category bounds.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 7,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "aa_edges",
+          "noise_in_solid_areas",
+          "minor_asymmetry",
+          "color_bleed"
+        ],
+        "reasoning": "8x zoom reveals multiple tells. (1) AA edges: the boundary between black background and the cream/white body shows intermediate-tone pixels rather than hard pixel-art transitions — classic sub-pixel blending artifact. (2) Noise in solid areas: scattered orange/brown pixels throughout the white body region are inconsistently distributed — some cluster near the outline, others appear mid-field with no structural justification; this pattern is consistent with AI diffusion noise rather than intentional freckle design. (3) Asymmetry: the two pink lower appendages differ noticeably in pixel shape and extent — left is rounder/wider, right is more tapered. (4) Color bleed: orange outline color bleeds into the white body in several locations without a clean 1px border. Positives: face features (blue eyes, pink mouth) are symmetric and semantically coherent; overall silhouette reads correctly as a cloud-poof entity; outline color is consistent orange throughout most of the perimeter. The asset is usable but carries visible AI generation artifacts that may be noticeable at native resolution.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch",
+          "palette_no_overlap",
+          "color_temperature_opposite",
+          "outline_style_incompatible",
+          "charm_level_catastrophic_mismatch",
+          "shadow_approach_different",
+          "highlight_intensity_out_of_range"
+        ],
+        "reasoning": "Peer reference sheet is a dense dungeon tileset: hard-edged pixel art, cold stone palette (grays, teals, dark browns, black), flat/top-down tile lighting, dithered textures, zero charm/cute intent. Candidate is a round chibi blob with face, blue dot eyes, pink cheek blush, cream-white fluffy body, warm amber/gold rim highlights — unmistakably a cute Echo character sprite, not a VFX tile. (1) Outline weight: peers use crisp 1px hard pixel borders; candidate has soft fuzzy edge blending with no clean border — FAIL. (2) Outline color: peers use near-black or dark-gray outlines; candidate uses warm tan/brown where outline exists — FAIL. (3) Shadow direction: peers use flat tile shading or top-lit orthographic; candidate has diffuse wrap-around soft shadow — FAIL. (4) Shadow count: peers minimal/flat; candidate has layered soft drop shadow — FAIL. (5) Highlight intensity: peers muted/dithered; candidate has strong specular white on fluffy dome — FAIL. (6) Color temperature: peers solidly cool-neutral dungeon; candidate is warm cream/pink/gold — opposite ends of temperature scale — FAIL. (7) Detail density: peers dense with texture per tile; candidate clean soft fill — FAIL. (8) Proportion: peers square tiles, environmental; candidate round chibi blob — category mismatch. (9) Rendering style: peers hard pixel dithered; candidate soft anti-aliased-like with gradient fills — FAIL. (10) Palette overlap: virtually zero shared colors — peer palette is gray/teal/dark; candidate palette is cream/pink/gold/sky-blue — FAIL. (11) Charm level: peers are atmospheric dungeon tiles with zero cuteness intent; candidate is maximally cute chibi face with eyes and blush — catastrophic mismatch. The candidate appears sourced from a completely different game's art direction. All 11 dimensions fail or near-fail.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "peer_reference_left_contains_grimdark_tileset_elements"
+        ],
+        "reasoning": "Candidate (right): white fluffy round puff with bright blue eyes, pink blush, soft pastel palette, rounded friendly silhouette — strongly Kirby/Nintendo whimsical register; matches target cute/charming/fairy-tale spec cleanly. No grimdark, no edge, no desaturation, no uncanny elements. Reads as a wholesome dust-cloud sprite. Minor advisory only: the LEFT peer reference sheet contains dungeon tiles with red-splatter marks, dark teal portals, and bone fragments that drift toward DESATURATED DUNGEON-CRAWLER territory — if those tiles are in-game peers, that context could pull overall art direction out of tone, but that is a scene/world-design concern, not a defect in this candidate VFX asset itself.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.97,
+    "aestheticAvg": 8.33,
+    "uiContextAvg": 7,
+    "adversarialMin": 2,
+    "warningCount": 4,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.150Z"
+}

@@ -12,8 +12,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  verify:
+  node-tests:
     runs-on: windows-latest
+    timeout-minutes: 30
     env:
       PREVIEW_BASE_URL: ${{ vars.PREVIEW_BASE_URL }}
       REQUIRE_PREVIEW_SMOKE: ${{ vars.REQUIRE_PREVIEW_SMOKE }}
@@ -34,5 +35,60 @@ jobs:
         if: ${{ env.PREVIEW_BASE_URL != '' }}
         run: npx playwright install chromium
 
-      - name: Run automation tests
+      - name: Run automation tests and optional preview smoke
         run: npm run test:ci
+
+  wechat-build-verify:
+    # Intentionally self-hosted: this job needs a Windows Cocos runner and must not fall back to hosted.
+    runs-on: [self-hosted, Windows, cocos]
+    timeout-minutes: 180
+    env:
+      REQUIRE_WECHAT_VERIFY: '1'
+      WECHATGAME_APPID: ${{ vars.WECHATGAME_APPID }}
+      WECHATGAME_DEBUG: ${{ vars.WECHATGAME_DEBUG }}
+      WECHATGAME_REMOTE_SERVER: ${{ vars.WECHATGAME_REMOTE_SERVER }}
+      COCOS_CREATOR_EXE: ${{ vars.COCOS_CREATOR_EXE }}
+      WECHAT_DEVTOOLS_CLI: ${{ vars.WECHAT_DEVTOOLS_CLI }}
+      REQUIRE_WECHAT_SIMULATOR: ${{ vars.REQUIRE_WECHAT_SIMULATOR }}
+      WECHAT_AUTO_PORT: ${{ vars.WECHAT_AUTO_PORT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate WeChat build config
+        run: npm run build:wechat:config
+
+      - name: Build WeChat package
+        run: npm run build:wechat
+
+      - name: Verify WeChat package
+        run: npm run verify:wechat
+
+      - name: Verify WeChat simulator runtime
+        if: ${{ env.REQUIRE_WECHAT_SIMULATOR == '1' }}
+        run: node --test tests/wechat-simulator.test.mjs
+
+      - name: Upload WeChat evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wechat-build-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: warn
+          path: |
+            temp/wechat-build-status.json
+            temp/wechat-size-report.json
+            temp/wechat-simulator-evidence.json
+            temp/wechatgame.build-config.json
+            temp/logs/**
+            build/wechatgame/game.json
+            build/wechatgame/project.config.json
+            build/wechatgame/src/settings*.json

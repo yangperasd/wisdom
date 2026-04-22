@@ -1,0 +1,154 @@
+{
+  "file": "summon/echo_bombbug_active_v06.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\summon\\echo_bombbug_active_v06.png",
+  "category": "summon",
+  "candidateName": "echo_bombbug_active_v06",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Emotional (60%): The bombbug reads as warm, charming, and friendly — saturated orange body with a white belly, vivid blue goggles accent, and a slightly spread-arm 'active' pose that communicates lively energy without any menace. The palette hits the bright warm Hyrule toy-diorama mood squarely; rounded silhouette with stubby limbs reinforces the friendly register. No grim or scary qualities. Emotional score ~8.5. Technical (40%): At the zoomed views on both dark and light backgrounds, hard 1px black outlines are clearly visible with no anti-aliasing bleed. Body shading uses a clean 3-tone ramp (highlight orange, mid orange, dark shadow/outline) consistent with hand-pixeled hard shading conventions. Pixels are grid-snapped with no sub-pixel artifacts. Matches Denzi-tier construction: distinct silhouette, limited per-zone palette, crisp outlines. Technical score ~8. Combined: 0.6×8.5 + 0.4×8 = 8.3, rounded to 8.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "1x silhouette reads as orange blob — goggle detail lost at smallest size",
+          "body shape not distinctive enough to pass sticker test at 1x",
+          "silhouette could be more unique — round biped overlaps with many generic characters"
+        ],
+        "reasoning": "At 4x the character is genuinely charming: warm orange palette, round soft body, stubby limbs, and the blue goggle/visor is the key personality anchor — it reads 'bomb bug' immediately and gives the sprite a toy-like quality. Contrast holds on both dark and light backgrounds; orange separates cleanly from both. Edge quality is clean pixel art with no fringing. However at 1x the sprite collapses into a small orange-and-white blob — the goggles disappear entirely, leaving a silhouette that could be any small round creature. The form is not distinctive enough to survive the sticker test at native scale. Charm is present and clear at enlarged views, but silhouette readability at 1x is marginal rather than strong. Not charmless, not mushy at 4x, but fails the instant-readability criterion at 1x.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The sprite leads with a rich saturated orange body that sits squarely in the warm mid-value target range — vibrant but not neon, clearly lit and cheerful. The sky-blue goggles form a classic complementary pair with the orange, adding pop without tipping cold or corporate. The cream/parchment belly provides a warm neutral rest area that matches the parchment-gold band in the reference palette. Outline pixels read as very dark warm brown rather than pure black, keeping shadows in the colored-darks zone. No muddy desaturation, no cool greys, no near-black goth tones anywhere in the character. Mood is unambiguously BRIGHT and WARM. Minor note: the blue goggles are the only cool element and they are small enough in area that the overall temperature balance remains comfortably warm-dominant. Palette compatibility with the Echoes-tuned reference is strong on orange, sky-blue, and parchment axes.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_small_relative_to_scene",
+          "partial_dark_area_edge_blending"
+        ],
+        "reasoning": "The echo_bombbug_active_v06 sprite (orange cat character with blue goggles) is positioned center-scene on the dungeon floor. Locatability is solid: warm orange-brown body contrasts well against the cool dark teal tile background, making it spottable within 0.5s. The bright blue visor adds a secondary accent that helps pick it out. Silhouette is clear and distinct from background tiles. No confusion with the EchoBox entity (framed purple sprite on left) — the two read as clearly different objects. The sprite's pixel art style matches the game's overall aesthetic natively; no pasted-on feel. Minor concerns: the character is relatively small in frame (~32px tall), and along the edge of the dark red dungeon zone, some warm tones in the floor could slightly compete. Dark-area visibility is acceptable but not excellent. Echoes-cleanliness is good — uncluttered, bright accent colors, consistent palette. Just short of a confident pass due to size and edge-zone contrast.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_environment_dark_dungeon_contrast"
+        ],
+        "reasoning": "The new sprite (echo_bombbug_active_v06) is a small orange pixel-art character with blue goggles — warm-colored, round, and playful, which fits the cute fairy-tale target palette well. The sprite itself introduces no grimdark, aggressive, or horror elements, and the warm orange tone plus whimsical goggles are solidly in-tone. However, the composite scene reveals a pre-existing tension: the environment tiles are dark teal/gray with red accent lines, leaning dungeon-crawler, which the sprite partially counteracts but does not fully overcome. The sprite adds brightness and warmth relative to the original scene, which is a positive mood contribution. Score held at 7 (marginal) rather than pass because the overall composite still reads darker than the 'bright sunny magical toy diorama' target, primarily due to the environment backdrop rather than the sprite itself.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "summon_larger_than_player",
+          "violates_50_80_percent_rule",
+          "scale_breaks_toy_diorama_feel"
+        ],
+        "reasoning": "The echo_bombbug_active_v06 summon is composited inside a dark bordered box on the left side of the scene. The player character (orange cat, ~32x32px) is visible to the right. The bombbug entity within the box spans roughly 70-90px wide, making it approximately 2-3x the player's width — well beyond the 50-80% (16-26px) size budget for summon-category entities. This size disparity breaks the toy diorama proportion hierarchy: summons should feel like small conjured companions, not dominant creatures that dwarf the player. Perspective is otherwise consistent (flat top-down), and the art style matches the scene, but the gross scale violation is the primary failure. If the box is intended as an in-world EchoBox container rather than the summon standing freely, the creature asset inside still reads at an oversized scale relative to the player reference.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "outline_inconsistency",
+          "minor_color_bleed",
+          "asymmetric_detail"
+        ],
+        "reasoning": "8x zoom inspection reveals mostly clean pixel grid alignment. Outline is predominantly 1px dark border but shows minor inconsistencies at the scarf/body junction where 2px bleeds into adjacent areas. Orange body shading correctly uses 3 hard tones — no gradient smear detected. Blue scarf/mask shows slight color bleed at bottom edge where blue bleeds ~1px into the white belly pixels. Head fluff detail at top shows minor asymmetry in pixel placement (left tuft has 2 pixels where right has 1). No sub-pixel features beyond expected AA from zoom resampling. Solid background is clean — no noise pixels detected. Semantic coherence is good: cat-with-mask character reads correctly. Pattern artifacts absent. Melting is minimal. The 4x inset confirms these are consistent issues not zoom artifacts. Overall: competent pixel art with small craft inconsistencies typical of AI-assisted generation rather than hand-crafted work — marginal pass.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_divergence: candidate uses saturated orange+blue+white; peers use earthy greens/browns/grays/muted tones — near-zero palette overlap",
+          "color_temperature: candidate is warm-orange + cool-blue high-contrast; peers are predominantly neutral to cool-earthy — opposing temperature logic",
+          "pixel_scale_mismatch: candidate pixels are 3-4x larger than peer pixel size, producing a chunky lo-fi look vs peers' finer Denzi grain",
+          "rendering_style: candidate large flat color zones with minimal dithering; peers show fine pixel-level detail and dithering consistent with Denzi tileset style",
+          "detail_density: candidate is low-density (large color blobs); peers maintain moderate-to-high density at their native scale",
+          "outline_weight: candidate outlines appear proportionally heavier due to large pixel scale; peers have thin single-pixel Denzi outlines",
+          "shadow_direction: candidate has ambiguous front-lit shading (blue mask plane, white belly); peers show consistent top-down or no-shadow flat lighting",
+          "charm_level: candidate has modern chibi-toy aesthetic (round blob + mask = contemporary cute); peers lean classic RPG critter — charm register diverges"
+        ],
+        "reasoning": "Across 11 dimensions the candidate fails on 8. The most critical failures are palette overlap (orange/blue/white vs earthy Denzi earth tones), color temperature (warm-cool high contrast vs neutral-to-cool peers), and pixel scale (candidate pixels are ~3-4x coarser, breaking the fine Denzi grain). Rendering style and detail density also diverge substantially — the candidate looks like a modern indie sprite dropped into a classic Denzi sheet. Shadow direction and outline weight are secondary concerns but compound the mismatch. The only partial passes are shadow count (both are relatively minimal) and proportion (round blob is at least self-consistent). Charm level is technically 'cute' but registers in a different visual language than the Denzi peer set. This sprite is not style-consistent with the peer family.",
+        "confidence": 0.75
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "blue_visor_slightly_techy"
+        ],
+        "reasoning": "Candidate (right) is a round, chunky orange-brown bug with a blue visor and white belly — classic Nintendo enemy silhouette. Warm orange palette, toy-like proportions, and non-threatening rounded form all align tightly with the target Echoes/Hyrule aesthetic. The blue goggle-visor introduces a faint 'cool gadget' note that sits near the edge of pure fairy-tale whimsy, but this is fully within normal Zelda enemy design language (cf. Peahats, Armos, Blin variants with accessory details). No grimdark shading, no desaturation, no realistic texturing, no fan-service silhouette, no Western-AAA grit. Peer grid (left) shows comparable warm-toned pixel creatures and candidate integrates without tonal rupture.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.57,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6,
+    "adversarialMin": 3,
+    "warningCount": 4,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.111Z"
+}

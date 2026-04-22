@@ -1,0 +1,169 @@
+{
+  "file": "magic/vfx_echo_summon_v03.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\magic\\vfx_echo_summon_v03.png",
+  "category": "magic",
+  "candidateName": "vfx_echo_summon_v03",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "ring_geometry_slightly_mechanical"
+        ],
+        "reasoning": "Emotional axis (60%): Strong pass. The candidate uses saturated pinks, teals, and whites in a bright, warm palette that clearly evokes the toy-diorama Hyrule mood. The central pink orb, teal/green ring, and white puff clouds read as cheerful and magical — not grim or scary. Round, friendly silhouette overall. Color saturation and warmth align well with EoW Zelda style. Score ~8.5/10 emotionally. Technical axis (40%): Solid pass. Zoomed views confirm 1px hard outlines with no visible anti-aliasing, clean pixel-grid snapping, and 2-3 tone hard shading per element (ring shows dark green / mid teal / blue highlight; orb shows pink / highlight; clouds show white / light shadow). Hand-pixeled character is evident. Minor issue: the radial symmetry of the ring reads slightly mechanical/computer-generated rather than hand-drawn, which slightly undercuts the hand-pixeled feel. Score ~7.5/10 technically. Denzi reference comparison: The reference sheet is a dark stone dungeon tileset — very different mood — but the teal magic portal elements within it confirm the hard-outline pixel style is correct. Candidate far exceeds reference in EoW emotional fidelity. Combined: (8.5×0.6)+(7.5×0.4)=5.1+3.0=8.1 → score 8, pass.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "silhouette_reads_busy_at_1x",
+          "circular_ring_and_inner_shape_merge_at_small_size",
+          "limited_personality_expression"
+        ],
+        "reasoning": "At 1x the sprite is a dense teal+green circular blob — the dashed ring, body, and sparkle elements all compete and the overall read is 'glowing disc' rather than a distinct character or summon effect. At 4x the construction is legible: a round pink core with cream/white petal accents inside a segmented teal ring, orbited by scattered white cloud-puff particles. The pink core reads warm and friendly, and the soft round shapes (petals, puffs) carry toy-like charm. However the mid-teal background of the ring and the dark panel backgrounds are close in value, so the ring loses its pop on dark backgrounds — contrast is adequate but not confident. On the light panel the teal ring stands out well. Edge cleanliness is decent at 4x but the dashed-circle outer rim adds noise without adding silhouette clarity. Charm is present but mild; the design reads more 'magical seal' than 'cute character', and there is no expressive face or focal personality element. Sticker test: passes at 4x, borderline at 1x. Summary: charming palette and round shapes earn it, but the busy layered ring structure and weak 1x readability prevent a pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "near_black_background_canvas",
+          "missing_warm_orange_sunset_tones",
+          "limited_shadow_color_depth"
+        ],
+        "reasoning": "The summon VFX effect itself demonstrates good internal color harmony: saturated forest green ring, candy pink central orb, sky blue/cyan dotted accent ring, and cream/off-white petal shapes — all well-represented in the Echoes reference palette. The green+pink+cyan triad reads BRIGHT and warm-leaning, matching the target mood. Palette compatibility is solid. However, the sprite canvas/background is near-pure black (#111-#1a1a), violating the 'colored darks only' rule (should be deep teal/plum/warm brown). While this dark region is likely a transparency placeholder in-engine, it is visually present in the asset sheet and the void areas between frames read as cold neutral black rather than colored shadow. Additionally, the effect lacks warm mid-value representation (sunset oranges, parchment golds) that would push it fully into the Echoes bright-warm register. Shadow and dark areas within the green ring show some teal tinting which is positive, partially satisfying the colored-darks requirement. Net: vibrant effect core with a background/canvas color quality concern.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "dark_background_panel_visible_behind_sprite",
+          "pasted_on_appearance_breaks_native_integration"
+        ],
+        "reasoning": "The vfx_echo_summon_v03 effect is clearly locatable in under 0.5s against the dark crimson background due to its bright teal/green mandala form and pink center — good contrast, distinct circular silhouette, no confusion with other scene entities (platform blob, UI buttons). Colors are consistent with Echoes' bright, clean aesthetic. However, a dark rectangular background panel is visible behind the circular sprite, giving a noticeably 'pasted-on' appearance rather than a floating VFX natively composited into the scene. This is the primary deduction. Dark-area visibility is solid. Style compatibility is acceptable but the opaque backing box undermines integration quality.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_has_opaque_dark_background_box",
+          "overall_scene_environment_is_dungeon_dark_not_sunny_fairy_tale"
+        ],
+        "reasoning": "The vfx_echo_summon_v03 sprite itself — a circular green mandala/wreath with a soft pink center orb and white-teal geometric accents — is genuinely on-tone: cute round shape, saturated warm greens and pinks, whimsical magical-circle feel, floral fairy-tale quality. However, the sprite is rendered with a visible opaque dark square background frame rather than a transparent overlay, which creates a harsh non-magical hard-edged look and would look jarring in any brighter fairy-tale scene. The underlying scene environment (deep crimson/maroon dungeon walls, dark stone tiles) already reads closer to dungeon-crawler than sunny toy-diorama, and the opaque box amplifies that mismatch. Sprite graphic design: pass; transparency/compositing: fail; net verdict: marginal.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "vfx_diameter_exceeds_player_scale",
+          "composite_backing_tile_visible",
+          "scale_approaches_overwhelming"
+        ],
+        "reasoning": "The vfx_echo_summon_v03 magic circle renders at approximately 90px diameter against a 32x32px player reference — roughly 2.8x player size. For a summon VFX of category 'magic', some visual expansion is expected, but this footprint edges toward 'effects overwhelm scene'. The composite is placed on a dark square backing tile (~110px) that creates a visible stamp artifact breaking scene integration — the tile boundary is clearly distinct from the surrounding floor texture. Perspective is top-down consistent with the scene. Pixel art style matches the dungeon aesthetic. The effect itself (green ring with pink core) reads well as a summoning circle motif. Primary concern is the composite tile background and the scale being at the upper boundary; the scene does have breathing room around it, preventing a full fail. Toy diorama feel is marginal — the large prominent circle pulls attention like a UI element rather than a grounded world object.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_center_orb",
+          "color_bleed_petal_boundaries",
+          "outline_thickness_inconsistency",
+          "minor_asymmetry_decorative_elements",
+          "noise_pixels_teal_ring"
+        ],
+        "reasoning": "Inspected 4x (left) and 8x (right) zoom renders. Five AI tells identified at varying severity. (1) GRADIENT SHADING: The pink central orb transitions smoothly from white highlight through light pink to medium pink — pixel art should use 2-3 hard discrete tone steps with clear dithering boundaries; instead the shading reads as a blended gradient consistent with AI diffusion. (2) COLOR BLEED: White petal/flower shapes on the inner ring show stray off-white and light-blue pixels bleeding into adjacent teal pixels at transition boundaries, not a clean pixel edge. (3) OUTLINE INCONSISTENCY: The outer thin cyan ring varies between ~1px and ~2px effective width at different arc segments in the 8x zoom; a hand-crafted circle would be more deliberately consistent. (4) ASYMMETRY: Cardinal-point decorative cross ornaments differ subtly between quadrants — top cross is more complete than bottom; left and right petal clusters show minor positional asymmetry not expected in a radially symmetric summon VFX. (5) NOISE PIXELS: Several isolated pixels in the dark-teal fill ring are slightly off-hue from their neighbors, suggesting dithering or generation noise rather than intentional pixel placement. No semantic failure detected — the circular summon motif reads clearly. No catastrophic melting or pattern tiling artifacts. Gradient shading is the primary disqualifying concern for strict pixel-art authenticity.",
+        "confidence": 0.65
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "outline_treatment: candidate lacks clear 1px black outlines present on all peer tiles; edges blend into background or use dark-green self-color",
+          "outline_color: peers use pure black separators; candidate uses dark teal/green border with no black perimeter",
+          "shadow_direction: peers have zero or minimal implicit shadows embedded in tile shading; candidate has an explicit dark oval drop-shadow beneath the circle — stylistically alien",
+          "shadow_count: candidate introduces a dedicated shadow layer absent from any peer tile",
+          "highlight_intensity: candidate has high-intensity white petal/sparkle shapes radiating outward — far brighter and more decorative than any highlight present in the dungeon tile peers",
+          "color_temperature: peers are cool-neutral (gray stone, dark teal, muted red); candidate introduces warm pink/rose orb as primary focal color — warm hue not represented in peer palette",
+          "detail_density: circular layered composition with inner orb + wreath ring + petal highlights + blue sparkles at four corners is significantly denser than any single peer tile",
+          "rendering_style: peers use flat limited-palette pixel art with at most 2-3 shades per tile; candidate exhibits gradient-like shading within the teal ring and the pink orb has smooth radial lightness falloff inconsistent with peer rendering method",
+          "palette_overlap: teal is shared, but pink/rose, pure white petals, and sky-blue corner sparkles have no equivalent in peer palette; overlap is partial at best",
+          "charm_level: peers are functional grim dungeon tiles (stone, blood, bones, machinery); candidate is a soft floral summon mandala with a cute pink orb — charm register is dramatically higher and mismatched to the peer family aesthetic",
+          "proportion: circular organic silhouette vs rectilinear grid-aligned tile shapes — not penalized as item-type difference, but contributes to overall cohesion failure"
+        ],
+        "reasoning": "Across 9 of 11 evaluated dimensions the candidate diverges materially from the Denzi dungeon-tile peer set. The rendering method alone is disqualifying: peers are flat pixel art; the candidate uses gradient-like internal shading that reads as a different engine or artist pass. The pink/rose primary color is entirely absent from the peer palette. The explicit drop-shadow oval is a compositional device with no peer equivalent. Most critically, the charm-level gap is severe — the floral summon mandala reads as a different game's asset placed alongside grim stone tiles. Only the teal hue and pixel-art medium create any family resemblance. Score 4 reflects two partial passes (teal color overlap, shared pixel-art medium) against nine dimension failures.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "dark_black_background",
+          "cold_dark_green_border",
+          "occult_adjacent_magic_circle_framing",
+          "insufficient_warmth_brightness"
+        ],
+        "reasoning": "Candidate (RIGHT): circular pixel-art summon VFX with a pink centre orb, white cloud-puff accents, and a dark forest-green wreath-like ring, all on a near-black background. The pink orb and white puffs are genuinely charming and whimsical — positive alignment with the fairy-tale / Nintendo-family target. However, the jet-black background and the cold, desaturated dark-green outer ring pull the overall read toward 'RPG dungeon magic circle' rather than 'warm sunny Hyrule echo'. The circular ritual-pattern framing is structurally occult-adjacent, which is a flagged out-of-tone category. Peer reference (LEFT) is unambiguously dungeon-crawler (stone tiles, blood stains, teal portals) — candidate is meaningfully warmer than the peer but has not fully cleared the warmth/brightness bar. Needs: brighter/warmer background (cream, gold, soft sky), warmer green tones (mint or lime rather than forest), and softer glow treatment to read as whimsical rather than ritual.",
+        "confidence": 0.74
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.75,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 4,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.151Z"
+}

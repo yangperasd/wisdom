@@ -31,13 +31,13 @@ export class AttackHitbox extends Component {
   }
 
   protected onEnable(): void {
-    this.player?.events.on(PLAYER_EVENT_ATTACK_STARTED, this.onAttackStarted, this);
-    this.player?.events.on(PLAYER_EVENT_ATTACK_ENDED, this.onAttackEnded, this);
+    this.player?.events?.on(PLAYER_EVENT_ATTACK_STARTED, this.onAttackStarted, this);
+    this.player?.events?.on(PLAYER_EVENT_ATTACK_ENDED, this.onAttackEnded, this);
   }
 
   protected onDisable(): void {
-    this.player?.events.off(PLAYER_EVENT_ATTACK_STARTED, this.onAttackStarted, this);
-    this.player?.events.off(PLAYER_EVENT_ATTACK_ENDED, this.onAttackEnded, this);
+    this.player?.events?.off(PLAYER_EVENT_ATTACK_STARTED, this.onAttackStarted, this);
+    this.player?.events?.off(PLAYER_EVENT_ATTACK_ENDED, this.onAttackEnded, this);
   }
 
   protected onDestroy(): void {

@@ -1,0 +1,318 @@
+{
+  "rectvisual_usages": [
+    {
+      "file": "assets/scripts/input/TouchCommandButton.ts",
+      "class": "(unknown-class)"
+    },
+    {
+      "file": "assets/scripts/ui/GameHud.ts",
+      "class": "(unknown-class)"
+    },
+    {
+      "file": "assets/scripts/visual/RectVisual.ts",
+      "class": "(unknown-class)"
+    },
+    {
+      "file": "assets/scripts/visual/SpriteVisualSkin.ts",
+      "class": "(unknown-class)"
+    }
+  ],
+  "prefab_null_sprites": [
+    {
+      "file": "assets/prefabs/ArrowProjectile.prefab",
+      "field": "visualSpriteFrame"
+    }
+  ],
+  "manifest_entries": [
+    {
+      "bucket": "worldEntities",
+      "key": "player",
+      "path": "assets/art/characters/player/denzi/paperdoll/doll_female.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "common_enemy",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "boss_core",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "checkpoint",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "portal",
+      "path": "assets/art/environment/dungeon/denzi/features/sarcophagus/features_sarcophagus_b.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "barrier_closed",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "barrier_open",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_ground_green",
+      "path": "assets/art/environment/dungeon/denzi/floor/darkgreen/floor_darkgreen_a.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_ground_flowers",
+      "path": "assets/art/environment/dungeon/denzi/floor/flowers/floor_flowers_a.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_path_cobble",
+      "path": "assets/art/environment/dungeon/denzi/floor/cobblestone/floor_cobblestone_a.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_ground_ruins",
+      "path": "assets/art/environment/dungeon/denzi/floor/cinder/floor_cinder_b.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_wall_standard",
+      "path": "assets/art/environment/dungeon/denzi/wall/compound/standard/wall_compound_standard_b.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_wall_broken",
+      "path": "assets/art/environment/dungeon/denzi/wall/compound/breakdown/wall_compound_breakdown_b.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "outdoor_wall_cracked",
+      "path": "assets/art/environment/dungeon/denzi/wall/compound/crack/wall_compound_crack_b.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "breakable_target",
+      "path": "assets/art/characters/enemies/denzi/monsters/traps/trap_unidentified.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "pickup_relic",
+      "path": "assets/art/items/denzi/items/shield/shield_deep_a.png",
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "environment_dungeon_floor_family",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "environment_dungeon_wall_family",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "worldEntities",
+      "key": "environment_dungeon_prop_family",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "hud_top_bar",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_border.png",
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "objective_card",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_gloss.png",
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "controls_card",
+      "path": "assets/art/ui/hud/kenney/PNG/Red/Default/button_rectangle_depth_flat.png",
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "touch_attack_button",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "touch_summon_button",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "touch_respawn_button",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "touch_echo_button",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "pause_button",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "system_pause_icon",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "uiEntities",
+      "key": "system_confirm_icon",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "ui_click_primary",
+      "path": "assets/audio/ui/kenney/click-b.ogg",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "ui_confirm_primary",
+      "path": "assets/audio/ui/menu_alt/MESSAGE-B_Accept.wav",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "ui_open_menu",
+      "path": "assets/audio/ui/menu_alt/MENU A_Select.wav",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "ui_error",
+      "path": "assets/audio/ui/menu_alt/ALERT_Error.wav",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "combat_player_swing",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "enemy_bite_small",
+      "path": "assets/audio/sfx/enemies/rpg/beetle/bite-small2.wav",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "enemy_giant_voice",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "item_coin_pickup",
+      "path": "assets/audio/sfx/items/rpg/coin2.wav",
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "world_door_open",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "audioRoles",
+      "key": "battle_bgm",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "fonts",
+      "key": "ui_font_main",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "fonts",
+      "key": "ui_font_compact",
+      "path": null,
+      "uuid": null
+    },
+    {
+      "bucket": "fonts",
+      "key": "ui_font_world_label",
+      "path": "assets/art/ui/fonts/kenney/Kenney Future Narrow.ttf",
+      "uuid": null
+    }
+  ],
+  "manifest_bindings_with_missing_files": [],
+  "entity_visual_controllers": [
+    {
+      "file": "assets/scripts/boss/BossVisualController.ts",
+      "slots": [
+        "danger",
+        "vulnerable",
+        "hurt",
+        "defeated"
+      ]
+    },
+    {
+      "file": "assets/scripts/enemy/EnemyVisualController.ts",
+      "slots": [
+        "idle",
+        "patrol",
+        "chase",
+        "hurt",
+        "defeated"
+      ]
+    },
+    {
+      "file": "assets/scripts/player/PlayerVisualController.ts",
+      "slots": [
+        "idle",
+        "move",
+        "attack",
+        "launch",
+        "hurt"
+      ]
+    }
+  ],
+  "_summary": {
+    "rectvisual_files": 4,
+    "prefab_null_sprite_fields": 1,
+    "total_manifest_bindings": 42,
+    "manifest_bindings_missing_file": 0
+  }
+}

@@ -1,0 +1,10 @@
+AESTHETIC AGENT A — Style Fidelity for Zelda: Echoes of Wisdom pixel art.
+EMOTIONAL: bright/warm/charming/friendly Hyrule mood; saturated greens/blues/yellows/pinks; round friendly silhouettes; toy-diorama. Never grim/scary.
+TECHNICAL: 1px hard outlines (no AA); 2-3 tone hard shading; pixel-grid-snapped; hand-pixeled. Fail either axis = fail.
+Read: E:\cv5\wisdom\tools\asset-gen\screened\work\amulet_protection_v00\zoom.png (candidate at multiple zooms/bgs)
+Read: E:\cv5\wisdom\tools\asset-gen\reference-sheets\denzi-tech-items-ref.png (Denzi peer reference for category "accessory")
+Evaluate emotional (60%) + technical (40%).
+Return ONLY a single JSON object (no markdown fences, no extra text):
+{"agent":"<agent_id>","score":<integer 1-10>,"verdict":"pass|marginal|fail","issues":[],"reasoning":"..."}
+Adversarial agents add: ,"confidence":<float 0.0-1.0>
+Thresholds: 8+ pass, 5-7 marginal, <=4 fail.

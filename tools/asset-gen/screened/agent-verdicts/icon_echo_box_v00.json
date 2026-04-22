@@ -1,0 +1,153 @@
+{
+  "file": "icon/icon_echo_box_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\icon\\icon_echo_box_v00.png",
+  "category": "icon",
+  "candidateName": "icon_echo_box_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "saturation_below_peak",
+          "shading_only_2_tones_on_lid",
+          "silhouette_reads_boxy_not_round_friendly"
+        ],
+        "reasoning": "Emotional (60%): The box icon lands warm and treasure-inviting — orange/brown wood body with blue gem accent is solidly Zelda-palette and reads charming at all tested zoom levels. Saturated enough to avoid grimness. However, it sits closer to 'functional item' than 'toy-diorama delightful': the silhouette is a plain rectangle, and the blue element feels decorative rather than characterful. Missing the round-friendly punch that Echoes of Wisdom targets. Emotional sub-score ~7. Technical (40%): 1px hard outlines present and clean; no visible anti-aliasing; pixel-grid-snapped. Shading reads as 2-tone on the lid and side panels rather than a full 3-tone ramp — highlights are present but midtone/shadow distinction collapses at native resolution. Construction is otherwise solid and hand-pixeled. Technical sub-score ~8. Weighted total: 0.6×7 + 0.4×8 = 7.4 → 7. Marginal — passes technical bar, emotional vibrancy needs a saturation lift and silhouette softening to hit pass threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "1x personality loss — face details vanish at native size, only boxy silhouette survives",
+          "dark-bg contrast weak on lower-body brown tones — merges with near-black surround",
+          "charm is retro-pixel not soft/round — passes sticker test but leans 'blocky toy' over 'friendly soft toy'"
+        ],
+        "reasoning": "Pixel-art box with warm orange/yellow/brown palette and blue-teal top cap. Silhouette reads unambiguously as a box/chest at all scales — strong shape language. Warm colors and implied face give genuine personality at 4x; the design has sticker-test coherence. On light bg contrast is solid. On dark bg the mid-brown body walls blend into the surround, reducing edge crispness. At 1x the face cues (eyes, expression) disappear entirely — only a boxy blob remains, which is readable but charmless at that scale. Overall: charm is present and distinct, silhouette is clean, but dark-bg edge bleed and 1x personality loss keep this below the 8-pass threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The Echo Box icon uses a warm-dominant triadic palette: saturated sunset orange body, sky blue lid accent, and parchment gold facial highlights — all three are explicitly target hues for the Echoes-tuned palette. The shadow/reflection beneath the box reads as warm dark brown (amber-tinted), avoiding pure black/grey. Outlines are dark warm brown rather than neutral black. Orange mid-values dominate giving a bright, inviting mood with no muddy desaturation, neon spikes, or cold corporate tones. The orange-blue complementary contrast is vibrant and coherent; gold mediates warmly between the two. Palette compatibility with the reference sheet is strong across all primary hues. Minor note: the blue lid is slightly cooler in temperature, but it reads as sky blue rather than cold corporate — acceptable as a punctuation accent against the warm orange mass.",
+        "confidence": 0.87
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "small_screen_footprint",
+          "minor_tile_boundary_blending"
+        ],
+        "reasoning": "The icon_echo_box_v00 composited as a warm golden/yellow pixel-art box entity at center-scene. Color contrast against both the dark red-tinged tiles (left) and dark teal grid (right) is good — warm gold reads clearly against cool backgrounds. Silhouette is a recognizable box shape with decorative details, consistent with the game's pixel art vocabulary. Style feels native rather than pasted. Main weaknesses: the entity occupies a relatively small footprint on screen, which could slow spotting to ~0.7s rather than 0.5s; the position at a tile boundary creates minor edge-blending. No confusion with other entities — the dark creature entity in upper-left is visually distinct. Echoes-cleanliness is acceptable but saturation/brightness could be pushed slightly higher for the bright uncluttered Echoes feel. Overall well-integrated but just short of clean pass threshold.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The icon_echo_box_v00 sprite is a compact pixel-art box/chest character rendered in warm golden-yellow tones. It reads as a friendly toy object — round-cornered, bright, with no sharp or aggressive detailing. The warm gold palette (yellows, ambers) aligns with the target 'warm greens/blues/yellows/parchment' spec. The sprite sits in a dark-tiled dungeon scene, but the sprite itself introduces brightness and warmth rather than absorbing the surrounding darkness. No grimdark, horror, edgy, or cold-corporate signals are introduced by the new asset. Minor note: the existing scene environment skews darker/dungeon-crawler, but that is pre-existing context, not attributable to this sprite. The sprite itself is on-tone for cute fairy-tale/toy diorama aesthetic.",
+        "confidence": 0.85
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "echo_box_entity_larger_than_player",
+          "scale_violates_summon_rules",
+          "oversized_relative_to_32x32_player"
+        ],
+        "reasoning": "The echo box composited in the left dark area measures roughly 100-120px wide x 70-90px tall against a player sprite of ~32x32px, making it approximately 3x the player's height. Icon/summon category rules require entities to be 50-80% of player size and NEVER larger. The box dominates its tile region and breaks the toy-diorama scale contract — it reads more like a room-filling obstacle than a placed summon. Perspective is flat and consistent with the tilemap, so no perspective mismatch, but the sheer size overpowers the scene and fails the proportion threshold.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Inspected at 4x and 8x zoom. Pixel grid is clean and discrete throughout — no sub-pixel fringing detected. Edges are hard, single-pixel outlines with no anti-aliasing bleed. Solid color areas (dark background, orange body, shadow regions) show zero noise pixels. Outlines are consistently 1px and unbroken around the full silhouette. Shading uses 3 distinct hard tones (highlight orange, mid orange, dark brown/shadow) with no gradient ramps or banding artifacts. No repeating tiling patterns or texture seams visible. Details (face/eye elements, crate planks, highlight chips) are crisp and non-melted at 8x. The asymmetric highlight placement appears intentional and matches a consistent light-source logic. No color bleed between adjacent hue regions. Semantically coherent: reads clearly as a wooden crate/box icon with a stylized face motif appropriate for an 'echo box' game asset. The blue accent in the top-center is deliberate design, not a generation artifact. No disqualifying AI tells found.",
+        "confidence": 0.83
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_severe_mismatch",
+          "palette_overlap_minimal",
+          "rendering_style_divergent",
+          "detail_density_too_low",
+          "highlight_intensity_excessive",
+          "shadow_direction_inconsistent",
+          "outline_weight_heavier_blockier"
+        ],
+        "reasoning": "Peer set: dark, cool-toned metallic pixel-art helmet/armor icons with thin outlines, multi-layer metallic shading, subtle highlights, high detail density, and a neutral-to-dark palette (grays, blacks, deep reds, muted teals, dark golds). Candidate: bright warm-orange/amber box with a face, flat retro-style rendering, white-flash highlights on top face, minimal shading layers, very low detail density, and a saturated warm palette (orange, yellow, blue accent) that shares almost no hue overlap with peers. (1) Outline weight — candidate outlines are thicker and blockier vs peers' crisp 1px metallic strokes. (2) Outline color — both dark, marginal pass. (3) Shadow direction — peers lit upper-left casting shadow lower-right; candidate has a bright top-face implying top-down lighting, inconsistent. (4) Shadow count — peers use 2-3 gradient shadow steps; candidate has at most 1 step, feels flat. (5) Highlight intensity — candidate's top-face white highlight is far too intense vs the subtle specular glints on peers. (6) Color temperature — critical failure: peers are cool/neutral metallic, candidate is hot orange/amber; largest single gap. (7) Detail density — peers pack rivets, plume geometry, visor slots into the same icon footprint; candidate is large flat color blocks with one face graphic. (8) Proportion — both icons at comparable pixel scale, acceptable. (9) Rendering style — peers use semi-realistic metallic pixel art; candidate is flat retro-cartoon, entirely different vocabulary. (10) Palette overlap — near-zero shared hues; the only shared element is the dark outline. (11) Charm level — peers are battle-gear serious; candidate is cute/chibi face-box. If Echoes are supposed to be cute vs equipment peers that is a category design choice, but the rendering and palette fundamentals still mismatch the family severely. Overall the candidate reads as a sprite from a completely different game's asset library dropped into this icon sheet.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "generic treasure-chest silhouette risks dungeon-crawler read",
+          "pixel rendering is competent but lacks extra whimsy sparkle expected of Hyrule/fairy-tale register",
+          "face expression is neutral rather than expressive/charming"
+        ],
+        "reasoning": "Candidate (right): warm orange-brown wooden box with a small pixel face. Warm hues and anthropomorphised face point in the right direction—not grimdark, not corporate, not fan-service. However the overall read is closer to 'generic RPG loot chest' than the toy-diorama, sunlit-Hyrule target. The face is present but understated, missing the bubbly expressiveness and magical sparkle that push an icon firmly into Nintendo-family-friendly whimsy. Peer references (left) are gray dungeon-crawler helmets; by contrast the candidate is warmer and friendlier, but that bar is low. No out-of-tone signals (no darkness, no realism, no occult cues), so a hard fail is unwarranted, but the charm ceiling isn't fully reached.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.57,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6,
+    "adversarialMin": 3,
+    "warningCount": 4,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.122Z"
+}

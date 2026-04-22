@@ -1,0 +1,166 @@
+{
+  "file": "treasure/gem_ruby_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\gem_ruby_v00.png",
+  "category": "treasure",
+  "candidateName": "gem_ruby_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "saturation_too_soft",
+          "small_form_reads_as_blob",
+          "outline_consistency_unclear_at_base_resolution"
+        ],
+        "reasoning": "Emotional (60%): The ruby uses warm pink/rose tones with white specular highlights — correctly friendly/warm, not grim. The round silhouette reads as a toy-like treasure. However, the palette leans pastel-soft rather than the saturated punchy pinks/reds expected for ZEoW's bright Hyrule mood. Compared to the kind of vivid, almost candy-like saturation the style demands, this reads slightly muted. Emotional score ~6. Technical (40%): Zoom panels confirm 1px hard outlines are present and shading uses approximately 3 tones (highlight white, mid pink, shadow dark-pink/maroon). Pixel placement appears grid-snapped with no visible anti-aliasing. However, at base resolution the gem silhouette is irregular and blob-like rather than a clean iconic gem form, which weakens legibility. The Denzi reference (helmets) demonstrates tighter, more deliberate pixel sculpting with stronger value contrast — the ruby candidate's form is fuzzier by comparison. Technical score ~6. Weighted combined: 0.6×6 + 0.4×6 = 6. Verdict: marginal. Needs a saturation pass (push reds/pinks more vivid) and silhouette tightening at base scale to reach pass."
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x_unreadable_scattered_dots",
+          "mushy_silhouette_from_stray_highlight_pixels",
+          "dark_bg_red_pixels_blend_at_edges",
+          "no_strong_single_iconic_read"
+        ],
+        "reasoning": "Charm is present — pink/red faceted pixel gems with warm tones and a toy-like quality. At 4x on the light bg the color palette reads as ruby/gem and has friendliness. However the silhouette fails the sticker test: at 1x the sprite dissolves into ambiguous pink specks with no readable gem shape. The scattered white highlight pixels that ring each gem at 4x break the edge boundary and prevent a crisp outline, producing a mushy cloud instead of a clean faceted silhouette. On the dark bg some of the deeper red facet pixels merge with black, further eroding the edge. Contrast on light bg is the strongest panel. Overall the charm ingredient is there but clarity ingredient is too weak — charming-but-mushy.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "shadow_outlines_near_black",
+          "highlight_white_only_no_warm_tint"
+        ],
+        "reasoning": "The ruby gem uses saturated candy pinks and rose tones that align well with the Echoes-tuned palette — warm, bright, and compatible with the reference pinks. White highlights are acceptable for gem sparkle. However, the pixel-art outlines and darkest shadow pixels appear to be near-black rather than colored darks (deep teal/plum/warm brown), which conflicts with the palette's requirement for no pure black/grey shadows. The single-color white highlight could benefit from a warm-tinted cream or gold to better harmonize with parchment-gold palette entries. Overall mood is BRIGHT and WARM — no cold, muddy, or goth tendencies — but the near-black outlines prevent a full pass.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "fragmented_silhouette",
+          "no_single_cohesive_shape",
+          "scattered_particle_look_vs_collectible_read",
+          "small_individual_piece_size_reduces_clarity"
+        ],
+        "reasoning": "The gem_ruby_v00 asset renders as a loose cluster of ~20 small pink/rose pixel fragments scattered across a ~120x120px area. Against the dark navy/charcoal background panel it is highly spottable within 0.5s purely due to the saturated pink hue, which is unique in the scene. Color contrast and distinguishment from other entities (gold UI badges, teal player orb, red/blue/orange action buttons) are strong. However, the asset lacks a coherent single silhouette — it reads more as a particle explosion or damage spray than a discrete collectible gem. Individual fragment pieces are 4-8px, creating visual noise rather than a clean icon. In a fast-paced context the player may not immediately parse it as a gem pickup. The pixel art style is consistent with the game aesthetic. No background hue clash. Placement on the mid-tone dark panel keeps it readable. Score capped at 6 (marginal) because silhouette clarity and collectible readability fall short of an 8+ pass threshold, even though locatability by color alone is adequate.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_lacks_sparkle_whimsy",
+          "dark_scene_context_dominates",
+          "fragmented_presentation_feels_mechanical"
+        ],
+        "reasoning": "The gem_ruby_v00 sprite presents as scattered small pink/rose pixel gem fragments. The color (warm rose-pink) is squarely within the fairy-tale palette target (pinks/warm tones) and does not shift toward grimdark, goth, or aggressive aesthetics. However, the sprite itself lacks overt whimsical character — no visible sparkle, glow, or cute roundness that would signal 'magical fairy-tale jewel' over 'generic loot fragment'. The scattered/dispersed presentation style reads more mechanical (inventory item, collected resource) than enchanting. The surrounding scene is a cold dark-grey dungeon-hub UI which is itself borderline out-of-tone, but that is the base scene. Evaluating the sprite in isolation: warm pink color is a pass, but the pixel-fragment aesthetic without sparkle or charm detail keeps this marginal rather than a confident pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "scattered_cluster_not_discrete_item",
+          "overwhelms_scene_area"
+        ],
+        "reasoning": "gem_ruby_v00 renders as a scattered cluster of pink/red pixel fragments spanning approximately 110x120 screen pixels. With the player at 32x32 game units, this treasure-category item should occupy 50-75% of player size (16-24px). The cluster footprint is roughly 3-4x the player size, violating the 'NEVER larger than player' rule for items. Additionally the asset presents as an explosion/burst of fragments rather than a coherent pickable gem, making it read as a particle effect rather than a placed treasure. The spread creates visual noise disproportionate to a toy-diorama pickup item.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "gradient_shading",
+          "aa_edges",
+          "melting_details",
+          "inconsistent_outlines",
+          "color_bleed"
+        ],
+        "reasoning": "At 8x zoom, multiple clear AI tells detected. (1) Gradient shading: gem bodies show smooth pink→light-pink→white transitions; clean pixel art should use 2-3 hard palette steps or explicit dithering — no dither pattern visible, just smooth blending. (2) AA edges: at 8x each source pixel should render as a solid 8×8 block; several gem outlines and interior tone boundaries show partial-pixel color mixing, indicating sub-pixel anti-aliasing baked into the source data. (3) Melting details: specular highlight blobs are soft ovals rather than crisp 1-2 px hard dots — characteristic AI 'blur halo' around bright spots. (4) Inconsistent outlines: some sprites have clean 1px dark outlines, others are thinner or missing on one side, and a few smaller sprites lack outlines entirely. (5) Color bleed: pink hue bleeds into the near-black shadow pixels on several gems, producing muddy border pixels instead of a clean dark tone. Semantic read is fine (recognisably a ruby/gem), background is acceptably clean, and overall silhouettes are coherent, but the shading and edge quality are below acceptable pixel-art standards for a shipped game asset.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "detail_density_gap: gems are significantly simpler than the multi-component, rivet/strap-detailed Denzi helmet peers",
+          "outline_weight_mismatch: peer helmets show thick uniform black outlines; gem sprites appear to use thinner or color-blended outlines at this scale",
+          "highlight_treatment_differs: peers use controlled, restrained specular patches; gems rely on bright facet-flash highlights characteristic of a lighter icon style rather than Denzi heavyweight rendering",
+          "no_visible_dithering_or_multi_step_shading: Denzi style shows 3-5 shading steps per surface; gems appear to use ~2-3 flat facet tones, losing the painterly depth",
+          "scale_and_mass_disparity: each peer helmet is a large, visually weighty sprite; the ruby fragments are small and visually lightweight, creating a perceived quality gap in the same item category"
+        ],
+        "reasoning": "Peer set is Denzi-style pixel-art helmets: thick black outlines, multi-step tonal shading, high detail density, controlled highlights, dark-background presentation. Candidate gem_ruby_v00 shares the dark background and general pixel-art DNA but diverges on four critical style axes. (1) Detail density: helmets are packed with rivets, straps, face guards and layered metallic surfaces; the ruby sprites are simple faceted shapes with minimal interior detail — a clear Denzi under-build. (2) Highlight intensity: gem facets display bright, saturated flash highlights inconsistent with the muted, controlled specular treatment on peer metals. (3) Shading steps: the Denzi style demands ≥3 graduated tones per major surface; the gems appear to use flat facet fills with a single bright highlight, losing the characteristic volume. (4) Outline character: peer outlines are heavy and uniform; gem outlines look thinner and possibly hue-shifted to pink — a departure. Color temperature difference (warm magenta vs cool silver/gold) is expected for a gem vs armor item and is NOT penalised. CHARM LEVEL is passable — the gems could fit a casual cute aesthetic, but the Denzi peer family leans serious/detailed, so the simplified gem look feels underpowered. Overall the sprite is recognisable as pixel art in the same universe but lacks the craftsmanship level the peer set establishes.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "generic_pixel_gem",
+          "lacks_whimsical_sparkle_character",
+          "peer_reference_is_dungeon_crawler_dark_helmets_out_of_tone_but_candidate_evaluated_independently"
+        ],
+        "reasoning": "Candidate (right, 4x ruby gems): warm pinkish-rose pixel-art gem sprites. Colour temperature is on-target — saturated warm pink aligns with bright/sunny Nintendo palette. No grimdark, no cold-corporate, no desaturation. However, the gems read as fairly utilitarian pixel-art collectibles rather than distinctly fairy-tale/whimsical; they lack the toy-diorama charm or Echoes-of-Wisdom sparkle personality that would push them to a confident pass. Peer reference on the left (helmets) is clearly dark dungeon-crawler steel — out-of-tone for the target — but those are the peers, not the candidate. Candidate alone: warm, friendly, inoffensive, but slightly generic-mobile-RPG-gem rather than unmistakably Nintendo-fairy-tale. Borderline pass/marginal.",
+        "confidence": 0.75
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.05,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5,
+    "adversarialMin": 4,
+    "warningCount": 7,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.118Z"
+}

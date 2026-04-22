@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import {
   computeShieldPhaseState,
   computeShieldTimerStep,
@@ -7,7 +9,39 @@ import {
   computeEncounterState,
   computeEncounterAfterBossDepleted,
   computeRespawnBossState,
+  computeTouchDamageWindowBudget,
 } from './helpers/boss-logic.mjs';
+
+const projectRoot = process.cwd();
+
+function loadBossArenaTimingConfig() {
+  const scene = JSON.parse(fs.readFileSync(path.join(projectRoot, 'assets', 'scenes', 'BossArena.scene'), 'utf-8'));
+  const shield = scene.find((item) =>
+    item
+    && typeof item.vulnerableSeconds === 'number'
+    && typeof item.dangerMoveSpeed === 'number'
+    && typeof item.vulnerableMoveSpeed === 'number'
+    && item.bossHealth?.__id__ != null
+  );
+  const bossHealth = scene[shield?.bossHealth?.__id__];
+  const player = scene.find((item) =>
+    item
+    && typeof item.attackDuration === 'number'
+    && typeof item.attackReach === 'number'
+    && item.attackAnchor?.__id__ != null
+  );
+
+  assert.ok(shield, 'BossArena should include a BossShieldPhaseController-like component');
+  assert.ok(bossHealth, 'BossArena shield controller should reference boss health');
+  assert.ok(player, 'BossArena should include a PlayerController-like component');
+
+  return {
+    bossHealth: bossHealth.maxHealth,
+    vulnerableSeconds: shield.vulnerableSeconds,
+    playerAttackDuration: player.attackDuration,
+    targetInvulnerableSeconds: bossHealth.invulnerableSeconds,
+  };
+}
 
 test('alive when bossHealth > 0', () => {
   const state = computeShieldPhaseState({ bossHealth: 5 });
@@ -158,4 +192,22 @@ test('BUG#4 regression: respawn does NOT reset boss health (known bug)', () => {
   const result = computeRespawnBossState(3, 10);
   assert.equal(result.health, 3, 'health stays at current value instead of max');
   assert.notEqual(result.health, 10, 'health is NOT reset to max (known bug)');
+});
+
+test('BossArena damage window has touch-first timing budget without changing combat tuning', () => {
+  const config = loadBossArenaTimingConfig();
+  const budget = computeTouchDamageWindowBudget(config);
+
+  assert.equal(config.bossHealth, 8);
+  assert.equal(config.vulnerableSeconds, 3.2);
+  assert.equal(config.playerAttackDuration, 0.18);
+  assert.equal(config.targetInvulnerableSeconds, 0.12);
+  assert.ok(
+    budget.attacksPerWindow >= 4,
+    `Boss window should support at least four deliberate touch attacks, got ${JSON.stringify(budget)}`,
+  );
+  assert.ok(
+    budget.windowsToDefeat <= 2,
+    `First Boss should fit into two shield windows under conservative touch cadence, got ${JSON.stringify(budget)}`,
+  );
 });

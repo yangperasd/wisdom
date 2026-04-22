@@ -23,11 +23,11 @@ export class PauseMenuController extends Component {
   }
 
   protected onEnable(): void {
-    GameManager.instance?.events.on(GAME_EVENT_FLOW_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.on(GAME_EVENT_FLOW_CHANGED, this.applyState, this);
   }
 
   protected onDisable(): void {
-    GameManager.instance?.events.off(GAME_EVENT_FLOW_CHANGED, this.applyState, this);
+    GameManager.instance?.events?.off(GAME_EVENT_FLOW_CHANGED, this.applyState, this);
   }
 
   private applyState(state: GameFlowState): void {

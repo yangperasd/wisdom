@@ -1,0 +1,152 @@
+{
+  "file": "enemy/common_enemy_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\enemy\\common_enemy_v00.png",
+  "category": "enemy",
+  "candidateName": "common_enemy_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "palette_too_monochromatic",
+          "missing_hyrule_accent_colors",
+          "emotional_warmth_moderate"
+        ],
+        "reasoning": "EMOTIONAL (60%): The sprite is a rotund, friendly-silhouetted creature with warm orange-amber tones and bright green eyes — not grim or scary, and has a toy-diorama plumpness that fits the Zelda enemy archetype. However, the palette is heavily dominated by orange/brown with only a small green-eye accent. The bright/charming Hyrule mood calls for saturated greens, blues, yellows, and pinks that are largely absent here. The overall friendliness reads as 'neutral creature' rather than 'charming Hyrule inhabitant'. Emotional score ~6.5. TECHNICAL (40%): Strong execution — crisp 1px hard outlines visible on all edges, clear 2-3 tone hard shading on the orange body and white belly with no gradient blending, pixel-grid-snapped throughout, no anti-aliasing detected. Compares favorably to the Denzi reference in terms of outline discipline and shading approach. Technical score ~8. WEIGHTED: 0.6×6.5 + 0.4×8.0 = 3.9 + 3.2 = 7.1 → 7. Marginal pass — technically solid but needs broader, brighter Hyrule color saturation to fully land the emotional axis.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_belly_blends",
+          "1x_silhouette_slightly_soft"
+        ],
+        "reasoning": "Charming chubby creature with clear round-soft toy aesthetic — orange-brown body, cream belly, green eyes, stubby limbs. Personality reads instantly at 4x: sticker-test friendly, non-aggressive, distinctly cute-enemy archetype. Silhouette at 1x is readable as a stocky round biped but slightly mushy due to light belly color merging into the grey bg at small size. On dark bg: excellent contrast and pop, outline crisp. On light bg: orange body holds well but cream belly loses edge definition against the near-white bg, reducing silhouette sharpness. Overall charm is high and the design passes the friendly-toy standard, but light-bg contrast and 1x silhouette need minor edge work to fully pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Dominant warm burnt-orange body occupies the mid-value range exactly as required. Cream/parchment belly is warm, not cool. Shadow tones read as deep warm brown rather than pure black or neutral grey — meeting the 'colored darks' criterion. Green eye/horn accents are medium-saturation and sit comfortably in a warm-complementary relationship with the orange. All hues map clearly to entries in the reference palette-extract (warm orange, parchment cream, deep brown shadow, mid green). No cold corporate blues, no near-black goth tones, no muddy desaturated passages, no neon. The overall mood reads BRIGHT and WARM. Minor note: the green accents could be pushed slightly more vivid to reach 'candy' brightness, but at current saturation they harmonise rather than clash, so no deduction warranted.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The common_enemy_v00 sprite (labeled 黏黏球) is a warm orange/brown pixel-art character placed on the dark teal grid background. It reads clearly at a glance: the warm orange tones contrast well against the cool dark teal floor tiles, and the character has a distinct rounded silhouette with visible facial features. The red arrow marker makes the position unambiguous. Compared to the original scene (which is empty at that spot), the entity is immediately noticeable — locatability well under 0.5s. No confusion with other entities: the EchoBox to the left uses cooler muted tones, and the pressure plate UI elements are distinctly labeled. The sprite does not disappear into dark areas; it sits on a mid-value tile zone. The pixel-art style is consistent with the Echoes game aesthetic — not a pasted foreign asset. Minor note: the sprite is relatively small, but the label '黏黏球' and the label placement reinforce identification. No outline disappearance, no tonal clash, no visual clutter around the character itself.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_color_earthy_not_bright_saturated",
+          "environment_context_dungeon_dark"
+        ],
+        "reasoning": "The common_enemy_v00 sprite (黏黏球 / sticky ball) is a small, round, chunky orange-brown blob creature with stubby grey legs — the silhouette and form are cute and non-threatening, fitting the 'cute round' criterion well. It introduces no grimdark, horror, aggressive, or edgy elements. However, the color palette leans earthy/muted orange-brown rather than the bright, saturated warm tones (sunny yellows, warm pinks, vivid greens) called for by the fairy-tale toy-diorama target. The sprite is warm in hue but lacks the sparkle and vibrancy that would firmly anchor it in the bright-sunny-magical register. The surrounding environment (dark teal tiles, charcoal stone) amplifies the tone mismatch — the sprite reads more 'cute dungeon fodder' than 'whimsical fairy-tale critter'. No out-of-tone flags triggered, but the sprite needs a brighter, more saturated color treatment to fully pass mood coherence.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "enemy_slightly_oversized_vs_player_reference"
+        ],
+        "reasoning": "The common_enemy_v00 ('黏黏球' sticky-ball creature) appears to occupy roughly 1.5–2 tiles in height against the visible 32px tile grid, putting it at approximately 48–64px tall — about 150–175% of the expected 32×32 player footprint. For a common enemy category this is borderline: common enemies should feel peer-sized or only slightly larger than the player to preserve the toy-diorama sense of scale. The asset does not overwhelm the scene, perspective is consistent with the top-down view, pixel art style and chunky proportions fit the aesthetic, and no items larger than the player or summon-size violations are present. The mild oversize is the sole concern; the overall diorama feel is intact rather than 'wallpaper' zoomed-out.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_shading_belly",
+          "smooth_orange_transitions",
+          "minor_asymmetry_legs"
+        ],
+        "reasoning": "Pixel art structure is generally sound — discrete pixels visible at 8x zoom, dark outline mostly consistent at 1px equivalent, background clean and low-noise. However three tells raise concern: (1) The white chest/belly region shows a radial gradient glow effect transitioning smoothly from bright center to darker edges rather than the 2-3 discrete hard-tone pixel clusters expected in clean pixel art — this is the strongest AI tell. (2) The orange body shading transitions across the torso feel slightly smooth, with more intermediate tones than a hand-authored palette would typically use. (3) The leg/appendage pairs show minor left-right asymmetry in pixel placement at 8x zoom (left rear leg cluster differs from right). Sub-pixel features absent as expected for pixel art. No severe color bleed, no melting details, no semantic failures — the spider/crab enemy reads correctly. The gradient belly shading is the key strike; everything else is borderline. Marginal rather than fail because the pixel grid is respected and no single artifact is egregious.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "color_temperature_mismatch",
+          "palette_no_overlap",
+          "rendering_style_organic_vs_metallic",
+          "charm_level_inconsistency",
+          "highlight_style_soft_vs_specular"
+        ],
+        "reasoning": "Peer set (LEFT) is 12 helmet/armored-head enemy sprites rendered in a cool, desaturated metallic pixel-art style: grays, silvers, gold accents, hard specular highlights, tight dark outlines, and a neutral-to-slightly-menacing charm tone. Candidate (RIGHT) breaks on nearly every stylistic axis: (1) OUTLINE WEIGHT — peers carry a consistent 1px dark outer stroke; candidate outline appears marginally thinner on organic curves, borderline acceptable. (2) OUTLINE COLOR — peers use near-black; candidate uses dark brown/black mix, minor drift. (3) SHADOW DIRECTION — candidate and peers both suggest top-left lighting, consistent. (4) SHADOW COUNT — both use single layered shadow, consistent. (5) HIGHLIGHT INTENSITY — peers show hard metallic specular dots; candidate shows soft diffuse highlights on shell and skin, significant style divergence. (6) COLOR TEMPERATURE — CRITICAL FAIL: peers are uniformly cool (steel grays, slate blues, muted golds); candidate is strongly warm (orange body, cream highlight, teal accents). No temperature overlap. (7) DETAIL DENSITY — peers have intricate engraved/riveted helmet geometry; candidate is rounded with fewer surface details, noticeably lower density. (8) PROPORTION — peers are compact head-centric silhouettes; candidate is a chibi character with visible torso/arms; acceptable as different enemy archetype. (9) RENDERING STYLE — peers are hard-surface metallic renders; candidate is soft organic creature rendering, fundamentally different material language. (10) PALETTE OVERLAP — virtually zero: peer palette is steel/silver/charcoal/crimson accent; candidate palette is orange/teal/white/warm-brown — no shared hues. (11) CHARM LEVEL — peers read as dangerous armored constructs with zero cuteness; candidate is overtly cute (large round eyes, bubbly silhouette, warm colors) — charm mismatch is severe and would visually break enemy family cohesion. Overall: 5 of 11 dimensions are failing or critically inconsistent. The candidate feels like it belongs to a different game's art style.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "generic-mobile-cartoon-adjacent",
+          "insufficient-whimsy",
+          "peer-refs-skew-cold-militaristic"
+        ],
+        "reasoning": "Candidate (right, 4x): warm orange-brown rounded pixel creature with white belly — clearly cute and non-threatening, hitting Nintendo-family-friendly and warm-Hyrule targets adequately. Color temperature is warm, silhouette is soft and rounded, no grimdark or edgy signals. However the design reads as slightly generic: a plain turtle/frog blob enemy that could appear in any mid-tier mobile platformer rather than a distinctly whimsical fairy-tale world. Lacks the toybox charm or expressive personality markers (exaggerated eyes, playful silhouette variation, storybook texturing) that separate Zelda-Echoes-tier from generic mobile-cartoon. Peer references on the left are a concern as an ambient signal: the row of gray metallic helmets skews cold and dungeon-crawly, suggesting the broader asset pool may be drifting toward desaturated-dungeon-crawler tone, which could contaminate the candidate's context even if the candidate itself is warm. Candidate alone: borderline pass; within peer context: marginal. No hard fails (no grimdark, no fan-service, no occult, no uncanny, no western-AAA grit). Nudging score to 7: passes threshold only after the peer-context penalty.",
+        "confidence": 0.78
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.1,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 6.67,
+    "adversarialMin": 4,
+    "warningCount": 6,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.109Z"
+}

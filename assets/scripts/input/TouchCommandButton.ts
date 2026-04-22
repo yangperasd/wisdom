@@ -1,9 +1,10 @@
-import { _decorator, AudioClip, AudioSource, Component, Enum, EventTouch, Node, Sprite, SpriteFrame, Vec3 } from 'cc';
+import { _decorator, AudioClip, AudioSource, Component, Enum, EventTouch, Node, Sprite, SpriteFrame, Texture2D, Vec3 } from 'cc';
 import { EchoId } from '../core/GameTypes';
 import { GameManager } from '../core/GameManager';
 import { SceneLoader } from '../core/SceneLoader';
 import { PlayerController } from '../player/PlayerController';
 import { RectVisual } from '../visual/RectVisual';
+import { resolveTextureBackedSpriteFrame, destroyGeneratedSpriteFrames } from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
 
@@ -35,6 +36,9 @@ export class TouchCommandButton extends Component {
   @property(SpriteFrame)
   buttonSpriteFrame: SpriteFrame | null = null;
 
+  @property(Texture2D)
+  buttonTexture: Texture2D | null = null;
+
   @property(AudioClip)
   tapClip: AudioClip | null = null;
 
@@ -53,6 +57,7 @@ export class TouchCommandButton extends Component {
   private touchId: number | null = null;
   private initialScale = new Vec3(1, 1, 1);
   private audioSource: AudioSource | null = null;
+  private generatedFrames: Map<string, SpriteFrame> = new Map();
 
   protected onLoad(): void {
     this.initialScale = this.node.scale.clone();
@@ -193,7 +198,9 @@ export class TouchCommandButton extends Component {
   }
 
   private applyButtonSpriteFrame(): void {
-    if (!this.buttonSpriteFrame) {
+    const effective = this.buttonSpriteFrame
+      ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'button', this.buttonTexture);
+    if (!effective) {
       return;
     }
 
@@ -203,7 +210,7 @@ export class TouchCommandButton extends Component {
     }
 
     const sprite = visualNode.getComponent(Sprite) ?? visualNode.addComponent(Sprite);
-    sprite.spriteFrame = this.buttonSpriteFrame;
+    sprite.spriteFrame = effective;
     sprite.sizeMode = Sprite.SizeMode.CUSTOM;
 
     const rectVisual = visualNode.getComponent(RectVisual);
@@ -212,5 +219,9 @@ export class TouchCommandButton extends Component {
       rectVisual.drawStroke = false;
       rectVisual.requestRedraw();
     }
+  }
+
+  protected onDestroy(): void {
+    destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 }

@@ -1,0 +1,167 @@
+{
+  "file": "consumable/scroll_teleport_v01.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\scroll_teleport_v01.png",
+  "category": "consumable",
+  "candidateName": "scroll_teleport_v01",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "palette_too_cool_and_desaturated",
+          "ring_edges_show_possible_soft_transitions_not_crisp_1px_hard_outlines",
+          "lacks_warm_hyrule_vibrancy_greens_yellows_pinks_absent",
+          "tassel_ribbons_thin_and_inelegant_vs_denzi_chunky_pixel_standard",
+          "silhouette_reads_abstract_ring_not_charming_tangible_consumable_object"
+        ],
+        "reasoning": "Emotional axis (60%): The scroll teleport reads as magical via blue orb center and circular ring motif, and the round form avoids grimness. However the palette is dominated by white/cream and cool blues with only small red-dot accents — the saturated greens, yellows, and pinks expected of a warm friendly Hyrule toy-diorama mood are absent. It feels clinical/arcane rather than charming/bright. Score ~5/10 emotional. Technical axis (40%): Pixel-grid stepping is visible on the ring boundary at all zoom levels indicating intentional hard-pixel work. Tonal shading appears to use ~3 tones on the ring body. However, comparing against Denzi reference (which shows tight 1px hard outlines with zero softness on curved armor silhouettes), the candidate ring curves exhibit transitions that suggest either partial AA or heavy dithering — not the clean staircase pixel-hard edge the criterion demands. Tassel/ribbon detail is undersized and pixelated in a loose way. Score ~6/10 technical. Weighted composite: (5×0.6)+(6×0.4)=5.4 → 5. Marginal: needs warmer/more saturated palette recolour and sharper hard-outline cleanup on the circular boundary before it can pass.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "light_bg_contrast_fail",
+          "1x_silhouette_generic_circle",
+          "outer_ring_vanishes_on_cream_bg"
+        ],
+        "reasoning": "The scroll_teleport design has genuine charm: soft round ring shape, colorful decorative pixels ringing the border, a personality-rich eye/gem center, and flowing blue ribbon elements that read as magical teleportation energy. Dark-bg contrast is solid and the 4x view rewards inspection with character. However, two clear failures: (1) at 1x the silhouette collapses to an undifferentiated circle blob — the scroll-and-portal identity disappears entirely, failing the sticker test for distinctiveness; (2) on the light background the cream outer ring nearly merges with the background, making the silhouette mushy and unreadable. Charm is present but incomplete — the piece is charming-but-mushy on light, not both-charming-AND-clear as required.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The scroll_teleport_v01 sprite shows strong Echoes-palette compatibility. The outer scroll body uses warm parchment/cream tones matching the palette's gold-beige range. The center gem is a clean sky blue with good saturation — not cold/corporate. Decorative ring dots alternate candy pink and teal-cyan, both present in the reference swatches. The hanging droplet accent is sky blue reinforcing the gem color story. Darker areas (inner ring shadow, gem depth) lean toward teal-dark rather than pure black/grey — consistent with the 'colored darks' requirement. Overall mood reads BRIGHT and MAGICAL rather than grim or cold. Saturation is well-calibrated: vibrant without neon clipping. The parchment+sky-blue+candy-pink+teal quartet is internally harmonious and directly traceable to Echoes reference swatches. Minor note: panel 1 preview background is near-black charcoal, but this is a canvas backdrop not part of the asset itself and does not affect the verdict.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "large_circular_white_bg_dominates",
+          "pasted_feel_due_to_white_circle_frame",
+          "silhouette_readable_but_frame_style_mismatches_pixel_art_tiles",
+          "asset_placed_on_border_between_dark_and_mid_tiles_reduces_grounding"
+        ],
+        "reasoning": "The scroll_teleport_v01 asset is clearly locatable within 0.5s — the large white circular frame contrasts strongly against both the dark red tile floor and the mid-grey stone tiles. The cyan/teal inner glyph is distinct from other entities (enemy blob, pressure plate). However, the white disc background gives a strong 'pasted UI element' impression rather than a world-embedded item: the smooth circular frame clashes with the pixelated dungeon tile art. The silhouette is readable, but the design reads more like a UI button or tooltip than a diegetic game object. Dark-area visibility is fine due to the bright white surround. No confusion with the enemy or the pressure plate. Echoes-cleanliness is somewhat compromised — the asset has a clean look but the white circle frame is visually heavy and atypical for in-world interactables in this style. Marginal pass: locatable and distinct, but integration fidelity needs refinement.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_palette_cool_not_warm",
+          "scene_context_dungeon_crawler_dark",
+          "missing_warm_parchment_yellow_pink_tones"
+        ],
+        "reasoning": "The scroll_teleport_v01 sprite itself is a white/pearl circular orb with cyan-blue magical sparkle center — round shape and magical sparkle qualities are in-tone for cute/whimsical. However the sprite's cool white+cyan palette skews away from the target warm greens/yellows/pinks/parchment warmth. The surrounding scene is a dark dungeon-crawler aesthetic (dark teal tiles, reddish-dark floor, grimy stone walls) which is flagged OUT-OF-TONE, and the new sprite does not shift the overall mood meaningfully brighter or warmer. The sprite itself is inoffensive and not grimdark/aggressive, but it does not reinforce the bright sunny fairy-tale toy-diorama target aesthetic. No horror, goth, or fan-service issues. Verdict: marginal — acceptable but lacks the warm saturated magical sunny quality the target palette demands.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 2,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "consumable_oversized",
+          "item_dominates_scene"
+        ],
+        "reasoning": "The scroll_teleport_v01 consumable is composited as a large circular parchment/scroll object occupying roughly 100-120px diameter in the scene. Given the tile grid visible in the background (each tile ~32-48px), the item spans approximately 3 tiles across — placing it at roughly 3x the expected 32x32 player size. Consumables must be 50-75% of player size (target ~16-24px world units). This item is ~300-375% of player size instead of 50-75%. The oversized item visually dominates the dungeon tile area and creates a 'wallpaper' focal point rather than a small pickupable diorama prop. Perspective is flat/top-down consistent with scene, but scale failure is severe. No other entities are visible for direct comparison but tile grid calibration makes the violation clear.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "gradient_sphere_center",
+          "color_bleed_ribbon_junction",
+          "inconsistent_ribbon_outlines",
+          "curved_edge_subpixel_smoothing"
+        ],
+        "reasoning": "4x and 8x zoom inspection reveals a medallion-style pixel art sprite with several notable AI tells. (1) GRADIENT SHADING: The center blue sphere uses 4+ distinct blue tones with smooth gradient-like transitions rather than the 2-3 hard tones expected of clean pixel art — classic AI diffusion shading. (2) COLOR BLEED: At the junction where the blue ribbon/bow elements meet the pink-white dithered rings, there is visible color contamination bleeding across boundaries. (3) INCONSISTENT OUTLINES: The ribbon elements at top and bottom show irregular pixel outlining — some edges have 1px borders, others are missing borders entirely, and the ribbon tails trail off in an amorphous pattern suggesting melting detail. (4) SUB-PIXEL SMOOTHING: The outer curved edge of the medallion shows transitional mixed-color pixels characteristic of pre-zoom anti-aliasing applied to a rasterized render rather than clean integer-grid pixel art. (5) The checkered dithering pattern on the rings is mathematically regular (consistent 2x2 block pattern) which is suspicious though not conclusive. Mitigating factors: the overall concept is semantically coherent for a 'scroll_teleport' item, the background is clean with no noise, and the circular ring structure is mostly consistent. The ribbon/bow details are the weakest element and strongly suggest AI generation of what should be a crisp decorative motif.",
+        "confidence": 0.71
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "palette_mismatch: candidate is white/cyan/light-blue; peers are dark charcoal/gunmetal/warm-bronze — near-zero palette overlap",
+          "color_temperature: peers trend warm-dark; candidate is cold-bright, entirely opposite temperature register",
+          "outline_color: peers use near-black dark outlines consistently; candidate outline reads as mid-gray to white on bright field — breaks family rule",
+          "highlight_intensity: candidate highlights are blown-out white, creating a glowing/ethereal look; peers have restrained specular pops on metal",
+          "shadow_count_and_direction: peers show 1–2 tight drop shadows anchoring volume; candidate's circular form uses diffuse ambient glow with no consistent directional cue",
+          "rendering_style: peers are grounded pixel-metal with hard shadow termination; candidate reads as ethereal portal/UI-badge — different visual vocabulary entirely",
+          "charm_level: peers are cute-tough armour items with menacing silhouettes; candidate looks like a minimap icon or UI widget, not a sibling object in this family"
+        ],
+        "reasoning": "Across 7 of 11 assessed dimensions the candidate departs significantly from the peer family. The most damaging breaks are palette and color-temperature: peers live in a warm-dark metallic world; scroll_teleport_v01 is cold, bright, and white-dominant with cyan tones that appear in none of the reference sprites. Outline color and weight are secondary but consistent violations. Shadow handling is diffuse rather than directional. Even accounting for item-type difference (scroll vs helmet), the rendering vocabulary is simply not the same. Confidence is high because the mismatch is large and perceptually obvious at a glance.",
+        "confidence": 0.92
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "blue-cool color temperature conflicts with warm/sunny target palette",
+          "peer reference helmets skew dark/desaturated dungeon-crawler rather than bright fairy-tale",
+          "teleport disc effect reads clinical/sterile rather than whimsical toy-diorama",
+          "insufficient visual warmth — lacks the golden/amber/coral hues expected for Hyrule-sunny aesthetic"
+        ],
+        "reasoning": "Candidate (RIGHT): circular scroll/teleport disc rendered in white and blue-teal tones with a small character figure inside. The effect is clean and light, avoiding grimdark or edgy territory, but falls into 'cold-corporate/clinical' risk zone due to its cool blue-white palette. The sparkle/glow elements give a hint of magic but feel more sci-fi portal than fairy-tale whimsy. Peer references (LEFT): a grid of pixel-art helmets in muted gray, black, and minimal gold — these themselves lean toward desaturated dungeon-crawler aesthetic rather than bright warm Nintendo-family tone, suggesting broader project aesthetic drift. The candidate does not introduce any hard FAIL elements (no grimness, no fan-service, no occult symbols), but the cool palette and sterile circular form do not hit the 'bright/warm/sunny Hyrule / toy-diorama / wholesome' target. Needs warmer hues (amber, gold, soft pink/lavender) and more playful/organic shape language to fully pass.",
+        "confidence": 0.65
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.75,
+    "aestheticAvg": 6,
+    "uiContextAvg": 5,
+    "adversarialMin": 3,
+    "warningCount": 6,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.141Z"
+}

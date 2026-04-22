@@ -1,0 +1,162 @@
+{
+  "file": "treasure/coin_gold_v04.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\treasure\\coin_gold_v04.png",
+  "category": "treasure",
+  "candidateName": "coin_gold_v04",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "rim_teal_accent: alternating teal/blue pixels on the coin rim feel slightly off-palette for a warm gold treasure — teal reads as cool/metallic rather than warm Hyrule gold",
+          "small_size_noise: the alternating orange-teal rim pattern collapses into visual noise at native 1x scale, reducing read clarity",
+          "star_center_low_contrast: white star on light-orange coin body loses definition at small size"
+        ],
+        "reasoning": "Emotional axis (60%): Strong warm orange-gold hue with a star motif — immediately readable as friendly Zelda-style treasure. Round silhouette, saturated warm palette, and the star emblem all align with the bright/charming Hyrule mood. The teal accent is the only emotional stumble — it introduces a cool note that slightly undercuts the all-warm toy-diorama feel. Emotional score ~7.5. Technical axis (40%): 1px hard outlines are present and consistent. Shading is 2–3 hard tones on the coin body (dark orange shadow at bottom, mid orange body, light/white highlight star). Pixels are grid-snapped with no visible anti-aliasing on the main form. The alternating teal-orange rim pattern is pixel-clean but the teal color choice is questionable — it reads more like a design quirk than deliberate hard shading in the Denzi tradition. Denzi reference items show extremely deliberate, minimal pixel placement with no color noise; the coin's rim pattern is noisier by comparison. Technical score ~6. Combined: 0.6×7.5 + 0.4×6 = 4.5 + 2.4 = 6.9 → 7.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x_unreadable_blob",
+          "stray_pixels_on_light_bg",
+          "gear_edge_too_complex_for_small_size",
+          "light_bg_contrast_weak"
+        ],
+        "reasoning": "The coin has genuine charm — the star cutout center gives personality and the golden pixel-art palette reads as a classic game reward item. At 4x on dark bg it pops well and the circular-gear silhouette is legible. However: (1) at 1x the sprite collapses to an indistinct orange blob with no readable shape, failing the sticker test; (2) on the light/cream background scattered stray pixels (blue/teal noise) are visible around the perimeter indicating dirty edges; (3) the gear-ray border adds visual interest at 4x but overcrowds the silhouette — it reads as 'spiky blob' rather than 'coin' at small scale; (4) orange-on-cream contrast is noticeably weaker than orange-on-dark, making light-bg readability marginal. Charming but not yet clean or small-scale-safe.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The coin_gold_v04 is dominated by warm saturated amber/golden-orange on the rim and body, with a white-cream star center. Small complementary sky-blue (teal) and lime-green pixel accent dots are scattered along the gear-rim, adding harmonic vibrancy consistent with the Echoes palette (saturated greens, sky blues alongside sunset oranges). The coin's own shadow-side pixels use deeper warm amber-brown rather than pure black or cold grey. Mood reads clearly as BRIGHT/WARM — no muddy desaturation, no cold corporate tones, no goth near-blacks detectable on the coin asset itself. Palette maps directly to reference swatches: sunset orange, parchment highlight, sky-blue accent, deep warm shadow. Minor note: the presentation panel backgrounds are neutral-dark but these are test scaffolding, not part of the asset. Overall harmony is cohesive and target-palette-compliant.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "mild_style_inconsistency_with_smoother_ui_elements",
+          "warm_gold_hue_echoes_待通关_buttons_minor_confusion_risk"
+        ],
+        "reasoning": "The coin_gold_v04 is placed against a dark blue-gray panel background and is clearly spottable well within 0.5s. The circular silhouette with white star center provides strong shape differentiation from rectangular background tiles. Gold/orange coloring offers high luminance contrast against the dark scene. Pixel-art rendering style fits Echoes aesthetic but appears slightly mismatched against the smoother UI chrome (HUD text, buttons). The warm gold palette shares tonal territory with the '待通关' badge buttons in the upper-right, creating a mild confusion risk at quick glance. No dark-area visibility issues — the coin sits in a mid-brightness panel zone where it reads clearly. Overall a competent pickup icon with minor integration rough edges.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "scene_context_dark_dungeon_ui",
+          "pixel_art_style_genre_ambiguous"
+        ],
+        "reasoning": "The coin_gold_v04 sprite itself is a warm orange-gold pixelated coin with a white star-burst/sparkle highlight — this aligns well with 'warm yellows', 'whimsical sparkle', and fairy-tale treasure aesthetics. The round shape reads cute, not aggressive. However, the surrounding scene context is a dark blue-gray dungeon-crawler-style UI (dark background, red locked-boss button, muted tones) which pulls the overall mood toward out-of-tone territory. The coin does NOT introduce grimdark, horror, or cold-corporate elements; it is actually one of the warmer and more whimsical elements in the frame. The pixel art style is somewhat genre-ambiguous — fits fairy-tale but also generic RPG. Net verdict: coin contribution is positive for the target tone, but the scene composite remains marginal due to dark UI surroundings not being remedied by this single sprite.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "item_larger_than_guideline",
+          "no_player_reference_in_scene",
+          "ui_context_not_gameplay_context"
+        ],
+        "reasoning": "The coin_gold_v04 appears as an orange/gold circular pixel-art relic icon approximately 50px in diameter within a dungeon hub map screen. Per rules, treasure items must be 50-75% of the 32x32 player (i.e., 16-24px) and NEVER larger. The coin at ~50px exceeds the player size entirely, violating the 'items never larger than player' rule. However, this composite scene is a menu/UI screen (DungeonHub) rather than a gameplay scene — no player character is visible for direct comparison, and the coin is presented as a featured relic collectible in a narrative/map context rather than a world-space pickup. Perspective is acceptable: the design is flat-circular with slight isometric cues consistent with top-down 2D. The scene lacks a 'toy diorama' in-world feel — it reads more like a UI overlay. Score is marginal rather than fail because the UI-context use case may legitimately render the item at icon scale, but if this asset is also used in gameplay world-space it would be oversized.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "color_bleed_stray_cyan_pixels",
+          "gradient_shading_in_orange_border",
+          "inconsistent_outline_density"
+        ],
+        "reasoning": "8x zoom reveals several tells. Most damning: stray blue/cyan pixels scattered along bottom edge of the coin body — semantically wrong for a gold coin, classic AI color-bleed artifact where unrelated hue bleeds into nearby regions. Orange border pixels show 3+ intermediate tones rather than clean 2-tone hard palette, suggesting soft gradient shading rather than crisp pixel-art tones. Outline consistency is borderline — some edge pixels appear 1px thick while others effectively 2px due to color proximity. The star center is clean and symmetrical, and overall macro silhouette reads as intentional pixel art. But the cyan contamination is a hard AI tell and cannot be explained as intentional design.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "outline_color_mismatch: peers use crisp dark/black outlines; coin has warm orange or no hard outline",
+          "no_dark_containment: coin bleeds into background via glow rather than dark border like all peers",
+          "glow_halo_alien: luminous aura/halo effect present on coin, absent on every peer",
+          "color_temperature_extreme: coin is fully warm orange-amber, peers are cool-neutral grays/silvers with minor accent only",
+          "rendering_style_divergence: peers are hard-edge detailed pixel art; coin reads as soft arcade-glow orb",
+          "detail_density_low: coin interior detail (~4-6 distinct pixel zones) vs peers (15+ shading zones each)",
+          "highlight_treatment_mismatch: peers use small discrete specular pixel; coin uses large radiating highlight consuming >30% of sprite",
+          "palette_overlap_near_zero: coin warm palette shares almost no hues with peer cool-metal palette",
+          "charm_level_mismatch: peers project serious tactical-RPG tone; coin projects arcade-powerup brightness inconsistent with family mood"
+        ],
+        "reasoning": "Across 11 dimensions the coin_gold_v04 candidate fails to match the Denzi helmet peer family on 9 of 11. The two dimensions that pass are pixel scale/proportion (similar bounding box size) and shadow count (both single). Every stylistic signal — outline darkness, color temperature, rendering approach, glow treatment, highlight size, detail density, palette — points to a sprite sourced from a different art family. The peer set is unified by hard dark outlines, cool metallic palettes, and dense pixel shading. The coin replaces all three with a warm glowing orb aesthetic. Accounting for item-type freedom (coin vs helmet is allowed), the style execution itself remains incompatible. This is not a marginal case; the divergence is systematic across most dimensions.",
+        "confidence": 0.83
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "peer_refs_are_dark_warrior_helmets_creating_contextual_tone_dissonance",
+          "coin_execution_is_simple_limiting_expressive_warmth_and_charm_depth"
+        ],
+        "reasoning": "Candidate coin (right, 4x) presents in warm orange-gold with a central star/sparkle motif — these are positive signals toward the target aesthetic (bright/warm/sunny Hyrule, whimsical magic). No grimdark, no desaturated dungeon-crawler palette, no occult or cold-corporate markers visible. However, the peer reference sprites on the left are entirely dark grey metal warrior helmets, which are firmly in OUT-OF-TONE dungeon-crawler territory; this contextual contrast highlights that the coin exists in an asset library with tonal inconsistency. The coin itself passes directionally but its execution is minimal — a single-color warm ring with a star center at very small pixel count gives limited room for the layered charm, toy-diorama warmth, and whimsical fairy-tale personality the target demands. Marginal: coin is heading in the right direction but lacks the expressive depth and contextual coherence to confidently pass.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.45,
+    "aestheticAvg": 6.67,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 3,
+    "warningCount": 7,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.108Z"
+}

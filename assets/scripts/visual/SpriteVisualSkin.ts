@@ -67,6 +67,17 @@ export function applySpriteFrameToPlaceholderVisual(
   }
 }
 
+function isDeveloperOnlyLabel(node: Node): boolean {
+  // Nodes whose names embed "debug", "dev-" or "test-" are scaffolding for
+  // developers (placeholder text such as "BOX" / "FLOWER" / ">>"). They are
+  // never meant to reach a tester or player even when the visual skin is still
+  // in placeholder mode (no spriteFrame bound). Treating them as visible-by-
+  // default would re-light DebugLabel children that the prefabs / scenes have
+  // explicitly deactivated.
+  const name = (node?.name ?? '').toLowerCase();
+  return name.includes('debug') || name.includes('dev-') || name.includes('test-');
+}
+
 export function setPlaceholderLabelVisible(rootNode: Node | null, visible: boolean): void {
   if (!rootNode?.isValid) {
     return;
@@ -83,7 +94,8 @@ export function setPlaceholderLabelVisible(rootNode: Node | null, visible: boole
     }
 
     if (child.name.endsWith('-Label') || child.getComponent(Label)) {
-      child.active = visible;
+      // Developer-only placeholders stay hidden regardless of skin status.
+      child.active = isDeveloperOnlyLabel(child) ? false : visible;
     }
   }
 }

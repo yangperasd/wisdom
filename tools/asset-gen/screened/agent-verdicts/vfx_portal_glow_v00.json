@@ -1,0 +1,158 @@
+{
+  "file": "portal/vfx_portal_glow_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\portal\\vfx_portal_glow_v00.png",
+  "category": "portal",
+  "candidateName": "vfx_portal_glow_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "tone_count_borderline"
+        ],
+        "reasoning": "Emotional (60%): Strong pass. The pink/white center with cyan outer ring is bright, warm, and charming — exactly the friendly magical Hyrule tone required. Round silhouette, saturated palette (pink + cyan), no grimness at all. Toy-diorama scale reads well. Score ~8/10. Technical (40%): Mostly pass. Hard pixel outlines visible on outer ring, pixel-grid-snapped with clean blocky forms at all zoom levels, no anti-aliasing. Main concern: the center-to-outer gradient resolves into ~4-5 distinct tones (white core, light pink, medium pink, cyan, dark cyan) which exceeds the 2-3 tone spec; however for a glow VFX asset these represent distinct radial regions rather than shading steps within a single surface, so it is defensible. Hand-pixeled quality evident in the organic circular dithering. Score ~7/10. Weighted: 0.6*8 + 0.4*7 = 7.6, rounded to 8. Verdict: pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "bottom_pixel_scatter_breaks_ring_silhouette",
+          "inner_pink_loses_contrast_on_dark_bg",
+          "1x_detail_loss_acceptable_but_ring_reads_small"
+        ],
+        "reasoning": "Charm is present: pastel pink+blue palette with a central white diamond sparkle reads as friendly magical portal — round shape, soft colors, sticker-able personality. At 1x the ring silhouette survives and reads as a circular form. However, the bottom of the ring has loose scattered pixels that muddy the otherwise clean circle outline, creating a slightly mushy lower arc. On the dark background the inner pink ring loses some pop against the mid-tone grey, reducing the layered depth that reads nicely on light. Not edgy or aggressive — personality is solid — but the silhouette cleanup needed at the bottom arc keeps this from a clean pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "Portal glow uses candy pink inner ring + sky blue outer ring + white highlight core. Both hues are fully saturated and bright, directly matching the Echoes-tuned palette's candy pinks and sky blues. The warm-pink center anchors the warm-mid-value requirement while the cyan-blue outer ring provides cool contrast that reads as magical/vibrant rather than cold-corporate. No muddy desaturation, no neon harshness, no pure black or grey within the sprite itself (dark background in the preview panel is a canvas artifact, not baked shadow). Internal concentric color harmony is strong: white→pink→blue creates a clean luminance+temperature gradient. Reference palette compatibility is excellent — both hues appear in the swatch. Slight cool bias from the blue outer dominance prevents a 9, but warm core compensates and the overall mood is bright and harmonious.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 7.33,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "visible_rectangular_background_box",
+          "pasted_appearance_not_native",
+          "transparency_missing"
+        ],
+        "reasoning": "The portal glow effect itself is highly locatable — bright pink ring with cyan highlights and a white-hot center contrasts strongly against the dark teal dungeon tile background, easily spottable within 0.5s. Colors are vibrant and tonally compatible with an Echoes-style aesthetic. However, the asset is rendered with a visible light-gray/white rectangular bounding box around it, making it look exactly like a clipboard-pasted sprite tile rather than a native game entity with transparent surroundings. This square container artifact breaks scene integration severely: any player will perceive a floating UI card rather than a world-space portal VFX. No confusion with enemies or terrain, no dark-area visibility problem, but the non-transparent background is a blocking integration issue that prevents a pass score.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The portal glow sprite uses a bright pink/magenta core with a white star sparkle and a cyan/light-blue pixelated outer ring — all squarely in-tone for cute fairy-tale adventure. The circular form reads 'cute and round'; the central star sparkle is a textbook 'whimsical sparkle' cue; the pink+cyan palette aligns with the target warm blues/pinks palette. The sprite adds warmth and magic to an otherwise dark dungeon-tile scene, softening rather than deepening the dungeon-crawler undertone. No grimdark, aggressive, realistic, or cold-corporate signals detected. The gray tile border of the sprite frame is a minor presentation artifact but does not affect the mood read of the actual VFX asset.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 4,
+        "verdict": "fail",
+        "issues": [
+          "portal_has_opaque_white_background_box_breaking_scene_integration",
+          "size_approximately_3_to_4x_player_32x32_too_large_for_portal_vfx",
+          "dominates_scene_wallpaper_feel_not_toy_diorama",
+          "scale_inconsistent_with_nearby_summon_entity_which_is_roughly_50px_wide"
+        ],
+        "reasoning": "The portal glow VFX is rendered inside a clearly visible white/light-gray opaque square (~120x120px in scene), which breaks compositing entirely — it looks like an unfinished placeholder card, not an in-game VFX effect. Size is roughly 3.75x the player reference (32x32), which is excessive for a portal: a walk-through portal should sit around 1.5-2x player height to feel grounded in the toy-diorama perspective. The nearby summon creature is ~50px wide, making the portal visually dominant and out-of-scale. The glow design itself (blue pixel-art ring, pink/white inner burst) is stylistically coherent, but the opaque background and outsized footprint are blocking issues.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 5.67,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "asymmetry_ring_distribution",
+          "color_bleed_blue_into_pink",
+          "gradient_center_excess_tones",
+          "noise_pixels_outer_boundary",
+          "inconsistent_ring_thickness"
+        ],
+        "reasoning": "Pixel-art style asset assessed at 4x and 8x zoom. ASYMMETRY: The blue outer ring has noticeably uneven pixel cluster density — upper-left quadrant carries heavier blue pixel mass than upper-right, and the ring thickness varies by 1-2px around the circumference. COLOR BLEED: Isolated blue pixels appear within the pink mid-zone and stray pink pixels intrude into the blue ring; not consistent with clean dithering intent. GRADIENT/TONE COUNT: The center white→light-pink→mid-pink→red-pink progression uses 5+ distinct tones rather than the 2-3 hard tones expected for deliberate pixel art — suggests AI upscaling or generation rather than manual palette discipline. NOISE PIXELS: Several single-pixel fragments at the outer blue-to-background boundary that break the expected stepped silhouette, appearing as stray isolated pixels inconsistent with intentional dithering. INCONSISTENT OUTLINES: Blue ring width shifts between ~2px and ~4px at different clock positions with no clear stylistic reason. Semantic read is correct (circular portal glow with bright center core), and no catastrophic melting or structural semantic failure is present. Asset is functional but exhibits multiple low-confidence AI generation tells; passes visual intent test but fails pixel-art craft standard.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "rendering_style_mismatch_soft_gradient_vs_hard_pixel_art",
+          "no_outline_peers_have_defined_dark_outlines",
+          "palette_break_pink_rose_tones_absent_in_peer_set",
+          "highlight_intensity_overdriven_white_core_vs_modest_peer_highlights",
+          "detail_density_far_below_peers_smooth_rings_vs_intricate_texture_work",
+          "shadow_direction_none_radial_symmetry_vs_directional_lighting_in_peers",
+          "charm_level_ethereal_pastel_magical_mismatches_grim_utilitarian_dungeon_register"
+        ],
+        "reasoning": "Peer family is a dense hard-edged dungeon tileset (stone walls, floors, dungeon objects) rendered in classic pixel art with crisp per-pixel detail, defined dark outlines, directional lighting, and a palette of dark grays, blacks, teal-cyan, crimson-red, and gold. Candidate vfx_portal_glow_v00 diverges on nearly every axis. (1) OUTLINE WEIGHT: peers all carry 1-2px dark bounding outlines; candidate has zero hard outline, just soft color falloff — fail. (2) OUTLINE COLOR: peers use near-black; candidate has none — fail. (3) SHADOW DIRECTION: peers show consistent top-left directional shading; candidate is radially symmetric with no directional shadow — fail. (4) SHADOW COUNT: peers use single-pass shadow; candidate zero — fail. (5) HIGHLIGHT INTENSITY: peers have modest 1-2px bright specular dots; candidate blows out to a large saturated white diamond core — overdriven, fail. (6) COLOR TEMPERATURE: peers are cool-neutral stone with selective warm accents; candidate is warm-pink/rose center bleeding into cool blue rim — palette register mismatch, marginal. (7) DETAIL DENSITY: peers pack intricate crack/texture/object detail into every tile at this scale; candidate is smooth concentric gradient rings with minimal internal detail — severe fail. (8) PROPORTION: circular radial form vs rectangular tile cells — acceptable for item-type difference. (9) RENDERING STYLE: hard-edged pixel art (peers) vs soft blended gradient glow (candidate) — fundamental pipeline mismatch, fail. (10) PALETTE OVERLAP: teal-cyan rim shows some overlap with peer teal tile borders, but pink/rose tones are entirely absent from the peer sheet — partial fail. (11) CHARM LEVEL: peer set is grim/utilitarian dungeon architecture with zero kawaii affect; candidate reads as soft pastel magical portal, more akin to a healing or fantasy-RPG aesthetic, mismatched register — fail. The item-type exemption covers shape differences but not the wholesale rendering-language gap. Six of eleven dimensions are hard fails.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "peer_reference_tileset_leans_dungeon_crawler",
+          "blue_outer_ring_risks_cool_drift"
+        ],
+        "reasoning": "RIGHT candidate (portal glow, 4x): warm pink/magenta core transitioning to white center is strongly on-tone — bright, magical, friendly, fits Zelda/Nintendo fairy-tale register well. Chunky pixel style matches toy-diorama aesthetic. No grimdark, no desaturation, no cold-corporate, no occult imagery. However, the light-blue outer halo introduces a mild cool note; acceptable for a portal VFX but could push toward 'icy/cold' if the surrounding scene is already cool. LEFT peer reference tileset shows significant dungeon-crawler tendencies (gray stone, dark-red splatters, shadowed tiles) which is tonally misaligned with the cute/bright/warm-Hyrule target — this context mildly drags the read of the candidate. Portal glow itself would score 8 in isolation; context penalty drops to 7. Primary flag is the peer asset set rather than the glow itself.",
+        "confidence": 0.71
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.33,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 5.45,
+    "aestheticAvg": 7.33,
+    "uiContextAvg": 5.67,
+    "adversarialMin": 3,
+    "warningCount": 4,
+    "failCount": 2,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.159Z"
+}

@@ -1,0 +1,152 @@
+{
+  "file": "consumable/potion_health_v05.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\consumable\\potion_health_v05.png",
+  "category": "consumable",
+  "candidateName": "potion_health_v05",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "vine_decoration_slightly_busy_at_1x"
+        ],
+        "reasoning": "Emotional (60%): Strong pass. Pink/rose body with green vines and warm cork hits bright-warm-charming Hyrule palette cleanly. Round bottle silhouette reads as friendly and toy-like. The strawberry-inflected design (pink sphere + green dot spots + leaf tendrils) gives a playful consumable personality appropriate for Echoes of Wisdom. Saturated pinks and greens are on-spec. No grimness or desaturation. Score ~8.5/10. Technical (40%): Pass. Zoomed view confirms hard 1px outlines with no anti-aliasing bleed. Bottle body shows 3-tone hard shading (highlight / mid / shadow). Pixel grid snapping is clean; no sub-pixel drift visible. Hand-pixeled character is evident in the deliberate dot placement on the body and vine segment joins. Minor issue: at native 1x the vine wrapping competes with the bottle silhouette slightly, reducing read speed — not a fail condition but worth noting. Denzi reference (armor category) confirms the technical standard; candidate matches that outline discipline and shading economy. Score ~7.5/10. Weighted: 0.6*8.5 + 0.4*7.5 = 8.1 → 8.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "vine_tendrils_tangle_silhouette",
+          "1x_reads_as_blob_not_potion",
+          "light_bg_green_vines_low_contrast"
+        ],
+        "reasoning": "At 4x the potion has genuine charm — round pink bottle with polka dots, a cork stopper, and leafy vines give it a friendly sticker-book personality. The strawberry-like spots add whimsy. Silhouette at 4x on dark bg is readable once you know what it is, but the sprawling vine tendrils muddy the outline: the bottle shape is not instantly readable as a potion without the context of the spots. At 1x (leftmost panel) it collapses to a small pink blob with green noise — the distinctive bottle silhouette is lost. On the light bg the green vines blend somewhat into the warm-toned background, reducing edge pop. Charm score is high (round, soft, personality-filled) but silhouette clarity at 1x and the vine tangle prevent a clean pass."
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 9,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The health potion exhibits excellent color harmony aligned with the Echoes-tuned target palette. Candy pink body (warm, saturated rose-pink) pairs with vibrant saturated green vines in a classic complementary scheme that reads BRIGHT and cheerful. The cork stopper uses a warm parchment-gold tone that bridges the two hues. Polka dots are near-white but warm enough to avoid clinical coldness. Shadow/outline darks are deep colored greens rather than pure black, preserving the warm-tinted dark requirement. All key colors map cleanly onto the reference palette — candy pink (row-1 warm rose), saturated green (row-1 sage), parchment-gold cork (row-1/2 tan-gold). No muddy, desaturated, neon, or cold-corporate tones present. Mood is unambiguously warm and playful. Minor note: the highlight dots verge on neutral white, but total mass is small and does not pull the palette cold.",
+        "confidence": 0.93
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 2,
+      "marginals": 1,
+      "fails": 0,
+      "avgScore": 8,
+      "reason": "pass"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "sprite_scale_slightly_large_relative_to_game_entities",
+          "green_leaf_decoration_adds_minor_visual_noise_at_base"
+        ],
+        "reasoning": "The potion_health_v05 sprite is a pink/rose-colored bottle placed on dark dungeon tiles. Locatability is good: the warm pink body contrasts strongly against the cool dark teal/brown background tiles, making it spottable well within 0.5s. Silhouette is clear — a classic round-bellied bottle with cork is immediately recognizable as a health item. Pixel art style matches the game's existing art (similar resolution, palette approach, and rendering to other scene elements), giving a native rather than pasted feel. No significant confusion with other entities; the bottle shape is distinct from the slime enemy and tile decorations. The Echoes color palette (bright pink, white cork, green leaf accents) fits the game's cheerful aesthetic. Minor concerns: the sprite reads slightly large relative to nearby game objects, and the green leaf cluster at the base introduces a small amount of visual noise. These are polish-level issues rather than functional readability failures. Overall the asset communicates its purpose clearly and integrates reasonably well with the scene.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [],
+        "reasoning": "The potion_health_v05 sprite is a bright warm-pink round-bottomed potion bottle with green leaf/plant details at the base — exactly the cute-round, warm-saturated, whimsical-sparkle aesthetic the target calls for. Pink hue is rosy and inviting (not cold or edgy), the silhouette is plump and toylike, and the green plant accent adds a fairy-forest charm. No grimdark, aggressive, or realistic elements are present in the sprite itself. The surrounding scene environment is darker (dungeon-crawler palette) but that is the pre-existing scene tone, not introduced by this sprite. The sprite actually lifts the scene warmth and reads as a friendly collectible consistent with a cute fairy-tale adventure.",
+        "confidence": 0.88
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "item_larger_than_player",
+          "consumable_exceeds_scale_spec",
+          "toy_diorama_feel_broken"
+        ],
+        "reasoning": "The health potion sprite occupies approximately 2 tiles wide × 2.5 tiles tall in the scene (roughly 64×80px), which far exceeds the 32×32 player reference size. Consumables must be 50–75% of player size (target 16–24px). At ~2× the player footprint, the potion reads as a character-sized object rather than a collectible item, destroying the toy-diorama scale relationship. Perspective and pixel-art style are internally consistent, but the fundamental size violation is a hard fail for this category.",
+        "confidence": 0.88
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 1,
+      "marginals": 1,
+      "fails": 1,
+      "avgScore": 6,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "leaf_cluster_complexity",
+          "minor_outline_width_inconsistency",
+          "highlight_asymmetry"
+        ],
+        "reasoning": "Pixel art health potion shown at 4x and 8x zoom. No sub-pixel rendering — all pixel boundaries are hard integer edges as expected for pixel art. No AA bleed detected at 8x. Solid areas (dark background, pink body) are clean with no stray noise pixels. The outline is predominantly 1px but the bottom-left leaf cluster shows 2px transitions in a few spots at the leaf-to-body junction. The leaf cluster itself is the primary concern: it is compositionally complex with overlapping irregular green shapes that exhibit slight positional asymmetry and blotchy color distribution inconsistent with deliberate pixel art construction — a hallmark of AI diffusion noise. The bottle body shading uses 3 tones (light pink highlight, mid pink base, dark pink dots) which is correct pixel art discipline. White highlight squares on the bottle neck are clean. Dot pattern on bottle body is intentional and consistent. Semantic read is fully correct (health potion: round bottle, cork, pink liquid, leaf garnish). Cork area shows minor left-right asymmetry in highlight placement. No gradient shading; no color bleed into outline. Primary demerits: leaf cluster structural irregularity and two small outline width inconsistencies at leaf attachment points.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "charm_level_mismatch: potion has cute strawberry motif and rounded chibi silhouette; peer helmets are utilitarian/serious classic RPG sprites — register gap is significant",
+          "highlight_intensity: potion shows strong specular bloom (bright pink-white highlight zone) vs peers' subdued single-highlight treatment",
+          "rendering_softness: potion edges and fill have a slightly softer, more pastel-gradated feel vs the hard-contrast pixel blocking on peer helmets",
+          "detail_style_divergence: strawberry pip texture is organic/decorative dot pattern; peers use rectilinear facet shading lines — different visual grammar",
+          "outline_weight_inconsistency: potion outline appears 1-2px heavier on the bottle body relative to peer sprite outlines at matched scale",
+          "shadow_direction_ambiguous: peer helmets show consistent top-right light sourcing with left/bottom shadow; potion shading direction is less committed, reads more as ambient fill",
+          "palette_overlap_minimal: <10% shared hues; peers are cool-grey metallics with red/teal accent; potion is warm pink/red/green — acceptable for item type but amplifies overall style distance"
+        ],
+        "reasoning": "Peer reference sheet is a cohesive set of Denzi-style RPG armor helmets: tight 1px dark outlines, cool metallic palette, hard-contrast pixel shading, consistent top-right light source, low charm register (functional equipment aesthetic). Candidate potion_health_v05 passes basic pixel-art format checks (dark outline, similar pixel density) but diverges across multiple style axes. Most critical: charm level is visibly higher — the strawberry motif, rounded bottle shape, and bright pink palette push this into 'cute item' territory that reads from a different sprite family. Highlight bloom is overdriven vs peers. Shadow commitment is weaker. The gap is not catastrophic — it's still recognizable pixel art — but stacked across 6-7 dimensions it accumulates into a marginal/borderline-fail consistency rating. Would need outline thinning, highlight damping, and possibly a charm reduction pass (less cartoony stopper, simpler bottle silhouette) to blend comfortably into the peer set.",
+        "confidence": 0.72
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 8,
+        "verdict": "pass",
+        "issues": [
+          "slight_generic_mobile_cartoon_risk"
+        ],
+        "reasoning": "Candidate (right): a small pixel-art health potion bottle filled with warm pink/rose liquid, rounded cute bottle silhouette, decorative cork/sparkle topper. Colour palette is warm and saturated — aligns cleanly with 'sunny Hyrule / whimsical magic / toy-diorama' target. No desaturation, no grimdark steel, no cold-corporate palette, no uncanny realism. Peer references (left) are a grid of dark-steel combat helmets — clearly out-of-tone — and the candidate diverges from them in exactly the right direction: soft warm hues, non-threatening silhouette, readable charm. Minor risk: the simplicity of the pixel sprite edges toward 'generic mobile cartoon' but does not cross the threshold — the warm pink and rounded form keep it in Nintendo-family-friendly territory. Overall tonal alignment is strong.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": true,
+      "passes": 1,
+      "marginals": 2,
+      "fails": 0,
+      "avgScore": 6.67,
+      "vetoes": 0,
+      "reason": "no_veto"
+    }
+  },
+  "synthesis": {
+    "finalScore": 6.4,
+    "aestheticAvg": 8,
+    "uiContextAvg": 6,
+    "adversarialMin": 5,
+    "warningCount": 4,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.137Z"
+}

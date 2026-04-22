@@ -1,0 +1,165 @@
+{
+  "file": "enemy/breakable_target_v00.png",
+  "path": "E:\\cv5\\wisdom\\tools\\asset-gen\\generated\\enemy\\breakable_target_v00.png",
+  "category": "enemy",
+  "candidateName": "breakable_target_v00",
+  "round1_aesthetic": {
+    "verdicts": [
+      {
+        "agent": "aesthetic_a_style_fidelity",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "palette_too_dark_for_hyrule_warmth",
+          "grim_expression_conflicts_charming_brief",
+          "missing_saturated_accent_colors_blues_yellows_pinks",
+          "interior_void_reads_threatening_not_friendly"
+        ],
+        "reasoning": "Candidate is an orange cauldron/pot enemy with a dark hollow interior and angry-face markings. Technical execution is solid: 1px hard outlines are present and consistent, 2-3 tone hard shading on the orange body is readable, pixel-grid-snapped at all zoom levels, no anti-aliasing visible, hand-pixeled appearance. Technical score ~8/10. Emotional execution falls short: the Hyrule mood spec calls for bright/warm/charming/friendly with saturated greens/blues/yellows/pinks. This asset uses a muted orange body and a large dark hollow interior that reads grim/threatening rather than charming. The face-like element (dark recessed eye area) skews hostile. The green interior adds a small warm note but is not enough to offset the overall dark, menacing silhouette. Compared to Denzi peer reference (helmets category), technical parity is roughly met, but the emotional warmth delta is significant. Emotional score ~5/10. Combined: 0.6*5 + 0.4*8 = 6.2, rounded to 6. Marginal — needs palette brightening, friendlier expression, and warmer interior accent to pass.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_b_cute_clarity",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "1x_silhouette_mushy",
+          "limited_cute_charm",
+          "grey_base_blends_on_light_bg",
+          "industrial_not_toylike"
+        ],
+        "reasoning": "At 4x the orange pot/cauldron shape reads clearly with good contrast on dark backgrounds — the orange body against the dark rim and bright green interior creates a legible read. Edge pixels are clean at 4x. However, at 1x the sprite collapses into an unreadable blob with no distinct silhouette character. Charm is the bigger miss: the hexagonal segmented orange body reads industrial/mechanical rather than round-soft-toylike. No friendly personality elements (no face, no whimsy, no sticker appeal). The grey base shadow blends into the light background reducing contrast there. Passes the technical pixel-art craft bar at 4x but fails the 'sticker test' and the cute/charm criterion that this rubric requires.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "aesthetic_c_color_harmony",
+        "score": 5,
+        "verdict": "marginal",
+        "issues": [
+          "shadow_neutral_grey",
+          "dark_background_near_black",
+          "missing_colored_darks"
+        ],
+        "reasoning": "The pot body uses warm burnt-orange and warm brown that align well with the Echoes palette warmth directive, and the saturated green interior detail is a healthy complement. However, the shadow cast beneath the object is a flat neutral grey rather than a colored dark (deep teal, plum, or warm brown), which directly violates the 'shadows are colored darks, NEVER grey' rule. The comparison-panel backgrounds are near-black/dark charcoal — while these may be display scaffolding rather than asset pixels, they push the overall mood toward grim/cold. The asset lacks any sky blues, candy pinks, or parchment golds, keeping it in a narrow warm-orange range; acceptable for a single prop but leaves internal harmony somewhat sparse. On the white panel the asset reads warmly and is palette-compatible in hue, but shadow color quality pulls the score below pass threshold.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 5.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round2_ui_context": {
+    "verdicts": [
+      {
+        "agent": "ui_a_readability",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "art_style_mismatch",
+          "visual_noise_interior",
+          "transition_zone_placement"
+        ],
+        "reasoning": "The breakable_target_v00 (ceramic pot/urn with orange-brown rim and swirling green interior) is placed at the boundary between the dark dungeon tile area and the grey cobblestone area. Shape silhouette is distinct and round, clearly differentiating it from the square tile grid. The orange-amber rim provides moderate contrast against dark backgrounds. However, the asset has a noticeably more polished/3D rendering style compared to the flat pixel-art aesthetic of the surrounding environment, giving it a slightly asted-on feel. The swirling green interior pattern adds visual noise that slightly undermines clean readability. Placement at the light/dark tile boundary means visibility varies depending on which side of that transition the asset is near. Not confused with the creature entity in the left dark box (different shape and position). Locatable within 0.5s due to the round shape breaking the tile grid, but Echoes-cleanliness is reduced by the style mismatch and busy interior.",
+        "confidence": 0.78
+      },
+      {
+        "agent": "ui_b_mood_coherence",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "cauldron_silhouette_edges_toward_witch_aesthetic",
+          "scene_background_remains_dungeon_dark"
+        ],
+        "reasoning": "The breakable_target_v00 sprite is a small round orange/amber vessel with a green swirly motif on a grey pedestal base. Positives: warm amber-orange body color, round compact silhouette, green whimsical swirl accent — these all read as cute and fairy-tale adjacent. The sprite itself introduces warmth relative to the existing dark-teal dungeon background and does not introduce grimdark, horror, or edgy elements. Concerns: the cauldron/pot silhouette carries a faint 'witch's cauldron' association that borders on spooky if read in isolation; however the warm saturated orange coloring strongly mitigates this. The scene background remains heavily dungeon-crawler in palette (dark teal grid, blood-red splatter tiles, stone walls), which is the primary mood drag — but that is pre-existing, not introduced by this sprite. Net: the new sprite is a modest step toward warmer fairy-tale tone, kept from a full pass by the borderline silhouette read and the dark scene context it inhabits.",
+        "confidence": 0.82
+      },
+      {
+        "agent": "ui_c_scale_proportion",
+        "score": 6,
+        "verdict": "marginal",
+        "issues": [
+          "enemy_oversized_relative_to_32px_player_spec"
+        ],
+        "reasoning": "The breakable_target_v00 (黏黏球 orb) renders at approximately 60-70px diameter in the composite scene, roughly 2x the specified 32x32 player baseline. For an enemy category entity, this is on the large side — a breakable target should ideally sit at 32-48px to feel proportionate to the player and other scene elements. No perspective mismatch observed; the top-down viewpoint is consistent with surrounding tiles and entities. The scene retains a reasonable toy-diorama feel without zoomed-in or zoomed-out distortion. Art style and pixel density are coherent. Score held at marginal rather than fail because breakable targets commonly run slightly larger than the player in dungeon-style games, and no items-larger-than-player or summon-range violations are present.",
+        "confidence": 0.82
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 3,
+      "fails": 0,
+      "avgScore": 6.33,
+      "reason": "insufficient_passes"
+    }
+  },
+  "round3_adversarial": {
+    "verdicts": [
+      {
+        "agent": "adversarial_a_artifact_hunter",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "highlight_asymmetry",
+          "irregular_cauldron_contents_silhouette"
+        ],
+        "reasoning": "8x zoom inspection: sprite is pixel art construction with hard pixel edges and limited palette — no AA blending, no gradient shading, no sub-pixel features, no color bleed into background. Outline is consistently ~1px throughout. HOWEVER: two adversarial concerns found. (1) White highlight dots on the orange rim are asymmetrically placed — at 8x the left-arc dot count and positioning does not mirror the right arc; a hand-authored pixel artist would typically enforce rotational or bilateral symmetry on a round object highlight. (2) The green cauldron-contents fill has an irregular, blobby silhouette that shows no clear dithering intent and no consistent shape logic — looks closer to noise-fill than deliberate pixel shaping. Neither issue is severe enough alone to fail, but combined they suggest AI-assisted or auto-generated pixel placement rather than fully hand-authored work. Solid areas (black BG, orange body, gray base) are clean with no noise pixels. No pattern tiling artifacts, no melting outlines, no semantic failure — object reads correctly as a cauldron/breakable target. Score 7: marginal.",
+        "confidence": 0.68
+      },
+      {
+        "agent": "adversarial_b_consistency_breaker",
+        "score": 3,
+        "verdict": "fail",
+        "issues": [
+          "scale_mismatch_severe",
+          "color_temperature_divergence",
+          "palette_overlap_minimal",
+          "rendering_style_chunkier_pixels",
+          "outline_weight_inconsistent",
+          "charm_level_industrial_vs_fantasy_cute",
+          "shadow_direction_ambiguous",
+          "highlight_intensity_oversaturated_dome"
+        ],
+        "reasoning": "Candidate (diving-helmet breakable target) fails on multiple fronts vs the Denzi helmet peer family. (1) OUTLINE WEIGHT: Peers show thin, crisp 1px outlines with careful anti-aliasing; candidate has noticeably chunkier, blocky outlines inconsistent with family. (2) OUTLINE COLOR: Peers use pure black; candidate mixes dark brown into outline — minor but measurable drift. (3) SHADOW DIRECTION: Peers share consistent upper-left light source with clean shadow gradient; candidate's shading feels centered/ambiguous, no clear directional read. (4) SHADOW COUNT: Peers use 1 clear shadow layer; candidate layers multiple tones without the same discipline — passable but loose. (5) HIGHLIGHT INTENSITY: Peers use restrained, single-pixel specular dots; candidate's dome has a large, highly saturated green highlight zone that blows past family norm. (6) COLOR TEMPERATURE: HARD FAIL — peers are unanimously cool-neutral metallic silver/grey with small warm accents (red plume, gold trim). Candidate is warm brown/rust body + vivid teal-green visor. Opposite temperature; near-zero palette overlap. (7) DETAIL DENSITY: Candidate packs more surface-detail complexity (rivet texture, circuit-like dome pattern) than any peer at equivalent read distance — over-detailed for family. (8) PROPORTION: Peers are vertically-biased helmet silhouettes; candidate is a wide, spherical deep-sea helmet — tolerable as different item type, but the near-circular silhouette reads as a different shape language. (9) RENDERING STYLE: Most damaging — candidate appears to be rendered at a significantly larger canvas and then displayed at peer scale, producing a 'zoomed-out chunky' pixel density vs the fine Denzi pixel-work of peers. Sprite pixel size does not match family grid. (10) PALETTE OVERLAP: Minimal. Only black outlines are shared. Warm brown, rust, bright teal/green appear nowhere in peer sheet. (11) CHARM LEVEL: Peers project cute-but-serious fantasy warrior aesthetic. Candidate reads industrial/steampunk sci-fi — mismatched genre charm. Overall: too many first-order style breaks to be a marginal; candidate needs palette realignment to cool metallics, outline weight reduction, highlight restraint, and ideally a re-render at the family pixel density.",
+        "confidence": 0.87
+      },
+      {
+        "agent": "adversarial_c_tone_mismatch",
+        "score": 7,
+        "verdict": "marginal",
+        "issues": [
+          "green_contents_ambiguous",
+          "palette_slightly_muted",
+          "peer_refs_dark_metallic"
+        ],
+        "reasoning": "Candidate (right, 4x): a rounded brown barrel/pot with green fill. The warm brown and circular toylike silhouette are consistent with Nintendo/Zelda breakable-object vocabulary. However, the green interior reads ambiguously — could be foliage (fine) or a bubbling cauldron/potion (mild occult overtone, borderline). Palette is warm but not bright or sunny; sits closer to earthy-muted than to the crisp cheerfulness of Hyrule overworld assets. Peer refs on the left are grey/dark metallic helmets — noticeably cooler and harder in tone than the target aesthetic, which raises concern about whether the peer set itself is calibrated; the candidate is actually warmer than its peers. No grimdark, edgy, or fan-service signals detected. Overall the candidate is close to passing but the murky green fill and slightly subdued brightness keep it marginal rather than a clean pass.",
+        "confidence": 0.72
+      }
+    ],
+    "aggregate": {
+      "pass": false,
+      "passes": 0,
+      "marginals": 2,
+      "fails": 1,
+      "avgScore": 5.67,
+      "vetoes": 1,
+      "reason": "vetoed_by_1"
+    }
+  },
+  "synthesis": {
+    "finalScore": 4.98,
+    "aestheticAvg": 5.33,
+    "uiContextAvg": 6.33,
+    "adversarialMin": 3,
+    "warningCount": 8,
+    "failCount": 1,
+    "unanimousPass": false,
+    "overallPassed": false
+  },
+  "timestamp": "2026-04-20T03:15:03.105Z"
+}

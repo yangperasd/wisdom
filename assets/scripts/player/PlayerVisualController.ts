@@ -69,8 +69,8 @@ export class PlayerVisualController extends Component {
   private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
-    this.resolveHealth()?.events.on(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
-    this.player?.events.on(PLAYER_EVENT_RESPAWNED, this.onRespawned, this);
+    this.resolveHealth()?.events?.on(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
+    this.player?.events?.on(PLAYER_EVENT_RESPAWNED, this.onRespawned, this);
     this.applyVisualState(true);
   }
 
@@ -83,8 +83,8 @@ export class PlayerVisualController extends Component {
   }
 
   protected onDestroy(): void {
-    this.resolveHealth()?.events.off(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
-    this.player?.events.off(PLAYER_EVENT_RESPAWNED, this.onRespawned, this);
+    this.resolveHealth()?.events?.off(HEALTH_EVENT_DAMAGED, this.onDamaged, this);
+    this.player?.events?.off(PLAYER_EVENT_RESPAWNED, this.onRespawned, this);
     destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 

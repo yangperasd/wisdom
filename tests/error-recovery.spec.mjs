@@ -11,8 +11,12 @@ test.describe('error recovery scenarios', () => {
   test('BUG#2: player at 0 HP with no checkpoint does not crash', async ({ page }) => {
     await openPreviewScene(page, 'MechanicsLab', ['Player']);
     await stepFrames(page, 5);
-    // Kill player - checkpoint may or may not be set
-    await killPlayer(page);
+    // Kill player with auto-respawn detached so we observe the dead state.
+    // The unified respawn flow now restores HP whenever requestRespawn() fires
+    // (manual button or depletion), so without this option the loop would
+    // bounce HP off zero. The non-crash invariant is what this test really
+    // protects.
+    await killPlayer(page, { disableAutoRespawn: true });
     await stepFrames(page, 20);
     // Game should still be running, not crashed
     const flow = await readFlowState(page);
