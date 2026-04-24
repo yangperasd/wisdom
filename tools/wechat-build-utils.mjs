@@ -91,6 +91,39 @@ async function readJson(filePath) {
   return JSON.parse(content);
 }
 
+export function validateWechatGameProjectConfig(projectConfig, configPath = 'project.config.json') {
+  const errors = [];
+  if (!projectConfig || typeof projectConfig !== 'object' || Array.isArray(projectConfig)) {
+    errors.push('config root must be an object');
+  } else {
+    if (projectConfig.compileType !== 'game') {
+      errors.push('compileType must be "game"');
+    }
+    if (typeof projectConfig.appid !== 'string' || projectConfig.appid.trim().length === 0) {
+      errors.push('appid must be a non-empty string');
+    }
+    if (typeof projectConfig.projectname !== 'string' || projectConfig.projectname.trim().length === 0) {
+      errors.push('projectname must be a non-empty string');
+    }
+    if (typeof projectConfig.miniprogramRoot !== 'string' || projectConfig.miniprogramRoot.trim().length === 0) {
+      errors.push('miniprogramRoot must be a non-empty string');
+    }
+  }
+
+  return {
+    ok: errors.length === 0,
+    configPath,
+    errors,
+  };
+}
+
+export function assertWechatGameProjectConfig(projectConfig, configPath = 'project.config.json') {
+  const result = validateWechatGameProjectConfig(projectConfig, configPath);
+  if (!result.ok) {
+    throw new Error(`Invalid WeChat game project config at ${configPath}: ${result.errors.join('; ')}`);
+  }
+}
+
 export function resolveProjectTsconfigPath(rootDir = projectRoot) {
   return path.join(rootDir, 'tsconfig.json');
 }
@@ -183,6 +216,51 @@ export async function collectSceneEntries(rootDir = projectRoot) {
   }
 
   return entries;
+}
+
+export function createWechatGameProjectConfig(options = {}) {
+  const {
+    existingConfig = {},
+    appId = process.env.WECHATGAME_APPID || defaultWechatAppId,
+    projectname = 'wisdom',
+    urlCheck = true,
+  } = options;
+  const safeExistingConfig = existingConfig && typeof existingConfig === 'object' && !Array.isArray(existingConfig)
+    ? existingConfig
+    : {};
+  const defaultCondition = {
+    search: { current: -1, list: [] },
+    conversation: { current: -1, list: [] },
+    game: { currentL: -1, current: -1, list: [] },
+    miniprogram: { current: -1, list: [] },
+  };
+  const defaultSetting = {
+    urlCheck,
+    postcss: true,
+    minified: true,
+    minifyWXML: true,
+    newFeature: false,
+    enhance: true,
+    useIsolateContext: true,
+  };
+
+  return {
+    description: 'Cocos Creator WeChat game project',
+    miniprogramRoot: './',
+    setting: {
+      ...defaultSetting,
+      ...(safeExistingConfig.setting && typeof safeExistingConfig.setting === 'object' ? safeExistingConfig.setting : {}),
+      urlCheck,
+    },
+    compileType: 'game',
+    libVersion: typeof safeExistingConfig.libVersion === 'string' ? safeExistingConfig.libVersion : 'widelyUsed',
+    appid: appId,
+    projectname,
+    condition: {
+      ...defaultCondition,
+      ...(safeExistingConfig.condition && typeof safeExistingConfig.condition === 'object' ? safeExistingConfig.condition : {}),
+    },
+  };
 }
 
 function normalisePath(value) {
@@ -496,6 +574,69 @@ export async function resolveLastWechatBuildOutputDir(rootDir = projectRoot) {
   return resolveConfiguredWechatBuildOutputDir(rootDir);
 }
 
+export async function resolveExistingWechatBuildOutputDir(preferredOutputDir, options = {}) {
+  const rootDir = options.rootDir ?? projectRoot;
+  const buildRootDir = path.join(rootDir, 'build');
+  const candidateDirs = [];
+  const seen = new Set();
+
+  const addCandidateDir = (candidateDir) => {
+    if (!candidateDir || typeof candidateDir !== 'string') {
+      return;
+    }
+
+    const resolvedDir = path.resolve(candidateDir);
+    if (seen.has(resolvedDir)) {
+      return;
+    }
+
+    seen.add(resolvedDir);
+    candidateDirs.push(resolvedDir);
+  };
+
+  addCandidateDir(preferredOutputDir);
+  addCandidateDir(await resolveConfiguredWechatBuildOutputDir(rootDir));
+  addCandidateDir(resolveWechatBuildOutputDir(rootDir));
+
+  for (const candidateDir of candidateDirs) {
+    if (await isValidWechatBuildOutputDir(candidateDir)) {
+      return candidateDir;
+    }
+  }
+
+  let buildEntries = [];
+  try {
+    buildEntries = await readdir(buildRootDir, { withFileTypes: true });
+  } catch {
+    return null;
+  }
+
+  const fallbackDirs = [];
+  for (const entry of buildEntries) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+
+    if (!entry.name.startsWith(wechatBuildOutputName)) {
+      continue;
+    }
+
+    const candidateDir = path.join(buildRootDir, entry.name);
+    if (!(await isValidWechatBuildOutputDir(candidateDir))) {
+      continue;
+    }
+
+    const directoryStat = await stat(candidateDir);
+    fallbackDirs.push({
+      dir: candidateDir,
+      mtimeMs: directoryStat.mtimeMs,
+    });
+  }
+
+  fallbackDirs.sort((left, right) => right.mtimeMs - left.mtimeMs);
+  return fallbackDirs[0]?.dir ?? null;
+}
+
 async function pathExists(filePath) {
   try {
     await access(filePath, fsConstants.F_OK);
@@ -503,6 +644,26 @@ async function pathExists(filePath) {
   } catch {
     return false;
   }
+}
+
+async function isValidWechatBuildOutputDir(outputDir) {
+  if (!outputDir) {
+    return false;
+  }
+
+  const requiredPaths = [
+    path.join(outputDir, 'src'),
+    path.join(outputDir, 'game.json'),
+    path.join(outputDir, 'project.config.json'),
+  ];
+
+  for (const requiredPath of requiredPaths) {
+    if (!(await pathExists(requiredPath))) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 async function collectFilesByExtension(dirPath, extensions) {

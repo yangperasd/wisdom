@@ -662,6 +662,10 @@ async function generatePrefabs(scriptIds) {
       _radius: 12,
     });
     const arrowVisualId = addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 52, 18, color(208, 168, 74, 255), color(255, 238, 188, 180), 8);
+    const projectileBinding = resolveAssetBinding(bindingCatalog, 'projectile_arrow');
+    const projectileImageBinding = projectileBinding?.selectedPath
+      ? resolveImageAssetReference(PROJECT_ROOT, projectileBinding.selectedPath)
+      : null;
     addComponent(simpleProjectileType, {
       speed: 260,
       maxLifetime: 2,
@@ -669,7 +673,12 @@ async function generatePrefabs(scriptIds) {
       ignoreNodeNameIncludes: 'Trap',
       destroyOnNodeNameIncludes: 'Player',
       visualRoot: ref(arrowVisualId),
-      visualSpriteFrame: null,
+      visualSpriteFrame: projectileImageBinding?.propertyName === 'spriteFrame'
+        ? projectileImageBinding.assetRef
+        : null,
+      visualTexture: projectileImageBinding?.propertyName === 'texture'
+        ? projectileImageBinding.assetRef
+        : null,
       impactClip: null,
       impactClipVolume: 1,
       hideLabelWhenSkinned: true,
@@ -680,7 +689,6 @@ async function generatePrefabs(scriptIds) {
       targetNameIncludes: 'Player',
       destroyAfterHit: false,
     });
-    const projectileBinding = resolveAssetBinding(bindingCatalog, 'projectile_arrow');
     if (projectileBinding) {
       addComponent(assetBindingTagType, {
         bindingKey: projectileBinding.bindingKey,

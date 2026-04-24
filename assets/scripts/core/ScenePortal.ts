@@ -1,7 +1,13 @@
-import { _decorator, AudioClip, AudioSource, Collider2D, Component, Contact2DType, director, IPhysics2DContact, SpriteFrame, Vec3 } from 'cc';
+import { _decorator, AudioClip, AudioSource, Collider2D, Component, Contact2DType, director, IPhysics2DContact, SpriteFrame, Texture2D, Vec3 } from 'cc';
 import { GameManager } from './GameManager';
 import { SceneLoader } from './SceneLoader';
-import { applySpriteFrameToPlaceholderVisual } from '../visual/SpriteVisualSkin';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteVerticalAnchor,
+  resolveTextureBackedSpriteFrame,
+} from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
 
@@ -40,9 +46,13 @@ export class ScenePortal extends Component {
   @property(SpriteFrame)
   visualSpriteFrame: SpriteFrame | null = null;
 
+  @property(Texture2D)
+  visualTexture: Texture2D | null = null;
+
   private collider: Collider2D | null = null;
   private isTransitioning = false;
   private audioSource: AudioSource | null = null;
+  private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
     this.collider = this.getComponent(Collider2D);
@@ -54,7 +64,7 @@ export class ScenePortal extends Component {
     this.audioSource = audioSource;
     audioSource.playOnAwake = false;
     audioSource.loop = false;
-    applySpriteFrameToPlaceholderVisual(this.node, this.visualSpriteFrame);
+    this.applyVisual();
   }
 
   protected start(): void {
@@ -67,8 +77,13 @@ export class ScenePortal extends Component {
     this.isTransitioning = false;
   }
 
+  protected onEnable(): void {
+    this.applyVisual();
+  }
+
   protected onDestroy(): void {
     this.collider?.off(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 
   private onBeginContact(_self: Collider2D, other: Collider2D, _contact?: IPhysics2DContact | null): void {
@@ -102,5 +117,15 @@ export class ScenePortal extends Component {
 
   private resolveSceneLoader(): SceneLoader | null {
     return this.sceneLoader ?? SceneLoader.instance;
+  }
+
+  private applyVisual(): void {
+    const effectiveFrame = this.visualSpriteFrame
+      ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'portal', this.visualTexture);
+    applySpriteFrameToPlaceholderVisual(this.node, effectiveFrame, {
+      fitMode: PlaceholderSpriteFitMode.Cover,
+      verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
+      scaleMultiplier: 1.04,
+    });
   }
 }

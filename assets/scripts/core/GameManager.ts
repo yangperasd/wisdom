@@ -7,6 +7,7 @@ import {
   GAME_EVENT_RESPAWN_REQUESTED,
   GameFlowState,
 } from './GameTypes';
+import { startWechatDevtoolsRuntimeProbe } from '../qa/WechatDevtoolsRuntimeProbe';
 
 const { ccclass, property } = _decorator;
 
@@ -39,6 +40,7 @@ export class GameManager extends Component {
     }
 
     this.flowState = GameFlowState.Playing;
+    startWechatDevtoolsRuntimeProbe();
   }
 
   protected onDestroy(): void {

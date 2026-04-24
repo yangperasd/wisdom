@@ -1,7 +1,13 @@
-import { _decorator, AudioClip, Collider2D, Component, Contact2DType, IPhysics2DContact, Node, SpriteFrame, Vec3 } from 'cc';
+import { _decorator, AudioClip, Collider2D, Component, Contact2DType, IPhysics2DContact, Node, SpriteFrame, Texture2D, Vec3 } from 'cc';
 import { playTransientClipAtNode } from '../audio/TransientAudio';
 import { GameManager } from '../core/GameManager';
-import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from '../visual/SpriteVisualSkin';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  resolveTextureBackedSpriteFrame,
+  setPlaceholderLabelVisible,
+} from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
 
@@ -28,6 +34,9 @@ export class SimpleProjectile extends Component {
   @property(SpriteFrame)
   visualSpriteFrame: SpriteFrame | null = null;
 
+  @property(Texture2D)
+  visualTexture: Texture2D | null = null;
+
   @property(AudioClip)
   impactClip: AudioClip | null = null;
 
@@ -43,16 +52,17 @@ export class SimpleProjectile extends Component {
   private direction = new Vec3(1, 0, 0);
   private elapsed = 0;
   private collider: Collider2D | null = null;
+  private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
-    applySpriteFrameToPlaceholderVisual(this.visualRoot ?? this.node, this.visualSpriteFrame);
-    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !this.visualSpriteFrame);
+    this.applyVisual();
     this.collider = this.getComponent(Collider2D);
     this.collider?.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
   }
 
   protected onDestroy(): void {
     this.collider?.off(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 
   protected update(dt: number): void {
@@ -94,5 +104,15 @@ export class SimpleProjectile extends Component {
       playTransientClipAtNode(this.node, this.impactClip, this.impactClipVolume, 'ProjectileImpact');
       this.node.destroy();
     }
+  }
+
+  private applyVisual(): void {
+    const effectiveFrame = this.visualSpriteFrame
+      ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'projectile', this.visualTexture);
+    applySpriteFrameToPlaceholderVisual(this.visualRoot ?? this.node, effectiveFrame, {
+      fitMode: PlaceholderSpriteFitMode.Contain,
+      scaleMultiplier: 1.05,
+    });
+    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !effectiveFrame);
   }
 }

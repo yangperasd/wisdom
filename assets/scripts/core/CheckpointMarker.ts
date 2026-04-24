@@ -1,6 +1,13 @@
-import { _decorator, Collider2D, Component, Contact2DType, director, IPhysics2DContact, SpriteFrame } from 'cc';
+import { _decorator, Collider2D, Component, Contact2DType, director, IPhysics2DContact, SpriteFrame, Texture2D } from 'cc';
 import { GameManager } from './GameManager';
-import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from '../visual/SpriteVisualSkin';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteVerticalAnchor,
+  resolveTextureBackedSpriteFrame,
+  setPlaceholderLabelVisible,
+} from '../visual/SpriteVisualSkin';
 
 const { ccclass, property, executeInEditMode } = _decorator;
 
@@ -16,10 +23,14 @@ export class CheckpointMarker extends Component {
   @property(SpriteFrame)
   visualSpriteFrame: SpriteFrame | null = null;
 
+  @property(Texture2D)
+  visualTexture: Texture2D | null = null;
+
   @property
   hideLabelWhenSkinned = true;
 
   private collider: Collider2D | null = null;
+  private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
     this.applyVisual();
@@ -37,6 +48,7 @@ export class CheckpointMarker extends Component {
 
   protected onDestroy(): void {
     this.collider?.off(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+    destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 
   private onBeginContact(_self: Collider2D, other: Collider2D, _contact?: IPhysics2DContact | null): void {
@@ -52,7 +64,13 @@ export class CheckpointMarker extends Component {
   }
 
   private applyVisual(): void {
-    applySpriteFrameToPlaceholderVisual(this.node, this.visualSpriteFrame);
-    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !this.visualSpriteFrame);
+    const effectiveFrame = this.visualSpriteFrame
+      ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'checkpoint', this.visualTexture);
+    applySpriteFrameToPlaceholderVisual(this.node, effectiveFrame, {
+      fitMode: PlaceholderSpriteFitMode.Cover,
+      verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
+      scaleMultiplier: 1.05,
+    });
+    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !effectiveFrame);
   }
 }

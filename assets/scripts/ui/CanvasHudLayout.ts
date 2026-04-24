@@ -95,8 +95,8 @@ export class CanvasHudLayout extends Component {
     const echoStepX = tight ? 96 : 102;
     const attackBaseY = safeBottom + (tight ? 100 : compact ? 108 : 116);
     const echoRowY = attackBaseY + (tight ? 76 : compact ? 82 : 88);
-    const pauseInsetX = tight ? 70 : 76;
-    const pauseInsetY = tight ? 34 : 38;
+    const pauseInsetX = tight ? 204 : 214;
+    const pauseInsetY = tight ? 88 : 96;
     const hudWidth = clamp(safeArea.width - (tight ? 44 : 56), 760, 1236);
     const objectiveWidth = clamp(safeArea.width - (tight ? 64 : 88), 700, 1190);
     const controlsWidth = clamp(safeArea.width - 420, 420, 900);

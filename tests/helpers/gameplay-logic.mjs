@@ -77,7 +77,7 @@ export function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
-export function computeJoystickState(localX, localY, maxRadius = 56, deadzone = 10) {
+export function computeJoystickState(localX, localY, maxRadius = 56, deadzone = 10, responseExponent = 0.72) {
   const distance = Math.hypot(localX, localY);
   if (distance <= 0) {
     return {
@@ -105,11 +105,12 @@ export function computeJoystickState(localX, localY, maxRadius = 56, deadzone = 
   }
 
   const normalizedStrength = (clampedDistance - deadzone) / Math.max(1, maxRadius - deadzone);
+  const adjustedStrength = Math.pow(normalizedStrength, Math.max(0.25, responseExponent));
   return {
     knob,
     axis: {
-      x: direction.x * normalizedStrength,
-      y: direction.y * normalizedStrength,
+      x: direction.x * adjustedStrength,
+      y: direction.y * adjustedStrength,
     },
     distance,
     clampedDistance,

@@ -1,5 +1,11 @@
-import { _decorator, Component, Node, Sprite, SpriteFrame, Texture2D } from 'cc';
-import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from './SpriteVisualSkin';
+import { _decorator, Component, Enum, Node, Sprite, SpriteFrame, Texture2D } from 'cc';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteMaskShape,
+  PlaceholderSpriteVerticalAnchor,
+  setPlaceholderLabelVisible,
+} from './SpriteVisualSkin';
 
 const { ccclass, property, executeInEditMode } = _decorator;
 
@@ -20,6 +26,24 @@ export class SceneDressingSkin extends Component {
 
   @property
   tiled = true;
+
+  @property({ type: Enum(PlaceholderSpriteFitMode) })
+  fitMode = PlaceholderSpriteFitMode.Stretch;
+
+  @property({ type: Enum(PlaceholderSpriteVerticalAnchor) })
+  verticalAnchor = PlaceholderSpriteVerticalAnchor.Center;
+
+  @property
+  scaleMultiplier = 1;
+
+  @property({ type: Enum(PlaceholderSpriteMaskShape) })
+  maskShape = PlaceholderSpriteMaskShape.None;
+
+  @property
+  maskEllipseSegments = 48;
+
+  @property
+  maskCornerRadius = 0;
 
   private generatedSpriteFrame: SpriteFrame | null = null;
 
@@ -44,7 +68,15 @@ export class SceneDressingSkin extends Component {
     applySpriteFrameToPlaceholderVisual(
       this.visualRoot ?? this.node,
       effectiveSpriteFrame,
-      { spriteType: this.tiled ? Sprite.Type.TILED : Sprite.Type.SIMPLE },
+      {
+        spriteType: this.tiled ? Sprite.Type.TILED : Sprite.Type.SIMPLE,
+        fitMode: this.fitMode,
+        verticalAnchor: this.verticalAnchor,
+        scaleMultiplier: this.scaleMultiplier,
+        maskShape: this.maskShape,
+        maskEllipseSegments: this.maskEllipseSegments,
+        maskCornerRadius: this.maskCornerRadius,
+      },
     );
 
     if (this.hideLabelWhenSkinned) {

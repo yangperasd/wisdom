@@ -109,4 +109,47 @@ test.describe('boss fight flow', () => {
     expect(boss.health).toBe(boss.maxHealth);
     expect(boss.maxHealth).toBeGreaterThanOrEqual(3);
   });
+
+  test('boss arena environment skins load while boss placeholder anatomy stays simplified', async ({ page }) => {
+    await openPreviewScene(page, 'BossArena', ['BossBackdrop', 'BossArenaFloor-1', 'BossEnemy-Core', 'BossShield-Closed']);
+    await stepFrames(page, 10);
+
+    const visualState = await page.evaluate(() => {
+      const scene = window.cc?.director?.getScene?.();
+      const canvas = scene?.getChildByName?.('Canvas');
+      const worldRoot = canvas?.getChildByName?.('WorldRoot');
+      const findNode = (root, name) => {
+        if (!root) return null;
+        if (root.name === name) return root;
+        for (const child of (root.children ?? [])) {
+          const found = findNode(child, name);
+          if (found) return found;
+        }
+        return null;
+      };
+      const isActive = (name) => Boolean(findNode(worldRoot, name)?.active);
+      const spriteSkinActive = (name) => Boolean(findNode(worldRoot, name)?.getChildByName?.('SpriteSkin')?.active);
+      return {
+        bossBackdropSpriteSkin: spriteSkinActive('BossBackdrop'),
+        bossFloor1SpriteSkin: spriteSkinActive('BossArenaFloor-1'),
+        bossFloor2SpriteSkin: spriteSkinActive('BossArenaFloor-2'),
+        bossOrbActive: isActive('BossEnemy-Core-Orb'),
+        bossBaseActive: isActive('BossEnemy-Core-Base'),
+        bossShineActive: isActive('BossEnemy-Core-Shine'),
+        shieldSparkActive: isActive('BossShield-Closed-Spark'),
+        shieldLatchActive: isActive('BossShield-Closed-Latch'),
+        shieldCharmCoreActive: isActive('BossShield-Closed-CharmCore'),
+      };
+    });
+
+    expect(visualState.bossBackdropSpriteSkin).toBe(true);
+    expect(visualState.bossFloor1SpriteSkin).toBe(true);
+    expect(visualState.bossFloor2SpriteSkin).toBe(true);
+    expect(visualState.bossOrbActive).toBe(false);
+    expect(visualState.bossBaseActive).toBe(false);
+    expect(visualState.bossShineActive).toBe(false);
+    expect(visualState.shieldSparkActive).toBe(false);
+    expect(visualState.shieldLatchActive).toBe(false);
+    expect(visualState.shieldCharmCoreActive).toBe(true);
+  });
 });

@@ -108,6 +108,7 @@ export class SceneLoader extends Component {
   }
 
   public getSwitchState(): SceneSwitchState {
+    this.completeSwitchIfCurrentScene();
     return { ...(this.switchState ?? SceneLoader.sharedSwitchState ?? EMPTY_SWITCH_STATE) };
   }
 

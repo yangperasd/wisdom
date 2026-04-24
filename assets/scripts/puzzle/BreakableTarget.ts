@@ -1,8 +1,15 @@
-import { _decorator, AudioClip, Component, EventTarget, Node, SpriteFrame, Vec3 } from 'cc';
+import { _decorator, AudioClip, Component, EventTarget, Node, SpriteFrame, Texture2D, Vec3 } from 'cc';
 import { playTransientClipAtNode } from '../audio/TransientAudio';
 import { GameManager } from '../core/GameManager';
 import { GAME_EVENT_RESPAWN_REQUESTED } from '../core/GameTypes';
-import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from '../visual/SpriteVisualSkin';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteVerticalAnchor,
+  resolveTextureBackedSpriteFrame,
+  setPlaceholderLabelVisible,
+} from '../visual/SpriteVisualSkin';
 
 const { ccclass, property, executeInEditMode } = _decorator;
 
@@ -32,8 +39,14 @@ export class BreakableTarget extends Component {
   @property(SpriteFrame)
   intactSpriteFrame: SpriteFrame | null = null;
 
+  @property(Texture2D)
+  intactTexture: Texture2D | null = null;
+
   @property(SpriteFrame)
   brokenSpriteFrame: SpriteFrame | null = null;
+
+  @property(Texture2D)
+  brokenTexture: Texture2D | null = null;
 
   @property(AudioClip)
   breakClip: AudioClip | null = null;
@@ -51,6 +64,7 @@ export class BreakableTarget extends Component {
   hideLabelsWhenSkinned = true;
 
   private isBroken = false;
+  private readonly generatedFrames = new Map<string, SpriteFrame>();
 
   protected onLoad(): void {
     this.isBroken = this.startsBroken;
@@ -73,6 +87,10 @@ export class BreakableTarget extends Component {
 
   protected onDisable(): void {
     GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.resetState, this);
+  }
+
+  protected onDestroy(): void {
+    destroyGeneratedSpriteFrames(this.generatedFrames);
   }
 
   public applyExplosion(_origin?: Readonly<Vec3>): boolean {
@@ -125,19 +143,21 @@ export class BreakableTarget extends Component {
   private applyPresentationState(): void {
     const intactTarget = this.intactVisualNode ?? this.node;
     const brokenTarget = this.brokenVisualNode;
+    const intactFrame = this.getConfiguredFrame('intact', this.intactSpriteFrame, this.intactTexture);
+    const brokenFrame = this.getConfiguredFrame('broken', this.brokenSpriteFrame, this.brokenTexture);
 
     if (brokenTarget?.isValid) {
-      applySpriteFrameToPlaceholderVisual(intactTarget, this.intactSpriteFrame);
-      applySpriteFrameToPlaceholderVisual(brokenTarget, this.brokenSpriteFrame);
-      this.applyLabelVisibility(intactTarget, this.intactSpriteFrame);
-      this.applyLabelVisibility(brokenTarget, this.brokenSpriteFrame);
+      this.applyTargetSprite(intactTarget, intactFrame);
+      this.applyTargetSprite(brokenTarget, brokenFrame);
+      this.applyLabelVisibility(intactTarget, intactFrame);
+      this.applyLabelVisibility(brokenTarget, brokenFrame);
       return;
     }
 
     const activeFrame = this.isBroken
-      ? (this.brokenSpriteFrame ?? this.intactSpriteFrame)
-      : this.intactSpriteFrame;
-    applySpriteFrameToPlaceholderVisual(intactTarget, activeFrame);
+      ? (brokenFrame ?? intactFrame)
+      : intactFrame;
+    this.applyTargetSprite(intactTarget, activeFrame);
     this.applyLabelVisibility(intactTarget, activeFrame);
   }
 
@@ -152,5 +172,21 @@ export class BreakableTarget extends Component {
 
   private playResetFeedback(): void {
     playTransientClipAtNode(this.node, this.resetClip, this.resetClipVolume, 'ResetAudio');
+  }
+
+  private getConfiguredFrame(
+    cacheKey: string,
+    spriteFrame: SpriteFrame | null,
+    texture: Texture2D | null,
+  ): SpriteFrame | null {
+    return spriteFrame ?? resolveTextureBackedSpriteFrame(this.generatedFrames, cacheKey, texture);
+  }
+
+  private applyTargetSprite(target: Node | null, spriteFrame: SpriteFrame | null): void {
+    applySpriteFrameToPlaceholderVisual(target, spriteFrame, {
+      fitMode: PlaceholderSpriteFitMode.Cover,
+      verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
+      scaleMultiplier: 1.04,
+    });
   }
 }

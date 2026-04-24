@@ -1,6 +1,13 @@
-import { _decorator, AudioClip, Component, SpriteFrame } from 'cc';
+import { _decorator, AudioClip, Component, SpriteFrame, Texture2D } from 'cc';
 import { playTransientClipAtNode } from '../audio/TransientAudio';
-import { applySpriteFrameToPlaceholderVisual, setPlaceholderLabelVisible } from './SpriteVisualSkin';
+import {
+  applySpriteFrameToPlaceholderVisual,
+  destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteVerticalAnchor,
+  resolveTextureBackedSpriteFrame,
+  setPlaceholderLabelVisible,
+} from './SpriteVisualSkin';
 
 const { ccclass, property, executeInEditMode } = _decorator;
 
@@ -9,6 +16,9 @@ const { ccclass, property, executeInEditMode } = _decorator;
 export class CollectiblePresentation extends Component {
   @property(SpriteFrame)
   visualSpriteFrame: SpriteFrame | null = null;
+
+  @property(Texture2D)
+  visualTexture: Texture2D | null = null;
 
   @property(AudioClip)
   pickupClip: AudioClip | null = null;
@@ -19,6 +29,8 @@ export class CollectiblePresentation extends Component {
   @property
   hideLabelWhenSkinned = true;
 
+  private readonly generatedFrames = new Map<string, SpriteFrame>();
+
   protected onLoad(): void {
     this.applyPresentation();
   }
@@ -27,9 +39,19 @@ export class CollectiblePresentation extends Component {
     this.applyPresentation();
   }
 
+  protected onDestroy(): void {
+    destroyGeneratedSpriteFrames(this.generatedFrames);
+  }
+
   public applyPresentation(): void {
-    applySpriteFrameToPlaceholderVisual(this.node, this.visualSpriteFrame);
-    this.applyPlaceholderLabelVisibility();
+    const effectiveFrame = this.visualSpriteFrame
+      ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'collectible', this.visualTexture);
+    applySpriteFrameToPlaceholderVisual(this.node, effectiveFrame, {
+      fitMode: PlaceholderSpriteFitMode.Cover,
+      verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
+      scaleMultiplier: 1.06,
+    });
+    this.applyPlaceholderLabelVisibility(effectiveFrame);
   }
 
   public playPickupFeedback(): void {
@@ -40,8 +62,8 @@ export class CollectiblePresentation extends Component {
     playTransientClipAtNode(this.node, this.pickupClip, this.pickupClipVolume, 'PickupAudio');
   }
 
-  private applyPlaceholderLabelVisibility(): void {
-    const shouldHide = this.hideLabelWhenSkinned && !!this.visualSpriteFrame;
+  private applyPlaceholderLabelVisibility(effectiveFrame: SpriteFrame | null): void {
+    const shouldHide = this.hideLabelWhenSkinned && !!effectiveFrame;
     setPlaceholderLabelVisible(this.node, !shouldHide);
   }
 }

@@ -90,6 +90,46 @@ test('FieldRuins scene includes the bomb and dungeon flow nodes', async () => {
   }
 });
 
+test('First-release checkpoint labels do not cover the player spawn', async () => {
+  const sceneCheckpoints = [
+    ['StartCamp', ['Checkpoint-Camp', 'Checkpoint-CampReturn']],
+    ['FieldWest', ['Checkpoint-FieldWest', 'Checkpoint-FieldWestReturn']],
+    ['FieldRuins', ['Checkpoint-FieldRuins']],
+    ['DungeonHub', ['Checkpoint-DungeonHub']],
+    ['DungeonRoomA', ['Checkpoint-DungeonRoomA']],
+    ['DungeonRoomB', ['Checkpoint-DungeonRoomB']],
+    ['DungeonRoomC', ['Checkpoint-DungeonRoomC']],
+    ['BossArena', ['Checkpoint-BossArena']],
+  ];
+
+  for (const [sceneName, checkpointNames] of sceneCheckpoints) {
+    const items = await readAssetJson(`assets/scenes/${sceneName}.scene`);
+    const player = assertNodeExists(items, 'Player');
+    const locatorBadge = assertNodeExists(items, 'PlayerLocatorBadge');
+    assert.ok(
+      player._children.some((child) => child.__id__ === items.indexOf(locatorBadge)),
+      `${sceneName} Player should own the first-screen locator badge.`,
+    );
+    assert.ok(
+      locatorBadge._lpos.y >= 48,
+      `${sceneName} Player locator badge should sit above the player body for first-screen readability.`,
+    );
+
+    for (const checkpointName of checkpointNames) {
+      const checkpoint = assertNodeExists(items, checkpointName);
+      const visual = assertNodeExists(items, `${checkpointName}-Visual`);
+      const label = assertNodeExists(items, `${checkpointName}-Label`);
+
+      assert.ok(checkpoint._children.some((child) => child.__id__ === items.indexOf(visual)), `${checkpointName} should own its visual node.`);
+      assert.ok(checkpoint._children.some((child) => child.__id__ === items.indexOf(label)), `${checkpointName} should own its label node.`);
+      assert.ok(
+        visual._lpos.y >= 52 && label._lpos.y >= 52,
+        `${sceneName} ${checkpointName} visual children should sit above the checkpoint sensor so the player spawn stays visible.`,
+      );
+    }
+  }
+});
+
 test('Content scenes wire the scene loader, portals, and formal hud', async () => {
   const startCampItems = await readAssetJson('assets/scenes/StartCamp.scene');
   const fieldWestItems = await readAssetJson('assets/scenes/FieldWest.scene');
@@ -158,8 +198,9 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   );
   assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampVictoryController'), flagGateType, 'CampVictoryController');
   assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampBackdrop'), sceneDressingSkinType, 'CampBackdrop');
-  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampLeftLane'), sceneDressingSkinType, 'CampLeftLane');
-  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampPlateZone'), sceneDressingSkinType, 'CampPlateZone');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampTopLane'), sceneDressingSkinType, 'CampTopLane');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampPath-1'), sceneDressingSkinType, 'CampPath-1');
+  assertNodeHasComponent(startCampItems, assertNodeExists(startCampItems, 'CampWall-Lintel'), sceneDressingSkinType, 'CampWall-Lintel');
   const checkpointCamp = getComponentRecordForNode(
     startCampItems,
     assertNodeExists(startCampItems, 'Checkpoint-Camp'),
@@ -192,7 +233,32 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     assetBindingTagType,
     'CampBackdrop AssetBindingTag',
   );
-  assert.equal(campBackdropBinding.bindingKey, 'outdoor_ground_green');
+  const campBackdropTransform = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'CampBackdrop'),
+    'cc.UITransform',
+    'CampBackdrop UITransform',
+  );
+  const campPath0Skin = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'CampPath-0'),
+    sceneDressingSkinType,
+    'CampPath-0 SceneDressingSkin',
+  );
+  const campPath1Skin = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'CampPath-1'),
+    sceneDressingSkinType,
+    'CampPath-1 SceneDressingSkin',
+  );
+  assert.equal(campBackdropBinding.bindingKey, 'outdoor_ground_flowers');
+  assert.ok(campBackdropTransform._contentSize.width >= 2200, 'CampBackdrop should overscan the initial mobile frame instead of revealing the flat clear color at the left edge.');
+  assert.equal(campPath0Skin.tiled, true, 'CampPath-0 should stay tiled as a ground surface.');
+  assert.equal(campPath0Skin.maskShape, 2, 'CampPath-0 should use the ellipse ground mask.');
+  assert.notEqual(assertNodeExists(startCampItems, 'CampPath-0')._euler.z, 0, 'CampPath-0 should tilt so the route enters frame like spread ground, not a straight slab.');
+  assert.equal(campPath1Skin.tiled, true, 'CampPath-1 should stay tiled as a ground surface.');
+  assert.equal(campPath1Skin.maskShape, 2, 'CampPath-1 should use an ellipse mask so the cobble patch no longer renders as a hard rectangle.');
+  assert.notEqual(assertNodeExists(startCampItems, 'CampPath-1')._euler.z, 0, 'CampPath-1 should rotate to break the slab-like read.');
 
   assertNodeHasComponent(fieldWestItems, fieldPersistentRoot, sceneLoaderType, 'FieldWest PersistentRoot');
   assertNodeHasComponent(fieldWestItems, fieldPersistentRoot, sceneMusicType, 'FieldWest PersistentRoot');
@@ -202,8 +268,9 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   assertNodeHasComponent(fieldWestItems, fieldHudRoot, 'cc.SafeArea', 'FieldWest HudRoot');
   assertNodeHasComponent(fieldWestItems, fieldHudRoot, gameHudType, 'FieldWest HudRoot');
   assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldBackdrop'), sceneDressingSkinType, 'FieldBackdrop');
-  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldLane'), sceneDressingSkinType, 'FieldLane');
-  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'TrapLane'), sceneDressingSkinType, 'TrapLane');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldTopStrip'), sceneDressingSkinType, 'FieldTopStrip');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldPath-1'), sceneDressingSkinType, 'FieldPath-1');
+  assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldPath-4'), sceneDressingSkinType, 'FieldPath-4');
   assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'Trap-West'), sceneDressingSkinType, 'Trap-West');
   assertWarmPlaceholderBinding(fieldWestItems, 'Checkpoint-FieldWest', 'checkpoint');
   assertWarmPlaceholderBinding(fieldWestItems, 'Checkpoint-FieldWestReturn', 'checkpoint');
@@ -221,14 +288,50 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     assetBindingTagType,
     'FieldBackdrop AssetBindingTag',
   );
+  const fieldBackdropTransform = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'FieldBackdrop'),
+    'cc.UITransform',
+    'FieldBackdrop UITransform',
+  );
   const fieldEnemyVisual = getComponentRecordForNode(
     fieldWestItems,
     assertNodeExists(fieldWestItems, 'FieldEnemy'),
     enemyVisualType,
     'FieldEnemy VisualController',
   );
-  assert.equal(fieldBackdropBinding.bindingKey, 'outdoor_ground_green');
+  const fieldPath0Skin = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'FieldPath-0'),
+    sceneDressingSkinType,
+    'FieldPath-0 SceneDressingSkin',
+  );
+  const fieldPath1Skin = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'FieldPath-1'),
+    sceneDressingSkinType,
+    'FieldPath-1 SceneDressingSkin',
+  );
+  const trapWestSkin = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'Trap-West'),
+    sceneDressingSkinType,
+    'Trap-West SceneDressingSkin',
+  );
+  assert.equal(fieldBackdropBinding.bindingKey, 'outdoor_ground_flowers');
+  assert.ok(fieldBackdropTransform._contentSize.width >= 2400, 'FieldBackdrop should overscan the opening mobile view instead of exposing the neutral clear color.');
   assert.equal(fieldEnemyVisual.idleTexture, null, 'FieldEnemy should stay image-free during the key gameplay placeholder pass.');
+  assert.equal(fieldPath0Skin.tiled, true, 'FieldPath-0 should stay tiled as a ground surface.');
+  assert.equal(fieldPath0Skin.maskShape, 2, 'FieldPath-0 should use an ellipse mask so the route enters frame as spread ground.');
+  assert.notEqual(assertNodeExists(fieldWestItems, 'FieldPath-0')._euler.z, 0, 'FieldPath-0 should rotate to avoid a straight-edged slab read.');
+  assert.equal(fieldPath1Skin.tiled, true, 'FieldPath-1 should stay tiled as a ground surface.');
+  assert.equal(fieldPath1Skin.maskShape, 2, 'FieldPath-1 should use an ellipse mask so the path reads as spread ground instead of a cropped slab.');
+  assert.notEqual(assertNodeExists(fieldWestItems, 'FieldPath-1')._euler.z, 0, 'FieldPath-1 should rotate to avoid a placeholder-like straight-edged panel read.');
+  assert.equal(trapWestSkin.tiled, false, 'Trap-West should stay object-like rather than tiled like a floor.');
+  assert.equal(trapWestSkin.fitMode, 2, 'Trap-West should cover-crop into its prop footprint.');
+  assert.equal(trapWestSkin.verticalAnchor, 1, 'Trap-West should anchor to the bottom so the wall body sits on the ground.');
+  assert.equal(trapWestSkin.maskShape ?? 0, 3, 'Trap-West should use a rounded prop mask instead of the ground ellipse or a hard rect crop.');
+  assert.ok((trapWestSkin.maskCornerRadius ?? 0) >= 18, 'Trap-West should expose a visible rounded prop silhouette.');
   assertWarmPlaceholderBinding(fieldWestItems, 'FieldEnemy', 'common_enemy');
   assertNodeHasComponent(
     fieldWestItems,
@@ -247,8 +350,9 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   const ruinsWallClosed = assertNodeExists(fieldRuinsItems, 'RuinsWall-Closed');
   const ruinsWallOpen = assertNodeExists(fieldRuinsItems, 'RuinsWall-Open');
   assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsBackdrop'), sceneDressingSkinType, 'RuinsBackdrop');
-  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsLane'), sceneDressingSkinType, 'RuinsLane');
-  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'CrackedWallZone'), sceneDressingSkinType, 'CrackedWallZone');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsFlowerGround-1'), sceneDressingSkinType, 'RuinsFlowerGround-1');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsWallCracked-Lintel'), sceneDressingSkinType, 'RuinsWallCracked-Lintel');
+  assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsWallBroken-Lintel'), sceneDressingSkinType, 'RuinsWallBroken-Lintel');
   assertNodeHasComponent(fieldRuinsItems, ruinsWallClosed, sceneDressingSkinType, 'RuinsWall-Closed');
   assertWarmPlaceholderBinding(fieldRuinsItems, 'Checkpoint-FieldRuins', 'checkpoint');
   assertWarmPlaceholderBinding(fieldRuinsItems, 'Portal-FieldWestReturn', 'portal');
@@ -271,8 +375,16 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     enemyVisualType,
     'RuinsEnemy VisualController',
   );
-  assert.equal(ruinsBackdropBinding.bindingKey, 'outdoor_ground_ruins');
+  const ruinsFlowerGround1Skin = getComponentRecordForNode(
+    fieldRuinsItems,
+    assertNodeExists(fieldRuinsItems, 'RuinsFlowerGround-1'),
+    sceneDressingSkinType,
+    'RuinsFlowerGround-1 SceneDressingSkin',
+  );
+  assert.equal(ruinsBackdropBinding.bindingKey, 'outdoor_path_cobble');
   assert.equal(ruinsEnemyVisual.idleTexture, null, 'RuinsEnemy should stay image-free during the key gameplay placeholder pass.');
+  assert.equal(ruinsFlowerGround1Skin.maskShape, 2, 'RuinsFlowerGround-1 should use the ellipse ground mask so flower patches read as spread terrain.');
+  assert.notEqual(assertNodeExists(fieldRuinsItems, 'RuinsFlowerGround-1')._euler.z, 0, 'RuinsFlowerGround-1 should rotate to avoid a flat rectangular patch read.');
   assertWarmPlaceholderBinding(fieldRuinsItems, 'RuinsEnemy', 'common_enemy');
   const ruinsBreakable = getComponentRecordForNode(fieldRuinsItems, ruinsWallClosed, breakableTargetType, 'RuinsWall-Closed');
   assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'intactVisualNode', ruinsWallClosed, 'RuinsWall-Closed BreakableTarget');

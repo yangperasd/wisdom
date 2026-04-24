@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process';
 import path from 'node:path';
 import {
   classifyCreatorExitCode,
+  createWechatGameProjectConfig,
   flattenProjectTsconfigForBuild,
   optimizeWechatRuntimeSettings,
   projectRoot,
@@ -10,8 +11,8 @@ import {
   resolveCreatorExecutable,
   resolveWechatBuildConfigPath,
   resolveWechatBuildLogPath,
-  resolveWechatBuildOutputDir,
   resolveWechatBuildStatusPath,
+  resolveExistingWechatBuildOutputDir,
   resolveNamedWechatBuildOutputDir,
   wechatBuildOutputName,
   writeWechatBuildConfig,
@@ -44,6 +45,39 @@ function now() {
   return new Date().toISOString();
 }
 
+function compactTimestamp() {
+  return new Date().toISOString().replace(/\D/g, '').slice(0, 14);
+}
+
+async function prepareUnlockedOutputDir(defaultOutputName) {
+  const candidates = [
+    defaultOutputName,
+    `${defaultOutputName}-staging`,
+    `${defaultOutputName}-staging-${compactTimestamp()}`,
+  ];
+  const lockedDirs = [];
+
+  for (const candidate of candidates) {
+    const candidateDir = resolveNamedWechatBuildOutputDir(candidate, projectRoot);
+    try {
+      await rm(candidateDir, { recursive: true, force: true });
+      return {
+        outputName: candidate,
+        outputDir: candidateDir,
+        lockedDirs,
+      };
+    } catch (error) {
+      if (error?.code !== 'EBUSY') {
+        throw error;
+      }
+
+      lockedDirs.push(candidateDir);
+    }
+  }
+
+  throw new Error(`All WeChat build output directories are locked: ${lockedDirs.join(', ')}`);
+}
+
 async function optimizeBuildOutput(outputDir, debug) {
   const srcDir = path.join(outputDir, 'src');
   const entries = await readdir(srcDir);
@@ -65,28 +99,36 @@ async function optimizeBuildOutput(outputDir, debug) {
   );
 }
 
+async function normalizeWechatProjectConfig(outputDir, appId) {
+  const configPath = path.join(outputDir, 'project.config.json');
+  let existingConfig = {};
+
+  try {
+    existingConfig = await readJson(configPath);
+  } catch {
+    existingConfig = {};
+  }
+
+  await writeJson(configPath, createWechatGameProjectConfig({ existingConfig, appId }));
+
+  console.log(`[wechat-build] normalized project config at ${configPath}`);
+}
+
 const configPath = resolveWechatBuildConfigPath(projectRoot);
 const logPath = resolveWechatBuildLogPath(projectRoot);
 const statusPath = resolveWechatBuildStatusPath(projectRoot);
 const defaultOutputName = process.env.WECHATGAME_OUTPUT_NAME || wechatBuildOutputName;
-let outputName = defaultOutputName;
-let outputDir = resolveNamedWechatBuildOutputDir(outputName, projectRoot);
 
 await mkdir(path.dirname(logPath), { recursive: true });
 await mkdir(path.dirname(statusPath), { recursive: true });
 
-try {
-  await rm(outputDir, { recursive: true, force: true });
-} catch (error) {
-  if (error?.code !== 'EBUSY') {
-    throw error;
-  }
+const preparedOutput = await prepareUnlockedOutputDir(defaultOutputName);
+let outputName = preparedOutput.outputName;
+let outputDir = preparedOutput.outputDir;
 
-  outputName = `${defaultOutputName}-staging`;
-  outputDir = resolveNamedWechatBuildOutputDir(outputName, projectRoot);
-  await rm(outputDir, { recursive: true, force: true });
+if (preparedOutput.lockedDirs.length > 0) {
   console.warn(
-    `[wechat-build] ${resolveWechatBuildOutputDir(projectRoot)} is locked by another process, falling back to ${outputDir}.`,
+    `[wechat-build] locked output: ${preparedOutput.lockedDirs.join(', ')}; falling back to ${outputDir}.`,
   );
 }
 
@@ -185,7 +227,27 @@ try {
     console.log('[wechat-build] Creator finished cleanly with exit code 0');
   }
 
+  const actualOutputDir = await resolveExistingWechatBuildOutputDir(outputDir, { rootDir: projectRoot });
+  if (!actualOutputDir) {
+    throw new Error(
+      `Cannot locate a completed WeChat build output directory after Creator finished. Expected ${outputDir}.`,
+    );
+  }
+
+  if (path.resolve(actualOutputDir) !== path.resolve(outputDir)) {
+    outputDir = actualOutputDir;
+    outputName = path.basename(actualOutputDir);
+    console.warn(
+      `[wechat-build] expected output ${buildStatus.outputDir} was missing; using actual output ${outputDir}.`,
+    );
+    await persistBuildStatus({
+      outputDir,
+      outputName,
+    });
+  }
+
   await optimizeBuildOutput(outputDir, config.debug);
+  await normalizeWechatProjectConfig(outputDir, config.packages.wechatgame.appid);
 
   await persistBuildStatus({
     status: creatorPolicy.status,

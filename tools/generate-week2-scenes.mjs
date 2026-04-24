@@ -11,6 +11,21 @@ const SCENES_ROOT = path.join(ASSETS_ROOT, 'scenes');
 const TYPESCRIPT_META_VERSION = '4.0.24';
 const ASSET_META_VERSION = '1.1.50';
 const UI_LAYER = 33554432;
+const SCENE_DRESSING_FIT = {
+  STRETCH: 0,
+  CONTAIN: 1,
+  COVER: 2,
+};
+const SCENE_DRESSING_VERTICAL_ANCHOR = {
+  CENTER: 0,
+  BOTTOM: 1,
+};
+const SCENE_DRESSING_MASK = {
+  NONE: 0,
+  RECT: 1,
+  ELLIPSE: 2,
+  ROUNDED_RECT: 3,
+};
 const COCOS_TEMPLATE_SCENE = path.join(
   'C:',
   'Users',
@@ -43,6 +58,12 @@ function vec3(x = 0, y = 0, z = 0) {
 
 function quat(x = 0, y = 0, z = 0, w = 1) {
   return { __type__: 'cc.Quat', x, y, z, w };
+}
+
+function quatFromZDegrees(zDegrees = 0) {
+  const radians = zDegrees * Math.PI / 180;
+  const halfRadians = radians * 0.5;
+  return quat(0, 0, Math.sin(halfRadians), Math.cos(halfRadians));
 }
 
 function size(width, height) {
@@ -264,6 +285,11 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     return nodeId;
   };
 
+  const setNodeRotation = (nodeId, rotationDegrees = 0) => {
+    items[nodeId]._euler = vec3(0, 0, rotationDegrees);
+    items[nodeId]._lrot = quatFromZDegrees(rotationDegrees);
+  };
+
   const addComponent = (nodeId, type, props = {}) => {
     const componentId = add(createSceneComponent(nodeId, type, props));
     items[nodeId]._components.push(ref(componentId));
@@ -331,12 +357,27 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
       addAssetBindingTag(nodeId, bindingKey);
     }
 
+    const defaultFitMode = options.tiled === false && bindingKey.startsWith('outdoor_wall_')
+      ? SCENE_DRESSING_FIT.COVER
+      : options.tiled === false && bindingKey.startsWith('barrier_')
+        ? SCENE_DRESSING_FIT.CONTAIN
+        : SCENE_DRESSING_FIT.STRETCH;
+    const defaultVerticalAnchor = options.tiled === false
+      ? SCENE_DRESSING_VERTICAL_ANCHOR.BOTTOM
+      : SCENE_DRESSING_VERTICAL_ANCHOR.CENTER;
+
     return addComponent(nodeId, types['assets/scripts/visual/SceneDressingSkin.ts'], {
       visualRoot: options.visualRootId ? ref(options.visualRootId) : null,
       spriteFrame: imageBinding.spriteFrame,
       texture: imageBinding.texture,
       hideLabelWhenSkinned: options.hideLabelWhenSkinned ?? false,
       tiled: options.tiled ?? true,
+      fitMode: options.fitMode ?? defaultFitMode,
+      verticalAnchor: options.verticalAnchor ?? defaultVerticalAnchor,
+      scaleMultiplier: options.scaleMultiplier ?? (options.tiled === false ? 1.04 : 1),
+      maskShape: options.maskShape ?? SCENE_DRESSING_MASK.NONE,
+      maskEllipseSegments: options.maskEllipseSegments ?? 48,
+      maskCornerRadius: options.maskCornerRadius ?? 0,
     });
   };
 
@@ -395,6 +436,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     strokeColorValue,
     active = true,
     cornerRadius = 18,
+    rotationDegrees = 0,
   ) => {
     const nodeId = addNode(name, parentId, position, active);
     addComponent(nodeId, 'cc.UITransform', {
@@ -407,6 +449,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
       types['assets/scripts/visual/RectVisual.ts'],
       rectVisualProps(fillColorValue, strokeColorValue, cornerRadius, 2),
     );
+    setNodeRotation(nodeId, rotationDegrees);
     return { nodeId };
   };
 
@@ -420,7 +463,29 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     decor.strokeColor,
     decor.active ?? true,
     decor.cornerRadius ?? Math.max(10, Math.round(Math.min(decor.width, decor.height) / 2)),
+    decor.rotationDegrees ?? 0,
   ));
+
+  const addSkinnedPanelGroup = (parentId, prefix, bindingKey, panels, skinOptions = {}) => panels.map((panel, index) => {
+    const panelNode = addPanelNode(
+      parentId,
+      panel.name ?? `${prefix}-${index + 1}`,
+      panel.position,
+      panel.width,
+      panel.height,
+      panel.fillColor,
+      panel.strokeColor,
+      panel.active ?? true,
+      panel.cornerRadius ?? Math.max(12, Math.round(Math.min(panel.width, panel.height) / 5)),
+      panel.rotationDegrees ?? 0,
+    );
+    addSceneDressingSkin(panelNode.nodeId, bindingKey, {
+      ...skinOptions,
+      ...(panel.skinOptions ?? {}),
+      addBindingTag: panel.addBindingTag ?? index === 0,
+    });
+    return panelNode;
+  });
 
   const addLabel = (
     parentId,
@@ -584,6 +649,21 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     14,
     true,
   );
+  addLabeledNode(
+    playerNode.nodeId,
+    'PlayerLocatorBadge',
+    '你',
+    vec3(0, 54, 0),
+    46,
+    30,
+    18,
+    color(43, 70, 62, 255),
+    true,
+    color(255, 248, 208, 240),
+    color(36, 148, 132, 240),
+    15,
+    true,
+  );
   addDynamicBody(playerNode.nodeId, 88, 36);
   const playerHealthId = addComponent(playerNode.nodeId, types['assets/scripts/combat/HealthComponent.ts'], {
     maxHealth: 3,
@@ -730,7 +810,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
   const touchEchoBox = addTouchButton('TouchEchoBox', '箱子', vec3(182, -154, 0), 82, 42, color(35, 27, 17, 255), color(214, 176, 96, 255), color(255, 236, 186, 100), 3);
   const touchEchoFlower = addTouchButton('TouchEchoFlower', '弹花', vec3(282, -154, 0), 94, 42, color(236, 255, 235, 255), color(67, 146, 88, 255), color(213, 255, 209, 100), 4);
   const touchEchoBomb = addTouchButton('TouchEchoBomb', '炸虫', vec3(388, -154, 0), 88, 42, color(255, 241, 238, 255), color(156, 68, 66, 255), color(255, 209, 200, 100), 5);
-  const touchPause = addTouchButton('TouchPause', '暂停', vec3(414, 278, 0), 102, 42, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 8);
+  const touchPause = addTouchButton('TouchPause', '暂停', vec3(326, 208, 0), 102, 42, color(241, 247, 255, 255), color(71, 87, 108, 235), color(220, 235, 255, 96), 8);
   const pausePanel = addPanelNode(hudRootId, 'PausePanel', vec3(0, 0, 0), 430, 286, color(255, 246, 222, 242), color(255, 218, 148, 112), false, 26);
   addLabel(pausePanel.nodeId, 'PauseTitle', '暂停', vec3(0, 98, 0), 260, 40, 26, color(75, 52, 27, 255), true, true, 1, 1);
   addLabel(pausePanel.nodeId, 'PauseBody', '继续游玩、回到营火，或返回营地。', vec3(0, 46, 0), 340, 54, 16, color(83, 78, 61, 255), true, false, 1, 1);
@@ -830,6 +910,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     addSceneDressingSkin,
     addPanelNode,
     addDecorPanels,
+    addSkinnedPanelGroup,
     addLabel,
     addLabeledNode,
     addSensorBox,
@@ -932,6 +1013,7 @@ function addEnemy(builder, config) {
 function addCheckpoint(builder, config) {
   const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, resetNodes, types } = builder;
   const checkpointImageBinding = getImageBindingProps('checkpoint');
+  const visualOffset = config.visualOffset ?? vec3(0, 58, 0);
   const checkpointNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -947,11 +1029,14 @@ function addCheckpoint(builder, config) {
     12,
     true,
   );
+  builder.items[checkpointNode.visualNodeId]._lpos = visualOffset;
+  builder.items[checkpointNode.labelNodeId]._lpos = visualOffset;
   addSensorBox(checkpointNode.nodeId, 112, 36);
   addComponent(checkpointNode.nodeId, types['assets/scripts/core/CheckpointMarker.ts'], {
     markerId: config.markerId,
     playerNameIncludes: 'Player',
     visualSpriteFrame: checkpointImageBinding?.spriteFrame ?? null,
+    visualTexture: checkpointImageBinding?.texture ?? null,
   });
   addAssetBindingTag(checkpointNode.nodeId, 'checkpoint');
   resetNodes.push(checkpointNode.nodeId);
@@ -987,6 +1072,7 @@ function addScenePortal(builder, config) {
     preloadTarget: true,
     playerNameIncludes: 'Player',
     visualSpriteFrame: portalImageBinding?.spriteFrame ?? null,
+    visualTexture: portalImageBinding?.texture ?? null,
   });
   addAssetBindingTag(portalNode.nodeId, 'portal');
   resetNodes.push(portalNode.nodeId);
@@ -994,7 +1080,8 @@ function addScenePortal(builder, config) {
 }
 
 function addEchoPickup(builder, config) {
-  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, refs, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, refs, resetNodes, types } = builder;
+  const imageBinding = config.bindingKey ? getImageBindingProps(config.bindingKey) : null;
   const pickupNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -1012,7 +1099,8 @@ function addEchoPickup(builder, config) {
   );
   addSensorBox(pickupNode.nodeId, (config.width ?? 176) - 20, 36);
   addComponent(pickupNode.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
-    visualSpriteFrame: null,
+    visualSpriteFrame: imageBinding?.spriteFrame ?? null,
+    visualTexture: imageBinding?.texture ?? null,
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
@@ -1032,7 +1120,8 @@ function addEchoPickup(builder, config) {
 }
 
 function addProgressFlagPickup(builder, config) {
-  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, resetNodes, types } = builder;
+  const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, resetNodes, types } = builder;
+  const imageBinding = getImageBindingProps(config.bindingKey ?? 'pickup_relic');
   const pickupNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -1050,7 +1139,8 @@ function addProgressFlagPickup(builder, config) {
   );
   addSensorBox(pickupNode.nodeId, (config.width ?? 184) - 20, 36);
   addComponent(pickupNode.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
-    visualSpriteFrame: null,
+    visualSpriteFrame: imageBinding?.spriteFrame ?? null,
+    visualTexture: imageBinding?.texture ?? null,
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
@@ -1088,23 +1178,161 @@ async function generateStartCamp(scriptIds, prefabIds) {
     sceneTitle: '营地入口',
     objectiveText: '召唤箱子压住机关，打开西侧栅门',
     playerStart: vec3(-480, -20, 0),
-    cameraBounds: { minX: -420, maxX: 260, minY: -70, maxY: 90 },
-    cameraOffsetX: -120,
+    cameraBounds: { minX: -420, maxX: 420, minY: -70, maxY: 90 },
+    cameraOffsetX: -80,
   });
 
-  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSensorBox, addSkinnedPanelGroup, resetNodes, roots, types } = builder;
 
-  const campBackdrop = addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(0, 4, 0), 1560, 560, color(235, 243, 222, 255), color(249, 244, 228, 54), true, 26);
-  const campLeftLane = addPanelNode(roots.worldRootId, 'CampLeftLane', vec3(-420, -12, 0), 310, 250, color(239, 247, 223, 212), color(252, 247, 229, 46), true, 20);
-  const campPlateZone = addPanelNode(roots.worldRootId, 'CampPlateZone', vec3(80, -82, 0), 420, 160, color(250, 233, 192, 206), color(255, 243, 212, 58), true, 22);
-  const campGateZone = addPanelNode(roots.worldRootId, 'CampGateZone', vec3(374, -20, 0), 262, 186, color(244, 227, 214, 198), color(253, 238, 230, 44), true, 20);
-  const campTopLane = addPanelNode(roots.worldRootId, 'CampTopLane', vec3(-10, 186, 0), 930, 98, color(229, 244, 229, 182), color(248, 252, 237, 42), true, 18);
-  addSceneDressingSkin(campBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
-  addSceneDressingSkin(campLeftLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
-  addSceneDressingSkin(campPlateZone.nodeId, 'outdoor_path_cobble', { tiled: true });
-  addSceneDressingSkin(campGateZone.nodeId, 'outdoor_wall_standard', { tiled: true });
-  addSceneDressingSkin(campTopLane.nodeId, 'outdoor_ground_green', { tiled: true });
-  addPanelNode(roots.worldRootId, 'CampPathGlow', vec3(70, -38, 0), 494, 182, color(255, 248, 229, 94), color(255, 252, 245, 26), true, 34);
+  const campBackdrop = addPanelNode(roots.worldRootId, 'CampBackdrop', vec3(24, 0, 0), 2240, 620, color(235, 243, 222, 255), color(249, 244, 228, 54), true, 18);
+  const campTopLane = addPanelNode(roots.worldRootId, 'CampTopLane', vec3(212, 188, 0), 1580, 88, color(229, 244, 229, 182), color(248, 252, 237, 42), true, 12);
+  addSceneDressingSkin(campBackdrop.nodeId, 'outdoor_ground_flowers', { tiled: true });
+  addSceneDressingSkin(campTopLane.nodeId, 'outdoor_wall_standard', { tiled: true });
+  addSkinnedPanelGroup(roots.worldRootId, 'CampPath', 'outdoor_path_cobble', [
+    {
+      name: 'CampPath-0',
+      position: vec3(-554, -60, 0),
+      width: 182,
+      height: 112,
+      fillColor: color(249, 232, 198, 210),
+      strokeColor: color(255, 243, 212, 58),
+      cornerRadius: 70,
+      rotationDegrees: -14,
+    },
+    {
+      name: 'CampPath-0B',
+      position: vec3(-442, -54, 0),
+      width: 170,
+      height: 106,
+      fillColor: color(249, 232, 198, 200),
+      strokeColor: color(255, 243, 212, 56),
+      cornerRadius: 64,
+      rotationDegrees: 10,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-1',
+      position: vec3(-324, -46, 0),
+      width: 156,
+      height: 104,
+      fillColor: color(250, 233, 192, 206),
+      strokeColor: color(255, 243, 212, 58),
+      cornerRadius: 66,
+      rotationDegrees: -18,
+    },
+    {
+      name: 'CampPath-2',
+      position: vec3(-238, -28, 0),
+      width: 144,
+      height: 92,
+      fillColor: color(249, 232, 198, 194),
+      strokeColor: color(255, 243, 212, 54),
+      cornerRadius: 56,
+      rotationDegrees: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-3',
+      position: vec3(-146, -36, 0),
+      width: 154,
+      height: 98,
+      fillColor: color(247, 230, 196, 188),
+      strokeColor: color(255, 241, 212, 50),
+      cornerRadius: 56,
+      rotationDegrees: -10,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-4',
+      position: vec3(-38, -18, 0),
+      width: 166,
+      height: 104,
+      fillColor: color(247, 230, 196, 188),
+      strokeColor: color(255, 241, 212, 50),
+      cornerRadius: 58,
+      rotationDegrees: 17,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-5',
+      position: vec3(82, -36, 0),
+      width: 176,
+      height: 108,
+      fillColor: color(247, 230, 196, 188),
+      strokeColor: color(255, 241, 212, 50),
+      cornerRadius: 62,
+      rotationDegrees: -14,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-6',
+      position: vec3(210, -24, 0),
+      width: 166,
+      height: 100,
+      fillColor: color(247, 230, 196, 188),
+      strokeColor: color(255, 241, 212, 50),
+      cornerRadius: 58,
+      rotationDegrees: 11,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-7',
+      position: vec3(340, -14, 0),
+      width: 168,
+      height: 102,
+      fillColor: color(248, 231, 198, 180),
+      strokeColor: color(255, 243, 214, 42),
+      cornerRadius: 64,
+      rotationDegrees: -13,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampPath-8',
+      position: vec3(468, -12, 0),
+      width: 154,
+      height: 92,
+      fillColor: color(248, 231, 198, 176),
+      strokeColor: color(255, 243, 214, 40),
+      cornerRadius: 58,
+      rotationDegrees: 9,
+      addBindingTag: false,
+    },
+  ], {
+    tiled: true,
+    maskShape: SCENE_DRESSING_MASK.ELLIPSE,
+    maskEllipseSegments: 56,
+  });
+  addSkinnedPanelGroup(roots.worldRootId, 'CampWall', 'outdoor_wall_standard', [
+    {
+      name: 'CampWall-Lintel',
+      position: vec3(342, 74, 0),
+      width: 298,
+      height: 84,
+      fillColor: color(244, 227, 214, 198),
+      strokeColor: color(253, 238, 230, 44),
+      cornerRadius: 12,
+    },
+    {
+      name: 'CampWall-LeftPost',
+      position: vec3(214, 6, 0),
+      width: 104,
+      height: 216,
+      fillColor: color(244, 227, 214, 198),
+      strokeColor: color(253, 238, 230, 44),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'CampWall-RightPost',
+      position: vec3(470, 6, 0),
+      width: 108,
+      height: 224,
+      fillColor: color(244, 227, 214, 198),
+      strokeColor: color(253, 238, 230, 44),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+  ], { tiled: true });
   addDecorPanels(roots.worldRootId, 'CampAccent', [
     { position: vec3(-346, 114, 0), width: 24, height: 24, fillColor: color(255, 243, 211, 220), strokeColor: color(255, 251, 236, 92), cornerRadius: 18 },
     { position: vec3(-314, 80, 0), width: 18, height: 18, fillColor: color(255, 225, 231, 208), strokeColor: color(255, 249, 250, 86), cornerRadius: 14 },
@@ -1188,8 +1416,22 @@ async function generateStartCamp(scriptIds, prefabIds) {
     16,
     true,
   );
-  addSceneDressingSkin(campGateClosed.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
-  addSceneDressingSkin(campGateOpen.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(campGateClosed.nodeId, 'barrier_closed', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
+  addSceneDressingSkin(campGateOpen.nodeId, 'barrier_open', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
   const portalFieldWest = addScenePortal(builder, {
     name: 'Portal-FieldWest',
     label: '进入林间小径',
@@ -1242,19 +1484,148 @@ async function generateFieldWest(scriptIds, prefabIds) {
     cameraOffsetX: -110,
   });
 
-  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, addSkinnedPanelGroup, resetNodes, roots, types } = builder;
 
-  const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(110, 0, 0), 1840, 560, color(214, 236, 200, 255), color(247, 245, 225, 50), true, 26);
-  const fieldLane = addPanelNode(roots.worldRootId, 'FieldLane', vec3(-260, -10, 0), 860, 250, color(238, 246, 221, 220), color(250, 249, 232, 42), true, 22);
-  const trapLane = addPanelNode(roots.worldRootId, 'TrapLane', vec3(278, 4, 0), 360, 210, color(247, 230, 197, 190), color(255, 241, 221, 50), true, 22);
-  const landingLane = addPanelNode(roots.worldRootId, 'LandingLane', vec3(598, 102, 0), 280, 118, color(230, 240, 249, 188), color(241, 247, 255, 58), true, 20);
-  const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(0, 184, 0), 1460, 102, color(230, 243, 214, 184), color(248, 251, 232, 42), true, 20);
-  addSceneDressingSkin(fieldBackdrop.nodeId, 'outdoor_ground_green', { tiled: true });
-  addSceneDressingSkin(fieldLane.nodeId, 'outdoor_ground_flowers', { tiled: true });
-  addSceneDressingSkin(trapLane.nodeId, 'outdoor_path_cobble', { tiled: true });
-  addSceneDressingSkin(landingLane.nodeId, 'outdoor_path_cobble', { tiled: true });
-  addSceneDressingSkin(fieldTopStrip.nodeId, 'outdoor_ground_green', { tiled: true });
-  addPanelNode(roots.worldRootId, 'FieldPathGlow', vec3(-230, -36, 0), 540, 186, color(255, 247, 228, 92), color(255, 252, 244, 26), true, 34);
+  const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(146, 0, 0), 2520, 620, color(214, 236, 200, 255), color(247, 245, 225, 50), true, 18);
+  const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(318, 186, 0), 1700, 86, color(230, 243, 214, 184), color(248, 251, 232, 42), true, 12);
+  addSceneDressingSkin(fieldBackdrop.nodeId, 'outdoor_ground_flowers', { tiled: true });
+  addSceneDressingSkin(fieldTopStrip.nodeId, 'outdoor_wall_standard', { tiled: true });
+  addSkinnedPanelGroup(roots.worldRootId, 'FieldPath', 'outdoor_path_cobble', [
+    {
+      name: 'FieldPath-0',
+      position: vec3(-604, -60, 0),
+      width: 194,
+      height: 116,
+      fillColor: color(247, 230, 197, 194),
+      strokeColor: color(255, 241, 221, 52),
+      cornerRadius: 72,
+      rotationDegrees: -18,
+    },
+    {
+      name: 'FieldPath-0B',
+      position: vec3(-486, -52, 0),
+      width: 180,
+      height: 110,
+      fillColor: color(245, 229, 202, 190),
+      strokeColor: color(255, 241, 221, 48),
+      cornerRadius: 64,
+      rotationDegrees: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-1',
+      position: vec3(-358, -42, 0),
+      width: 166,
+      height: 110,
+      fillColor: color(247, 230, 197, 190),
+      strokeColor: color(255, 241, 221, 50),
+      cornerRadius: 68,
+      rotationDegrees: -20,
+    },
+    {
+      name: 'FieldPath-2',
+      position: vec3(-268, -22, 0),
+      width: 150,
+      height: 94,
+      fillColor: color(245, 229, 202, 184),
+      strokeColor: color(255, 241, 221, 46),
+      cornerRadius: 56,
+      rotationDegrees: 10,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-3',
+      position: vec3(-162, -18, 0),
+      width: 156,
+      height: 96,
+      fillColor: color(245, 229, 202, 184),
+      strokeColor: color(255, 241, 221, 46),
+      cornerRadius: 56,
+      rotationDegrees: -8,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-4',
+      position: vec3(-38, -8, 0),
+      width: 170,
+      height: 98,
+      fillColor: color(230, 240, 249, 188),
+      strokeColor: color(241, 247, 255, 58),
+      cornerRadius: 54,
+      rotationDegrees: 16,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-5',
+      position: vec3(98, 10, 0),
+      width: 178,
+      height: 104,
+      fillColor: color(245, 229, 202, 184),
+      strokeColor: color(255, 241, 221, 46),
+      cornerRadius: 54,
+      rotationDegrees: -12,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-6',
+      position: vec3(244, 30, 0),
+      width: 172,
+      height: 100,
+      fillColor: color(241, 234, 204, 184),
+      strokeColor: color(255, 243, 218, 46),
+      cornerRadius: 54,
+      rotationDegrees: 10,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-7',
+      position: vec3(392, 52, 0),
+      width: 178,
+      height: 104,
+      fillColor: color(230, 240, 249, 188),
+      strokeColor: color(241, 247, 255, 58),
+      cornerRadius: 58,
+      rotationDegrees: -14,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-8',
+      position: vec3(544, 76, 0),
+      width: 170,
+      height: 104,
+      fillColor: color(230, 240, 249, 188),
+      strokeColor: color(241, 247, 255, 58),
+      cornerRadius: 62,
+      rotationDegrees: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-9',
+      position: vec3(694, 100, 0),
+      width: 184,
+      height: 112,
+      fillColor: color(247, 232, 202, 176),
+      strokeColor: color(255, 244, 223, 42),
+      cornerRadius: 62,
+      rotationDegrees: -16,
+      addBindingTag: false,
+    },
+    {
+      name: 'FieldPath-10',
+      position: vec3(112, 56, 0),
+      width: 96,
+      height: 62,
+      fillColor: color(236, 239, 230, 172),
+      strokeColor: color(248, 251, 238, 42),
+      cornerRadius: 28,
+      rotationDegrees: 18,
+      addBindingTag: false,
+    },
+  ], {
+    tiled: true,
+    maskShape: SCENE_DRESSING_MASK.ELLIPSE,
+    maskEllipseSegments: 56,
+  });
   addDecorPanels(roots.worldRootId, 'FieldAccent', [
     { position: vec3(-336, 108, 0), width: 22, height: 22, fillColor: color(255, 241, 206, 216), strokeColor: color(255, 249, 233, 90), cornerRadius: 16 },
     { position: vec3(-292, 78, 0), width: 18, height: 18, fillColor: color(237, 248, 224, 206), strokeColor: color(251, 255, 243, 84), cornerRadius: 14 },
@@ -1317,8 +1688,8 @@ async function generateFieldWest(scriptIds, prefabIds) {
     'Trap-West',
     '箭台',
     vec3(314, -4, 0),
-    96,
-    42,
+    116,
+    78,
     18,
     color(58, 27, 10, 255),
     true,
@@ -1327,7 +1698,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
     14,
     true,
   );
-  const trapSpawnId = addNode('Trap-West-Spawn', trapNode.nodeId, vec3(56, 0, 0));
+  const trapSpawnId = addNode('Trap-West-Spawn', trapNode.nodeId, vec3(66, 8, 0));
   addComponent(trapSpawnId, 'cc.UITransform', {
     _priority: 0,
     _contentSize: size(10, 10),
@@ -1348,7 +1719,14 @@ async function generateFieldWest(scriptIds, prefabIds) {
     fireClipVolume: 1,
     hideLabelWhenSkinned: true,
   });
-  addSceneDressingSkin(trapNode.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(trapNode.nodeId, 'outdoor_wall_cracked', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 20,
+    scaleMultiplier: 1.12,
+  });
 
   const ruinsPortal = addScenePortal(builder, {
     name: 'Portal-FieldRuins',
@@ -1376,19 +1754,99 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSkinnedPanelGroup, resetNodes, roots, types } = builder;
 
-  const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(248, 239, 221, 255), color(251, 243, 227, 48), true, 26);
-  const ruinsLane = addPanelNode(roots.worldRootId, 'RuinsLane', vec3(-220, -10, 0), 900, 260, color(248, 234, 209, 214), color(252, 243, 226, 42), true, 22);
-  const ruinsPickupZone = addPanelNode(roots.worldRootId, 'RuinsPickupZone', vec3(20, 170, 0), 420, 120, color(251, 237, 215, 188), color(255, 246, 229, 48), true, 20);
-  const crackedWallZone = addPanelNode(roots.worldRootId, 'CrackedWallZone', vec3(404, -14, 0), 320, 220, color(244, 224, 206, 192), color(252, 237, 226, 50), true, 22);
-  const dungeonApproachZone = addPanelNode(roots.worldRootId, 'DungeonApproachZone', vec3(724, 88, 0), 310, 118, color(235, 240, 249, 194), color(246, 249, 255, 58), true, 20);
-  addSceneDressingSkin(ruinsBackdrop.nodeId, 'outdoor_ground_ruins', { tiled: true });
-  addSceneDressingSkin(ruinsLane.nodeId, 'outdoor_path_cobble', { tiled: true });
-  addSceneDressingSkin(ruinsPickupZone.nodeId, 'outdoor_ground_flowers', { tiled: true });
-  addSceneDressingSkin(crackedWallZone.nodeId, 'outdoor_wall_cracked', { tiled: true });
-  addSceneDressingSkin(dungeonApproachZone.nodeId, 'outdoor_wall_broken', { tiled: true });
-  addPanelNode(roots.worldRootId, 'RuinsPathGlow', vec3(-186, -36, 0), 560, 188, color(255, 246, 228, 90), color(255, 251, 244, 26), true, 34);
+  const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(248, 239, 221, 255), color(251, 243, 227, 48), true, 18);
+  addSceneDressingSkin(ruinsBackdrop.nodeId, 'outdoor_path_cobble', { tiled: true });
+  addSkinnedPanelGroup(roots.worldRootId, 'RuinsFlowerGround', 'outdoor_ground_flowers', [
+    {
+      name: 'RuinsFlowerGround-1',
+      position: vec3(102, 176, 0),
+      width: 452,
+      height: 120,
+      fillColor: color(251, 237, 215, 188),
+      strokeColor: color(255, 246, 229, 48),
+      cornerRadius: 54,
+      rotationDegrees: -8,
+    },
+    {
+      name: 'RuinsFlowerGround-2',
+      position: vec3(750, 188, 0),
+      width: 384,
+      height: 134,
+      fillColor: color(251, 237, 215, 180),
+      strokeColor: color(255, 246, 229, 44),
+      cornerRadius: 58,
+      rotationDegrees: 10,
+      addBindingTag: false,
+    },
+  ], {
+    tiled: true,
+    maskShape: SCENE_DRESSING_MASK.ELLIPSE,
+    maskEllipseSegments: 56,
+  });
+  addSkinnedPanelGroup(roots.worldRootId, 'RuinsWallCracked', 'outdoor_wall_cracked', [
+    {
+      name: 'RuinsWallCracked-Lintel',
+      position: vec3(430, 64, 0),
+      width: 340,
+      height: 92,
+      fillColor: color(244, 224, 206, 192),
+      strokeColor: color(252, 237, 226, 50),
+      cornerRadius: 12,
+    },
+    {
+      name: 'RuinsWallCracked-LeftPost',
+      position: vec3(314, 2, 0),
+      width: 96,
+      height: 214,
+      fillColor: color(244, 224, 206, 192),
+      strokeColor: color(252, 237, 226, 50),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'RuinsWallCracked-RightPost',
+      position: vec3(546, 2, 0),
+      width: 102,
+      height: 214,
+      fillColor: color(244, 224, 206, 192),
+      strokeColor: color(252, 237, 226, 50),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+  ], { tiled: true });
+  addSkinnedPanelGroup(roots.worldRootId, 'RuinsWallBroken', 'outdoor_wall_broken', [
+    {
+      name: 'RuinsWallBroken-Lintel',
+      position: vec3(742, 138, 0),
+      width: 316,
+      height: 78,
+      fillColor: color(235, 240, 249, 194),
+      strokeColor: color(246, 249, 255, 58),
+      cornerRadius: 12,
+    },
+    {
+      name: 'RuinsWallBroken-LeftPost',
+      position: vec3(636, 88, 0),
+      width: 106,
+      height: 118,
+      fillColor: color(235, 240, 249, 194),
+      strokeColor: color(246, 249, 255, 58),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+    {
+      name: 'RuinsWallBroken-RightPost',
+      position: vec3(852, 88, 0),
+      width: 108,
+      height: 118,
+      fillColor: color(235, 240, 249, 194),
+      strokeColor: color(246, 249, 255, 58),
+      cornerRadius: 12,
+      addBindingTag: false,
+    },
+  ], { tiled: true });
   addDecorPanels(roots.worldRootId, 'RuinsAccent', [
     { position: vec3(-348, 110, 0), width: 24, height: 24, fillColor: color(255, 241, 214, 216), strokeColor: color(255, 250, 238, 90), cornerRadius: 18 },
     { position: vec3(-304, 76, 0), width: 18, height: 18, fillColor: color(241, 233, 252, 204), strokeColor: color(251, 247, 255, 84), cornerRadius: 14 },
@@ -1471,8 +1929,22 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     16,
     true,
   );
-  addSceneDressingSkin(ruinsWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
-  addSceneDressingSkin(ruinsWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(ruinsWallClosed.nodeId, 'outdoor_wall_cracked', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
+  addSceneDressingSkin(ruinsWallOpen.nodeId, 'outdoor_wall_broken', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
   const dungeonPortal = addScenePortal(builder, {
     name: 'Portal-DungeonHub',
     label: '进入试炼厅',
@@ -1797,8 +2269,22 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
 
   const roomAGateClosed = addLabeledNode(roots.worldRootId, 'RoomA-GateClosed', '小门', vec3(266, -18, 0), 156, 52, 18, color(255, 241, 239, 255), true, color(124, 53, 52, 255), color(255, 202, 196, 120), 16, true);
   const roomAGateOpen = addLabeledNode(roots.worldRootId, 'RoomA-GateOpen', '已开', vec3(266, -18, 0), 156, 52, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
-  addSceneDressingSkin(roomAGateClosed.nodeId, 'barrier_closed', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
-  addSceneDressingSkin(roomAGateOpen.nodeId, 'barrier_open', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(roomAGateClosed.nodeId, 'barrier_closed', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
+  addSceneDressingSkin(roomAGateOpen.nodeId, 'barrier_open', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
   const roomAGateBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomA-GateBarrier',
@@ -1916,7 +2402,14 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
   });
 
   const roomBTrap = addLabeledNode(roots.worldRootId, 'RoomB-Trap', '箭台', vec3(220, -6, 0), 96, 42, 18, color(58, 27, 10, 255), true, color(223, 128, 69, 255), color(255, 217, 184, 120), 14, true);
-  addSceneDressingSkin(roomBTrap.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(roomBTrap.nodeId, 'outdoor_wall_cracked', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 18,
+    scaleMultiplier: 1.1,
+  });
   const roomBTrapSpawn = addNode('RoomB-Trap-Spawn', roomBTrap.nodeId, vec3(56, 0, 0));
   addComponent(roomBTrapSpawn, 'cc.UITransform', {
     _priority: 0,
@@ -2056,8 +2549,22 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
 
   const roomCWallClosed = addLabeledNode(roots.worldRootId, 'RoomC-WallClosed', '裂墙', vec3(250, -10, 0), 196, 56, 18, color(255, 241, 239, 255), true, color(137, 78, 67, 255), color(255, 211, 201, 120), 16, true);
   const roomCWallOpen = addLabeledNode(roots.worldRootId, 'RoomC-WallOpen', '通路已开', vec3(250, -10, 0), 196, 56, 18, color(20, 42, 25, 255), false, color(112, 193, 134, 255), color(224, 255, 225, 120), 16, true);
-  addSceneDressingSkin(roomCWallClosed.nodeId, 'outdoor_wall_cracked', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
-  addSceneDressingSkin(roomCWallOpen.nodeId, 'outdoor_wall_broken', { tiled: false, hideLabelWhenSkinned: true, addBindingTag: false });
+  addSceneDressingSkin(roomCWallClosed.nodeId, 'outdoor_wall_cracked', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
+  addSceneDressingSkin(roomCWallOpen.nodeId, 'outdoor_wall_broken', {
+    tiled: false,
+    hideLabelWhenSkinned: true,
+    addBindingTag: false,
+    maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
+    maskCornerRadius: 16,
+    scaleMultiplier: 1.08,
+  });
   const roomCWallBarrier = addLabeledNode(
     roots.worldRootId,
     'RoomC-WallBarrier',
@@ -2133,12 +2640,39 @@ async function generateBossArena(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addAssetBindingTag, addPanelNode, addLabeledNode, addDynamicBody, addComponent, addNode, addSceneDressingSkin, getImageBindingProps, items, resetNodes, roots, types } = builder;
+  const { addAssetBindingTag, addPanelNode, addLabeledNode, addDynamicBody, addComponent, addNode, addSceneDressingSkin, addSkinnedPanelGroup, getImageBindingProps, items, refs, resetNodes, roots, types } = builder;
 
   const bossBackdrop = addPanelNode(roots.worldRootId, 'BossBackdrop', vec3(100, 0, 0), 1800, 540, color(245, 235, 220, 255), color(255, 238, 204, 64), true, 28);
-  const bossLane = addPanelNode(roots.worldRootId, 'BossLane', vec3(140, -10, 0), 860, 260, color(243, 214, 176, 204), color(255, 234, 205, 76), true, 26);
   addSceneDressingSkin(bossBackdrop.nodeId, 'outdoor_wall_standard', { tiled: true });
-  addSceneDressingSkin(bossLane.nodeId, 'outdoor_wall_cracked', { tiled: true });
+  const bossArenaFloor = addSkinnedPanelGroup(roots.worldRootId, 'BossArenaFloor', 'outdoor_wall_cracked', [
+    {
+      position: vec3(138, -12, 0),
+      width: 620,
+      height: 188,
+      fillColor: color(243, 214, 176, 204),
+      strokeColor: color(255, 234, 205, 76),
+      cornerRadius: 28,
+    },
+    {
+      position: vec3(346, -12, 0),
+      width: 286,
+      height: 140,
+      fillColor: color(243, 214, 176, 184),
+      strokeColor: color(255, 234, 205, 68),
+      cornerRadius: 22,
+      addBindingTag: false,
+    },
+  ], { tiled: true });
+  const worldChildren = items[roots.worldRootId]._children;
+  const playerChildIndex = worldChildren.findIndex((child) => child.__id__ === refs.playerNode.nodeId);
+  const lastFloorNodeId = bossArenaFloor[bossArenaFloor.length - 1]?.nodeId ?? null;
+  const lastFloorIndex = lastFloorNodeId === null
+    ? -1
+    : worldChildren.findIndex((child) => child.__id__ === lastFloorNodeId);
+  if (playerChildIndex >= 0 && lastFloorIndex >= 0 && playerChildIndex < lastFloorIndex) {
+    const [playerChild] = worldChildren.splice(playerChildIndex, 1);
+    worldChildren.splice(lastFloorIndex, 0, playerChild);
+  }
 
   addCheckpoint(builder, {
     name: 'Checkpoint-BossArena',
@@ -2173,7 +2707,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     types['assets/scripts/visual/RectVisual.ts'],
     rectVisualProps(color(255, 192, 142, 244), color(255, 246, 216, 152), 44, 2),
   );
-  const bossCoreOrbId = addNode('BossEnemy-Core-Orb', bossCore.visualNodeId, vec3(0, 4, 0));
+  const bossCoreOrbId = addNode('BossEnemy-Core-Orb', bossCore.visualNodeId, vec3(0, 4, 0), false);
   addComponent(bossCoreOrbId, 'cc.UITransform', {
     _priority: 0,
     _contentSize: size(68, 68),
@@ -2184,7 +2718,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     types['assets/scripts/visual/RectVisual.ts'],
     rectVisualProps(color(255, 236, 176, 242), color(255, 255, 234, 150), 34, 2),
   );
-  const bossCoreBaseId = addNode('BossEnemy-Core-Base', bossCore.visualNodeId, vec3(0, -40, 0));
+  const bossCoreBaseId = addNode('BossEnemy-Core-Base', bossCore.visualNodeId, vec3(0, -40, 0), false);
   addComponent(bossCoreBaseId, 'cc.UITransform', {
     _priority: 0,
     _contentSize: size(86, 18),
@@ -2217,7 +2751,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     types['assets/scripts/visual/RectVisual.ts'],
     rectVisualProps(color(81, 66, 63, 255), color(255, 255, 248, 82), 6, 1),
   );
-  const bossCoreShineId = addNode('BossEnemy-Core-Shine', bossCore.nodeId, vec3(22, 24, 0));
+  const bossCoreShineId = addNode('BossEnemy-Core-Shine', bossCore.nodeId, vec3(22, 24, 0), false);
   addComponent(bossCoreShineId, 'cc.UITransform', {
     _priority: 0,
     _contentSize: size(28, 16),
@@ -2265,6 +2799,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(214, 151, 109, 236),
     color(255, 236, 214, 96),
     11,
+    false,
   );
   addShieldPart(
     bossShieldClosedNodeId,
@@ -2285,6 +2820,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(178, 118, 92, 236),
     color(255, 234, 214, 88),
     7,
+    false,
   );
   addShieldPart(
     bossShieldClosedNodeId,
@@ -2295,6 +2831,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(255, 249, 228, 210),
     color(255, 255, 255, 72),
     5,
+    false,
   );
   addShieldPart(
     bossShieldClosedNodeId,
@@ -2305,6 +2842,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(255, 255, 242, 208),
     color(255, 255, 255, 66),
     5,
+    false,
   );
   addShieldPart(
     bossShieldClosedNodeId,
@@ -2315,6 +2853,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(170, 120, 92, 232),
     color(255, 236, 214, 92),
     8,
+    false,
   );
 
   const bossShieldOpenNodeId = addNode('BossShield-Open', roots.worldRootId, vec3(240, -10, 0), false);
@@ -2342,6 +2881,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(168, 198, 133, 228),
     color(245, 255, 226, 82),
     10,
+    false,
   );
   addShieldPart(
     bossShieldOpenNodeId,
@@ -2362,6 +2902,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(132, 184, 124, 228),
     color(246, 255, 223, 84),
     7,
+    false,
   );
   addShieldPart(
     bossShieldOpenNodeId,
@@ -2372,6 +2913,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(255, 255, 246, 196),
     color(255, 255, 255, 72),
     5,
+    false,
   );
   addShieldPart(
     bossShieldOpenNodeId,
@@ -2382,6 +2924,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(255, 255, 249, 192),
     color(255, 255, 255, 66),
     5,
+    false,
   );
   addShieldPart(
     bossShieldOpenNodeId,
@@ -2392,6 +2935,7 @@ async function generateBossArena(scriptIds, prefabIds) {
     color(126, 177, 121, 226),
     color(246, 255, 223, 82),
     8,
+    false,
   );
   const bossShieldBreakable = addComponent(bossShieldClosedNodeId, types['assets/scripts/puzzle/BreakableTarget.ts'], {
     startsBroken: false,

@@ -82,6 +82,10 @@ test('computeJoystickState applies deadzone and clamps knob radius', () => {
   assert.equal(active.knob.y, 0);
   assert.equal(active.axis.x, 1);
   assert.equal(active.axis.y, 0);
+
+  const midRange = computeJoystickState(28, 0, 56, 10);
+  assert.ok(midRange.axis.x > 0.49, 'mid-range stick should stay responsive');
+  assert.ok(midRange.axis.x < 0.53, 'mid-range response should remain below full speed');
 });
 
 test('computeBossPhaseState exposes danger and damage windows', () => {

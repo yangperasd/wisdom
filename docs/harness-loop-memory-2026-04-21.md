@@ -2,6 +2,17 @@
 
 This file is the working memory for the main agent loop. Update it after every loop so the project does not drift back into "demo looks done" while release gates are still red.
 
+## Scope Note
+
+This memory is now scoped to WeChat build, runtime, DevTools, package, and harness evidence.
+
+Do not use it as the primary memory for the `Image 2.0` art-replacement program.
+
+That work now lives in:
+
+- [image-2-loop-memory.md](/E:/cv5/wisdom/docs/image-2-loop-memory.md)
+- [image-2-loop-todo.md](/E:/cv5/wisdom/docs/image-2-loop-todo.md)
+
 ## North Star
 
 - Target feel: bright, warm, cute, rounded, toy-like, close to the spirit of "Echoes of Wisdom".
@@ -2828,3 +2839,364 @@ This file is the working memory for the main agent loop. Update it after every l
 | Automated status | Green for the current harness slice |
 | Remaining blockers | WeChat DevTools simulator real load, QR / true-device playthrough, final cute-style scorecard, final Chinese copy approval, final monster naming approval |
 | Why no further no-human loop now | Continuing to mark Gate 5 or style as complete would overclaim human/device/aesthetic evidence that automation cannot produce |
+
+## Active Loop 55
+
+| Field | Value |
+|---|---|
+| Loop goal | Respond to user DevTools report: no visible protagonist, icons appear unresponsive, no scene travel, and repeated `SocketTask.readyState is not OPEN` errors |
+| Main-agent local task | Fix probe-caused console noise, repair runtime touch diagnostic flow, refresh WeChat build, and attempt real GUI evidence before handing back to human |
+| Task agent | Tesla: read-only DevTools / GUI evidence-path investigation |
+| Audit agent | Fermat: pending adversarial post-audit |
+| Human decision threshold | Only if real DevTools GUI / true-device path cannot be automated after harness fixes |
+
+## Loop 55 Acceptance Target
+
+| Requirement | Target |
+|---|---|
+| Probe noise | Normal DevTools runs must not auto-connect to the runtime websocket probe |
+| Probe utility | Harness can still opt into the runtime probe without persistent storage |
+| Touch path | Runtime probe must prove move, attack, summon, pause, resume, and scene loading diagnostics without the previous hidden-pause-button false failure |
+| Real GUI path | Windows GUI smoke must find/focus WeChat DevTools and capture real window screenshots |
+| Evidence boundary | Do not claim Gate 5 pass unless real GUI clicks are proven to affect runtime or true-device evidence exists |
+
+## Loop 55 Implementation Result
+
+| Area | Result | Evidence |
+|---|---|---|
+| `SocketTask.readyState` spam | Green for source behavior | `WechatDevtoolsRuntimeProbe` is now opt-in via `globalThis.__codexQaProbeUrl` or `__codexQaProbeUrl` storage; normal DevTools does not start the websocket loop |
+| Probe reconnect noise | Green for source behavior | Probe only retries before first successful connection; after a connected diagnostic run closes, it does not loop forever |
+| Runtime probe touch smoke | Green as diagnostic-only | `temp/wechat-runtime-probe-evidence.json` passed with `movedDistance=121.88005818358891`, attack true, echo true, pause entered/resumed true, and route `FieldWest -> FieldRuins -> DungeonHub -> StartCamp` all loaded |
+| Touch button safety | Green structurally | `TouchCommandButton` now executes native touch commands only when the matching touch ends inside the same button |
+| WeChat build | Green | `npm run verify:wechat` passed; main package `2,564,867 bytes`, total `2,713,519 bytes` |
+| GUI smoke script | Yellow | Rewritten ASCII-only script can find, restore, focus, click, and screenshot the DevTools HWND |
+| Real GUI evidence | Red | `temp/wechat-gui-touch-smoke-loop55c/*.png` still show the Git trust modal over the DevTools workspace; screenshots change, but real game click effects are not proven |
+
+## Loop 55 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `node --test tests\first-session-flow.test.mjs` | Pass |
+| `node --test tests\content-scenes.test.mjs tests\dungeon-scenes.test.mjs` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos exit code `36` warning |
+| `npm run verify:wechat` | Pass; main package `2,564,867 bytes` |
+| Runtime probe harness with injected `globalThis.__codexQaProbeUrl` | Pass; `temp/wechat-runtime-probe-evidence.json` status `passed` |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File tools\run-wechat-gui-touch-smoke.ps1 -ListWindows` | Pass; found `wisdom - 微信开发者工具 Stable 2.01.2510290` |
+| `powershell -NoProfile -ExecutionPolicy Bypass -File tools\run-wechat-gui-touch-smoke.ps1 -OutDir temp\wechat-gui-touch-smoke-loop55c` | Pass as screenshot capture; not pass as gameplay interaction evidence |
+
+## Loop 55 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P0 | Real GUI screenshots still contain the Git trust modal; therefore real click interaction is not proven. | Do not hand to human as ready. Next no-human loop must remove or bypass this modal, or collect a runtime state snapshot after real OS clicks. |
+| P0 | Runtime probe is diagnostic-only because it dispatches synthetic native touches and direct scene switches. | Keep it as a fast health check, not Gate 5 evidence. |
+| P1 | User-reported websocket console spam was caused by diagnostic probe auto-starting in DevTools. | Fixed by opt-in probe start and non-persistent harness global injection. |
+| P1 | GUI smoke now finds/focuses DevTools but lacks runtime-state assertions tied to each OS click. | Next loop should combine real GUI clicks with read-only runtime snapshots, or improve DevTools automation if possible. |
+| P2 | The screenshots show the player/locator area in the simulator, but visual proof remains noisy and partially obstructed by modal / small scale. | Do not use as final visibility approval. |
+
+## Next Loop Candidate 56
+
+| Field | Value |
+|---|---|
+| Candidate goal | Real GUI interaction closure: dismiss/bypass Git trust modal and prove OS-level clicks change runtime state |
+| Why it matters | User specifically reported no protagonist, no responsive icons, and no scene travel; synthetic probe passing is insufficient |
+| No-human path | Investigate DevTools trust modal dismissal via settings/cache/window automation; if not possible, build a combined websocket snapshot server that records runtime state before/after real `SendInput` clicks |
+| Human threshold | Only if DevTools modal cannot be dismissed or OS input is blocked by the desktop environment after automation attempts |
+
+## Active Loop 56-65 Follow-Up
+
+| Field | Value |
+|---|---|
+| Loop goal | Continue no-human harness loop after user reported `project.config.json` parse failure and DevTools runtime unresponsiveness |
+| Main-agent local task | Isolate bad WeChat project config, rebuild a valid harness, add runtime launch automation, and prove gameplay command chain inside WeChat DevTools runtime |
+| Read-only adversarial audit | Hume confirmed one toxic stale config at `build/wechatgame-runtime-probe-20260422140629/project.config.json`; script entrypoints now guard invalid configs, but DevTools recent/manual project paths can still hit stale outputs |
+| Current adversarial audit | Descartes reviewing whether the latest runtime PASS overclaims real GUI/manual click readiness |
+| Human decision threshold | Not reached for gameplay runtime health; still reached for final true-device/manual GUI feel if OS/DevTools click injection remains unavailable |
+
+## Loop 56-65 Results
+
+| Area | Result | Evidence |
+|---|---|---|
+| `project.config.json` parse modal | Root cause isolated | `build/wechatgame` and current harness configs are valid; stale `build/wechatgame-runtime-probe-20260422140629/project.config.json` is malformed and can poison DevTools recent/manual opens |
+| Main package budget | Green | `temp/wechat-size-report.json`: main package `2,574,149 bytes`, 61.37% of the 4MB hard cap, warning margin `1,305,582 bytes` |
+| DevTools auto protocol | Red for App control | Raw auto WebSocket accepts `Tool.getInfo`, but `App.getCurrentPage`, `App.captureScreenshot`, `App.callWxMethod`, and `App.callFunction` time out |
+| OS mouse GUI smoke | Red | Real Windows `SendInput` clicks produce screenshots but `runtimeInputEvents=[]`, `qaTouchLog=[]`, and no movement/commands |
+| Windows pointer-touch injection | Red | `InjectTouchInput` path currently fails with Win32 error `87` on first gameplay contact; not usable as evidence |
+| Runtime probe harness | Green as DevTools runtime health check | `tools/run-wechat-runtime-probe.mjs` now opens a validated harness before sending `run-touch-smoke`; latest `temp/wechat-runtime-probe-evidence.json` status `passed` |
+| Runtime gameplay chain | Green inside WeChat runtime | Movement `113.96`, Attack command executed, echo spawned, pause/resume succeeded, and route `FieldWest -> FieldRuins -> DungeonHub -> StartCamp` all loaded |
+| Attack assertion | Fixed | Probe now accepts either transient `isAttacking` or the QA command log `Attack/executed`; this avoids false failure after the 0.18s attack window elapses |
+
+## Loop 56-65 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise in logs |
+| `npm run verify:wechat` | Pass; main package `2,574,149 bytes` |
+| `node tools\prepare-wechat-runtime-probe-harness.mjs` with `%TEMP%\wisdom-wechat-harnesses\...` | Pass; avoids DevTools file locks on `build/wechatgame-gui-probe` |
+| `node tools\run-wechat-runtime-probe.mjs` with `WECHAT_RUNTIME_PROBE_PROJECT_PATH` and `WECHAT_RUNTIME_PROBE_FORCE_REOPEN=1` | Pass; `temp/wechat-runtime-probe-evidence.json` status `passed` |
+| `node tools\run-wechat-gui-runtime-smoke.mjs` using OS mouse | Fail; runtime sees no OS-injected input |
+| `node tools\run-wechat-gui-runtime-smoke.mjs` using pointer touch | Fail; `InjectTouchInput` returns Win32 `87` |
+
+## Loop 56-65 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P0 | We still cannot prove that manual/OS GUI clicks in DevTools affect gameplay state. | Do not hand this to human as “manual clicking fixed”; next loop should address DevTools input forwarding or provide a clear true-device fallback. |
+| P0 | A stale malformed WeChat project under `build/` can still be opened manually via DevTools recent projects. | Do not delete without explicit user approval; prefer path validation, docs, and temp harnesses. Consider a safe quarantine/cleanup command if user approves. |
+| P1 | `run-wechat-runtime-probe` is now the strongest no-human WeChat evidence, but it uses harness-internal QA touch dispatch. | Keep it as runtime health evidence, not final Gate 5 or tactile UX proof. |
+| P1 | `build/wechatgame-gui-probe` can be locked by DevTools/wxfilewatcher. | Use `%TEMP%\wisdom-wechat-harnesses\...` for new harnesses during active DevTools sessions. |
+| P2 | Auto protocol and Windows pointer-touch experiments are documented by evidence but not stable enough for CI. | Keep them diagnostic-only until they pass consistently. |
+
+## Next Loop Candidate 66
+
+| Field | Value |
+|---|---|
+| Candidate goal | Close the gap between runtime health and manual playability: either make real DevTools clicks reach runtime or identify an actionable engine/DevTools limitation with evidence |
+| Why it matters | User's lived bug is “I click and nothing happens”; runtime QA pass alone does not fully answer that |
+| No-human path | Investigate DevTools simulator input focus/mode, refine OS input injection, inspect runtime/input boot logs, and add a non-invasive on-screen debug/event counter in harness builds only |
+| Human threshold | Only if true manual clicking or physical device validation is required after automated channels are exhausted |
+
+## Loop 66-78 Results
+
+| Area | Result | Evidence |
+|---|---|---|
+| DevTools config modal | Green | `npm run repair:wechat-project-configs` scanned build + temp harnesses with `failed: 0`; `tests/wechat-devtools-launch.test.mjs` now also scans `%TEMP%\wisdom-wechat-harnesses` |
+| DevTools trust modal | Green for harness | `tools/run-wechat-gui-touch-smoke.ps1` gained modal green-button detection and `-DismissOnly`; runtime/GUI probes call it after open |
+| DevTools stale runtime cache | Mitigated | Runtime and GUI probes now `quit` DevTools on force reopen and wait before `open`; soft close remains opt-in via `WECHAT_*_SOFT_CLOSE=1` |
+| Player visibility | Improved and measured | `PlayerVisibilityBadge` is included in runtime snapshot; after full DevTools quit, badge bounds moved from top-clipped `centerY=387.7` to visible `centerY=351.7` |
+| WeChat package gate | Green | Latest `npm run verify:wechat`: main package `2,575,567 bytes`, total `2,724,219 bytes` |
+| True GUI smoke | Green | Latest `temp/wechat-gui-runtime-smoke-evidence.json`: `status=passed`, real runtime input observed, movement `306.22`, commands `Attack, PlaceEcho, PauseToggle`, final state paused |
+| Pause safe area | Fixed | `TouchPause` moved away from the WeChat top-right capsule; GUI smoke now clicks the safer in-game pause point |
+| Windows pointer-touch injection | Still red | `InjectTouchInput` still fails with Win32 `87`; default GUI smoke now uses legacy `mouse_event`, which passed |
+
+## Loop 66-78 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `node --test tests\dungeon-scenes.test.mjs tests\content-scenes.test.mjs tests\wechat-devtools-launch.test.mjs` | Pass; 14 tests |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise |
+| `npm run verify:wechat` | Pass; main package `2,575,567 bytes` |
+| Fresh `tools/run-wechat-runtime-probe.mjs` after DevTools quit | Pass; runtime route and controls remain healthy |
+| Fresh `tools/run-wechat-gui-runtime-smoke.mjs` using OS `mouse_event` | Pass; real GUI input reached WeChat runtime and final state paused |
+
+## Loop 66-78 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P0 | Pointer-touch injection is still not usable on this Windows/DevTools stack. | Keep it diagnostic-only; do not use it as Gate 5 evidence. |
+| P1 | GUI smoke depends on DevTools window automation and can still be slower than normal unit checks. | Keep `verify:wechat` and runtime probe as fast gates; use GUI smoke for release/readiness evidence. |
+| P1 | DevTools may cache old runtime modules unless fully quit. | Force quit is now the default for harness force-reopen paths. |
+| P2 | Player visibility is now measurable and on-screen, but final art quality still needs cute-style visual review. | Continue visual/aesthetic loops separately from runtime input gates. |
+
+## Loop 79 Results
+
+| Area | Result | Evidence |
+|---|---|---|
+| Player visibility layering | Green in current runtime chain | `PlayerVisualController` world-order fix remained effective in WeChat runtime snapshots; latest probe hello shows `player.siblingIndex = 12` with `visibilityBadge.active = true` and legacy locator badge inactive |
+| Joystick feel diagnosis | Root cause isolated | `TouchJoystick.updateFromTouch()` already used the mid-range response curve, but `updateFromUILocation()` still used linear strength; this made WeChat/native paths feel slower than preview/manual touch and explains the user's “摇杆很慢” report without needing a pure performance hypothesis |
+| Joystick runtime parity | Green | `TouchJoystick` now routes both direct-touch and native/UI-location paths through the same response curve; updated `tests/player-visibility-motion.spec.mjs` now checks half-stick speed parity across both paths |
+| Preview regression gate | Green after local cache sync | `npx playwright test -c ./playwright.config.mjs ./tests/player-visibility-motion.spec.mjs` passed after syncing the local preview chunk so the running preview matched current source; this remained a local cache sync, not product code |
+| WeChat main package budget | Green | Latest `temp/wechat-size-report.json`: main package `2,584,692 bytes`, total `2,733,344 bytes`, budget margin `1,609,612 bytes`, warning margin `1,295,039 bytes` |
+| Non-GUI WeChat playthrough harness | Green | Added `tools/run-wechat-runtime-playthrough.mjs` and `npm run test:wechat:playthrough` to prepare a fresh harness, send a `run-sequence` command, and summarize joystick/scene-route evidence into `temp/wechat-runtime-playthrough-evidence.json` |
+| BossArena -> StartCamp route stability | Fixed in runtime bookkeeping | First pass proved the game did reach `StartCamp`, but `SceneLoader` remained `switching`; `SceneLoader.getSwitchState()` now self-heals completed scene loads, and the QA probe allows longer scene-route waits for slow WeChat transitions |
+| WeChat runtime sustained flow | Green | Latest `temp/wechat-runtime-playthrough-evidence.json`: `status=passed`, joystick moved `207.68002312563988`, `averageUnitsPerSecond=230.5`, `approxFps=61.04`, route `FieldWest -> FieldRuins -> DungeonHub -> DungeonRoomA/B/C -> BossArena -> StartCamp` loaded `8/8` scenes |
+
+## Loop 79 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `npx playwright test -c ./playwright.config.mjs ./tests/player-visibility-motion.spec.mjs` | Pass after local preview cache sync |
+| `node --test tests/wechat-build-policy.test.mjs tests/ci-workflow.test.mjs` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise |
+| `npm run verify:wechat` | Pass; main package `2,584,692 bytes` |
+| `npm run test:wechat:playthrough` | Pass; runtime playthrough evidence written to `temp/wechat-runtime-playthrough-evidence.json` |
+
+## Loop 79 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | The new WeChat runtime playthrough is non-GUI and sustained, but it still uses QA/runtime commands rather than a full real-player portal/plate interaction script for every step. | Accept as current stop condition because it is real WeChat runtime evidence and covers `8/8` scenes; keep direct portal/plate probe commands as the next realism upgrade. |
+| P1 | Preview regression still depends on local compiled cache matching source. | Continue to treat preview chunk sync as local validation plumbing only; source + WeChat build remain the product truth. |
+| P2 | WeChat `BossArena -> StartCamp` can be slower than earlier hops. | Probe now allows a longer wait and SceneLoader self-heals state once the target scene is actually current; keep an eye on load-time UX and loading/fallback copy in future loops. |
+
+## WeChat Daily Workflow Memory
+
+| Field | Value |
+|---|---|
+| User-facing blocker | Restarting WeChat DevTools can surface a blocking “trust project” UI and stall automation even when the real goal is only to refresh the current build |
+| Preferred daily flow | Use `npm run rebuild:wechat` for `close current project -> build:wechat -> verify:wechat -> open:wechat` without GUI mouse automation |
+| Daily reload | `npm run open:wechat` and `npm run reload:wechat` now use DevTools CLI `open --project ... --port ...`, so they can refresh the latest successful build without spawning a fresh desktop window |
+| Force-reopen escape hatch | Only use `WECHAT_DEVTOOLS_FORCE_REOPEN=1` when stale runtime cache is the real blocker; `WECHAT_DEVTOOLS_SOFT_CLOSE=1` keeps that path to project close/open instead of full app quit |
+| What not to use | Do not use GUI smoke or modal-dismiss scripts as the normal rebuild path; they exist for harness evidence and can steal focus / mouse |
+| Where to store this rule | Keep it in repo docs plus this loop memory. Do not patch old `sessions/*.jsonl`; those are audit logs. `C:\\Users\\yangp\\.codex\\memories` is currently empty, so inventing an external memory format would be less reliable than keeping the workflow in-repo |
+
+## Loop 80 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Temporary player helper frames | Removed from runtime | `PlayerVisualController` now destroys `PlayerVisibilityHalo` and `PlayerVisibilityBadge` instead of creating them; player visibility relies on world-order only |
+| Preview player visibility regression | Green | `npx playwright test -c ./playwright.config.mjs ./tests/player-visibility-motion.spec.mjs` passed after reloading the preview runtime; the assertion now expects both temporary helper nodes to be absent |
+| WeChat runtime player visibility cleanup | Green | Latest `temp/wechat-runtime-probe-evidence.json` final `snapshot` step shows `visibilityBadge.exists = false`; only the early `hello` snapshot can still observe pre-cleanup startup state |
+| WeChat build budget after cleanup | Green | `npm run verify:wechat` passed with main package `2,583,189 bytes` |
+
+## Loop 81 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Runtime harness stability | Green | `tools/prepare-wechat-runtime-probe-harness.mjs` now treats empty `WECHAT_RUNTIME_PROBE_SOURCE_DIR` as unset and uses a millisecond + PID harness path; `tools/run-wechat-runtime-playthrough.mjs` no longer passes an empty override |
+| Real portal traversal in WeChat runtime | Green | `assets/scripts/player/PlayerController.ts` no longer relies on `constructor.name` for proxy contacts; latest `temp/wechat-runtime-playthrough-evidence.json` shows sequence step `move-until-scene` passed with `loaded=true` and the full route still loads `8/8` scenes |
+| Decorative placeholder box dominance | Yellow / mitigated | `assets/scripts/ui/GameHud.ts` now hides `Hint`/`Sign` nodes, gives semantic labels to portal/checkpoint/plate/enemy/pickup placeholders, and fades decorative `Backdrop/Lane/Zone/Strip/Glow/Accent` rects harder so interactables stand out more |
+| World bounds visibility and clamp evidence | Yellow / structurally green | `WorldCameraRig2D` still draws `WorldBoundsFrame` and clamps the target each frame; targeted runtime probe attempt to move to `x=9999` stopped the player at about `x=1026.3` in StartCamp, which is within the expected clamp range, but this is not yet promoted into a dedicated automated regression test |
+| WeChat package budget | Green | Latest `npm run verify:wechat` passed with main package `2,595,926 bytes`, total output `2,744,578 bytes` |
+
+## Loop 81 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise |
+| `npm run verify:wechat` | Pass; main package `2,595,926 bytes` |
+| `npm run test:wechat:playthrough` | Pass; latest `temp/wechat-runtime-playthrough-evidence.json` shows `move-until-scene` and `8/8` scene route passed |
+| `node tools/run-wechat-runtime-probe.mjs` with a custom bounds-check sequence | Fails by design on unreachable target, but evidence shows clamp stopping the player near `x=1026.3` instead of allowing off-screen runaway |
+
+## Loop 81 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | The door/path issue is no longer just a direct scene-switch illusion; the runtime now proves real plate -> portal -> scene travel in StartCamp. | Treat issue 2 as fixed for the current WeChat runtime chain. |
+| P1 | Placeholder clarity is improved but not artistically solved; large surfaces are still placeholder geometry, only now pushed into the background more aggressively. | Keep Gate 2 style work open; semantic readability is a mitigation, not final art approval. |
+| P1 | Bounds clamp has runtime evidence but not a dedicated regression gate yet. | Add a future targeted `bounds-clamp` probe/test so this does not regress silently. |
+
+## Loop 82 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| BossArena background box noise | Green / reduced | `assets/scripts/ui/GameHud.ts` now disables `SpriteSkin` on `BossBackdrop` and `BossLane`, then flattens those boss-only decorative planes into a very low-alpha soft background instead of tiled wall placeholder art |
+| Boss core overlap cleanup | Green | `assets/scenes/BossArena.scene` now hides `BossEnemy-Core-Orb`, `BossEnemy-Core-Base`, and `BossEnemy-Core-Shine` by default; `assets/scripts/boss/BossVisualController.ts` also restyles placeholder-only boss visuals into a simpler warm core presentation |
+| Boss shield clutter cleanup | Green | `assets/scenes/BossArena.scene` now hides secondary shield clutter nodes (`HingeFin`, `Counterweight`, `Latch`, `Spark`, `Anchor`) on both closed/open shield variants; `assets/scripts/boss/BossShieldPhaseController.ts` also strips those extra placeholder parts at runtime if they reappear |
+| Generator parity | Green | `tools/generate-week2-scenes.mjs` now generates the same simplified defaults, so future scene regeneration will not reintroduce the old BossArena placeholder clutter |
+| Adversarial review | Confirmed root cause | Explorer review agreed the issue was structural placeholder over-generation: huge `BossBackdrop/BossLane` planes plus boss/shield multi-piece placeholder stacks, not a single broken texture |
+
+## Loop 82 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `npx playwright test -c ./playwright.config.mjs ./tests/boss-fight-flow.spec.mjs` | Pass; added boss placeholder simplification regression |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise |
+| `npm run verify:wechat` | Pass; main package `2,599,507 bytes`, total output `2,748,260 bytes` |
+| `npm run test:wechat:playthrough` | Pass; runtime playthrough still loads `8/8` scenes with joystick movement and pause/summon flow intact |
+
+## Loop 82 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | BossArena is now much less noisy, but it is still placeholder art, not final cute boss production art. | Keep BossArena in the “readable placeholder” state for MVP; final cute silhouette and shield language still belong to Gate 2 art replacement work. |
+| P1 | Preview-side hot reload did not reliably expose newly added serialized booleans on existing boss components. | Kept the runtime simplification, but also moved the key cleanup into scene defaults and generator defaults so stale preview/editor serialization cannot silently undo the visual cleanup. |
+
+## Loop 83 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Runtime probe websocket residue | Green | `assets/scripts/qa/WechatDevtoolsRuntimeProbe.ts` now retires after result/error and also self-retires after bounded no-server retries, so stale `ws://127.0.0.1:37991` reconnect spam stops instead of looping forever |
+| Probe bootstrap cleanup | Green | `tools/run-wechat-runtime-playthrough.mjs` now strips the temporary runtime-probe bootstrap back out of the staged `game.js`; latest `temp/wechat-runtime-playthrough-evidence.json` records `bootstrapCleanup.cleaned = true` |
+| DevTools open / reload workflow | Green | `tools/open-wechat-devtools.mjs` and `tools/rebuild-wechat-devtools.mjs` now invoke `cli.bat` through PowerShell with an env-based path; `npm run reload:wechat` succeeded against `build/wechatgame-staging-20260424122909` without a forced restart |
+| Non-GUI gate hygiene | Green | `tools/run-wechat-runtime-probe.mjs` no longer runs the modal-dismiss PowerShell helper by default; that window-level path now requires explicit opt-in via `WECHAT_RUNTIME_PROBE_ALLOW_MODAL_DISMISS=1` |
+| Environment runtime tile semantics | Green / improved | `tools/image2-stage-candidate-bindings.mjs` now materializes `outdoor_ground_*` and `outdoor_path_*` preview assets as `32x32` tiles and `outdoor_wall_*` preview assets as `64x64` tiles instead of binding the raw `512x512` review PNGs into runtime |
+| WeChat package budget after semantic tile staging | Green | Latest `npm run verify:wechat` passed with main package `2,611,732 bytes`, total output `2,774,469 bytes` |
+
+## Loop 83 Validation
+
+| Command | Result |
+|---|---|
+| `node --test .\tests\wechat-build-policy.test.mjs .\tests\image2-stage-candidate-bindings.test.mjs .\tests\asset-binding-candidate-overlay.test.mjs` | Pass |
+| `npm run test:typecheck` | Pass |
+| `node .\tools\image2-stage-candidate-bindings.mjs --report temp/image2/evidence/real-image2-env-batch-01/screening-report.json --manifest assets/configs/asset_binding_candidate_manifest_image2.json --import-root assets/art/generated/image2-preview` | Pass; preview assets re-imported at semantic tile sizes |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise; latest output `build/wechatgame-staging-20260424122909` |
+| `npm run verify:wechat` | Pass; main package `2,611,732 bytes`, total output `2,774,469 bytes` |
+| `npm run test:wechat:playthrough` | Pass on the latest staging output using the non-GUI default path |
+| `npm run reload:wechat` | Pass; current DevTools session reopened on `build/wechatgame-staging-20260424122909` |
+
+## Loop 83 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | The user-reported `ws://127.0.0.1:37991` spam was harness residue, not a WeChat legal-domain regression. | Treat future reports of that exact local websocket failure as a harness-hygiene clue first: check for stale probe bootstrap or a probe server that has already exited. |
+| P1 | The previous runtime preview path was visually misleading because it tiled raw `512x512` review candidates as if they were production-size tiles. | Keep the semantic tile staging rule (`32x32` ground/path, `64x64` wall) for runtime preview until a better per-role policy is defined. |
+| P1 | The WeChat harness is no longer the main blocker for Batch 02. | Return focus to content quality iteration on `outdoor_ground_flowers` and `outdoor_wall_cracked`; do not stop the loop here. |
+
+## Loop 84 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Build-wide websocket residue cleanup | Green | New [wechat-runtime-probe-bootstrap-utils.mjs](/E:/cv5/wisdom/tools/wechat-runtime-probe-bootstrap-utils.mjs) now strips stale probe bootstrap from every `build/wechatgame*` output, not only the active harness dir |
+| DevTools reload hygiene | Green | [open-wechat-devtools.mjs](/E:/cv5/wisdom/tools/open-wechat-devtools.mjs) now scrubs legacy build outputs before `open`; `npm run reload:wechat` reported cleanup of `build/wechatgame` and `build/wechatgame-staging` |
+| Runtime playthrough refresh policy | Yellow / tightened | [run-wechat-runtime-playthrough.mjs](/E:/cv5/wisdom/tools/run-wechat-runtime-playthrough.mjs) now defaults to in-app `close --project -> open` refresh instead of leaving probe refresh fully passive, while still avoiding full DevTools restart |
+| Current non-GUI probe state | Yellow / transiently blocked | Latest `temp/wechat-runtime-probe-evidence.json` timed out waiting for `hello` even though the in-place bootstrap was injected and DevTools `close/open/auto-preview` all returned success |
+
+## Loop 84 Validation
+
+| Command | Result |
+|---|---|
+| `node --test tests/wechat-build-policy.test.mjs` | Pass |
+| `npm run test:typecheck` | Pass |
+| `npm run reload:wechat` | Pass; cleaned stale runtime probe bootstrap from `build/wechatgame` and `build/wechatgame-staging` |
+| `npm run test:wechat:playthrough` | Blocked; latest probe evidence timed out waiting for `hello` after `close --project -> open` |
+
+## Loop 84 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | The `ws://127.0.0.1:37991` console spam can come from a fixed legacy staging directory even when the latest timestamped build is clean. | Always scrub all `build/wechatgame*` outputs before manual `open:wechat` / `reload:wechat`; do not only clean the current harness dir. |
+| P1 | The latest blocked playthrough is not evidence of a socket legal-domain regression. The in-place bootstrap was injected successfully, but the runtime never emitted `hello` after DevTools `close/open/auto-preview`. | Treat this as a current DevTools refresh / preview-start reliability issue. Keep diagnosing on the non-GUI path first; do not fall back to mouse-driven GUI smoke as the default response. |
+
+## Loop 85 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Restart trust-modal rule | Green / documented | Repo guidance now treats clicking `信任并运行` as a required step whenever DevTools is fully restarted; restart is not complete until that modal is handled |
+| New runtime console error triage | Yellow / narrowed | User screenshot shows Cocos `3804` errors rooted in `applySpriteFrameToPlaceholderVisual`, which is a different issue from the old websocket residue |
+| Placeholder visual hardening | Green in code, pending runtime confirmation | `assets/scripts/visual/SpriteVisualSkin.ts` now guards optional component constructors before any `getComponent` or `addComponent` call, so missing `Mask` / `Sprite` / `Label` classes should degrade safely instead of throwing `3804` |
+
+## Loop 85 Validation
+
+| Command | Result |
+|---|---|
+| `node --test tests/wechat-build-policy.test.mjs` | Pass; includes guardrail coverage for `SpriteVisualSkin.ts` safe component access |
+
+## Loop 85 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | If DevTools is fully restarted on this machine, the trust dialog can block runtime boot before any normal playthrough evidence appears. | When restart is unavoidable, explicitly handle `信任并运行` first; otherwise treat the reopen as incomplete and do not misread the blocked runtime as a gameplay regression. |
+| P1 | The current screenshoted error burst is not a socket legal-domain problem. | Keep the websocket cleanup fix in place, but debug the new `3804` path independently through non-GUI rebuild and playthrough verification. |
+
+## Loop 86 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| `SpriteVisualSkin` runtime hardening | Green / validated through runtime gate | `build:wechat`, `verify:wechat`, and `test:wechat:playthrough` all passed after guarding optional component constructors in `assets/scripts/visual/SpriteVisualSkin.ts` |
+| Default playthrough route hygiene | Green / tightened | Removed the stale StartCamp `move-player-to-world (392, -20)` step from `tools/run-wechat-runtime-playthrough.mjs`; current route now passes again on the non-GUI path |
+| DevTools auto-preview stderr noise | Yellow / understood | DevTools CLI can still print a stale `game.json` code 10 during `auto-preview`, but the runtime probe reached `hello`, executed the full sequence, and produced a passing playthrough result against `build/wechatgame-staging` |
+
+## Loop 86 Validation
+
+| Command | Result |
+|---|---|
+| `npm run test:typecheck` | Pass |
+| `node --test tests/wechat-build-policy.test.mjs` | Pass |
+| `npm run build:wechat:config` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise |
+| `npm run verify:wechat` | Pass; main package `2,611,712 bytes`, total output `2,774,449 bytes` |
+| `npm run test:wechat:playthrough` | Pass; runtime summary `passed=true`, movement gate green, scene route `8/8` loaded |
+
+## Loop 86 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | The old StartCamp absolute target `(392, -20)` is now stale for the default WeChat playthrough route because the player can trigger the portal/scene transition before that coordinate is meaningfully validated. | Keep the shorter route and avoid reintroducing that stale coordinate into the default non-GUI playthrough script. |
+| P1 | DevTools CLI stdout/stderr can report a stale `game.json` code 10 during `auto-preview` even while the current project still boots and the runtime probe passes against the intended in-place build. | Judge the gate by probe evidence and playthrough result, not by CLI stderr alone; keep investigating separately instead of flipping the main gate red on that message by itself. |

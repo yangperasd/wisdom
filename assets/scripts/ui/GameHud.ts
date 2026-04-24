@@ -1,4 +1,4 @@
-import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame, UITransform, Vec3, sys, view } from 'cc';
+import { _decorator, Color, Component, Label, Node, Sprite, SpriteFrame, UITransform, Vec3, director, sys, view } from 'cc';
 import { HEALTH_EVENT_CHANGED, HealthComponent } from '../combat/HealthComponent';
 import { GAME_EVENT_CHECKPOINT_CHANGED, EchoId } from '../core/GameTypes';
 import { GameManager } from '../core/GameManager';
@@ -177,6 +177,8 @@ export class GameHud extends Component {
   protected onEnable(): void {
     this.applySpriteSkin();
     this.applyResponsiveLayout();
+    this.hideWorldHintNodes();
+    this.applyWorldPlaceholderSemantics();
     this.bindHudEvents();
     this.markAllDirty();
     this.refreshText();
@@ -194,6 +196,8 @@ export class GameHud extends Component {
   protected start(): void {
     this.applySpriteSkin();
     this.applyResponsiveLayout();
+    this.hideWorldHintNodes();
+    this.applyWorldPlaceholderSemantics();
     this.bindSceneLoader();
     this.refreshText();
     this.refreshEchoButtons();
@@ -251,8 +255,8 @@ export class GameHud extends Component {
     const attackBaseY = safeBottom + (mobile ? 126 : tight ? 100 : compact ? 108 : 116);
     // Echo row raised higher (adversary found BOMB-to-ATTACK gap was 4px).
     const echoRowY = attackBaseY + (tight ? 110 : compact ? 116 : 122);
-    const pauseInsetX = tight ? 70 : 76;
-    const pauseInsetY = tight ? 34 : 38;
+    const pauseInsetX = tight ? 204 : 214;
+    const pauseInsetY = tight ? 88 : 96;
     // Keep the always-visible HUD informative without letting it read as two
     // full-width debug banners over the world.
     const hudWidth = clamp(safeArea.width - (tight ? 88 : 116), 700, 1120);
@@ -344,6 +348,249 @@ export class GameHud extends Component {
     if (!GameHud.geometrySelfCheckDone) {
       GameHud.geometrySelfCheckDone = true;
       this.verifyTouchButtonGeometry(controlScale);
+    }
+  }
+
+  private hideWorldHintNodes(): void {
+    const canvas = director.getScene()?.getChildByName('Canvas') ?? null;
+    const worldRoot = canvas?.getChildByName('WorldRoot') ?? null;
+    if (!worldRoot) {
+      return;
+    }
+
+    const visit = (node: Node): void => {
+      if (!node?.isValid) {
+        return;
+      }
+
+      if (/Hint/i.test(node.name)) {
+        node.active = false;
+        return;
+      }
+
+      if (/Sign/i.test(node.name)) {
+        node.active = false;
+        return;
+      }
+
+      for (const child of node.children) {
+        visit(child);
+      }
+    };
+
+    for (const child of worldRoot.children) {
+      visit(child);
+    }
+  }
+
+  private applyWorldPlaceholderSemantics(): void {
+    const canvas = director.getScene()?.getChildByName('Canvas') ?? null;
+    const worldRoot = canvas?.getChildByName('WorldRoot') ?? null;
+    if (!worldRoot) {
+      return;
+    }
+
+    const visit = (node: Node): void => {
+      if (!node?.isValid) {
+        return;
+      }
+
+      this.applyWorldSemanticToNode(node);
+      for (const child of node.children) {
+        visit(child);
+      }
+    };
+
+    for (const child of worldRoot.children) {
+      visit(child);
+    }
+  }
+
+  private applyWorldSemanticToNode(node: Node): void {
+    const name = node.name;
+    if (/^(?:CampHint|WestHint|RuinsHint|HubHint|Room[A-C]Hint|CampSign)/i.test(name)) {
+      node.active = false;
+      return;
+    }
+
+    const visualNode = node.getChildByName(`${name}-Visual`) ?? node.getChildByName('Visual');
+    const labelNode = node.getChildByName(`${name}-Label`) ?? node.getChildByName('Label');
+    const label = labelNode?.getComponent(Label) ?? null;
+    const rectVisual = visualNode?.getComponent(RectVisual) ?? null;
+    const spriteSkinNode = visualNode?.getChildByName('SpriteSkin') ?? null;
+    let hasSpriteSkin = Boolean(spriteSkinNode?.activeInHierarchy);
+
+    if (/^Boss(?:Backdrop|Lane)$/i.test(name) && spriteSkinNode?.isValid) {
+      // BossArena reads cleaner with soft placeholder planes than with tiled
+      // wall skins. Keeping the SpriteSkin active produces the "many big boxes"
+      // effect the user reported in the final arena.
+      spriteSkinNode.active = false;
+      hasSpriteSkin = false;
+    }
+
+    if (/^(?:.*Backdrop|.*Lane|.*Zone|.*Strip|.*Glow|.*Accent(?:-\d+)?)$/i.test(name)) {
+      if (labelNode) {
+        labelNode.active = false;
+      }
+      if (rectVisual && !hasSpriteSkin) {
+        const fillAlpha = /^BossBackdrop$/i.test(name)
+          ? 10
+          : /^BossLane$/i.test(name)
+            ? 18
+            : /Backdrop/i.test(name)
+              ? 22
+              : 34;
+        rectVisual.fillColor = new Color(rectVisual.fillColor.r, rectVisual.fillColor.g, rectVisual.fillColor.b, fillAlpha);
+        rectVisual.strokeColor = new Color(rectVisual.strokeColor.r, rectVisual.strokeColor.g, rectVisual.strokeColor.b, 0);
+        rectVisual.drawStroke = false;
+        rectVisual.gradientStrength = /^Boss(?:Backdrop|Lane)$/i.test(name) ? 0.08 : rectVisual.gradientStrength;
+        rectVisual.innerShadow = 0;
+        rectVisual.doubleBorder = 0;
+        rectVisual.hatchStrength = 0;
+        rectVisual.stippleStrength = 0;
+        rectVisual.outerGlow = 0;
+        rectVisual.requestRedraw();
+      }
+      return;
+    }
+
+    if (this.hasComponentNamed(node, 'ScenePortal')) {
+      this.applySemanticPalette({
+        label: this.describePortalLabel(node),
+        labelColor: new Color(245, 251, 255, 255),
+        fillColor: new Color(104, 154, 184, 232),
+        strokeColor: new Color(228, 247, 255, 172),
+        outerGlow: 0.18,
+        outerGlowColor: new Color(176, 230, 255, 110),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+      return;
+    }
+
+    if (this.hasComponentNamed(node, 'CheckpointMarker')) {
+      this.applySemanticPalette({
+        label: '\u7BDD\u706B',
+        labelColor: new Color(77, 57, 21, 255),
+        fillColor: new Color(237, 196, 105, 236),
+        strokeColor: new Color(255, 245, 211, 190),
+        outerGlow: 0.1,
+        outerGlowColor: new Color(255, 236, 166, 96),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+      return;
+    }
+
+    if (this.hasComponentNamed(node, 'PressurePlateSwitch') || /Plate/i.test(name)) {
+      this.applySemanticPalette({
+        label: '\u673A\u5173',
+        labelColor: new Color(27, 55, 31, 255),
+        fillColor: new Color(128, 203, 123, 238),
+        strokeColor: new Color(224, 255, 216, 180),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+      return;
+    }
+
+    if (this.hasComponentNamed(node, 'EchoUnlockPickup') || /EchoPickup/i.test(name)) {
+      this.applySemanticPalette({
+        label: '\u65B0\u56DE\u54CD',
+        labelColor: new Color(30, 83, 48, 255),
+        fillColor: new Color(155, 220, 167, 232),
+        strokeColor: new Color(232, 255, 238, 176),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+      return;
+    }
+
+    if (this.hasComponentNamed(node, 'ProgressFlagPickup')) {
+      this.applySemanticPalette({
+        label: '\u9057\u7269',
+        labelColor: new Color(90, 60, 28, 255),
+        fillColor: new Color(239, 205, 139, 232),
+        strokeColor: new Color(255, 241, 202, 176),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+      return;
+    }
+
+    if (/Enemy/i.test(name) || this.hasComponentNamed(node, 'EnemyAI')) {
+      this.applySemanticPalette({
+        label: '\u654C\u4EBA',
+        labelColor: new Color(98, 44, 42, 255),
+        fillColor: new Color(232, 156, 146, 228),
+        strokeColor: new Color(255, 228, 224, 160),
+      }, label, labelNode, rectVisual, hasSpriteSkin);
+    }
+  }
+
+  private applySemanticPalette(
+    semantic: {
+      label: string;
+      labelColor: Color;
+      fillColor: Color;
+      strokeColor: Color;
+      outerGlow?: number;
+      outerGlowColor?: Color;
+    },
+    label: Label | null,
+    labelNode: Node | null,
+    rectVisual: RectVisual | null,
+    hasSpriteSkin: boolean,
+  ): void {
+    if (label && !hasSpriteSkin) {
+      label.string = semantic.label;
+      label.color = semantic.labelColor;
+    }
+    if (labelNode && !hasSpriteSkin) {
+      labelNode.active = true;
+    }
+    if (rectVisual && !hasSpriteSkin) {
+      rectVisual.drawFill = true;
+      rectVisual.drawStroke = true;
+      rectVisual.fillColor = semantic.fillColor;
+      rectVisual.strokeColor = semantic.strokeColor;
+      rectVisual.outerGlow = semantic.outerGlow ?? 0;
+      rectVisual.outerGlowColor = semantic.outerGlowColor ?? new Color(0, 0, 0, 0);
+      rectVisual.requestRedraw();
+    }
+  }
+
+  private hasComponentNamed(node: Node, componentName: string): boolean {
+    return node.components.some((component) => component?.constructor?.name === componentName);
+  }
+
+  private describePortalLabel(node: Node): string {
+    const portal = node.components.find((component) => component?.constructor?.name === 'ScenePortal') as {
+      targetScene?: string;
+    } | undefined;
+    const targetScene = String(portal?.targetScene ?? '').trim();
+    const targetSceneLabel = this.describeSceneLabel(targetScene);
+    if (!targetSceneLabel) {
+      return '\u51FA\u53E3';
+    }
+
+    if (targetScene === 'StartCamp') {
+      return `\u56DE${targetSceneLabel}`;
+    }
+
+    return `\u524D\u5F80${targetSceneLabel}`;
+  }
+
+  private describeSceneLabel(sceneName: string): string {
+    switch (sceneName) {
+      case 'StartCamp':
+        return '\u8425\u5730';
+      case 'FieldWest':
+        return '\u6797\u95F4\u5C0F\u5F84';
+      case 'FieldRuins':
+        return '\u9057\u8FF9';
+      case 'DungeonHub':
+        return '\u8BD5\u70BC\u5927\u5385';
+      case 'DungeonRoomA':
+        return '\u7BB1\u5B50\u8BD5\u70BC';
+      case 'DungeonRoomB':
+        return '\u5F39\u82B1\u8BD5\u70BC';
+      case 'DungeonRoomC':
+        return '\u70B8\u866B\u8BD5\u70BC';
+      case 'BossArena':
+        return '\u9996\u9886\u8BD5\u70BC';
+      default:
+        return '';
     }
   }
 

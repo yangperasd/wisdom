@@ -24,7 +24,11 @@
     "build:wechat:config": "node ./tools/generate-wechat-build-config.mjs",
     "build:wechat": "node ./tools/run-wechat-build.mjs",
     "optimize:wechat": "node ./tools/optimize-wechat-build-output.mjs",
+    "repair:wechat-project-configs": "node ./tools/repair-wechat-project-configs.mjs",
     "verify:wechat": "node ./tools/verify-wechat-build-output.mjs",
+    "test:wechat:playthrough": "node ./tools/run-wechat-runtime-playthrough.mjs",
+    "reload:wechat": "node ./tools/open-wechat-devtools.mjs",
+    "rebuild:wechat": "node ./tools/rebuild-wechat-devtools.mjs",
     "open:wechat": "node ./tools/open-wechat-devtools.mjs"
   },
   "devDependencies": {

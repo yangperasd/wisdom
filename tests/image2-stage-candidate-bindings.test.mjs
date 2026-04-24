@@ -125,7 +125,8 @@ test('resolvePreviewRasterPolicy uses runtime-friendly tile sizes for environmen
   assert.deepEqual(resolvePreviewRasterPolicy('outdoor_ground_flowers'), { mode: 'tile', edge: 32 });
   assert.deepEqual(resolvePreviewRasterPolicy('outdoor_path_cobble'), { mode: 'tile', edge: 32 });
   assert.deepEqual(resolvePreviewRasterPolicy('outdoor_wall_standard'), { mode: 'tile', edge: 64 });
-  assert.deepEqual(resolvePreviewRasterPolicy('checkpoint'), { mode: 'preserve', maxEdge: 512 });
+  assert.deepEqual(resolvePreviewRasterPolicy('checkpoint'), { mode: 'object', maxEdge: 384, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('projectile_arrow'), { mode: 'object', maxEdge: 256, trimTransparent: true });
 });
 
 test('stageCandidateBindings downsizes runtime tile previews to their semantic tile edge', async () => {
@@ -175,4 +176,76 @@ test('stageCandidateBindings downsizes runtime tile previews to their semantic t
   const metadata = await sharp(stagedAssetPath).metadata();
   assert.equal(metadata.width, 32);
   assert.equal(metadata.height, 32);
+});
+
+test('stageCandidateBindings trims object previews to the asset silhouette before resizing', async () => {
+  const projectRoot = await mkdtemp(path.join(os.tmpdir(), 'wisdom-image2-stage-object-'));
+  const sourcePngPath = path.join(
+    projectRoot,
+    'temp',
+    'image2',
+    'candidates',
+    'checkpoint',
+    '2026-04-24-prop-batch-01',
+    'checkpoint_v00.png',
+  );
+  const reportPath = path.join(projectRoot, 'temp', 'image2', 'screening-report.json');
+  const manifestPath = path.join(projectRoot, 'assets', 'configs', 'asset_binding_candidate_manifest_image2.json');
+
+  await mkdir(path.dirname(sourcePngPath), { recursive: true });
+  const paddedObjectBuffer = await sharp({
+    create: {
+      width: 120,
+      height: 120,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    },
+  })
+    .composite([{
+      input: await sharp({
+        create: {
+          width: 42,
+          height: 26,
+          channels: 4,
+          background: { r: 214, g: 196, b: 148, alpha: 1 },
+        },
+      }).png().toBuffer(),
+      left: 39,
+      top: 47,
+    }])
+    .png()
+    .toBuffer();
+  await writeFile(sourcePngPath, paddedObjectBuffer);
+  await writeJson(reportPath, {
+    summary: {
+      batchId: '2026-04-24-prop-batch-01',
+    },
+    results: [
+      {
+        bindingKey: 'checkpoint',
+        variantId: '00',
+        filePath: 'temp/image2/candidates/checkpoint/2026-04-24-prop-batch-01/checkpoint_v00.png',
+        hardScreen: {
+          passed: true,
+        },
+      },
+    ],
+  });
+
+  const result = await stageCandidateBindings({
+    projectRoot,
+    reportPath,
+    manifestPath,
+    importRoot: 'assets/art/generated/image2-preview',
+    policy: 'first-passing',
+    dryRun: false,
+  });
+
+  const stagedEntry = result.manifest.worldEntities.checkpoint;
+  assert.deepEqual(stagedEntry.previewRasterPolicy, { mode: 'object', maxEdge: 384, trimTransparent: true });
+
+  const stagedAssetPath = path.resolve(projectRoot, stagedEntry.selectedPath);
+  const metadata = await sharp(stagedAssetPath).metadata();
+  assert.equal(metadata.width, 42);
+  assert.equal(metadata.height, 26);
 });

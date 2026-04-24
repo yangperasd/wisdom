@@ -19,6 +19,15 @@ const PREVIEW_TILE_DIMENSIONS = [
   { pattern: /^outdoor_path_/i, edge: 32 },
   { pattern: /^outdoor_wall_/i, edge: 64 },
 ];
+const PREVIEW_OBJECT_DIMENSIONS = [
+  { pattern: /^checkpoint$/i, maxEdge: 384 },
+  { pattern: /^portal$/i, maxEdge: 384 },
+  { pattern: /^barrier_(closed|open)$/i, maxEdge: 384 },
+  { pattern: /^breakable_target$/i, maxEdge: 384 },
+  { pattern: /^pickup_relic$/i, maxEdge: 320 },
+  { pattern: /^common_enemy$/i, maxEdge: 384 },
+  { pattern: /^projectile_arrow$/i, maxEdge: 256 },
+];
 const DEFAULT_NOTES = [
   'This manifest is a staging-only overlay for Image 2.0 candidates.',
   'Do not copy approved candidate paths back into asset_binding_manifest_v2.json until screening, preview, package, and runtime validation pass.',
@@ -269,6 +278,15 @@ export function resolvePreviewRasterPolicy(bindingKey) {
     };
   }
 
+  const matchedObjectRule = PREVIEW_OBJECT_DIMENSIONS.find((rule) => rule.pattern.test(bindingKey));
+  if (matchedObjectRule) {
+    return {
+      mode: 'object',
+      maxEdge: matchedObjectRule.maxEdge,
+      trimTransparent: true,
+    };
+  }
+
   return {
     mode: 'preserve',
     maxEdge: DEFAULT_PREVIEW_MAX_EDGE,
@@ -294,6 +312,12 @@ async function writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath
       fit: 'fill',
       kernel: sharp.kernel.lanczos3,
       withoutEnlargement: false,
+    });
+  } else if (rasterPolicy.mode === 'object') {
+    const targetEdge = Math.max(1, rasterPolicy.maxEdge ?? DEFAULT_PREVIEW_MAX_EDGE);
+    pipeline = sourceImage.trim().resize(targetEdge, targetEdge, {
+      fit: 'inside',
+      withoutEnlargement: true,
     });
   } else if (maxEdge > DEFAULT_PREVIEW_MAX_EDGE) {
     pipeline = sourceImage.resize(DEFAULT_PREVIEW_MAX_EDGE, DEFAULT_PREVIEW_MAX_EDGE, {

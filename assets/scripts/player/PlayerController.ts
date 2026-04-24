@@ -1,8 +1,9 @@
-import { _decorator, Component, EventTarget, Node, Vec3 } from 'cc';
+import { _decorator, Collider2D, Component, EventTarget, Node, Rect, UITransform, Vec3, director } from 'cc';
 import { HEALTH_EVENT_DAMAGED, HEALTH_EVENT_DEPLETED, HealthComponent } from '../combat/HealthComponent';
 import { EchoManager } from '../echo/EchoManager';
 import { GameManager } from '../core/GameManager';
 import { CheckpointData, GAME_EVENT_RESPAWN_REQUESTED } from '../core/GameTypes';
+import { WorldCameraRig2D } from '../core/WorldCameraRig2D';
 
 const { ccclass, property } = _decorator;
 
@@ -13,6 +14,17 @@ export const PLAYER_EVENT_RESPAWNED = 'player-respawned';
 
 @ccclass('PlayerController')
 export class PlayerController extends Component {
+  private static readonly proxyContactComponentNames = [
+    'ScenePortal',
+    'CheckpointMarker',
+    'EchoUnlockPickup',
+    'ProgressFlagPickup',
+    'PlayerBarrierZone',
+    'PlayerRespawnZone',
+    'SpringFlowerBounce',
+    'DamageOnContact',
+  ] as const;
+
   public readonly events = new EventTarget();
 
   @property
@@ -38,10 +50,13 @@ export class PlayerController extends Component {
   private attackTimer = 0;
   private forcedMoveVelocity = new Vec3();
   private forcedMoveTimer = 0;
+  private playerCollider: Collider2D | null = null;
+  private currentProxyContacts = new Set<string>();
 
   protected onLoad(): void {
     this.health?.events?.on(HEALTH_EVENT_DAMAGED, this.onHealthDamaged, this);
     this.health?.events?.on(HEALTH_EVENT_DEPLETED, this.onHealthDepleted, this);
+    this.playerCollider = this.getComponent(Collider2D);
     this.syncAttackAnchor();
   }
 
@@ -58,6 +73,7 @@ export class PlayerController extends Component {
 
   protected onDisable(): void {
     GameManager.instance?.events?.off(GAME_EVENT_RESPAWN_REQUESTED, this.onRespawnRequested, this);
+    this.currentProxyContacts.clear();
   }
 
   protected onDestroy(): void {
@@ -89,6 +105,7 @@ export class PlayerController extends Component {
       this.attackTimer = nextAttackTimer;
     }
 
+    const worldRig = this.node.parent?.getComponent(WorldCameraRig2D) ?? null;
     const nextPosition = this.node.position.clone();
     if (this.forcedMoveTimer > 0) {
       const step = Math.min(dt, this.forcedMoveTimer);
@@ -104,7 +121,9 @@ export class PlayerController extends Component {
       nextPosition.y += this.moveInput.y * this.moveSpeed * dt;
     }
 
+    worldRig?.clampTargetPosition(nextPosition);
     this.node.setPosition(nextPosition);
+    this.syncProxyContacts();
   }
 
   public setMoveInput(x: number, y: number): void {
@@ -178,6 +197,11 @@ export class PlayerController extends Component {
       nextPosition.x += launchDirection.x * distance;
       nextPosition.y += launchDirection.y * distance;
       this.node.setWorldPosition(nextPosition);
+      const worldRig = this.node.parent?.getComponent(WorldCameraRig2D) ?? null;
+      const clampedPosition = this.node.position.clone();
+      worldRig?.clampTargetPosition(clampedPosition);
+      this.node.setPosition(clampedPosition);
+      this.syncProxyContacts();
       return true;
     }
 
@@ -192,10 +216,15 @@ export class PlayerController extends Component {
 
   public respawnAt(worldPosition: Vec3): void {
     this.node.setWorldPosition(worldPosition);
+    const worldRig = this.node.parent?.getComponent(WorldCameraRig2D) ?? null;
+    const clampedPosition = this.node.position.clone();
+    worldRig?.clampTargetPosition(clampedPosition);
+    this.node.setPosition(clampedPosition);
     this.attackTimer = 0;
     this.forcedMoveTimer = 0;
     this.forcedMoveVelocity.set(0, 0, 0);
     this.health?.resetFull();
+    this.syncProxyContacts();
     this.events.emit(PLAYER_EVENT_RESPAWNED, worldPosition.clone());
   }
 
@@ -254,5 +283,95 @@ export class PlayerController extends Component {
         this.attackAnchor.position.z,
       ),
     );
+  }
+
+  private syncProxyContacts(): void {
+    const playerCollider = this.playerCollider;
+    if (!playerCollider?.isValid || !playerCollider.enabledInHierarchy || !this.node.activeInHierarchy) {
+      this.currentProxyContacts.clear();
+      return;
+    }
+
+    const playerBounds = this.resolveContactBounds(this.node, playerCollider);
+    if (!playerBounds) {
+      this.currentProxyContacts.clear();
+      return;
+    }
+
+    const nextContacts = new Set<string>();
+    for (const collider of this.collectProxyColliders()) {
+      if (!collider?.isValid || !collider.enabledInHierarchy || collider === playerCollider) {
+        continue;
+      }
+
+      const colliderBounds = this.resolveContactBounds(collider.node, collider);
+      if (!colliderBounds || !this.intersects(playerBounds, colliderBounds)) {
+        continue;
+      }
+
+      nextContacts.add(collider.uuid);
+      if (!this.currentProxyContacts.has(collider.uuid)) {
+        this.dispatchProxyContact(collider, playerCollider);
+      }
+    }
+
+    this.currentProxyContacts = nextContacts;
+  }
+
+  private collectProxyColliders(): Collider2D[] {
+    const scene = director.getScene();
+    if (!scene) {
+      return [];
+    }
+
+    const colliders: Collider2D[] = [];
+    const visit = (node: Node): void => {
+      if (!node?.isValid || !node.activeInHierarchy || node === this.node) {
+        return;
+      }
+
+      const hasProxyHandler = PlayerController.proxyContactComponentNames.some((componentType) =>
+        Boolean(node.getComponent(componentType)),
+      );
+      if (hasProxyHandler) {
+        const collider = node.getComponent(Collider2D);
+        if (collider) {
+          colliders.push(collider);
+        }
+      }
+
+      for (const child of node.children) {
+        visit(child);
+      }
+    };
+
+    visit(scene);
+    return colliders;
+  }
+
+  private dispatchProxyContact(targetCollider: Collider2D, playerCollider: Collider2D): void {
+    for (const componentType of PlayerController.proxyContactComponentNames) {
+      const component = targetCollider.node.getComponent(componentType);
+      const handler = (component as { onBeginContact?: (self: Collider2D, other: Collider2D, contact?: null) => void } | null)?.onBeginContact;
+      if (typeof handler === 'function') {
+        handler.call(component, targetCollider, playerCollider, null);
+      }
+    }
+  }
+
+  private resolveContactBounds(node: Node, collider: Collider2D | null): Rect | null {
+    const transform = node.getComponent(UITransform);
+    if (transform) {
+      return transform.getBoundingBoxToWorld();
+    }
+
+    return collider?.worldAABB ?? null;
+  }
+
+  private intersects(a: Rect, b: Rect): boolean {
+    return a.x <= b.x + b.width
+      && a.x + a.width >= b.x
+      && a.y <= b.y + b.height
+      && a.y + a.height >= b.y;
   }
 }

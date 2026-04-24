@@ -1,10 +1,11 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Color, Component, Node } from 'cc';
 import { DamageOnContact } from '../combat/DamageOnContact';
 import { HEALTH_EVENT_DEPLETED, HealthComponent } from '../combat/HealthComponent';
 import { GameManager } from '../core/GameManager';
 import { GAME_EVENT_RESPAWN_REQUESTED } from '../core/GameTypes';
 import { EnemyAI } from '../enemy/EnemyAI';
 import { BREAKABLE_EVENT_BROKEN, BREAKABLE_EVENT_RESET, BreakableTarget } from '../puzzle/BreakableTarget';
+import { RectVisual } from '../visual/RectVisual';
 
 const { ccclass, property } = _decorator;
 
@@ -43,7 +44,11 @@ export class BossShieldPhaseController extends Component {
   @property([Node])
   activateWhenVulnerable: Node[] = [];
 
+  @property
+  simplifyPlaceholderVisuals = true;
+
   private vulnerableTimer = 0;
+  private placeholderVisualsSimplified = false;
 
   protected onLoad(): void {
     const shieldTarget = this.getShieldTarget();
@@ -51,6 +56,7 @@ export class BossShieldPhaseController extends Component {
     shieldTarget?.events?.on(BREAKABLE_EVENT_RESET, this.refreshState, this);
     this.bossHealth?.events?.on(HEALTH_EVENT_DEPLETED, this.onBossDepleted, this);
     this.refreshState();
+    this.applyPlaceholderVisuals(true);
   }
 
   protected onEnable(): void {
@@ -180,5 +186,66 @@ export class BossShieldPhaseController extends Component {
     }
 
     return (shieldTarget as unknown as { isBroken?: boolean } | null)?.isBroken ?? false;
+  }
+
+  private applyPlaceholderVisuals(force = false): void {
+    if (this.simplifyPlaceholderVisuals === false) {
+      return;
+    }
+
+    if (!force && this.placeholderVisualsSimplified) {
+      return;
+    }
+
+    this.placeholderVisualsSimplified = true;
+    const shieldRoots = new Set<Node>();
+    const shieldTarget = this.getShieldTarget();
+    if (shieldTarget?.node?.isValid) {
+      shieldRoots.add(shieldTarget.node);
+    }
+
+    for (const node of [
+      ...this.activateWhenShieldBroken,
+      ...this.deactivateWhenShieldBroken,
+      ...this.activateWhenDanger,
+      ...this.activateWhenVulnerable,
+    ]) {
+      if (node?.isValid && /^BossShield-(?:Closed|Open)$/i.test(node.name)) {
+        shieldRoots.add(node);
+      }
+    }
+
+    for (const root of shieldRoots) {
+      this.simplifyShieldRoot(root);
+    }
+  }
+
+  private simplifyShieldRoot(root: Node): void {
+    for (const child of root.children) {
+      if (!child?.isValid) {
+        continue;
+      }
+
+      if (/(?:Counterweight|Latch|Spark|Anchor|HingeFin)$/i.test(child.name)) {
+        child.active = false;
+        continue;
+      }
+
+      const rectVisual = child.getComponent(RectVisual);
+      if (!rectVisual) {
+        continue;
+      }
+
+      rectVisual.drawFill = true;
+      rectVisual.drawStroke = false;
+      rectVisual.strokeColor = new Color(rectVisual.strokeColor.r, rectVisual.strokeColor.g, rectVisual.strokeColor.b, 0);
+      rectVisual.gradientStrength = 0.08;
+      rectVisual.innerShadow = 0;
+      rectVisual.doubleBorder = 0;
+      rectVisual.outerGlow = 0;
+      rectVisual.hatchStrength = 0;
+      rectVisual.stippleStrength = 0;
+      rectVisual.requestRedraw();
+    }
   }
 }

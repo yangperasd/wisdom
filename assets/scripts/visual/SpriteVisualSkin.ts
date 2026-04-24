@@ -1,7 +1,65 @@
-import { Label, Node, Sprite, SpriteFrame, Texture2D, UITransform } from 'cc';
+import { Color, Component, Graphics, Label, Mask, Node, Sprite, SpriteFrame, Texture2D, UITransform } from 'cc';
 import { RectVisual } from './RectVisual';
 
 const VISUAL_ART_NODE_NAME = 'SpriteSkin';
+const VISUAL_MASK_NODE_NAME = 'SpriteMask';
+
+export enum PlaceholderSpriteFitMode {
+  Stretch = 0,
+  Contain = 1,
+  Cover = 2,
+}
+
+export enum PlaceholderSpriteVerticalAnchor {
+  Center = 0,
+  Bottom = 1,
+}
+
+export enum PlaceholderSpriteMaskShape {
+  None = 0,
+  Rect = 1,
+  Ellipse = 2,
+  RoundedRect = 3,
+}
+
+type OptionalComponentType<T extends Component> = (new (...args: any[]) => T) | null | undefined;
+
+function getComponentSafely<T extends Component>(
+  node: Node,
+  componentType: OptionalComponentType<T>,
+): T | null {
+  if (!componentType) {
+    return null;
+  }
+
+  return node.getComponent(componentType);
+}
+
+function getOrAddComponentSafely<T extends Component>(
+  node: Node,
+  componentType: OptionalComponentType<T>,
+): T | null {
+  if (!componentType) {
+    return null;
+  }
+
+  return node.getComponent(componentType) ?? node.addComponent(componentType);
+}
+
+function redrawRoundedRectMask(graphics: Graphics, width: number, height: number, cornerRadius = 0): void {
+  const radius = Math.max(0, Math.min(cornerRadius, width * 0.5, height * 0.5));
+  const x = -width * 0.5;
+  const y = -height * 0.5;
+  graphics.clear();
+  if (radius > 0) {
+    graphics.roundRect(x, y, width, height, radius);
+  } else {
+    graphics.rect(x, y, width, height);
+  }
+
+  graphics.fillColor = new Color(255, 255, 255, 255);
+  graphics.fill();
+}
 
 function resolveVisualNode(rootOrVisualNode: Node | null): Node | null {
   if (!rootOrVisualNode?.isValid) {
@@ -20,11 +78,106 @@ function resolveVisualNode(rootOrVisualNode: Node | null): Node | null {
   return rootOrVisualNode.children.find((child) => child.name.endsWith('-Visual')) ?? rootOrVisualNode;
 }
 
+function resolveArtNode(visualNode: Node | null): Node | null {
+  if (!visualNode?.isValid) {
+    return null;
+  }
+
+  const directArtNode = visualNode.getChildByName(VISUAL_ART_NODE_NAME);
+  if (directArtNode?.isValid) {
+    return directArtNode;
+  }
+
+  const maskNode = visualNode.getChildByName(VISUAL_MASK_NODE_NAME);
+  return maskNode?.getChildByName(VISUAL_ART_NODE_NAME) ?? null;
+}
+
+function ensureSpriteMaskHost(
+  visualNode: Node,
+  visualTransform: UITransform | null,
+  options: {
+    maskShape?: PlaceholderSpriteMaskShape;
+    maskEllipseSegments?: number;
+    maskCornerRadius?: number;
+  },
+): Node {
+  const maskShape = options.maskShape ?? PlaceholderSpriteMaskShape.None;
+  const existingMaskNode = visualNode.getChildByName(VISUAL_MASK_NODE_NAME);
+  if (maskShape === PlaceholderSpriteMaskShape.None) {
+    if (existingMaskNode?.isValid) {
+      existingMaskNode.active = false;
+    }
+
+    return visualNode;
+  }
+
+  let maskNode = existingMaskNode;
+  if (!maskNode?.isValid) {
+    maskNode = new Node(VISUAL_MASK_NODE_NAME);
+    maskNode.layer = visualNode.layer;
+    visualNode.addChild(maskNode);
+  }
+
+  maskNode.active = true;
+  maskNode.layer = visualNode.layer;
+  maskNode.setPosition(0, 0, 0);
+  maskNode.setRotationFromEuler(0, 0, 0);
+  maskNode.setScale(1, 1, 1);
+
+  const maskTransform = getOrAddComponentSafely(maskNode, UITransform);
+  if (!maskTransform) {
+    maskNode.active = false;
+    return visualNode;
+  }
+
+  if (visualTransform) {
+    maskTransform.setContentSize(visualTransform.contentSize);
+  }
+
+  const mask = getOrAddComponentSafely(maskNode, Mask);
+  if (!mask) {
+    maskNode.active = false;
+    return visualNode;
+  }
+
+  if (maskShape === PlaceholderSpriteMaskShape.RoundedRect) {
+    mask.type = Mask.Type.GRAPHICS_STENCIL;
+    const graphics = getOrAddComponentSafely(maskNode, Graphics);
+    if (!graphics) {
+      maskNode.active = false;
+      return visualNode;
+    }
+
+    redrawRoundedRectMask(
+      graphics,
+      maskTransform.contentSize.width,
+      maskTransform.contentSize.height,
+      options.maskCornerRadius ?? 0,
+    );
+  } else {
+    mask.type = maskShape === PlaceholderSpriteMaskShape.Ellipse
+      ? Mask.Type.GRAPHICS_ELLIPSE
+      : Mask.Type.GRAPHICS_RECT;
+  }
+
+  if (maskShape === PlaceholderSpriteMaskShape.Ellipse) {
+    mask.segments = Math.max(12, options.maskEllipseSegments ?? 48);
+  }
+
+  return maskNode;
+}
+
 export function applySpriteFrameToPlaceholderVisual(
   rootOrVisualNode: Node | null,
   spriteFrame: SpriteFrame | null,
   options: {
     spriteType?: number;
+    fitMode?: PlaceholderSpriteFitMode;
+    verticalAnchor?: PlaceholderSpriteVerticalAnchor;
+    scaleMultiplier?: number;
+    maskShape?: PlaceholderSpriteMaskShape;
+    maskEllipseSegments?: number;
+    maskCornerRadius?: number;
   } = {},
 ): void {
   if (!rootOrVisualNode?.isValid || !spriteFrame) {
@@ -36,11 +189,15 @@ export function applySpriteFrameToPlaceholderVisual(
     return;
   }
 
-  let artNode = visualNode.getChildByName(VISUAL_ART_NODE_NAME);
+  const visualTransform = getComponentSafely(visualNode, UITransform);
+  const artParent = ensureSpriteMaskHost(visualNode, visualTransform, options);
+  let artNode = resolveArtNode(visualNode);
   if (!artNode?.isValid) {
     artNode = new Node(VISUAL_ART_NODE_NAME);
     artNode.layer = visualNode.layer;
-    visualNode.addChild(artNode);
+    artParent.addChild(artNode);
+  } else if (artNode.parent !== artParent) {
+    artParent.addChild(artNode);
   }
 
   artNode.setPosition(0, 0, 0);
@@ -48,23 +205,73 @@ export function applySpriteFrameToPlaceholderVisual(
   artNode.setScale(1, 1, 1);
   artNode.active = true;
 
-  const visualTransform = visualNode.getComponent(UITransform);
-  const artTransform = artNode.getComponent(UITransform) ?? artNode.addComponent(UITransform);
-  if (visualTransform) {
-    artTransform.setContentSize(visualTransform.contentSize);
+  const artTransform = getOrAddComponentSafely(artNode, UITransform);
+  const sprite = getOrAddComponentSafely(artNode, Sprite);
+  if (!artTransform || !sprite) {
+    return;
   }
 
-  const sprite = artNode.getComponent(Sprite) ?? artNode.addComponent(Sprite);
   sprite.type = options.spriteType ?? Sprite.Type.SIMPLE;
   sprite.sizeMode = Sprite.SizeMode.CUSTOM;
   sprite.spriteFrame = spriteFrame;
 
-  const rectVisual = visualNode.getComponent(RectVisual);
+  if (visualTransform) {
+    applySpriteArtLayout(artNode, artTransform, visualTransform, spriteFrame, sprite, options);
+  }
+
+  const rectVisual = getComponentSafely(visualNode, RectVisual);
   if (rectVisual) {
     rectVisual.drawFill = false;
     rectVisual.drawStroke = false;
     rectVisual.requestRedraw();
   }
+}
+
+function applySpriteArtLayout(
+  artNode: Node,
+  artTransform: UITransform,
+  visualTransform: UITransform,
+  spriteFrame: SpriteFrame,
+  sprite: Sprite,
+  options: {
+    spriteType?: number;
+    fitMode?: PlaceholderSpriteFitMode;
+    verticalAnchor?: PlaceholderSpriteVerticalAnchor;
+    scaleMultiplier?: number;
+    maskShape?: PlaceholderSpriteMaskShape;
+    maskEllipseSegments?: number;
+    maskCornerRadius?: number;
+  },
+): void {
+  const visualWidth = Math.max(1, visualTransform.contentSize.width);
+  const visualHeight = Math.max(1, visualTransform.contentSize.height);
+  const scaleMultiplier = Math.max(0.01, options.scaleMultiplier ?? 1);
+  const fitMode = options.fitMode ?? PlaceholderSpriteFitMode.Stretch;
+
+  if (sprite.type === Sprite.Type.TILED || fitMode === PlaceholderSpriteFitMode.Stretch) {
+    artTransform.setContentSize(visualTransform.contentSize);
+    artNode.setPosition(0, 0, 0);
+    artNode.setScale(scaleMultiplier, scaleMultiplier, 1);
+    return;
+  }
+
+  const frameWidth = Math.max(1, spriteFrame.rect?.width ?? spriteFrame.originalSize?.width ?? visualWidth);
+  const frameHeight = Math.max(1, spriteFrame.rect?.height ?? spriteFrame.originalSize?.height ?? visualHeight);
+  const widthScale = visualWidth / frameWidth;
+  const heightScale = visualHeight / frameHeight;
+  const baseScale = fitMode === PlaceholderSpriteFitMode.Contain
+    ? Math.min(widthScale, heightScale)
+    : Math.max(widthScale, heightScale);
+  const appliedScale = Math.max(0.01, baseScale * scaleMultiplier);
+  const scaledHeight = frameHeight * appliedScale;
+  const verticalAnchor = options.verticalAnchor ?? PlaceholderSpriteVerticalAnchor.Center;
+  const anchoredY = verticalAnchor === PlaceholderSpriteVerticalAnchor.Bottom
+    ? (scaledHeight - visualHeight) * 0.5
+    : 0;
+
+  artTransform.setContentSize(frameWidth, frameHeight);
+  artNode.setPosition(0, anchoredY, 0);
+  artNode.setScale(appliedScale, appliedScale, 1);
 }
 
 function isDeveloperOnlyLabel(node: Node): boolean {
@@ -83,7 +290,7 @@ export function setPlaceholderLabelVisible(rootNode: Node | null, visible: boole
     return;
   }
 
-  const directLabel = rootNode.getComponent(Label);
+  const directLabel = getComponentSafely(rootNode, Label);
   if (directLabel) {
     directLabel.enabled = visible;
   }
@@ -93,7 +300,7 @@ export function setPlaceholderLabelVisible(rootNode: Node | null, visible: boole
       continue;
     }
 
-    if (child.name.endsWith('-Label') || child.getComponent(Label)) {
+    if (child.name.endsWith('-Label') || getComponentSafely(child, Label)) {
       // Developer-only placeholders stay hidden regardless of skin status.
       child.active = isDeveloperOnlyLabel(child) ? false : visible;
     }
@@ -106,7 +313,7 @@ export function setPlaceholderVisualFlipX(rootOrVisualNode: Node | null, flipped
     return;
   }
 
-  const artNode = visualNode.getChildByName(VISUAL_ART_NODE_NAME) ?? visualNode;
+  const artNode = resolveArtNode(visualNode) ?? visualNode;
   if (!artNode?.isValid) {
     return;
   }
