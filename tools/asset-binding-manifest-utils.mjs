@@ -2,18 +2,31 @@ import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-export async function loadAssetBindingCatalog(projectRoot = process.cwd()) {
+const CANDIDATE_MANIFEST_ENV = 'IMAGE2_CANDIDATE_PREVIEW';
+const CANDIDATE_MANIFEST_RELATIVE_PATH = path.join(
+  'assets',
+  'configs',
+  'asset_binding_candidate_manifest_image2.json',
+);
+
+export async function loadAssetBindingCatalog(projectRoot = process.cwd(), options = {}) {
   const selectionManifestPath = path.join(projectRoot, 'assets', 'configs', 'asset_selection_manifest.json');
   const bindingManifestPath = path.join(projectRoot, 'assets', 'configs', 'asset_binding_manifest_v2.json');
+  const candidateManifestPath = path.join(projectRoot, CANDIDATE_MANIFEST_RELATIVE_PATH);
+  const candidatePreviewEnabled = options.enableImage2CandidatePreview ?? process.env[CANDIDATE_MANIFEST_ENV] === '1';
 
-  const [selectionManifest, bindingManifest] = await Promise.all([
+  const [selectionManifest, liveBindingManifest, candidateManifest] = await Promise.all([
     readJson(selectionManifestPath),
     readJson(bindingManifestPath),
+    candidatePreviewEnabled ? readOptionalJson(candidateManifestPath) : Promise.resolve(null),
   ]);
 
   return {
     selectionManifest,
-    bindingManifest,
+    bindingManifest: overlayCandidateBindingManifest(liveBindingManifest, candidateManifest),
+    liveBindingManifest,
+    candidateManifest,
+    candidatePreviewEnabled,
   };
 }
 
@@ -28,7 +41,7 @@ export function resolveAssetBinding(catalog, bindingKey) {
       bindingKey,
       selectedPath: worldEntry.selectedPath ?? '',
       fallbackPath: worldEntry.fallbackPath ?? '',
-      sourceManifest: 'asset_binding_manifest_v2.worldEntities',
+      sourceManifest: worldEntry.sourceManifest ?? 'asset_binding_manifest_v2.worldEntities',
       bindingStatus: worldEntry.status ?? '',
     };
   }
@@ -39,7 +52,7 @@ export function resolveAssetBinding(catalog, bindingKey) {
       bindingKey,
       selectedPath: uiEntry.selectedPath ?? uiEntry.selectedBasePath ?? '',
       fallbackPath: uiEntry.fallbackPath ?? uiEntry.selectedIconPath ?? '',
-      sourceManifest: 'asset_binding_manifest_v2.uiEntities',
+      sourceManifest: uiEntry.sourceManifest ?? 'asset_binding_manifest_v2.uiEntities',
       bindingStatus: uiEntry.status ?? '',
     };
   }
@@ -50,7 +63,7 @@ export function resolveAssetBinding(catalog, bindingKey) {
       bindingKey,
       selectedPath: audioEntry.selectedPath ?? '',
       fallbackPath: audioEntry.fallbackPath ?? '',
-      sourceManifest: 'asset_binding_manifest_v2.audioRoles',
+      sourceManifest: audioEntry.sourceManifest ?? 'asset_binding_manifest_v2.audioRoles',
       bindingStatus: audioEntry.status ?? '',
     };
   }
@@ -67,6 +80,36 @@ export function resolveAssetBinding(catalog, bindingKey) {
   }
 
   return null;
+}
+
+export function overlayCandidateBindingManifest(bindingManifest, candidateManifest) {
+  if (!candidateManifest || typeof candidateManifest !== 'object') {
+    return bindingManifest;
+  }
+
+  const nextManifest = structuredClone(bindingManifest);
+  for (const categoryName of ['worldEntities', 'uiEntities', 'audioRoles']) {
+    const candidateCategory = candidateManifest?.[categoryName];
+    if (!candidateCategory || typeof candidateCategory !== 'object') {
+      continue;
+    }
+
+    nextManifest[categoryName] ??= {};
+    for (const [bindingKey, candidateEntry] of Object.entries(candidateCategory)) {
+      if (!candidateEntry || typeof candidateEntry !== 'object') {
+        continue;
+      }
+
+      const liveEntry = nextManifest[categoryName][bindingKey] ?? {};
+      nextManifest[categoryName][bindingKey] = {
+        ...liveEntry,
+        ...candidateEntry,
+        sourceManifest: candidateEntry.sourceManifest ?? `asset_binding_candidate_manifest_image2.${categoryName}`,
+      };
+    }
+  }
+
+  return nextManifest;
 }
 
 export function resolveImageAssetReference(projectRoot, assetPath) {
@@ -104,4 +147,16 @@ export function resolveImageAssetReference(projectRoot, assetPath) {
 
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
+}
+
+async function readOptionalJson(filePath) {
+  try {
+    return await readJson(filePath);
+  } catch (error) {
+    if (error?.code === 'ENOENT') {
+      return null;
+    }
+
+    throw error;
+  }
 }

@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-24T12:28:53.554Z",
+  "status": "candidate-preview-only",
+  "selectionPolicy": "first-passing",
+  "notes": [
+    "This manifest is a staging-only overlay for Image 2.0 candidates.",
+    "Do not copy approved candidate paths back into asset_binding_manifest_v2.json until screening, preview, package, and runtime validation pass."
+  ],
+  "worldEntities": {
+    "outdoor_path_cobble": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_path_cobble/outdoor_path_cobble_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 32
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-01",
+      "candidateFile": "temp/image2/candidates/outdoor_path_cobble/2026-04-24-env-batch-01/outdoor_path_cobble_v00.png",
+      "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "outdoor_wall_broken": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_wall_broken/outdoor_wall_broken_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 64
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-01",
+      "candidateFile": "temp/image2/candidates/outdoor_wall_broken/2026-04-24-env-batch-01/outdoor_wall_broken_v00.png",
+      "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "outdoor_wall_cracked": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_wall_cracked/outdoor_wall_cracked_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 64
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-01",
+      "candidateFile": "temp/image2/candidates/outdoor_wall_cracked/2026-04-24-env-batch-01/outdoor_wall_cracked_v00.png",
+      "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "outdoor_wall_standard": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_wall_standard/outdoor_wall_standard_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 64
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-01",
+      "candidateFile": "temp/image2/candidates/outdoor_wall_standard/2026-04-24-env-batch-01/outdoor_wall_standard_v00.png",
+      "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "outdoor_ground_flowers": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_ground_flowers/outdoor_ground_flowers_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 32
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-01",
+      "candidateFile": "temp/image2/candidates/outdoor_ground_flowers/2026-04-24-env-batch-01/outdoor_ground_flowers_v00.png",
+      "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    }
+  },
+  "uiEntities": {},
+  "audioRoles": {}
+}
