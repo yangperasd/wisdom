@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const STYLE_DIMENSIONS = [
   'brightness',
@@ -61,6 +62,99 @@ async function listPngFiles(rootDir, options = {}) {
   return files.sort((left, right) => left.localeCompare(right));
 }
 
+function readRawPixel(data, offset) {
+  return {
+    r: data[offset],
+    g: data[offset + 1],
+    b: data[offset + 2],
+    a: data[offset + 3],
+  };
+}
+
+function rgbDistanceToSample(pixel, sample) {
+  const rDelta = pixel.r - sample.r;
+  const gDelta = pixel.g - sample.g;
+  const bDelta = pixel.b - sample.b;
+  return Math.sqrt((rDelta * rDelta) + (gDelta * gDelta) + (bDelta * bDelta));
+}
+
+async function removeObjectBackdrop(sourcePath) {
+  const { data, info } = await sharp(sourcePath)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const { width, height, channels } = info;
+  const pixelOffset = (x, y) => (y * width + x) * channels;
+  const cornerSamples = [
+    readRawPixel(data, pixelOffset(0, 0)),
+    readRawPixel(data, pixelOffset(width - 1, 0)),
+    readRawPixel(data, pixelOffset(0, height - 1)),
+    readRawPixel(data, pixelOffset(width - 1, height - 1)),
+  ];
+  const visited = new Uint8Array(width * height);
+  const queue = [];
+
+  const matchesBackdrop = (x, y) => {
+    const offset = pixelOffset(x, y);
+    const pixel = readRawPixel(data, offset);
+    if (pixel.a <= 0) {
+      return false;
+    }
+
+    const brightness = (pixel.r + pixel.g + pixel.b) / (255 * 3);
+    const channelSpread = Math.max(pixel.r, pixel.g, pixel.b) - Math.min(pixel.r, pixel.g, pixel.b);
+    if (brightness < 0.84 || channelSpread > 24) {
+      return false;
+    }
+
+    return cornerSamples.some((sample) => rgbDistanceToSample(pixel, sample) <= 34);
+  };
+
+  const enqueue = (x, y) => {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+      return;
+    }
+
+    const index = (y * width) + x;
+    if (visited[index]) {
+      return;
+    }
+
+    visited[index] = 1;
+    if (matchesBackdrop(x, y)) {
+      queue.push([x, y]);
+    }
+  };
+
+  for (let x = 0; x < width; x += 1) {
+    enqueue(x, 0);
+    enqueue(x, height - 1);
+  }
+  for (let y = 0; y < height; y += 1) {
+    enqueue(0, y);
+    enqueue(width - 1, y);
+  }
+
+  while (queue.length > 0) {
+    const [x, y] = queue.shift();
+    const offset = pixelOffset(x, y);
+    data[offset + 3] = 0;
+
+    enqueue(x - 1, y);
+    enqueue(x + 1, y);
+    enqueue(x, y - 1);
+    enqueue(x, y + 1);
+  }
+
+  return sharp(data, {
+    raw: {
+      width,
+      height,
+      channels,
+    },
+  });
+}
+
 function stripVariant(fileName) {
   return fileName.replace(/_v\d+$/i, '');
 }
@@ -73,8 +167,12 @@ function inferVariantId(filePath) {
   return path.basename(filePath, path.extname(filePath)).match(/_v(\d+)$/i)?.[1] ?? '';
 }
 
-async function analyzeImage(filePath) {
-  const { data, info } = await sharp(filePath)
+export async function analyzeImage(filePath, options = {}) {
+  const assetType = options.assetType || 'tile';
+  const sourceImage = assetType === 'tile'
+    ? sharp(filePath)
+    : await removeObjectBackdrop(filePath);
+  const { data, info } = await sourceImage
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
@@ -85,6 +183,8 @@ async function analyzeImage(filePath) {
   let transparentPixels = 0;
   let brightnessTotal = 0;
   let warmthTotal = 0;
+  let brightnessSamples = 0;
+  let warmthSamples = 0;
   let neighborDeltaTotal = 0;
   let neighborSamples = 0;
   let edgeMismatchTotal = 0;
@@ -104,34 +204,43 @@ async function analyzeImage(filePath) {
       const alpha = data[offset + 3] / 255;
       if (alpha > 0.02) {
         opaquePixels += 1;
+        const red = data[offset] / 255;
+        const green = data[offset + 1] / 255;
+        const blue = data[offset + 2] / 255;
+        brightnessTotal += 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+        warmthTotal += red - blue;
+        brightnessSamples += 1;
+        warmthSamples += 1;
       } else {
         transparentPixels += 1;
       }
 
-      const red = data[offset] / 255;
-      const green = data[offset + 1] / 255;
-      const blue = data[offset + 2] / 255;
-      brightnessTotal += 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-      warmthTotal += red - blue;
-
       if (x < width - 1) {
-        neighborDeltaTotal += distance(offset, pixelOffset(x + 1, y));
-        neighborSamples += 1;
+        const nextOffset = pixelOffset(x + 1, y);
+        if (assetType === 'tile' || ((data[offset + 3] / 255) > 0.02 && (data[nextOffset + 3] / 255) > 0.02)) {
+          neighborDeltaTotal += distance(offset, nextOffset);
+          neighborSamples += 1;
+        }
       }
       if (y < height - 1) {
-        neighborDeltaTotal += distance(offset, pixelOffset(x, y + 1));
-        neighborSamples += 1;
+        const nextOffset = pixelOffset(x, y + 1);
+        if (assetType === 'tile' || ((data[offset + 3] / 255) > 0.02 && (data[nextOffset + 3] / 255) > 0.02)) {
+          neighborDeltaTotal += distance(offset, nextOffset);
+          neighborSamples += 1;
+        }
       }
     }
   }
 
-  for (let x = 0; x < width; x += 1) {
-    edgeMismatchTotal += distance(pixelOffset(x, 0), pixelOffset(x, height - 1));
-    edgeSamples += 1;
-  }
-  for (let y = 0; y < height; y += 1) {
-    edgeMismatchTotal += distance(pixelOffset(0, y), pixelOffset(width - 1, y));
-    edgeSamples += 1;
+  if (assetType === 'tile') {
+    for (let x = 0; x < width; x += 1) {
+      edgeMismatchTotal += distance(pixelOffset(x, 0), pixelOffset(x, height - 1));
+      edgeSamples += 1;
+    }
+    for (let y = 0; y < height; y += 1) {
+      edgeMismatchTotal += distance(pixelOffset(0, y), pixelOffset(width - 1, y));
+      edgeSamples += 1;
+    }
   }
 
   return {
@@ -141,8 +250,8 @@ async function analyzeImage(filePath) {
     totalPixels,
     opaqueRatio: opaquePixels / totalPixels,
     transparentRatio: transparentPixels / totalPixels,
-    brightnessMean: brightnessTotal / totalPixels,
-    warmthMean: warmthTotal / totalPixels,
+    brightnessMean: brightnessSamples > 0 ? brightnessTotal / brightnessSamples : 0,
+    warmthMean: warmthSamples > 0 ? warmthTotal / warmthSamples : 0,
     noiseProxy: neighborSamples > 0 ? neighborDeltaTotal / neighborSamples : 0,
     edgeMismatch: edgeSamples > 0 ? edgeMismatchTotal / edgeSamples : 0,
   };
@@ -214,7 +323,7 @@ function buildStyleScorecard(metrics) {
   };
 }
 
-function buildHardScreen(filePath, metrics, assetType) {
+export function buildHardScreen(filePath, metrics, assetType) {
   const issues = [];
   const extension = path.extname(filePath).toLowerCase();
   const thresholds = {
@@ -222,7 +331,7 @@ function buildHardScreen(filePath, metrics, assetType) {
     brightnessMax: 0.92,
     warmthMin: 0.0,
     noiseMax: 0.2,
-    transparentMax: assetType === 'tile' ? 0.05 : 0.96,
+    transparentMax: assetType === 'tile' ? 0.05 : 0.985,
     edgeMismatchMax: assetType === 'tile' ? 0.18 : 1,
   };
 
@@ -291,7 +400,7 @@ async function main() {
 
   const results = [];
   for (const filePath of files) {
-    const metrics = await analyzeImage(filePath);
+    const metrics = await analyzeImage(filePath, { assetType });
     results.push({
       bindingKey: inferBindingKey(filePath),
       variantId: inferVariantId(filePath),
@@ -325,7 +434,11 @@ async function main() {
   console.log(`[image2-screen] hard-screen passed ${summary.passedHardScreen}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const isMainModule = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
+if (isMainModule) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

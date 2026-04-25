@@ -40,7 +40,7 @@
 | ID | 状态 | 事项 | 交付物 | 完成标准 |
 | --- | --- | --- | --- | --- |
 | I2-009 | todo | 准备交互道具批次的参考图/编辑模式策略 | 每个 key 的 `generate` / `edit` 建议 | `checkpoint`、`portal`、`barrier_*`、`pickup_relic` 明确策略 |
-| I2-010 | todo | 启动 `player redesign track` 第一轮 | concept / paperdoll / key pose 方向说明 | 不是 live 替换，而是可评审的角色方向候选 |
+| I2-010 | doing | 启动 `player redesign track` 第一轮 | concept / paperdoll / key pose 方向说明 | 不是 live 替换，而是可评审的角色方向候选 |
 
 ## P2
 
@@ -109,3 +109,53 @@
 - The next concrete target is:
   1. restore a green `test:wechat:playthrough` on the cleaned non-GUI path
   2. continue `temp/image2/jobs/2026-04-24-env-batch-02/prompts.json`
+
+## Loop 08 update
+
+- `I2-006` remains `doing`.
+- The non-GUI WeChat gate is green again on the stable `build/wechatgame` path:
+  - `build:wechat` reclaimed `build/wechatgame`
+  - `verify:wechat` passed with main package `2,854,643 bytes`
+  - `reload:wechat` reopened `build/wechatgame`
+  - `test:wechat:playthrough` passed with `WECHAT_RUNTIME_PROBE_FORCE_REOPEN=0`
+- Default runtime-proof policy is now tightened in code, not only in notes:
+  - `test:wechat:playthrough` defaults to no forced reopen
+  - `rebuild:wechat` now pre-closes all known `build/wechatgame*` project paths so older open projects do not keep forcing timestamped build outputs
+- `breakable_target` now has a real candidate-preview binding and is no longer a pure placeholder target.
+- The next concrete target is to continue unresolved live placeholders without reopening the WeChat harness problem:
+  1. `outdoor_ground_green`
+  2. `outdoor_ground_ruins`
+  3. `boss_core`
+  4. `boss_shield_closed`
+  5. `boss_shield_open`
+
+## Loop 09 update
+
+- `I2-006` remains `doing`, but the runtime evidence gap is now much narrower:
+  - scene regeneration must be run with `IMAGE2_CANDIDATE_PREVIEW=1`, otherwise candidate-preview bindings silently fall back to the live placeholder manifest
+  - `SpriteVisualSkin.setPlaceholderLabelVisible()` now hides sibling label nodes when a controller targets a `*-Visual` node
+  - scene generation now feeds texture-backed candidate previews into `BossVisualController`, `EnemyVisualController`, `PlayerVisualController`, and `BreakableTarget` consistently
+- The non-GUI WeChat gate is green with the candidate overlay enabled:
+  - `build:wechat:config` passed
+  - `build:wechat` passed with tolerated Creator exit `36`
+  - `verify:wechat` passed with main package `2,854,937 bytes`
+  - `test:wechat:playthrough` passed
+  - `temp/wechat-runtime-probe-evidence.json` now reports `activePlaceholderBindings = 0`
+- With candidate overlay applied, the remaining merged-manifest placeholders are only the intentionally procedural high-risk UI keys:
+  - `hud_top_bar`
+  - `objective_card`
+  - `controls_card`
+  - `touch_*`
+  - `pause_button`
+- `I2-010` is now active:
+  - `temp/image2/jobs/2026-04-24-player-track-01/prompts.json`
+  - `temp/image2/candidates/player/2026-04-24-player-track-01/player_direction_a_cape_v00.png`
+  - `temp/image2/candidates/player/2026-04-24-player-track-01/player_direction_b_skirt_v00.png`
+  - `temp/image2/evidence/2026-04-24-player-track-01/review.json`
+  - Direction A was selected for the next iteration
+  - `temp/image2/jobs/2026-04-24-player-track-02/prompts.json`
+  - `temp/image2/candidates/player/2026-04-24-player-track-02/player_direction_a_paperdoll_v00.png`
+  - `temp/image2/evidence/2026-04-24-player-track-02/review.json`
+  - `temp/image2/jobs/2026-04-24-player-track-03/prompts.json`
+  - `temp/image2/candidates/player/2026-04-24-player-track-03/player_direction_a_runtime_sheet_v00.png`
+  - `temp/image2/evidence/2026-04-24-player-track-03/review.json`

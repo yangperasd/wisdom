@@ -1,3 +1,4 @@
+import { readdir } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
@@ -5,6 +6,7 @@ import {
   projectRoot,
   resolveLastWechatBuildOutputDir,
   resolveWechatDevToolsCli,
+  wechatBuildOutputName,
   wechatDevToolsPort,
 } from './wechat-build-utils.mjs';
 
@@ -82,31 +84,76 @@ async function maybeCloseCurrentWechatProject() {
   const cliPath = await resolveWechatDevToolsCli();
   const port = process.env.WECHAT_DEVTOOLS_PORT || `${wechatDevToolsPort}`;
   const lang = process.env.WECHAT_DEVTOOLS_LANG || 'zh';
-  let projectPath = null;
+  const buildRoot = path.join(projectRoot, 'build');
+  const closeTargets = [];
+  const seen = new Set();
+  const addCloseTarget = (candidatePath) => {
+    if (!candidatePath || typeof candidatePath !== 'string') {
+      return;
+    }
+    const resolvedPath = path.resolve(candidatePath);
+    if (seen.has(resolvedPath)) {
+      return;
+    }
+    seen.add(resolvedPath);
+    closeTargets.push(resolvedPath);
+  };
 
   try {
-    projectPath = await resolveLastWechatBuildOutputDir(projectRoot);
+    addCloseTarget(await resolveLastWechatBuildOutputDir(projectRoot));
   } catch {
+    // fall through to build-root scan below
+  }
+
+  addCloseTarget(path.join(buildRoot, wechatBuildOutputName));
+  addCloseTarget(path.join(buildRoot, `${wechatBuildOutputName}-staging`));
+
+  try {
+    const buildEntries = await readdir(buildRoot, { withFileTypes: true });
+    for (const entry of buildEntries) {
+      if (!entry.isDirectory() || !new RegExp(`^${wechatBuildOutputName}(?:-|$)`, 'i').test(entry.name)) {
+        continue;
+      }
+      addCloseTarget(path.join(buildRoot, entry.name));
+    }
+  } catch {
+    // no build root yet; nothing else to close
+  }
+
+  if (closeTargets.length === 0) {
     console.warn('[wechat-devtools] no previous WeChat build output found; skipping pre-build close.');
     return;
   }
 
-  console.log(`[wechat-devtools] pre-build close: ${projectPath}`);
-  const closeResult = await runWechatDevToolsCli(
-    cliPath,
-    '& $env:WECHAT_DEVTOOLS_CLI close --project $env:WECHAT_DEVTOOLS_PROJECT --port $env:WECHAT_DEVTOOLS_PORT --lang $env:WECHAT_DEVTOOLS_LANG',
-    {
-      WECHAT_DEVTOOLS_PROJECT: projectPath,
-      WECHAT_DEVTOOLS_PORT: port,
-      WECHAT_DEVTOOLS_LANG: lang,
-    },
-  );
-  if (closeResult.error) {
-    throw formatFailure('wechat devtools close', closeResult);
+  console.log(`[wechat-devtools] pre-build close targets: ${closeTargets.join(', ')}`);
+
+  let sawSuccessfulClose = false;
+  for (const projectPath of closeTargets) {
+    const closeResult = await runWechatDevToolsCli(
+      cliPath,
+      '& $env:WECHAT_DEVTOOLS_CLI close --project $env:WECHAT_DEVTOOLS_PROJECT --port $env:WECHAT_DEVTOOLS_PORT --lang $env:WECHAT_DEVTOOLS_LANG',
+      {
+        WECHAT_DEVTOOLS_PROJECT: projectPath,
+        WECHAT_DEVTOOLS_PORT: port,
+        WECHAT_DEVTOOLS_LANG: lang,
+      },
+    );
+
+    if (closeResult.error) {
+      console.warn(
+        `[wechat-devtools] close errored for ${projectPath}: ${formatFailure('wechat devtools close', closeResult).message}`,
+      );
+      continue;
+    }
+    if (closeResult.code !== 0) {
+      console.warn(`[wechat-devtools] close returned ${closeResult.code} for ${projectPath}; continuing.`);
+      continue;
+    }
+
+    sawSuccessfulClose = true;
   }
-  if (closeResult.code !== 0) {
-    console.warn(`[wechat-devtools] close returned ${closeResult.code}; continuing with rebuild.`);
-  } else {
+
+  if (sawSuccessfulClose) {
     await delay(Number(process.env.WECHAT_DEVTOOLS_CLOSE_WAIT_MS || 1500));
   }
 }

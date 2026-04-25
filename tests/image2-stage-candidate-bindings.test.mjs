@@ -126,6 +126,11 @@ test('resolvePreviewRasterPolicy uses runtime-friendly tile sizes for environmen
   assert.deepEqual(resolvePreviewRasterPolicy('outdoor_path_cobble'), { mode: 'tile', edge: 32 });
   assert.deepEqual(resolvePreviewRasterPolicy('outdoor_wall_standard'), { mode: 'tile', edge: 64 });
   assert.deepEqual(resolvePreviewRasterPolicy('checkpoint'), { mode: 'object', maxEdge: 384, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('boss_core'), { mode: 'object', maxEdge: 320, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('boss_shield_closed'), { mode: 'object', maxEdge: 384, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('boss_shield_open'), { mode: 'object', maxEdge: 384, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('echo_spring_flower'), { mode: 'object', maxEdge: 320, trimTransparent: true });
+  assert.deepEqual(resolvePreviewRasterPolicy('echo_bomb_bug'), { mode: 'object', maxEdge: 320, trimTransparent: true });
   assert.deepEqual(resolvePreviewRasterPolicy('projectile_arrow'), { mode: 'object', maxEdge: 256, trimTransparent: true });
 });
 
@@ -198,7 +203,7 @@ test('stageCandidateBindings trims object previews to the asset silhouette befor
       width: 120,
       height: 120,
       channels: 4,
-      background: { r: 0, g: 0, b: 0, alpha: 0 },
+      background: { r: 236, g: 236, b: 236, alpha: 1 },
     },
   })
     .composite([{

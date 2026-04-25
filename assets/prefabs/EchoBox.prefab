@@ -93,7 +93,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "06959637256b4041a83d8a"
+    "fileId": "5d0a731f525045dc8f42b0"
   },
   {
     "__type__": "cc.RigidBody2D",
@@ -126,7 +126,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "dc0aecf0ce6d4e67bcb92f"
+    "fileId": "a6baf7fd3a9c4d4e97d878"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -160,7 +160,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "9a853576170f4a5c929378"
+    "fileId": "8a9ddcbc9bd44b17be2477"
   },
   {
     "__type__": "cc.Node",
@@ -238,7 +238,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "055eb667a942468aaaf2f1"
+    "fileId": "971aa8ad066e41549a70a2"
   },
   {
     "__type__": "af26fru7ClG7YIHAXzh53za",
@@ -273,7 +273,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "11c22dc228714cb0bcd200"
+    "fileId": "7e78ab2d8706463ba012a8"
   },
   {
     "__type__": "cc.Node",
@@ -344,7 +344,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "888e968f077446bfbd1040"
+    "fileId": "5266f760bbca4eaa98a7a3"
   },
   {
     "__type__": "cc.Node",
@@ -418,7 +418,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "aa7f3e4da2af430cb205e7"
+    "fileId": "61621da5ac4a4ab8bd3a35"
   },
   {
     "__type__": "cc.Label",
@@ -461,7 +461,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "1f2b3a6d98de4d5fb5cab8"
+    "fileId": "3b0b97d7490648ccb96fd5"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -471,7 +471,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "eaa336e335c84f6580ddc1",
+    "fileId": "bc9b32d5964049fc84df0a",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null

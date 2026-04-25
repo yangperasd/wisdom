@@ -382,7 +382,19 @@ Use warm earthy body colors with one accent color.
 No horror monster, no insect realism, no sharp spikes, no dark dungeon mood.
 ```
 
-### 7.13 boss_shield_closed
+### 7.13 boss_core
+
+```text
+Create a single boss core asset for key: boss_core.
+Cute fantasy boss centerpiece for a bright, warm, toy-like adventure game.
+Design it as a compact top-down boss body, not a full character illustration:
+round magical seed-orb, petal-shell, or jewel-creature silhouette with one clear face read,
+clear center mass, readable at mobile scale, and strong state readability when recolored for danger / hurt / vulnerable.
+Transparent background, centered object, no scene backdrop, no cast shadow.
+No grim demon eye, no black-red void heart, no razor crown, no heavy mech shell, no horror idol energy.
+```
+
+### 7.14 boss_shield_closed
 
 ```text
 Create a single boss shield asset for key: boss_shield_closed.
@@ -393,7 +405,7 @@ Designed as one half of a pair with boss_shield_open, same family language.
 No hard sci-fi shield, no black-red demon barrier, no razor-like shards.
 ```
 
-### 7.14 boss_shield_open
+### 7.15 boss_shield_open
 
 ```text
 Create a single boss shield asset for key: boss_shield_open.
@@ -404,7 +416,7 @@ Cute fantasy magical mechanism, not mechanical sci-fi.
 No dark energy ring, no harsh metallic blades, no chaotic particle storm.
 ```
 
-### 7.15 projectile_arrow
+### 7.16 projectile_arrow
 
 ```text
 Create a single combat prop asset for key: projectile_arrow.
@@ -414,7 +426,7 @@ Use a restrained palette and avoid tiny ornament.
 No realistic weapon rendering, no sharp brutal metal, no dark assassin vibe.
 ```
 
-### 7.16 echo_spring_flower
+### 7.17 echo_spring_flower
 
 ```text
 Create a single summon asset for key: echo_spring_flower.
@@ -424,7 +436,7 @@ magical but grounded, easy to recognize from small size.
 No botanical realism, no dense petal detail, no fragile illustration look.
 ```
 
-### 7.17 echo_bomb_bug
+### 7.18 echo_bomb_bug
 
 ```text
 Create a single summon asset for key: echo_bomb_bug.
@@ -435,7 +447,7 @@ Warm red-orange and cream palette with a controlled dark accent.
 No realistic insect anatomy, no gore, no scary mandibles, no dirty textures.
 ```
 
-### 7.18 player concept / paperdoll direction
+### 7.19 player concept / paperdoll direction
 
 ```text
 Create a top-down heroine concept sheet for the player character in a bright, warm, cute fantasy adventure game.

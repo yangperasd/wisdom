@@ -150,7 +150,7 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   const assetBindingTagType = await getScriptTypeId('assets/scripts/core/AssetBindingTag.ts');
   const rectVisualType = await getScriptTypeId('assets/scripts/visual/RectVisual.ts');
 
-  const assertWarmPlaceholderBinding = (items, nodeName, bindingKey) => {
+  const assertCandidatePreviewBinding = (items, nodeName, bindingKey, selectedPathPattern) => {
     assertNodeHasComponent(items, assertNodeExists(items, `${nodeName}-Visual`), rectVisualType, `${nodeName}-Visual`);
     const binding = getComponentRecordForNode(
       items,
@@ -160,9 +160,10 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     );
 
     assert.equal(binding.bindingKey, bindingKey);
-    assert.equal(binding.bindingStatus, 'rect_visual_placeholder');
-    assert.equal(binding.selectedPath, '');
+    assert.equal(binding.bindingStatus, 'candidate_preview');
+    assert.match(binding.selectedPath, selectedPathPattern);
     assert.equal(binding.fallbackPath, '');
+    assert.match(binding.sourceManifest, /asset_binding_candidate_manifest_image2/);
   };
 
   const startCanvas = assertNodeExists(startCampItems, 'Canvas');
@@ -219,14 +220,16 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     enemyVisualType,
     'CampEnemy VisualController',
   );
-  assert.equal(checkpointCamp.visualSpriteFrame, null, 'Checkpoint-Camp should stay image-free during the warm placeholder pass.');
-  assertWarmPlaceholderBinding(startCampItems, 'Checkpoint-Camp', 'checkpoint');
+  assert.equal(checkpointCamp.visualSpriteFrame, null, 'Checkpoint-Camp should currently rely on a texture-backed candidate preview.');
+  assert.ok(checkpointCamp.visualTexture?.__uuid__, 'Checkpoint-Camp should bind a texture-backed candidate preview.');
+  assertCandidatePreviewBinding(startCampItems, 'Checkpoint-Camp', 'checkpoint', /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
   assert.ok(startPlayerVisual.idleTexture?.__uuid__, 'StartCamp player should bind a texture-backed visual.');
-  assert.equal(startEnemyVisual.idleTexture, null, 'CampEnemy should stay image-free during the key gameplay placeholder pass.');
-  assertWarmPlaceholderBinding(startCampItems, 'CampEnemy', 'common_enemy');
+  assert.ok(startEnemyVisual.idleTexture?.__uuid__, 'CampEnemy should currently bind a texture-backed candidate preview.');
+  assertCandidatePreviewBinding(startCampItems, 'CampEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   const startPortalRecord = getComponentRecordForNode(startCampItems, startPortal, scenePortalType, 'Portal-FieldWest');
-  assert.equal(startPortalRecord.visualSpriteFrame, null, 'Portal-FieldWest should stay image-free during the warm placeholder pass.');
-  assertWarmPlaceholderBinding(startCampItems, 'Portal-FieldWest', 'portal');
+  assert.equal(startPortalRecord.visualSpriteFrame, null, 'Portal-FieldWest should currently rely on a texture-backed candidate preview.');
+  assert.ok(startPortalRecord.visualTexture?.__uuid__, 'Portal-FieldWest should bind a texture-backed candidate preview.');
+  assertCandidatePreviewBinding(startCampItems, 'Portal-FieldWest', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
   const campBackdropBinding = getComponentRecordForNode(
     startCampItems,
     assertNodeExists(startCampItems, 'CampBackdrop'),
@@ -272,10 +275,10 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldPath-1'), sceneDressingSkinType, 'FieldPath-1');
   assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'FieldPath-4'), sceneDressingSkinType, 'FieldPath-4');
   assertNodeHasComponent(fieldWestItems, assertNodeExists(fieldWestItems, 'Trap-West'), sceneDressingSkinType, 'Trap-West');
-  assertWarmPlaceholderBinding(fieldWestItems, 'Checkpoint-FieldWest', 'checkpoint');
-  assertWarmPlaceholderBinding(fieldWestItems, 'Checkpoint-FieldWestReturn', 'checkpoint');
-  assertWarmPlaceholderBinding(fieldWestItems, 'Portal-StartCamp', 'portal');
-  assertWarmPlaceholderBinding(fieldWestItems, 'Portal-FieldRuins', 'portal');
+  assertCandidatePreviewBinding(fieldWestItems, 'Checkpoint-FieldWest', 'checkpoint', /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
+  assertCandidatePreviewBinding(fieldWestItems, 'Checkpoint-FieldWestReturn', 'checkpoint', /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
+  assertCandidatePreviewBinding(fieldWestItems, 'Portal-StartCamp', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
+  assertCandidatePreviewBinding(fieldWestItems, 'Portal-FieldRuins', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
   assertNodeHasComponent(
     fieldWestItems,
     assertNodeExists(fieldWestItems, 'EchoPickup-Flower-West'),
@@ -320,7 +323,8 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   );
   assert.equal(fieldBackdropBinding.bindingKey, 'outdoor_ground_flowers');
   assert.ok(fieldBackdropTransform._contentSize.width >= 2400, 'FieldBackdrop should overscan the opening mobile view instead of exposing the neutral clear color.');
-  assert.equal(fieldEnemyVisual.idleTexture, null, 'FieldEnemy should stay image-free during the key gameplay placeholder pass.');
+  assert.equal(fieldEnemyVisual.idleSpriteFrame, null, 'FieldEnemy should currently rely on a texture-backed candidate preview.');
+  assert.ok(fieldEnemyVisual.idleTexture?.__uuid__, 'FieldEnemy should currently bind a texture-backed candidate preview.');
   assert.equal(fieldPath0Skin.tiled, true, 'FieldPath-0 should stay tiled as a ground surface.');
   assert.equal(fieldPath0Skin.maskShape, 2, 'FieldPath-0 should use an ellipse mask so the route enters frame as spread ground.');
   assert.notEqual(assertNodeExists(fieldWestItems, 'FieldPath-0')._euler.z, 0, 'FieldPath-0 should rotate to avoid a straight-edged slab read.');
@@ -332,7 +336,7 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   assert.equal(trapWestSkin.verticalAnchor, 1, 'Trap-West should anchor to the bottom so the wall body sits on the ground.');
   assert.equal(trapWestSkin.maskShape ?? 0, 3, 'Trap-West should use a rounded prop mask instead of the ground ellipse or a hard rect crop.');
   assert.ok((trapWestSkin.maskCornerRadius ?? 0) >= 18, 'Trap-West should expose a visible rounded prop silhouette.');
-  assertWarmPlaceholderBinding(fieldWestItems, 'FieldEnemy', 'common_enemy');
+  assertCandidatePreviewBinding(fieldWestItems, 'FieldEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   assertNodeHasComponent(
     fieldWestItems,
     assertNodeExists(fieldWestItems, 'TouchHudRoot'),
@@ -354,9 +358,9 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
   assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsWallCracked-Lintel'), sceneDressingSkinType, 'RuinsWallCracked-Lintel');
   assertNodeHasComponent(fieldRuinsItems, assertNodeExists(fieldRuinsItems, 'RuinsWallBroken-Lintel'), sceneDressingSkinType, 'RuinsWallBroken-Lintel');
   assertNodeHasComponent(fieldRuinsItems, ruinsWallClosed, sceneDressingSkinType, 'RuinsWall-Closed');
-  assertWarmPlaceholderBinding(fieldRuinsItems, 'Checkpoint-FieldRuins', 'checkpoint');
-  assertWarmPlaceholderBinding(fieldRuinsItems, 'Portal-FieldWestReturn', 'portal');
-  assertWarmPlaceholderBinding(fieldRuinsItems, 'Portal-DungeonHub', 'portal');
+  assertCandidatePreviewBinding(fieldRuinsItems, 'Checkpoint-FieldRuins', 'checkpoint', /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
+  assertCandidatePreviewBinding(fieldRuinsItems, 'Portal-FieldWestReturn', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
+  assertCandidatePreviewBinding(fieldRuinsItems, 'Portal-DungeonHub', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
   assertNodeHasComponent(
     fieldRuinsItems,
     assertNodeExists(fieldRuinsItems, 'EchoPickup-Bomb-Ruins'),
@@ -382,10 +386,11 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     'RuinsFlowerGround-1 SceneDressingSkin',
   );
   assert.equal(ruinsBackdropBinding.bindingKey, 'outdoor_path_cobble');
-  assert.equal(ruinsEnemyVisual.idleTexture, null, 'RuinsEnemy should stay image-free during the key gameplay placeholder pass.');
+  assert.equal(ruinsEnemyVisual.idleSpriteFrame, null, 'RuinsEnemy should currently rely on a texture-backed candidate preview.');
+  assert.ok(ruinsEnemyVisual.idleTexture?.__uuid__, 'RuinsEnemy should currently bind a texture-backed candidate preview.');
   assert.equal(ruinsFlowerGround1Skin.maskShape, 2, 'RuinsFlowerGround-1 should use the ellipse ground mask so flower patches read as spread terrain.');
   assert.notEqual(assertNodeExists(fieldRuinsItems, 'RuinsFlowerGround-1')._euler.z, 0, 'RuinsFlowerGround-1 should rotate to avoid a flat rectangular patch read.');
-  assertWarmPlaceholderBinding(fieldRuinsItems, 'RuinsEnemy', 'common_enemy');
+  assertCandidatePreviewBinding(fieldRuinsItems, 'RuinsEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   const ruinsBreakable = getComponentRecordForNode(fieldRuinsItems, ruinsWallClosed, breakableTargetType, 'RuinsWall-Closed');
   assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'intactVisualNode', ruinsWallClosed, 'RuinsWall-Closed BreakableTarget');
   assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'brokenVisualNode', ruinsWallOpen, 'RuinsWall-Closed BreakableTarget');

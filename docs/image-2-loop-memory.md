@@ -430,3 +430,93 @@
   - The WeChat subtask is back to yellow until `test:wechat:playthrough` returns to green on the cleaned, non-GUI path.
 - Human intervention triggered: no.
 - Next loop goal: recover a green non-GUI playthrough on the cleaned build path, then continue `2026-04-24-env-batch-02` retries for `outdoor_ground_flowers` and `outdoor_wall_cracked`.
+
+### Loop 08
+
+- Goal: restore a green non-GUI WeChat gate after the blocked `hello` timeout, then continue replacing remaining placeholder-like bindings with real candidate preview assets.
+- Outputs:
+  - updated [run-wechat-runtime-playthrough.mjs](/E:/cv5/wisdom/tools/run-wechat-runtime-playthrough.mjs)
+  - updated [rebuild-wechat-devtools.mjs](/E:/cv5/wisdom/tools/rebuild-wechat-devtools.mjs)
+  - updated [wechat-build-policy.test.mjs](/E:/cv5/wisdom/tests/wechat-build-policy.test.mjs)
+  - updated [AGENTS.md](/E:/cv5/wisdom/AGENTS.md)
+  - staged new prop candidate [breakable_target_v00.png](/E:/cv5/wisdom/assets/art/generated/image2-preview/breakable_target/breakable_target_v00.png)
+  - updated [asset_binding_candidate_manifest_image2.json](/E:/cv5/wisdom/assets/configs/asset_binding_candidate_manifest_image2.json)
+- New findings:
+  - The blocked `hello` run was not caused by a socket legal-domain policy and was not caused by the newly staged `breakable_target` art itself.
+  - The immediate trigger was path churn plus stale open-project locking:
+    - `build:wechat` kept falling back to timestamped `build/wechatgame-staging-*` outputs when older `build/wechatgame*` projects were still open in DevTools.
+    - opening those fresh timestamped paths is more likely to drift into trust / recent-project problems and suppress runtime `hello`.
+  - Explicitly closing all known `build/wechatgame*` project paths allowed `build:wechat` to reclaim the stable `build/wechatgame` output again.
+  - Once the stable path was restored, the non-GUI gate went green again with the default no-reopen direction:
+    - `verify:wechat` passed on `build/wechatgame`
+    - `reload:wechat` reopened `build/wechatgame`
+    - `test:wechat:playthrough` passed with `WECHAT_RUNTIME_PROBE_FORCE_REOPEN=0`
+  - DevTools CLI can still print noisy `code 10` errors (`d.on is not a function`, stale `game.json`) during `open` / `auto-preview` while the runtime probe still reaches `hello` and the full `8/8` route passes. Judge the gate by probe evidence, not CLI stderr alone.
+- New evidence:
+  - [wechat-build-status.json](/E:/cv5/wisdom/temp/wechat-build-status.json)
+  - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+  - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+  - [screening-report.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-24-prop-batch-02/screening-report.json)
+- Adversarial conclusion:
+  - Do not diagnose timestamped-output trust drift as an art regression.
+  - Do not force-reopen DevTools by default inside `test:wechat:playthrough`; keep reopen as an explicit recovery path only.
+- Todo change:
+  - `I2-006` stays `doing`.
+  - The WeChat subtask is back to green on the default non-GUI path.
+  - Remaining content placeholder focus moves to unresolved live placeholders: `outdoor_ground_green`, `outdoor_ground_ruins`, `boss_core`, `boss_shield_closed`, `boss_shield_open`.
+- Human intervention triggered: no.
+- Next loop goal: continue low-risk placeholder replacement after `breakable_target`, starting with the remaining unresolved non-player, non-HUD bindings while keeping the recovered non-GUI WeChat gate green.
+
+### Loop 09
+
+- Goal: remove the remaining runtime presentation-path leakage that still made candidate-backed entities look like placeholders, then continue the loop into the `player redesign track` instead of forcing a premature live player swap.
+- Outputs:
+  - updated [SpriteVisualSkin.ts](/E:/cv5/wisdom/assets/scripts/visual/SpriteVisualSkin.ts)
+  - updated [generate-week2-scenes.mjs](/E:/cv5/wisdom/tools/generate-week2-scenes.mjs)
+  - updated [generate-mechanics-lab.mjs](/E:/cv5/wisdom/tools/generate-mechanics-lab.mjs)
+  - updated [wechat-build-policy.test.mjs](/E:/cv5/wisdom/tests/wechat-build-policy.test.mjs)
+  - new player-track prompts:
+    - [player_redesign_track_01_cape.txt](/E:/cv5/wisdom/temp/image2/prompt-library/by-key/player_redesign_track_01_cape.txt)
+    - [player_redesign_track_01_skirt.txt](/E:/cv5/wisdom/temp/image2/prompt-library/by-key/player_redesign_track_01_skirt.txt)
+    - [player_redesign_track_02_direction_a_paperdoll.txt](/E:/cv5/wisdom/temp/image2/prompt-library/by-key/player_redesign_track_02_direction_a_paperdoll.txt)
+  - new player-track jobs:
+    - [2026-04-24-player-track-01/prompts.json](/E:/cv5/wisdom/temp/image2/jobs/2026-04-24-player-track-01/prompts.json)
+    - [2026-04-24-player-track-02/prompts.json](/E:/cv5/wisdom/temp/image2/jobs/2026-04-24-player-track-02/prompts.json)
+- New findings:
+  - The lingering “placeholder” read was not only a content problem. Controllers that target `*-Visual` nodes were hiding sprite art correctly while leaving sibling `*-Label` nodes active, so runtime could still look placeholder-like even when a valid sprite frame existed.
+  - Candidate scene regeneration must explicitly run with `IMAGE2_CANDIDATE_PREVIEW=1`. Regenerating scene JSON without that env var silently bakes live placeholder bindings back into the scene files even when candidate manifests are already populated.
+  - Feeding only `texture` or only `spriteFrame` was too brittle. The scene-generation path now supplies both sides wherever the target component supports both, so candidate-preview PNGs imported as texture-only assets still render in runtime.
+  - With the overlay enabled, the runtime probe no longer reports broad world-entity placeholder leakage. The remaining merged-manifest placeholder-status keys are only the intentionally procedural high-risk UI entries (`hud_top_bar`, `objective_card`, `controls_card`, `touch_*`, `pause_button`).
+- Fresh non-GUI WeChat evidence:
+  - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+  - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+  - latest results:
+    - `build:wechat:config` passed
+    - `build:wechat` passed with tolerated Creator exit `36`
+    - `verify:wechat` passed with main package `2,854,937 bytes`
+    - `test:wechat:playthrough` passed
+    - runtime probe `activePlaceholderBindings = 0`
+- Player redesign track evidence:
+  - Track 01 review assets:
+    - [player_direction_a_cape_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-24-player-track-01/player_direction_a_cape_v00.png)
+    - [player_direction_b_skirt_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-24-player-track-01/player_direction_b_skirt_v00.png)
+    - [contact-sheet.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-24-player-track-01/contact-sheet.png)
+    - [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-24-player-track-01/review.json)
+  - Internal direction choice:
+    - Direction A selected as the stronger base because it keeps better top-down readability and more distance from generic princess-IP shorthand.
+  - Track 02 follow-up:
+    - [player_direction_a_paperdoll_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-24-player-track-02/player_direction_a_paperdoll_v00.png)
+    - [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-24-player-track-02/review.json)
+  - Track 03 runtime-facing sheet:
+    - [player_direction_a_runtime_sheet_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-24-player-track-03/player_direction_a_runtime_sheet_v00.png)
+    - [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-24-player-track-03/review.json)
+- Adversarial conclusion:
+  - Do not describe the current world-entity state as “still many placeholders” without separating intentional UI procedural placeholders from actual failed candidate bindings.
+  - Do not auto-bind the player just because the first paperdoll sheet is promising. The plan still requires the player to stay on its redesign track until front/back states and runtime-facing breakdowns are reviewed.
+- Todo change:
+  - `I2-006` stays `doing`.
+  - `I2-010` is now `doing`.
+- Human intervention triggered: no.
+- Next loop goal: continue `player redesign track` with a no-text runtime-facing Direction A turnaround/state sheet, then decide whether the next safe step is state-sheet refinement or a paperdoll redraw plan.

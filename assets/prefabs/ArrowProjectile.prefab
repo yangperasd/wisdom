@@ -102,7 +102,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "3ccb868b4a4843ab8b845d"
+    "fileId": "dc16d66166e349a4b6a253"
   },
   {
     "__type__": "cc.RigidBody2D",
@@ -135,7 +135,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "a30c2657a534456eb21427"
+    "fileId": "b57a1b148e274c198d1e85"
   },
   {
     "__type__": "cc.CircleCollider2D",
@@ -165,7 +165,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "0c04f0898dd640f6b1e612"
+    "fileId": "d413385c80e2471baf8434"
   },
   {
     "__type__": "cc.Node",
@@ -243,7 +243,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "507377cd5d3e4f749633dc"
+    "fileId": "35a2fc28eb5d4d8fa1cfff"
   },
   {
     "__type__": "af26fru7ClG7YIHAXzh53za",
@@ -278,7 +278,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "ae4e81638da24011a5fa9a"
+    "fileId": "07604dc55e564123b21315"
   },
   {
     "__type__": "cc.Node",
@@ -349,7 +349,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "4a495bae801f40248417fb"
+    "fileId": "05487c2f40054ddebf46dc"
   },
   {
     "__type__": "688a77/MHtHu4+plKwlW8iY",
@@ -371,6 +371,10 @@
       "__id__": 8
     },
     "visualSpriteFrame": null,
+    "visualTexture": {
+      "__uuid__": "102c1ac8-4618-442d-a2ab-ee9d7d979e35@6c48a",
+      "__expectedType__": "cc.Texture2D"
+    },
     "impactClip": null,
     "impactClipVolume": 1,
     "hideLabelWhenSkinned": true,
@@ -379,7 +383,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "2451e2c2b18b4f3faa0a00"
+    "fileId": "b45f711db45448348b4354"
   },
   {
     "__type__": "52c2cvVeFJDsKSjJJJWjwYX",
@@ -399,7 +403,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "f6eb845cbd58417eb7be08"
+    "fileId": "013094b245724ec5b15ce5"
   },
   {
     "__type__": "3d2a6zMsZNMmK4uaNDa0rs2",
@@ -413,15 +417,15 @@
       "__id__": 21
     },
     "bindingKey": "projectile_arrow",
-    "selectedPath": "assets/prefabs/ArrowProjectile.prefab",
-    "fallbackPath": "assets/prefabs/ArrowProjectile.prefab",
-    "sourceManifest": "asset_binding_manifest_v2.worldEntities",
-    "bindingStatus": "temporary_placeholder",
+    "selectedPath": "assets/art/generated/image2-preview/projectile_arrow/projectile_arrow_v00.png",
+    "fallbackPath": "",
+    "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+    "bindingStatus": "candidate_preview",
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "f0f3433cd9df40528bbf14"
+    "fileId": "f0cecf7ceeb84a9c8ce2ca"
   },
   {
     "__type__": "cc.Node",
@@ -495,7 +499,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "1cbff7b061cd4759aff68e"
+    "fileId": "ea32e2e801c14c50bb3a7a"
   },
   {
     "__type__": "cc.Label",
@@ -538,7 +542,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "cf5ec300a1b94844b877ff"
+    "fileId": "16057c40c1f44d9fa197e3"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -548,7 +552,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "0fac60df3431462f9508df",
+    "fileId": "d02d031dbcc64bda9f98e2",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null

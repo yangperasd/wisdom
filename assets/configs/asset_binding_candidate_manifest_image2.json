@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-24T12:28:53.554Z",
+  "generatedAt": "2026-04-24T15:54:04.844Z",
   "status": "candidate-preview-only",
   "selectionPolicy": "first-passing",
   "notes": [
@@ -77,6 +77,229 @@
       "batchId": "2026-04-24-env-batch-01",
       "candidateFile": "temp/image2/candidates/outdoor_ground_flowers/2026-04-24-env-batch-01/outdoor_ground_flowers_v00.png",
       "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "barrier_closed": {
+      "selectedPath": "assets/art/generated/image2-preview/barrier_closed/barrier_closed_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-01",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-01/barrier_closed_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-01/screening-report.json"
+    },
+    "barrier_open": {
+      "selectedPath": "assets/art/generated/image2-preview/barrier_open/barrier_open_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-01",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-01/barrier_open_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-01/screening-report.json"
+    },
+    "checkpoint": {
+      "selectedPath": "assets/art/generated/image2-preview/checkpoint/checkpoint_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-01",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-01/checkpoint_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-01/screening-report.json"
+    },
+    "pickup_relic": {
+      "selectedPath": "assets/art/generated/image2-preview/pickup_relic/pickup_relic_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 320,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-01",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-01/pickup_relic_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-01/screening-report.json"
+    },
+    "portal": {
+      "selectedPath": "assets/art/generated/image2-preview/portal/portal_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-01",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-01/portal_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-01/screening-report.json"
+    },
+    "common_enemy": {
+      "selectedPath": "assets/art/generated/image2-preview/common_enemy/common_enemy_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-common-enemy-batch-01",
+      "candidateFile": "temp/image2/candidates/common_enemy/2026-04-24-combat-batch-01/common_enemy_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-common-enemy-batch-01/screening-report.json"
+    },
+    "echo_bomb_bug": {
+      "selectedPath": "assets/art/generated/image2-preview/echo_bomb_bug/echo_bomb_bug_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 320,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-combat-batch-02-echo",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-combat-batch-02/echo_bomb_bug_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-combat-batch-02-echo/screening-report.json"
+    },
+    "echo_spring_flower": {
+      "selectedPath": "assets/art/generated/image2-preview/echo_spring_flower/echo_spring_flower_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 320,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-combat-batch-02-echo",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-combat-batch-02/echo_spring_flower_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-combat-batch-02-echo/screening-report.json"
+    },
+    "projectile_arrow": {
+      "selectedPath": "assets/art/generated/image2-preview/projectile_arrow/projectile_arrow_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 256,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-combat-batch-02-projectile",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-combat-batch-02/projectile_arrow_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-combat-batch-02-projectile/screening-report.json"
+    },
+    "breakable_target": {
+      "selectedPath": "assets/art/generated/image2-preview/breakable_target/breakable_target_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-prop-batch-02",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-prop-batch-02/breakable_target_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-prop-batch-02/screening-report.json"
+    },
+    "outdoor_ground_green": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_ground_green/outdoor_ground_green_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 32
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-03",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-env-batch-03/outdoor_ground_green_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-env-batch-03/screening-report.json"
+    },
+    "outdoor_ground_ruins": {
+      "selectedPath": "assets/art/generated/image2-preview/outdoor_ground_ruins/outdoor_ground_ruins_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "tile",
+        "edge": 32
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-env-batch-03",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-24-env-batch-03/outdoor_ground_ruins_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-env-batch-03/screening-report.json"
+    },
+    "boss_core": {
+      "selectedPath": "assets/art/generated/image2-preview/boss_core/boss_core_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 320,
+        "trimTransparent": true
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-boss-batch-01",
+      "candidateFile": "temp/image2/candidates/boss_core/2026-04-24-boss-batch-01/boss_core_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-boss-batch-01/screening-report.json"
+    },
+    "boss_shield_closed": {
+      "selectedPath": "assets/art/generated/image2-preview/boss_shield_closed/boss_shield_closed_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-boss-batch-01",
+      "candidateFile": "temp/image2/candidates/boss_shield_closed/2026-04-24-boss-batch-01/boss_shield_closed_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-boss-batch-01/screening-report.json"
+    },
+    "boss_shield_open": {
+      "selectedPath": "assets/art/generated/image2-preview/boss_shield_open/boss_shield_open_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 384,
+        "trimTransparent": true
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-24-boss-batch-01",
+      "candidateFile": "temp/image2/candidates/boss_shield_open/2026-04-24-boss-batch-01/boss_shield_open_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-24-boss-batch-01/screening-report.json"
     }
   },
   "uiEntities": {},

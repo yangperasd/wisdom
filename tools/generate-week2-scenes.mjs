@@ -712,15 +712,15 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     player: ref(playerControllerId),
     health: ref(playerHealthId),
     visualRoot: ref(playerNode.visualNodeId),
-    idleSpriteFrame: null,
+    idleSpriteFrame: playerImageBinding?.spriteFrame ?? null,
     idleTexture: playerImageBinding?.texture ?? null,
-    moveSpriteFrame: null,
+    moveSpriteFrame: playerImageBinding?.spriteFrame ?? null,
     moveTexture: playerImageBinding?.texture ?? null,
-    attackSpriteFrame: null,
+    attackSpriteFrame: playerImageBinding?.spriteFrame ?? null,
     attackTexture: playerImageBinding?.texture ?? null,
-    launchSpriteFrame: null,
+    launchSpriteFrame: playerImageBinding?.spriteFrame ?? null,
     launchTexture: playerImageBinding?.texture ?? null,
-    hurtSpriteFrame: null,
+    hurtSpriteFrame: playerImageBinding?.spriteFrame ?? null,
     hurtTexture: playerImageBinding?.texture ?? null,
     hurtFlashSeconds: 0.18,
     hideLabelWhenSkinned: true,
@@ -987,15 +987,15 @@ function addEnemy(builder, config) {
     enemyAI: ref(enemyAiId),
     health: ref(enemyHealthId),
     visualRoot: ref(enemyNode.visualNodeId),
-    idleSpriteFrame: null,
+    idleSpriteFrame: commonEnemyBinding?.spriteFrame ?? null,
     idleTexture: commonEnemyBinding?.texture ?? null,
-    patrolSpriteFrame: null,
+    patrolSpriteFrame: commonEnemyBinding?.spriteFrame ?? null,
     patrolTexture: commonEnemyBinding?.texture ?? null,
-    chaseSpriteFrame: null,
+    chaseSpriteFrame: commonEnemyBinding?.spriteFrame ?? null,
     chaseTexture: commonEnemyBinding?.texture ?? null,
-    hurtSpriteFrame: null,
+    hurtSpriteFrame: commonEnemyBinding?.spriteFrame ?? null,
     hurtTexture: commonEnemyBinding?.texture ?? null,
-    defeatedSpriteFrame: null,
+    defeatedSpriteFrame: commonEnemyBinding?.spriteFrame ?? null,
     defeatedTexture: commonEnemyBinding?.texture ?? null,
     hurtFlashSeconds: 0.18,
     hideLabelWhenSkinned: true,
@@ -1484,7 +1484,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
     cameraOffsetX: -110,
   });
 
-  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, addSkinnedPanelGroup, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, addSkinnedPanelGroup, getImageBindingProps, resetNodes, roots, types } = builder;
 
   const fieldBackdrop = addPanelNode(roots.worldRootId, 'FieldBackdrop', vec3(146, 0, 0), 2520, 620, color(214, 236, 200, 255), color(247, 245, 225, 50), true, 18);
   const fieldTopStrip = addPanelNode(roots.worldRootId, 'FieldTopStrip', vec3(318, 186, 0), 1700, 86, color(230, 243, 214, 184), color(248, 251, 232, 42), true, 12);
@@ -1714,7 +1714,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
     directionX: 1,
     directionY: 0,
     autoStart: true,
-    visualSpriteFrame: null,
+    visualSpriteFrame: getImageBindingProps('outdoor_wall_cracked')?.spriteFrame ?? null,
     fireClip: null,
     fireClipVolume: 1,
     hideLabelWhenSkinned: true,
@@ -1754,7 +1754,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSkinnedPanelGroup, resetNodes, roots, types } = builder;
+  const { addPanelNode, addDecorPanels, addLabeledNode, addComponent, addSceneDressingSkin, addSkinnedPanelGroup, getImageBindingProps, resetNodes, roots, types } = builder;
 
   const ruinsBackdrop = addPanelNode(roots.worldRootId, 'RuinsBackdrop', vec3(120, 0, 0), 1960, 560, color(248, 239, 221, 255), color(251, 243, 227, 48), true, 18);
   addSceneDressingSkin(ruinsBackdrop.nodeId, 'outdoor_path_cobble', { tiled: true });
@@ -1962,8 +1962,10 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     deactivateOnBroken: [ref(ruinsWallClosed.nodeId)],
     intactVisualNode: ref(ruinsWallClosed.nodeId),
     brokenVisualNode: ref(ruinsWallOpen.nodeId),
-    intactSpriteFrame: null,
-    brokenSpriteFrame: null,
+    intactSpriteFrame: getImageBindingProps('breakable_target')?.spriteFrame ?? null,
+    intactTexture: getImageBindingProps('breakable_target')?.texture ?? null,
+    brokenSpriteFrame: getImageBindingProps('barrier_open')?.spriteFrame ?? null,
+    brokenTexture: getImageBindingProps('barrier_open')?.texture ?? null,
     breakClip: null,
     breakClipVolume: 1,
     resetClip: null,
@@ -2345,7 +2347,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addNode, addSceneDressingSkin, addSensorBox, getImageBindingProps, resetNodes, roots, types } = builder;
 
   const roomBBackdrop = addPanelNode(roots.worldRootId, 'RoomBBackdrop', vec3(80, 0, 0), 1720, 520, color(243, 235, 224, 255), color(247, 239, 221, 48), true, 28);
   const roomBTrapLane = addPanelNode(roots.worldRootId, 'RoomBTrapLane', vec3(180, -10, 0), 420, 240, color(246, 220, 191, 188), color(255, 235, 216, 54), true, 24);
@@ -2426,7 +2428,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     directionX: 1,
     directionY: 0,
     autoStart: true,
-    visualSpriteFrame: null,
+    visualSpriteFrame: getImageBindingProps('outdoor_wall_cracked')?.spriteFrame ?? null,
     fireClip: null,
     fireClipVolume: 1,
     hideLabelWhenSkinned: true,
@@ -2493,7 +2495,7 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     cameraOffsetX: -120,
   });
 
-  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, resetNodes, roots, types } = builder;
+  const { addPanelNode, addLabeledNode, addComponent, addSceneDressingSkin, getImageBindingProps, resetNodes, roots, types } = builder;
 
   const roomCBackdrop = addPanelNode(roots.worldRootId, 'RoomCBackdrop', vec3(60, 0, 0), 1680, 520, color(243, 237, 218, 255), color(255, 240, 204, 64), true, 28);
   const roomCBombZone = addPanelNode(roots.worldRootId, 'RoomCBombZone', vec3(230, -10, 0), 360, 220, color(250, 222, 188, 204), color(255, 236, 208, 82), true, 24);
@@ -2599,8 +2601,10 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
     deactivateOnBroken: [ref(roomCWallClosed.nodeId), ref(roomCWallBarrier.nodeId)],
     intactVisualNode: ref(roomCWallClosed.nodeId),
     brokenVisualNode: ref(roomCWallOpen.nodeId),
-    intactSpriteFrame: null,
-    brokenSpriteFrame: null,
+    intactSpriteFrame: getImageBindingProps('outdoor_wall_cracked')?.spriteFrame ?? null,
+    intactTexture: getImageBindingProps('outdoor_wall_cracked')?.texture ?? null,
+    brokenSpriteFrame: getImageBindingProps('outdoor_wall_broken')?.spriteFrame ?? null,
+    brokenTexture: getImageBindingProps('outdoor_wall_broken')?.texture ?? null,
     breakClip: null,
     breakClipVolume: 1,
     resetClip: null,
@@ -2943,8 +2947,10 @@ async function generateBossArena(scriptIds, prefabIds) {
     deactivateOnBroken: [ref(bossShieldClosedNodeId)],
     intactVisualNode: ref(bossShieldClosedNodeId),
     brokenVisualNode: ref(bossShieldOpenNodeId),
-    intactSpriteFrame: null,
-    brokenSpriteFrame: null,
+    intactSpriteFrame: getImageBindingProps('boss_shield_closed')?.spriteFrame ?? null,
+    intactTexture: getImageBindingProps('boss_shield_closed')?.texture ?? null,
+    brokenSpriteFrame: getImageBindingProps('boss_shield_open')?.spriteFrame ?? null,
+    brokenTexture: getImageBindingProps('boss_shield_open')?.texture ?? null,
     breakClip: null,
     breakClipVolume: 1,
     resetClip: null,
@@ -2967,13 +2973,13 @@ async function generateBossArena(scriptIds, prefabIds) {
     bossAI: ref(bossAi),
     shieldController: null,
     visualRoot: ref(bossCore.visualNodeId),
-    dangerSpriteFrame: null,
+    dangerSpriteFrame: getImageBindingProps('boss_core')?.spriteFrame ?? null,
     dangerTexture: getImageBindingProps('boss_core')?.texture ?? null,
-    vulnerableSpriteFrame: null,
+    vulnerableSpriteFrame: getImageBindingProps('boss_core')?.spriteFrame ?? null,
     vulnerableTexture: getImageBindingProps('boss_core')?.texture ?? null,
-    hurtSpriteFrame: null,
+    hurtSpriteFrame: getImageBindingProps('boss_core')?.spriteFrame ?? null,
     hurtTexture: getImageBindingProps('boss_core')?.texture ?? null,
-    defeatedSpriteFrame: null,
+    defeatedSpriteFrame: getImageBindingProps('boss_core')?.spriteFrame ?? null,
     defeatedTexture: getImageBindingProps('boss_core')?.texture ?? null,
     hurtFlashSeconds: 0.22,
     hideLabelWhenSkinned: true,

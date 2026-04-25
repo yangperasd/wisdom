@@ -25,6 +25,9 @@ const PREVIEW_OBJECT_DIMENSIONS = [
   { pattern: /^barrier_(closed|open)$/i, maxEdge: 384 },
   { pattern: /^breakable_target$/i, maxEdge: 384 },
   { pattern: /^pickup_relic$/i, maxEdge: 320 },
+  { pattern: /^boss_core$/i, maxEdge: 320 },
+  { pattern: /^boss_shield_(closed|open)$/i, maxEdge: 384 },
+  { pattern: /^echo_(spring_flower|bomb_bug)$/i, maxEdge: 320 },
   { pattern: /^common_enemy$/i, maxEdge: 384 },
   { pattern: /^projectile_arrow$/i, maxEdge: 256 },
 ];
@@ -208,6 +211,99 @@ function createTextureMeta(relativeAssetPath) {
   };
 }
 
+function readRawPixel(data, offset) {
+  return {
+    r: data[offset],
+    g: data[offset + 1],
+    b: data[offset + 2],
+    a: data[offset + 3],
+  };
+}
+
+function rgbDistanceToSample(pixel, sample) {
+  const rDelta = pixel.r - sample.r;
+  const gDelta = pixel.g - sample.g;
+  const bDelta = pixel.b - sample.b;
+  return Math.sqrt((rDelta * rDelta) + (gDelta * gDelta) + (bDelta * bDelta));
+}
+
+async function removeObjectBackdrop(sourceAbsolutePath) {
+  const { data, info } = await sharp(sourceAbsolutePath)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const { width, height, channels } = info;
+  const pixelOffset = (x, y) => (y * width + x) * channels;
+  const cornerSamples = [
+    readRawPixel(data, pixelOffset(0, 0)),
+    readRawPixel(data, pixelOffset(width - 1, 0)),
+    readRawPixel(data, pixelOffset(0, height - 1)),
+    readRawPixel(data, pixelOffset(width - 1, height - 1)),
+  ];
+  const visited = new Uint8Array(width * height);
+  const queue = [];
+
+  const matchesBackdrop = (x, y) => {
+    const offset = pixelOffset(x, y);
+    const pixel = readRawPixel(data, offset);
+    if (pixel.a <= 0) {
+      return false;
+    }
+
+    const brightness = (pixel.r + pixel.g + pixel.b) / (255 * 3);
+    const channelSpread = Math.max(pixel.r, pixel.g, pixel.b) - Math.min(pixel.r, pixel.g, pixel.b);
+    if (brightness < 0.84 || channelSpread > 24) {
+      return false;
+    }
+
+    return cornerSamples.some((sample) => rgbDistanceToSample(pixel, sample) <= 34);
+  };
+
+  const enqueue = (x, y) => {
+    if (x < 0 || x >= width || y < 0 || y >= height) {
+      return;
+    }
+
+    const index = (y * width) + x;
+    if (visited[index]) {
+      return;
+    }
+
+    visited[index] = 1;
+    if (matchesBackdrop(x, y)) {
+      queue.push([x, y]);
+    }
+  };
+
+  for (let x = 0; x < width; x += 1) {
+    enqueue(x, 0);
+    enqueue(x, height - 1);
+  }
+  for (let y = 0; y < height; y += 1) {
+    enqueue(0, y);
+    enqueue(width - 1, y);
+  }
+
+  while (queue.length > 0) {
+    const [x, y] = queue.shift();
+    const offset = pixelOffset(x, y);
+    data[offset + 3] = 0;
+
+    enqueue(x - 1, y);
+    enqueue(x + 1, y);
+    enqueue(x, y - 1);
+    enqueue(x, y + 1);
+  }
+
+  return sharp(data, {
+    raw: {
+      width,
+      height,
+      channels,
+    },
+  });
+}
+
 async function ensureDirectoryWithMeta(projectRoot, absoluteDirectoryPath, dryRun) {
   const relativeDirectoryPath = path.relative(projectRoot, absoluteDirectoryPath);
   if (!relativeDirectoryPath || relativeDirectoryPath.startsWith('..')) {
@@ -301,7 +397,9 @@ async function writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath
   }
 
   const rasterPolicy = resolvePreviewRasterPolicy(options.bindingKey ?? '');
-  const sourceImage = sharp(sourceAbsolutePath);
+  const sourceImage = rasterPolicy.mode === 'object'
+    ? await removeObjectBackdrop(sourceAbsolutePath)
+    : sharp(sourceAbsolutePath);
   const metadata = await sourceImage.metadata();
   const maxEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);
   let pipeline = sourceImage;

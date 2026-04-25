@@ -3200,3 +3200,30 @@ That work now lives in:
 |---|---|---|
 | P1 | The old StartCamp absolute target `(392, -20)` is now stale for the default WeChat playthrough route because the player can trigger the portal/scene transition before that coordinate is meaningfully validated. | Keep the shorter route and avoid reintroducing that stale coordinate into the default non-GUI playthrough script. |
 | P1 | DevTools CLI stdout/stderr can report a stale `game.json` code 10 during `auto-preview` even while the current project still boots and the runtime probe passes against the intended in-place build. | Judge the gate by probe evidence and playthrough result, not by CLI stderr alone; keep investigating separately instead of flipping the main gate red on that message by itself. |
+
+## Loop 87 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Stable WeChat output reclaim | Green | After explicitly closing every known `build/wechatgame*` project path, `build:wechat` reclaimed `build/wechatgame` instead of falling back to a timestamped staging directory |
+| Default non-GUI runtime proof policy | Green / tightened | `tools/run-wechat-runtime-playthrough.mjs` now defaults `WECHAT_RUNTIME_PROBE_FORCE_REOPEN` to `0`, so the main gate prefers the already-open DevTools session instead of forcing a reopen |
+| Rebuild pre-close coverage | Green / tightened | `tools/rebuild-wechat-devtools.mjs` now pre-closes all known `build/wechatgame*` paths rather than only the latest status path, preventing older open projects from keeping stable outputs locked |
+| Non-GUI WeChat gate recovery | Green | `verify:wechat` passed on `build/wechatgame`, `reload:wechat` reopened that stable path, and `test:wechat:playthrough` passed with runtime movement and `8/8` scene-route proof |
+| DevTools CLI stderr interpretation | Yellow / understood | `open` / `auto-preview` can still emit noisy `code 10` errors (`d.on is not a function`, stale `game.json`) even while the runtime probe still reaches `hello` and the playthrough passes |
+
+## Loop 87 Validation
+
+| Command | Result |
+|---|---|
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise; output reclaimed `build/wechatgame` |
+| `npm run verify:wechat` | Pass; main package `2,854,643 bytes`, total output `3,136,442 bytes` |
+| `npm run reload:wechat` | Pass; reopened `build/wechatgame` |
+| `WECHAT_RUNTIME_PROBE_FORCE_REOPEN=0 npm run test:wechat:playthrough` | Pass; runtime summary green, movement gate green, scene route `8/8` loaded |
+| `node --test tests/wechat-build-policy.test.mjs` | Pending rerun after policy-script updates in this loop |
+
+## Loop 87 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | When DevTools keeps an older `build/wechatgame*` project open, `build:wechat` can be forced onto a fresh timestamped directory, which is more likely to drift into trust / recent-project trouble and suppress runtime `hello`. | Treat multi-path pre-close as the default rebuild hygiene, not an ad-hoc recovery trick. |
+| P1 | The current main gate can still pass even when DevTools CLI prints `code 10` stderr during `open` / `auto-preview`. | Keep judging the gate by `temp/wechat-runtime-playthrough-evidence.json` and probe results first. |

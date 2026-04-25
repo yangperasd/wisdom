@@ -285,25 +285,56 @@ function isDeveloperOnlyLabel(node: Node): boolean {
   return name.includes('debug') || name.includes('dev-') || name.includes('test-');
 }
 
+function isPlaceholderLabelNode(node: Node | null): node is Node {
+  if (!node?.isValid) {
+    return false;
+  }
+
+  return node.name.endsWith('-Label')
+    || node.name === 'DebugLabel'
+    || !!getComponentSafely(node, Label);
+}
+
+function setPlaceholderLabelNodeVisible(labelNode: Node, visible: boolean): void {
+  const directLabel = getComponentSafely(labelNode, Label);
+  if (directLabel) {
+    directLabel.enabled = visible;
+  }
+
+  labelNode.active = isDeveloperOnlyLabel(labelNode) ? false : visible;
+}
+
 export function setPlaceholderLabelVisible(rootNode: Node | null, visible: boolean): void {
   if (!rootNode?.isValid) {
     return;
   }
 
-  const directLabel = getComponentSafely(rootNode, Label);
-  if (directLabel) {
-    directLabel.enabled = visible;
+  if (isPlaceholderLabelNode(rootNode)) {
+    setPlaceholderLabelNodeVisible(rootNode, visible);
   }
 
-  for (const child of rootNode.children) {
-    if (!child?.isValid) {
-      continue;
-    }
+  const labelNodes = new Set<Node>();
 
-    if (child.name.endsWith('-Label') || getComponentSafely(child, Label)) {
-      // Developer-only placeholders stay hidden regardless of skin status.
-      child.active = isDeveloperOnlyLabel(child) ? false : visible;
+  for (const child of rootNode.children) {
+    if (isPlaceholderLabelNode(child)) {
+      labelNodes.add(child);
     }
+  }
+
+  const shouldInspectSiblingLabels = rootNode.parent?.isValid
+    && rootNode.name.toLowerCase().includes('visual');
+  if (shouldInspectSiblingLabels) {
+    for (const sibling of rootNode.parent!.children) {
+      if (sibling === rootNode || !isPlaceholderLabelNode(sibling)) {
+        continue;
+      }
+
+      labelNodes.add(sibling);
+    }
+  }
+
+  for (const labelNode of labelNodes) {
+    setPlaceholderLabelNodeVisible(labelNode, visible);
   }
 }
 

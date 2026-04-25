@@ -105,7 +105,7 @@ test('run-wechat-build relies on policy helpers instead of a silent exit-code se
 test('runtime playthrough defaults follow the non-reopen WeChat workflow', () => {
   assert.match(runWechatRuntimePlaythroughScript, /WECHAT_RUNTIME_PROBE_PREPARE_FORCE_CLOSE !== '1'/);
   assert.match(runWechatRuntimePlaythroughScript, /WECHAT_RUNTIME_PROBE_IN_PLACE: process\.env\.WECHAT_RUNTIME_PROBE_IN_PLACE \?\? '1'/);
-  assert.match(runWechatRuntimePlaythroughScript, /WECHAT_RUNTIME_PROBE_FORCE_REOPEN: process\.env\.WECHAT_RUNTIME_PROBE_FORCE_REOPEN \?\? '1'/);
+  assert.match(runWechatRuntimePlaythroughScript, /WECHAT_RUNTIME_PROBE_FORCE_REOPEN: process\.env\.WECHAT_RUNTIME_PROBE_FORCE_REOPEN \?\? '0'/);
   assert.match(runWechatRuntimePlaythroughScript, /WECHAT_RUNTIME_PROBE_SOFT_CLOSE: process\.env\.WECHAT_RUNTIME_PROBE_SOFT_CLOSE \?\? '1'/);
   assert.match(runWechatRuntimePlaythroughScript, /bootstrapCleanup = cleanupRuntimeProbeBootstrap\(harnessManifest\.harnessDir\)/);
   assert.match(runWechatRuntimePlaythroughScript, /staleBootstrapCleanup = cleanupRuntimeProbeBootstrapInBuildOutputs\(projectRoot\)/);
@@ -121,6 +121,9 @@ test('WeChat DevTools CLI launch helpers shell out through PowerShell with an en
   assert.doesNotMatch(openWechatDevtoolsScript, /process\.env\.ComSpec/);
   assert.match(rebuildWechatDevtoolsScript, /runProcess\('powershell\.exe'/);
   assert.match(rebuildWechatDevtoolsScript, /WECHAT_DEVTOOLS_CLI/);
+  assert.match(rebuildWechatDevtoolsScript, /pre-build close targets:/);
+  assert.match(rebuildWechatDevtoolsScript, /path\.join\(buildRoot, `\$\{wechatBuildOutputName\}-staging`\)/);
+  assert.match(rebuildWechatDevtoolsScript, /readdir\(buildRoot, \{ withFileTypes: true \}\)/);
   assert.doesNotMatch(rebuildWechatDevtoolsScript, /process\.env\.ComSpec/);
 });
 
@@ -142,7 +145,9 @@ test('sprite visual skin guards optional component classes before getComponent o
   assert.match(spriteVisualSkinScript, /const mask = getOrAddComponentSafely\(maskNode, Mask\);/);
   assert.match(spriteVisualSkinScript, /const sprite = getOrAddComponentSafely\(artNode, Sprite\);/);
   assert.match(spriteVisualSkinScript, /const rectVisual = getComponentSafely\(visualNode, RectVisual\);/);
-  assert.match(spriteVisualSkinScript, /const directLabel = getComponentSafely\(rootNode, Label\);/);
+  assert.match(spriteVisualSkinScript, /function isPlaceholderLabelNode/);
+  assert.match(spriteVisualSkinScript, /rootNode\.name\.toLowerCase\(\)\.includes\('visual'\)/);
+  assert.match(spriteVisualSkinScript, /for \(const sibling of rootNode\.parent!\.children\)/);
 });
 
 test('object placeholder visuals accept texture-backed candidate previews and non-stretch fit rules', () => {
@@ -155,9 +160,34 @@ test('object placeholder visuals accept texture-backed candidate previews and no
   assert.match(collectiblePresentationScript, /fitMode: PlaceholderSpriteFitMode\.Cover/);
   assert.match(simpleProjectileScript, /visualTexture: Texture2D \| null = null/);
   assert.match(simpleProjectileScript, /fitMode: PlaceholderSpriteFitMode\.Contain/);
+  assert.match(generateWeek2ScenesScript, /idleSpriteFrame: playerImageBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /idleTexture: playerImageBinding\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /idleSpriteFrame: commonEnemyBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /idleTexture: commonEnemyBinding\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /visualTexture: checkpointImageBinding\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /visualTexture: portalImageBinding\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /visualTexture: imageBinding\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactSpriteFrame: getImageBindingProps\('breakable_target'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactTexture: getImageBindingProps\('breakable_target'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenSpriteFrame: getImageBindingProps\('barrier_open'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenTexture: getImageBindingProps\('barrier_open'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactSpriteFrame: getImageBindingProps\('outdoor_wall_cracked'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactTexture: getImageBindingProps\('outdoor_wall_cracked'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenSpriteFrame: getImageBindingProps\('outdoor_wall_broken'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenTexture: getImageBindingProps\('outdoor_wall_broken'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactSpriteFrame: getImageBindingProps\('boss_shield_closed'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /intactTexture: getImageBindingProps\('boss_shield_closed'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenSpriteFrame: getImageBindingProps\('boss_shield_open'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /brokenTexture: getImageBindingProps\('boss_shield_open'\)\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /dangerSpriteFrame: getImageBindingProps\('boss_core'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateWeek2ScenesScript, /dangerTexture: getImageBindingProps\('boss_core'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /idleSpriteFrame: playerImageBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('checkpoint'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /visualSpriteFrame: getImageBindingProps\('outdoor_wall_cracked'\)\?\.spriteFrame \?\? null/);
+  assert.match(generateMechanicsLabScript, /idleSpriteFrame: enemyImageBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('echo_spring_flower'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('echo_bomb_bug'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /intactTexture: getImageBindingProps\('outdoor_wall_cracked'\)\?\.texture \?\? null/);
   assert.match(generateMechanicsLabScript, /visualTexture: projectileImageBinding\?\.propertyName === 'texture'/);
 });
 

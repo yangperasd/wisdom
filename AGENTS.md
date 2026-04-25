@@ -56,9 +56,10 @@ These instructions apply inside `E:\cv5\wisdom` and should be read together with
   - `verify:wechat`
   - `test:wechat:playthrough`
   - GUI smoke only if window-level evidence is actually needed
-- `test:wechat:playthrough` should default to the already-open `build/wechatgame` DevTools session via in-place probe injection plus project-level `close --project -> open`; do not full-quit/restart DevTools as the normal path.
+- `test:wechat:playthrough` should default to the already-open `build/wechatgame` DevTools session via in-place probe injection plus `open` / `auto-preview`; do not force-reopen or full-quit DevTools as the normal path.
 - If the runtime probe temporarily injects a websocket bootstrap into `game.js`, treat that bootstrap as disposable harness state and clean it after the playthrough run before using the build for normal manual inspection.
 - Before `open:wechat` / `reload:wechat`, scrub stale runtime-probe bootstrap from all `build/wechatgame*` outputs, not only the latest successful output, because DevTools may still be attached to a fixed legacy staging directory.
+- Before `rebuild:wechat`, close every known `build/wechatgame*` project path, not only the latest successful output, because an older open project can keep `build/wechatgame` or `build/wechatgame-staging` locked and force a timestamped output path that is more likely to trip trust / recent-project drift.
 - Only use `WECHAT_DEVTOOLS_FORCE_REOPEN=1` when stale runtime cache is the real blocker.
 - If a full DevTools restart is unavoidable, treat clicking `信任并运行` as a required step on that restart path.
 - Do not consider a DevTools reopen complete until the `信任并运行` trust modal has been handled.
