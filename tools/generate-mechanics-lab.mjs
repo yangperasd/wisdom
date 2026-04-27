@@ -55,6 +55,18 @@ function color(r, g, b, a = 255) {
   return { __type__: 'cc.Color', r, g, b, a };
 }
 
+function makeCollectiblePresentationProps(scaleMultiplier = 1.06, overrides = {}) {
+  return {
+    fitMode: 1,
+    verticalAnchor: 1,
+    scaleMultiplier,
+    maskShape: 0,
+    maskEllipseSegments: 48,
+    maskCornerRadius: 0,
+    ...overrides,
+  };
+}
+
 function randomToken() {
   return randomUUID().replace(/-/g, '').slice(0, 22);
 }
@@ -446,11 +458,22 @@ async function generatePrefabs(scriptIds) {
   const damageOnContactType = scriptIds.get('assets/scripts/combat/DamageOnContact.ts').shortId;
   const springFlowerBounceType = scriptIds.get('assets/scripts/echo/SpringFlowerBounce.ts').shortId;
   const bombBugFuseType = scriptIds.get('assets/scripts/echo/BombBugFuse.ts').shortId;
+  const collectiblePresentationType = scriptIds.get('assets/scripts/visual/CollectiblePresentation.ts').shortId;
   const rectVisualType = scriptIds.get('assets/scripts/visual/RectVisual.ts').shortId;
   const assetBindingTagType = scriptIds.get('assets/scripts/core/AssetBindingTag.ts').shortId;
 
-  const addPrefabVisual = (api, parentId, name, width, height, fillColorValue, strokeColorValue, cornerRadius = 10) => {
-    const visualNodeId = api.addNode(parentId, name, vec3());
+  const addPrefabVisual = (
+    api,
+    parentId,
+    name,
+    width,
+    height,
+    fillColorValue,
+    strokeColorValue,
+    cornerRadius = 10,
+    options = {},
+  ) => {
+    const visualNodeId = api.addNode(parentId, name, options.visualPosition ?? vec3());
     api.addComponentToNode(visualNodeId, 'cc.UITransform', {
       _priority: 0,
       _contentSize: size(width, height),
@@ -461,10 +484,10 @@ async function generatePrefabs(scriptIds) {
       rectVisualType,
       rectVisualProps(fillColorValue, strokeColorValue, cornerRadius, 2),
     );
-    const artNodeId = api.addNode(visualNodeId, `${name}-Art`, vec3());
+    const artNodeId = api.addNode(visualNodeId, `${name}-Art`, options.artPosition ?? vec3());
     api.addComponentToNode(artNodeId, 'cc.UITransform', {
       _priority: 0,
-      _contentSize: size(width, height),
+      _contentSize: size(options.artWidth ?? width, options.artHeight ?? height),
       _anchorPoint: vec2(0.5, 0.5),
     });
     return visualNodeId;
@@ -507,6 +530,35 @@ async function generatePrefabs(scriptIds) {
     return { nodeId: labelNodeId, labelId };
   };
 
+  const resolvePrefabImageBinding = (bindingKey) => {
+    const binding = resolveAssetBinding(bindingCatalog, bindingKey);
+    const imageAssetReference = binding?.selectedPath
+      ? resolveImageAssetReference(PROJECT_ROOT, binding.selectedPath)
+      : null;
+    return {
+      binding,
+      spriteFrame: imageAssetReference?.propertyName === 'spriteFrame'
+        ? imageAssetReference.assetRef
+        : null,
+      texture: imageAssetReference?.propertyName === 'texture'
+        ? imageAssetReference.assetRef
+        : null,
+    };
+  };
+
+  const resolveScenePlayerBindingKey = () => {
+    if (!bindingCatalog.candidatePreviewEnabled) {
+      return 'player';
+    }
+
+    const previewBinding = resolveAssetBinding(bindingCatalog, 'player_preview');
+    return previewBinding?.selectedPath ? 'player_preview' : 'player';
+  };
+
+  const echoBoxImageBinding = resolvePrefabImageBinding('echo_box');
+  const springFlowerImageBinding = resolvePrefabImageBinding('echo_spring_flower');
+  const bombBugImageBinding = resolvePrefabImageBinding('echo_bomb_bug');
+
   const echoBoxMeta = await buildPrefab('EchoBox.prefab', 'EchoBox', ({ rootId, addComponent, addComponentToNode, addNode }) => {
     addComponent('cc.UITransform', {
       _priority: 0,
@@ -538,7 +590,38 @@ async function generatePrefabs(scriptIds) {
       _offset: vec2(),
       _size: size(84, 44),
     });
-    addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 84, 44, color(214, 176, 96, 255), color(255, 236, 186, 180), 12);
+    const echoBoxVisualId = addPrefabVisual(
+      { addNode, addComponentToNode },
+      rootId,
+      'Visual',
+      58,
+      58,
+      color(214, 176, 96, 24),
+      color(255, 236, 186, 36),
+      12,
+      { visualPosition: vec3(0, 8, 0) },
+    );
+    addComponent(collectiblePresentationType, {
+      visualRoot: ref(echoBoxVisualId),
+      visualSpriteFrame: echoBoxImageBinding.spriteFrame,
+      visualTexture: echoBoxImageBinding.texture,
+      pickupClip: null,
+      pickupClipVolume: 1,
+      hideLabelWhenSkinned: true,
+      ...makeCollectiblePresentationProps(0.92, {
+        maskShape: 3,
+        maskCornerRadius: 12,
+      }),
+    });
+    if (echoBoxImageBinding.binding) {
+      addComponent(assetBindingTagType, {
+        bindingKey: echoBoxImageBinding.binding.bindingKey,
+        selectedPath: echoBoxImageBinding.binding.selectedPath,
+        fallbackPath: echoBoxImageBinding.binding.fallbackPath,
+        sourceManifest: echoBoxImageBinding.binding.sourceManifest,
+        bindingStatus: echoBoxImageBinding.binding.bindingStatus,
+      });
+    }
     addPrefabLabel({ addNode, addComponentToNode }, rootId, 'DebugLabel', 'BOX', 84, 44, 20, color(32, 24, 16, 255), true);
   });
 
@@ -581,7 +664,38 @@ async function generatePrefabs(scriptIds) {
       cooldownSeconds: 0.45,
       playerNameIncludes: 'Player',
     });
-    addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 124, 48, color(67, 146, 88, 255), color(213, 255, 209, 180), 16);
+    const springVisualId = addPrefabVisual(
+      { addNode, addComponentToNode },
+      rootId,
+      'Visual',
+      86,
+      76,
+      color(67, 146, 88, 18),
+      color(213, 255, 209, 32),
+      16,
+      { visualPosition: vec3(0, 10, 0) },
+    );
+    addComponent(collectiblePresentationType, {
+      visualRoot: ref(springVisualId),
+      visualSpriteFrame: springFlowerImageBinding.spriteFrame,
+      visualTexture: springFlowerImageBinding.texture,
+      pickupClip: null,
+      pickupClipVolume: 1,
+      hideLabelWhenSkinned: true,
+      ...makeCollectiblePresentationProps(0.94, {
+        maskShape: 2,
+        maskEllipseSegments: 56,
+      }),
+    });
+    if (springFlowerImageBinding.binding) {
+      addComponent(assetBindingTagType, {
+        bindingKey: springFlowerImageBinding.binding.bindingKey,
+        selectedPath: springFlowerImageBinding.binding.selectedPath,
+        fallbackPath: springFlowerImageBinding.binding.fallbackPath,
+        sourceManifest: springFlowerImageBinding.binding.sourceManifest,
+        bindingStatus: springFlowerImageBinding.binding.bindingStatus,
+      });
+    }
     addPrefabLabel({ addNode, addComponentToNode }, rootId, 'DebugLabel', 'FLOWER', 124, 48, 18, color(238, 255, 236, 255), true);
   });
 
@@ -627,7 +741,38 @@ async function generatePrefabs(scriptIds) {
       countdownOverlay: ref(countdownOverlay.nodeId),
       countdownLabel: ref(countdownOverlay.labelId),
     });
-    addPrefabVisual({ addNode, addComponentToNode }, rootId, 'Visual', 114, 48, color(156, 68, 66, 255), color(255, 209, 200, 180), 16);
+    const bombVisualId = addPrefabVisual(
+      { addNode, addComponentToNode },
+      rootId,
+      'Visual',
+      84,
+      72,
+      color(156, 68, 66, 18),
+      color(255, 209, 200, 32),
+      16,
+      { visualPosition: vec3(0, 10, 0) },
+    );
+    addComponent(collectiblePresentationType, {
+      visualRoot: ref(bombVisualId),
+      visualSpriteFrame: bombBugImageBinding.spriteFrame,
+      visualTexture: bombBugImageBinding.texture,
+      pickupClip: null,
+      pickupClipVolume: 1,
+      hideLabelWhenSkinned: true,
+      ...makeCollectiblePresentationProps(0.92, {
+        maskShape: 2,
+        maskEllipseSegments: 56,
+      }),
+    });
+    if (bombBugImageBinding.binding) {
+      addComponent(assetBindingTagType, {
+        bindingKey: bombBugImageBinding.binding.bindingKey,
+        selectedPath: bombBugImageBinding.binding.selectedPath,
+        fallbackPath: bombBugImageBinding.binding.fallbackPath,
+        sourceManifest: bombBugImageBinding.binding.sourceManifest,
+        bindingStatus: bombBugImageBinding.binding.bindingStatus,
+      });
+    }
   });
 
   const arrowProjectileMeta = await buildPrefab('ArrowProjectile.prefab', 'ArrowProjectile', ({ rootId, addComponent, addComponentToNode, addNode }) => {
@@ -804,6 +949,15 @@ async function generateScene(scriptIds, prefabIds) {
     return resolvedValue;
   };
 
+  const resolveScenePlayerBindingKey = () => {
+    if (!bindingCatalog.candidatePreviewEnabled) {
+      return 'player';
+    }
+
+    const previewBinding = resolveAssetBinding(bindingCatalog, 'player_preview');
+    return previewBinding?.selectedPath ? 'player_preview' : 'player';
+  };
+
   const addSceneDressingSkin = (nodeId, bindingKey, options = {}) => {
     const imageBinding = getImageBindingProps(bindingKey);
     if (!imageBinding) {
@@ -858,6 +1012,7 @@ async function generateScene(scriptIds, prefabIds) {
     panelFillColor = color(56, 70, 80, 255),
     panelStrokeColor = color(255, 255, 255, 72),
     cornerRadius = 14,
+    options = {},
   ) => {
     const nodeId = addNode(name, parentId, position, active);
     const transformId = addComponent(nodeId, 'cc.UITransform', {
@@ -865,10 +1020,14 @@ async function generateScene(scriptIds, prefabIds) {
       _contentSize: size(width, height),
       _anchorPoint: vec2(0.5, 0.5),
     });
-    const visualNodeId = addNode(`${name}-Visual`, nodeId, vec3());
+    const visualNodeId = addNode(
+      `${name}-Visual`,
+      nodeId,
+      options.visualPosition ?? vec3(0, options.visualOffsetY ?? 0, 0),
+    );
     addComponent(visualNodeId, 'cc.UITransform', {
       _priority: 0,
-      _contentSize: size(width, height),
+      _contentSize: size(options.visualWidth ?? width, options.visualHeight ?? height),
       _anchorPoint: vec2(0.5, 0.5),
     });
     addComponent(
@@ -877,10 +1036,10 @@ async function generateScene(scriptIds, prefabIds) {
       rectVisualProps(panelFillColor, panelStrokeColor, cornerRadius, 2),
     );
 
-    const labelNodeId = addNode(`${name}-Label`, nodeId, vec3());
+    const labelNodeId = addNode(`${name}-Label`, nodeId, options.labelPosition ?? vec3());
     addComponent(labelNodeId, 'cc.UITransform', {
       _priority: 0,
-      _contentSize: size(width, height),
+      _contentSize: size(options.labelWidth ?? width, options.labelHeight ?? height),
       _anchorPoint: vec2(0.5, 0.5),
     });
     const labelId = addComponent(labelNodeId, 'cc.Label', {
@@ -963,6 +1122,11 @@ async function generateScene(scriptIds, prefabIds) {
     color(123, 175, 219, 255),
     color(232, 248, 255, 160),
     14,
+    {
+      visualWidth: 76,
+      visualHeight: 104,
+      visualOffsetY: 20,
+    },
   );
   addComponent(playerNode.nodeId, 'cc.RigidBody2D', {
     _group: 1,
@@ -1055,7 +1219,9 @@ async function generateScene(scriptIds, prefabIds) {
     health: ref(playerHealthId),
     echoManager: ref(echoManagerId),
   });
-  const playerImageBinding = getImageBindingProps('player');
+  const playerBindingKey = resolveScenePlayerBindingKey();
+  const playerImageBinding = getImageBindingProps(playerBindingKey);
+  addAssetBindingTag(playerNode.nodeId, playerBindingKey);
   addComponent(playerNode.nodeId, types['assets/scripts/player/PlayerVisualController.ts'], {
     player: ref(playerControllerId),
     health: ref(playerHealthId),
@@ -1104,6 +1270,12 @@ async function generateScene(scriptIds, prefabIds) {
     color(244, 209, 114, 255),
     color(255, 245, 198, 150),
     12,
+    {
+      visualWidth: 148,
+      visualHeight: 184,
+      visualOffsetY: 100,
+      labelPosition: vec3(0, 100, 0),
+    },
   );
   addComponent(checkpointNode.nodeId, 'cc.BoxCollider2D', {
     editing: false,
@@ -1356,9 +1528,14 @@ async function generateScene(scriptIds, prefabIds) {
     18,
     color(235, 255, 235, 255),
     true,
-    color(66, 128, 80, 255),
-    color(203, 255, 215, 100),
+    color(66, 128, 80, 18),
+    color(203, 255, 215, 32),
     14,
+    {
+      visualWidth: 84,
+      visualHeight: 76,
+      visualOffsetY: 8,
+    },
   );
   addComponent(flowerPickup.nodeId, 'cc.BoxCollider2D', {
     editing: false,
@@ -1372,11 +1549,16 @@ async function generateScene(scriptIds, prefabIds) {
     _size: size(150, 36),
   });
   addComponent(flowerPickup.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualRoot: ref(flowerPickup.visualNodeId),
     visualSpriteFrame: getImageBindingProps('echo_spring_flower')?.spriteFrame ?? null,
     visualTexture: getImageBindingProps('echo_spring_flower')?.texture ?? null,
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
+    ...makeCollectiblePresentationProps(0.94, {
+      maskShape: 2,
+      maskEllipseSegments: 56,
+    }),
   });
   addComponent(flowerPickup.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(echoManagerId),
@@ -1397,9 +1579,14 @@ async function generateScene(scriptIds, prefabIds) {
     18,
     color(255, 239, 236, 255),
     true,
-    color(125, 62, 64, 255),
-    color(255, 208, 198, 100),
+    color(125, 62, 64, 18),
+    color(255, 208, 198, 32),
     14,
+    {
+      visualWidth: 92,
+      visualHeight: 72,
+      visualOffsetY: 8,
+    },
   );
   addComponent(bombPickup.nodeId, 'cc.BoxCollider2D', {
     editing: false,
@@ -1413,11 +1600,16 @@ async function generateScene(scriptIds, prefabIds) {
     _size: size(144, 36),
   });
   addComponent(bombPickup.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualRoot: ref(bombPickup.visualNodeId),
     visualSpriteFrame: getImageBindingProps('echo_bomb_bug')?.spriteFrame ?? null,
     visualTexture: getImageBindingProps('echo_bomb_bug')?.texture ?? null,
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
+    ...makeCollectiblePresentationProps(0.92, {
+      maskShape: 2,
+      maskEllipseSegments: 56,
+    }),
   });
   addComponent(bombPickup.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(echoManagerId),

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-24T15:54:04.844Z",
+  "generatedAt": "2026-04-25T11:30:00.000Z",
   "status": "candidate-preview-only",
   "selectionPolicy": "first-passing",
   "notes": [
@@ -77,6 +77,21 @@
       "batchId": "2026-04-24-env-batch-01",
       "candidateFile": "temp/image2/candidates/outdoor_ground_flowers/2026-04-24-env-batch-01/outdoor_ground_flowers_v00.png",
       "screeningReport": "temp/image2/evidence/real-image2-env-batch-01/screening-report.json"
+    },
+    "player_preview": {
+      "selectedPath": "assets/art/generated/image2-preview/player_preview/player_preview_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 512,
+        "trimTransparent": true
+      },
+      "source": "image2-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-25-player-track-07",
+      "candidateFile": "temp/image2/candidates/player/2026-04-25-player-track-07/player_preview_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-25-player-track-07/review.json"
     },
     "barrier_closed": {
       "selectedPath": "assets/art/generated/image2-preview/barrier_closed/barrier_closed_v00.png",
@@ -300,6 +315,23 @@
       "batchId": "2026-04-24-boss-batch-01",
       "candidateFile": "temp/image2/candidates/boss_shield_open/2026-04-24-boss-batch-01/boss_shield_open_v00.png",
       "screeningReport": "temp/image2/evidence/2026-04-24-boss-batch-01/screening-report.json"
+    },
+    "echo_box": {
+      "selectedPath": "assets/art/generated/image2-preview/echo_box/echo_box_v00.png",
+      "fallbackPath": "",
+      "status": "candidate_preview",
+      "previewRasterPolicy": {
+        "mode": "object",
+        "maxEdge": 320,
+        "trimTransparent": true,
+        "minEdge": 160,
+        "upscaleKernel": "nearest"
+      },
+      "source": "external-candidate",
+      "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+      "batchId": "2026-04-25-echo-box-bridge",
+      "candidateFile": "temp/image2/batch-inputs/2026-04-25-echo-box-bridge/echo_box_v00.png",
+      "screeningReport": "temp/image2/evidence/2026-04-25-echo-box-bridge/screening-report.json"
     }
   },
   "uiEntities": {},

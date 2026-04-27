@@ -67,9 +67,9 @@ export class CheckpointMarker extends Component {
     const effectiveFrame = this.visualSpriteFrame
       ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'checkpoint', this.visualTexture);
     applySpriteFrameToPlaceholderVisual(this.node, effectiveFrame, {
-      fitMode: PlaceholderSpriteFitMode.Cover,
+      fitMode: PlaceholderSpriteFitMode.Contain,
       verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
-      scaleMultiplier: 1.05,
+      scaleMultiplier: 1,
     });
     setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !effectiveFrame);
   }

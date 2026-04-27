@@ -28,6 +28,8 @@ const spriteVisualSkinScript = fs.readFileSync(path.join(projectRoot, 'assets', 
 const checkpointMarkerScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'core', 'CheckpointMarker.ts'), 'utf8');
 const scenePortalScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'core', 'ScenePortal.ts'), 'utf8');
 const collectiblePresentationScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'visual', 'CollectiblePresentation.ts'), 'utf8');
+const sceneDressingSkinScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'visual', 'SceneDressingSkin.ts'), 'utf8');
+const playerVisualControllerScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'player', 'PlayerVisualController.ts'), 'utf8');
 const simpleProjectileScript = fs.readFileSync(path.join(projectRoot, 'assets', 'scripts', 'puzzle', 'SimpleProjectile.ts'), 'utf8');
 const generateWeek2ScenesScript = fs.readFileSync(path.join(projectRoot, 'tools', 'generate-week2-scenes.mjs'), 'utf8');
 const generateMechanicsLabScript = fs.readFileSync(path.join(projectRoot, 'tools', 'generate-mechanics-lab.mjs'), 'utf8');
@@ -110,6 +112,10 @@ test('runtime playthrough defaults follow the non-reopen WeChat workflow', () =>
   assert.match(runWechatRuntimePlaythroughScript, /bootstrapCleanup = cleanupRuntimeProbeBootstrap\(harnessManifest\.harnessDir\)/);
   assert.match(runWechatRuntimePlaythroughScript, /staleBootstrapCleanup = cleanupRuntimeProbeBootstrapInBuildOutputs\(projectRoot\)/);
   assert.match(runWechatRuntimeProbeScript, /WECHAT_RUNTIME_PROBE_ALLOW_MODAL_DISMISS === '1'/);
+  assert.match(runWechatRuntimeProbeScript, /const devtoolsOpenSettleMs = Number\(process\.env\.WECHAT_RUNTIME_PROBE_OPEN_SETTLE_MS \|\| 8_000\);/);
+  assert.match(runWechatRuntimeProbeScript, /const devtoolsPreviewSettleMs = Number\(process\.env\.WECHAT_RUNTIME_PROBE_PREVIEW_SETTLE_MS \|\| 4_000\);/);
+  assert.match(runWechatRuntimeProbeScript, /if \(devtoolsOpenSettleMs > 0\) \{\s*await delay\(devtoolsOpenSettleMs\);/s);
+  assert.match(runWechatRuntimeProbeScript, /if \(devtoolsPreviewSettleMs > 0\) \{\s*await delay\(devtoolsPreviewSettleMs\);/s);
   assert.doesNotMatch(runWechatRuntimeProbeScript, /WECHAT_RUNTIME_PROBE_SKIP_MODAL_DISMISS !== '1'/);
   assert.doesNotMatch(runWechatRuntimePlaythroughScript, /x:\s*392,\s*y:\s*-20/);
 });
@@ -128,7 +134,7 @@ test('WeChat DevTools CLI launch helpers shell out through PowerShell with an en
 });
 
 test('runtime probe retires its websocket after sending a command result or error', () => {
-  assert.match(wechatRuntimeProbeScript, /const PROBE_RETIRE_DELAY_MS = 250;/);
+  assert.match(wechatRuntimeProbeScript, /const PROBE_RETIRE_DELAY_MS = 1000;/);
   assert.match(wechatRuntimeProbeScript, /const PROBE_MAX_CONNECT_ATTEMPTS = 4;/);
   assert.match(wechatRuntimeProbeScript, /const PROBE_MAX_CONNECT_WINDOW_MS = 12_000;/);
   assert.match(wechatRuntimeProbeScript, /function retireProbeConnection\(delayMs = PROBE_RETIRE_DELAY_MS\): void/);
@@ -137,6 +143,16 @@ test('runtime probe retires its websocket after sending a command result or erro
   assert.match(wechatRuntimeProbeScript, /activeProbeUrl = null;/);
   assert.match(wechatRuntimeProbeScript, /__codexQaProbeUrl = ''/);
   assert.match(wechatRuntimeProbeScript, /retireProbeConnection\(0\);/);
+});
+
+test('runtime probe compacts run-sequence payloads before emitting terminal results', () => {
+  assert.match(wechatRuntimeProbeScript, /function compactRuntimeSnapshotForSequence\(snapshot: unknown\): Record<string, unknown> \| null/);
+  assert.match(wechatRuntimeProbeScript, /function compactSequenceStepResult\(/);
+  assert.match(wechatRuntimeProbeScript, /const before = compactRuntimeSnapshotForSequence\(collectRuntimeSnapshot\(\)\);/);
+  assert.match(wechatRuntimeProbeScript, /results\.push\(compactSequenceStepResult\(index, 'move-player-to-world', await movePlayerToWorldForQa\(step\)\)\);/);
+  assert.match(wechatRuntimeProbeScript, /results\.push\(compactSequenceStepResult\(index, 'run-command', await runDirectCommandForQa\(step\)\)\);/);
+  assert.match(wechatRuntimeProbeScript, /snapshot: compactRuntimeSnapshotForSequence\(collectRuntimeSnapshot\(\)\)/);
+  assert.match(wechatRuntimeProbeScript, /const after = compactRuntimeSnapshotForSequence\(collectRuntimeSnapshot\(\)\);/);
 });
 
 test('sprite visual skin guards optional component classes before getComponent or addComponent', () => {
@@ -148,24 +164,52 @@ test('sprite visual skin guards optional component classes before getComponent o
   assert.match(spriteVisualSkinScript, /function isPlaceholderLabelNode/);
   assert.match(spriteVisualSkinScript, /rootNode\.name\.toLowerCase\(\)\.includes\('visual'\)/);
   assert.match(spriteVisualSkinScript, /for \(const sibling of rootNode\.parent!\.children\)/);
+  assert.match(spriteVisualSkinScript, /export function resetTextureBackedSpriteFrame\(/);
+  assert.match(spriteVisualSkinScript, /spriteFrame\.reset\(\{/);
+  assert.match(spriteVisualSkinScript, /rect: new Rect\(0, 0, textureWidth, textureHeight\)/);
+  assert.match(spriteVisualSkinScript, /originalSize: new Size\(textureWidth, textureHeight\)/);
+  assert.match(spriteVisualSkinScript, /offset: new Vec2\(0, 0\)/);
 });
 
 test('object placeholder visuals accept texture-backed candidate previews and non-stretch fit rules', () => {
   assert.match(checkpointMarkerScript, /@property\(Texture2D\)/);
   assert.match(checkpointMarkerScript, /resolveTextureBackedSpriteFrame/);
-  assert.match(checkpointMarkerScript, /fitMode: PlaceholderSpriteFitMode\.Cover/);
+  assert.match(checkpointMarkerScript, /fitMode: PlaceholderSpriteFitMode\.Contain/);
   assert.match(scenePortalScript, /visualTexture: Texture2D \| null = null/);
+  assert.match(scenePortalScript, /hideLabelWhenSkinned = true/);
+  assert.match(scenePortalScript, /fitMode: PlaceholderSpriteFitMode\.Contain/);
   assert.match(scenePortalScript, /verticalAnchor: PlaceholderSpriteVerticalAnchor\.Bottom/);
   assert.match(collectiblePresentationScript, /visualTexture: Texture2D \| null = null/);
-  assert.match(collectiblePresentationScript, /fitMode: PlaceholderSpriteFitMode\.Cover/);
+  assert.match(collectiblePresentationScript, /fitMode = PlaceholderSpriteFitMode\.Cover/);
+  assert.match(collectiblePresentationScript, /useObjectLayout = false/);
+  assert.match(collectiblePresentationScript, /fitMode: useObjectLayout \? PlaceholderSpriteFitMode\.Contain : this\.fitMode/);
+  assert.match(collectiblePresentationScript, /preferGenericVisualChild: useObjectLayout/);
+  assert.match(sceneDressingSkinScript, /return resetTextureBackedSpriteFrame\(this\.generatedSpriteFrame, this\.texture\);/);
+  assert.match(playerVisualControllerScript, /scaleMultiplier = 0\.9/);
+  assert.match(playerVisualControllerScript, /characterVisualWidth = 76/);
+  assert.match(playerVisualControllerScript, /characterVisualHeight = 104/);
+  assert.match(playerVisualControllerScript, /characterVisualOffsetY = 20/);
+  assert.match(playerVisualControllerScript, /private ensureCharacterVisualRoot\(targetNode: Node\): void/);
+  assert.match(playerVisualControllerScript, /visualTransform\.setContentSize\(desiredWidth, desiredHeight\)/);
   assert.match(simpleProjectileScript, /visualTexture: Texture2D \| null = null/);
   assert.match(simpleProjectileScript, /fitMode: PlaceholderSpriteFitMode\.Contain/);
+  assert.match(generateWeek2ScenesScript, /const resolveScenePlayerBindingKey = \(\) => \{/);
+  assert.match(generateWeek2ScenesScript, /const playerBindingKey = resolveScenePlayerBindingKey\(\);/);
+  assert.match(generateWeek2ScenesScript, /visualWidth:\s*76/);
+  assert.match(generateWeek2ScenesScript, /visualHeight:\s*104/);
+  assert.match(generateWeek2ScenesScript, /visualOffsetY:\s*20/);
   assert.match(generateWeek2ScenesScript, /idleSpriteFrame: playerImageBinding\?\.spriteFrame \?\? null/);
   assert.match(generateWeek2ScenesScript, /idleTexture: playerImageBinding\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /addAssetBindingTag\(playerNode\.nodeId, playerBindingKey\);/);
   assert.match(generateWeek2ScenesScript, /idleSpriteFrame: commonEnemyBinding\?\.spriteFrame \?\? null/);
   assert.match(generateWeek2ScenesScript, /idleTexture: commonEnemyBinding\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /visualTexture: checkpointImageBinding\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /visualWidth: config\.visualWidth \?\? 148/);
+  assert.match(generateWeek2ScenesScript, /visualHeight: config\.visualHeight \?\? 184/);
   assert.match(generateWeek2ScenesScript, /visualTexture: portalImageBinding\?\.texture \?\? null/);
+  assert.match(generateWeek2ScenesScript, /visualWidth: config\.visualWidth \?\? Math\.max\(portalWidth \+ 24, 208\)/);
+  assert.match(generateWeek2ScenesScript, /visualHeight: config\.visualHeight \?\? 224/);
+  assert.match(generateWeek2ScenesScript, /hideLabelWhenSkinned: true/);
   assert.match(generateWeek2ScenesScript, /visualTexture: imageBinding\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /intactSpriteFrame: getImageBindingProps\('breakable_target'\)\?\.spriteFrame \?\? null/);
   assert.match(generateWeek2ScenesScript, /intactTexture: getImageBindingProps\('breakable_target'\)\?\.texture \?\? null/);
@@ -181,12 +225,27 @@ test('object placeholder visuals accept texture-backed candidate previews and no
   assert.match(generateWeek2ScenesScript, /brokenTexture: getImageBindingProps\('boss_shield_open'\)\?\.texture \?\? null/);
   assert.match(generateWeek2ScenesScript, /dangerSpriteFrame: getImageBindingProps\('boss_core'\)\?\.spriteFrame \?\? null/);
   assert.match(generateWeek2ScenesScript, /dangerTexture: getImageBindingProps\('boss_core'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /const resolveScenePlayerBindingKey = \(\) => \{/);
+  assert.match(generateMechanicsLabScript, /const playerBindingKey = resolveScenePlayerBindingKey\(\);/);
+  assert.match(generateMechanicsLabScript, /visualWidth:\s*76/);
+  assert.match(generateMechanicsLabScript, /visualHeight:\s*104/);
+  assert.match(generateMechanicsLabScript, /visualOffsetY:\s*20/);
   assert.match(generateMechanicsLabScript, /idleSpriteFrame: playerImageBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateMechanicsLabScript, /addAssetBindingTag\(playerNode\.nodeId, playerBindingKey\);/);
   assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('checkpoint'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /visualWidth:\s*148/);
+  assert.match(generateMechanicsLabScript, /visualHeight:\s*184/);
+  assert.match(generateMechanicsLabScript, /visualOffsetY:\s*100/);
   assert.match(generateMechanicsLabScript, /visualSpriteFrame: getImageBindingProps\('outdoor_wall_cracked'\)\?\.spriteFrame \?\? null/);
   assert.match(generateMechanicsLabScript, /idleSpriteFrame: enemyImageBinding\?\.spriteFrame \?\? null/);
+  assert.match(generateMechanicsLabScript, /const echoBoxImageBinding = resolvePrefabImageBinding\('echo_box'\)/);
+  assert.match(generateMechanicsLabScript, /addComponent\(collectiblePresentationType, \{\s*visualRoot: ref\(echoBoxVisualId\),\s*visualSpriteFrame: echoBoxImageBinding\.spriteFrame,/s);
   assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('echo_spring_flower'\)\?\.texture \?\? null/);
   assert.match(generateMechanicsLabScript, /visualTexture: getImageBindingProps\('echo_bomb_bug'\)\?\.texture \?\? null/);
+  assert.match(generateMechanicsLabScript, /const springFlowerImageBinding = resolvePrefabImageBinding\('echo_spring_flower'\)/);
+  assert.match(generateMechanicsLabScript, /const bombBugImageBinding = resolvePrefabImageBinding\('echo_bomb_bug'\)/);
+  assert.match(generateMechanicsLabScript, /addComponent\(collectiblePresentationType, \{\s*visualRoot: ref\(springVisualId\),\s*visualSpriteFrame: springFlowerImageBinding\.spriteFrame,/s);
+  assert.match(generateMechanicsLabScript, /addComponent\(collectiblePresentationType, \{\s*visualRoot: ref\(bombVisualId\),\s*visualSpriteFrame: bombBugImageBinding\.spriteFrame,/s);
   assert.match(generateMechanicsLabScript, /intactTexture: getImageBindingProps\('outdoor_wall_cracked'\)\?\.texture \?\? null/);
   assert.match(generateMechanicsLabScript, /visualTexture: projectileImageBinding\?\.propertyName === 'texture'/);
 });

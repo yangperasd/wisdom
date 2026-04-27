@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import {
   assertComponentNodeReference,
   assertNodeActiveState,
@@ -208,11 +210,31 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     checkpointMarkerType,
     'Checkpoint-Camp',
   );
+  const checkpointCampVisual = assertNodeExists(startCampItems, 'Checkpoint-Camp-Visual');
+  const checkpointCampVisualTransform = getComponentRecordForNode(
+    startCampItems,
+    checkpointCampVisual,
+    'cc.UITransform',
+    'Checkpoint-Camp-Visual UITransform',
+  );
+  const startPlayerBinding = getComponentRecordForNode(
+    startCampItems,
+    assertNodeExists(startCampItems, 'Player'),
+    assetBindingTagType,
+    'StartCamp Player AssetBindingTag',
+  );
   const startPlayerVisual = getComponentRecordForNode(
     startCampItems,
     assertNodeExists(startCampItems, 'Player'),
     playerVisualType,
     'StartCamp PlayerVisualController',
+  );
+  const startPlayerVisualNode = assertNodeExists(startCampItems, 'Player-Visual');
+  const startPlayerVisualTransform = getComponentRecordForNode(
+    startCampItems,
+    startPlayerVisualNode,
+    'cc.UITransform',
+    'StartCamp Player-Visual UITransform',
   );
   const startEnemyVisual = getComponentRecordForNode(
     startCampItems,
@@ -220,15 +242,35 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     enemyVisualType,
     'CampEnemy VisualController',
   );
-  assert.equal(checkpointCamp.visualSpriteFrame, null, 'Checkpoint-Camp should currently rely on a texture-backed candidate preview.');
-  assert.ok(checkpointCamp.visualTexture?.__uuid__, 'Checkpoint-Camp should bind a texture-backed candidate preview.');
+  assert.ok(checkpointCamp.visualSpriteFrame?.__uuid__, 'Checkpoint-Camp should bind a sprite-frame candidate preview.');
+  assert.equal(checkpointCamp.visualTexture, null, 'Checkpoint-Camp should not need a raw texture fallback once sprite-frame preview metadata is available.');
+  assert.equal(checkpointCampVisualTransform._contentSize.width, 148, 'Checkpoint-Camp visual should reserve a prop-like width instead of a thin sensor strip.');
+  assert.equal(checkpointCampVisualTransform._contentSize.height, 184, 'Checkpoint-Camp visual should reserve a tall prop footprint.');
+  assert.equal(checkpointCampVisual._lpos.y, 100, 'Checkpoint-Camp visual should sit above the checkpoint sensor.');
   assertCandidatePreviewBinding(startCampItems, 'Checkpoint-Camp', 'checkpoint', /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
-  assert.ok(startPlayerVisual.idleTexture?.__uuid__, 'StartCamp player should bind a texture-backed visual.');
-  assert.ok(startEnemyVisual.idleTexture?.__uuid__, 'CampEnemy should currently bind a texture-backed candidate preview.');
+  assert.equal(startPlayerBinding.bindingKey, 'player_preview');
+  assert.equal(startPlayerBinding.bindingStatus, 'candidate_preview');
+  assert.match(startPlayerBinding.selectedPath, /assets\/art\/generated\/image2-preview\/player_preview\/player_preview_v00\.png$/);
+  assert.ok(startPlayerVisual.idleSpriteFrame?.__uuid__, 'StartCamp player should bind a sprite-frame visual.');
+  assert.equal(startPlayerVisualTransform._contentSize.width, 76);
+  assert.equal(startPlayerVisualTransform._contentSize.height, 104);
+  assert.equal(startPlayerVisualNode._lpos.y, 20);
+  assert.ok(startEnemyVisual.idleSpriteFrame?.__uuid__, 'CampEnemy should currently bind a sprite-frame candidate preview.');
   assertCandidatePreviewBinding(startCampItems, 'CampEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   const startPortalRecord = getComponentRecordForNode(startCampItems, startPortal, scenePortalType, 'Portal-FieldWest');
-  assert.equal(startPortalRecord.visualSpriteFrame, null, 'Portal-FieldWest should currently rely on a texture-backed candidate preview.');
-  assert.ok(startPortalRecord.visualTexture?.__uuid__, 'Portal-FieldWest should bind a texture-backed candidate preview.');
+  const startPortalVisual = assertNodeExists(startCampItems, 'Portal-FieldWest-Visual');
+  const startPortalVisualTransform = getComponentRecordForNode(
+    startCampItems,
+    startPortalVisual,
+    'cc.UITransform',
+    'Portal-FieldWest-Visual UITransform',
+  );
+  assert.ok(startPortalRecord.visualSpriteFrame?.__uuid__, 'Portal-FieldWest should bind a sprite-frame candidate preview.');
+  assert.equal(startPortalRecord.visualTexture, null, 'Portal-FieldWest should not need a raw texture fallback once sprite-frame preview metadata is available.');
+  assert.equal(startPortalRecord.hideLabelWhenSkinned, true, 'Portal-FieldWest should hide placeholder copy once the portal art is active.');
+  assert.equal(startPortalVisualTransform._contentSize.width, 208, 'Portal-FieldWest visual should use a real prop width.');
+  assert.equal(startPortalVisualTransform._contentSize.height, 224, 'Portal-FieldWest visual should use a tall prop height.');
+  assert.equal(startPortalVisual._lpos.y, 108, 'Portal-FieldWest visual should stand above the trigger strip.');
   assertCandidatePreviewBinding(startCampItems, 'Portal-FieldWest', 'portal', /assets\/art\/generated\/image2-preview\/portal\/portal_v00\.png$/);
   const campBackdropBinding = getComponentRecordForNode(
     startCampItems,
@@ -285,6 +327,20 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     collectiblePresentationType,
     'EchoPickup-Flower-West',
   );
+  const fieldFlowerPickup = assertNodeExists(fieldWestItems, 'EchoPickup-Flower-West');
+  const fieldFlowerPresentation = getComponentRecordForNode(
+    fieldWestItems,
+    fieldFlowerPickup,
+    collectiblePresentationType,
+    'EchoPickup-Flower-West Presentation',
+  );
+  const fieldFlowerVisual = assertNodeExists(fieldWestItems, 'EchoPickup-Flower-West-Visual');
+  const fieldFlowerVisualTransform = getComponentRecordForNode(
+    fieldWestItems,
+    fieldFlowerVisual,
+    'cc.UITransform',
+    'EchoPickup-Flower-West Visual',
+  );
   const fieldBackdropBinding = getComponentRecordForNode(
     fieldWestItems,
     assertNodeExists(fieldWestItems, 'FieldBackdrop'),
@@ -321,21 +377,46 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     sceneDressingSkinType,
     'Trap-West SceneDressingSkin',
   );
+  const fieldPortalBackRecord = getComponentRecordForNode(
+    fieldWestItems,
+    assertNodeExists(fieldWestItems, 'Portal-StartCamp'),
+    scenePortalType,
+    'Portal-StartCamp',
+  );
+  const fieldPortalBackVisual = assertNodeExists(fieldWestItems, 'Portal-StartCamp-Visual');
+  const fieldPortalBackVisualTransform = getComponentRecordForNode(
+    fieldWestItems,
+    fieldPortalBackVisual,
+    'cc.UITransform',
+    'Portal-StartCamp-Visual UITransform',
+  );
   assert.equal(fieldBackdropBinding.bindingKey, 'outdoor_ground_flowers');
   assert.ok(fieldBackdropTransform._contentSize.width >= 2400, 'FieldBackdrop should overscan the opening mobile view instead of exposing the neutral clear color.');
-  assert.equal(fieldEnemyVisual.idleSpriteFrame, null, 'FieldEnemy should currently rely on a texture-backed candidate preview.');
-  assert.ok(fieldEnemyVisual.idleTexture?.__uuid__, 'FieldEnemy should currently bind a texture-backed candidate preview.');
+  assert.ok(fieldEnemyVisual.idleSpriteFrame?.__uuid__, 'FieldEnemy should currently bind a sprite-frame candidate preview.');
+  assert.equal(fieldEnemyVisual.idleTexture, null, 'FieldEnemy should not need a raw texture fallback once sprite-frame preview metadata is available.');
   assert.equal(fieldPath0Skin.tiled, true, 'FieldPath-0 should stay tiled as a ground surface.');
   assert.equal(fieldPath0Skin.maskShape, 2, 'FieldPath-0 should use an ellipse mask so the route enters frame as spread ground.');
   assert.notEqual(assertNodeExists(fieldWestItems, 'FieldPath-0')._euler.z, 0, 'FieldPath-0 should rotate to avoid a straight-edged slab read.');
   assert.equal(fieldPath1Skin.tiled, true, 'FieldPath-1 should stay tiled as a ground surface.');
   assert.equal(fieldPath1Skin.maskShape, 2, 'FieldPath-1 should use an ellipse mask so the path reads as spread ground instead of a cropped slab.');
   assert.notEqual(assertNodeExists(fieldWestItems, 'FieldPath-1')._euler.z, 0, 'FieldPath-1 should rotate to avoid a placeholder-like straight-edged panel read.');
+  assertComponentNodeReference(fieldWestItems, fieldFlowerPresentation, 'visualRoot', fieldFlowerVisual, 'EchoPickup-Flower-West Presentation');
+  assert.equal(fieldFlowerPresentation.fitMode, 1, 'EchoPickup-Flower-West should contain-fit into an object footprint.');
+  assert.equal(fieldFlowerPresentation.verticalAnchor, 1, 'EchoPickup-Flower-West should anchor its flower silhouette to the ground.');
+  assert.equal(fieldFlowerPresentation.maskShape, 2, 'EchoPickup-Flower-West should use an ellipse crop instead of a full-width slab.');
+  assert.equal(fieldFlowerPresentation.maskEllipseSegments, 56, 'EchoPickup-Flower-West should use a smooth ellipse mask.');
+  assert.equal(fieldFlowerVisualTransform._contentSize.width, 84, 'EchoPickup-Flower-West should shrink its visual footprint to an object-like width.');
+  assert.equal(fieldFlowerVisualTransform._contentSize.height, 76, 'EchoPickup-Flower-West should reserve more vertical space for the flower silhouette.');
+  assert.equal(fieldFlowerVisual._lpos.y, 8, 'EchoPickup-Flower-West visual should float slightly upward so it sits on the ground.');
   assert.equal(trapWestSkin.tiled, false, 'Trap-West should stay object-like rather than tiled like a floor.');
   assert.equal(trapWestSkin.fitMode, 2, 'Trap-West should cover-crop into its prop footprint.');
   assert.equal(trapWestSkin.verticalAnchor, 1, 'Trap-West should anchor to the bottom so the wall body sits on the ground.');
   assert.equal(trapWestSkin.maskShape ?? 0, 3, 'Trap-West should use a rounded prop mask instead of the ground ellipse or a hard rect crop.');
   assert.ok((trapWestSkin.maskCornerRadius ?? 0) >= 18, 'Trap-West should expose a visible rounded prop silhouette.');
+  assert.equal(fieldPortalBackRecord.hideLabelWhenSkinned, true, 'Portal-StartCamp should hide placeholder text when the portal art is active.');
+  assert.equal(fieldPortalBackVisualTransform._contentSize.width, 208, 'Portal-StartCamp visual should use a real prop width.');
+  assert.equal(fieldPortalBackVisualTransform._contentSize.height, 224, 'Portal-StartCamp visual should use a tall prop height.');
+  assert.equal(fieldPortalBackVisual._lpos.y, 108, 'Portal-StartCamp visual should stand above the trigger strip.');
   assertCandidatePreviewBinding(fieldWestItems, 'FieldEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   assertNodeHasComponent(
     fieldWestItems,
@@ -367,6 +448,20 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     collectiblePresentationType,
     'EchoPickup-Bomb-Ruins',
   );
+  const ruinsBombPickup = assertNodeExists(fieldRuinsItems, 'EchoPickup-Bomb-Ruins');
+  const ruinsBombPresentation = getComponentRecordForNode(
+    fieldRuinsItems,
+    ruinsBombPickup,
+    collectiblePresentationType,
+    'EchoPickup-Bomb-Ruins Presentation',
+  );
+  const ruinsBombVisual = assertNodeExists(fieldRuinsItems, 'EchoPickup-Bomb-Ruins-Visual');
+  const ruinsBombVisualTransform = getComponentRecordForNode(
+    fieldRuinsItems,
+    ruinsBombVisual,
+    'cc.UITransform',
+    'EchoPickup-Bomb-Ruins Visual',
+  );
   const ruinsBackdropBinding = getComponentRecordForNode(
     fieldRuinsItems,
     assertNodeExists(fieldRuinsItems, 'RuinsBackdrop'),
@@ -385,11 +480,36 @@ test('Content scenes wire the scene loader, portals, and formal hud', async () =
     sceneDressingSkinType,
     'RuinsFlowerGround-1 SceneDressingSkin',
   );
+  const ruinsPortalBackRecord = getComponentRecordForNode(
+    fieldRuinsItems,
+    assertNodeExists(fieldRuinsItems, 'Portal-FieldWestReturn'),
+    scenePortalType,
+    'Portal-FieldWestReturn',
+  );
+  const ruinsPortalBackVisual = assertNodeExists(fieldRuinsItems, 'Portal-FieldWestReturn-Visual');
+  const ruinsPortalBackVisualTransform = getComponentRecordForNode(
+    fieldRuinsItems,
+    ruinsPortalBackVisual,
+    'cc.UITransform',
+    'Portal-FieldWestReturn-Visual UITransform',
+  );
   assert.equal(ruinsBackdropBinding.bindingKey, 'outdoor_path_cobble');
-  assert.equal(ruinsEnemyVisual.idleSpriteFrame, null, 'RuinsEnemy should currently rely on a texture-backed candidate preview.');
-  assert.ok(ruinsEnemyVisual.idleTexture?.__uuid__, 'RuinsEnemy should currently bind a texture-backed candidate preview.');
+  assert.ok(ruinsEnemyVisual.idleSpriteFrame?.__uuid__, 'RuinsEnemy should currently bind a sprite-frame candidate preview.');
+  assert.equal(ruinsEnemyVisual.idleTexture, null, 'RuinsEnemy should not need a raw texture fallback once sprite-frame preview metadata is available.');
   assert.equal(ruinsFlowerGround1Skin.maskShape, 2, 'RuinsFlowerGround-1 should use the ellipse ground mask so flower patches read as spread terrain.');
+  assertComponentNodeReference(fieldRuinsItems, ruinsBombPresentation, 'visualRoot', ruinsBombVisual, 'EchoPickup-Bomb-Ruins Presentation');
+  assert.equal(ruinsBombPresentation.fitMode, 1, 'EchoPickup-Bomb-Ruins should contain-fit into an object footprint.');
+  assert.equal(ruinsBombPresentation.verticalAnchor, 1, 'EchoPickup-Bomb-Ruins should anchor the bug silhouette to the ground.');
+  assert.equal(ruinsBombPresentation.maskShape, 2, 'EchoPickup-Bomb-Ruins should use an ellipse crop instead of a hard-edged card.');
+  assert.equal(ruinsBombPresentation.maskEllipseSegments, 56, 'EchoPickup-Bomb-Ruins should use a smooth ellipse mask.');
+  assert.equal(ruinsBombVisualTransform._contentSize.width, 92, 'EchoPickup-Bomb-Ruins should shrink its visual footprint to an object-like width.');
+  assert.equal(ruinsBombVisualTransform._contentSize.height, 72, 'EchoPickup-Bomb-Ruins should reserve more vertical space for the bug silhouette.');
+  assert.equal(ruinsBombVisual._lpos.y, 8, 'EchoPickup-Bomb-Ruins visual should float slightly upward so it sits on the ground.');
   assert.notEqual(assertNodeExists(fieldRuinsItems, 'RuinsFlowerGround-1')._euler.z, 0, 'RuinsFlowerGround-1 should rotate to avoid a flat rectangular patch read.');
+  assert.equal(ruinsPortalBackRecord.hideLabelWhenSkinned, true, 'Portal-FieldWestReturn should hide placeholder text when the portal art is active.');
+  assert.equal(ruinsPortalBackVisualTransform._contentSize.width, 220, 'Portal-FieldWestReturn visual should widen to a prop-like footprint.');
+  assert.equal(ruinsPortalBackVisualTransform._contentSize.height, 224, 'Portal-FieldWestReturn visual should use a tall prop height.');
+  assert.equal(ruinsPortalBackVisual._lpos.y, 108, 'Portal-FieldWestReturn visual should stand above the trigger strip.');
   assertCandidatePreviewBinding(fieldRuinsItems, 'RuinsEnemy', 'common_enemy', /assets\/art\/generated\/image2-preview\/common_enemy\/common_enemy_v00\.png$/);
   const ruinsBreakable = getComponentRecordForNode(fieldRuinsItems, ruinsWallClosed, breakableTargetType, 'RuinsWall-Closed');
   assertComponentNodeReference(fieldRuinsItems, ruinsBreakable, 'intactVisualNode', ruinsWallClosed, 'RuinsWall-Closed BreakableTarget');
@@ -447,4 +567,52 @@ test('StartCamp gate begins closed and later scenes expose the right open paths'
   assert.equal(campPlayers.length, 1);
   assert.equal(fieldPlayers.length, 1);
   assert.equal(ruinsPlayers.length, 1);
+});
+
+test('Week2 echo pickups use object-like framing inputs in the generator', async () => {
+  const week2ScenesScript = await fs.readFile(
+    path.join(process.cwd(), 'tools', 'generate-week2-scenes.mjs'),
+    'utf8',
+  );
+
+  assert.match(
+    week2ScenesScript,
+    /name: 'EchoPickup-Flower-West'[\s\S]*fillColor: color\(66, 128, 80, 18\)[\s\S]*strokeColor: color\(203, 255, 215, 32\)[\s\S]*scaleMultiplier: 0\.94[\s\S]*maskShape: SCENE_DRESSING_MASK\.ELLIPSE/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /name: 'EchoPickup-Bomb-Ruins'[\s\S]*fillColor: color\(135, 68, 62, 18\)[\s\S]*strokeColor: color\(255, 209, 200, 32\)[\s\S]*scaleMultiplier: 0\.92[\s\S]*maskShape: SCENE_DRESSING_MASK\.ELLIPSE/s,
+  );
+});
+
+test('Week2 combat framing stays object-like in the generator', async () => {
+  const week2ScenesScript = await fs.readFile(
+    path.join(process.cwd(), 'tools', 'generate-week2-scenes.mjs'),
+    'utf8',
+  );
+
+  assert.match(
+    week2ScenesScript,
+    /function addEnemy[\s\S]*color\(145, 63, 73, 28\)[\s\S]*color\(255, 206, 211, 40\)[\s\S]*visualWidth: 74[\s\S]*visualHeight: 108[\s\S]*visualOffsetY: 22/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /'BossEnemy-Core'[\s\S]*color\(219, 132, 98, 188\)[\s\S]*color\(255, 232, 206, 92\)[\s\S]*visualWidth: 112[\s\S]*visualHeight: 144[\s\S]*visualOffsetY: 12/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /'BossShield-Closed'[\s\S]*_contentSize: size\(176, 124\)[\s\S]*color\(255, 241, 217, 220\)[\s\S]*color\(255, 231, 195, 96\)/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /'BossShield-Open'[\s\S]*_contentSize: size\(180, 124\)[\s\S]*color\(235, 255, 241, 214\)[\s\S]*color\(255, 247, 231, 90\)/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /const roomBTrap = addLabeledNode\([\s\S]*scaleMultiplier: 0\.96/s,
+  );
+  assert.match(
+    week2ScenesScript,
+    /const trapNode = addLabeledNode\([\s\S]*scaleMultiplier: 0\.96/s,
+  );
 });

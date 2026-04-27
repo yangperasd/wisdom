@@ -74,6 +74,18 @@ function color(r, g, b, a = 255) {
   return { __type__: 'cc.Color', r, g, b, a };
 }
 
+function makeCollectiblePresentationProps(scaleMultiplier = 1.08, overrides = {}) {
+  return {
+    fitMode: SCENE_DRESSING_FIT.CONTAIN,
+    verticalAnchor: SCENE_DRESSING_VERTICAL_ANCHOR.BOTTOM,
+    scaleMultiplier,
+    maskShape: SCENE_DRESSING_MASK.NONE,
+    maskEllipseSegments: 48,
+    maskCornerRadius: 0,
+    ...overrides,
+  };
+}
+
 function randomToken() {
   return randomUUID().replace(/-/g, '').slice(0, 22);
 }
@@ -347,6 +359,15 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     return resolvedValue;
   };
 
+  const resolveScenePlayerBindingKey = () => {
+    if (!bindingCatalog.candidatePreviewEnabled) {
+      return 'player';
+    }
+
+    const previewBinding = resolveAssetBinding(bindingCatalog, 'player_preview');
+    return previewBinding?.selectedPath ? 'player_preview' : 'player';
+  };
+
   const addSceneDressingSkin = (nodeId, bindingKey, options = {}) => {
     const imageBinding = getImageBindingProps(bindingKey);
     if (!imageBinding) {
@@ -546,6 +567,7 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     panelStrokeColor = color(255, 255, 255, 72),
     cornerRadius = 14,
     isBold = true,
+    options = {},
   ) => {
     const nodeId = addNode(name, parentId, position, active);
     addComponent(nodeId, 'cc.UITransform', {
@@ -553,10 +575,14 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
       _contentSize: size(width, height),
       _anchorPoint: vec2(0.5, 0.5),
     });
-    const visualNodeId = addNode(`${name}-Visual`, nodeId, vec3());
+    const visualNodeId = addNode(
+      `${name}-Visual`,
+      nodeId,
+      options.visualPosition ?? vec3(0, options.visualOffsetY ?? 0, 0),
+    );
     addComponent(visualNodeId, 'cc.UITransform', {
       _priority: 0,
-      _contentSize: size(width, height),
+      _contentSize: size(options.visualWidth ?? width, options.visualHeight ?? height),
       _anchorPoint: vec2(0.5, 0.5),
     });
     addComponent(
@@ -564,10 +590,10 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
       types['assets/scripts/visual/RectVisual.ts'],
       rectVisualProps(panelFillColor, panelStrokeColor, cornerRadius, 2),
     );
-    const labelNodeId = addNode(`${name}-Label`, nodeId, vec3());
+    const labelNodeId = addNode(`${name}-Label`, nodeId, options.labelPosition ?? vec3());
     addComponent(labelNodeId, 'cc.UITransform', {
       _priority: 0,
-      _contentSize: size(width, height),
+      _contentSize: size(options.labelWidth ?? width, options.labelHeight ?? height),
       _anchorPoint: vec2(0.5, 0.5),
     });
     const labelId = addComponent(labelNodeId, 'cc.Label', {
@@ -648,6 +674,11 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     color(232, 248, 255, 160),
     14,
     true,
+    {
+      visualWidth: 76,
+      visualHeight: 104,
+      visualOffsetY: 20,
+    },
   );
   addLabeledNode(
     playerNode.nodeId,
@@ -707,7 +738,9 @@ async function createSceneBuilder(sceneName, scriptIds, prefabIds, options) {
     health: ref(playerHealthId),
     echoManager: ref(echoManagerId),
   });
-  const playerImageBinding = getImageBindingProps('player');
+  const playerBindingKey = resolveScenePlayerBindingKey();
+  const playerImageBinding = getImageBindingProps(playerBindingKey);
+  addAssetBindingTag(playerNode.nodeId, playerBindingKey);
   addComponent(playerNode.nodeId, types['assets/scripts/player/PlayerVisualController.ts'], {
     player: ref(playerControllerId),
     health: ref(playerHealthId),
@@ -963,10 +996,15 @@ function addEnemy(builder, config) {
     20,
     color(255, 242, 239, 255),
     true,
-    color(145, 63, 73, 255),
-    color(255, 206, 211, 120),
-    14,
+    color(145, 63, 73, 28),
+    color(255, 206, 211, 40),
+    12,
     true,
+    {
+      visualWidth: 74,
+      visualHeight: 108,
+      visualOffsetY: 22,
+    },
   );
   addDynamicBody(enemyNode.nodeId, 88, 36);
   addAssetBindingTag(enemyNode.nodeId, 'common_enemy');
@@ -1013,7 +1051,8 @@ function addEnemy(builder, config) {
 function addCheckpoint(builder, config) {
   const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, resetNodes, types } = builder;
   const checkpointImageBinding = getImageBindingProps('checkpoint');
-  const visualOffset = config.visualOffset ?? vec3(0, 58, 0);
+  const visualOffset = config.visualOffset ?? vec3(0, config.visualOffsetY ?? 100, 0);
+  const labelPosition = config.labelPosition ?? visualOffset;
   const checkpointNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
@@ -1028,9 +1067,13 @@ function addCheckpoint(builder, config) {
     color(255, 245, 198, 150),
     12,
     true,
+    {
+      visualPosition: visualOffset,
+      visualWidth: config.visualWidth ?? 148,
+      visualHeight: config.visualHeight ?? 184,
+      labelPosition,
+    },
   );
-  builder.items[checkpointNode.visualNodeId]._lpos = visualOffset;
-  builder.items[checkpointNode.labelNodeId]._lpos = visualOffset;
   addSensorBox(checkpointNode.nodeId, 112, 36);
   addComponent(checkpointNode.nodeId, types['assets/scripts/core/CheckpointMarker.ts'], {
     markerId: config.markerId,
@@ -1046,13 +1089,15 @@ function addCheckpoint(builder, config) {
 function addScenePortal(builder, config) {
   const { addAssetBindingTag, addComponent, addLabeledNode, addSensorBox, getImageBindingProps, refs, resetNodes, types } = builder;
   const portalImageBinding = getImageBindingProps('portal');
+  const portalWidth = config.width ?? 184;
+  const portalHeight = config.height ?? 48;
   const portalNode = addLabeledNode(
     builder.roots.worldRootId,
     config.name,
     config.label,
     config.position,
-    config.width ?? 184,
-    config.height ?? 48,
+    portalWidth,
+    portalHeight,
     18,
     color(236, 247, 255, 255),
     config.active ?? true,
@@ -1060,6 +1105,11 @@ function addScenePortal(builder, config) {
     config.strokeColor ?? color(255, 244, 220, 118),
     16,
     true,
+    {
+      visualWidth: config.visualWidth ?? Math.max(portalWidth + 24, 208),
+      visualHeight: config.visualHeight ?? 224,
+      visualOffsetY: config.visualOffsetY ?? 108,
+    },
   );
   addSensorBox(portalNode.nodeId, config.width ?? 180, config.height ?? 42);
   addComponent(portalNode.nodeId, types['assets/scripts/core/ScenePortal.ts'], {
@@ -1073,6 +1123,7 @@ function addScenePortal(builder, config) {
     playerNameIncludes: 'Player',
     visualSpriteFrame: portalImageBinding?.spriteFrame ?? null,
     visualTexture: portalImageBinding?.texture ?? null,
+    hideLabelWhenSkinned: true,
   });
   addAssetBindingTag(portalNode.nodeId, 'portal');
   resetNodes.push(portalNode.nodeId);
@@ -1096,14 +1147,27 @@ function addEchoPickup(builder, config) {
     config.strokeColor ?? color(203, 255, 215, 100),
     14,
     true,
+    {
+      visualWidth: config.visualWidth,
+      visualHeight: config.visualHeight,
+      visualOffsetY: config.visualOffsetY,
+    },
   );
   addSensorBox(pickupNode.nodeId, (config.width ?? 176) - 20, 36);
   addComponent(pickupNode.nodeId, types['assets/scripts/visual/CollectiblePresentation.ts'], {
+    visualRoot: ref(pickupNode.visualNodeId),
     visualSpriteFrame: imageBinding?.spriteFrame ?? null,
     visualTexture: imageBinding?.texture ?? null,
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
+    ...makeCollectiblePresentationProps(config.scaleMultiplier ?? 1.08, {
+      fitMode: config.fitMode ?? SCENE_DRESSING_FIT.CONTAIN,
+      verticalAnchor: config.verticalAnchor ?? SCENE_DRESSING_VERTICAL_ANCHOR.BOTTOM,
+      maskShape: config.maskShape ?? SCENE_DRESSING_MASK.NONE,
+      maskEllipseSegments: config.maskEllipseSegments ?? 48,
+      maskCornerRadius: config.maskCornerRadius ?? 0,
+    }),
   });
   addComponent(pickupNode.nodeId, types['assets/scripts/echo/EchoUnlockPickup.ts'], {
     echoManager: ref(refs.echoManagerId),
@@ -1144,6 +1208,7 @@ function addProgressFlagPickup(builder, config) {
     pickupClip: null,
     pickupClipVolume: 1,
     hideLabelWhenSkinned: true,
+    ...makeCollectiblePresentationProps(1.08),
   });
   addComponent(pickupNode.nodeId, types['assets/scripts/core/ProgressFlagPickup.ts'], {
     flagId: config.flagId,
@@ -1453,7 +1518,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
   addLabeledNode(roots.worldRootId, 'CampSign', '箱子练习', vec3(-32, 184, 0), 200, 40, 16, color(255, 247, 232, 255), true, color(121, 90, 54, 180), color(240, 219, 178, 54), 12, false);
 
   const campVictoryBanner = addLabeledNode(roots.worldRootId, 'CampVictoryBanner', '试炼完成', vec3(286, 182, 0), 248, 46, 18, color(235, 255, 235, 255), false, color(67, 146, 88, 255), color(213, 255, 209, 100), 16, true);
-  const campVictoryHint = addLabeledNode(roots.worldRootId, 'CampVictoryHint', '带回遗物后，营地会点亮回家的路。', vec3(286, 136, 0), 420, 38, 16, color(235, 255, 235, 255), false, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
+  const campVictoryHint = addLabeledNode(roots.worldRootId, 'CampVictoryHint', '带遗物回营地', vec3(286, 136, 0), 420, 38, 16, color(235, 255, 235, 255), false, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
   addFlagGateController(builder, {
     name: 'CampVictoryController',
     requiredFlags: ['boss-cleared'],
@@ -1462,7 +1527,7 @@ async function generateStartCamp(scriptIds, prefabIds) {
 
   addEnemy(builder, {
     name: 'CampEnemy',
-    label: '史莱姆',
+    label: '',
     position: vec3(-130, 30, 0),
     patrolA: vec3(-210, 30, 0),
     patrolB: vec3(-60, 30, 0),
@@ -1660,7 +1725,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
 
   addEnemy(builder, {
     name: 'FieldEnemy',
-    label: '巡逻',
+    label: '',
     position: vec3(-72, 36, 0),
     patrolA: vec3(-170, 36, 0),
     patrolB: vec3(30, 36, 0),
@@ -1675,12 +1740,18 @@ async function generateFieldWest(scriptIds, prefabIds) {
     width: 170,
     echoId: 1,
     bindingKey: 'echo_spring_flower',
-    fillColor: color(66, 128, 80, 255),
-    strokeColor: color(203, 255, 215, 100),
+    fillColor: color(66, 128, 80, 18),
+    strokeColor: color(203, 255, 215, 32),
+    visualWidth: 84,
+    visualHeight: 76,
+    visualOffsetY: 8,
+    scaleMultiplier: 0.94,
+    maskShape: SCENE_DRESSING_MASK.ELLIPSE,
+    maskEllipseSegments: 56,
   });
 
   addLabeledNode(roots.worldRootId, 'WestHint-Flower', '在陷阱左侧放下弹花', vec3(150, 92, 0), 240, 38, 16, color(235, 255, 234, 255), true, color(58, 115, 74, 180), color(214, 255, 214, 70), 14, false);
-  addLabeledNode(roots.worldRootId, 'WestHint-Ruins', '穿过这里即可进入遗迹试炼场', vec3(598, 178, 0), 280, 38, 16, color(231, 243, 255, 255), true, color(58, 92, 126, 182), color(205, 228, 255, 72), 14, false);
+  addLabeledNode(roots.worldRootId, 'WestHint-Ruins', '前往遗迹试炼', vec3(598, 178, 0), 280, 38, 16, color(231, 243, 255, 255), true, color(58, 92, 126, 182), color(205, 228, 255, 72), 14, false);
   addLabeledNode(roots.worldRootId, 'WestLanding', '安全落点', vec3(598, 102, 0), 180, 38, 16, color(229, 245, 255, 255), true, color(73, 108, 139, 180), color(205, 232, 255, 70), 14, false);
 
   const trapNode = addLabeledNode(
@@ -1725,7 +1796,7 @@ async function generateFieldWest(scriptIds, prefabIds) {
     addBindingTag: false,
     maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
     maskCornerRadius: 20,
-    scaleMultiplier: 1.12,
+    scaleMultiplier: 0.96,
   });
 
   const ruinsPortal = addScenePortal(builder, {
@@ -1875,7 +1946,7 @@ async function generateFieldRuins(scriptIds, prefabIds) {
 
   addEnemy(builder, {
     name: 'RuinsEnemy',
-    label: '守卫',
+    label: '',
     position: vec3(-34, 24, 0),
     patrolA: vec3(-148, 24, 0),
     patrolB: vec3(58, 24, 0),
@@ -1890,9 +1961,15 @@ async function generateFieldRuins(scriptIds, prefabIds) {
     width: 180,
     echoId: 2,
     bindingKey: 'echo_bomb_bug',
-    fillColor: color(135, 68, 62, 255),
-    strokeColor: color(255, 209, 200, 102),
+    fillColor: color(135, 68, 62, 18),
+    strokeColor: color(255, 209, 200, 32),
     tint: color(255, 241, 236, 255),
+    visualWidth: 92,
+    visualHeight: 72,
+    visualOffsetY: 8,
+    scaleMultiplier: 0.92,
+    maskShape: SCENE_DRESSING_MASK.ELLIPSE,
+    maskEllipseSegments: 56,
   });
 
   addLabeledNode(roots.worldRootId, 'RuinsHint-Bomb', '把炸虫放到裂墙旁', vec3(232, 92, 0), 290, 38, 16, color(255, 245, 238, 255), true, color(114, 71, 58, 184), color(255, 214, 200, 70), 14, false);
@@ -2198,8 +2275,8 @@ async function generateDungeonHub(scriptIds, prefabIds) {
     deactivateWhenReady: [bossGateClosed.nodeId],
   });
 
-  addLabeledNode(roots.worldRootId, 'HubHint-Rooms', '每个房间教会一种回响，完成后徽章会亮起。', vec3(110, 186, 0), 440, 38, 16, color(236, 244, 255, 255), true, color(56, 82, 116, 184), color(207, 226, 255, 62), 14, false);
-  addLabeledNode(roots.worldRootId, 'HubHint-Boss', '收齐三枚遗物后，首领门会打开。', vec3(520, 122, 0), 330, 38, 16, color(255, 241, 239, 255), true, color(92, 63, 76, 184), color(255, 219, 214, 62), 14, false);
+  addLabeledNode(roots.worldRootId, 'HubHint-Rooms', '', vec3(110, 186, 0), 440, 38, 16, color(236, 244, 255, 255), true, color(56, 82, 116, 184), color(207, 226, 255, 62), 14, false);
+  addLabeledNode(roots.worldRootId, 'HubHint-Boss', '三枚遗物开门', vec3(520, 122, 0), 330, 38, 16, color(255, 241, 239, 255), true, color(92, 63, 76, 184), color(255, 219, 214, 62), 14, false);
 
   await builder.finalize();
 }
@@ -2322,10 +2399,10 @@ async function generateDungeonRoomA(scriptIds, prefabIds) {
   });
   roomAClearRelic.nodeId && (builder.items[roomAClearRelic.nodeId]._active = false);
 
-  addLabeledNode(roots.worldRootId, 'RoomAHint', '只有箱子能稳稳压住机关。', vec3(104, 84, 0), 280, 38, 16, color(255, 246, 231, 255), true, color(113, 88, 58, 184), color(240, 219, 178, 54), 14, false);
+  addLabeledNode(roots.worldRootId, 'RoomAHint', '箱子压住机关', vec3(104, 84, 0), 280, 38, 16, color(255, 246, 231, 255), true, color(113, 88, 58, 184), color(240, 219, 178, 54), 14, false);
   addEnemy(builder, {
     name: 'RoomA-Enemy',
-    label: '看守',
+    label: '',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -2410,7 +2487,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
     addBindingTag: false,
     maskShape: SCENE_DRESSING_MASK.ROUNDED_RECT,
     maskCornerRadius: 18,
-    scaleMultiplier: 1.1,
+    scaleMultiplier: 0.96,
   });
   const roomBTrapSpawn = addNode('RoomB-Trap-Spawn', roomBTrap.nodeId, vec3(56, 0, 0));
   addComponent(roomBTrapSpawn, 'cc.UITransform', {
@@ -2467,7 +2544,7 @@ async function generateDungeonRoomB(scriptIds, prefabIds) {
 
   addEnemy(builder, {
     name: 'RoomB-Enemy',
-    label: '巡逻',
+    label: '',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -2615,7 +2692,7 @@ async function generateDungeonRoomC(scriptIds, prefabIds) {
   addLabeledNode(roots.worldRootId, 'RoomCHint', '炸虫开墙', vec3(128, 84, 0), 154, 34, 15, color(126, 70, 56, 255), true, color(255, 232, 214, 206), color(255, 247, 230, 82), 17, true);
   addEnemy(builder, {
     name: 'RoomC-Enemy',
-    label: '守卫',
+    label: '',
     position: vec3(-108, 34, 0),
     patrolA: vec3(-170, 34, 0),
     patrolB: vec3(-20, 34, 0),
@@ -2695,10 +2772,15 @@ async function generateBossArena(scriptIds, prefabIds) {
     18,
     color(255, 246, 230, 255),
     true,
-    color(219, 132, 98, 226),
-    color(255, 232, 206, 132),
-    58,
+    color(219, 132, 98, 188),
+    color(255, 232, 206, 92),
+    54,
     true,
+    {
+      visualWidth: 112,
+      visualHeight: 144,
+      visualOffsetY: 12,
+    },
   );
   const bossCoreInnerId = addNode('BossEnemy-Core-Inner', bossCore.nodeId, vec3(0, 0, 0));
   addComponent(bossCoreInnerId, 'cc.UITransform', {
@@ -2781,7 +2863,7 @@ async function generateBossArena(scriptIds, prefabIds) {
   const bossShieldClosedNodeId = addNode('BossShield-Closed', roots.worldRootId, vec3(240, -10, 0), true);
   addComponent(bossShieldClosedNodeId, 'cc.UITransform', {
     _priority: 0,
-    _contentSize: size(184, 118),
+    _contentSize: size(176, 124),
     _anchorPoint: vec2(0.5, 0.5),
   });
   addShieldPart(
@@ -2790,8 +2872,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-20, 6, 0),
     82,
     50,
-    color(255, 241, 217, 250),
-    color(255, 231, 195, 120),
+    color(255, 241, 217, 220),
+    color(255, 231, 195, 96),
     22,
   );
   addShieldPart(
@@ -2800,8 +2882,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-60, -14, 0),
     18,
     58,
-    color(214, 151, 109, 236),
-    color(255, 236, 214, 96),
+    color(214, 151, 109, 206),
+    color(255, 236, 214, 78),
     11,
     false,
   );
@@ -2811,8 +2893,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(20, 2, 0),
     42,
     40,
-    color(255, 226, 170, 255),
-    color(255, 245, 220, 154),
+    color(255, 226, 170, 222),
+    color(255, 245, 220, 120),
     20,
   );
   addShieldPart(
@@ -2821,8 +2903,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(50, -22, 0),
     24,
     18,
-    color(178, 118, 92, 236),
-    color(255, 234, 214, 88),
+    color(178, 118, 92, 206),
+    color(255, 234, 214, 72),
     7,
     false,
   );
@@ -2832,8 +2914,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(34, 26, 0),
     16,
     10,
-    color(255, 249, 228, 210),
-    color(255, 255, 255, 72),
+    color(255, 249, 228, 180),
+    color(255, 255, 255, 56),
     5,
     false,
   );
@@ -2843,8 +2925,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(0, 30, 0),
     14,
     10,
-    color(255, 255, 242, 208),
-    color(255, 255, 255, 66),
+    color(255, 255, 242, 176),
+    color(255, 255, 255, 52),
     5,
     false,
   );
@@ -2854,8 +2936,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-34, -28, 0),
     24,
     16,
-    color(170, 120, 92, 232),
-    color(255, 236, 214, 92),
+    color(170, 120, 92, 202),
+    color(255, 236, 214, 76),
     8,
     false,
   );
@@ -2863,7 +2945,7 @@ async function generateBossArena(scriptIds, prefabIds) {
   const bossShieldOpenNodeId = addNode('BossShield-Open', roots.worldRootId, vec3(240, -10, 0), false);
   addComponent(bossShieldOpenNodeId, 'cc.UITransform', {
     _priority: 0,
-    _contentSize: size(188, 118),
+    _contentSize: size(180, 124),
     _anchorPoint: vec2(0.5, 0.5),
   });
   addShieldPart(
@@ -2872,8 +2954,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-28, -2, 0),
     76,
     44,
-    color(235, 255, 241, 246),
-    color(255, 247, 231, 114),
+    color(235, 255, 241, 214),
+    color(255, 247, 231, 90),
     20,
   );
   addShieldPart(
@@ -2882,8 +2964,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-64, 10, 0),
     18,
     52,
-    color(168, 198, 133, 228),
-    color(245, 255, 226, 82),
+    color(168, 198, 133, 198),
+    color(245, 255, 226, 68),
     10,
     false,
   );
@@ -2893,8 +2975,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(12, -4, 0),
     38,
     36,
-    color(212, 244, 187, 248),
-    color(240, 255, 226, 148),
+    color(212, 244, 187, 218),
+    color(240, 255, 226, 116),
     17,
   );
   addShieldPart(
@@ -2903,8 +2985,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(50, 14, 0),
     22,
     16,
-    color(132, 184, 124, 228),
-    color(246, 255, 223, 84),
+    color(132, 184, 124, 198),
+    color(246, 255, 223, 68),
     7,
     false,
   );
@@ -2914,8 +2996,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(22, 28, 0),
     14,
     10,
-    color(255, 255, 246, 196),
-    color(255, 255, 255, 72),
+    color(255, 255, 246, 168),
+    color(255, 255, 255, 56),
     5,
     false,
   );
@@ -2925,8 +3007,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(38, 20, 0),
     14,
     10,
-    color(255, 255, 249, 192),
-    color(255, 255, 255, 66),
+    color(255, 255, 249, 162),
+    color(255, 255, 255, 52),
     5,
     false,
   );
@@ -2936,8 +3018,8 @@ async function generateBossArena(scriptIds, prefabIds) {
     vec3(-34, -24, 0),
     22,
     16,
-    color(126, 177, 121, 226),
-    color(246, 255, 223, 82),
+    color(126, 177, 121, 196),
+    color(246, 255, 223, 68),
     8,
     false,
   );
@@ -2993,7 +3075,7 @@ async function generateBossArena(scriptIds, prefabIds) {
 
   const bossExitPortal = addScenePortal(builder, {
     name: 'Portal-BossVictory',
-    label: '回营地',
+    label: '',
     position: vec3(706, -10, 0),
     targetScene: 'StartCamp',
     targetMarkerId: 'camp-entry',

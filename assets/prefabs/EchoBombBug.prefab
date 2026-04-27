@@ -37,10 +37,16 @@
       },
       {
         "__id__": 13
+      },
+      {
+        "__id__": 23
+      },
+      {
+        "__id__": 25
       }
     ],
     "_prefab": {
-      "__id__": 23
+      "__id__": 27
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -96,7 +102,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "92d6e945b8dc463283e90a"
+    "fileId": "0de083a167af4dffa512c2"
   },
   {
     "__type__": "cc.RigidBody2D",
@@ -129,7 +135,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "e452d678fa3442ac9e9a9e"
+    "fileId": "155d2efaf0e84e52b014a7"
   },
   {
     "__type__": "cc.BoxCollider2D",
@@ -163,7 +169,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "7cbc1eed6827418ea6370d"
+    "fileId": "8ed8696a132948f290c31e"
   },
   {
     "__type__": "cc.Node",
@@ -237,7 +243,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "4d7b5f666d654d5fa4d7e4"
+    "fileId": "9c5d0e4f7f2f49dea39631"
   },
   {
     "__type__": "cc.Label",
@@ -280,7 +286,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "7328315a51f24e68b9b811"
+    "fileId": "1f67069d8ac147f6a73c36"
   },
   {
     "__type__": "4cadfCq3AJB9pNPAOTLkcMC",
@@ -309,7 +315,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "1e98c63404c8448aa71ca9"
+    "fileId": "d509a8f52ae74f3ab397bc"
   },
   {
     "__type__": "cc.Node",
@@ -336,7 +342,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": 10,
       "z": 0
     },
     "_lrot": {
@@ -375,8 +381,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 114,
-      "height": 48
+      "width": 84,
+      "height": 72
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -387,7 +393,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "a154c5f6ad194c75b85145"
+    "fileId": "b9fe82e366ea4733abc931"
   },
   {
     "__type__": "af26fru7ClG7YIHAXzh53za",
@@ -405,14 +411,14 @@
       "r": 156,
       "g": 68,
       "b": 66,
-      "a": 255
+      "a": 18
     },
     "strokeColor": {
       "__type__": "cc.Color",
       "r": 255,
       "g": 209,
       "b": 200,
-      "a": 180
+      "a": 32
     },
     "strokeWidth": 2,
     "cornerRadius": 16,
@@ -422,7 +428,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "157b05f1683e46f59b042a"
+    "fileId": "b6c1e82715e14f80b611d1"
   },
   {
     "__type__": "cc.Node",
@@ -481,8 +487,8 @@
     "_priority": 0,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 114,
-      "height": 48
+      "width": 84,
+      "height": 72
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -493,7 +499,63 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "07461a75d9c14b3ca28212"
+    "fileId": "3f6a9d65765c4ec5a4871e"
+  },
+  {
+    "__type__": "8ed59LlUZFHfa1r8N7+pkPu",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 24
+    },
+    "visualRoot": {
+      "__id__": 15
+    },
+    "visualSpriteFrame": {
+      "__uuid__": "f15d0da3-6eca-4fea-9780-828abbb722cd@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "visualTexture": null,
+    "pickupClip": null,
+    "pickupClipVolume": 1,
+    "hideLabelWhenSkinned": true,
+    "fitMode": 1,
+    "verticalAnchor": 1,
+    "scaleMultiplier": 0.92,
+    "maskShape": 2,
+    "maskEllipseSegments": 56,
+    "maskCornerRadius": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "b64c10b25c814be2862c16"
+  },
+  {
+    "__type__": "3d2a6zMsZNMmK4uaNDa0rs2",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 26
+    },
+    "bindingKey": "echo_bomb_bug",
+    "selectedPath": "assets/art/generated/image2-preview/echo_bomb_bug/echo_bomb_bug_v00.png",
+    "fallbackPath": "",
+    "sourceManifest": "asset_binding_candidate_manifest_image2.worldEntities",
+    "bindingStatus": "candidate_preview",
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "2ff39553dc2e486faedfaa"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -503,7 +565,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "80556f34496649e1b2aebe",
+    "fileId": "a211a5733d9445718d3e16",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null

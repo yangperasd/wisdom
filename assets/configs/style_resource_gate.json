@@ -42,6 +42,11 @@
       "finalGateState": "temporary-transition",
       "rule": "keep the traversal portal on a warm procedural placeholder until final cute portal art lands"
     },
+    "echo_box": {
+      "role": "reference",
+      "finalGateState": "reference-bound",
+      "rule": "keep the box echo as a reference/asset-gap prop until a final cute variant lands"
+    },
     "echo_spring_flower": {
       "role": "reference",
       "finalGateState": "reference-bound",

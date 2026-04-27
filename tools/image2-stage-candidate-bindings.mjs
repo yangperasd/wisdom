@@ -12,6 +12,7 @@ const DEFAULT_MANIFEST_PATH = path.join(
 );
 const DEFAULT_IMPORT_ROOT = '';
 const TEXTURE_SUBMETA_ID = '6c48a';
+const SPRITE_FRAME_SUBMETA_ID = 'f9941';
 const DEFAULT_PREVIEW_MAX_EDGE = 512;
 const DEFAULT_PREVIEW_PNG_QUALITY = 80;
 const PREVIEW_TILE_DIMENSIONS = [
@@ -27,6 +28,7 @@ const PREVIEW_OBJECT_DIMENSIONS = [
   { pattern: /^pickup_relic$/i, maxEdge: 320 },
   { pattern: /^boss_core$/i, maxEdge: 320 },
   { pattern: /^boss_shield_(closed|open)$/i, maxEdge: 384 },
+  { pattern: /^echo_box$/i, maxEdge: 320, minEdge: 160, upscaleKernel: 'nearest' },
   { pattern: /^echo_(spring_flower|bomb_bug)$/i, maxEdge: 320 },
   { pattern: /^common_enemy$/i, maxEdge: 384 },
   { pattern: /^projectile_arrow$/i, maxEdge: 256 },
@@ -169,9 +171,123 @@ function createDirectoryMeta() {
   };
 }
 
-function createTextureMeta(relativeAssetPath) {
-  const uuid = randomUUID();
+function createTextureSubMeta(rootUuid, displayName, wrapMode = 'repeat') {
+  return {
+    importer: 'texture',
+    uuid: `${rootUuid}@${TEXTURE_SUBMETA_ID}`,
+    displayName,
+    id: TEXTURE_SUBMETA_ID,
+    name: 'texture',
+    userData: {
+      wrapModeS: wrapMode,
+      wrapModeT: wrapMode,
+      minfilter: 'linear',
+      magfilter: 'linear',
+      mipfilter: 'none',
+      anisotropy: 0,
+      isUuid: true,
+      imageUuidOrDatabaseUri: rootUuid,
+      visible: false,
+    },
+    ver: '1.0.22',
+    imported: true,
+    files: ['.json'],
+    subMetas: {},
+  };
+}
+
+function createSpriteFrameSubMeta(rootUuid, displayName, width, height) {
+  const halfWidth = width * 0.5;
+  const halfHeight = height * 0.5;
+  return {
+    importer: 'sprite-frame',
+    uuid: `${rootUuid}@${SPRITE_FRAME_SUBMETA_ID}`,
+    displayName,
+    id: SPRITE_FRAME_SUBMETA_ID,
+    name: 'spriteFrame',
+    userData: {
+      trimThreshold: 1,
+      rotated: false,
+      offsetX: 0,
+      offsetY: 0,
+      trimX: 0,
+      trimY: 0,
+      width,
+      height,
+      rawWidth: width,
+      rawHeight: height,
+      borderTop: 0,
+      borderBottom: 0,
+      borderLeft: 0,
+      borderRight: 0,
+      packable: true,
+      pixelsToUnit: 100,
+      pivotX: 0.5,
+      pivotY: 0.5,
+      meshType: 0,
+      isUuid: true,
+      imageUuidOrDatabaseUri: `${rootUuid}@${TEXTURE_SUBMETA_ID}`,
+      atlasUuid: '',
+      trimType: 'none',
+      vertices: {
+        rawPosition: [
+          -halfWidth,
+          -halfHeight,
+          0,
+          halfWidth,
+          -halfHeight,
+          0,
+          -halfWidth,
+          halfHeight,
+          0,
+          halfWidth,
+          halfHeight,
+          0,
+        ],
+        indexes: [0, 1, 2, 2, 1, 3],
+        uv: [0, height, width, height, 0, 0, width, 0],
+        nuv: [0, 0, 1, 0, 0, 1, 1, 1],
+        minPos: [-halfWidth, -halfHeight, 0],
+        maxPos: [halfWidth, halfHeight, 0],
+      },
+    },
+    ver: '1.0.12',
+    imported: true,
+    files: ['.json'],
+    subMetas: {},
+  };
+}
+
+export function createPreviewImageMeta(relativeAssetPath, rasterPolicy, imageInfo, existingMeta = null) {
+  const uuid = existingMeta?.uuid ?? randomUUID();
   const displayName = path.basename(relativeAssetPath, '.png');
+  const textureSubMeta = createTextureSubMeta(
+    uuid,
+    displayName,
+    rasterPolicy.mode === 'tile' ? 'repeat' : 'clamp-to-edge',
+  );
+
+  if (rasterPolicy.mode === 'tile') {
+    return {
+      ver: '1.0.27',
+      importer: 'image',
+      imported: true,
+      uuid,
+      files: ['.json', '.png'],
+      subMetas: {
+        [TEXTURE_SUBMETA_ID]: textureSubMeta,
+      },
+      userData: {
+        type: 'texture',
+        fixAlphaTransparencyArtifacts: false,
+        hasAlpha: true,
+        redirect: `${uuid}@${TEXTURE_SUBMETA_ID}`,
+      },
+    };
+  }
+
+  const width = Math.max(1, Math.round(imageInfo?.width ?? 1));
+  const height = Math.max(1, Math.round(imageInfo?.height ?? 1));
   return {
     ver: '1.0.27',
     importer: 'image',
@@ -179,35 +295,112 @@ function createTextureMeta(relativeAssetPath) {
     uuid,
     files: ['.json', '.png'],
     subMetas: {
-      [TEXTURE_SUBMETA_ID]: {
-        importer: 'texture',
-        uuid: `${uuid}@${TEXTURE_SUBMETA_ID}`,
-        displayName,
-        id: TEXTURE_SUBMETA_ID,
-        name: 'texture',
-        userData: {
-          wrapModeS: 'repeat',
-          wrapModeT: 'repeat',
-          minfilter: 'linear',
-          magfilter: 'linear',
-          mipfilter: 'none',
-          anisotropy: 0,
-          isUuid: true,
-          imageUuidOrDatabaseUri: uuid,
-          visible: false,
-        },
-        ver: '1.0.22',
-        imported: true,
-        files: ['.json'],
-        subMetas: {},
-      },
+      [SPRITE_FRAME_SUBMETA_ID]: createSpriteFrameSubMeta(uuid, displayName, width, height),
+      [TEXTURE_SUBMETA_ID]: textureSubMeta,
     },
     userData: {
-      type: 'texture',
+      type: 'sprite-frame',
       fixAlphaTransparencyArtifacts: false,
       hasAlpha: true,
       redirect: `${uuid}@${TEXTURE_SUBMETA_ID}`,
     },
+  };
+}
+
+function createLibrarySpriteFrameJson(spriteFrameMeta) {
+  const spriteFrameData = spriteFrameMeta?.userData ?? {};
+  const vertices = spriteFrameData.vertices ?? {};
+  const rawPosition = vertices.rawPosition ?? [];
+  const minPos = Array.isArray(vertices.minPos)
+    ? { x: vertices.minPos[0] ?? 0, y: vertices.minPos[1] ?? 0, z: vertices.minPos[2] ?? 0 }
+    : { x: vertices.minPos?.x ?? 0, y: vertices.minPos?.y ?? 0, z: vertices.minPos?.z ?? 0 };
+  const maxPos = Array.isArray(vertices.maxPos)
+    ? { x: vertices.maxPos[0] ?? 0, y: vertices.maxPos[1] ?? 0, z: vertices.maxPos[2] ?? 0 }
+    : { x: vertices.maxPos?.x ?? 0, y: vertices.maxPos?.y ?? 0, z: vertices.maxPos?.z ?? 0 };
+
+  return {
+    __type__: 'cc.SpriteFrame',
+    content: {
+      name: spriteFrameMeta.displayName ?? 'spriteFrame',
+      atlas: '',
+      rect: {
+        x: spriteFrameData.trimX ?? 0,
+        y: spriteFrameData.trimY ?? 0,
+        width: spriteFrameData.width ?? 1,
+        height: spriteFrameData.height ?? 1,
+      },
+      offset: {
+        x: spriteFrameData.offsetX ?? 0,
+        y: spriteFrameData.offsetY ?? 0,
+      },
+      originalSize: {
+        width: spriteFrameData.rawWidth ?? spriteFrameData.width ?? 1,
+        height: spriteFrameData.rawHeight ?? spriteFrameData.height ?? 1,
+      },
+      rotated: !!spriteFrameData.rotated,
+      capInsets: [
+        spriteFrameData.borderTop ?? 0,
+        spriteFrameData.borderBottom ?? 0,
+        spriteFrameData.borderLeft ?? 0,
+        spriteFrameData.borderRight ?? 0,
+      ],
+      vertices: {
+        rawPosition,
+        indexes: vertices.indexes ?? [0, 1, 2, 2, 1, 3],
+        uv: vertices.uv ?? [0, spriteFrameData.height ?? 1, spriteFrameData.width ?? 1, spriteFrameData.height ?? 1, 0, 0, spriteFrameData.width ?? 1, 0],
+        nuv: vertices.nuv ?? [0, 0, 1, 0, 0, 1, 1, 1],
+        minPos,
+        maxPos,
+      },
+      texture: spriteFrameData.imageUuidOrDatabaseUri ?? '',
+      packable: spriteFrameData.packable ?? true,
+      pixelsToUnit: spriteFrameData.pixelsToUnit ?? 100,
+      pivot: {
+        x: spriteFrameData.pivotX ?? 0.5,
+        y: spriteFrameData.pivotY ?? 0.5,
+      },
+      meshType: spriteFrameData.meshType ?? 0,
+    },
+  };
+}
+
+function createEmptyLibraryAssetsData() {
+  return {};
+}
+
+export async function syncPreviewLibrarySpriteFrameCache(projectRoot, relativeAssetPath, imageMeta) {
+  const spriteFrameMeta = imageMeta?.subMetas?.[SPRITE_FRAME_SUBMETA_ID];
+  const textureMeta = imageMeta?.subMetas?.[TEXTURE_SUBMETA_ID];
+  if (!spriteFrameMeta?.uuid || !textureMeta?.uuid || !imageMeta?.uuid) {
+    return null;
+  }
+
+  const libraryRoot = path.join(projectRoot, 'library');
+  const libraryDirectory = path.join(libraryRoot, imageMeta.uuid.slice(0, 2));
+  const librarySpriteFramePath = path.join(libraryDirectory, `${spriteFrameMeta.uuid}.json`);
+  const assetsDataPath = path.join(libraryRoot, '.assets-data.json');
+  const spriteFrameUrl = `db://${relativeAssetPath.replaceAll('\\', '/')}@${SPRITE_FRAME_SUBMETA_ID}`;
+
+  await mkdir(libraryDirectory, { recursive: true });
+  await writeFile(
+    librarySpriteFramePath,
+    `${JSON.stringify(createLibrarySpriteFrameJson(spriteFrameMeta), null, 2)}\n`,
+    'utf8',
+  );
+
+  const assetsData = await readJsonOrDefault(assetsDataPath, createEmptyLibraryAssetsData);
+  assetsData[spriteFrameMeta.uuid] = {
+    url: spriteFrameUrl,
+    value: {
+      depends: [textureMeta.uuid],
+    },
+    versionCode: 1,
+  };
+  await writeFile(assetsDataPath, `${JSON.stringify(assetsData, null, 2)}\n`, 'utf8');
+
+  return {
+    librarySpriteFramePath,
+    spriteFrameUuid: spriteFrameMeta.uuid,
   };
 }
 
@@ -351,15 +544,16 @@ async function materializeCandidateIntoAssets(projectRoot, importRoot, bindingKe
     bindingKey,
     selectedFilePath,
   );
+  const rasterPolicy = resolvePreviewRasterPolicy(bindingKey);
 
   if (!dryRun) {
     await ensureDirectoryWithMeta(projectRoot, path.dirname(targetAbsolutePath), false);
-    await writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath, { bindingKey });
-
+    const outputInfo = await writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath, { bindingKey });
     const metaPath = `${targetAbsolutePath}.meta`;
-    if (!(await pathExists(metaPath))) {
-      await writeFile(metaPath, `${JSON.stringify(createTextureMeta(targetRelativePath), null, 2)}\n`, 'utf8');
-    }
+    const existingMeta = await readJsonOrDefault(metaPath, () => null);
+    const imageMeta = createPreviewImageMeta(targetRelativePath, rasterPolicy, outputInfo, existingMeta);
+    await writeFile(metaPath, `${JSON.stringify(imageMeta, null, 2)}\n`, 'utf8');
+    await syncPreviewLibrarySpriteFrameCache(projectRoot, targetRelativePath, imageMeta);
   }
 
   return targetRelativePath;
@@ -376,11 +570,18 @@ export function resolvePreviewRasterPolicy(bindingKey) {
 
   const matchedObjectRule = PREVIEW_OBJECT_DIMENSIONS.find((rule) => rule.pattern.test(bindingKey));
   if (matchedObjectRule) {
-    return {
+    const policy = {
       mode: 'object',
       maxEdge: matchedObjectRule.maxEdge,
       trimTransparent: true,
     };
+    if (matchedObjectRule.minEdge != null) {
+      policy.minEdge = matchedObjectRule.minEdge;
+    }
+    if (matchedObjectRule.upscaleKernel) {
+      policy.upscaleKernel = matchedObjectRule.upscaleKernel;
+    }
+    return policy;
   }
 
   return {
@@ -393,16 +594,23 @@ async function writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath
   const extension = path.extname(sourceAbsolutePath).toLowerCase();
   if (extension !== '.png') {
     await copyFile(sourceAbsolutePath, targetAbsolutePath);
-    return;
+    const metadata = await sharp(targetAbsolutePath).metadata();
+    return {
+      width: metadata.width ?? 1,
+      height: metadata.height ?? 1,
+    };
   }
 
   const rasterPolicy = resolvePreviewRasterPolicy(options.bindingKey ?? '');
   const sourceImage = rasterPolicy.mode === 'object'
     ? await removeObjectBackdrop(sourceAbsolutePath)
     : sharp(sourceAbsolutePath);
-  const metadata = await sourceImage.metadata();
+  const objectSource = rasterPolicy.mode === 'object'
+    ? sourceImage.trim()
+    : sourceImage;
+  const metadata = await objectSource.metadata();
   const maxEdge = Math.max(metadata.width ?? 0, metadata.height ?? 0);
-  let pipeline = sourceImage;
+  let pipeline = objectSource;
 
   if (rasterPolicy.mode === 'tile') {
     const targetEdge = Math.max(1, rasterPolicy.edge);
@@ -412,11 +620,21 @@ async function writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath
       withoutEnlargement: false,
     });
   } else if (rasterPolicy.mode === 'object') {
-    const targetEdge = Math.max(1, rasterPolicy.maxEdge ?? DEFAULT_PREVIEW_MAX_EDGE);
-    pipeline = sourceImage.trim().resize(targetEdge, targetEdge, {
-      fit: 'inside',
-      withoutEnlargement: true,
-    });
+    const maxTargetEdge = Math.max(1, rasterPolicy.maxEdge ?? DEFAULT_PREVIEW_MAX_EDGE);
+    const minTargetEdge = Math.max(0, rasterPolicy.minEdge ?? 0);
+    const shouldDownscale = maxEdge > maxTargetEdge;
+    const shouldUpscale = minTargetEdge > 0 && maxEdge > 0 && maxEdge < minTargetEdge;
+    if (shouldDownscale || shouldUpscale) {
+      const targetEdge = shouldUpscale ? minTargetEdge : maxTargetEdge;
+      const kernel = shouldUpscale && rasterPolicy.upscaleKernel === 'nearest'
+        ? sharp.kernel.nearest
+        : sharp.kernel.lanczos3;
+      pipeline = objectSource.resize(targetEdge, targetEdge, {
+        fit: 'inside',
+        kernel,
+        withoutEnlargement: !shouldUpscale,
+      });
+    }
   } else if (maxEdge > DEFAULT_PREVIEW_MAX_EDGE) {
     pipeline = sourceImage.resize(DEFAULT_PREVIEW_MAX_EDGE, DEFAULT_PREVIEW_MAX_EDGE, {
       fit: 'inside',
@@ -424,16 +642,20 @@ async function writePreviewCandidateAsset(sourceAbsolutePath, targetAbsolutePath
     });
   }
 
-  const outputBuffer = await pipeline
+  const { data, info } = await pipeline
     .png({
       compressionLevel: 9,
       palette: true,
       quality: DEFAULT_PREVIEW_PNG_QUALITY,
       effort: 10,
     })
-    .toBuffer();
+    .toBuffer({ resolveWithObject: true });
 
-  await writeFile(targetAbsolutePath, outputBuffer);
+  await writeFile(targetAbsolutePath, data);
+  return {
+    width: info.width ?? metadata.width ?? 1,
+    height: info.height ?? metadata.height ?? 1,
+  };
 }
 
 export async function stageCandidateBindings({

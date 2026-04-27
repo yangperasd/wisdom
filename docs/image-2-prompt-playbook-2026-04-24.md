@@ -30,6 +30,7 @@
 - `boss_shield_closed`
 - `boss_shield_open`
 - `projectile_arrow`
+- `echo_box`
 - `echo_spring_flower`
 - `echo_bomb_bug`
 
@@ -195,6 +196,7 @@ Isolated asset, centered, transparent or plain background, no text.
 
 - `checkpoint`
 - `portal`
+- `echo_box`
 - `breakable_target`
 - `pickup_relic`
 - `barrier_closed`

@@ -94,4 +94,30 @@ test.describe('Cocos EchoManager runtime', () => {
     const state = await readRuntimeState(page);
     expect(state.echoNames.length).toBe(0);
   });
+
+  test('bomb bug disappears after fuse explosion', async ({ page }) => {
+    await openPreviewScene(page, 'MechanicsLab', ['Player']);
+    await resetMechanicsLab(page);
+    await unlockEcho(page, 2);
+
+    await page.evaluate(() => {
+      const scene = window.cc?.director?.getScene?.();
+      const echoRoot = scene?.getChildByName?.('Canvas')?.getChildByName?.('WorldRoot')?.getChildByName?.('EchoRoot');
+      const mgr = echoRoot?.components?.find(c => c?.constructor?.name === 'EchoManager');
+      mgr?.selectEcho?.(2);
+      mgr?.spawnCurrentEcho?.(new window.cc.Vec3(0, 0, 0));
+
+      const bombNode = echoRoot?.children?.find((node) => node.name === 'Echo-bomb-bug');
+      const fuse = bombNode?.components?.find(c => c?.constructor?.name === 'BombBugFuse');
+      if (fuse) {
+        fuse.fuseSeconds = 0.05;
+      }
+    });
+
+    await stepFrames(page, 6);
+
+    const state = await readRuntimeState(page);
+    expect(state.echoNames).not.toContain('Echo-bomb-bug');
+    expect(state.echoNames.length).toBe(0);
+  });
 });

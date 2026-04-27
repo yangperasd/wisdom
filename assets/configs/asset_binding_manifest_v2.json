@@ -126,6 +126,12 @@
       "status": "rect_visual_placeholder",
       "rule": "world-space warm procedural core placeholder until final cute boss art lands"
     },
+    "echo_box": {
+      "selectedPath": "assets/prefabs/EchoBox.prefab",
+      "fallbackPath": "assets/prefabs/EchoBox.prefab",
+      "status": "asset_gap",
+      "rule": "keep the box echo as a reference/asset-gap prop until a final cute variant lands"
+    },
     "echo_spring_flower": {
       "selectedPath": "assets/prefabs/EchoSpringFlower.prefab",
       "fallbackPath": "assets/prefabs/EchoSpringFlower.prefab",

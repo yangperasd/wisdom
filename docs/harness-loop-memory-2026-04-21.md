@@ -3227,3 +3227,81 @@ That work now lives in:
 |---|---|---|
 | P1 | When DevTools keeps an older `build/wechatgame*` project open, `build:wechat` can be forced onto a fresh timestamped directory, which is more likely to drift into trust / recent-project trouble and suppress runtime `hello`. | Treat multi-path pre-close as the default rebuild hygiene, not an ad-hoc recovery trick. |
 | P1 | The current main gate can still pass even when DevTools CLI prints `code 10` stderr during `open` / `auto-preview`. | Keep judging the gate by `temp/wechat-runtime-playthrough-evidence.json` and probe results first. |
+
+## Loop 88 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Timestamped-path false yellow after player-preview refresh | Yellow then recovered | The first `test:wechat:playthrough` after the refreshed `player_preview` crop blocked on `build/wechatgame-staging-20260425080929` because the runtime never emitted `hello` |
+| Stable-path recovery after pre-close rebuild | Green | `npm run rebuild:wechat` reclaimed `build/wechatgame`, `verify:wechat` passed, and the next `test:wechat:playthrough` passed with runtime movement and `8/8` scene-route proof |
+| Auto-preview stderr interpretation | Yellow / unchanged | DevTools still printed `game.json code 10` during the passing stable-path playthrough, but the probe connected and returned a passing command result anyway |
+
+## Loop 88 Validation
+
+| Command | Result |
+|---|---|
+| `node --test tests/player-preview-bridge.test.mjs tests/content-scenes.test.mjs tests/mechanics-lab.scene.test.mjs` | Pass |
+| `npm run build:wechat:config` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise; first run fell back to timestamped staging because stable outputs were locked |
+| `npm run verify:wechat` | Pass; main package `3,225,869 bytes`, total output `3,675,795 bytes` |
+| `npm run rebuild:wechat` | Pass; reclaimed stable `build/wechatgame` and reopened DevTools there |
+| `npm run test:wechat:playthrough` | First run blocked on timestamped path; second run on stable `build/wechatgame` passed with runtime summary green, movement gate green, and scene route `8/8` loaded |
+
+## Loop 88 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | A content-only asset refresh can still look like a runtime regression if the post-build playthrough lands on a fallback timestamped output instead of the stable `build/wechatgame` path. | When the first post-change playthrough blocks before `hello`, check the `outputDir` first and recover through `rebuild:wechat` / stable-path reclaim before blaming gameplay code or art. |
+| P1 | The current stable-path playthrough can still succeed even when DevTools CLI reports `game.json code 10` during `auto-preview`. | Treat that stderr as noise unless `temp/wechat-runtime-probe-evidence.json` also fails to connect or `temp/wechat-runtime-playthrough-evidence.json` turns red. |
+
+## Loop 89 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Current-tree non-GUI WeChat gate after `echo_box` / boss evidence refresh | Green | `build:wechat:config`, `build:wechat`, `verify:wechat`, and `test:wechat:playthrough` all passed on the latest manifest state |
+| Staging-path runtime proof on current tree | Green / acceptable | The latest playthrough passed from `build/wechatgame-staging` with runtime `hello`, movement gate green, and scene route `8/8`, so the current tree is covered even without reclaiming stable `build/wechatgame` |
+| DevTools CLI stderr interpretation | Yellow / unchanged | DevTools still printed the stale `game.json code 10` during `auto-preview`, but the probe connected and the playthrough evidence stayed green |
+
+## Loop 89 Validation
+
+| Command | Result |
+|---|---|
+| `npm run build:wechat:config` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Cocos/DevTools noise; output landed on `build/wechatgame-staging` because stable output stayed locked |
+| `npm run verify:wechat` | Pass; main package `3,226,054 bytes`, total output `3,675,980 bytes` |
+| `npm run test:wechat:playthrough` | Pass on `build/wechatgame-staging`; runtime summary green, movement gate green, and scene route `8/8` loaded |
+
+## Loop 89 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | A staging-path build is not automatically a false yellow. If the latest `verify:wechat` and `test:wechat:playthrough` both pass against that staging output, the current tree is still covered. | Only escalate to `rebuild:wechat` / stable-path reclaim when staging output actually blocks before `hello` or freshness no longer covers the latest source changes. |
+| P1 | The lingering `game.json code 10` stderr during `auto-preview` is still not a trustworthy gate by itself. | Keep judging the harness by `temp/wechat-runtime-probe-evidence.json` and `temp/wechat-runtime-playthrough-evidence.json` first. |
+
+## Loop 90 Summary
+
+| Area | Result | Evidence |
+|---|---|---|
+| Post-refresh `player_preview` bridge gate | Yellow then recovered | The first playthrough after refreshing `player_preview` to track-07 blocked on `build/wechatgame-staging-20260425112145` before runtime `hello`, then recovered after `npm run rebuild:wechat` reclaimed stable `build/wechatgame` |
+| Stable-path non-GUI WeChat gate | Green | `verify:wechat` passed on `build/wechatgame`, and the next `test:wechat:playthrough` passed with movement gate green and scene route `8/8` |
+| DevTools CLI stderr interpretation | Yellow / unchanged | DevTools still printed the stale `game.json code 10` during the passing stable-path playthrough, but the runtime probe connected and returned a passing command result anyway |
+
+## Loop 90 Validation
+
+| Command | Result |
+|---|---|
+| `node --test tests/player-preview-bridge.test.mjs tests/content-scenes.test.mjs tests/mechanics-lab.scene.test.mjs tests/wechat-build-policy.test.mjs` | Pass |
+| `npm run build:wechat:config` | Pass |
+| `npm run build:wechat` | Pass with known tolerated Creator/DevTools noise; first pass fell back to `build/wechatgame-staging-20260425112145` because stable output was locked |
+| `npm run verify:wechat` | Pass; main package `3,193,610 bytes`, total output `3,643,536 bytes` |
+| `npm run reload:wechat` | Pass; reopened the timestamped staging output, but the following playthrough still blocked before `hello` |
+| `npm run rebuild:wechat` | Pass; reclaimed stable `build/wechatgame` and reopened DevTools there |
+| `npm run test:wechat:playthrough` | First two attempts blocked on the timestamped staging path; final stable-path run passed with runtime summary green, movement gate green, and scene route `8/8` loaded |
+
+## Loop 90 Known Findings
+
+| Priority | Finding | Harness response |
+|---|---|---|
+| P1 | A preview-only art refresh can still look like a runtime failure when the follow-up playthrough lands on a fallback timestamped output that never emits `hello`. | When the first post-change playthrough blocks before `hello`, inspect `temp/wechat-build-status.json` and recover through `npm run rebuild:wechat` before blaming gameplay logic or the art delta itself. |
+| P1 | `npm run reload:wechat` is not enough when the session has already drifted onto a bad timestamped project state. | Use `npm run rebuild:wechat` to pre-close all `build/wechatgame*` paths, reclaim stable `build/wechatgame`, and then judge the gate from the fresh stable-path evidence. |
+| P1 | The current stable-path playthrough can still pass while DevTools CLI prints `game.json code 10` during `auto-preview`. | Keep treating that stderr as noise unless the probe also fails or the playthrough evidence turns red. |

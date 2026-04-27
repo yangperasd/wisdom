@@ -15,6 +15,8 @@ const WebSocketServer = wsPkg.WebSocketServer ?? wsPkg.Server;
 const projectRoot = process.cwd();
 const port = Number(process.env.WECHAT_RUNTIME_PROBE_PORT || 37991);
 const timeoutMs = Number(process.env.WECHAT_RUNTIME_PROBE_TIMEOUT_MS || 90_000);
+const devtoolsOpenSettleMs = Number(process.env.WECHAT_RUNTIME_PROBE_OPEN_SETTLE_MS || 8_000);
+const devtoolsPreviewSettleMs = Number(process.env.WECHAT_RUNTIME_PROBE_PREVIEW_SETTLE_MS || 4_000);
 const evidencePath = path.join(projectRoot, 'temp', 'wechat-runtime-probe-evidence.json');
 const lastGoodPath = path.join(projectRoot, 'temp', 'wechat-runtime-probe-last-good.json');
 const projectPath = process.env.WECHAT_RUNTIME_PROBE_PROJECT_PATH
@@ -214,6 +216,9 @@ async function launchDevToolsIfNeeded() {
     error: openResult.error,
   });
   writeEvidence();
+  if (devtoolsOpenSettleMs > 0) {
+    await delay(devtoolsOpenSettleMs);
+  }
 
   if (process.env.WECHAT_RUNTIME_PROBE_ALLOW_MODAL_DISMISS === '1') {
     const dismissOutDir = path.join(projectRoot, 'temp', 'wechat-runtime-probe-modal-dismiss');
@@ -263,6 +268,9 @@ async function launchDevToolsIfNeeded() {
       error: previewResult.error,
     });
     writeEvidence();
+    if (devtoolsPreviewSettleMs > 0) {
+      await delay(devtoolsPreviewSettleMs);
+    }
   }
 }
 

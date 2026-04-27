@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import {
   assertComponentNodeReference,
   assertNodeActiveState,
@@ -77,6 +79,7 @@ test('MechanicsLab scene wires critical custom components', async () => {
   assertNodeHasComponent(items, player, playerControllerType, 'Player');
   assertNodeHasComponent(items, player, healthType, 'Player');
   assertNodeHasComponent(items, player, playerVisualType, 'Player');
+  assertNodeHasComponent(items, player, assetBindingTagType, 'Player');
   assertNodeHasComponent(items, worldRoot, cameraRigType, 'WorldRoot');
   assertNodeHasComponent(items, echoRoot, echoManagerType, 'EchoRoot');
   assertNodeHasComponent(items, persistentRoot, sceneMusicType, 'PersistentRoot');
@@ -108,26 +111,66 @@ test('MechanicsLab scene wires critical custom components', async () => {
   const trapComponent = getComponentRecordForNode(items, trapNode, projectileTrapType, 'Trap-01 ProjectileTrap');
   const checkpointMarker = getComponentRecordForNode(items, checkpointNode, checkpointMarkerType, 'Checkpoint-01 CheckpointMarker');
   const checkpointBinding = getComponentRecordForNode(items, checkpointNode, assetBindingTagType, 'Checkpoint-01 AssetBindingTag');
+  const playerBinding = getComponentRecordForNode(items, player, assetBindingTagType, 'Player AssetBindingTag');
   const flowerBinding = getComponentRecordForNode(items, flowerPickup, assetBindingTagType, 'EchoPickup-Flower AssetBindingTag');
   const bombBinding = getComponentRecordForNode(items, bombPickup, assetBindingTagType, 'EchoPickup-Bomb AssetBindingTag');
+  const flowerPresentation = getComponentRecordForNode(items, flowerPickup, collectiblePresentationType, 'EchoPickup-Flower Presentation');
+  const bombPresentation = getComponentRecordForNode(items, bombPickup, collectiblePresentationType, 'EchoPickup-Bomb Presentation');
   const bombGateBinding = getComponentRecordForNode(items, bombGateRoot, assetBindingTagType, 'BombGateRoot AssetBindingTag');
   const worldBackdropBinding = getComponentRecordForNode(items, assertNodeExists(items, 'WorldBackdrop'), assetBindingTagType, 'WorldBackdrop AssetBindingTag');
   const playerVisual = getComponentRecordForNode(items, player, playerVisualType, 'Player VisualController');
   const enemyVisual = getComponentRecordForNode(items, enemyA, enemyVisualType, 'EnemyA VisualController');
+  const playerVisualNode = assertNodeExists(items, 'Player-Visual');
+  const playerVisualTransform = getComponentRecordForNode(items, playerVisualNode, 'cc.UITransform', 'Player-Visual UITransform');
+  const checkpointVisualNode = assertNodeExists(items, 'Checkpoint-01-Visual');
+  const checkpointVisualTransform = getComponentRecordForNode(items, checkpointVisualNode, 'cc.UITransform', 'Checkpoint-01-Visual UITransform');
+  const flowerVisual = assertNodeExists(items, 'EchoPickup-Flower-Visual');
+  const bombVisual = assertNodeExists(items, 'EchoPickup-Bomb-Visual');
+  const flowerVisualTransform = getComponentRecordForNode(items, flowerVisual, 'cc.UITransform', 'EchoPickup-Flower Visual');
+  const bombVisualTransform = getComponentRecordForNode(items, bombVisual, 'cc.UITransform', 'EchoPickup-Bomb Visual');
   assertComponentNodeReference(items, bombGateBreakable, 'intactVisualNode', bombWallClosed, 'BombGateRoot BreakableTarget');
   assertComponentNodeReference(items, bombGateBreakable, 'brokenVisualNode', bombWallOpen, 'BombGateRoot BreakableTarget');
+  assertComponentNodeReference(items, flowerPresentation, 'visualRoot', flowerVisual, 'EchoPickup-Flower Presentation');
+  assertComponentNodeReference(items, bombPresentation, 'visualRoot', bombVisual, 'EchoPickup-Bomb Presentation');
   assert.equal(trapComponent.hideLabelWhenSkinned, true);
-  assert.ok(checkpointMarker.visualSpriteFrame?.__uuid__, 'Checkpoint-01 should bind a checkpoint sprite frame.');
+  assert.ok(checkpointMarker.visualSpriteFrame?.__uuid__, 'Checkpoint-01 should bind a checkpoint sprite-frame preview.');
+  assert.equal(checkpointMarker.visualTexture, null, 'Checkpoint-01 should not need a raw texture fallback once sprite-frame preview metadata is available.');
+  assert.equal(checkpointVisualTransform._contentSize.width, 148);
+  assert.equal(checkpointVisualTransform._contentSize.height, 184);
+  assert.equal(checkpointVisualNode._lpos.y, 100);
   assert.equal(checkpointBinding.bindingKey, 'checkpoint');
-  assert.match(checkpointBinding.selectedPath, /checkpoint\.png$/);
+  assert.equal(checkpointBinding.bindingStatus, 'candidate_preview');
+  assert.match(checkpointBinding.selectedPath, /assets\/art\/generated\/image2-preview\/checkpoint\/checkpoint_v00\.png$/);
+  assert.equal(playerBinding.bindingKey, 'player_preview');
+  assert.equal(playerBinding.bindingStatus, 'candidate_preview');
+  assert.match(playerBinding.selectedPath, /assets\/art\/generated\/image2-preview\/player_preview\/player_preview_v00\.png$/);
   assert.equal(worldBackdropBinding.bindingKey, 'outdoor_ground_ruins');
   assert.equal(flowerBinding.bindingKey, 'echo_spring_flower');
-  assert.match(flowerBinding.selectedPath, /EchoSpringFlower\.prefab$/);
+  assert.equal(flowerBinding.bindingStatus, 'candidate_preview');
+  assert.match(flowerBinding.selectedPath, /assets\/art\/generated\/image2-preview\/echo_spring_flower\/echo_spring_flower_v00\.png$/);
+  assert.equal(flowerPresentation.fitMode, 1);
+  assert.equal(flowerPresentation.verticalAnchor, 1);
+  assert.equal(flowerPresentation.maskShape, 2);
+  assert.equal(flowerPresentation.maskEllipseSegments, 56);
+  assert.equal(flowerVisualTransform._contentSize.width, 84);
+  assert.equal(flowerVisualTransform._contentSize.height, 76);
+  assert.equal(flowerVisual._lpos.y, 8);
   assert.equal(bombBinding.bindingKey, 'echo_bomb_bug');
-  assert.match(bombBinding.selectedPath, /EchoBombBug\.prefab$/);
+  assert.equal(bombBinding.bindingStatus, 'candidate_preview');
+  assert.match(bombBinding.selectedPath, /assets\/art\/generated\/image2-preview\/echo_bomb_bug\/echo_bomb_bug_v00\.png$/);
+  assert.equal(bombPresentation.fitMode, 1);
+  assert.equal(bombPresentation.verticalAnchor, 1);
+  assert.equal(bombPresentation.maskShape, 2);
+  assert.equal(bombPresentation.maskEllipseSegments, 56);
+  assert.equal(bombVisualTransform._contentSize.width, 92);
+  assert.equal(bombVisualTransform._contentSize.height, 72);
+  assert.equal(bombVisual._lpos.y, 8);
   assert.equal(bombGateBinding.bindingKey, 'breakable_target');
-  assert.ok(playerVisual.idleTexture?.__uuid__, 'MechanicsLab player should bind a texture-backed visual.');
-  assert.ok(enemyVisual.idleTexture?.__uuid__, 'MechanicsLab enemy should bind a texture-backed visual.');
+  assert.ok(playerVisual.idleSpriteFrame?.__uuid__, 'MechanicsLab player should bind a sprite-frame visual.');
+  assert.equal(playerVisualTransform._contentSize.width, 76);
+  assert.equal(playerVisualTransform._contentSize.height, 104);
+  assert.equal(playerVisualNode._lpos.y, 20);
+  assert.ok(enemyVisual.idleSpriteFrame?.__uuid__, 'MechanicsLab enemy should bind a sprite-frame visual.');
   const sceneMusic = getComponentRecordForNode(items, persistentRoot, sceneMusicType, 'PersistentRoot SceneMusicController');
   assert.equal(sceneMusic.musicCueId, 'mechanics-lab');
 });
@@ -150,7 +193,8 @@ test('ArrowProjectile prefab exposes visual and impact-ready structure', async (
   assert.equal(items[projectileComponent.visualRoot.__id__], visual);
   assert.equal(projectileComponent.rotateToDirection, true);
   assert.equal(assetBinding.bindingKey, 'projectile_arrow');
-  assert.match(assetBinding.selectedPath, /ArrowProjectile\.prefab$/);
+  assert.equal(assetBinding.bindingStatus, 'candidate_preview');
+  assert.match(assetBinding.selectedPath, /assets\/art\/generated\/image2-preview\/projectile_arrow\/projectile_arrow_v00\.png$/);
   // DebugLabel is dev scaffolding ("ARROW" placeholder text). It must spawn
   // inactive so testers never see it; the node stays in the prefab structure
   // so a developer can flip it back on while iterating. setPlaceholderLabelVisible
@@ -178,4 +222,26 @@ test('MechanicsLab scene still includes exactly one player node', async () => {
   const items = await readAssetJson('assets/scenes/MechanicsLab.scene');
   const players = items.filter((item) => item?.__type__ === 'cc.Node' && item._name === 'Player');
   assert.equal(players.length, 1);
+});
+
+test('MechanicsLab echo prefab generator uses tighter object-like framing inputs', async () => {
+  const mechanicsLabScript = await fs.readFile(
+    path.join(process.cwd(), 'tools', 'generate-mechanics-lab.mjs'),
+    'utf8',
+  );
+
+  assert.match(mechanicsLabScript, /makeCollectiblePresentationProps\(0\.92,\s*\{\s*maskShape: 3,\s*maskCornerRadius: 12,/s);
+  assert.match(mechanicsLabScript, /color\(214, 176, 96, 24\)/);
+  assert.match(mechanicsLabScript, /makeCollectiblePresentationProps\(0\.94,\s*\{\s*maskShape: 2,\s*maskEllipseSegments: 56,/s);
+  assert.match(mechanicsLabScript, /color\(67, 146, 88, 18\)/);
+  assert.match(mechanicsLabScript, /makeCollectiblePresentationProps\(0\.92,\s*\{\s*maskShape: 2,\s*maskEllipseSegments: 56,/s);
+  assert.match(mechanicsLabScript, /color\(156, 68, 66, 18\)/);
+  assert.match(
+    mechanicsLabScript,
+    /'EchoPickup-Flower'[\s\S]*color\(66, 128, 80, 18\)[\s\S]*color\(203, 255, 215, 32\)[\s\S]*makeCollectiblePresentationProps\(0\.94,\s*\{\s*maskShape: 2,\s*maskEllipseSegments: 56,/s,
+  );
+  assert.match(
+    mechanicsLabScript,
+    /'EchoPickup-Bomb'[\s\S]*color\(125, 62, 64, 18\)[\s\S]*color\(255, 208, 198, 32\)[\s\S]*makeCollectiblePresentationProps\(0\.92,\s*\{\s*maskShape: 2,\s*maskEllipseSegments: 56,/s,
+  );
 });

@@ -79,7 +79,7 @@ interface RuntimeProbeStep extends RuntimeProbeCommand {}
 
 const DEFAULT_PROBE_URL = 'ws://127.0.0.1:37991';
 const PROBE_STORAGE_KEY = '__codexQaProbeUrl';
-const PROBE_RETIRE_DELAY_MS = 250;
+const PROBE_RETIRE_DELAY_MS = 1000;
 const PROBE_MAX_CONNECT_ATTEMPTS = 4;
 const PROBE_MAX_CONNECT_WINDOW_MS = 12_000;
 
@@ -811,7 +811,7 @@ async function runDirectCommandForQa(command: RuntimeProbeCommand): Promise<Reco
 
 async function runSequenceForQa(command: RuntimeProbeCommand): Promise<Record<string, unknown>> {
   const steps = Array.isArray(command.steps) ? command.steps : [];
-  const before = collectRuntimeSnapshot();
+  const before = compactRuntimeSnapshotForSequence(collectRuntimeSnapshot());
   const results: Array<Record<string, unknown>> = [];
 
   for (let index = 0; index < steps.length; index += 1) {
@@ -830,7 +830,12 @@ async function runSequenceForQa(command: RuntimeProbeCommand): Promise<Record<st
     }
 
     if (action === 'snapshot') {
-      results.push({ index, action, result: collectRuntimeSnapshot(), passed: true });
+      results.push({
+        index,
+        action,
+        snapshot: compactRuntimeSnapshotForSequence(collectRuntimeSnapshot()),
+        passed: true,
+      });
       continue;
     }
 
@@ -844,7 +849,7 @@ async function runSequenceForQa(command: RuntimeProbeCommand): Promise<Record<st
         index,
         action: 'tap-node',
         nodeName,
-        snapshot: collectRuntimeSnapshot(),
+        snapshot: compactRuntimeSnapshotForSequence(collectRuntimeSnapshot()),
         passed: true,
       });
       continue;
@@ -862,61 +867,45 @@ async function runSequenceForQa(command: RuntimeProbeCommand): Promise<Record<st
       results.push({
         index,
         action: 'switch-scene-route',
-        route,
+        route: route.map((entry) => ({
+          sceneName: entry.sceneName,
+          loaded: entry.loaded,
+          switchState: entry.switchState,
+        })),
         passed: route.every((entry) => entry.loaded),
       });
       continue;
     }
 
     if (action === 'setmoveinput' || action === 'set-move-input') {
-      results.push({
-        index,
-        action: 'set-move-input',
-        ...(await setMoveInputForQa(step)),
-      });
+      results.push(compactSequenceStepResult(index, 'set-move-input', await setMoveInputForQa(step)));
       continue;
     }
 
     if (action === 'holdjoystick' || action === 'hold-joystick') {
-      results.push({
-        index,
-        action: 'hold-joystick',
-        ...(await holdJoystickForQa(step)),
-      });
+      results.push(compactSequenceStepResult(index, 'hold-joystick', await holdJoystickForQa(step)));
       continue;
     }
 
     if (action === 'moveplayertoworld' || action === 'move-player-to-world') {
-      results.push({
-        index,
-        action: 'move-player-to-world',
-        ...(await movePlayerToWorldForQa(step)),
-      });
+      results.push(compactSequenceStepResult(index, 'move-player-to-world', await movePlayerToWorldForQa(step)));
       continue;
     }
 
     if (action === 'moveuntilscene' || action === 'move-until-scene') {
-      results.push({
-        index,
-        action: 'move-until-scene',
-        ...(await moveUntilSceneForQa(step)),
-      });
+      results.push(compactSequenceStepResult(index, 'move-until-scene', await moveUntilSceneForQa(step)));
       continue;
     }
 
     if (action === 'runcommand' || action === 'run-command' || step.kind) {
-      results.push({
-        index,
-        action: 'run-command',
-        ...(await runDirectCommandForQa(step)),
-      });
+      results.push(compactSequenceStepResult(index, 'run-command', await runDirectCommandForQa(step)));
       continue;
     }
 
     throw new Error(`Unsupported sequence step ${index}: ${String(step.action ?? step.command ?? '')}`);
   }
 
-  const after = collectRuntimeSnapshot();
+  const after = compactRuntimeSnapshotForSequence(collectRuntimeSnapshot());
   return {
     command: 'run-sequence',
     before,
@@ -925,6 +914,127 @@ async function runSequenceForQa(command: RuntimeProbeCommand): Promise<Record<st
     steps: results,
     passed: results.every((result) => result.passed !== false),
   };
+}
+
+function compactSequenceStepResult(
+  index: number,
+  action: string,
+  result: Record<string, unknown>,
+): Record<string, unknown> {
+  const compact: Record<string, unknown> = {
+    index,
+    action,
+    passed: result.passed !== false,
+  };
+
+  const copyKeys = [
+    'kind',
+    'executed',
+    'target',
+    'targetScene',
+    'requestedInput',
+    'requestedOffset',
+    'releaseAfter',
+    'durationMs',
+    'arrivalThreshold',
+    'sampleMs',
+    'distance',
+    'echoId',
+    'accepted',
+    'loaded',
+    'reached',
+    'movedDistance',
+    'finalDistance',
+    'averageUnitsPerSecond',
+    'approxFps',
+    'framesElapsed',
+    'iterations',
+    'expectation',
+    'beforePosition',
+    'afterHoldPosition',
+    'afterPosition',
+  ];
+
+  for (const key of copyKeys) {
+    if (Object.prototype.hasOwnProperty.call(result, key)) {
+      compact[key] = result[key];
+    }
+  }
+
+  if (Object.prototype.hasOwnProperty.call(result, 'before')) {
+    compact.before = compactRuntimeSnapshotForSequence(result.before);
+  }
+  if (Object.prototype.hasOwnProperty.call(result, 'after')) {
+    compact.after = compactRuntimeSnapshotForSequence(result.after);
+  }
+  if (Object.prototype.hasOwnProperty.call(result, 'snapshot')) {
+    compact.snapshot = compactRuntimeSnapshotForSequence(result.snapshot);
+  }
+
+  return compact;
+}
+
+function compactRuntimeSnapshotForSequence(snapshot: unknown): Record<string, unknown> | null {
+  const record = asRuntimeProbeRecord(snapshot);
+  if (!record) {
+    return null;
+  }
+
+  const frame = asRuntimeProbeRecord(record.frame);
+  const player = asRuntimeProbeRecord(record.player);
+  const playerHealth = asRuntimeProbeRecord(player?.health);
+
+  const activePlaceholderBindings = Array.isArray(record.activePlaceholderBindings)
+    ? record.activePlaceholderBindings
+      .map((entry) => {
+        const binding = asRuntimeProbeRecord(entry);
+        if (!binding) {
+          return null;
+        }
+        return {
+          nodeName: binding.nodeName ?? '',
+          bindingKey: binding.bindingKey ?? '',
+          bindingStatus: binding.bindingStatus ?? '',
+          selectedPath: binding.selectedPath ?? '',
+        };
+      })
+      .filter((entry) => entry !== null)
+    : [];
+
+  return {
+    generatedAt: record.generatedAt ?? null,
+    sceneName: typeof record.sceneName === 'string' ? record.sceneName : '',
+    flowState: record.flowState ?? null,
+    switchState: record.switchState ?? null,
+    frame: frame
+      ? {
+          totalFrames: frame.totalFrames ?? null,
+        }
+      : null,
+    player: player
+      ? {
+          position: player.position ?? null,
+          worldPosition: player.worldPosition ?? null,
+          moveInput: player.moveInput ?? null,
+          isAttacking: player.isAttacking ?? false,
+          health: playerHealth
+            ? {
+                current: playerHealth.current ?? null,
+                max: playerHealth.max ?? null,
+              }
+            : null,
+        }
+      : null,
+    echoCount: record.echoCount ?? null,
+    activePlaceholderBindings,
+  };
+}
+
+function asRuntimeProbeRecord(value: unknown): Record<string, unknown> | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return null;
+  }
+  return value as Record<string, unknown>;
 }
 
 function resolvePlayerController(): {

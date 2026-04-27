@@ -281,7 +281,7 @@ if (!fs.existsSync(harnessManifestPath)) {
 }
 
 const harnessManifest = readJson(harnessManifestPath);
-const timeoutMs = String(process.env.WECHAT_RUNTIME_PLAYTHROUGH_TIMEOUT_MS ?? 180000);
+const timeoutMs = String(process.env.WECHAT_RUNTIME_PLAYTHROUGH_TIMEOUT_MS ?? 240000);
 const probeResult = await runNodeScript(probeScriptPath, {
   WECHAT_RUNTIME_PROBE_PROJECT_PATH: harnessManifest.harnessDir,
   WECHAT_RUNTIME_PROBE_EXPECTED_PROJECT_NAME: harnessManifest.projectName,

@@ -28,6 +28,7 @@ const forbiddenNorthStar = [
 const protectedKeys = ['player'];
 
 const referenceKeys = [
+  'echo_box',
   'echo_spring_flower',
   'echo_bomb_bug',
   'environment_dungeon_floor_family',

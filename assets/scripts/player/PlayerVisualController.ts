@@ -1,9 +1,11 @@
-import { _decorator, Component, Node, SpriteFrame, Texture2D } from 'cc';
+import { _decorator, Component, Enum, Node, SpriteFrame, Texture2D, UITransform } from 'cc';
 import { HEALTH_EVENT_DAMAGED, HealthComponent } from '../combat/HealthComponent';
 import { PLAYER_EVENT_RESPAWNED, PlayerController } from './PlayerController';
 import {
   applySpriteFrameToPlaceholderVisual,
   destroyGeneratedSpriteFrames,
+  PlaceholderSpriteFitMode,
+  PlaceholderSpriteVerticalAnchor,
   resolveTextureBackedSpriteFrame,
   setPlaceholderLabelVisible,
   setPlaceholderVisualFlipX,
@@ -67,6 +69,24 @@ export class PlayerVisualController extends Component {
   @property
   mirrorFacing = true;
 
+  @property({ type: Enum(PlaceholderSpriteFitMode) })
+  fitMode = PlaceholderSpriteFitMode.Contain;
+
+  @property({ type: Enum(PlaceholderSpriteVerticalAnchor) })
+  verticalAnchor = PlaceholderSpriteVerticalAnchor.Bottom;
+
+  @property
+  scaleMultiplier = 0.9;
+
+  @property
+  characterVisualWidth = 76;
+
+  @property
+  characterVisualHeight = 104;
+
+  @property
+  characterVisualOffsetY = 20;
+
   private hurtTimer = 0;
   private lastFrame: SpriteFrame | null = null;
   private lastFlipX = false;
@@ -122,13 +142,18 @@ export class PlayerVisualController extends Component {
     this.keepPlayerVisibleInWorldOrder(force);
     this.hideLegacyLocatorBadge();
     this.removeVisibilityMarkers();
+    this.ensureCharacterVisualRoot(targetNode);
     const nextFrame = this.selectFrame();
     const nextLabelVisible = !this.hideLabelWhenSkinned || !nextFrame;
     const facing = this.player?.getFacingDirection();
     const nextFlipX = this.mirrorFacing && !!facing && facing.x < -0.001;
 
     if (force || this.lastFrame !== nextFrame) {
-      applySpriteFrameToPlaceholderVisual(targetNode, nextFrame);
+      applySpriteFrameToPlaceholderVisual(targetNode, nextFrame, {
+        fitMode: this.fitMode,
+        verticalAnchor: this.verticalAnchor,
+        scaleMultiplier: this.scaleMultiplier,
+      });
       this.lastFrame = nextFrame;
     }
 
@@ -140,6 +165,27 @@ export class PlayerVisualController extends Component {
     if (force || this.lastFlipX !== nextFlipX) {
       setPlaceholderVisualFlipX(targetNode, nextFlipX);
       this.lastFlipX = nextFlipX;
+    }
+  }
+
+  private ensureCharacterVisualRoot(targetNode: Node): void {
+    const visualTransform = targetNode.getComponent(UITransform);
+    if (!visualTransform) {
+      return;
+    }
+
+    const currentSize = visualTransform.contentSize;
+    const desiredWidth = Math.max(currentSize.width, this.characterVisualWidth);
+    const desiredHeight = Math.max(currentSize.height, this.characterVisualHeight);
+    const needsExpansion = desiredWidth !== currentSize.width || desiredHeight !== currentSize.height;
+    if (!needsExpansion) {
+      return;
+    }
+
+    visualTransform.setContentSize(desiredWidth, desiredHeight);
+    if (targetNode !== this.node) {
+      const currentPosition = targetNode.position;
+      targetNode.setPosition(currentPosition.x, this.characterVisualOffsetY, currentPosition.z);
     }
   }
 

@@ -520,3 +520,223 @@
   - `I2-010` is now `doing`.
 - Human intervention triggered: no.
 - Next loop goal: continue `player redesign track` with a no-text runtime-facing Direction A turnaround/state sheet, then decide whether the next safe step is state-sheet refinement or a paperdoll redraw plan.
+
+### Loop 10 update
+
+- Goal: land a preview-only bridge for the player redesign without touching the live `player` manifest.
+- Outputs:
+  - `assets/configs/asset_binding_candidate_manifest_image2.json`
+  - `assets/art/generated/image2-preview/player_preview/player_preview_v00.png`
+  - `assets/art/generated/image2-preview/player_preview/player_preview_v00.png.meta`
+  - `assets/art/generated/image2-preview/player_preview.meta`
+  - `assets/scenes/PlayerPreview.scene`
+  - `assets/scenes/PlayerPreview.scene.meta`
+  - `tests/player-preview-bridge.test.mjs`
+- New finding: the preview scene resolves `player_preview` through the candidate overlay and leaves the live `player` binding on Denzi's paperdoll.
+- Next step: keep `player` on the redesign track for concept/paperdoll/state-sheet work; this bridge is only the in-game preview hook.
+
+### Loop 11
+
+- Goal: close the gap between "player redesign track has preview art" and "actual gameplay runtime still shows live Denzi", while verifying that the echo summon line is a framing problem rather than a missing-wire or repeat-explosion bug.
+- Outputs:
+  - updated [generate-week2-scenes.mjs](/E:/cv5/wisdom/tools/generate-week2-scenes.mjs)
+  - updated [generate-mechanics-lab.mjs](/E:/cv5/wisdom/tools/generate-mechanics-lab.mjs)
+  - regenerated gameplay scenes with `IMAGE2_CANDIDATE_PREVIEW=1`:
+    - [StartCamp.scene](/E:/cv5/wisdom/assets/scenes/StartCamp.scene)
+    - [FieldWest.scene](/E:/cv5/wisdom/assets/scenes/FieldWest.scene)
+    - [FieldRuins.scene](/E:/cv5/wisdom/assets/scenes/FieldRuins.scene)
+    - [DungeonHub.scene](/E:/cv5/wisdom/assets/scenes/DungeonHub.scene)
+    - [DungeonRoomA.scene](/E:/cv5/wisdom/assets/scenes/DungeonRoomA.scene)
+    - [DungeonRoomB.scene](/E:/cv5/wisdom/assets/scenes/DungeonRoomB.scene)
+    - [DungeonRoomC.scene](/E:/cv5/wisdom/assets/scenes/DungeonRoomC.scene)
+    - [BossArena.scene](/E:/cv5/wisdom/assets/scenes/BossArena.scene)
+    - [MechanicsLab.scene](/E:/cv5/wisdom/assets/scenes/MechanicsLab.scene)
+  - updated tests:
+    - [content-scenes.test.mjs](/E:/cv5/wisdom/tests/content-scenes.test.mjs)
+    - [mechanics-lab.scene.test.mjs](/E:/cv5/wisdom/tests/mechanics-lab.scene.test.mjs)
+    - [wechat-build-policy.test.mjs](/E:/cv5/wisdom/tests/wechat-build-policy.test.mjs)
+- New findings:
+  - The user's "player design exists but gameplay still shows the old player" report was correct. The gap was not runtime rendering; normal gameplay scene generation still hardcoded `getImageBindingProps('player')`, so `player_preview` only ever appeared in [PlayerPreview.scene](/E:/cv5/wisdom/assets/scenes/PlayerPreview.scene).
+  - The smallest safe bridge is to let scene generation choose `player_preview` only when `IMAGE2_CANDIDATE_PREVIEW=1` and a `player_preview` candidate exists, while leaving [asset_binding_manifest_v2.json](/E:/cv5/wisdom/assets/configs/asset_binding_manifest_v2.json) untouched on live `player`.
+  - Gameplay scenes now stamp an explicit `AssetBindingTag` onto `Player`, so runtime evidence can prove whether the current build is showing live `player` or preview `player_preview`.
+  - `echo_box`, `echo_spring_flower`, and `echo_bomb_bug` are already wired through candidate preview; the remaining user-facing problem is their object framing / silhouette read, not a missing binding path.
+  - The suspected repeat-explosion bug on `echo_bomb_bug` did not reproduce. `BombBugFuse` still self-guards with `exploded` and destroys the node after detonation.
+  - This loop also reconfirmed that WeChat DevTools CLI can still emit `game.json code 10` noise during auto-preview while the actual runtime probe and full route still pass; judge the gate by probe/playthrough evidence, not the CLI stderr alone.
+- New evidence:
+  - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+  - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+- Adversarial conclusion:
+  - `player_preview` is now visible in actual gameplay runtime as `candidate_preview`, but this is still only a preview-track bridge, not permission to promote a single generated player sheet into live `player`.
+  - Current WeChat proof is green but tight: main package is `4,173,005` bytes, only `21,299` bytes under the `4 MB` hard budget. That is acceptable for this loop's proof boundary but too close to treat as a relaxed steady state.
+  - Loop stop conditions are still not met:
+    - `player` is still on the redesign track and has not reached final look signoff
+    - object-like echo presentation still needs shape/framing iteration to stop reading as textured placeholder slabs
+- Adversarial readout for the next loop:
+  - Do not treat `player_preview` appearing in `PlayerPreview.scene` or gameplay scenes as a stop condition; it is only a preview bridge.
+  - Do not treat GUI smoke success/failure as the main gate; it is evidence-only.
+  - Do not treat DevTools `game.json code 10`, `ws://127.0.0.1:37991`, or similar stderr noise as a stop condition by themselves.
+  - If a full DevTools restart is unavoidable, `信任并运行` must be handled before the reopen is considered complete.
+  - Do not auto-bind live `player` from a single generated sheet; keep the redesign track and preview bridge separate.
+- Todo change:
+  - `I2-010` stays `doing`.
+  - `I2-006` stays `doing`.
+- Human intervention triggered: no.
+- Next loop goal: tighten object-like presentation for `echo_box` / `echo_spring_flower` / `echo_bomb_bug` so they read as cropped world objects rather than textured cards, while keeping the new gameplay `player_preview` bridge and the non-GUI WeChat gate green.
+### Loop 12 update
+
+- Goal: keep the non-GUI WeChat gate honest while recording the object-framing conclusions and the remaining image2 work, without promoting preview bridges into live bindings.
+- Outputs:
+  - [temp/wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - [temp/wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+  - [temp/wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+  - [tests/cocos-echo-system.spec.mjs](/E:/cv5/wisdom/tests/cocos-echo-system.spec.mjs)
+- New findings:
+  - The default non-GUI playthrough is green again: runtime probe connected, `hello` returned, the 19-step `run-sequence` returned a command result, and the default scene route finished with `8/8` scenes loaded.
+  - Package budget remains safe for this loop boundary: main package is still below the 4 MB hard cap and below the warning threshold.
+  - Echo presentation has crossed the important threshold: `echo_box`, `echo_spring_flower`, and `echo_bomb_bug` now read more like bounded world objects than textured slabs/cards, and the echo runtime test background still shows no repeat-explosion logic regression.
+  - `player_preview` remains a preview bridge, not a live `player` promotion. Its appearance in gameplay runtime proves the bridge works, but it does not satisfy the player redesign stop gate.
+  - GUI smoke is still evidence-only; it is not the main gate and should not be used to claim loop completion.
+- Why we cannot stop:
+  - The loop stop conditions still are not fully satisfied because the player redesign track is not finished and the remaining image2 iteration work is still open.
+  - The current green runtime proof only tells us that the non-GUI WeChat path is healthy; it does not finish the content-quality and player-design obligations in the plan.
+- todo change:
+  - `I2-006` stays `doing`.
+  - `I2-010` stays `doing`.
+- Human intervention triggered: no.
+- Next loop goal: continue only one target, the echo/player framing cleanup path that keeps `player_preview` as a preview bridge while finishing the next safe presentation iteration without touching live `player`.
+
+## Player track 05 archive
+
+- `temp/image2/jobs/2026-04-25-player-track-05/prompts.json` and `temp/image2/prompt-library/by-key/player_redesign_track_05_direction_a_single_sprite.txt` are complete enough for a single-sprite redesign candidate review.
+- `assets/art/generated/image2-preview/player_preview/player_preview_v00.png` is now the refreshed preview-bridge asset for track-05, but only because provenance is stated plainly:
+  - it is not a fresh generation in this task
+  - it is a derived crop from [player_direction_a_runtime_sheet_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-24-player-track-03/player_direction_a_runtime_sheet_v00.png)
+  - it is still not a live `player` replacement
+- The archive evidence now lives at:
+  - `temp/image2/candidates/player/2026-04-25-player-track-05/player_preview_v00.png`
+  - `temp/image2/evidence/2026-04-25-player-track-05/review.json`
+- Next step stays within the redesign track only; do not promote this archive into live bindings without a separate gate.
+
+### Loop 13
+
+- Goal: refresh the `player_preview` bridge so gameplay uses a top-down gameplay-view crop instead of the earlier front-facing full-body crop, then re-run the non-GUI WeChat gate to keep the redesign track honest.
+- Outputs:
+  - refreshed [player_preview_v00.png](/E:/cv5/wisdom/assets/art/generated/image2-preview/player_preview/player_preview_v00.png)
+  - refreshed [player_preview_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-25-player-track-05/player_preview_v00.png)
+  - new [player_direction_a_single_sprite_v00.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-05/player_direction_a_single_sprite_v00.png)
+  - preserved pre-refresh archive [player_preview_v00_pre_track05_crop_refresh.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-05/player_preview_v00_pre_track05_crop_refresh.png)
+  - fresh preview screenshots:
+    - [StartCamp.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track05-refresh/StartCamp.png)
+    - [FieldWest.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track05-refresh/FieldWest.png)
+    - [MechanicsLab.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track05-refresh/MechanicsLab.png)
+  - refreshed non-GUI WeChat evidence:
+    - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+    - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+    - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+  - updated [asset_binding_candidate_manifest_image2.json](/E:/cv5/wisdom/assets/configs/asset_binding_candidate_manifest_image2.json)
+  - updated [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-05/review.json)
+  - updated [player-preview-bridge.test.mjs](/E:/cv5/wisdom/tests/player-preview-bridge.test.mjs)
+- New findings:
+  - The old `player_preview` crop was a front-facing full-body cutout that fit the redesign archive story but mismatched the actual gameplay footprint.
+  - The stronger honest bridge is a derived crop from Track 03 Direction A runtime sheet, using the large top-down gameplay-view block instead of the front view.
+  - This is still redesign-track-only evidence. It refreshes gameplay preview framing, but it does not satisfy the plan's final-player gate and does not authorize live `player` replacement.
+  - Fresh asset audit also corrected one over-optimistic claim from Loop 12: `echo_box` is still a hard presentation issue because the current bridge art is only `10x13`, so the summon line is not fully closed even though runtime wiring is green.
+  - The first playthrough attempt after the crop refresh went yellow only because `build:wechat` had fallen back to a timestamped staging directory and the runtime never emitted `hello` there. Running [rebuild:wechat](/E:/cv5/wisdom/package.json) reclaimed the stable [build/wechatgame](/E:/cv5/wisdom/build/wechatgame) path, and the next non-GUI playthrough passed again.
+  - Fresh preview screenshots show the new `player_preview` reads more like a top-down gameplay sprite in-world. The player still occupies the same runtime footprint (`94x104` in probe evidence), but the framing inside that footprint is much stronger than the earlier straight-on cutout.
+- Adversarial conclusion:
+  - Do not describe this crop refresh as a new Image 2 generation.
+  - Do not describe the refreshed `player_preview` bridge as final player signoff.
+  - Do not describe the echo line as fully solved while `echo_box` remains a micro-sprite bridge.
+- Human intervention triggered: no.
+- Next loop goal: continue the unresolved object-scale cleanup with `echo_box` as the next highest-signal presentation gap, while keeping the refreshed `player_preview` bridge and stable non-GUI WeChat path green.
+
+### Loop 14
+
+- Goal: validate the post-upscale `echo_box` presentation and the current `BossArena` candidate-preview runtime path on the latest tree, without treating live-placeholder tests as candidate-preview proof.
+- Outputs:
+  - refreshed non-GUI WeChat evidence:
+    - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+    - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+    - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - new `echo_box` scene evidence:
+    - [MechanicsLab.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-echo-box-runtime-spotcheck/MechanicsLab.png)
+    - [FieldWest.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-echo-box-runtime-spotcheck/FieldWest.png)
+    - [report.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-echo-box-runtime-spotcheck/report.json)
+  - new `BossArena` state evidence:
+    - [BossArena-closed.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-boss-preview-spotcheck/BossArena-closed.png)
+    - [BossArena-open.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-boss-preview-spotcheck/BossArena-open.png)
+    - [report.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-boss-preview-spotcheck/report.json)
+- New findings:
+  - The latest non-GUI WeChat gate is green again on the current tree even though the build output landed on `build/wechatgame-staging`:
+    - `verify:wechat` passed with main package `3,226,054 bytes`
+    - `test:wechat:playthrough` passed with runtime summary green and scene route `8/8`
+  - `echo_box` is no longer a `10x13` micro-bridge at the preview asset level. The current staged preview asset is `123x160`, and the runtime spotcheck shows it rendering as a bounded `58x58` world object in both `MechanicsLab` and `FieldWest`.
+  - The runtime probe now explicitly records `Echo-box` in `FieldWest` as `bindingKey = echo_box` with `bindingStatus = candidate_preview`, so the summon line is no longer only a prefab-level assumption.
+  - `BossArena` candidate-preview wiring is real in runtime:
+    - `boss_core`, `boss_shield_closed`, and `boss_shield_open` all expose candidate-preview `selectedPath` values in the preview runtime
+    - `BossVisualController` and `BreakableTarget` are carrying `SpriteFrame` refs for the boss assets even when `Texture2D` refs are null
+    - forcing a shield break switches the scene from closed/danger to open/vulnerable as expected, while keeping the candidate-preview paths on the boss nodes
+  - The static dungeon-scene assertions about `boss_core` / `boss_shield_*` staying image-free are live-manifest / source-scene boundary checks, not evidence that candidate-preview runtime failed. Do not treat those tests as a contradiction to the `BossArena` preview report.
+- Adversarial conclusion:
+  - Do not start a fresh boss generation loop just because the live source-scene tests still protect placeholder-only defaults. Candidate-preview runtime proof for the existing boss batch already exists.
+  - Do not treat the current green WeChat gate as permission to stop the loop. The `player` redesign track is still not finished, and the high-risk boss/player art still lacks final style/adversarial signoff.
+  - Do not regress back to GUI smoke for this work. The new `echo_box` and `BossArena` evidence came from preview/runtime paths and the non-GUI WeChat gate, which is the intended loop proof boundary.
+- Human intervention triggered: no.
+- Next loop goal: use the new `echo_box` and `BossArena` screenshots/reports as the evidence base for the next quality decision, starting with whether the current boss batch needs a new image iteration or can stay in candidate-preview while the loop moves back to `player redesign track`.
+
+## Player track 06 archive
+
+- `temp/image2/jobs/2026-04-25-player-track-06/prompts.json` and `temp/image2/prompt-library/by-key/player_redesign_track_06_direction_a_single_sprite.txt` now archive the first genuinely fresh built-in imagegen retry from this loop.
+- `temp/image2/candidates/player/2026-04-25-player-track-06/player_direction_a_single_sprite_v00.png` is preserved as a real candidate, but it is not preview-bridge-safe because:
+  - the exported PNG baked an opaque checkerboard-like background instead of alpha
+  - the camera angle still reads too front-facing for gameplay preview use
+- `temp/image2/evidence/2026-04-25-player-track-06/review.json` records the failure honestly and explicitly blocks promotion into either `player_preview` or live `player`.
+
+### Loop 15
+
+- Goal: continue the unfinished `player redesign track` with a genuinely new built-in Image 2 candidate, recover a cleaner preview-only bridge from it, and keep the non-GUI WeChat gate honest on the latest tree.
+- Outputs:
+  - archived failed fresh-generation retry:
+    - [player_direction_a_single_sprite_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-25-player-track-06/player_direction_a_single_sprite_v00.png)
+    - [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-06/review.json)
+  - archived stricter retry batch:
+    - [player_redesign_track_07_direction_a_single_sprite.txt](/E:/cv5/wisdom/temp/image2/prompt-library/by-key/player_redesign_track_07_direction_a_single_sprite.txt)
+    - [prompts.json](/E:/cv5/wisdom/temp/image2/jobs/2026-04-25-player-track-07/prompts.json)
+    - [review.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-07/review.json)
+    - [player_direction_a_single_sprite_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-25-player-track-07/player_direction_a_single_sprite_v00.png)
+    - [player_direction_a_single_sprite_v00_cutout.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-07/player_direction_a_single_sprite_v00_cutout.png)
+  - refreshed preview-only bridge:
+    - [player_preview_v00.png](/E:/cv5/wisdom/assets/art/generated/image2-preview/player_preview/player_preview_v00.png)
+    - [player_preview_v00.png](/E:/cv5/wisdom/temp/image2/candidates/player/2026-04-25-player-track-07/player_preview_v00.png)
+    - [player_preview_v00_pre_track07_refresh.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-player-track-07/player_preview_v00_pre_track07_refresh.png)
+  - fresh preview-runtime screenshots proving the new bridge is actually in-scene:
+    - [StartCamp.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track07-refresh/StartCamp.png)
+    - [FieldWest.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track07-refresh/FieldWest.png)
+    - [MechanicsLab.png](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track07-refresh/MechanicsLab.png)
+    - [report.json](/E:/cv5/wisdom/temp/image2/evidence/2026-04-25-preview-spotcheck-track07-refresh/report.json)
+  - refreshed non-GUI WeChat evidence on the reclaimed stable path:
+    - [wechat-size-report.json](/E:/cv5/wisdom/temp/wechat-size-report.json)
+    - [wechat-runtime-probe-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-probe-evidence.json)
+    - [wechat-runtime-playthrough-evidence.json](/E:/cv5/wisdom/temp/wechat-runtime-playthrough-evidence.json)
+  - updated bridge metadata:
+    - [asset_binding_candidate_manifest_image2.json](/E:/cv5/wisdom/assets/configs/asset_binding_candidate_manifest_image2.json)
+    - [player-preview-bridge.test.mjs](/E:/cv5/wisdom/tests/player-preview-bridge.test.mjs)
+- New findings:
+  - `track-06` was useful learning, not usable output. It preserved the Direction A shape language, but the baked checkerboard background made it unsafe for preview bridging.
+  - The stricter `track-07` retry still arrived on opaque white, but unlike `track-06` it was clean enough to derive a transparent cutout honestly from the fresh generation itself.
+  - The new `player_preview` bridge is visibly live in gameplay now, not just in manifest metadata:
+    - `StartCamp`, `FieldWest`, and `MechanicsLab` all render `bindingKey = player_preview`
+    - the new bridge no longer carries the old baked shadow footprint from track-05
+  - The first `build:wechat` + `verify:wechat` pass after the bridge refresh went yellow only because the playthrough landed on fallback `build/wechatgame-staging-20260425112145` and never received runtime `hello`.
+  - Running [rebuild:wechat](/E:/cv5/wisdom/package.json) reclaimed stable [build/wechatgame](/E:/cv5/wisdom/build/wechatgame), and the next playthrough passed again with movement gate green and scene route `8/8`.
+  - The current main package is still under the hard cap at `3,193,610 bytes`.
+- Adversarial conclusion:
+  - Do not describe `track-07` as final player signoff. It is a preview-only bridge refresh derived from a fresh single-image generation, not a finished player redesign package.
+  - Do not describe the transient blocked playthrough on `build/wechatgame-staging-20260425112145` as a gameplay/art regression. On this machine it matched the known timestamped-path / recent-project DevTools drift pattern and recovered through `rebuild:wechat`.
+  - Do not stop the art loop here. The player redesign track still lacks final concept/paperdoll/state-sheet signoff, and the boss/interactive-object families still need manual quality/adversarial closure.
+- Human intervention triggered: no.
+- Next loop goal: keep the refreshed `player_preview` bridge green while pushing the remaining stop-condition blockers down:
+  - final-player redesign acceptance is still open
+  - boss family quality/adversarial signoff is still open
+  - interactive object family (`echo_box`, portal/checkpoint/barrier/breakable/pickup`) still needs final scene-level acceptance, not just runtime proof

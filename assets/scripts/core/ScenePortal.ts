@@ -7,6 +7,7 @@ import {
   PlaceholderSpriteFitMode,
   PlaceholderSpriteVerticalAnchor,
   resolveTextureBackedSpriteFrame,
+  setPlaceholderLabelVisible,
 } from '../visual/SpriteVisualSkin';
 
 const { ccclass, property } = _decorator;
@@ -48,6 +49,9 @@ export class ScenePortal extends Component {
 
   @property(Texture2D)
   visualTexture: Texture2D | null = null;
+
+  @property
+  hideLabelWhenSkinned = true;
 
   private collider: Collider2D | null = null;
   private isTransitioning = false;
@@ -123,9 +127,10 @@ export class ScenePortal extends Component {
     const effectiveFrame = this.visualSpriteFrame
       ?? resolveTextureBackedSpriteFrame(this.generatedFrames, 'portal', this.visualTexture);
     applySpriteFrameToPlaceholderVisual(this.node, effectiveFrame, {
-      fitMode: PlaceholderSpriteFitMode.Cover,
+      fitMode: PlaceholderSpriteFitMode.Contain,
       verticalAnchor: PlaceholderSpriteVerticalAnchor.Bottom,
-      scaleMultiplier: 1.04,
+      scaleMultiplier: 1,
     });
+    setPlaceholderLabelVisible(this.node, !this.hideLabelWhenSkinned || !effectiveFrame);
   }
 }

@@ -1,4 +1,4 @@
-import { Color, Component, Graphics, Label, Mask, Node, Sprite, SpriteFrame, Texture2D, UITransform } from 'cc';
+import { Color, Component, Graphics, Label, Mask, Node, Rect, Size, Sprite, SpriteFrame, Texture2D, UITransform, Vec2 } from 'cc';
 import { RectVisual } from './RectVisual';
 
 const VISUAL_ART_NODE_NAME = 'SpriteSkin';
@@ -61,12 +61,12 @@ function redrawRoundedRectMask(graphics: Graphics, width: number, height: number
   graphics.fill();
 }
 
-function resolveVisualNode(rootOrVisualNode: Node | null): Node | null {
+function resolveVisualNode(rootOrVisualNode: Node | null, preferGenericVisualChild = false): Node | null {
   if (!rootOrVisualNode?.isValid) {
     return null;
   }
 
-  if (rootOrVisualNode.name.endsWith('-Visual')) {
+  if (rootOrVisualNode.name === 'Visual' || rootOrVisualNode.name.endsWith('-Visual')) {
     return rootOrVisualNode;
   }
 
@@ -75,7 +75,15 @@ function resolveVisualNode(rootOrVisualNode: Node | null): Node | null {
     return exactChild;
   }
 
-  return rootOrVisualNode.children.find((child) => child.name.endsWith('-Visual')) ?? rootOrVisualNode;
+  if (preferGenericVisualChild) {
+    const directVisualChild = rootOrVisualNode.getChildByName('Visual');
+    if (directVisualChild?.isValid) {
+      return directVisualChild;
+    }
+  }
+
+  return rootOrVisualNode.children.find((child) => child.name.endsWith('-Visual'))
+    ?? rootOrVisualNode;
 }
 
 function resolveArtNode(visualNode: Node | null): Node | null {
@@ -88,8 +96,20 @@ function resolveArtNode(visualNode: Node | null): Node | null {
     return directArtNode;
   }
 
+  const exactArtChild = visualNode.getChildByName(`${visualNode.name}-Art`);
+  if (exactArtChild?.isValid) {
+    return exactArtChild;
+  }
+
+  const genericArtChild = visualNode.children.find((child) => child.name.endsWith('-Art'));
+  if (genericArtChild?.isValid) {
+    return genericArtChild;
+  }
+
   const maskNode = visualNode.getChildByName(VISUAL_MASK_NODE_NAME);
-  return maskNode?.getChildByName(VISUAL_ART_NODE_NAME) ?? null;
+  return maskNode?.getChildByName(VISUAL_ART_NODE_NAME)
+    ?? maskNode?.getChildByName(`${visualNode.name}-Art`)
+    ?? null;
 }
 
 function ensureSpriteMaskHost(
@@ -178,13 +198,14 @@ export function applySpriteFrameToPlaceholderVisual(
     maskShape?: PlaceholderSpriteMaskShape;
     maskEllipseSegments?: number;
     maskCornerRadius?: number;
+    preferGenericVisualChild?: boolean;
   } = {},
 ): void {
   if (!rootOrVisualNode?.isValid || !spriteFrame) {
     return;
   }
 
-  const visualNode = resolveVisualNode(rootOrVisualNode);
+  const visualNode = resolveVisualNode(rootOrVisualNode, options.preferGenericVisualChild ?? false);
   if (!visualNode?.isValid) {
     return;
   }
@@ -369,7 +390,27 @@ export function resolveTextureBackedSpriteFrame(
     generatedFrames.set(cacheKey, spriteFrame);
   }
 
-  spriteFrame.texture = texture;
+  return resetTextureBackedSpriteFrame(spriteFrame, texture);
+}
+
+export function resetTextureBackedSpriteFrame(
+  spriteFrame: SpriteFrame,
+  texture: Texture2D,
+): SpriteFrame {
+  const textureWidth = Math.max(1, texture.width || 0);
+  const textureHeight = Math.max(1, texture.height || 0);
+  spriteFrame.reset({
+    texture,
+    rect: new Rect(0, 0, textureWidth, textureHeight),
+    originalSize: new Size(textureWidth, textureHeight),
+    offset: new Vec2(0, 0),
+    borderTop: 0,
+    borderBottom: 0,
+    borderLeft: 0,
+    borderRight: 0,
+    isRotate: false,
+    isFlipUv: false,
+  }, true);
   return spriteFrame;
 }
 

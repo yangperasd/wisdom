@@ -4,6 +4,7 @@ import {
   PlaceholderSpriteFitMode,
   PlaceholderSpriteMaskShape,
   PlaceholderSpriteVerticalAnchor,
+  resetTextureBackedSpriteFrame,
   setPlaceholderLabelVisible,
 } from './SpriteVisualSkin';
 
@@ -102,7 +103,6 @@ export class SceneDressingSkin extends Component {
       this.generatedSpriteFrame = new SpriteFrame();
     }
 
-    this.generatedSpriteFrame.texture = this.texture;
-    return this.generatedSpriteFrame;
+    return resetTextureBackedSpriteFrame(this.generatedSpriteFrame, this.texture);
   }
 }
